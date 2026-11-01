@@ -1,5 +1,7 @@
 # TECH-04 — Gerçek cihaz GPS ve pusula doğrulama protokolü
 
+**TECH-08 hazırlığı:** S23/Chrome ve iPhone 15/Safari cihaz matrisi belirlendi; erişilebilir HTTPS test adresi henüz yok. [Oturum kartı](telefon-kabul-oturumu.md), [masaüstü kanıt ve yazılım düzeltmeleri](responsive-cihaz-ve-pwa-kabulu.md). Aşağıdaki DV satırları fiziksel ölçüm yapılana kadar bekliyor kalır.
+
 **TECH-04D ek senaryosu:** Sensörsüz hedef yön/yükseklik/meraklısına ve özel liste/tarih kontrolleri masaüstünde sınanır; DV-07/12 fiziksel GPS/pusula ve VoiceOver/TalkBack yerine geçmez. Sensör bölümü kapatılınca dinleyici durmalı. [Güncel yazılım](ortak-bilesenler-ve-sensorsuz-gozlem.md).
 
 **Durum:** Protokol hazır, fiziksel cihaz oturumu **yürütülmedi**. Yazılım testleri/masaüstü sensör yokluğu kontrolü cihaz kabulü yerine geçmez. İz: FR-01–02/11–12, UJ-01/06, AC-01–03/09/11/13–14. [Uygulama](dogal-gorunum-ve-pusula.md).

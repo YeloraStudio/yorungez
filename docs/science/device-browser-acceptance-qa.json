@@ -1,0 +1,141 @@
+{
+  "date": "2026-11-01",
+  "package": "TECH-08 / K-030",
+  "physicalAcceptance": "pending; no accessible HTTPS test origin",
+  "plannedPhysicalMatrix": [
+    {
+      "device": "Samsung Galaxy S23",
+      "browser": "Chrome",
+      "status": "pending"
+    },
+    {
+      "device": "iPhone 15",
+      "browser": "Safari",
+      "status": "pending"
+    }
+  ],
+  "privacy": "Only labelled public Istanbul example and synthetic software inputs; no actual device GPS/orientation captured. No personal inventory persisted offline.",
+  "automated": {
+    "client": 49,
+    "passed": true,
+    "typecheck": "passed",
+    "productionPwaBuild": "passed; final lifecycle patch and normal production build verified"
+  },
+  "responsiveCalendar": [
+    {
+      "width": 320,
+      "height": 568,
+      "horizontalOverflow": false
+    },
+    {
+      "width": 360,
+      "height": 780,
+      "horizontalOverflow": false
+    },
+    {
+      "width": 393,
+      "height": 852,
+      "horizontalOverflow": false
+    },
+    {
+      "width": 640,
+      "height": 360,
+      "horizontalOverflow": false
+    },
+    {
+      "width": 780,
+      "height": 360,
+      "horizontalOverflow": false
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "horizontalOverflow": false
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "horizontalOverflow": false
+    }
+  ],
+  "browserEvidence": {
+    "IAB": "general map, custom month picker/Escape, TR/EN context, Tonight to Jupiter direction guide",
+    "Brave": "verified general pack and 88/88 images; owned preview stopped, reload and calendar navigation worked offline with UTC fallback",
+    "notTested": [
+      "Chrome desktop separately",
+      "Edge desktop",
+      "physical iOS Safari",
+      "physical Android Chrome",
+      "real keyboard and notch",
+      "VoiceOver/TalkBack",
+      "physical installation and storage eviction",
+      "real phone performance"
+    ]
+  },
+  "localFirstCalculationSamplesMs": {
+    "IAB": 211,
+    "Brave": 485,
+    "scope": "single local developer samples, not CWV or a physical-device performance acceptance"
+  },
+  "knownCalendarCheck": {
+    "instantUtc": "2026-11-01T20:28:00Z",
+    "target": "moon",
+    "approxAzimuthDegrees": 59.0,
+    "approxAltitudeDegrees": -5.9,
+    "belowHorizonWarning": true
+  },
+  "lastLifecyclePatch": {
+    "initialInstallGhostUpdate": "passed: clean 5196 origin reports pack 5248920dc675b7010103 ready with no update action",
+    "explicitUpdate": "passed: Brave 45fad93348c4612c0928 -> 5248920dc675b7010103 by explicit action; no update action remained after reload",
+    "connectionRecovery": "passed: final 5196 server stopped, cached sky reopened offline; server restarted and reload cleared offline badge without the manual check action",
+    "optionalImages": "88/88 prepared in prior pack; new version accurately reports optional images not prepared",
+    "mobileForm": "360px account form has no horizontal overflow; visible text inputs computed at 16px; no submission or real data",
+    "physicalStatus": "still pending HTTPS environment and actual device measurements"
+  },
+  "backend": "125 hosted .NET tests passed on first PR revision; final snapshot remains subject to required CI",
+  "sources": [
+    "https://www.w3.org/TR/orientation-event/",
+    "https://www.w3.org/TR/geolocation/",
+    "https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariWebContent/UsingtheViewport/UsingtheViewport.html"
+  ],
+  "responsiveMap": [
+    {
+      "width": 780,
+      "height": 360,
+      "searchBottom": 58,
+      "toolsTop": 75,
+      "toolsBottom": 119,
+      "cardTop": 125,
+      "layersTop": 75,
+      "terrainNoticeBottom": 127,
+      "locationTop": 183,
+      "overlap": false
+    },
+    {
+      "width": 640,
+      "height": 360,
+      "searchBottom": 107,
+      "toolsTop": 114,
+      "toolsBottom": 160,
+      "cardTop": 166,
+      "layersTop": 114,
+      "terrainNoticeBottom": 162.594,
+      "locationTop": 188,
+      "horizontalOverflow": false,
+      "overlap": false
+    }
+  ],
+  "finalCssPack": "87276e1d1b938153b385; matches normal local app and isolated verification server",
+  "finalBrowserActions": [
+    "780px: search and map controls do not intersect; layers button is above object card, layer panel opens and closes",
+    "640px: tools, layers, terrain notice and context remain separate; object card scrolls below controls",
+    "View the whole sky activated with object card open",
+    "Temporary IAB viewport reset and owned QA tabs closed"
+  ],
+  "localHandoff": {
+    "web": "HTTP 200 on loopback 5190",
+    "apiReadiness": "HTTP 200 on loopback 5187",
+    "anonymousSession": "401 with no-store, private",
+    "mail": "No real-recipient QA request was made"
+  }
+}

@@ -1,5 +1,6 @@
 "use client";
 import {useLayoutEffect,useRef,type RefObject,type ReactNode,type KeyboardEvent} from 'react';
+import {popupBounds} from '../../lib/viewport.ts';
 
 /** A custom-painted top-layer popup also works inside the map's modal dialog. */
 export default function PickerPopover({id,anchor,onClose,children,label,width=320,initialFocus,role='dialog'}:{
@@ -10,17 +11,18 @@ export default function PickerPopover({id,anchor,onClose,children,label,width=32
  useLayoutEffect(()=>{
   const popup=host.current!,trigger=anchor.current!;
   if(typeof popup.showPopover==='function')popup.showPopover();else popup.removeAttribute('popover');
-  const position=()=>{const rect=trigger.getBoundingClientRect(),w=Math.min(width,window.innerWidth-24),availableBelow=window.innerHeight-rect.bottom-12;
-   popup.style.width=w+'px';popup.style.left=Math.max(12,Math.min(rect.left,window.innerWidth-w-12))+'px';
-   popup.style.maxHeight=Math.max(160,window.innerHeight-24)+'px';
-   const height=Math.min(popup.scrollHeight,window.innerHeight-24);
-   popup.style.top=Math.max(12,availableBelow>=height?rect.bottom+6:rect.top-height-6)+'px';
+  const visual=window.visualViewport;
+  const position=()=>{const viewport={left:visual?.offsetLeft??0,top:visual?.offsetTop??0,width:visual?.width??window.innerWidth,height:visual?.height??window.innerHeight};
+   let bounds=popupBounds(trigger.getBoundingClientRect(),viewport,width,popup.scrollHeight);
+   popup.style.width=bounds.width+'px';popup.style.maxHeight=bounds.maxHeight+'px';
+   bounds=popupBounds(trigger.getBoundingClientRect(),viewport,width,popup.scrollHeight);
+   popup.style.left=bounds.left+'px';popup.style.top=bounds.top+'px';
   };
   position();const focused=popup.querySelector<HTMLElement>(initialFocus)??popup.querySelector<HTMLElement>('button,input');focused?.focus({preventScroll:true});const list=focused?.closest<HTMLElement>('[role=listbox]');if(focused&&list)list.scrollTop+=focused.getBoundingClientRect().top-list.getBoundingClientRect().top-(list.clientHeight-focused.clientHeight)/2;
   const outside=(event:PointerEvent)=>{if(!popup.contains(event.target as Node)&&!trigger.contains(event.target as Node))close.current(false)};
   const focus=(event:FocusEvent)=>{if(!popup.contains(event.target as Node)&&!trigger.contains(event.target as Node))close.current(false)};
-  document.addEventListener('pointerdown',outside);document.addEventListener('focusin',focus);window.addEventListener('resize',position);document.addEventListener('scroll',position,true);
-  return()=>{document.removeEventListener('pointerdown',outside);document.removeEventListener('focusin',focus);window.removeEventListener('resize',position);document.removeEventListener('scroll',position,true);if(typeof popup.hidePopover==='function'&&popup.matches(':popover-open'))popup.hidePopover()};
+  document.addEventListener('pointerdown',outside);document.addEventListener('focusin',focus);window.addEventListener('resize',position);document.addEventListener('scroll',position,true);visual?.addEventListener('resize',position);visual?.addEventListener('scroll',position);
+  return()=>{document.removeEventListener('pointerdown',outside);document.removeEventListener('focusin',focus);window.removeEventListener('resize',position);document.removeEventListener('scroll',position,true);visual?.removeEventListener('resize',position);visual?.removeEventListener('scroll',position);if(typeof popup.hidePopover==='function'&&popup.matches(':popover-open'))popup.hidePopover()};
  },[anchor,initialFocus,width]);
  function key(event:KeyboardEvent){if(event.key==='Escape'){event.preventDefault();event.stopPropagation();close.current(true)}else if(event.key==='Tab'){event.stopPropagation();}}
  return <div ref={host} id={id} popover="manual" className="picker-popover" role={role} aria-label={role==='dialog'?label:undefined} onKeyDown={key}>{children}</div>;
