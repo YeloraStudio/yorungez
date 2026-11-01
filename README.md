@@ -1,5 +1,10 @@
 # yorungez
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="data/branding/exports/wordmark-on-dark.svg">
+  <img src="data/branding/exports/wordmark-on-light.svg" alt="yorungez" width="360">
+</picture>
+
 **Explore the sky. Understand what you see. Keep your observations.**
 
 [![CI](https://github.com/YeloraStudio/yorungez/actions/workflows/ci.yml/badge.svg)](https://github.com/YeloraStudio/yorungez/actions/workflows/ci.yml)

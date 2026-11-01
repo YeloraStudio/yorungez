@@ -15,6 +15,8 @@ Detailed product/delivery records are currently mostly Turkish. Newer decisions 
 
 ## Current implementation
 
+- [Brand integration / evidence](marka-logolari.md), [brand originals / exports / prompt](../data/branding/README.md)
+
 - [Backend / identity](altyapi-ve-kimlik.md), [frontend setup](../src/Yorungez.Web/README.md)
 - [Map / location / time](tam-ekran-harita-gelistirmesi.md), [natural rendering / compass](dogal-gorunum-ve-pusula.md)
 - [Tonight / calendar / place names](gozlem-cizelgesi-ve-takvim.md)

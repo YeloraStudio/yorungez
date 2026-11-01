@@ -10,10 +10,24 @@ for(const lang of ['en','tr'])core.push(await entry('/'+lang,path.join(dist,'ser
 for(const file of await walk(path.join(dist,'static')))if(/\.(js|css|woff2)$/.test(file))core.push(await entry('/_next/static/'+path.relative(path.join(dist,'static'),file).replaceAll('\\','/').split('/').map(encodeURIComponent).join('/'),file));
 for(const name of ['catalog.json','calendar.json','icon-192.png','icon-512.png','offline-en.html','offline-tr.html'])core.push(await entry('/pwa/'+name,path.join(web,'public/pwa',name)));
 core.push(await entry('/favicon.svg',path.join(web,'public/favicon.svg')));
+core.push(await entry('/favicon.ico',path.join(web,'public/favicon.ico')));
+const {assets:brand}=JSON.parse(await fs.readFile(path.join(web,'../../data/branding/assets.json'),'utf8'));
+for(const asset of Object.values(brand))core.push(await entry(asset.src,path.join(web,'public',asset.src)));
+const manifestFile=path.join(dist,'server/app/manifest.webmanifest.body');
+core.push(await entry('/manifest.webmanifest',manifestFile));
+const manifest=JSON.parse(await fs.readFile(manifestFile,'utf8'));
+for(const [purpose,role] of [['any','app192'],['any','app512'],['maskable','maskable512']]){
+ const asset=brand[role];
+ if(!manifest.icons?.some(i=>i.src===asset.src&&i.purpose===purpose&&i.sizes===`${asset.width}x${asset.height}`))throw new Error('Missing manifest brand icon: '+role);
+}
 const urls=new Set(core.map(e=>e.url));
 for(const lang of ['en','tr']){
  const html=await fs.readFile(path.join(dist,'server/app',lang+'.html'),'utf8');
- for(const m of html.matchAll(/(?:src|href)="(\/_next\/static\/[^"?]+)"/g))if(!urls.has(m[1]))throw new Error('Missing encoded shell dependency: '+m[1]);
+ for(const m of html.matchAll(/(?:src|href)="(\/(?:_next\/static\/|brand\/)[^"?]+)"/g))if(!urls.has(m[1]))throw new Error('Missing encoded shell dependency: '+m[1]);
+}
+for(const lang of ['en','tr']){
+ const html=await fs.readFile(path.join(web,`public/pwa/offline-${lang}.html`),'utf8');
+ for(const m of html.matchAll(/src="(\/brand\/[^"?]+)"/g))if(!urls.has(m[1]))throw new Error('Missing offline brand dependency: '+m[1]);
 }
 const optional=[];
 for(const folder of ['landscapes','sky-art','objects'])for(const file of await walk(path.join(web,'public',folder)))if(/\.(png|webp|jpg)$/.test(file))optional.push(await entry('/'+path.relative(path.join(web,'public'),file).replaceAll('\\','/'),file));

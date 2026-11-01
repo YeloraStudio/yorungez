@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "providedBy": "project owner",
+  "palette": [
+    "#3C3F43",
+    "#8B2333",
+    "#9EA1A6",
+    "#C9B6A6",
+    "#F7F1E6"
+  ],
+  "sources": [
+    {
+      "file": "data/branding/source/app-icon-original.png",
+      "originalName": "ChatGPT Görseli 1 Kas 2026 14_02_51.png",
+      "role": "illustrated app icon",
+      "sha256": "42109d20d0221ef920b241308df1ef7d10ef2d8553172e19166228a2f83d6a1f"
+    },
+    {
+      "file": "data/branding/source/mark-original.png",
+      "originalName": "ChatGPT Görseli 1 Kas 2026 14_02_58.png",
+      "role": "standalone transparent emblem",
+      "sha256": "76ea35a3b5f4ec048bb6fe949c59b3d3a46263cd22f95dc378f2a1517c393542"
+    },
+    {
+      "file": "data/branding/source/wordmark-cream-original.png",
+      "originalName": "yorungez-logo-yeni-palet-krem.png",
+      "role": "wordmark on ivory",
+      "sha256": "36da63ef3bf44727e0c669096081c34aeecabe1a6401f6944e192fb9d1492425"
+    },
+    {
+      "file": "data/branding/source/wordmark-transparent-original.png",
+      "originalName": "yorungez-logo-yeni-palet-seffaf.png",
+      "role": "transparent wordmark",
+      "sha256": "cbafce57d232f0036be387a0fdcee41fd8c17dab677339b6c30ac27ba1cb6328"
+    },
+    {
+      "file": "data/branding/source/app-icon-fullbleed.png",
+      "role": "full-bleed app icon; built-in image_gen edit of app-icon-original.png",
+      "sha256": "0e5181d3c96f43bcaa4525e6e1c2a2521291cb23bc6d7b5d47a84ef53514c381"
+    },
+    {
+      "file": "data/branding/exports/mark-on-dark.svg",
+      "role": "native SVG export of supplied alpha silhouettes, palette-separated paths; 0.55px contour tolerance",
+      "sha256": "36d5325fad2533ce6a703b60c3c77ea5bdb7fe131bfeeadfdbd7790e9d2e5ee1"
+    },
+    {
+      "file": "data/branding/exports/mark-on-light.svg",
+      "role": "native SVG export of supplied alpha silhouettes, palette-separated paths; 0.55px contour tolerance",
+      "sha256": "bb5b1121d885527e2c304899a331d5f055d363e9329400d7ea0961439fd2d837"
+    },
+    {
+      "file": "data/branding/exports/wordmark-on-dark.svg",
+      "role": "native SVG export of supplied alpha silhouettes, palette-separated paths; 0.55px contour tolerance",
+      "sha256": "75ba3adbfe2b13d66c2da36c80457d3d535138b3ca3e3efc0c6838fc6709c416"
+    },
+    {
+      "file": "data/branding/exports/wordmark-on-light.svg",
+      "role": "native SVG export of supplied alpha silhouettes, palette-separated paths; 0.55px contour tolerance",
+      "sha256": "a5f484d74a75aac16d39eee31bbdc47a4e7651e69aca186461b34e4d2c13b6b7"
+    }
+  ],
+  "vectorExport": {
+    "method": "alpha silhouette and nearest palette contours from supplied originals; no font substitution",
+    "alphaThreshold": 160,
+    "contourTolerancePx": 0.55,
+    "wordmarkMinContourAreaPx": 12,
+    "markMinContourAreaPx": 95,
+    "wordmarkBounds": [
+      48,
+      428,
+      1159,
+      360
+    ],
+    "markBounds": [
+      118,
+      170,
+      1010,
+      905
+    ]
+  },
+  "generatedAppIcon": {
+    "tool": "built-in image_gen",
+    "purpose": "remove exterior cream mat, baked rounded boundary and shadow; extend dark artwork to square edges",
+    "source": "app-icon-original.png"
+  },
+  "identity": "Visual wordmark retains the supplied Yörüngez spelling; application IDs and accessible product name remain yorungez."
+}

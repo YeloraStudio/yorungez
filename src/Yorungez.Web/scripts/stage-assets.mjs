@@ -39,4 +39,5 @@ for(const [folder,dataFile,manifestFile] of [['events','calendar.json','calendar
  fs.writeFileSync(path.join(generated,dataFile),data);fs.writeFileSync(path.join(generated,manifestFile),m);
 }
 
+const {verifyBrand}=await import('./verify-brand.mjs');await verifyBrand();
 const {stageOffline}=await import("./stage-offline.mjs");await stageOffline(web);

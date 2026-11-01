@@ -1,5 +1,10 @@
 # yorungez
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="data/branding/exports/wordmark-on-dark.svg">
+  <img src="data/branding/exports/wordmark-on-light.svg" alt="yorungez" width="360">
+</picture>
+
 **Gökyüzünü keşfet. Gördüğünü anla. Gözlemlerini sakla.**
 
 [English](README.md) · [Dokümantasyon](docs/README.md) · [Katkı rehberi](CONTRIBUTING.md) · [Güvenlik](SECURITY.md)

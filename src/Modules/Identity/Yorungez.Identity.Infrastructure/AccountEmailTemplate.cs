@@ -6,6 +6,7 @@ namespace Yorungez.Identity.Infrastructure;
 /// <summary>Transactional mail has a fixed English language policy, independent of the UI language.</summary>
 public static class AccountEmailTemplate
 {
+    public const string LogoContentId = "yorungez-wordmark";
     public static EmailMessage Create(string kind, string recipient, string actionUrl)
     {
         if (kind is not ("confirmation" or "reset") || !Uri.TryCreate(actionUrl, UriKind.Absolute, out var uri)
@@ -29,7 +30,7 @@ public static class AccountEmailTemplate
             <div style="display:none;max-height:0;overflow:hidden;opacity:0;">{{action}}. {{expiry}}</div>
             <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#F7F1E6"><tr><td align="center" style="padding:36px 16px;">
             <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="max-width:600px;">
-            <tr><td style="padding:0 8px 24px;font-size:30px;font-weight:800;letter-spacing:-1.5px;color:#3C3F43;">yorungez<span style="color:#8B2333;">.</span></td></tr>
+            <tr><td style="padding:0 8px 24px;color:#3C3F43;"><img src="cid:{{LogoContentId}}" alt="yorungez" width="240" height="75" style="display:block;border:0;width:240px;max-width:100%;height:auto;"></td></tr>
             <tr><td bgcolor="#3C3F43" style="border-radius:16px 16px 0 0;padding:30px 28px;">
             <p style="margin:0 0 12px;color:#C9B6A6;font-size:11px;font-weight:bold;letter-spacing:2px;">{{eyebrow}}</p>
             <h1 style="margin:0;color:#F7F1E6;font-size:28px;line-height:1.3;font-weight:700;">{{title}}</h1>
