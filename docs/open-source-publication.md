@@ -50,7 +50,12 @@ Read back from GitHub after configuration:
 
 The first CodeQL run reported incomplete multi-character tag stripping in the external article formatter. The consumer renders React text nodes, not raw HTML; exploitability was not established by this finding alone. A follow-up removes all angle brackets including malformed/nested fragments while retaining ordinary credit text, with an adversarial regression check. Static analysis must rerun on that change; the alert must not be dismissed merely to obtain a clean dashboard.
 
-Hosted CI results are linked in repository Actions. The publication safety job for the initial snapshot passed; complete application/CodeQL outcomes are recorded after execution.
+Hosted initial-snapshot results:
+
+- [CI run 41296049358](https://github.com/YeloraStudio/yorungez/actions/runs/41296049358): publication safety, 18 core + 19 astronomy + 88 API tests (125 total), 44 client tests, typecheck, production PWA build, frozen-reference integrity and C#/JavaScript scientific parity passed.
+- [CodeQL run 41296049386](https://github.com/YeloraStudio/yorungez/actions/runs/41296049386): all four analyses completed successfully; one tag-stripping alert was reported. Successful analysis execution alone does not mean zero findings.
+- [Follow-up PR #4](https://github.com/YeloraStudio/yorungez/pull/4) adds the 45th client test and fixes the formatter. The subsequent JavaScript analysis marked the follow-up alert fixed; the patch will merge only after all six required checks pass. The final default-branch alert state remains independently inspectable in the Security tab.
+- The local application remained available: frontend and API readiness returned HTTP 200 after publication. No user service was stopped or production deployment performed.
 
 ## Remaining work
 
