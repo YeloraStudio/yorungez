@@ -17,6 +17,13 @@ public sealed record EmailSettings(string Host, int Port, string Sender, string 
 
 public sealed class SmtpEmailDelivery(EmailSettings options) : IEmailDelivery
 {
+    private static readonly Lazy<byte[]> LogoBytes = new(() =>
+    {
+        using var resource = typeof(SmtpEmailDelivery).Assembly.GetManifestResourceStream("Yorungez.Branding.EmailWordmark.png")
+            ?? throw new InvalidOperationException("Embedded email wordmark is missing.");
+        using var buffer = new MemoryStream(); resource.CopyTo(buffer); return buffer.ToArray();
+    });
+
     public async Task SendAsync(EmailMessage message, CancellationToken ct)
     {
         var mail = Compose(message, options.Sender);
@@ -36,7 +43,14 @@ public sealed class SmtpEmailDelivery(EmailSettings options) : IEmailDelivery
         mail.From.Add(new MailboxAddress("yorungez", sender));
         mail.To.Add(MailboxAddress.Parse(message.Recipient));
         mail.Subject = message.Subject;
-        mail.Body = new BodyBuilder { TextBody = message.Body, HtmlBody = message.HtmlBody }.ToMessageBody();
+        var body = new BodyBuilder { TextBody = message.Body, HtmlBody = message.HtmlBody };
+        if (message.HtmlBody?.Contains($"cid:{AccountEmailTemplate.LogoContentId}", StringComparison.Ordinal) == true)
+        {
+            var logo = body.LinkedResources.Add("yorungez.png", LogoBytes.Value, new ContentType("image", "png"));
+            logo.ContentId = AccountEmailTemplate.LogoContentId;
+            logo.ContentDisposition = new ContentDisposition(ContentDisposition.Inline);
+        }
+        mail.Body = body.ToMessageBody();
         return mail;
     }
 

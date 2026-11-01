@@ -1,0 +1,96 @@
+{
+  "version": 1,
+  "assets": {
+    "wordmarkDark": {
+      "src": "/brand/wordmark-on-dark.75ba3adbfe2b.svg",
+      "width": 1159,
+      "height": 360,
+      "bytes": 10380,
+      "sha256": "75ba3adbfe2b13d66c2da36c80457d3d535138b3ca3e3efc0c6838fc6709c416"
+    },
+    "wordmarkLight": {
+      "src": "/brand/wordmark-on-light.a5f484d74a75.svg",
+      "width": 1159,
+      "height": 360,
+      "bytes": 10380,
+      "sha256": "a5f484d74a75aac16d39eee31bbdc47a4e7651e69aca186461b34e4d2c13b6b7"
+    },
+    "markDark": {
+      "src": "/brand/mark-on-dark.36d5325fad25.svg",
+      "width": 1010,
+      "height": 905,
+      "bytes": 17723,
+      "sha256": "36d5325fad2533ce6a703b60c3c77ea5bdb7fe131bfeeadfdbd7790e9d2e5ee1"
+    },
+    "markLight": {
+      "src": "/brand/mark-on-light.bb5b1121d885.svg",
+      "width": 1010,
+      "height": 905,
+      "bytes": 17723,
+      "sha256": "bb5b1121d885527e2c304899a331d5f055d363e9329400d7ea0961439fd2d837"
+    },
+    "app192": {
+      "src": "/brand/app-192.83e64a4a93ea.png",
+      "width": 192,
+      "height": 192,
+      "bytes": 49445,
+      "sha256": "83e64a4a93ea3e384cb3b60c43f1bac4b2a2cd6c447463356d298634021bb182"
+    },
+    "app512": {
+      "src": "/brand/app-512.ab1f837fe360.png",
+      "width": 512,
+      "height": 512,
+      "bytes": 317846,
+      "sha256": "ab1f837fe360eb46d35717a13832123503159ce15ee26493076550c2be198005"
+    },
+    "apple180": {
+      "src": "/brand/apple-touch-180.7999aba5d37f.png",
+      "width": 180,
+      "height": 180,
+      "bytes": 44579,
+      "sha256": "7999aba5d37f5810ae625a6f462a203152bfd88fa9bb54466a033557ba700808"
+    },
+    "maskable512": {
+      "src": "/brand/maskable-512.26c28c988d27.png",
+      "width": 512,
+      "height": 512,
+      "bytes": 16591,
+      "sha256": "26c28c988d272dafeb3b72a361d1147b6084012771234528d94e01bf3179dc04"
+    },
+    "faviconSvg": {
+      "src": "/brand/favicon.f6cc6aeaece4.svg",
+      "width": 64,
+      "height": 64,
+      "bytes": 17874,
+      "sha256": "f6cc6aeaece4c4c6cb255a56d095d03b65f62d3168d1d7cc237f27ea3fca910f"
+    },
+    "favicon16": {
+      "src": "/brand/favicon-16.a0a04d862e55.png",
+      "width": 16,
+      "height": 16,
+      "bytes": 526,
+      "sha256": "a0a04d862e5553aabd957005203aa23d34abac327b99cb32c7449461b7760299"
+    },
+    "favicon32": {
+      "src": "/brand/favicon-32.d612f2e74b7a.png",
+      "width": 32,
+      "height": 32,
+      "bytes": 1166,
+      "sha256": "d612f2e74b7a425317b8155e4205168efdaa7630e2a76684f3427f39b2a2d38a"
+    },
+    "faviconIco": {
+      "src": "/brand/favicon.f487bd419406.ico",
+      "width": 48,
+      "height": 48,
+      "bytes": 3518,
+      "sha256": "f487bd419406f5a1e8ddf36574eb8eee46bf6d4bdb4040ee31a53e16d5e89005"
+    }
+  },
+  "email": {
+    "file": "data/branding/exports/email-wordmark.png",
+    "width": 720,
+    "height": 224,
+    "bytes": 19519,
+    "sha256": "de902dbb57f385bef449a2ba24f3d977b5385268e73350aba9c46877631f4a10"
+  }
+}

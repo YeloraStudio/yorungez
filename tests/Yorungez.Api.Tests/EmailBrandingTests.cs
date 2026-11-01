@@ -30,8 +30,23 @@ public sealed class EmailBrandingTests(AppFactory app) : IClassFixture<AppFactor
         Assert.Contains("2 hours", read.TextBody); Assert.EndsWith(link, read.TextBody);
         Assert.Contains("&amp;token=", read.HtmlBody); Assert.DoesNotContain("<script", read.HtmlBody);
         foreach (var color in new[] { "#3C3F43", "#8B2333", "#C9B6A6", "#F7F1E6" }) Assert.Contains(color, read.HtmlBody);
-        Assert.DoesNotContain("<img", read.HtmlBody); Assert.DoesNotContain("<script", read.HtmlBody);
+        Assert.Contains($"src=\"cid:{AccountEmailTemplate.LogoContentId}\"", read.HtmlBody);
+        Assert.DoesNotContain("src=\"http", read.HtmlBody);
+        var logo = Assert.Single(read.BodyParts.OfType<MimePart>(), p => p.ContentType.MimeType == "image/png");
+        Assert.Equal(AccountEmailTemplate.LogoContentId, logo.ContentId);
+        Assert.True(logo.ContentDisposition?.IsAttachment == false);
+        using var image = new MemoryStream(); Assert.NotNull(logo.Content); logo.Content.DecodeTo(image);
+        Assert.Equal(new byte[] {137,80,78,71,13,10,26,10}, image.ToArray()[..8]);
+        Assert.InRange(image.Length, 1000, 50000);
         Assert.Equal("sender@example.com", read.From.Mailboxes.Single().Address);
+    }
+
+    [Fact]
+    public void Plain_legacy_mail_does_not_gain_an_unused_image_attachment()
+    {
+        var mime = SmtpEmailDelivery.Compose(new EmailMessage("public@example.invalid", "Plain mail", "Plain body"), "sender@example.com");
+        Assert.Equal("Plain body", mime.TextBody);
+        Assert.DoesNotContain(mime.BodyParts.OfType<MimePart>(), p => p.ContentType.MediaType == "image");
     }
 
     [Theory]

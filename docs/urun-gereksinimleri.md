@@ -1,5 +1,7 @@
 # yorungez — Ürün Vizyonu, Gereksinimler ve UX Taslağı
 
+**K-031 / TECH-09 (2 Kasım 2026):** Kullanıcının dört marka kaynağı web başlığı/menü/hesap, PWA (any/maskable/Apple touch), favicon ve gömülü e-posta logosuna bağlandı; kaynaklar ve içerik hash'leri korunur. Görsel Yörüngez yazımı sağlandığı gibi, teknik/erişilebilir ad yorungez. [Uygulama ve kanıt](marka-logolari.md), [kaynaklar](../data/branding/README.md). Fiziksel GPS/pusula/PWA ve önceki açık kabul işleri sürer.
+
 **K-030 / TECH-08 (1 Kasım 2026):** Responsive safe-area/VisualViewport, anında geçersiz sensör/hizalama temizliği ve PWA açılış/geri dönüş kontrolü uygulandı; 49 istemci testi ve üretim derlemesi geçti. IAB/Brave kontrolleri fiziksel kabul değildir; S23/Chrome ve iPhone 15/Safari oturumu, erişilebilir HTTPS adresi henüz olmadığı için bekliyor. [Kanıt ve sınırlar](responsive-cihaz-ve-pwa-kabulu.md), [telefon kartı](telefon-kabul-oturumu.md), [ADR](adr/0015-responsive-sensor-ve-pwa-kabulu.md). Önceki plan ve bilimsel sınırlar korunur.
 
 **K-029 / açık kaynak yayın (1 Kasım 2026):** Özgün kod ve özgün proje belgeleri Apache-2.0; üçüncü taraf veri/görseller kendi lisanslarında. Public kaynak hedefi `YeloraStudio/yorungez`; gerçek ortam/SMTP/Portainer/veritabanı verileri özel kalır. Public metinlerde `sender@example.com` redakte örnektir, gerçek gönderen özel yapılandırmadadır; tarihsel SMTP başarı kaydı örnek hesabın kullanıldığı anlamına gelmez. [Karar](adr/0014-acik-kaynak-yayin-ve-apache-2.md), [yayın incelemesi](open-source-publication.md). Önceki ürün planı ve açık kabul işleri korunur.
@@ -18,8 +20,8 @@
 
 **31 Ekim görünüm ek kararı:** Beğenilen tam ekran yerleşim korunur. UI kaynak paleti #3C3F43/#9EA1A6/#8B2333/#C9B6A6/#F7F1E6; dil seçimi sol menüde açılır liste. Görsel gökyüzü/çevre daha doğal, kaynaklı fotoğraf ve kadir sıralı ışıkla sunulur; fotoğraf yerel topografya, görsel atmosfer gözlem koşulu değildir. Pusulada kaynak/kuzey belirsizliği, izin/hizalama ve fiziksel kabul ayrılır. [Güncel paket](dogal-gorunum-ve-pusula.md).
 
-> **Belge sürümü:** 1.12
-> **Tarih:** 1 Kasım 2026
+> **Belge sürümü:** 1.13
+> **Tarih:** 2 Kasım 2026
 > **Durum:** Güncel ürün referansı; modüler backend ve ilk tr/en harita akışı uygulandı, kabul kapsamı kısmi
 > **Proje adı:** yorungez (yörünge + gezmek; ad kullanıcı tarafından kesinleştirildi)  
 > **Planlanan alan adı:** yorungez.com (satın alma bekliyor)  

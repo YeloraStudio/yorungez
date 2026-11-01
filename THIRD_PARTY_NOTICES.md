@@ -18,7 +18,7 @@ Recorded 2026-10-31. This inventory records selected components; it does not rep
 | Redis server | 8.10.3-alpine | AGPLv3 option selected from Redis 8's [AGPLv3/RSALv2/SSPLv1 alternatives](https://redis.io/legal/licenses/); no modified Redis distribution |
 | Mailpit local email sink | v1.32.0 | [MIT](https://github.com/axllent/mailpit/blob/develop/LICENSE) |
 | Next.js / React + React DOM | 16.4.3 / 19.3.1 | MIT package metadata and bundled LICENSE texts; exact graph in `src/Yorungez.Web/package-lock.json` |
-| Sharp (existing locked Next.js dependency; build-time PWA icon rasterization) | 0.35.5 | Apache-2.0 package metadata/LICENSE; original native dependency notices remain in installed artifacts. TECH-07 uses the existing SVG brand icon. |
+| Sharp (explicitly pinned brand format exporter / asset validation; previously a locked Next.js dependency) | 0.35.5 | Apache-2.0 package metadata/LICENSE; original native dependency notices remain in installed artifacts. TECH-09 renders the project-owned SVG/PNG brand masters. |
 | TypeScript; Node/React type definitions | 5.9.3; 22.20.5 / 19.3.0 | TypeScript Apache-2.0, type definitions MIT; development-only package metadata/LICENSE files |
 | HYG Database | 4.1, commit c7f7f883fe678cc7680169a50ccd7dcc49b060ce | [CC BY-SA 4.0 license notice](third-party/hyg/LICENSE.md); David Nash / Astronexus. Derived star data remains CC BY-SA 4.0; [source hashes, attribution and modifications](data/catalog/README.md) |
 | d3-celestial constellation line/name data only | commit 7e720a3de062059d4c5400a379146a601d9010e0 | [BSD-3-Clause](third-party/d3-celestial/LICENSE), copyright Olaf Frohn; IAU/Wikipedia naming-source attribution retained. No d3 runtime/other star data/artwork imported |
