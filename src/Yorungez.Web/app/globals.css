@@ -80,12 +80,19 @@
  .terrain-notice{left:calc(14px + var(--safe-left));bottom:calc(188px + var(--safe-bottom))}
 }
 @media(max-height:590px) and (min-width:651px){
- .floating-brand,.search-wrap{top:calc(14px + var(--safe-top))}.bottom-context,.layer-dock{bottom:calc(38px + var(--safe-bottom))}.map-tools{bottom:calc(100px + var(--safe-bottom))}
- .object-card{top:calc(75px + var(--safe-top));max-height:calc(100dvh - 105px - var(--safe-top) - var(--safe-bottom))}.map-caption{bottom:calc(11px + var(--safe-bottom))}
+ .floating-brand,.search-wrap{top:calc(14px + var(--safe-top))}.bottom-context,.layer-dock{bottom:calc(38px + var(--safe-bottom))}
+ .map-tools{top:calc(75px + var(--safe-top));bottom:auto;flex-direction:row;align-items:flex-start;gap:8px}.tool-stack{flex-direction:row}
+ .layer-dock{top:calc(75px + var(--safe-top));bottom:auto;right:calc(272px + var(--safe-right))}.layer-panel{top:calc(100% + 8px);bottom:auto;max-height:calc(100dvh - 145px - var(--safe-top) - var(--safe-bottom));overflow:auto}
+ .terrain-notice{top:calc(75px + var(--safe-top));bottom:auto;max-width:min(420px,calc(100vw - 440px - var(--safe-left) - var(--safe-right)))}
+ .object-card{right:calc(24px + var(--safe-right));top:calc(125px + var(--safe-top));width:min(300px,calc(100vw - 310px - var(--safe-left) - var(--safe-right)));max-height:calc(100dvh - 145px - var(--safe-top) - var(--safe-bottom))}.map-caption{bottom:calc(11px + var(--safe-bottom))}
 }
 @media(max-width:650px) and (max-height:430px){
  .floating-brand{top:calc(8px + var(--safe-top))}.search-wrap{top:calc(60px + var(--safe-top))}
  .map-tools{top:calc(114px + var(--safe-top));flex-direction:row;align-items:flex-start;gap:6px}.tool-stack{flex-direction:row}
- .object-card{top:calc(112px + var(--safe-top));bottom:auto;max-height:calc(100dvh - 130px - var(--safe-top) - var(--safe-bottom))}
+ .layer-dock{top:calc(114px + var(--safe-top));bottom:auto;right:calc(266px + var(--safe-right))}.layer-panel{top:calc(100% + 8px);bottom:auto;max-height:calc(100dvh - 185px - var(--safe-top) - var(--safe-bottom))}
+ .terrain-notice{top:calc(114px + var(--safe-top));bottom:auto;right:auto;max-width:calc(100vw - 380px - var(--safe-left) - var(--safe-right))}
+ .object-card{left:auto;right:calc(14px + var(--safe-right));top:calc(166px + var(--safe-top));bottom:auto;width:min(300px,calc(100vw - 28px - var(--safe-left) - var(--safe-right)));max-height:calc(100dvh - 184px - var(--safe-top) - var(--safe-bottom))}
  .pwa-badge{top:calc(8px + var(--safe-top));left:auto;right:calc(14px + var(--safe-right));transform:none;max-width:45%}
 }
+
+@media(max-width:420px) and (max-height:430px){.terrain-notice{width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}}

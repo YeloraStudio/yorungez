@@ -92,10 +92,50 @@
     "mobileForm": "360px account form has no horizontal overflow; visible text inputs computed at 16px; no submission or real data",
     "physicalStatus": "still pending HTTPS environment and actual device measurements"
   },
-  "backend": "no backend runtime change; normal local API ready; hosted 125-test regression pending",
+  "backend": "125 hosted .NET tests passed on first PR revision; final snapshot remains subject to required CI",
   "sources": [
     "https://www.w3.org/TR/orientation-event/",
     "https://www.w3.org/TR/geolocation/",
     "https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariWebContent/UsingtheViewport/UsingtheViewport.html"
-  ]
+  ],
+  "responsiveMap": [
+    {
+      "width": 780,
+      "height": 360,
+      "searchBottom": 58,
+      "toolsTop": 75,
+      "toolsBottom": 119,
+      "cardTop": 125,
+      "layersTop": 75,
+      "terrainNoticeBottom": 127,
+      "locationTop": 183,
+      "overlap": false
+    },
+    {
+      "width": 640,
+      "height": 360,
+      "searchBottom": 107,
+      "toolsTop": 114,
+      "toolsBottom": 160,
+      "cardTop": 166,
+      "layersTop": 114,
+      "terrainNoticeBottom": 162.594,
+      "locationTop": 188,
+      "horizontalOverflow": false,
+      "overlap": false
+    }
+  ],
+  "finalCssPack": "87276e1d1b938153b385; matches normal local app and isolated verification server",
+  "finalBrowserActions": [
+    "780px: search and map controls do not intersect; layers button is above object card, layer panel opens and closes",
+    "640px: tools, layers, terrain notice and context remain separate; object card scrolls below controls",
+    "View the whole sky activated with object card open",
+    "Temporary IAB viewport reset and owned QA tabs closed"
+  ],
+  "localHandoff": {
+    "web": "HTTP 200 on loopback 5190",
+    "apiReadiness": "HTTP 200 on loopback 5187",
+    "anonymousSession": "401 with no-store, private",
+    "mail": "No real-recipient QA request was made"
+  }
 }

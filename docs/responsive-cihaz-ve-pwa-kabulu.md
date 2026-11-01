@@ -14,7 +14,7 @@
 
 49 istemci testi, TypeScript ve üretim PWA derlemesi geçti. Testler yeni sensör bozulması, geç izin yanıtı, görünen viewport/popup sınırları, kesinti sonrası bağlantı dönüşü/tek istek ve kişisel cache dışlamasını içerir. Önceki 144 yıldız / 72 DSO Astropy, donmuş JPL, 1781 USNO evresi ve 22 doğuş-batış referans kontrolleri aynı toleranslarla geçer; yeni bilimsel doğruluk iddiası veya veri yenilemesi yoktur.
 
-Windows IAB ve Brave ile genel İstanbul örnek konumu kullanıldı; gerçek GPS/pusula izni veya sahte sensör değeri kullanılmadı. IAB takvim paneli 320×568, 360×780, 393×852, 640×360, 780×360, 1024×768 ve 1440×900 boyutlarında yatay taşma olmadan açıldı. Özel ay seçimi ve seçenek üzerindeyken Escape'in paneli koruyup odağı tetikleyiciye döndürmesi kontrol edildi. Dar ekran hesabı/klavye/çentik için fiziksel cihaz kabulü halen gereklidir.
+Windows IAB ve Brave ile genel İstanbul örnek konumu kullanıldı; gerçek GPS/pusula izni veya sahte sensör değeri kullanılmadı. IAB takvim paneli 320×568, 360×780, 393×852, 640×360, 780×360, 1024×768 ve 1440×900 boyutlarında yatay taşma olmadan açıldı. 780×360 yatay haritada aramanın ilk harita aracının üzerine gelmesi ayrıca bulundu; kısa ekranlarda araçlar ve katman düğmesi yatay sıraya, nesne kartı onların altına taşındı. 780×360 ve 640×360 son harita kontrolünde arama/araç/kart/katman düğmesi çakışması giderildi; kart açıkken tüm gök düğmesi ve katman paneli kullanılabildi. Özel ay seçimi ve seçenek üzerindeyken Escape'in paneli koruyup odağı tetikleyiciye döndürmesi kontrol edildi. Dar ekran hesabı/klavye/çentik için fiziksel cihaz kabulü halen gereklidir.
 
 Jüpiter için Bu gece aralığı seçildiğinde aynı örnek konumda 2 Kasım 2026 01:26:03 UTC / 04:26:03 Europe/Istanbul bağlamı ve yaklaşık 102,8° azimut / 35,3° yükseklik rehbere taşındı; simülasyon etiketi, yaklaşık 3,5 yumruk ve bilinmeyen koşullar uyarısı korundu. Bu bir gerçek gözlem veya cihaz doğruluk ölçümü değildir.
 
@@ -28,10 +28,12 @@ Sonuçlar [makine okunur kayıtta](science/device-browser-acceptance-qa.json). S
 
 ## Görsel kanıt
 
-[320px Türkçe takvim](ux/device-acceptance/calendar-320-tr.jpg), [393px Bu gece](ux/device-acceptance/tonight-393-tr.jpg), [393px Jüpiter rehberi](ux/device-acceptance/jupiter-393-tr.jpg), [Brave çevrimdışı görünüm](ux/device-acceptance/brave-offline-en.jpg), [Brave güncellenmiş paket](ux/device-acceptance/brave-updated-pack-en.jpg). Ekranlar genel örnek konumu ve simülasyon kullanır.
+[320px Türkçe takvim](ux/device-acceptance/calendar-320-tr.jpg), [393px Bu gece](ux/device-acceptance/tonight-393-tr.jpg), [393px Jüpiter rehberi](ux/device-acceptance/jupiter-393-tr.jpg), [Brave çevrimdışı görünüm](ux/device-acceptance/brave-offline-en.jpg), [Brave güncellenmiş paket](ux/device-acceptance/brave-updated-pack-en.jpg), [780px yatay harita](ux/device-acceptance/landscape-780-en.jpg). Ekranlar genel örnek konumu ve simülasyon kullanır.
 
 ## Açık kalan kabul
 
 Samsung Galaxy S23/Chrome ve iPhone 15/Safari üzerinde gerçek GPS doğruluğu, gerçek yön/kalibrasyon, portrait-landscape/pinch, klavye/çentik, VoiceOver/TalkBack, ana ekrana kurulum ve OS depolama temizliği kabulü yapılmadı. Telefonların erişebileceği geçerli HTTPS adresi ön koşuldur; [telefon oturumu rehberi](telefon-kabul-oturumu.md) hazırdır. Üretim backup/restore ve ek takvim türü kaynak doğrulaması sonraki planlarında kalır; bütün P0 tamamlandı denmez.
 
 Kaynaklar: [W3C Device Orientation](https://www.w3.org/TR/orientation-event/), [Geolocation](https://www.w3.org/TR/geolocation/), [Apple viewport açıklaması](https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariWebContent/UsingtheViewport/UsingtheViewport.html). Bunlar platform sözleşmesidir; sahada ölçülmüş cihaz kabulü değildir.
+
+Son yerel teslimde normal Web 5190 ve API readiness 5187 HTTP 200, anonim hesap denetimi 401/no-store-private verdi. Son CSS paketi `87276e1d1b938153b385`; geçici test sekmeleri ve viewport override'ı temizlendi. [PR #8 kontrolleri](https://github.com/YeloraStudio/yorungez/pull/8/checks) son snapshot için zorunludur; ilk PR revizyonunda 125 .NET / 49 istemci / üretim ve bilimsel kontroller geçti. Fiziksel kabul bu CI sonucuyla kapanmaz.
