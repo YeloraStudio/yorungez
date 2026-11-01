@@ -130,6 +130,8 @@ python scripts/verify_docs.py
 ./scripts/Verify-Science.ps1 -Offline
 ```
 
+The backend suite includes a [local synthetic PostgreSQL/key-ring recovery drill](docs/yerel-yedek-geri-yukleme.md). Run it alone with `./scripts/Verify-Recovery.ps1 -Offline` while this project's PostgreSQL is already running. It creates and removes its own test databases; production recovery acceptance remains pending.
+
 The first backend/Web checks install locked dependencies. Offline science assumes installed dependencies. Integration tests create and remove their own randomly named local test databases and replace email delivery with test capture. Reference refreshes are explicitly requested operations; see [reference tooling](tests/ReferenceData/README.md).
 
 Before committing, stage the reviewed public files and run:

@@ -1,5 +1,7 @@
 # Telefon kabul oturumu — S23 / iPhone 15
 
+**K-032 / 2 Kasım 2026:** Kullanıcı deployment/HTTPS ve canlı yayını erteledi. Bu oturum, kullanıcı ortam hazır olduğunu bildirene kadar beklemede; domain/alt alan adı/tünel kurulumu kendiliğinden başlatılmaz. Yerel geliştirme [ayrı iş sırasıyla](yayin-oncesi-yerel-plan.md) devam eder.
+
 **Durum: hazırlanmış protokol; fiziksel oturum yürütülmedi.** Mevcut [DV-01–12 protokolünün](cihaz-konum-pusula-dogrulamasi.md) cihaz bazlı uygulama kartıdır. Masaüstü viewport veya sentetik sensör sonucu telefon kabulü olarak işaretlenmez.
 
 ## Ortam ön koşulu

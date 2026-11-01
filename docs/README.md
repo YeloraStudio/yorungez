@@ -8,12 +8,15 @@ Detailed product/delivery records are currently mostly Turkish. Newer decisions 
 
 - [Requirements / product vision](urun-gereksinimleri.md)
 - [Roadmap](yol-haritasi.md) and [traceability](teslimat-izlenebilirligi.md)
+- [Current local work order / deployment deferred by owner](yayin-oncesi-yerel-plan.md)
 - [Decisions / open questions](kararlar.md)
 - [Domain vocabulary](alan-sozlugu.md), [user tasks](kullanici-gorevleri.md), [UX flows](ux-akislari.md)
 - [Historical project status](project-status-history.md)
 - [Original requirements](arsiv/OpenSky_Proje_Gereksinimleri_UX_v1.md), preserved byte-for-byte
 
 ## Current implementation
+
+- [Local PostgreSQL / key-ring recovery drill](yerel-yedek-geri-yukleme.md)
 
 - [Brand integration / evidence](marka-logolari.md), [brand originals / exports / prompt](../data/branding/README.md)
 
