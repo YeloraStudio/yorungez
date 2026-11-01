@@ -64,7 +64,7 @@ Browser / PWA: Next.js + React + TypeScript
           ▼
 ASP.NET Core / .NET 10
   Identity · Astronomy · Catalog · Notebook
-  Domain → Application ← Infrastructure
+  Infrastructure → Application → Domain
           ├── PostgreSQL: accounts and private inventory
           ├── Redis: bounded server caching
           └── SMTP: verified-account transactional email
