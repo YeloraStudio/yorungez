@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="820" viewBox="0 0 1280 820" role="img" aria-labelledby="title desc">
+<title id="title">yorungez masaüstü wireframe</title><desc id="desc">Düşük ayrıntılı yerleşim: üstte dört bölüm, ortada baskın şematik harita, sağda nesne kartı; simülasyon ve örnek konum açık. Astronomik hesap içermez.</desc>
+<rect width="1280" height="820" fill="#ffffff"/>
+<text x="24" y="19" font-family="Segoe UI, Arial, sans-serif" font-size="25" font-weight="600" fill="#20252b" dominant-baseline="hanging">yorungez</text>
+<rect x="204" y="14" width="104" height="40" rx="6" fill="#20252b" stroke="#20252b"/>
+<text x="225.5" y="25.0" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="400" fill="#ffffff" dominant-baseline="hanging">Gökyüzü</text>
+<rect x="320" y="14" width="88" height="40" rx="6" fill="#ffffff" stroke="#b5bbc2"/>
+<text x="343.0" y="25.0" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="400" fill="#20252b" dominant-baseline="hanging">Keşfet</text>
+<rect x="420" y="14" width="88" height="40" rx="6" fill="#ffffff" stroke="#b5bbc2"/>
+<text x="439.0" y="25.0" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="400" fill="#20252b" dominant-baseline="hanging">Olaylar</text>
+<rect x="520" y="14" width="100" height="40" rx="6" fill="#ffffff" stroke="#b5bbc2"/>
+<text x="539.5" y="25.0" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="400" fill="#20252b" dominant-baseline="hanging">Defterim</text>
+<text x="968" y="27" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="400" fill="#59616a" dominant-baseline="hanging">AKIŞ TASLAĞI · MASAÜSTÜ</text>
+<line x1="24" y1="70" x2="1256" y2="70" stroke="#b5bbc2" stroke-width="1"/>
+<rect x="24" y="91" width="245" height="42" rx="6" fill="#ffffff" stroke="#b5bbc2"/>
+<text x="66.0" y="103.0" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="400" fill="#20252b" dominant-baseline="hanging">Örnek konum · Değiştir</text>
+<rect x="282" y="91" width="240" height="42" rx="6" fill="#ffffff" stroke="#b5bbc2"/>
+<text x="312.5078125" y="103.0" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="400" fill="#20252b" dominant-baseline="hanging">Tarih ve saat · Simülasyon</text>
+<rect x="535" y="91" width="156" height="42" rx="6" fill="#20252b" stroke="#20252b"/>
+<text x="569.5" y="103.0" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="400" fill="#ffffff" dominant-baseline="hanging">Şimdiye dön</text>
+<rect x="1038" y="91" width="218" height="42" rx="6" fill="#ffffff" stroke="#b5bbc2"/>
+<text x="1076.5" y="103.0" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="400" fill="#20252b" dominant-baseline="hanging">Ara: ad / M31 / NGC</text>
+<text x="24" y="153" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="600" fill="#20252b" dominant-baseline="hanging">Gökyüzü</text>
+<text x="188" y="158" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="400" fill="#59616a" dominant-baseline="hanging">Örnek gözlem noktası</text>
+<rect x="24" y="193" width="834" height="449" rx="4" fill="#ffffff" stroke="#b5bbc2"/>
+<text x="42" y="210" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="400" fill="#59616a" dominant-baseline="hanging">Şematik harita · örnek yerleşim</text>
+<circle cx="132" cy="337" r="3" fill="#20252b"/>
+<circle cx="207" cy="301" r="3" fill="#20252b"/>
+<circle cx="299" cy="368" r="3" fill="#20252b"/>
+<circle cx="408" cy="287" r="3" fill="#20252b"/>
+<circle cx="549" cy="346" r="3" fill="#20252b"/>
+<circle cx="650" cy="274" r="3" fill="#20252b"/>
+<circle cx="725" cy="386" r="3" fill="#20252b"/>
+<line x1="132" y1="337" x2="207" y2="301" stroke="#b5bbc2" stroke-width="1"/>
+<line x1="207" y1="301" x2="299" y2="368" stroke="#b5bbc2" stroke-width="1"/>
+<circle cx="474" cy="404" r="5" fill="#20252b"/>
+<circle cx="474" cy="404" r="14" fill="none" stroke="#20252b" stroke-width="2"/>
+<text x="495" y="396" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="600" fill="#20252b" dominant-baseline="hanging">Jüpiter</text>
+<line x1="44" y1="539" x2="838" y2="539" stroke="#59616a" stroke-width="1"/>
+<text x="45" y="551" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="400" fill="#59616a" dominant-baseline="hanging">Ufuk</text>
+<text x="416" y="551" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="400" fill="#59616a" dominant-baseline="hanging">Güney</text>
+<rect x="40" y="586" width="46" height="40" rx="6" fill="#ffffff" stroke="#b5bbc2"/>
+<text x="56.0" y="594.5" font-family="Segoe UI, Arial, sans-serif" font-size="21" font-weight="400" fill="#20252b" dominant-baseline="hanging">+</text>
+<rect x="94" y="586" width="46" height="40" rx="6" fill="#ffffff" stroke="#b5bbc2"/>
+<text x="110.0" y="594.5" font-family="Segoe UI, Arial, sans-serif" font-size="21" font-weight="400" fill="#20252b" dominant-baseline="hanging">−</text>
+<rect x="154" y="586" width="119" height="40" rx="6" fill="#ffffff" stroke="#b5bbc2"/>
+<text x="178.0" y="597.0" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="400" fill="#20252b" dominant-baseline="hanging">Katmanlar</text>
+<rect x="286" y="586" width="153" height="40" rx="6" fill="#ffffff" stroke="#b5bbc2"/>
+<text x="316.0" y="597.0" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="400" fill="#20252b" dominant-baseline="hanging">Metinsel bilgi</text>
+<rect x="880" y="193" width="376" height="449" rx="4" fill="#f1f3f5" stroke="#b5bbc2"/>
+<text x="900" y="214" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="400" fill="#59616a" dominant-baseline="hanging">Seçili nesne</text>
+<text x="900" y="244" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="600" fill="#20252b" dominant-baseline="hanging">Jüpiter</text>
+<text x="900" y="283" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="400" fill="#59616a" dominant-baseline="hanging">Gezegen · kaynaklı atlas içeriği</text>
+<line x1="900" y1="321" x2="1236" y2="321" stroke="#b5bbc2" stroke-width="1"/>
+<text x="900" y="343" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="600" fill="#20252b" dominant-baseline="hanging">Geometrik durum</text>
+<text x="900" y="371" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="400" fill="#59616a" dominant-baseline="hanging">Hesap bekleniyor</text>
+<text x="900" y="411" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="600" fill="#20252b" dominant-baseline="hanging">Gözlem koşulları</text>
+<text x="900" y="439" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="400" fill="#59616a" dominant-baseline="hanging">Bilinmiyor</text>
+<text x="900" y="479" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="600" fill="#20252b" dominant-baseline="hanging">Algılanabilirlik</text>
+<text x="900" y="507" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="400" fill="#59616a" dominant-baseline="hanging">Henüz değerlendirilemedi</text>
+<rect x="900" y="576" width="204" height="42" rx="6" fill="#20252b" stroke="#20252b"/>
+<text x="948.0" y="588.0" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="400" fill="#ffffff" dominant-baseline="hanging">Hedefe odaklan</text>
+<rect x="1116" y="576" width="118" height="42" rx="6" fill="#ffffff" stroke="#b5bbc2"/>
+<text x="1138.0" y="588.0" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="400" fill="#20252b" dominant-baseline="hanging">Kartı kapat</text>
+<rect x="24" y="666" width="1232" height="99" rx="4" fill="#ffffff" stroke="#b5bbc2"/>
+<text x="44" y="684" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="600" fill="#20252b" dominant-baseline="hanging">Simülasyon · seçili tarih / yerel saat / saat dilimi</text>
+<text x="45" y="727" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="400" fill="#59616a" dominant-baseline="hanging">Önce</text>
+<line x1="120" y1="735" x2="1080" y2="735" stroke="#59616a" stroke-width="2"/>
+<circle cx="570" cy="735" r="6" fill="#20252b"/>
+<text x="1111" y="727" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="400" fill="#59616a" dominant-baseline="hanging">Sonra</text>
+<text x="24" y="788" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="400" fill="#59616a" dominant-baseline="hanging">Örnek veriler · konum hesabı ve kaynak entegrasyonu henüz yapılmadı</text>
+</svg>

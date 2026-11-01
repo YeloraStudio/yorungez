@@ -1,0 +1,56 @@
+{
+  "version": 2,
+  "dependencies": {
+    "net10.0": {
+      "CosineKitty.AstronomyEngine": {
+        "type": "Direct",
+        "requested": "[2.1.19, )",
+        "resolved": "2.1.19",
+        "contentHash": "PLb0ZrLMLFdnYbnZDPzaiBD9arL1Mx2x3q5492/8pBV7EVbGA6syFCmeMKadgT07lrQ+UdrPaiSw2sMYejQ0AQ=="
+      },
+      "MediatR.Contracts": {
+        "type": "Transitive",
+        "resolved": "2.0.1",
+        "contentHash": "FYv95bNT4UwcNA+G/J1oX5OpRiSUxteXaUt2BJbRSdRNiIUNbggJF69wy6mnk2wYToaanpdXZdCwVylt96MpwQ=="
+      },
+      "Microsoft.Extensions.DependencyInjection.Abstractions": {
+        "type": "Transitive",
+        "resolved": "8.0.0",
+        "contentHash": "cjWrLkJXK0rs4zofsK4bSdg+jhDLTaxrkXu4gS6Y7MAlCvRyNNgwY/lJi5RDlQOnSZweHqoyvgvbdvQsRIW+hg=="
+      },
+      "yorungez.application": {
+        "type": "Project",
+        "dependencies": {
+          "MediatR": "[12.5.0, )",
+          "Yorungez.Core": "[1.0.0, )"
+        }
+      },
+      "yorungez.astronomy.application": {
+        "type": "Project",
+        "dependencies": {
+          "Yorungez.Application": "[1.0.0, )",
+          "Yorungez.Astronomy.Domain": "[1.0.0, )"
+        }
+      },
+      "yorungez.astronomy.domain": {
+        "type": "Project",
+        "dependencies": {
+          "Yorungez.Core": "[1.0.0, )"
+        }
+      },
+      "yorungez.core": {
+        "type": "Project"
+      },
+      "MediatR": {
+        "type": "CentralTransitive",
+        "requested": "[12.5.0, )",
+        "resolved": "12.5.0",
+        "contentHash": "vqm2H8/nqL5NAJHPhsG1JOPwfkmbVrPyh4svdoRzu+uZh6Ex7PRoHBGsLYC0/RWCEJFqD1ohHNpteQvql9OktA==",
+        "dependencies": {
+          "MediatR.Contracts": "[2.0.1, 3.0.0)",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.0"
+        }
+      }
+    }
+  }
+}

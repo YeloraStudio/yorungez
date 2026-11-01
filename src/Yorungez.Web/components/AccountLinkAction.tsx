@@ -1,0 +1,14 @@
+"use client";
+import {useEffect,useRef,useState} from 'react';
+import {accountRequest,AccountError} from '../lib/account.ts';
+import type {Language} from '../lib/sky/types.ts';
+export default function AccountLinkAction({language,action}:{language:Language;action:'confirm-email'|'reset-password'}){
+ const token=useRef<{userId:string;token:string}|null>(null),[ready,setReady]=useState(false),[busy,setBusy]=useState(false),[done,setDone]=useState(false),[error,setError]=useState('');
+ useEffect(()=>{if(!token.current){const params=new URLSearchParams(location.hash.slice(1));token.current={userId:params.get('userId')??'',token:params.get('token')??''};history.replaceState(null,'',location.pathname)}setReady(true)},[]);
+ const tr=language==='tr',confirm=action==='confirm-email';
+ async function submit(form:HTMLFormElement){setBusy(true);setError('');try{if(!token.current?.userId||!token.current.token)throw new AccountError('Identity.InvalidToken',400);await accountRequest(`/api/account/${action}`,language,{...token.current,...(confirm?{}:{password:String(new FormData(form).get('password'))})});token.current=null;setDone(true)}catch(e){setError(e instanceof AccountError?e.message:'Common.Unavailable')}finally{setBusy(false);const p=form.elements.namedItem('password');if(p instanceof HTMLInputElement)p.value=''}}
+ return <main className="account-page"><a className="account-wordmark" href={`/${language}`}>yorungez<span>.</span></a><h1>{confirm?(tr?'E-postanı doğrula':'Verify your email'):(tr?'Parolanı sıfırla':'Reset your password')}</h1>
+ {done?<p role="status">{tr?'İşlem tamamlandı. Artık haritaya dönüp Defterim üzerinden giriş yapabilirsin.':'Done. Return to the map and sign in from My notebook.'}</p>:<form onSubmit={e=>{e.preventDefault();void submit(e.currentTarget)}}>{!confirm&&<label>{tr?'Yeni parola (15–128 karakter)':'New password (15–128 characters)'}<input name="password" type="password" autoComplete="new-password" minLength={15} maxLength={128} required disabled={busy}/></label>}<button className="primary-button" disabled={!ready||busy}>{busy?(tr?'İşleniyor…':'Working…'):confirm?(tr?'E-postamı doğrula':'Verify my email'):(tr?'Parolayı kaydet':'Save password')}</button></form>}
+ {error&&<p className="form-error" role="alert">{error==='Identity.InvalidToken'?(tr?'Bağlantı geçersiz veya süresi dolmuş. Defterim giriş ekranından yeni bağlantı iste.':'The link is invalid or expired. Request a new link from the notebook sign-in screen.'):error==='Common.Unavailable'?(tr?'Sunucuya ulaşılamadı. Yeniden dene.':'The server could not be reached. Try again.'):(tr?'İşlem tamamlanamadı. Alanları kontrol edip yeniden dene.':'The request could not be completed. Check the fields and try again.')}</p>}
+ <a href={`/${language}`}>{tr?'Gökyüzüne dön':'Return to the sky'}</a></main>;
+}

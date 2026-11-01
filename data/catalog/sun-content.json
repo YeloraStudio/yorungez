@@ -1,0 +1,40 @@
+{
+  "tr": {
+    "title": "Güneş",
+    "extract": "Güneş, Güneş Sistemi'nin merkezinde yer alan bir yıldızdır. Çekirdeğindeki nükleer füzyon reaksiyonları ile akkor hale gelene kadar ısınan, %10'u morötesi olmak üzere esas olarak görünür ışık ve kızılötesi radyasyon olarak yüzeyinden enerji yayan, oldukça büyük ve sıcak bir plazma küresidir. Dünya'daki yaşam için açık ara en önemli enerji kaynağıdır. Güneş birçok kültürde kutsallık atfedilen bir nesne olmuştur. Antik çağlardan beri astronomik araştırmalar için merkezi bir konudur.\nGüneş'in, Samanyolu merkezinin etrafındaki bir dönüşünü yaklaşık 225-250 milyon yılda tamamladığı ve merkeze göre yaklaşık 24.000 ila 28.000 ışık yılı mesafede 828.000 km/s hızda hareket etmekte olduğu bir yörüngesi vardır. Dünya'ya olan mesafesi 1 AU (1.496×108 km) yani yaklaşık 8 ışık dakikasıdır. Güneş, yaklaşık olarak, Dünya'nın çapının 109 katına (1.391.400 km), hacminin 1,3 milyon katına (1.412×1012 km3) ve...",
+    "url": "https://tr.wikipedia.org/wiki/G%C3%BCne%C5%9F",
+    "revision": 38205844,
+    "fetchedAtUtc": "2026-10-31T11:39:48.694201+00:00",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "credit": "Wikipedia contributors",
+    "image": {
+      "url": "/objects/sun-tr.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:The_Sun_in_white_light.jpg",
+      "originalUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/83/The_Sun_in_white_light.jpg/960px-The_Sun_in_white_light.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "credit": "Matúš Motlo",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sha256": "170c7efc578738a4295a3deccb9ac9deaa865f95b9a3c461c4803268e5d82313"
+    }
+  },
+  "en": {
+    "title": "Sun",
+    "extract": "The Sun is the star located at the centre of the Solar System. It is a massive sphere of hot plasma, heated to incandescence by nuclear fusion reactions in its core, radiating the energy from its surface mainly as visible light and infrared radiation, with 10% at ultraviolet energies. It is the main source of energy for life on Earth. The Sun has been an object of veneration in many cultures and a central subject of astronomical research since antiquity.\nThe Sun orbits the Galactic Center at a distance of 24,000 to 28,000 light-years. Its mean distance from Earth is about 1.496×108 kilometres or about 8 light-minutes. The distance between the Sun and the Earth was used to define a unit of length called the astronomical unit (au), now defined to be 149.5978707×106 kilometres. It is the largest and most massive object in the Solar System; its diameter is about 1,391,400 km (864,600 mi), around...",
+    "url": "https://en.wikipedia.org/wiki/Sun",
+    "revision": 1382445123,
+    "fetchedAtUtc": "2026-10-31T11:39:49.998037+00:00",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "credit": "Wikipedia contributors",
+    "image": {
+      "url": "/objects/sun-en.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:The_Sun_in_white_light.jpg",
+      "originalUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/83/The_Sun_in_white_light.jpg/960px-The_Sun_in_white_light.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "credit": "Matúš Motlo",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sha256": "170c7efc578738a4295a3deccb9ac9deaa865f95b9a3c461c4803268e5d82313"
+    }
+  }
+}

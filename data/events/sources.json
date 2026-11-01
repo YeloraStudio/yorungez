@@ -1,0 +1,223 @@
+{
+  "retrievedAtUtc": "2026-10-31T14:00:17.691455+00:00",
+  "source": "USNO Astronomical Applications Department",
+  "timeScale": "Universal Time, published to the nearest minute; treated as UTC at minute precision",
+  "sources": [
+    {
+      "year": 2000,
+      "url": "https://aa.usno.navy.mil/api/moon/phases/year?year=2000",
+      "sha256": "64dabaaac9b155a4e19f934ea958f2cca40535d115f0cccb2e0994fde28a6f36",
+      "file": "data/events/usno/2000.json"
+    },
+    {
+      "year": 2001,
+      "url": "https://aa.usno.navy.mil/api/moon/phases/year?year=2001",
+      "sha256": "ddb56af209dde10451526b480c3dbdedc3a3e97a5acef059d1b131e1110002cc",
+      "file": "data/events/usno/2001.json"
+    },
+    {
+      "year": 2002,
+      "url": "https://aa.usno.navy.mil/api/moon/phases/year?year=2002",
+      "sha256": "db3c67fa4b1a74aa29f3fb0b916b9fbc61a0074e29a68c1697ee94199397d547",
+      "file": "data/events/usno/2002.json"
+    },
+    {
+      "year": 2003,
+      "url": "https://aa.usno.navy.mil/api/moon/phases/year?year=2003",
+      "sha256": "b0604141577ab78ebbd559c800b77e7bb3283f586eb7179eca010ab483e527b4",
+      "file": "data/events/usno/2003.json"
+    },
+    {
+      "year": 2004,
+      "url": "https://aa.usno.navy.mil/api/moon/phases/year?year=2004",
+      "sha256": "b4c118294833fd52ca149442650ada128caeb86d7215fe33cf488b221b8f361c",
+      "file": "data/events/usno/2004.json"
+    },
+    {
+      "year": 2005,
+      "url": "https://aa.usno.navy.mil/api/moon/phases/year?year=2005",
+      "sha256": "f86034fcfb4d806be5e92e4ad9bc44902404c88d3eeba6ea70bafae1aa1b4d3a",
+      "file": "data/events/usno/2005.json"
+    },
+    {
+      "year": 2006,
+      "url": "https://aa.usno.navy.mil/api/moon/phases/year?year=2006",
+      "sha256": "17efe1e15572391b0684416c08d6a1c17973d075b1d66ea143e9c230d8f943ab",
+      "file": "data/events/usno/2006.json"
+    },
+    {
+      "year": 2007,
+      "url": "https://aa.usno.navy.mil/api/moon/phases/year?year=2007",
+      "sha256": "ae686181d1ff1fd3779c67b7a92cf5e908977b1f8a9822eb16138026ed9698d3",
+      "file": "data/events/usno/2007.json"
+    },
+    {
+      "year": 2008,
+      "url": "https://aa.usno.navy.mil/api/moon/phases/year?year=2008",
+      "sha256": "73c3f0a499ada6bfadba4db60ef4ac5342290a0b730a49af297b90a5e157d827",
+      "file": "data/events/usno/2008.json"
+    },
+    {
+      "year": 2009,
+      "url": "https://aa.usno.navy.mil/api/moon/phases/year?year=2009",
+      "sha256": "6afb2926685dafe22c6ca763a1724e1f5e4e44adf792bc5c8114678672a20683",
+      "file": "data/events/usno/2009.json"
+    },
+    {
+      "year": 2010,
+      "url": "https://aa.usno.navy.mil/api/moon/phases/year?year=2010",
+      "sha256": "57f9b052b1662da86cb18db254c13d37e71b0b66a1cc6011e1a1ae6907c7ff7b",
+      "file": "data/events/usno/2010.json"
+    },
+    {
+      "year": 2011,
+      "url": "https://aa.usno.navy.mil/api/moon/phases/year?year=2011",
+      "sha256": "c48c4f5de5fa3ca393cdf0dabe8478f910111f181b44edaa927efbf6727a27ec",
+      "file": "data/events/usno/2011.json"
+    },
+    {
+      "year": 2012,
+      "url": "https://aa.usno.navy.mil/api/moon/phases/year?year=2012",
+      "sha256": "f433dd3aed98dd7deff790312f1a09760854603e9d66bdf7daa039c4c0d2c9a2",
+      "file": "data/events/usno/2012.json"
+    },
+    {
+      "year": 2013,
+      "url": "https://aa.usno.navy.mil/api/moon/phases/year?year=2013",
+      "sha256": "b78f0c9079f8e3f8ec4ca806b95e4942591d190e9b7a9ecfadc5201ea9cbb3d0",
+      "file": "data/events/usno/2013.json"
+    },
+    {
+      "year": 2014,
+      "url": "https://aa.usno.navy.mil/api/moon/phases/year?year=2014",
+      "sha256": "e9cd03572272c806ee5e7a683d018e359842b754541dd781d890cd05a475e651",
+      "file": "data/events/usno/2014.json"
+    },
+    {
+      "year": 2015,
+      "url": "https://aa.usno.navy.mil/api/moon/phases/year?year=2015",
+      "sha256": "f0460ac64cc2bdb2275b17b24492104f1f69438fa0bcf6a88545e5850cfb5679",
+      "file": "data/events/usno/2015.json"
+    },
+    {
+      "year": 2016,
+      "url": "https://aa.usno.navy.mil/api/moon/phases/year?year=2016",
+      "sha256": "a47ed828438ac1287866fed6a2ade257cfc0a73eab824913b9cb5b9eef5f36ee",
+      "file": "data/events/usno/2016.json"
+    },
+    {
+      "year": 2017,
+      "url": "https://aa.usno.navy.mil/api/moon/phases/year?year=2017",
+      "sha256": "f08874ffa61ab86115648fca7e1d68739750b716955740ea3b942f58bd182e35",
+      "file": "data/events/usno/2017.json"
+    },
+    {
+      "year": 2018,
+      "url": "https://aa.usno.navy.mil/api/moon/phases/year?year=2018",
+      "sha256": "e798ab36778c0a2fcf9aeb1c86ff7e8ae25e2d62cd9e0295c69f2ffcdb280a17",
+      "file": "data/events/usno/2018.json"
+    },
+    {
+      "year": 2019,
+      "url": "https://aa.usno.navy.mil/api/moon/phases/year?year=2019",
+      "sha256": "95d22decb3e9bd10b04687445111dcb337222c84c53d7f6698269f18bb0ee3f3",
+      "file": "data/events/usno/2019.json"
+    },
+    {
+      "year": 2020,
+      "url": "https://aa.usno.navy.mil/api/moon/phases/year?year=2020",
+      "sha256": "72adc18cb37bd426d200c7a90d929c47263eb0c4accf08ddddcad246657f8352",
+      "file": "data/events/usno/2020.json"
+    },
+    {
+      "year": 2021,
+      "url": "https://aa.usno.navy.mil/api/moon/phases/year?year=2021",
+      "sha256": "bd7383849a4261675e91b07f1131e9caf9d0b41e0872f863417f241908be6852",
+      "file": "data/events/usno/2021.json"
+    },
+    {
+      "year": 2022,
+      "url": "https://aa.usno.navy.mil/api/moon/phases/year?year=2022",
+      "sha256": "90e0532a5c55d763882cd6ccde0aaf25f2a0778d9b60418110f2abaec612e692",
+      "file": "data/events/usno/2022.json"
+    },
+    {
+      "year": 2023,
+      "url": "https://aa.usno.navy.mil/api/moon/phases/year?year=2023",
+      "sha256": "795e8a33cd0e3a4e864b1774d95e2fd220a18e9054441ac5b2c50477a860d644",
+      "file": "data/events/usno/2023.json"
+    },
+    {
+      "year": 2024,
+      "url": "https://aa.usno.navy.mil/api/moon/phases/year?year=2024",
+      "sha256": "64107d6828e5d1cb8b3e7ff0c0fc9e147aaf4bc873db6640f2d104fb8e31ebf5",
+      "file": "data/events/usno/2024.json"
+    },
+    {
+      "year": 2025,
+      "url": "https://aa.usno.navy.mil/api/moon/phases/year?year=2025",
+      "sha256": "1a1a557547cf93950aa5408d8a8bd70e316316923c1d39a05f6497d98d4e6aae",
+      "file": "data/events/usno/2025.json"
+    },
+    {
+      "year": 2026,
+      "url": "https://aa.usno.navy.mil/api/moon/phases/year?year=2026",
+      "sha256": "8e063694ffbf6cb49a650875f4bf1df6c361f955c63886c9fccfbe8aec084fa8",
+      "file": "data/events/usno/2026.json"
+    },
+    {
+      "year": 2027,
+      "url": "https://aa.usno.navy.mil/api/moon/phases/year?year=2027",
+      "sha256": "cd7746fc328f88e6279d0869dfb8b16d50bf87a7cd457ac67b0732f50007c560",
+      "file": "data/events/usno/2027.json"
+    },
+    {
+      "year": 2028,
+      "url": "https://aa.usno.navy.mil/api/moon/phases/year?year=2028",
+      "sha256": "24fd09c1a74a7c0df1557d43fc02c87a1c18ad581c8e4450d3f6cdffd48fa3cb",
+      "file": "data/events/usno/2028.json"
+    },
+    {
+      "year": 2029,
+      "url": "https://aa.usno.navy.mil/api/moon/phases/year?year=2029",
+      "sha256": "37b2a6fe33f382e585f27c24a3d28e2d117316c46b5ca3c6e777fa835c7495be",
+      "file": "data/events/usno/2029.json"
+    },
+    {
+      "year": 2030,
+      "url": "https://aa.usno.navy.mil/api/moon/phases/year?year=2030",
+      "sha256": "1410a54b0f81c06c0b42e4f6094540dc9bd6ee3774ffdfd63e58cd98548e599f",
+      "file": "data/events/usno/2030.json"
+    },
+    {
+      "year": 2031,
+      "url": "https://aa.usno.navy.mil/api/moon/phases/year?year=2031",
+      "sha256": "a562677431ed1fce2e3dbb568b273cfa9caedaf8b6546198ffc88b2f75b02b42",
+      "file": "data/events/usno/2031.json"
+    },
+    {
+      "year": 2032,
+      "url": "https://aa.usno.navy.mil/api/moon/phases/year?year=2032",
+      "sha256": "f17ecb5ab820638a4d49ceac8b71a5148de8f774a7f9ff1b27ae3a20c0761073",
+      "file": "data/events/usno/2032.json"
+    },
+    {
+      "year": 2033,
+      "url": "https://aa.usno.navy.mil/api/moon/phases/year?year=2033",
+      "sha256": "8c46c69df3f2c4abecbb7222f47ee27b8da4cc7fddea56d4ccae1d8c4ef96feb",
+      "file": "data/events/usno/2033.json"
+    },
+    {
+      "year": 2034,
+      "url": "https://aa.usno.navy.mil/api/moon/phases/year?year=2034",
+      "sha256": "2aefbcc09318ae4095813011c9c4a96af4344386649b44994558918bd80e8bce",
+      "file": "data/events/usno/2034.json"
+    },
+    {
+      "year": 2035,
+      "url": "https://aa.usno.navy.mil/api/moon/phases/year?year=2035",
+      "sha256": "745460e3e917a4c716ce399548284e15a804f329e9f574dd44d4b224a1f7a6f3",
+      "file": "data/events/usno/2035.json"
+    }
+  ]
+}

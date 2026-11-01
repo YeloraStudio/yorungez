@@ -1,0 +1,449 @@
+{
+  "schemaVersion": 1,
+  "generatedAtUtc": "2026-10-31T11:33:57.871993+00:00",
+  "sha256": "4985162ad395ca16de8606a2b7380f7708ca55d6cb7e182a0a5bf421e79eb373",
+  "deepSkyCount": 107,
+  "artCount": 85,
+  "sources": [
+    {
+      "url": "https://raw.githubusercontent.com/mattiaverga/OpenNGC/be3cd6c5498806a2fbb2f7e0452ef802dbb02be0/database_files/NGC.csv",
+      "sha256": "54abea0b57b0a103831bfc7a8e3a99a23acfbf4bb581fcf3d8af539cbb826c84"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/index.json",
+      "sha256": "a861accd345249a185a5ecfc2a516f34291c0aa52f4bb8d8337ffc53e9cef6b9"
+    }
+  ],
+  "artFiles": [
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/aquila.webp",
+      "file": "src/Yorungez.Web/public/sky-art/aquila.webp",
+      "sha256": "e8a0c535522c6928453443a008ea0b52c41df7eaf5f385294db654f98e42a856"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/andromeda.webp",
+      "file": "src/Yorungez.Web/public/sky-art/andromeda.webp",
+      "sha256": "8cf9d504368991d7b6eb942816fb02f2091e7d8afc368b7965aec2e4d783442e"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/sculptor.webp",
+      "file": "src/Yorungez.Web/public/sky-art/sculptor.webp",
+      "sha256": "42786a6f8c47b7e01a667fb1ffc21d68641ef1e93f4a83f6e48cef8fce0f9441"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/ara.webp",
+      "file": "src/Yorungez.Web/public/sky-art/ara.webp",
+      "sha256": "9b2856e8e4eb807c70c9c86f7bedeaf29b6a701e6401a0146b614d32bae79248"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/libra.webp",
+      "file": "src/Yorungez.Web/public/sky-art/libra.webp",
+      "sha256": "0f4de0b32ce9ba9f5714d1ad2d09cbd45fd6d0d1fcb85c515bd38066763b71d8"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/cetus.webp",
+      "file": "src/Yorungez.Web/public/sky-art/cetus.webp",
+      "sha256": "f37d54cc34b48fdf88a3c5a6ad3d240b4913f78b45e6a814fe76b98ceb4d1013"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/aries.webp",
+      "file": "src/Yorungez.Web/public/sky-art/aries.webp",
+      "sha256": "e4e2c2998cb4e6d33b6fc415baf7a99e4206c1a07fb9208959916d83d433bba1"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/scutum.webp",
+      "file": "src/Yorungez.Web/public/sky-art/scutum.webp",
+      "sha256": "68896d3e7a407526e0edd38f47ec3c6a26fc7701b16af657b2e4c37c5f271319"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/pyxis.webp",
+      "file": "src/Yorungez.Web/public/sky-art/pyxis.webp",
+      "sha256": "2cc250858962eacb6d6b051e22522b356e4ce2e4a2e16d34f211d2a70e712a3a"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/bootes.webp",
+      "file": "src/Yorungez.Web/public/sky-art/bootes.webp",
+      "sha256": "31d66ae05f6bc74e481819a0c930c54eb035629e992d4435e898cbfcb07d8ada"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/caelum.webp",
+      "file": "src/Yorungez.Web/public/sky-art/caelum.webp",
+      "sha256": "24c60ad36bf7b4206e28b4d4b3be3b2d31d17f17d3e17195ed4ffb64a584451e"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/chamaeleon.webp",
+      "file": "src/Yorungez.Web/public/sky-art/chamaeleon.webp",
+      "sha256": "3a8331b220f9f8eb580b65feb8618664db986d7a573d33dc09429c6388df5ceb"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/cancer.webp",
+      "file": "src/Yorungez.Web/public/sky-art/cancer.webp",
+      "sha256": "400fcfbeb0e4250ebcecb8e74806de91de069e78b5f6d83a45f645fb4b7dc375"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/capricornus.webp",
+      "file": "src/Yorungez.Web/public/sky-art/capricornus.webp",
+      "sha256": "31e1644f89d0ed914b8e30feb0f6393b9f824ad930ed88c59672d92317592c2f"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/argonavis.webp",
+      "file": "src/Yorungez.Web/public/sky-art/argonavis.webp",
+      "sha256": "b8fb909dfb84ccfce76f1cadb8b0e6760d1d25b355b45bf1adcfd9db1f59a8ef"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/cassiopeia.webp",
+      "file": "src/Yorungez.Web/public/sky-art/cassiopeia.webp",
+      "sha256": "e014cf9fbcefe9955b6e4b5b5d1724601490dc02ed75880d073e7a92e43165aa"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/centaurus.webp",
+      "file": "src/Yorungez.Web/public/sky-art/centaurus.webp",
+      "sha256": "e18618dad16fcb877a9cb52fabef08d9c4de0784f8366b83e88d0974a16218a3"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/cepheus.webp",
+      "file": "src/Yorungez.Web/public/sky-art/cepheus.webp",
+      "sha256": "21ca1ce9dbf7c813b805698ba27d1ed44be31c7f70508268103856750106c1bb"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/coma-berenices.webp",
+      "file": "src/Yorungez.Web/public/sky-art/coma-berenices.webp",
+      "sha256": "007aee37c425354c6d1ce7a39b6f8e179bd874e09b2530aca85b4884e7c292d6"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/canes-venatici.webp",
+      "file": "src/Yorungez.Web/public/sky-art/canes-venatici.webp",
+      "sha256": "6dec35c20466b038254064d81c8525dbd90c63e423f8f45088a38baa493f82c0"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/auriga.webp",
+      "file": "src/Yorungez.Web/public/sky-art/auriga.webp",
+      "sha256": "befb680b430e23c08bcf1278347e24b6b10dc73ed980e369a2a7c1d95e538113"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/columba.webp",
+      "file": "src/Yorungez.Web/public/sky-art/columba.webp",
+      "sha256": "0c3cf045284b237d1cc31c783751c22b8364ac64bc73bc2c1cfc3629e6f2203d"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/circinus.webp",
+      "file": "src/Yorungez.Web/public/sky-art/circinus.webp",
+      "sha256": "a12046ad719ec4a8670e8ee1b9ff9da81ac168d5f4701d2d8d3e7c96aac0d6f5"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/crater.webp",
+      "file": "src/Yorungez.Web/public/sky-art/crater.webp",
+      "sha256": "dfb106b98cf28053a3ae781979a80212111b4729cc60997b285df026f0487f92"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/corona-australis.webp",
+      "file": "src/Yorungez.Web/public/sky-art/corona-australis.webp",
+      "sha256": "ebb2c73efe11c89871332225ef12edc7c866700f796b8c3283109f77d747baa6"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/corona-borealis.webp",
+      "file": "src/Yorungez.Web/public/sky-art/corona-borealis.webp",
+      "sha256": "c8039259f50acbcf7d836e44d35cd6ecc624d5f009dbc2515e77456dcc5219a8"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/corvus.webp",
+      "file": "src/Yorungez.Web/public/sky-art/corvus.webp",
+      "sha256": "9d97cb30a68d4c441b4a902eeecf5864051fc1b21f4273e9c3d1200fdf99936b"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/crux.webp",
+      "file": "src/Yorungez.Web/public/sky-art/crux.webp",
+      "sha256": "14e86d5a1034d71e1a0f8c4333b0d373b7e1f45777dbf432fa29378fd1288d35"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/cygnus.webp",
+      "file": "src/Yorungez.Web/public/sky-art/cygnus.webp",
+      "sha256": "7879f2737b5743fe24d3322dbfe10ce5856228e7917b0594304c574c33eefc52"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/delphinus.webp",
+      "file": "src/Yorungez.Web/public/sky-art/delphinus.webp",
+      "sha256": "29d405f64051194cb3e30627ab5b63c7846cff516b484065679bd3e788b9f73f"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/dorado.webp",
+      "file": "src/Yorungez.Web/public/sky-art/dorado.webp",
+      "sha256": "4c42f42dc82ddd757d70c368a69078380bca3d0675fc65c8d5a8822862b25a7d"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/draco.webp",
+      "file": "src/Yorungez.Web/public/sky-art/draco.webp",
+      "sha256": "1428284afec66aaa387f4c04bbf46f4a43b45d7c27271d5b924202e68505cab3"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/norma.webp",
+      "file": "src/Yorungez.Web/public/sky-art/norma.webp",
+      "sha256": "225151e0872036d2ca826f5eaf4bcc3ee378996055c1518959ffc0ac556d5ac2"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/eridanus.webp",
+      "file": "src/Yorungez.Web/public/sky-art/eridanus.webp",
+      "sha256": "82a3e6fc27d77ddc73cf48d3040821ef78182ae2231824b7f2202bbf5de0dbd3"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/sagitta.webp",
+      "file": "src/Yorungez.Web/public/sky-art/sagitta.webp",
+      "sha256": "b848c08967de9acc9b7e9ebcdfe5676e1cb99072d6a036c391083515c8db620d"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/fornax.webp",
+      "file": "src/Yorungez.Web/public/sky-art/fornax.webp",
+      "sha256": "fd5c8f43bbd5f0d0d4f18121cae0d0ea1450c1b4371eaaefa1f90c9cb5246bd0"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/gemini.webp",
+      "file": "src/Yorungez.Web/public/sky-art/gemini.webp",
+      "sha256": "b0ec54e1e416ec3bae4ee7fda5b5c49c1cdc610d9d45802aae4e7ffff33fc362"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/camelopardalis.webp",
+      "file": "src/Yorungez.Web/public/sky-art/camelopardalis.webp",
+      "sha256": "51098d362be9152610cbaf47e1dfc1455eb53bfc0146f8bb4a6be2edbd4e45e8"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/canis-major.webp",
+      "file": "src/Yorungez.Web/public/sky-art/canis-major.webp",
+      "sha256": "f8bc86e4da5fd1399114758dddd7c3324d4fa05f1b0f26595893a2eef5b2bd45"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/ursa-major.webp",
+      "file": "src/Yorungez.Web/public/sky-art/ursa-major.webp",
+      "sha256": "e5a691680d6921a5b26c00a2d3cd7b799ef3fd69eed7cff787cebe01641b9ef0"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/grus.webp",
+      "file": "src/Yorungez.Web/public/sky-art/grus.webp",
+      "sha256": "1fb8192a062bb26d391ec2a8d10ed29f37e2b370e9b3a27559bc15a057d72cc7"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/hercules.webp",
+      "file": "src/Yorungez.Web/public/sky-art/hercules.webp",
+      "sha256": "ec55ab6703d7c084027dd9f0e795e8d9ac6b4da6d84f6776c358064a3ab4f757"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/horlogium.webp",
+      "file": "src/Yorungez.Web/public/sky-art/horlogium.webp",
+      "sha256": "009a9900b0bc0e18d5ed9436986f1d3cb4e36b1d0ab17906936837da54db69c5"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/hydra.webp",
+      "file": "src/Yorungez.Web/public/sky-art/hydra.webp",
+      "sha256": "e9800421df3b558b5a6cacae75e5d0e2c3b2ed3ec9513650b82dd09d2aee415b"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/hydrus.webp",
+      "file": "src/Yorungez.Web/public/sky-art/hydrus.webp",
+      "sha256": "c5f22158936e6f18b4ede1d64a92c6892c39e953422d3fa2f8a23609f9fd3723"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/indus.webp",
+      "file": "src/Yorungez.Web/public/sky-art/indus.webp",
+      "sha256": "7be1d79194e1d265929774348e729c42e371d737173ab14f49ef1fec3a678262"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/lacerta.webp",
+      "file": "src/Yorungez.Web/public/sky-art/lacerta.webp",
+      "sha256": "71b904de644280aa45a4315bd038238b69d7f88bb571533810cf58297e546f29"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/monoceros.webp",
+      "file": "src/Yorungez.Web/public/sky-art/monoceros.webp",
+      "sha256": "f63c776c09c7afc400a5797273e9ada6fb85464a7ca09c3381edc75886190fac"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/lepus.webp",
+      "file": "src/Yorungez.Web/public/sky-art/lepus.webp",
+      "sha256": "e26665cbcc33611a62610b2524fabadd97ce0dd3fb5194fe0ec8a3e4c092b455"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/leo.webp",
+      "file": "src/Yorungez.Web/public/sky-art/leo.webp",
+      "sha256": "921e49c2a2381240db5ae3873014fb8c68c86db95a335f6314f0f6b2a67a0c54"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/lupus.webp",
+      "file": "src/Yorungez.Web/public/sky-art/lupus.webp",
+      "sha256": "3133f72d6b53100d74953e07f0b093a46ee202b59dab9055cca906129f2c64e7"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/lynx.webp",
+      "file": "src/Yorungez.Web/public/sky-art/lynx.webp",
+      "sha256": "46adc6b2881978cd331fd0a7baa54375787649bc4230b1036294445352240a40"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/lyra.webp",
+      "file": "src/Yorungez.Web/public/sky-art/lyra.webp",
+      "sha256": "9e3bbd26639c768e41f5073edd3c346c2e1865535b9adbce4afc00db0b531dfb"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/antlia.webp",
+      "file": "src/Yorungez.Web/public/sky-art/antlia.webp",
+      "sha256": "f78d5e37831a51727a0386c8fea7485d10563effb4d25d25ab385eece2c46161"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/microscopium.webp",
+      "file": "src/Yorungez.Web/public/sky-art/microscopium.webp",
+      "sha256": "30004ce9de62d17165e2d92cbd857ef02f1fa95507e038adcc46d6c81d83e43c"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/musca.webp",
+      "file": "src/Yorungez.Web/public/sky-art/musca.webp",
+      "sha256": "299b6b924fb7c2913f3c157dd706e5c647e3b29789d18d235864e1875f98d77f"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/octans.webp",
+      "file": "src/Yorungez.Web/public/sky-art/octans.webp",
+      "sha256": "1ea578243d1eabecf2c494febb1fb60986012e7d7569a9b77f53f70076fc54e1"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/apus.webp",
+      "file": "src/Yorungez.Web/public/sky-art/apus.webp",
+      "sha256": "947d434144b50448227bff6b8be3d5011a14d6aa489919a52c0d27ac0782051b"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/ophiuchus.webp",
+      "file": "src/Yorungez.Web/public/sky-art/ophiuchus.webp",
+      "sha256": "aa6192522943c76fdad1604716d29c6440692a7f55771c34167b410887744825"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/orion.webp",
+      "file": "src/Yorungez.Web/public/sky-art/orion.webp",
+      "sha256": "189e13817e832f77f05a690f08509a5e73252ed8693d39bf225afaa36a96eddc"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/pavo.webp",
+      "file": "src/Yorungez.Web/public/sky-art/pavo.webp",
+      "sha256": "e6697e8b53f2296834855865f4e2675020a42a6ec68b957dd613a0a13d9ba672"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/pegasus.webp",
+      "file": "src/Yorungez.Web/public/sky-art/pegasus.webp",
+      "sha256": "175965a1adcea646c4f6ead99cc196b066c822bd3ac3e9653b73413ba701626e"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/pictor.webp",
+      "file": "src/Yorungez.Web/public/sky-art/pictor.webp",
+      "sha256": "dc9de6ad19bdaa9094403894775b130f8f53feb5515bf3ffc5861bb4ac73be7e"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/perseus.webp",
+      "file": "src/Yorungez.Web/public/sky-art/perseus.webp",
+      "sha256": "4e8bcce6d7b0fb473b71c3458f54954983df97bec5e78d2a319468b2bbcf284a"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/equuleus.webp",
+      "file": "src/Yorungez.Web/public/sky-art/equuleus.webp",
+      "sha256": "2b3d52bfe26a551fbe2cb88f27ef3643f73461292ec672ef9caa40f61aa03715"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/canis-minor.webp",
+      "file": "src/Yorungez.Web/public/sky-art/canis-minor.webp",
+      "sha256": "14c9979b3c4089adf684ab74e600ea4e1d9b2589c4970bc812ccc6fc57f5bf17"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/leo-minor.webp",
+      "file": "src/Yorungez.Web/public/sky-art/leo-minor.webp",
+      "sha256": "043ce427f7480e6d4c31f36c8ae50069d8e89d07be5ae7c598cde44914bbda30"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/vulpecula.webp",
+      "file": "src/Yorungez.Web/public/sky-art/vulpecula.webp",
+      "sha256": "4b42f425081d1ccf9d19090ee8997f01ee29d2a11b60a8ea65cfc7eb676030e5"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/ursa-minor.webp",
+      "file": "src/Yorungez.Web/public/sky-art/ursa-minor.webp",
+      "sha256": "a976a4f27d9f8435720479f5d0446f470040bae03b81c7a4cf994ac9ae6c291d"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/phoenix.webp",
+      "file": "src/Yorungez.Web/public/sky-art/phoenix.webp",
+      "sha256": "3f1b646572081ace11302fb3023840f9b940b140d0efd5b9f155864a0e762e34"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/pisces.webp",
+      "file": "src/Yorungez.Web/public/sky-art/pisces.webp",
+      "sha256": "e932aea19c5fb4978da820cca33673d731b8580862299ac9f5c7fe3877cd9407"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/piscis-austrinus.webp",
+      "file": "src/Yorungez.Web/public/sky-art/piscis-austrinus.webp",
+      "sha256": "3a2bbaf7e249624b663904066f72c239e970f0f6cfba76a9ef910934bd6f3cb1"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/volans.webp",
+      "file": "src/Yorungez.Web/public/sky-art/volans.webp",
+      "sha256": "cadfa186367a163b69fe9dd46cf791d21142fac96b831907bb7bd968219372e4"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/reticulum.webp",
+      "file": "src/Yorungez.Web/public/sky-art/reticulum.webp",
+      "sha256": "863a04aaf2aae884272417a0c3e1a8ee5092a0c50e202bd3f4c8799098b115e1"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/sagittarius.webp",
+      "file": "src/Yorungez.Web/public/sky-art/sagittarius.webp",
+      "sha256": "54bb63dbbf78859415f7c5667325300188cb299ed2a67230624865b0b1a0eeba"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/scorpius.webp",
+      "file": "src/Yorungez.Web/public/sky-art/scorpius.webp",
+      "sha256": "ee64498b867dd1ce883afd9034f6520a8639477d7b841117b2e319f21d7e475f"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/sextans.webp",
+      "file": "src/Yorungez.Web/public/sky-art/sextans.webp",
+      "sha256": "70938fa5b4cbe76239ba483bc187e0d656123928480faecdccff47c17df4552a"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/mensa.webp",
+      "file": "src/Yorungez.Web/public/sky-art/mensa.webp",
+      "sha256": "1174bfa839b53d345142d8c6194132d5dc64a43dbfd90374c791101f74cd9833"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/taurus.webp",
+      "file": "src/Yorungez.Web/public/sky-art/taurus.webp",
+      "sha256": "b152c526f2c700d91e9495194c2dfedd71478d01f473bfb90886dc194bc0538d"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/telescopium.webp",
+      "file": "src/Yorungez.Web/public/sky-art/telescopium.webp",
+      "sha256": "4a5779a10d8e3b31faf2763edee71cb31bc5bb0ced832a9c1567f15f97eeb911"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/tucana.webp",
+      "file": "src/Yorungez.Web/public/sky-art/tucana.webp",
+      "sha256": "cca58e32e53165716e267e3c00b4b671692ead021c7fe749a4213ff8aa981194"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/triangulum.webp",
+      "file": "src/Yorungez.Web/public/sky-art/triangulum.webp",
+      "sha256": "5ebb94e5e5e1ced5c4670b39f0574c53378b7e2712fdab94577325ad139a3396"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/triangulum-australe.webp",
+      "file": "src/Yorungez.Web/public/sky-art/triangulum-australe.webp",
+      "sha256": "6ea5a02a0f5575a399674197ed27e34c4d0d56bbcead0e835110a2ecb5133a69"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/aquarius.webp",
+      "file": "src/Yorungez.Web/public/sky-art/aquarius.webp",
+      "sha256": "760877e220491a01c65a2281e74bc5021ca1d2d5323c27ff3c0a5dc58bcf9c51"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Stellarium/stellarium-skycultures/014fbb5e59233d133c22f9811af96b67d05a95c9/western/illustrations/virgo.webp",
+      "file": "src/Yorungez.Web/public/sky-art/virgo.webp",
+      "sha256": "d9307d6790de3ef5b7711479e818ee9b9b1832bdd9c2a291d45790b68b56a4a9"
+    }
+  ],
+  "attribution": {
+    "deepSky": "OpenNGC, Mattia Verga and contributors, CC BY-SA 4.0; Messier subset, reformatted",
+    "art": "Johan Meuris / Stellarium Western sky culture, Free Art License; unmodified artwork; three source star anchors projected by yorungez",
+    "anchorStars": "HYG 4.1, David Nash / Astronexus, CC BY-SA 4.0"
+  }
+}

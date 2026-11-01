@@ -1,0 +1,17 @@
+{
+  "sourceUrl": "https://github.com/Stellarium/stellarium-data/releases/download/landscapes/stara_lesna.zip",
+  "archiveSha256": "a91d6eb884be3433258c8821d57d63aaad3c03e9922b51ba2627f18fbbba006d",
+  "file": "src/Yorungez.Web/public/landscapes/stara-lesna.png",
+  "url": "/landscapes/stara-lesna.png",
+  "sha256": "6591d5da60b77df296b06de930edf3c598868006cca476ff6a122617f0118226",
+  "bytes": 12365293,
+  "width": 4096,
+  "height": 2048,
+  "author": "Ľubomír Hambálek",
+  "name": "Stara Lesna Meadows",
+  "license": "CC BY-SA 4.0 (listing); CC BY 4.0 (archive readme)",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "sourceListing": "https://stellarium.org/landscapes-europe.html",
+  "modifications": "None. Original transparent PNG preserved; runtime projection and daylight grading only.",
+  "limitation": "Illustrative photographed scenery in Slovakia, not user-location terrain or measured horizon."
+}

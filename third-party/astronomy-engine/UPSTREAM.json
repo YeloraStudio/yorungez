@@ -1,0 +1,12 @@
+{
+  "component": "Astronomy Engine",
+  "version": "2.1.19",
+  "tag": "v2.1.19",
+  "commit": "61dc07020aaa6885d2c7f688a4d82beaf6edb9ef",
+  "license": "MIT",
+  "source": "https://github.com/cosinekitty/astronomy/tree/61dc07020aaa6885d2c7f688a4d82beaf6edb9ef",
+  "nugetPackage": "CosineKitty.AstronomyEngine",
+  "npmPackage": "astronomy-engine",
+  "npmIntegrity": "sha512-8yWKNf7UeNbH458h3sAJ6ZgAjE5jTXp/mNNRFoC20j2SHwZIjAQeEsBB2Q3uCFRaTCCJRv33K2XhkhZQMXoX6w==",
+  "note": "C# NuGet and JavaScript npm packages are pinned independently; parity is tested. This record does not claim reproducible binary builds from the commit. No upstream source modifications."
+}

@@ -1,0 +1,527 @@
+{
+  "schemaVersion": 1,
+  "generatedAtUtc": "2026-10-31T12:10:21.476Z",
+  "reference": "Astropy 8.0.2 / ERFA, bundled IERS, airless ICRS AltAz",
+  "overlaySha256": "4985162ad395ca16de8606a2b7380f7708ca55d6cb7e182a0a5bf421e79eb373",
+  "toleranceArcminutes": 1,
+  "referenceWarnings": [
+    "AstropyWarning: Tried to get polar motions for times after IERS data is valid. Defaulting to polar motion from the 50-yr mean for those. This may affect precision at the arcsec level. Please check your astropy.utils.iers.conf.iers_auto_url and point it to a newer version if necessary.",
+    "ErfaWarning: ERFA function \"d2dtf\" yielded 1 of \"dubious year (Note 5)\"",
+    "ErfaWarning: ERFA function \"dtf2d\" yielded 1 of \"dubious year (Note 6)\"",
+    "ErfaWarning: ERFA function \"taiutc\" yielded 1 of \"dubious year (Note 4)\"",
+    "ErfaWarning: ERFA function \"utctai\" yielded 1 of \"dubious year (Note 3)\"",
+    "ErfaWarning: ERFA function \"utcut1\" yielded 1 of \"dubious year (Note 3)\""
+  ],
+  "scope": "J2000 stationary DSO direction rotated with Astronomy Engine; no annual aberration, refraction, weather or terrain. A sampled trial, not all-target accuracy certification.",
+  "summary": {
+    "samples": 72,
+    "maxSeparationArcminutes": 0.4275250021891858,
+    "maxAltitudeErrorArcminutes": 0.4187740734084855
+  },
+  "samples": [
+    {
+      "id": "dso-ngc1952",
+      "site": "balikesir",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.2505422243054012,
+      "altitudeErrorArcminutes": 0.12934257652204906
+    },
+    {
+      "id": "dso-ngc6205",
+      "site": "balikesir",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.3943901190959588,
+      "altitudeErrorArcminutes": 0.39318014982427485
+    },
+    {
+      "id": "dso-ngc0224",
+      "site": "balikesir",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.22173946948892817,
+      "altitudeErrorArcminutes": 0.12696102559502265
+    },
+    {
+      "id": "dso-ngc1976",
+      "site": "balikesir",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.24344786802966198,
+      "altitudeErrorArcminutes": 0.1868474290967015
+    },
+    {
+      "id": "dso-ngc6720",
+      "site": "balikesir",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.420032479016659,
+      "altitudeErrorArcminutes": 0.3824385257919971
+    },
+    {
+      "id": "dso-ngc4594",
+      "site": "balikesir",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.09910869117024783,
+      "altitudeErrorArcminutes": 0.04709373098975789
+    },
+    {
+      "id": "dso-ngc1952",
+      "site": "balikesir",
+      "instantUtc": "2026-10-31T11:24:00Z",
+      "separationArcminutes": 0.2518934850938561,
+      "altitudeErrorArcminutes": 0.1035114193154385
+    },
+    {
+      "id": "dso-ngc6205",
+      "site": "balikesir",
+      "instantUtc": "2026-10-31T11:24:00Z",
+      "separationArcminutes": 0.3280265798012107,
+      "altitudeErrorArcminutes": 0.3219267474582921
+    },
+    {
+      "id": "dso-ngc0224",
+      "site": "balikesir",
+      "instantUtc": "2026-10-31T11:24:00Z",
+      "separationArcminutes": 0.3498728290162428,
+      "altitudeErrorArcminutes": 0.009276987396651393
+    },
+    {
+      "id": "dso-ngc1976",
+      "site": "balikesir",
+      "instantUtc": "2026-10-31T11:24:00Z",
+      "separationArcminutes": 0.2786710967151333,
+      "altitudeErrorArcminutes": 0.23270488030519232
+    },
+    {
+      "id": "dso-ngc6720",
+      "site": "balikesir",
+      "instantUtc": "2026-10-31T11:24:00Z",
+      "separationArcminutes": 0.28620415186862214,
+      "altitudeErrorArcminutes": 0.22780561653931386
+    },
+    {
+      "id": "dso-ngc4594",
+      "site": "balikesir",
+      "instantUtc": "2026-10-31T11:24:00Z",
+      "separationArcminutes": 0.29530272332549434,
+      "altitudeErrorArcminutes": 0.05840051827156856
+    },
+    {
+      "id": "dso-ngc1952",
+      "site": "balikesir",
+      "instantUtc": "2035-06-21T00:00:00Z",
+      "separationArcminutes": 0.29639635129024944,
+      "altitudeErrorArcminutes": 0.12071570683112043
+    },
+    {
+      "id": "dso-ngc6205",
+      "site": "balikesir",
+      "instantUtc": "2035-06-21T00:00:00Z",
+      "separationArcminutes": 0.3605810698972895,
+      "altitudeErrorArcminutes": 0.3554016220583378
+    },
+    {
+      "id": "dso-ngc0224",
+      "site": "balikesir",
+      "instantUtc": "2035-06-21T00:00:00Z",
+      "separationArcminutes": 0.21973052692626277,
+      "altitudeErrorArcminutes": 0.05936078206048023
+    },
+    {
+      "id": "dso-ngc1976",
+      "site": "balikesir",
+      "instantUtc": "2035-06-21T00:00:00Z",
+      "separationArcminutes": 0.29376969772458816,
+      "altitudeErrorArcminutes": 0.17400142628545723
+    },
+    {
+      "id": "dso-ngc6720",
+      "site": "balikesir",
+      "instantUtc": "2035-06-21T00:00:00Z",
+      "separationArcminutes": 0.3676285957129471,
+      "altitudeErrorArcminutes": 0.26970002727495057
+    },
+    {
+      "id": "dso-ngc4594",
+      "site": "balikesir",
+      "instantUtc": "2035-06-21T00:00:00Z",
+      "separationArcminutes": 0.13129372105931286,
+      "altitudeErrorArcminutes": 0.03878976454238625
+    },
+    {
+      "id": "dso-ngc1952",
+      "site": "istanbul",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.2506549448919024,
+      "altitudeErrorArcminutes": 0.12818517660406314
+    },
+    {
+      "id": "dso-ngc6205",
+      "site": "istanbul",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.3944991844593886,
+      "altitudeErrorArcminutes": 0.39184748844292017
+    },
+    {
+      "id": "dso-ngc0224",
+      "site": "istanbul",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.22180082218753877,
+      "altitudeErrorArcminutes": 0.13108446286068443
+    },
+    {
+      "id": "dso-ngc1976",
+      "site": "istanbul",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.24355981006926947,
+      "altitudeErrorArcminutes": 0.18419477261161887
+    },
+    {
+      "id": "dso-ngc6720",
+      "site": "istanbul",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.42013939421359053,
+      "altitudeErrorArcminutes": 0.3723679612292585
+    },
+    {
+      "id": "dso-ngc4594",
+      "site": "istanbul",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.09914360878330553,
+      "altitudeErrorArcminutes": 0.04448562236468945
+    },
+    {
+      "id": "dso-ngc1952",
+      "site": "istanbul",
+      "instantUtc": "2026-10-31T11:24:00Z",
+      "separationArcminutes": 0.25193274627397605,
+      "altitudeErrorArcminutes": 0.09762801434433754
+    },
+    {
+      "id": "dso-ngc6205",
+      "site": "istanbul",
+      "instantUtc": "2026-10-31T11:24:00Z",
+      "separationArcminutes": 0.32811080684810384,
+      "altitudeErrorArcminutes": 0.3279320967743615
+    },
+    {
+      "id": "dso-ngc0224",
+      "site": "istanbul",
+      "instantUtc": "2026-10-31T11:24:00Z",
+      "separationArcminutes": 0.34997025165692686,
+      "altitudeErrorArcminutes": 0.008920565320078566
+    },
+    {
+      "id": "dso-ngc1976",
+      "site": "istanbul",
+      "instantUtc": "2026-10-31T11:24:00Z",
+      "separationArcminutes": 0.27871240446250956,
+      "altitudeErrorArcminutes": 0.22646474056628563
+    },
+    {
+      "id": "dso-ngc6720",
+      "site": "istanbul",
+      "instantUtc": "2026-10-31T11:24:00Z",
+      "separationArcminutes": 0.28625975518332614,
+      "altitudeErrorArcminutes": 0.2344417058822046
+    },
+    {
+      "id": "dso-ngc4594",
+      "site": "istanbul",
+      "instantUtc": "2026-10-31T11:24:00Z",
+      "separationArcminutes": 0.29540394305034795,
+      "altitudeErrorArcminutes": 0.055422011701651286
+    },
+    {
+      "id": "dso-ngc1952",
+      "site": "istanbul",
+      "instantUtc": "2035-06-21T00:00:00Z",
+      "separationArcminutes": 0.2962857592591826,
+      "altitudeErrorArcminutes": 0.1204757465718842
+    },
+    {
+      "id": "dso-ngc6205",
+      "site": "istanbul",
+      "instantUtc": "2035-06-21T00:00:00Z",
+      "separationArcminutes": 0.36046940410665373,
+      "altitudeErrorArcminutes": 0.3523187725592436
+    },
+    {
+      "id": "dso-ngc0224",
+      "site": "istanbul",
+      "instantUtc": "2035-06-21T00:00:00Z",
+      "separationArcminutes": 0.21965688270387804,
+      "altitudeErrorArcminutes": 0.06315639021295283
+    },
+    {
+      "id": "dso-ngc1976",
+      "site": "istanbul",
+      "instantUtc": "2035-06-21T00:00:00Z",
+      "separationArcminutes": 0.2936587062732596,
+      "altitudeErrorArcminutes": 0.17111913855856642
+    },
+    {
+      "id": "dso-ngc6720",
+      "site": "istanbul",
+      "instantUtc": "2035-06-21T00:00:00Z",
+      "separationArcminutes": 0.36752765003112753,
+      "altitudeErrorArcminutes": 0.2541577949094176
+    },
+    {
+      "id": "dso-ngc4594",
+      "site": "istanbul",
+      "instantUtc": "2035-06-21T00:00:00Z",
+      "separationArcminutes": 0.13124036535438788,
+      "altitudeErrorArcminutes": 0.03551360940896586
+    },
+    {
+      "id": "dso-ngc1952",
+      "site": "sydney",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.2578312729800546,
+      "altitudeErrorArcminutes": 0.06693898216227012
+    },
+    {
+      "id": "dso-ngc6205",
+      "site": "sydney",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.4013395431272917,
+      "altitudeErrorArcminutes": 0.027028233172643468
+    },
+    {
+      "id": "dso-ngc0224",
+      "site": "sydney",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.2264660474090959,
+      "altitudeErrorArcminutes": 0.19242570544423465
+    },
+    {
+      "id": "dso-ngc1976",
+      "site": "sydney",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.25067818534313363,
+      "altitudeErrorArcminutes": 0.05584639548075643
+    },
+    {
+      "id": "dso-ngc6720",
+      "site": "sydney",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.4275250021891858,
+      "altitudeErrorArcminutes": 0.4187740734084855
+    },
+    {
+      "id": "dso-ngc4594",
+      "site": "sydney",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.09983682072219908,
+      "altitudeErrorArcminutes": 0.04405975300240783
+    },
+    {
+      "id": "dso-ngc1952",
+      "site": "sydney",
+      "instantUtc": "2026-10-31T11:24:00Z",
+      "separationArcminutes": 0.2561031544958532,
+      "altitudeErrorArcminutes": 0.2178836903697956
+    },
+    {
+      "id": "dso-ngc6205",
+      "site": "sydney",
+      "instantUtc": "2026-10-31T11:24:00Z",
+      "separationArcminutes": 0.3343575313867356,
+      "altitudeErrorArcminutes": 0.32398156725804483
+    },
+    {
+      "id": "dso-ngc0224",
+      "site": "sydney",
+      "instantUtc": "2026-10-31T11:24:00Z",
+      "separationArcminutes": 0.3567143498174895,
+      "altitudeErrorArcminutes": 0.23165057655496923
+    },
+    {
+      "id": "dso-ngc1976",
+      "site": "sydney",
+      "instantUtc": "2026-10-31T11:24:00Z",
+      "separationArcminutes": 0.28279574998473217,
+      "altitudeErrorArcminutes": 0.28049480550517814
+    },
+    {
+      "id": "dso-ngc6720",
+      "site": "sydney",
+      "instantUtc": "2026-10-31T11:24:00Z",
+      "separationArcminutes": 0.29063859807235004,
+      "altitudeErrorArcminutes": 0.2603539275553146
+    },
+    {
+      "id": "dso-ngc4594",
+      "site": "sydney",
+      "instantUtc": "2026-10-31T11:24:00Z",
+      "separationArcminutes": 0.30189140699260536,
+      "altitudeErrorArcminutes": 0.1771592817452472
+    },
+    {
+      "id": "dso-ngc1952",
+      "site": "sydney",
+      "instantUtc": "2035-06-21T00:00:00Z",
+      "separationArcminutes": 0.28888538337338865,
+      "altitudeErrorArcminutes": 0.12354761492730404
+    },
+    {
+      "id": "dso-ngc6205",
+      "site": "sydney",
+      "instantUtc": "2035-06-21T00:00:00Z",
+      "separationArcminutes": 0.35326160706285603,
+      "altitudeErrorArcminutes": 0.35259501546789807
+    },
+    {
+      "id": "dso-ngc0224",
+      "site": "sydney",
+      "instantUtc": "2035-06-21T00:00:00Z",
+      "separationArcminutes": 0.21467553421718502,
+      "altitudeErrorArcminutes": 0.14481781617836198
+    },
+    {
+      "id": "dso-ngc1976",
+      "site": "sydney",
+      "instantUtc": "2035-06-21T00:00:00Z",
+      "separationArcminutes": 0.2862583572109168,
+      "altitudeErrorArcminutes": 0.16204531999761684
+    },
+    {
+      "id": "dso-ngc6720",
+      "site": "sydney",
+      "instantUtc": "2035-06-21T00:00:00Z",
+      "separationArcminutes": 0.36032107309610106,
+      "altitudeErrorArcminutes": 0.35808723963029365
+    },
+    {
+      "id": "dso-ngc4594",
+      "site": "sydney",
+      "instantUtc": "2035-06-21T00:00:00Z",
+      "separationArcminutes": 0.12904360922660543,
+      "altitudeErrorArcminutes": 0.021295972168857702
+    },
+    {
+      "id": "dso-ngc1952",
+      "site": "zero",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.24839131082064836,
+      "altitudeErrorArcminutes": 0.14467004522217053
+    },
+    {
+      "id": "dso-ngc6205",
+      "site": "zero",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.3922276360890524,
+      "altitudeErrorArcminutes": 0.17216453005630683
+    },
+    {
+      "id": "dso-ngc0224",
+      "site": "zero",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.22118161173045214,
+      "altitudeErrorArcminutes": 0.06082487477940823
+    },
+    {
+      "id": "dso-ngc1976",
+      "site": "zero",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.24130429543296134,
+      "altitudeErrorArcminutes": 0.21885485327487686
+    },
+    {
+      "id": "dso-ngc6720",
+      "site": "zero",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.41845537416286577,
+      "altitudeErrorArcminutes": 0.0475564885702795
+    },
+    {
+      "id": "dso-ngc4594",
+      "site": "zero",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.09721354522839255,
+      "altitudeErrorArcminutes": 0.08971857627668833
+    },
+    {
+      "id": "dso-ngc1952",
+      "site": "zero",
+      "instantUtc": "2026-10-31T11:24:00Z",
+      "separationArcminutes": 0.25247032874745906,
+      "altitudeErrorArcminutes": 0.24664201754063697
+    },
+    {
+      "id": "dso-ngc6205",
+      "site": "zero",
+      "instantUtc": "2026-10-31T11:24:00Z",
+      "separationArcminutes": 0.3271273701214276,
+      "altitudeErrorArcminutes": 0.11834251666513751
+    },
+    {
+      "id": "dso-ngc0224",
+      "site": "zero",
+      "instantUtc": "2026-10-31T11:24:00Z",
+      "separationArcminutes": 0.3484437537259018,
+      "altitudeErrorArcminutes": 0.030472357650950244
+    },
+    {
+      "id": "dso-ngc1976",
+      "site": "zero",
+      "instantUtc": "2026-10-31T11:24:00Z",
+      "separationArcminutes": 0.2790410758139057,
+      "altitudeErrorArcminutes": 0.24079747511450478
+    },
+    {
+      "id": "dso-ngc6720",
+      "site": "zero",
+      "instantUtc": "2026-10-31T11:24:00Z",
+      "separationArcminutes": 0.2858177887185416,
+      "altitudeErrorArcminutes": 0.09758064550897672
+    },
+    {
+      "id": "dso-ngc4594",
+      "site": "zero",
+      "instantUtc": "2026-10-31T11:24:00Z",
+      "separationArcminutes": 0.2933977562556461,
+      "altitudeErrorArcminutes": 0.1649203828554846
+    },
+    {
+      "id": "dso-ngc1952",
+      "site": "zero",
+      "instantUtc": "2035-06-21T00:00:00Z",
+      "separationArcminutes": 0.29822219858312954,
+      "altitudeErrorArcminutes": 0.054009518136126644
+    },
+    {
+      "id": "dso-ngc6205",
+      "site": "zero",
+      "instantUtc": "2035-06-21T00:00:00Z",
+      "separationArcminutes": 0.36263572268948935,
+      "altitudeErrorArcminutes": 0.12087286379014017
+    },
+    {
+      "id": "dso-ngc0224",
+      "site": "zero",
+      "instantUtc": "2035-06-21T00:00:00Z",
+      "separationArcminutes": 0.22091037185445134,
+      "altitudeErrorArcminutes": 0.005381093794447622
+    },
+    {
+      "id": "dso-ngc1976",
+      "site": "zero",
+      "instantUtc": "2035-06-21T00:00:00Z",
+      "separationArcminutes": 0.2956212139772925,
+      "altitudeErrorArcminutes": 0.19527472373482624
+    },
+    {
+      "id": "dso-ngc6720",
+      "site": "zero",
+      "instantUtc": "2035-06-21T00:00:00Z",
+      "separationArcminutes": 0.36893375645278453,
+      "altitudeErrorArcminutes": 0.115554963368254
+    },
+    {
+      "id": "dso-ngc4594",
+      "site": "zero",
+      "instantUtc": "2035-06-21T00:00:00Z",
+      "separationArcminutes": 0.13327455405798194,
+      "altitudeErrorArcminutes": 0.10700273073183553
+    }
+  ]
+}

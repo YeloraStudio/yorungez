@@ -1,0 +1,110 @@
+{
+  "package": "TECH-06",
+  "decision": "K-026",
+  "prd": "1.9",
+  "dateLocal": "2026-11-01",
+  "timeZone": "Europe/Istanbul",
+  "scope": "Verified-account PostgreSQL observation reports and saved locations; no browser persistence",
+  "tests": {
+    "dotnet": {
+      "passed": 120,
+      "core": 18,
+      "astronomy": 19,
+      "apiIntegration": 83,
+      "run": "Completed in this delivery continuation before final browser acceptance; no functional backend changes afterwards"
+    },
+    "client": {
+      "passed": 38,
+      "failed": 0
+    },
+    "productionBuild": "passed after controlled observation-time draft fix",
+    "efPendingModelChanges": false,
+    "architectureNotebookBoundary": "passed"
+  },
+  "migration": "20261031205237_ObservationsAndSavedPlaces",
+  "glossary": {
+    "count": 52,
+    "cacheVersion": "2026-10-31.7",
+    "newTerm": "ellipsoidal-height",
+    "source": "https://geodesy.noaa.gov/GEOID/GPSonBM96/gpsbms.html"
+  },
+  "browser": {
+    "type": "IAB",
+    "origin": "http://127.0.0.1:5199",
+    "viewport": {
+      "width": 1478,
+      "height": 879,
+      "physicalDevice": false
+    },
+    "syntheticAccountOnly": true,
+    "realGpsOrSensorPermissionRequested": false,
+    "checks": [
+      "Existing note/favorite and new records survived local server/browser restart",
+      "Observation description and personal declaration required; optional object/time/location not invented",
+      "Blank actual date/hour/minute visible; incomplete time rejected",
+      "Custom controls selected 2026-10-30 20:15 UTC; entered date/hour/minute retained across list/resume",
+      "Observed timestamp and server creation timestamp displayed separately",
+      "Saved location edited, soft-deleted and restored without mutating older observation name/coordinates",
+      "Saved place applied at simulation 2026-11-01T07:52:00Z with Jupiter and camera unchanged",
+      "Location dialog shortcut focused saved-location section",
+      "New location fields empty; ellipsoidal height term available with NOAA source",
+      "TR/EN change and glossary/menu navigation retained in-memory place draft and original user text",
+      "Explicit downloaded JSON v2 contained all four kinds, exact actual UTC timestamp and independent coordinates",
+      "Sign-out removed personal inventory and showed account gate"
+    ],
+    "consoleWarningsOrErrors": []
+  },
+  "export": {
+    "format": "yorungez-notebook",
+    "version": 2,
+    "kinds": [
+      "observation",
+      "place",
+      "favorite",
+      "note"
+    ],
+    "records": 4,
+    "actualTimeUtc": "2026-10-30T20:15:00+00:00",
+    "savedPlaceLatitude": 40.1,
+    "observationSnapshotLatitude": 41.0123456789,
+    "rawFileCommitted": false
+  },
+  "screenshots": [
+    {
+      "path": "docs/ux/inventory/observations-en.png",
+      "sha256": "2294bfda5bc9337f8506f2649e529a544530e182cb4558055421dfa151aab2c4"
+    },
+    {
+      "path": "docs/ux/inventory/observations-tr.png",
+      "sha256": "108553fc522c6892768f87125f03334fc1052feb6425946f1e477e77bba106c6"
+    }
+  ],
+  "limits": [
+    "Personal declaration is not independent scientific verification",
+    "No physical GPS/compass, screen-reader or phone acceptance",
+    "No 390px responsive claim",
+    "No production backup/restore or mail-client delivery acceptance",
+    "No general PWA/offline reopen yet; no personal offline queue",
+    "No equipment/event/multi-target observation links, quotas, importer or permanent purge"
+  ],
+  "astronomyAlgorithmsAndReferenceDataChanged": false,
+  "realEmailSent": false,
+  "uiEmailMode": "Mailpit; outbox worker disabled",
+  "privateSecretCopiedToReport": false,
+  "cleanup": {
+    "testAccountSignedOut": true,
+    "ownedBrowserTabClosed": true,
+    "ownedApiAndPreviewStopped": true,
+    "composeStoppedVolumesRetained": true
+  },
+  "archiveSha256": "6d748df5dd0777b5570401f1f5bb163b94c2d51567f55c7139b9d42fd4c7c1fc",
+  "documentation": {
+    "localLinksVerified": 502,
+    "requirements": {
+      "FR": 12,
+      "UJ": 7,
+      "AC": 14
+    },
+    "archiveUnchanged": true
+  }
+}

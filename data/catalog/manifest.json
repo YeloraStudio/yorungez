@@ -1,0 +1,7181 @@
+{
+  "schemaVersion": 1,
+  "version": "hyg-4.1-d3-2022.1",
+  "generatedAtUtc": "2026-10-30T22:18:45.273708+00:00",
+  "sources": [
+    {
+      "url": "https://raw.githubusercontent.com/astronexus/HYG-Database/c7f7f883fe678cc7680169a50ccd7dcc49b060ce/hyg/CURRENT/hygdata_v41.csv",
+      "sha256": "d9f69fd86bbf90a4e4d52b4c5c53eacfa6dfc0bfdef85bfd94f095e0bebe4ebd"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/ofrohn/d3-celestial/7e720a3de062059d4c5400a379146a601d9010e0/data/constellations.lines.json",
+      "sha256": "294f66bef5d5cf50b1e17f16d2efa1d97a15131612c68dd935adef6e7373e13c"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/ofrohn/d3-celestial/7e720a3de062059d4c5400a379146a601d9010e0/data/constellations.json",
+      "sha256": "ab4ae692027cbc042c0d6791a84456a65eb7c55656107fd00c58ff6e55d4d8b2"
+    }
+  ],
+  "derivedSha256": "f978d9ba182ab6f3c6d0b4bb2538007eaed6aa5e44f8178ae1310c0e59ab96f1",
+  "bytes": 2091661,
+  "starCount": 5073,
+  "brightCount": 5070,
+  "constellationCount": 88,
+  "nodeMatchMaxArcseconds": 16.26005577917624,
+  "nodeMatches": [
+    {
+      "point": [
+        30.9748,
+        42.3297
+      ],
+      "starId": "hyg-9618",
+      "separationArcseconds": 0.139399877385019
+    },
+    {
+      "point": [
+        17.433,
+        35.6206
+      ],
+      "starId": "hyg-5436",
+      "separationArcseconds": 0.30369447467513905
+    },
+    {
+      "point": [
+        9.832,
+        30.861
+      ],
+      "starId": "hyg-3086",
+      "separationArcseconds": 0.23292422226572113
+    },
+    {
+      "point": [
+        2.0969,
+        29.0904
+      ],
+      "starId": "hyg-676",
+      "separationArcseconds": 0.15935286575493843
+    },
+    {
+      "point": [
+        14.3017,
+        23.4176
+      ],
+      "starId": "hyg-4453",
+      "separationArcseconds": 0.1915018665887784
+    },
+    {
+      "point": [
+        11.8347,
+        24.2672
+      ],
+      "starId": "hyg-3685",
+      "separationArcseconds": 0.09322645272393056
+    },
+    {
+      "point": [
+        9.6389,
+        29.3118
+      ],
+      "starId": "hyg-3025",
+      "separationArcseconds": 0.4445768504276502
+    },
+    {
+      "point": [
+        9.832,
+        30.861
+      ],
+      "starId": "hyg-3086",
+      "separationArcseconds": 0.23292422226572113
+    },
+    {
+      "point": [
+        9.2202,
+        33.7193
+      ],
+      "starId": "hyg-2906",
+      "separationArcseconds": 0.15843131361219348
+    },
+    {
+      "point": [
+        -5.4658,
+        43.2681
+      ],
+      "starId": "hyg-116265",
+      "separationArcseconds": 0.16318971495999826
+    },
+    {
+      "point": [
+        -14.5197,
+        42.326
+      ],
+      "starId": "hyg-113366",
+      "separationArcseconds": 0.14165193195103326
+    },
+    {
+      "point": [
+        -5.4658,
+        43.2681
+      ],
+      "starId": "hyg-116265",
+      "separationArcseconds": 0.16318971495999826
+    },
+    {
+      "point": [
+        -4.8979,
+        44.3339
+      ],
+      "starId": "hyg-116439",
+      "separationArcseconds": 0.2032055892220905
+    },
+    {
+      "point": [
+        -5.609,
+        46.4582
+      ],
+      "starId": "hyg-116218",
+      "separationArcseconds": 0.43278654378451487
+    },
+    {
+      "point": [
+        17.433,
+        35.6206
+      ],
+      "starId": "hyg-5436",
+      "separationArcseconds": 0.30369447467513905
+    },
+    {
+      "point": [
+        14.1884,
+        38.4993
+      ],
+      "starId": "hyg-4426",
+      "separationArcseconds": 0.38766182598926635
+    },
+    {
+      "point": [
+        12.4535,
+        41.0789
+      ],
+      "starId": "hyg-3871",
+      "separationArcseconds": 0.04801093447632602
+    },
+    {
+      "point": [
+        17.3755,
+        47.2418
+      ],
+      "starId": "hyg-5423",
+      "separationArcseconds": 0.05684055357944761
+    },
+    {
+      "point": [
+        24.4982,
+        48.6282
+      ],
+      "starId": "hyg-7593",
+      "separationArcseconds": 0.3010701753066696
+    },
+    {
+      "point": [
+        -4.8979,
+        44.3339
+      ],
+      "starId": "hyg-116439",
+      "separationArcseconds": 0.2032055892220905
+    },
+    {
+      "point": [
+        -3.4915,
+        46.4203
+      ],
+      "starId": "hyg-116854",
+      "separationArcseconds": 0.08992534822604296
+    },
+    {
+      "point": [
+        142.3113,
+        -35.9513
+      ],
+      "starId": "hyg-46382",
+      "separationArcseconds": 0.18183574828556862
+    },
+    {
+      "point": [
+        156.7879,
+        -31.0678
+      ],
+      "starId": "hyg-51027",
+      "separationArcseconds": 0.17168112200594116
+    },
+    {
+      "point": [
+        164.1794,
+        -37.1378
+      ],
+      "starId": "hyg-53347",
+      "separationArcseconds": 0.2250863425815457
+    },
+    {
+      "point": [
+        -138.0345,
+        -79.0448
+      ],
+      "starId": "hyg-72144",
+      "separationArcseconds": 0.17669773308179812
+    },
+    {
+      "point": [
+        -114.9133,
+        -78.6957
+      ],
+      "starId": "hyg-79805",
+      "separationArcseconds": 0.17275079666642382
+    },
+    {
+      "point": [
+        -109.2306,
+        -77.5174
+      ],
+      "starId": "hyg-81602",
+      "separationArcseconds": 1.9415985887023353
+    },
+    {
+      "point": [
+        -111.6372,
+        -78.8971
+      ],
+      "starId": "hyg-80819",
+      "separationArcseconds": 0.9414858339584272
+    },
+    {
+      "point": [
+        -48.081,
+        -9.4958
+      ],
+      "starId": "hyg-102287",
+      "separationArcseconds": 0.13717972027787584
+    },
+    {
+      "point": [
+        -46.8365,
+        -8.9833
+      ],
+      "starId": "hyg-102714",
+      "separationArcseconds": 0.11000687071166554
+    },
+    {
+      "point": [
+        -37.1103,
+        -5.5712
+      ],
+      "starId": "hyg-105936",
+      "separationArcseconds": 0.1473719165688932
+    },
+    {
+      "point": [
+        -28.554,
+        -0.3199
+      ],
+      "starId": "hyg-108728",
+      "separationArcseconds": 0.18449193121692384
+    },
+    {
+      "point": [
+        -24.5859,
+        -1.3873
+      ],
+      "starId": "hyg-110049",
+      "separationArcseconds": 0.15526929494348837
+    },
+    {
+      "point": [
+        -22.792,
+        -0.02
+      ],
+      "starId": "hyg-110614",
+      "separationArcseconds": 0.16135590091578042
+    },
+    {
+      "point": [
+        -21.1609,
+        -0.1175
+      ],
+      "starId": "hyg-111147",
+      "separationArcseconds": 0.07240886457528492
+    },
+    {
+      "point": [
+        -16.8464,
+        -7.5796
+      ],
+      "starId": "hyg-112601",
+      "separationArcseconds": 0.178479782851583
+    },
+    {
+      "point": [
+        -10.5241,
+        -9.1825
+      ],
+      "starId": "hyg-114670",
+      "separationArcseconds": 0.05003434086122745
+    },
+    {
+      "point": [
+        -12.6383,
+        -21.1724
+      ],
+      "starId": "hyg-113980",
+      "separationArcseconds": 0.18814257880780916
+    },
+    {
+      "point": [
+        -37.1103,
+        -5.5712
+      ],
+      "starId": "hyg-105936",
+      "separationArcseconds": 0.1473719165688932
+    },
+    {
+      "point": [
+        -28.3907,
+        -13.8697
+      ],
+      "starId": "hyg-108793",
+      "separationArcseconds": 0.08321415993327187
+    },
+    {
+      "point": [
+        -28.554,
+        -0.3199
+      ],
+      "starId": "hyg-108728",
+      "separationArcseconds": 0.18449193121692384
+    },
+    {
+      "point": [
+        -25.7915,
+        -7.7833
+      ],
+      "starId": "hyg-109657",
+      "separationArcseconds": 0.09616933031767476
+    },
+    {
+      "point": [
+        -22.792,
+        -0.02
+      ],
+      "starId": "hyg-110614",
+      "separationArcseconds": 0.16135590091578042
+    },
+    {
+      "point": [
+        -23.6807,
+        1.3774
+      ],
+      "starId": "hyg-110326",
+      "separationArcseconds": 0.14396719978019862
+    },
+    {
+      "point": [
+        -9.2574,
+        -20.1006
+      ],
+      "starId": "hyg-115073",
+      "separationArcseconds": 0.12439479095982868
+    },
+    {
+      "point": [
+        -10.5241,
+        -9.1825
+      ],
+      "starId": "hyg-114670",
+      "separationArcseconds": 0.05003434086122745
+    },
+    {
+      "point": [
+        -4.5591,
+        -17.8165
+      ],
+      "starId": "hyg-116535",
+      "separationArcseconds": 0.1947062201148191
+    },
+    {
+      "point": [
+        -63.4351,
+        10.6133
+      ],
+      "starId": "hyg-96970",
+      "separationArcseconds": 0.14478510887103885
+    },
+    {
+      "point": [
+        -62.3042,
+        8.8683
+      ],
+      "starId": "hyg-97338",
+      "separationArcseconds": 0.10647211200992025
+    },
+    {
+      "point": [
+        -61.1717,
+        6.4068
+      ],
+      "starId": "hyg-97725",
+      "separationArcseconds": 0.13443202199868864
+    },
+    {
+      "point": [
+        -57.1738,
+        -0.8215
+      ],
+      "starId": "hyg-99156",
+      "separationArcseconds": 0.14155185992727373
+    },
+    {
+      "point": [
+        -61.8818,
+        1.0057
+      ],
+      "starId": "hyg-97493",
+      "separationArcseconds": 0.14155185992727373
+    },
+    {
+      "point": [
+        -68.6254,
+        3.1148
+      ],
+      "starId": "hyg-95207",
+      "separationArcseconds": 0.11516719777761403
+    },
+    {
+      "point": [
+        -73.6475,
+        13.8635
+      ],
+      "starId": "hyg-93452",
+      "separationArcseconds": 0.14576054170005995
+    },
+    {
+      "point": [
+        -62.3042,
+        8.8683
+      ],
+      "starId": "hyg-97338",
+      "separationArcseconds": 0.10647211200992025
+    },
+    {
+      "point": [
+        -68.6254,
+        3.1148
+      ],
+      "starId": "hyg-95207",
+      "separationArcseconds": 0.11516719777761403
+    },
+    {
+      "point": [
+        -73.4378,
+        -4.8826
+      ],
+      "starId": "hyg-93510",
+      "separationArcseconds": 0.24411310133311756
+    },
+    {
+      "point": [
+        -98.6514,
+        -56.3777
+      ],
+      "starId": "hyg-85008",
+      "separationArcseconds": 0.10166088987258555
+    },
+    {
+      "point": [
+        -97.2254,
+        -60.6838
+      ],
+      "starId": "hyg-85467",
+      "separationArcseconds": 0.3458978343903355
+    },
+    {
+      "point": [
+        -107.5535,
+        -59.0414
+      ],
+      "starId": "hyg-82112",
+      "separationArcseconds": 0.20140779087536886
+    },
+    {
+      "point": [
+        -105.345,
+        -55.9901
+      ],
+      "starId": "hyg-82826",
+      "separationArcseconds": 0.23371376385176024
+    },
+    {
+      "point": [
+        -105.104,
+        -53.1604
+      ],
+      "starId": "hyg-82898",
+      "separationArcseconds": 0.15630019008390184
+    },
+    {
+      "point": [
+        -97.0396,
+        -49.8761
+      ],
+      "starId": "hyg-85530",
+      "separationArcseconds": 0.1720658728819784
+    },
+    {
+      "point": [
+        -98.675,
+        -55.5299
+      ],
+      "starId": "hyg-84999",
+      "separationArcseconds": 0.0769010752961443
+    },
+    {
+      "point": [
+        42.496,
+        27.2605
+      ],
+      "starId": "hyg-13176",
+      "separationArcseconds": 0.17779036200810036
+    },
+    {
+      "point": [
+        31.7934,
+        23.4624
+      ],
+      "starId": "hyg-9861",
+      "separationArcseconds": 0.26114623374690527
+    },
+    {
+      "point": [
+        28.66,
+        20.808
+      ],
+      "starId": "hyg-8884",
+      "separationArcseconds": 0.14288039078217013
+    },
+    {
+      "point": [
+        28.3826,
+        19.2939
+      ],
+      "starId": "hyg-8813",
+      "separationArcseconds": 0.24232641022745338
+    },
+    {
+      "point": [
+        89.8822,
+        44.9474
+      ],
+      "starId": "hyg-28288",
+      "separationArcseconds": 0.1485212816813282
+    },
+    {
+      "point": [
+        79.1723,
+        45.998
+      ],
+      "starId": "hyg-24549",
+      "separationArcseconds": 0.12920029957896276
+    },
+    {
+      "point": [
+        76.6287,
+        41.2345
+      ],
+      "starId": "hyg-23712",
+      "separationArcseconds": 0.09358044649496176
+    },
+    {
+      "point": [
+        74.2484,
+        33.1661
+      ],
+      "starId": "hyg-22961",
+      "separationArcseconds": 0.047016811610224016
+    },
+    {
+      "point": [
+        81.573,
+        28.6075
+      ],
+      "starId": "hyg-25364",
+      "separationArcseconds": 0.20343790390779143
+    },
+    {
+      "point": [
+        89.9303,
+        37.2126
+      ],
+      "starId": "hyg-28309",
+      "separationArcseconds": 0.1139301350743153
+    },
+    {
+      "point": [
+        89.8822,
+        44.9474
+      ],
+      "starId": "hyg-28288",
+      "separationArcseconds": 0.1485212816813282
+    },
+    {
+      "point": [
+        89.8818,
+        54.2847
+      ],
+      "starId": "hyg-28287",
+      "separationArcseconds": 0.3249289764270501
+    },
+    {
+      "point": [
+        79.1723,
+        45.998
+      ],
+      "starId": "hyg-24549",
+      "separationArcseconds": 0.12920029957896276
+    },
+    {
+      "point": [
+        75.4922,
+        43.8233
+      ],
+      "starId": "hyg-23361",
+      "separationArcseconds": 0.0710257575317189
+    },
+    {
+      "point": [
+        75.6195,
+        41.0758
+      ],
+      "starId": "hyg-23398",
+      "separationArcseconds": 0.139264274359359
+    },
+    {
+      "point": [
+        -153.1844,
+        17.4569
+      ],
+      "starId": "hyg-67063",
+      "separationArcseconds": 0.17305130432826207
+    },
+    {
+      "point": [
+        -151.3288,
+        18.3977
+      ],
+      "starId": "hyg-67711",
+      "separationArcseconds": 0.1343265713180615
+    },
+    {
+      "point": [
+        -146.0847,
+        19.1824
+      ],
+      "starId": "hyg-69451",
+      "separationArcseconds": 0.5112879064312966
+    },
+    {
+      "point": [
+        -142.0425,
+        30.3714
+      ],
+      "starId": "hyg-70828",
+      "separationArcseconds": 0.13319656956960332
+    },
+    {
+      "point": [
+        -141.9805,
+        38.3083
+      ],
+      "starId": "hyg-70851",
+      "separationArcseconds": 0.20346112078705764
+    },
+    {
+      "point": [
+        -134.5135,
+        40.3906
+      ],
+      "starId": "hyg-73327",
+      "separationArcseconds": 0.16431467726405552
+    },
+    {
+      "point": [
+        -131.1243,
+        33.3148
+      ],
+      "starId": "hyg-74438",
+      "separationArcseconds": 0.21609292652511267
+    },
+    {
+      "point": [
+        -138.7533,
+        27.0742
+      ],
+      "starId": "hyg-71879",
+      "separationArcseconds": 0.20800701653271622
+    },
+    {
+      "point": [
+        -146.0847,
+        19.1824
+      ],
+      "starId": "hyg-69451",
+      "separationArcseconds": 0.5112879064312966
+    },
+    {
+      "point": [
+        -139.7127,
+        13.7283
+      ],
+      "starId": "hyg-71569",
+      "separationArcseconds": 0.0
+    },
+    {
+      "point": [
+        -141.9805,
+        38.3083
+      ],
+      "starId": "hyg-70851",
+      "separationArcseconds": 0.20346112078705764
+    },
+    {
+      "point": [
+        -145.9041,
+        46.0883
+      ],
+      "starId": "hyg-69510",
+      "separationArcseconds": 0.5246385634307235
+    },
+    {
+      "point": [
+        -146.6341,
+        51.7879
+      ],
+      "starId": "hyg-69259",
+      "separationArcseconds": 0.30125838339463235
+    },
+    {
+      "point": [
+        -143.7008,
+        51.8507
+      ],
+      "starId": "hyg-70274",
+      "separationArcseconds": 0.69650450092639
+    },
+    {
+      "point": [
+        -145.9041,
+        46.0883
+      ],
+      "starId": "hyg-69510",
+      "separationArcseconds": 0.5246385634307235
+    },
+    {
+      "point": [
+        67.7087,
+        -44.9537
+      ],
+      "starId": "hyg-21008",
+      "separationArcseconds": 0.20373951697764528
+    },
+    {
+      "point": [
+        70.1405,
+        -41.8638
+      ],
+      "starId": "hyg-21717",
+      "separationArcseconds": 0.2860086155401977
+    },
+    {
+      "point": [
+        70.5145,
+        -37.1443
+      ],
+      "starId": "hyg-21808",
+      "separationArcseconds": 0.07253921367192855
+    },
+    {
+      "point": [
+        76.1017,
+        -35.483
+      ],
+      "starId": "hyg-23540",
+      "separationArcseconds": 0.3036478110766139
+    },
+    {
+      "point": [
+        74.3217,
+        53.7521
+      ],
+      "starId": "hyg-22987",
+      "separationArcseconds": 0.003073585126505738
+    },
+    {
+      "point": [
+        75.8545,
+        60.4422
+      ],
+      "starId": "hyg-23467",
+      "separationArcseconds": 0.18472221039690667
+    },
+    {
+      "point": [
+        73.5125,
+        66.3427
+      ],
+      "starId": "hyg-22730",
+      "separationArcseconds": 0.09801797418782633
+    },
+    {
+      "point": [
+        57.5896,
+        71.3323
+      ],
+      "starId": "hyg-17917",
+      "separationArcseconds": 0.14656844358504278
+    },
+    {
+      "point": [
+        57.3803,
+        65.526
+      ],
+      "starId": "hyg-17842",
+      "separationArcseconds": 0.1299294266973086
+    },
+    {
+      "point": [
+        52.2672,
+        59.9403
+      ],
+      "starId": "hyg-16187",
+      "separationArcseconds": 0.12081183693521438
+    },
+    {
+      "point": [
+        73.5125,
+        66.3427
+      ],
+      "starId": "hyg-22730",
+      "separationArcseconds": 0.09801797418782633
+    },
+    {
+      "point": [
+        94.7116,
+        69.3198
+      ],
+      "starId": "hyg-29924",
+      "separationArcseconds": 0.05659070378276297
+    },
+    {
+      "point": [
+        105.0168,
+        76.9774
+      ],
+      "starId": "hyg-33607",
+      "separationArcseconds": 0.4754330522307784
+    },
+    {
+      "point": [
+        134.6218,
+        11.8577
+      ],
+      "starId": "hyg-43939",
+      "separationArcseconds": 0.1409834434068859
+    },
+    {
+      "point": [
+        131.1712,
+        18.1543
+      ],
+      "starId": "hyg-42792",
+      "separationArcseconds": 0.17411256136585332
+    },
+    {
+      "point": [
+        130.8214,
+        21.4685
+      ],
+      "starId": "hyg-42687",
+      "separationArcseconds": 0.21779121443602426
+    },
+    {
+      "point": [
+        131.6666,
+        28.7651
+      ],
+      "starId": "hyg-42981",
+      "separationArcseconds": 0.14848947500322893
+    },
+    {
+      "point": [
+        131.1712,
+        18.1543
+      ],
+      "starId": "hyg-42792",
+      "separationArcseconds": 0.17411256136585332
+    },
+    {
+      "point": [
+        124.1288,
+        9.1855
+      ],
+      "starId": "hyg-40411",
+      "separationArcseconds": 0.215501939445753
+    },
+    {
+      "point": [
+        -165.9981,
+        38.3149
+      ],
+      "starId": "hyg-62921",
+      "separationArcseconds": 0.34169365318041856
+    },
+    {
+      "point": [
+        -171.5644,
+        41.3575
+      ],
+      "starId": "hyg-61124",
+      "separationArcseconds": 1.5284188188501657
+    },
+    {
+      "point": [
+        95.6749,
+        -17.9559
+      ],
+      "starId": "hyg-30251",
+      "separationArcseconds": 0.1362468666289598
+    },
+    {
+      "point": [
+        101.2872,
+        -16.7161
+      ],
+      "starId": "hyg-32263",
+      "separationArcseconds": 0.07751286755759994
+    },
+    {
+      "point": [
+        105.7561,
+        -23.8333
+      ],
+      "starId": "hyg-33888",
+      "separationArcseconds": 0.11975154677228238
+    },
+    {
+      "point": [
+        107.0979,
+        -26.3932
+      ],
+      "starId": "hyg-34354",
+      "separationArcseconds": 0.1451435287280395
+    },
+    {
+      "point": [
+        105.4298,
+        -27.9348
+      ],
+      "starId": "hyg-33769",
+      "separationArcseconds": 0.1253781642939324
+    },
+    {
+      "point": [
+        104.6565,
+        -28.9721
+      ],
+      "starId": "hyg-33492",
+      "separationArcseconds": 0.1530015734005275
+    },
+    {
+      "point": [
+        95.0783,
+        -30.0634
+      ],
+      "starId": "hyg-30049",
+      "separationArcseconds": 0.11979098413438305
+    },
+    {
+      "point": [
+        111.0238,
+        -29.3031
+      ],
+      "starId": "hyg-35806",
+      "separationArcseconds": 0.12639126184599553
+    },
+    {
+      "point": [
+        107.0979,
+        -26.3932
+      ],
+      "starId": "hyg-34354",
+      "separationArcseconds": 0.1451435287280395
+    },
+    {
+      "point": [
+        101.2872,
+        -16.7161
+      ],
+      "starId": "hyg-32263",
+      "separationArcseconds": 0.07751286755759994
+    },
+    {
+      "point": [
+        104.0343,
+        -17.0542
+      ],
+      "starId": "hyg-33260",
+      "separationArcseconds": 0.18307837605792454
+    },
+    {
+      "point": [
+        105.9396,
+        -15.6333
+      ],
+      "starId": "hyg-33956",
+      "separationArcseconds": 0.16391173297531947
+    },
+    {
+      "point": [
+        103.5475,
+        -12.0386
+      ],
+      "starId": "hyg-33073",
+      "separationArcseconds": 0.10230930303302949
+    },
+    {
+      "point": [
+        104.0343,
+        -17.0542
+      ],
+      "starId": "hyg-33260",
+      "separationArcseconds": 0.18307837605792454
+    },
+    {
+      "point": [
+        114.8255,
+        5.225
+      ],
+      "starId": "hyg-37173",
+      "separationArcseconds": 0.031041688163620965
+    },
+    {
+      "point": [
+        111.7877,
+        8.2893
+      ],
+      "starId": "hyg-36087",
+      "separationArcseconds": 0.08939854024689842
+    },
+    {
+      "point": [
+        -55.588,
+        -12.5082
+      ],
+      "starId": "hyg-99706",
+      "separationArcseconds": 0.18095039067809937
+    },
+    {
+      "point": [
+        -54.7472,
+        -14.7814
+      ],
+      "starId": "hyg-100020",
+      "separationArcseconds": 0.12006668296656302
+    },
+    {
+      "point": [
+        -52.7849,
+        -17.8137
+      ],
+      "starId": "hyg-100701",
+      "separationArcseconds": 0.1448177291505721
+    },
+    {
+      "point": [
+        -48.4761,
+        -25.2709
+      ],
+      "starId": "hyg-102154",
+      "separationArcseconds": 0.007528715240946743
+    },
+    {
+      "point": [
+        -47.0446,
+        -26.9191
+      ],
+      "starId": "hyg-102647",
+      "separationArcseconds": 0.1350280203241676
+    },
+    {
+      "point": [
+        -38.3332,
+        -22.4113
+      ],
+      "starId": "hyg-105540",
+      "separationArcseconds": 0.13305464457504165
+    },
+    {
+      "point": [
+        -33.2398,
+        -16.1273
+      ],
+      "starId": "hyg-107213",
+      "separationArcseconds": 0.13108759490831837
+    },
+    {
+      "point": [
+        -34.9773,
+        -16.6623
+      ],
+      "starId": "hyg-106642",
+      "separationArcseconds": 0.0592014304859646
+    },
+    {
+      "point": [
+        -39.4383,
+        -16.8345
+      ],
+      "starId": "hyg-105175",
+      "separationArcseconds": 0.2561423389543522
+    },
+    {
+      "point": [
+        -43.5132,
+        -17.2329
+      ],
+      "starId": "hyg-103804",
+      "separationArcseconds": 0.1742752580791585
+    },
+    {
+      "point": [
+        -55.588,
+        -12.5082
+      ],
+      "starId": "hyg-99706",
+      "separationArcseconds": 0.18095039067809937
+    },
+    {
+      "point": [
+        99.4403,
+        -43.1959
+      ],
+      "starId": "hyg-31605",
+      "separationArcseconds": 0.12317370823752682
+    },
+    {
+      "point": [
+        95.988,
+        -52.6957
+      ],
+      "starId": "hyg-30365",
+      "separationArcseconds": 0.21798631933056534
+    },
+    {
+      "point": [
+        138.2999,
+        -69.7172
+      ],
+      "starId": "hyg-45106",
+      "separationArcseconds": 0.8927481835629082
+    },
+    {
+      "point": [
+        153.4342,
+        -70.0379
+      ],
+      "starId": "hyg-49958",
+      "separationArcseconds": 0.26447123969010516
+    },
+    {
+      "point": [
+        160.7392,
+        -64.3945
+      ],
+      "starId": "hyg-52268",
+      "separationArcseconds": 0.1880672464409022
+    },
+    {
+      "point": [
+        158.0061,
+        -61.6853
+      ],
+      "starId": "hyg-51428",
+      "separationArcseconds": 0.13848198014778537
+    },
+    {
+      "point": [
+        154.2707,
+        -61.3323
+      ],
+      "starId": "hyg-50229",
+      "separationArcseconds": 0.17326952800175743
+    },
+    {
+      "point": [
+        139.2725,
+        -59.2752
+      ],
+      "starId": "hyg-45425",
+      "separationArcseconds": 0.16580275417478565
+    },
+    {
+      "point": [
+        125.6285,
+        -59.5095
+      ],
+      "starId": "hyg-40921",
+      "separationArcseconds": 0.09528113892167872
+    },
+    {
+      "point": [
+        119.1946,
+        -52.9824
+      ],
+      "starId": "hyg-38713",
+      "separationArcseconds": 0.25124560969427484
+    },
+    {
+      "point": [
+        122.3831,
+        -47.3366
+      ],
+      "starId": "hyg-39840",
+      "separationArcseconds": 0.10673796039381804
+    },
+    {
+      "point": [
+        131.1759,
+        -54.7088
+      ],
+      "starId": "hyg-42794",
+      "separationArcseconds": 0.08178278104315855
+    },
+    {
+      "point": [
+        139.2725,
+        -59.2752
+      ],
+      "starId": "hyg-45425",
+      "separationArcseconds": 0.16580275417478565
+    },
+    {
+      "point": [
+        160.7392,
+        -64.3945
+      ],
+      "starId": "hyg-52268",
+      "separationArcseconds": 0.1880672464409022
+    },
+    {
+      "point": [
+        166.6351,
+        -62.4241
+      ],
+      "starId": "hyg-54143",
+      "separationArcseconds": 0.21349804608394432
+    },
+    {
+      "point": [
+        167.1417,
+        -61.9472
+      ],
+      "starId": "hyg-54302",
+      "separationArcseconds": 0.1033657234013841
+    },
+    {
+      "point": [
+        168.1501,
+        -60.3176
+      ],
+      "starId": "hyg-54591",
+      "separationArcseconds": 0.10044558957918039
+    },
+    {
+      "point": [
+        167.1475,
+        -58.975
+      ],
+      "starId": "hyg-54304",
+      "separationArcseconds": 0.1410504348306745
+    },
+    {
+      "point": [
+        163.3736,
+        -58.8532
+      ],
+      "starId": "hyg-53099",
+      "separationArcseconds": 0.41372556565421975
+    },
+    {
+      "point": [
+        158.0061,
+        -61.6853
+      ],
+      "starId": "hyg-51428",
+      "separationArcseconds": 0.13848198014778537
+    },
+    {
+      "point": [
+        28.5989,
+        63.6701
+      ],
+      "starId": "hyg-8867",
+      "separationArcseconds": 0.22359143522084093
+    },
+    {
+      "point": [
+        21.454,
+        60.2353
+      ],
+      "starId": "hyg-6672",
+      "separationArcseconds": 1.359636780686372
+    },
+    {
+      "point": [
+        14.1772,
+        60.7167
+      ],
+      "starId": "hyg-4417",
+      "separationArcseconds": 0.17356913756420084
+    },
+    {
+      "point": [
+        10.1268,
+        56.5373
+      ],
+      "starId": "hyg-3172",
+      "separationArcseconds": 0.16318971495999826
+    },
+    {
+      "point": [
+        2.2945,
+        59.1498
+      ],
+      "starId": "hyg-744",
+      "separationArcseconds": 2.2072214955531444
+    },
+    {
+      "point": [
+        170.2517,
+        -54.491
+      ],
+      "starId": "hyg-55260",
+      "separationArcseconds": 0.13379807128325166
+    },
+    {
+      "point": [
+        -177.9104,
+        -50.7224
+      ],
+      "starId": "hyg-59016",
+      "separationArcseconds": 0.14520860092531362
+    },
+    {
+      "point": [
+        -172.9901,
+        -50.2306
+      ],
+      "starId": "hyg-60635",
+      "separationArcseconds": 0.19565005046527756
+    },
+    {
+      "point": [
+        -169.6207,
+        -48.9599
+      ],
+      "starId": "hyg-61739",
+      "separationArcseconds": 0.6278695743242253
+    },
+    {
+      "point": [
+        -155.0281,
+        -53.4664
+      ],
+      "starId": "hyg-66447",
+      "separationArcseconds": 0.08844237863568867
+    },
+    {
+      "point": [
+        -151.1151,
+        -47.2884
+      ],
+      "starId": "hyg-67786",
+      "separationArcseconds": 0.2717299577549954
+    },
+    {
+      "point": [
+        -152.5959,
+        -42.4737
+      ],
+      "starId": "hyg-67259",
+      "separationArcseconds": 0.16600205351336333
+    },
+    {
+      "point": [
+        -152.6238,
+        -41.6877
+      ],
+      "starId": "hyg-67251",
+      "separationArcseconds": 0.08698843227367548
+    },
+    {
+      "point": [
+        -148.3294,
+        -36.37
+      ],
+      "starId": "hyg-68714",
+      "separationArcseconds": 0.9565271478090862
+    },
+    {
+      "point": [
+        -141.1232,
+        -42.1578
+      ],
+      "starId": "hyg-71125",
+      "separationArcseconds": 0.09050129520843193
+    },
+    {
+      "point": [
+        -135.2096,
+        -42.1042
+      ],
+      "starId": "hyg-73107",
+      "separationArcseconds": 0.0702231808350775
+    },
+    {
+      "point": [
+        -152.6238,
+        -41.6877
+      ],
+      "starId": "hyg-67251",
+      "separationArcseconds": 0.08698843227367548
+    },
+    {
+      "point": [
+        -159.8508,
+        -36.7123
+      ],
+      "starId": "hyg-64904",
+      "separationArcseconds": 0.6928531740572211
+    },
+    {
+      "point": [
+        -140.1038,
+        -60.8372
+      ],
+      "starId": "hyg-71453",
+      "separationArcseconds": 16.26005577917624
+    },
+    {
+      "point": [
+        -155.0281,
+        -53.4664
+      ],
+      "starId": "hyg-66447",
+      "separationArcseconds": 0.08844237863568867
+    },
+    {
+      "point": [
+        -149.0441,
+        -60.373
+      ],
+      "starId": "hyg-68483",
+      "separationArcseconds": 0.15358702109261932
+    },
+    {
+      "point": [
+        -172.9901,
+        -50.2306
+      ],
+      "starId": "hyg-60635",
+      "separationArcseconds": 0.19565005046527756
+    },
+    {
+      "point": [
+        -177.087,
+        -52.3685
+      ],
+      "starId": "hyg-59267",
+      "separationArcseconds": 0.15837167449334316
+    },
+    {
+      "point": [
+        172.942,
+        -59.4421
+      ],
+      "starId": "hyg-56076",
+      "separationArcseconds": 0.15837167449334316
+    },
+    {
+      "point": [
+        -52.6046,
+        62.9941
+      ],
+      "starId": "hyg-100767",
+      "separationArcseconds": 0.28663550256965037
+    },
+    {
+      "point": [
+        -48.6776,
+        61.8388
+      ],
+      "starId": "hyg-102091",
+      "separationArcseconds": 0.40450061826593936
+    },
+    {
+      "point": [
+        -40.3551,
+        62.5856
+      ],
+      "starId": "hyg-104861",
+      "separationArcseconds": 0.7521873549259572
+    },
+    {
+      "point": [
+        -34.1231,
+        58.78
+      ],
+      "starId": "hyg-106916",
+      "separationArcseconds": 0.16585972127977353
+    },
+    {
+      "point": [
+        -26.2409,
+        57.0436
+      ],
+      "starId": "hyg-109511",
+      "separationArcseconds": 1.8414956355987915
+    },
+    {
+      "point": [
+        -27.2863,
+        58.2013
+      ],
+      "starId": "hyg-109146",
+      "separationArcseconds": 0.20673144680277467
+    },
+    {
+      "point": [
+        -22.7072,
+        58.4152
+      ],
+      "starId": "hyg-110645",
+      "separationArcseconds": 0.10395808196662658
+    },
+    {
+      "point": [
+        -17.5799,
+        66.2004
+      ],
+      "starId": "hyg-112364",
+      "separationArcseconds": 0.29195823169778423
+    },
+    {
+      "point": [
+        -5.1631,
+        77.6323
+      ],
+      "starId": "hyg-116361",
+      "separationArcseconds": 0.3203023747250214
+    },
+    {
+      "point": [
+        -37.835,
+        70.5607
+      ],
+      "starId": "hyg-105691",
+      "separationArcseconds": 0.10170734218932204
+    },
+    {
+      "point": [
+        -40.3551,
+        62.5856
+      ],
+      "starId": "hyg-104861",
+      "separationArcseconds": 0.7521873549259572
+    },
+    {
+      "point": [
+        -37.835,
+        70.5607
+      ],
+      "starId": "hyg-105691",
+      "separationArcseconds": 0.10170734218932204
+    },
+    {
+      "point": [
+        -17.5799,
+        66.2004
+      ],
+      "starId": "hyg-112364",
+      "separationArcseconds": 0.29195823169778423
+    },
+    {
+      "point": [
+        40.8252,
+        3.2358
+      ],
+      "starId": "hyg-12673",
+      "separationArcseconds": 0.12575433724931748
+    },
+    {
+      "point": [
+        38.9686,
+        5.5932
+      ],
+      "starId": "hyg-12062",
+      "separationArcseconds": 0.20771160028980867
+    },
+    {
+      "point": [
+        37.0398,
+        8.4601
+      ],
+      "starId": "hyg-11457",
+      "separationArcseconds": 0.23045740458699882
+    },
+    {
+      "point": [
+        41.2356,
+        10.1141
+      ],
+      "starId": "hyg-12795",
+      "separationArcseconds": 0.17392255617564067
+    },
+    {
+      "point": [
+        44.9288,
+        8.9074
+      ],
+      "starId": "hyg-13920",
+      "separationArcseconds": 0.21794297778140834
+    },
+    {
+      "point": [
+        45.5699,
+        4.0897
+      ],
+      "starId": "hyg-14100",
+      "separationArcseconds": 0.14188515885803316
+    },
+    {
+      "point": [
+        40.8252,
+        3.2358
+      ],
+      "starId": "hyg-12673",
+      "separationArcseconds": 0.12575433724931748
+    },
+    {
+      "point": [
+        39.8707,
+        0.3285
+      ],
+      "starId": "hyg-12355",
+      "separationArcseconds": 0.14934587766671453
+    },
+    {
+      "point": [
+        34.8366,
+        -2.9776
+      ],
+      "starId": "hyg-10800",
+      "separationArcseconds": 0.18864402580270134
+    },
+    {
+      "point": [
+        27.8651,
+        -10.335
+      ],
+      "starId": "hyg-8628",
+      "separationArcseconds": 0.19694942555305694
+    },
+    {
+      "point": [
+        26.017,
+        -15.9375
+      ],
+      "starId": "hyg-8087",
+      "separationArcseconds": 0.6444495225154048
+    },
+    {
+      "point": [
+        10.8974,
+        -17.9866
+      ],
+      "starId": "hyg-3413",
+      "separationArcseconds": 0.17214820762130167
+    },
+    {
+      "point": [
+        4.857,
+        -8.8239
+      ],
+      "starId": "hyg-1559",
+      "separationArcseconds": 0.09261645847865663
+    },
+    {
+      "point": [
+        17.1475,
+        -10.1823
+      ],
+      "starId": "hyg-5353",
+      "separationArcseconds": 0.19206833209608892
+    },
+    {
+      "point": [
+        21.0059,
+        -8.1833
+      ],
+      "starId": "hyg-6523",
+      "separationArcseconds": 0.23602652361481
+    },
+    {
+      "point": [
+        27.8651,
+        -10.335
+      ],
+      "starId": "hyg-8628",
+      "separationArcseconds": 0.19694942555305694
+    },
+    {
+      "point": [
+        124.6315,
+        -76.9197
+      ],
+      "starId": "hyg-40587",
+      "separationArcseconds": 0.7820990865195776
+    },
+    {
+      "point": [
+        158.8671,
+        -78.6078
+      ],
+      "starId": "hyg-51690",
+      "separationArcseconds": 0.28186635788309394
+    },
+    {
+      "point": [
+        161.318,
+        -80.4696
+      ],
+      "starId": "hyg-52443",
+      "separationArcseconds": 0.11376417703272072
+    },
+    {
+      "point": [
+        -175.4132,
+        -79.3122
+      ],
+      "starId": "hyg-59816",
+      "separationArcseconds": 0.29171545240721963
+    },
+    {
+      "point": [
+        179.9066,
+        -78.2218
+      ],
+      "starId": "hyg-58309",
+      "separationArcseconds": 0.28660254270033314
+    },
+    {
+      "point": [
+        158.8671,
+        -78.6078
+      ],
+      "starId": "hyg-51690",
+      "separationArcseconds": 0.28186635788309394
+    },
+    {
+      "point": [
+        -130.6215,
+        -58.8012
+      ],
+      "starId": "hyg-74595",
+      "separationArcseconds": 0.47641560929605653
+    },
+    {
+      "point": [
+        -139.3733,
+        -64.9751
+      ],
+      "starId": "hyg-71682",
+      "separationArcseconds": 1.0445261492051743
+    },
+    {
+      "point": [
+        -129.1556,
+        -59.3208
+      ],
+      "starId": "hyg-75094",
+      "separationArcseconds": 0.06563381781996291
+    },
+    {
+      "point": [
+        95.5285,
+        -33.4364
+      ],
+      "starId": "hyg-30204",
+      "separationArcseconds": 0.12018464600431616
+    },
+    {
+      "point": [
+        87.74,
+        -35.7683
+      ],
+      "starId": "hyg-27559",
+      "separationArcseconds": 0.1926086097655835
+    },
+    {
+      "point": [
+        84.9122,
+        -34.0741
+      ],
+      "starId": "hyg-26569",
+      "separationArcseconds": 0.1665418066304111
+    },
+    {
+      "point": [
+        82.8031,
+        -35.4705
+      ],
+      "starId": "hyg-25794",
+      "separationArcseconds": 0.12332700476012094
+    },
+    {
+      "point": [
+        87.74,
+        -35.7683
+      ],
+      "starId": "hyg-27559",
+      "separationArcseconds": 0.1926086097655835
+    },
+    {
+      "point": [
+        89.7867,
+        -42.8151
+      ],
+      "starId": "hyg-28256",
+      "separationArcseconds": 0.1488389746254764
+    },
+    {
+      "point": [
+        -162.503,
+        17.5294
+      ],
+      "starId": "hyg-64037",
+      "separationArcseconds": 0.16399816152494537
+    },
+    {
+      "point": [
+        -162.0317,
+        27.8782
+      ],
+      "starId": "hyg-64189",
+      "separationArcseconds": 0.8296288930942122
+    },
+    {
+      "point": [
+        -173.2655,
+        28.2684
+      ],
+      "starId": "hyg-60554",
+      "separationArcseconds": 0.08860245547008362
+    },
+    {
+      "point": [
+        -75.3193,
+        -37.1074
+      ],
+      "starId": "hyg-92881",
+      "separationArcseconds": 0.3646443155090417
+    },
+    {
+      "point": [
+        -73.3954,
+        -37.0634
+      ],
+      "starId": "hyg-93530",
+      "separationArcseconds": 0.1669101057084611
+    },
+    {
+      "point": [
+        -72.6319,
+        -37.9045
+      ],
+      "starId": "hyg-93819",
+      "separationArcseconds": 0.20700544486444553
+    },
+    {
+      "point": [
+        -72.4927,
+        -39.3408
+      ],
+      "starId": "hyg-93865",
+      "separationArcseconds": 0.03149487546629003
+    },
+    {
+      "point": [
+        -72.9126,
+        -40.4967
+      ],
+      "starId": "hyg-93710",
+      "separationArcseconds": 0.1646018906929368
+    },
+    {
+      "point": [
+        -74.2213,
+        -42.0951
+      ],
+      "starId": "hyg-93248",
+      "separationArcseconds": 0.254403000778681
+    },
+    {
+      "point": [
+        -77.6042,
+        -43.4341
+      ],
+      "starId": "hyg-92094",
+      "separationArcseconds": 0.052790558164446576
+    },
+    {
+      "point": [
+        -81.6242,
+        -42.3125
+      ],
+      "starId": "hyg-90700",
+      "separationArcseconds": 0.1507310714463209
+    },
+    {
+      "point": [
+        -126.7676,
+        31.3591
+      ],
+      "starId": "hyg-75895",
+      "separationArcseconds": 0.16029858839449437
+    },
+    {
+      "point": [
+        -128.0428,
+        29.1057
+      ],
+      "starId": "hyg-75466",
+      "separationArcseconds": 0.22044270213752462
+    },
+    {
+      "point": [
+        -126.328,
+        26.7147
+      ],
+      "starId": "hyg-76035",
+      "separationArcseconds": 0.25847370726497687
+    },
+    {
+      "point": [
+        -124.3143,
+        26.2956
+      ],
+      "starId": "hyg-76716",
+      "separationArcseconds": 0.14175193332737931
+    },
+    {
+      "point": [
+        -122.6015,
+        26.0684
+      ],
+      "starId": "hyg-77276",
+      "separationArcseconds": 0.16313181546732605
+    },
+    {
+      "point": [
+        -120.6031,
+        26.8779
+      ],
+      "starId": "hyg-77923",
+      "separationArcseconds": 0.07890198935508033
+    },
+    {
+      "point": [
+        -119.6393,
+        29.8511
+      ],
+      "starId": "hyg-78256",
+      "separationArcseconds": 0.14128465466791323
+    },
+    {
+      "point": [
+        -177.8966,
+        -24.7289
+      ],
+      "starId": "hyg-59020",
+      "separationArcseconds": 0.12159127622596283
+    },
+    {
+      "point": [
+        -177.4688,
+        -22.6198
+      ],
+      "starId": "hyg-59134",
+      "separationArcseconds": 0.1268389300545441
+    },
+    {
+      "point": [
+        -176.0485,
+        -17.5419
+      ],
+      "starId": "hyg-59621",
+      "separationArcseconds": 0.21576480021365754
+    },
+    {
+      "point": [
+        -172.5339,
+        -16.5154
+      ],
+      "starId": "hyg-60776",
+      "separationArcseconds": 0.126279096823003
+    },
+    {
+      "point": [
+        -171.4032,
+        -23.3968
+      ],
+      "starId": "hyg-61166",
+      "separationArcseconds": 0.1557249428806964
+    },
+    {
+      "point": [
+        -177.4688,
+        -22.6198
+      ],
+      "starId": "hyg-59134",
+      "separationArcseconds": 0.1268389300545441
+    },
+    {
+      "point": [
+        174.1705,
+        -9.8022
+      ],
+      "starId": "hyg-56464",
+      "separationArcseconds": 0.1910079223393331
+    },
+    {
+      "point": [
+        171.1525,
+        -10.8593
+      ],
+      "starId": "hyg-55521",
+      "separationArcseconds": 0.16388291332973842
+    },
+    {
+      "point": [
+        169.8352,
+        -14.7785
+      ],
+      "starId": "hyg-55118",
+      "separationArcseconds": 0.14864844033619706
+    },
+    {
+      "point": [
+        164.9436,
+        -18.2988
+      ],
+      "starId": "hyg-53584",
+      "separationArcseconds": 0.2140283670319874
+    },
+    {
+      "point": [
+        167.9145,
+        -22.8258
+      ],
+      "starId": "hyg-54522",
+      "separationArcseconds": 0.1963489319742589
+    },
+    {
+      "point": [
+        170.8412,
+        -18.78
+      ],
+      "starId": "hyg-55433",
+      "separationArcseconds": 0.12927339734977758
+    },
+    {
+      "point": [
+        171.2205,
+        -17.684
+      ],
+      "starId": "hyg-55539",
+      "separationArcseconds": 0.10897148889070037
+    },
+    {
+      "point": [
+        176.1907,
+        -18.3507
+      ],
+      "starId": "hyg-57111",
+      "separationArcseconds": 0.15191721123523586
+    },
+    {
+      "point": [
+        179.004,
+        -17.1508
+      ],
+      "starId": "hyg-58014",
+      "separationArcseconds": 0.11647225017532782
+    },
+    {
+      "point": [
+        169.8352,
+        -14.7785
+      ],
+      "starId": "hyg-55118",
+      "separationArcseconds": 0.14864844033619706
+    },
+    {
+      "point": [
+        171.2205,
+        -17.684
+      ],
+      "starId": "hyg-55539",
+      "separationArcseconds": 0.10897148889070037
+    },
+    {
+      "point": [
+        -168.0697,
+        -59.6888
+      ],
+      "starId": "hyg-62239",
+      "separationArcseconds": 0.20159532144753597
+    },
+    {
+      "point": [
+        -176.2137,
+        -58.7489
+      ],
+      "starId": "hyg-59565",
+      "separationArcseconds": 0.22048555230842945
+    },
+    {
+      "point": [
+        -173.3504,
+        -63.0991
+      ],
+      "starId": "hyg-60530",
+      "separationArcseconds": 0.10970589375719043
+    },
+    {
+      "point": [
+        -172.2085,
+        -57.1132
+      ],
+      "starId": "hyg-60893",
+      "separationArcseconds": 0.13418584150329257
+    },
+    {
+      "point": [
+        -41.7659,
+        30.2269
+      ],
+      "starId": "hyg-104394",
+      "separationArcseconds": 0.059599026831265355
+    },
+    {
+      "point": [
+        -48.4472,
+        33.9703
+      ],
+      "starId": "hyg-102157",
+      "separationArcseconds": 0.41920366017824545
+    },
+    {
+      "point": [
+        -54.4429,
+        40.2567
+      ],
+      "starId": "hyg-100128",
+      "separationArcseconds": 0.07683962816264389
+    },
+    {
+      "point": [
+        -63.7563,
+        45.1308
+      ],
+      "starId": "hyg-96858",
+      "separationArcseconds": 0.23139830142710663
+    },
+    {
+      "point": [
+        -67.5735,
+        51.7298
+      ],
+      "starId": "hyg-95554",
+      "separationArcseconds": 0.10091474481565083
+    },
+    {
+      "point": [
+        -70.7243,
+        53.3685
+      ],
+      "starId": "hyg-94484",
+      "separationArcseconds": 0.2606211705902396
+    },
+    {
+      "point": [
+        -49.642,
+        45.2803
+      ],
+      "starId": "hyg-101767",
+      "separationArcseconds": 0.14589010665159727
+    },
+    {
+      "point": [
+        -54.4429,
+        40.2567
+      ],
+      "starId": "hyg-100128",
+      "separationArcseconds": 0.07683962816264389
+    },
+    {
+      "point": [
+        -60.9235,
+        35.0834
+      ],
+      "starId": "hyg-97799",
+      "separationArcseconds": 0.22359143522084093
+    },
+    {
+      "point": [
+        -67.3197,
+        27.9597
+      ],
+      "starId": "hyg-95648",
+      "separationArcseconds": 0.15858031328173933
+    },
+    {
+      "point": [
+        -51.6968,
+        11.3033
+      ],
+      "starId": "hyg-101095",
+      "separationArcseconds": 0.1343265713180615
+    },
+    {
+      "point": [
+        -50.6127,
+        14.5951
+      ],
+      "starId": "hyg-101442",
+      "separationArcseconds": 0.2142268989276277
+    },
+    {
+      "point": [
+        -50.0905,
+        15.9121
+      ],
+      "starId": "hyg-101629",
+      "separationArcseconds": 0.13291256803203805
+    },
+    {
+      "point": [
+        -48.3381,
+        16.1241
+      ],
+      "starId": "hyg-102200",
+      "separationArcseconds": 0.16047529091560106
+    },
+    {
+      "point": [
+        -49.1353,
+        15.0746
+      ],
+      "starId": "hyg-101950",
+      "separationArcseconds": 0.11056365422534438
+    },
+    {
+      "point": [
+        -50.6127,
+        14.5951
+      ],
+      "starId": "hyg-101442",
+      "separationArcseconds": 0.2142268989276277
+    },
+    {
+      "point": [
+        64.0066,
+        -51.4866
+      ],
+      "starId": "hyg-19843",
+      "separationArcseconds": 0.36812517806600203
+    },
+    {
+      "point": [
+        68.4991,
+        -55.045
+      ],
+      "starId": "hyg-21228",
+      "separationArcseconds": 0.2828366408141163
+    },
+    {
+      "point": [
+        83.4063,
+        -62.4898
+      ],
+      "starId": "hyg-26004",
+      "separationArcseconds": 0.09337832866397262
+    },
+    {
+      "point": [
+        86.1932,
+        -65.7355
+      ],
+      "starId": "hyg-27034",
+      "separationArcseconds": 0.23403690782061368
+    },
+    {
+      "point": [
+        88.5252,
+        -63.0896
+      ],
+      "starId": "hyg-27821",
+      "separationArcseconds": 0.5463983780364714
+    },
+    {
+      "point": [
+        83.4063,
+        -62.4898
+      ],
+      "starId": "hyg-26004",
+      "separationArcseconds": 0.09337832866397262
+    },
+    {
+      "point": [
+        76.3777,
+        -57.4727
+      ],
+      "starId": "hyg-23638",
+      "separationArcseconds": 0.18446632689632078
+    },
+    {
+      "point": [
+        68.4991,
+        -55.045
+      ],
+      "starId": "hyg-21228",
+      "separationArcseconds": 0.2828366408141163
+    },
+    {
+      "point": [
+        -91.6178,
+        56.8726
+      ],
+      "starId": "hyg-87314",
+      "separationArcseconds": 0.40459402563775737
+    },
+    {
+      "point": [
+        -90.8485,
+        51.4889
+      ],
+      "starId": "hyg-87561",
+      "separationArcseconds": 0.12458450403476695
+    },
+    {
+      "point": [
+        -97.3918,
+        52.3014
+      ],
+      "starId": "hyg-85410",
+      "separationArcseconds": 0.04801093447632602
+    },
+    {
+      "point": [
+        -96.9332,
+        55.173
+      ],
+      "starId": "hyg-85567",
+      "separationArcseconds": 0.625064753497559
+    },
+    {
+      "point": [
+        -91.6178,
+        56.8726
+      ],
+      "starId": "hyg-87314",
+      "separationArcseconds": 0.40459402563775737
+    },
+    {
+      "point": [
+        -71.8612,
+        67.6615
+      ],
+      "starId": "hyg-94081",
+      "separationArcseconds": 0.5999556288090299
+    },
+    {
+      "point": [
+        -84.8107,
+        71.3378
+      ],
+      "starId": "hyg-89630",
+      "separationArcseconds": 0.05799228818245007
+    },
+    {
+      "point": [
+        -102.8034,
+        65.7147
+      ],
+      "starId": "hyg-83638",
+      "separationArcseconds": 0.18791649110890657
+    },
+    {
+      "point": [
+        -114.0021,
+        61.5142
+      ],
+      "starId": "hyg-80089",
+      "separationArcseconds": 0.04691624077503886
+    },
+    {
+      "point": [
+        -119.5277,
+        58.5653
+      ],
+      "starId": "hyg-78290",
+      "separationArcseconds": 1.288825748413954
+    },
+    {
+      "point": [
+        -128.7676,
+        58.9661
+      ],
+      "starId": "hyg-75229",
+      "separationArcseconds": 0.12739630316586784
+    },
+    {
+      "point": [
+        -148.9027,
+        64.3759
+      ],
+      "starId": "hyg-68537",
+      "separationArcseconds": 0.32652412090107125
+    },
+    {
+      "point": [
+        -171.6294,
+        69.7882
+      ],
+      "starId": "hyg-61088",
+      "separationArcseconds": 0.3626048945131133
+    },
+    {
+      "point": [
+        172.8509,
+        69.3311
+      ],
+      "starId": "hyg-56044",
+      "separationArcseconds": 0.2744455087075079
+    },
+    {
+      "point": [
+        -84.8107,
+        71.3378
+      ],
+      "starId": "hyg-89630",
+      "separationArcseconds": 0.05799228818245007
+    },
+    {
+      "point": [
+        -84.7359,
+        72.7328
+      ],
+      "starId": "hyg-89660",
+      "separationArcseconds": 3.2735182280850528
+    },
+    {
+      "point": [
+        -71.8612,
+        67.6615
+      ],
+      "starId": "hyg-94081",
+      "separationArcseconds": 0.5999556288090299
+    },
+    {
+      "point": [
+        -62.9569,
+        70.2679
+      ],
+      "starId": "hyg-97124",
+      "separationArcseconds": 0.4388989160157502
+    },
+    {
+      "point": [
+        -41.044,
+        5.2478
+      ],
+      "starId": "hyg-104649",
+      "separationArcseconds": 0.20489542956049103
+    },
+    {
+      "point": [
+        -41.3799,
+        10.007
+      ],
+      "starId": "hyg-104520",
+      "separationArcseconds": 0.17356913756420084
+    },
+    {
+      "point": [
+        -42.4146,
+        10.1316
+      ],
+      "starId": "hyg-104184",
+      "separationArcseconds": 0.09241223230183987
+    },
+    {
+      "point": [
+        76.9624,
+        -5.0864
+      ],
+      "starId": "hyg-23820",
+      "separationArcseconds": 0.2078025423258165
+    },
+    {
+      "point": [
+        71.3756,
+        -3.2547
+      ],
+      "starId": "hyg-22056",
+      "separationArcseconds": 0.17898191101844876
+    },
+    {
+      "point": [
+        69.0798,
+        -3.3525
+      ],
+      "starId": "hyg-21391",
+      "separationArcseconds": 0.2189592360786175
+    },
+    {
+      "point": [
+        62.9664,
+        -6.8376
+      ],
+      "starId": "hyg-19538",
+      "separationArcseconds": 0.086879764608176
+    },
+    {
+      "point": [
+        59.5074,
+        -13.5085
+      ],
+      "starId": "hyg-18497",
+      "separationArcseconds": 0.1664850729184496
+    },
+    {
+      "point": [
+        56.5356,
+        -12.1016
+      ],
+      "starId": "hyg-17551",
+      "separationArcseconds": 0.1632765257019977
+    },
+    {
+      "point": [
+        55.8121,
+        -9.7634
+      ],
+      "starId": "hyg-17336",
+      "separationArcseconds": 0.03983821643873368
+    },
+    {
+      "point": [
+        53.2327,
+        -9.4583
+      ],
+      "starId": "hyg-16496",
+      "separationArcseconds": 0.15413960460453535
+    },
+    {
+      "point": [
+        44.1069,
+        -8.8981
+      ],
+      "starId": "hyg-13667",
+      "separationArcseconds": 0.1910079223393331
+    },
+    {
+      "point": [
+        41.0306,
+        -13.8587
+      ],
+      "starId": "hyg-12737",
+      "separationArcseconds": 0.0884957697535221
+    },
+    {
+      "point": [
+        41.2758,
+        -18.5726
+      ],
+      "starId": "hyg-12810",
+      "separationArcseconds": 0.2885407331640061
+    },
+    {
+      "point": [
+        45.5979,
+        -23.6245
+      ],
+      "starId": "hyg-14112",
+      "separationArcseconds": 0.17942999249240313
+    },
+    {
+      "point": [
+        49.8792,
+        -21.7579
+      ],
+      "starId": "hyg-15436",
+      "separationArcseconds": 0.16391173297531947
+    },
+    {
+      "point": [
+        53.447,
+        -21.6329
+      ],
+      "starId": "hyg-16570",
+      "separationArcseconds": 0.09065773663065595
+    },
+    {
+      "point": [
+        56.712,
+        -23.2497
+      ],
+      "starId": "hyg-17609",
+      "separationArcseconds": 0.21504115994096
+    },
+    {
+      "point": [
+        68.8877,
+        -30.5623
+      ],
+      "starId": "hyg-21340",
+      "separationArcseconds": 0.16009218894923757
+    },
+    {
+      "point": [
+        66.0092,
+        -34.0168
+      ],
+      "starId": "hyg-20483",
+      "separationArcseconds": 0.16628635249458187
+    },
+    {
+      "point": [
+        64.4736,
+        -33.7983
+      ],
+      "starId": "hyg-19992",
+      "separationArcseconds": 0.21904550843660608
+    },
+    {
+      "point": [
+        57.3635,
+        -36.2003
+      ],
+      "starId": "hyg-17833",
+      "separationArcseconds": 0.2407031247714579
+    },
+    {
+      "point": [
+        54.2737,
+        -40.2745
+      ],
+      "starId": "hyg-16829",
+      "separationArcseconds": 0.19572246427953868
+    },
+    {
+      "point": [
+        49.9819,
+        -43.0698
+      ],
+      "starId": "hyg-15471",
+      "separationArcseconds": 7.206102756654553
+    },
+    {
+      "point": [
+        44.5653,
+        -40.3047
+      ],
+      "starId": "hyg-13813",
+      "separationArcseconds": 0.15947138779866105
+    },
+    {
+      "point": [
+        40.1668,
+        -39.8554
+      ],
+      "starId": "hyg-12452",
+      "separationArcseconds": 0.2515462327269601
+    },
+    {
+      "point": [
+        36.7463,
+        -47.7038
+      ],
+      "starId": "hyg-11380",
+      "separationArcseconds": 0.15620950241158255
+    },
+    {
+      "point": [
+        34.1274,
+        -51.5122
+      ],
+      "starId": "hyg-10578",
+      "separationArcseconds": 0.23778109532997332
+    },
+    {
+      "point": [
+        28.9895,
+        -51.6089
+      ],
+      "starId": "hyg-8989",
+      "separationArcseconds": 2.3251666403511355
+    },
+    {
+      "point": [
+        24.4285,
+        -57.2368
+      ],
+      "starId": "hyg-7574",
+      "separationArcseconds": 0.3480351694069371
+    },
+    {
+      "point": [
+        48.0189,
+        -28.9876
+      ],
+      "starId": "hyg-14843",
+      "separationArcseconds": 0.5236202055438426
+    },
+    {
+      "point": [
+        42.2726,
+        -32.4059
+      ],
+      "starId": "hyg-13114",
+      "separationArcseconds": 0.19769150441307626
+    },
+    {
+      "point": [
+        31.1227,
+        -29.2968
+      ],
+      "starId": "hyg-9655",
+      "separationArcseconds": 0.14297953296418087
+    },
+    {
+      "point": [
+        93.7194,
+        22.5068
+      ],
+      "starId": "hyg-29582",
+      "separationArcseconds": 0.05003434086122745
+    },
+    {
+      "point": [
+        95.7401,
+        22.5136
+      ],
+      "starId": "hyg-30270",
+      "separationArcseconds": 0.0531472551824958
+    },
+    {
+      "point": [
+        100.983,
+        25.1311
+      ],
+      "starId": "hyg-32161",
+      "separationArcseconds": 0.13043739064896065
+    },
+    {
+      "point": [
+        107.7849,
+        30.2452
+      ],
+      "starId": "hyg-34601",
+      "separationArcseconds": 0.14111739445221527
+    },
+    {
+      "point": [
+        113.6494,
+        31.8883
+      ],
+      "starId": "hyg-36744",
+      "separationArcseconds": 0.3471654877867369
+    },
+    {
+      "point": [
+        116.329,
+        28.0262
+      ],
+      "starId": "hyg-37718",
+      "separationArcseconds": 0.49257977557902605
+    },
+    {
+      "point": [
+        113.9806,
+        26.8957
+      ],
+      "starId": "hyg-36856",
+      "separationArcseconds": 0.16097489471484283
+    },
+    {
+      "point": [
+        110.0307,
+        21.9823
+      ],
+      "starId": "hyg-35453",
+      "separationArcseconds": 0.16659852102218975
+    },
+    {
+      "point": [
+        106.0272,
+        20.5703
+      ],
+      "starId": "hyg-34000",
+      "separationArcseconds": 0.05179697723308924
+    },
+    {
+      "point": [
+        99.4279,
+        16.3993
+      ],
+      "starId": "hyg-31601",
+      "separationArcseconds": 0.1860725183013403
+    },
+    {
+      "point": [
+        101.3224,
+        12.8956
+      ],
+      "starId": "hyg-32276",
+      "separationArcseconds": 0.14409837721040142
+    },
+    {
+      "point": [
+        110.0307,
+        21.9823
+      ],
+      "starId": "hyg-35453",
+      "separationArcseconds": 0.16659852102218975
+    },
+    {
+      "point": [
+        109.5232,
+        16.5404
+      ],
+      "starId": "hyg-35253",
+      "separationArcseconds": 0.18307837605792454
+    },
+    {
+      "point": [
+        -14.78,
+        -52.7541
+      ],
+      "starId": "hyg-113278",
+      "separationArcseconds": 0.3630475244274254
+    },
+    {
+      "point": [
+        -17.8613,
+        -51.3169
+      ],
+      "starId": "hyg-112263",
+      "separationArcseconds": 0.2894070520009936
+    },
+    {
+      "point": [
+        -19.3331,
+        -46.8846
+      ],
+      "starId": "hyg-111768",
+      "separationArcseconds": 0.43846822172034905
+    },
+    {
+      "point": [
+        -22.5607,
+        -43.7492
+      ],
+      "starId": "hyg-110696",
+      "separationArcseconds": 0.10810109564874207
+    },
+    {
+      "point": [
+        -27.9417,
+        -46.961
+      ],
+      "starId": "hyg-108922",
+      "separationArcseconds": 0.4152753611135246
+    },
+    {
+      "point": [
+        -19.3331,
+        -46.8846
+      ],
+      "starId": "hyg-111768",
+      "separationArcseconds": 0.43846822172034905
+    },
+    {
+      "point": [
+        -22.6826,
+        -43.4956
+      ],
+      "starId": "hyg-110650",
+      "separationArcseconds": 0.14191844569927894
+    },
+    {
+      "point": [
+        -26.0962,
+        -41.3467
+      ],
+      "starId": "hyg-109562",
+      "separationArcseconds": 0.013745490554998244
+    },
+    {
+      "point": [
+        -28.4713,
+        -39.5434
+      ],
+      "starId": "hyg-108765",
+      "separationArcseconds": 0.1714608767298821
+    },
+    {
+      "point": [
+        -31.5178,
+        -37.3649
+      ],
+      "starId": "hyg-107742",
+      "separationArcseconds": 0.2868002450986659
+    },
+    {
+      "point": [
+        -114.5199,
+        19.1531
+      ],
+      "starId": "hyg-79928",
+      "separationArcseconds": 0.1485530815493045
+    },
+    {
+      "point": [
+        -112.445,
+        21.4896
+      ],
+      "starId": "hyg-80571",
+      "separationArcseconds": 0.08178278104315855
+    },
+    {
+      "point": [
+        -109.6785,
+        31.6027
+      ],
+      "starId": "hyg-81444",
+      "separationArcseconds": 0.60517634532634
+    },
+    {
+      "point": [
+        -109.276,
+        38.9223
+      ],
+      "starId": "hyg-81583",
+      "separationArcseconds": 0.1661726912697535
+    },
+    {
+      "point": [
+        -111.4742,
+        42.437
+      ],
+      "starId": "hyg-80880",
+      "separationArcseconds": 0.18188769393675983
+    },
+    {
+      "point": [
+        -115.0648,
+        46.3134
+      ],
+      "starId": "hyg-79750",
+      "separationArcseconds": 0.15019739733213744
+    },
+    {
+      "point": [
+        -117.8076,
+        44.9349
+      ],
+      "starId": "hyg-78861",
+      "separationArcseconds": 0.07943894670725507
+    },
+    {
+      "point": [
+        -121.8311,
+        42.4515
+      ],
+      "starId": "hyg-77524",
+      "separationArcseconds": 0.9451961422699836
+    },
+    {
+      "point": [
+        -109.6785,
+        31.6027
+      ],
+      "starId": "hyg-81444",
+      "separationArcseconds": 0.60517634532634
+    },
+    {
+      "point": [
+        -104.9276,
+        30.9264
+      ],
+      "starId": "hyg-82952",
+      "separationArcseconds": 0.023807888016215095
+    },
+    {
+      "point": [
+        -109.276,
+        38.9223
+      ],
+      "starId": "hyg-81583",
+      "separationArcseconds": 0.1661726912697535
+    },
+    {
+      "point": [
+        -101.2382,
+        36.8092
+      ],
+      "starId": "hyg-84122",
+      "separationArcseconds": 0.1484576615106296
+    },
+    {
+      "point": [
+        -90.9367,
+        37.2505
+      ],
+      "starId": "hyg-87537",
+      "separationArcseconds": 0.20060883020764675
+    },
+    {
+      "point": [
+        -99.0794,
+        37.1459
+      ],
+      "starId": "hyg-84853",
+      "separationArcseconds": 0.17527521736732438
+    },
+    {
+      "point": [
+        -101.2382,
+        36.8092
+      ],
+      "starId": "hyg-84122",
+      "separationArcseconds": 0.1484576615106296
+    },
+    {
+      "point": [
+        -104.9276,
+        30.9264
+      ],
+      "starId": "hyg-82952",
+      "separationArcseconds": 0.023807888016215095
+    },
+    {
+      "point": [
+        -101.242,
+        24.8392
+      ],
+      "starId": "hyg-84121",
+      "separationArcseconds": 0.11520820443648075
+    },
+    {
+      "point": [
+        -93.3853,
+        27.7207
+      ],
+      "starId": "hyg-86705",
+      "separationArcseconds": 0.2843190844090013
+    },
+    {
+      "point": [
+        -90.5588,
+        29.2479
+      ],
+      "starId": "hyg-87661",
+      "separationArcseconds": 0.14478510887103885
+    },
+    {
+      "point": [
+        -88.1144,
+        28.7625
+      ],
+      "starId": "hyg-88517",
+      "separationArcseconds": 0.07646990848035658
+    },
+    {
+      "point": [
+        -101.3381,
+        14.3903
+      ],
+      "starId": "hyg-84086",
+      "separationArcseconds": 0.12002733619081646
+    },
+    {
+      "point": [
+        -112.445,
+        21.4896
+      ],
+      "starId": "hyg-80571",
+      "separationArcseconds": 0.08178278104315855
+    },
+    {
+      "point": [
+        63.5005,
+        -42.2944
+      ],
+      "starId": "hyg-19697",
+      "separationArcseconds": 0.1863515447959348
+    },
+    {
+      "point": [
+        40.6394,
+        -50.8003
+      ],
+      "starId": "hyg-12620",
+      "separationArcseconds": 0.9672372661743975
+    },
+    {
+      "point": [
+        39.3515,
+        -52.5431
+      ],
+      "starId": "hyg-12193",
+      "separationArcseconds": 0.2782570783338423
+    },
+    {
+      "point": [
+        40.1651,
+        -54.5499
+      ],
+      "starId": "hyg-12451",
+      "separationArcseconds": 0.2330661318098368
+    },
+    {
+      "point": [
+        45.9034,
+        -59.7378
+      ],
+      "starId": "hyg-14206",
+      "separationArcseconds": 0.347491873463136
+    },
+    {
+      "point": [
+        44.6992,
+        -64.0713
+      ],
+      "starId": "hyg-13850",
+      "separationArcseconds": 0.18996645894508274
+    },
+    {
+      "point": [
+        131.6938,
+        6.4188
+      ],
+      "starId": "hyg-42990",
+      "separationArcseconds": 0.0368830215180689
+    },
+    {
+      "point": [
+        132.1082,
+        5.8378
+      ],
+      "starId": "hyg-43113",
+      "separationArcseconds": 0.05608766532357322
+    },
+    {
+      "point": [
+        130.8061,
+        3.3987
+      ],
+      "starId": "hyg-42680",
+      "separationArcseconds": 0.2258405431622334
+    },
+    {
+      "point": [
+        129.6893,
+        3.3414
+      ],
+      "starId": "hyg-42283",
+      "separationArcseconds": 0.15472074616130244
+    },
+    {
+      "point": [
+        129.414,
+        5.7038
+      ],
+      "starId": "hyg-42195",
+      "separationArcseconds": 0.125491134580519
+    },
+    {
+      "point": [
+        131.6938,
+        6.4188
+      ],
+      "starId": "hyg-42990",
+      "separationArcseconds": 0.0368830215180689
+    },
+    {
+      "point": [
+        133.8484,
+        5.9456
+      ],
+      "starId": "hyg-43689",
+      "separationArcseconds": 0.22316852688835395
+    },
+    {
+      "point": [
+        138.5911,
+        2.3143
+      ],
+      "starId": "hyg-45204",
+      "separationArcseconds": 0.11524919650482522
+    },
+    {
+      "point": [
+        144.964,
+        -1.1428
+      ],
+      "starId": "hyg-47297",
+      "separationArcseconds": 0.04054337235848363
+    },
+    {
+      "point": [
+        141.8968,
+        -8.6586
+      ],
+      "starId": "hyg-46259",
+      "separationArcseconds": 0.17829443179201945
+    },
+    {
+      "point": [
+        147.8696,
+        -14.8466
+      ],
+      "starId": "hyg-48219",
+      "separationArcseconds": 0.17430235943350617
+    },
+    {
+      "point": [
+        152.647,
+        -12.3541
+      ],
+      "starId": "hyg-49700",
+      "separationArcseconds": 0.06366106386416576
+    },
+    {
+      "point": [
+        156.5226,
+        -16.8363
+      ],
+      "starId": "hyg-50924",
+      "separationArcseconds": 0.10944725474805062
+    },
+    {
+      "point": [
+        162.4062,
+        -16.1936
+      ],
+      "starId": "hyg-52789",
+      "separationArcseconds": 0.18042756268364107
+    },
+    {
+      "point": [
+        173.2505,
+        -31.8576
+      ],
+      "starId": "hyg-56174",
+      "separationArcseconds": 0.23219303176240108
+    },
+    {
+      "point": [
+        178.2272,
+        -33.9081
+      ],
+      "starId": "hyg-57763",
+      "separationArcseconds": 0.08774533780691776
+    },
+    {
+      "point": [
+        -160.2696,
+        -23.1715
+      ],
+      "starId": "hyg-64758",
+      "separationArcseconds": 0.06577759415396581
+    },
+    {
+      "point": [
+        -148.4071,
+        -26.6824
+      ],
+      "starId": "hyg-68675",
+      "separationArcseconds": 0.14131808295530116
+    },
+    {
+      "point": [
+        -137.4279,
+        -27.9604
+      ],
+      "starId": "hyg-72345",
+      "separationArcseconds": 0.3498085567685987
+    },
+    {
+      "point": [
+        6.4378,
+        -77.2542
+      ],
+      "starId": "hyg-2016",
+      "separationArcseconds": 15.139387134057467
+    },
+    {
+      "point": [
+        56.8098,
+        -74.239
+      ],
+      "starId": "hyg-17637",
+      "separationArcseconds": 0.3913725214440538
+    },
+    {
+      "point": [
+        39.8973,
+        -68.2669
+      ],
+      "starId": "hyg-12360",
+      "separationArcseconds": 0.451377716444825
+    },
+    {
+      "point": [
+        35.4373,
+        -68.6594
+      ],
+      "starId": "hyg-10975",
+      "separationArcseconds": 0.23192842423283738
+    },
+    {
+      "point": [
+        28.7339,
+        -67.6473
+      ],
+      "starId": "hyg-8909",
+      "separationArcseconds": 0.4382311594318091
+    },
+    {
+      "point": [
+        29.6925,
+        -61.5699
+      ],
+      "starId": "hyg-9217",
+      "separationArcseconds": 1.2683408878181304
+    },
+    {
+      "point": [
+        -50.6082,
+        -47.2915
+      ],
+      "starId": "hyg-101445",
+      "separationArcseconds": 0.14669729498890352
+    },
+    {
+      "point": [
+        -48.9903,
+        -51.921
+      ],
+      "starId": "hyg-102002",
+      "separationArcseconds": 0.4778115206654676
+    },
+    {
+      "point": [
+        -46.2975,
+        -58.4542
+      ],
+      "starId": "hyg-102895",
+      "separationArcseconds": 0.17157103470894888
+    },
+    {
+      "point": [
+        -30.5205,
+        -54.9926
+      ],
+      "starId": "hyg-108086",
+      "separationArcseconds": 0.23480259238852075
+    },
+    {
+      "point": [
+        -40.0334,
+        -53.4494
+      ],
+      "starId": "hyg-104979",
+      "separationArcseconds": 0.35652262621680914
+    },
+    {
+      "point": [
+        -50.6082,
+        -47.2915
+      ],
+      "starId": "hyg-101445",
+      "separationArcseconds": 0.14669729498890352
+    },
+    {
+      "point": [
+        -24.1099,
+        52.229
+      ],
+      "starId": "hyg-110192",
+      "separationArcseconds": 0.17451901875820358
+    },
+    {
+      "point": [
+        -22.1771,
+        50.2825
+      ],
+      "starId": "hyg-110822",
+      "separationArcseconds": 0.4038695534438236
+    },
+    {
+      "point": [
+        -22.6174,
+        47.7069
+      ],
+      "starId": "hyg-110675",
+      "separationArcseconds": 0.04840286697510365
+    },
+    {
+      "point": [
+        -24.7436,
+        46.5366
+      ],
+      "starId": "hyg-110005",
+      "separationArcseconds": 0.12209524350336833
+    },
+    {
+      "point": [
+        -22.3781,
+        43.1234
+      ],
+      "starId": "hyg-110757",
+      "separationArcseconds": 0.10114850640942413
+    },
+    {
+      "point": [
+        -19.8714,
+        44.2763
+      ],
+      "starId": "hyg-111591",
+      "separationArcseconds": 0.271242799031965
+    },
+    {
+      "point": [
+        -22.6174,
+        47.7069
+      ],
+      "starId": "hyg-110675",
+      "separationArcseconds": 0.04840286697510365
+    },
+    {
+      "point": [
+        -23.8709,
+        49.4764
+      ],
+      "starId": "hyg-110263",
+      "separationArcseconds": 0.08677096085276637
+    },
+    {
+      "point": [
+        -24.1099,
+        52.229
+      ],
+      "starId": "hyg-110192",
+      "separationArcseconds": 0.17451901875820358
+    },
+    {
+      "point": [
+        -22.3781,
+        43.1234
+      ],
+      "starId": "hyg-110757",
+      "separationArcseconds": 0.10114850640942413
+    },
+    {
+      "point": [
+        -26.5303,
+        39.7149
+      ],
+      "starId": "hyg-109408",
+      "separationArcseconds": 0.11188018737510105
+    },
+    {
+      "point": [
+        -26.0076,
+        37.7487
+      ],
+      "starId": "hyg-109591",
+      "separationArcseconds": 0.13319656956960332
+    },
+    {
+      "point": [
+        152.093,
+        11.9672
+      ],
+      "starId": "hyg-49528",
+      "separationArcseconds": 0.07478355376476446
+    },
+    {
+      "point": [
+        151.8331,
+        16.7627
+      ],
+      "starId": "hyg-49441",
+      "separationArcseconds": 0.17707158392487674
+    },
+    {
+      "point": [
+        154.9931,
+        19.8415
+      ],
+      "starId": "hyg-50440",
+      "separationArcseconds": 0.04303019177108041
+    },
+    {
+      "point": [
+        168.5271,
+        20.5237
+      ],
+      "starId": "hyg-54712",
+      "separationArcseconds": 0.11816325965865626
+    },
+    {
+      "point": [
+        177.2649,
+        14.5721
+      ],
+      "starId": "hyg-57459",
+      "separationArcseconds": 0.2129220411744288
+    },
+    {
+      "point": [
+        168.56,
+        15.4296
+      ],
+      "starId": "hyg-54718",
+      "separationArcseconds": 0.1385160848103263
+    },
+    {
+      "point": [
+        152.093,
+        11.9672
+      ],
+      "starId": "hyg-49528",
+      "separationArcseconds": 0.07478355376476446
+    },
+    {
+      "point": [
+        154.9931,
+        19.8415
+      ],
+      "starId": "hyg-50440",
+      "separationArcseconds": 0.04303019177108041
+    },
+    {
+      "point": [
+        154.1726,
+        23.4173
+      ],
+      "starId": "hyg-50193",
+      "separationArcseconds": 0.12217259241420132
+    },
+    {
+      "point": [
+        148.1909,
+        26.007
+      ],
+      "starId": "hyg-48318",
+      "separationArcseconds": 0.28708009043237886
+    },
+    {
+      "point": [
+        146.4628,
+        23.7743
+      ],
+      "starId": "hyg-47772",
+      "separationArcseconds": 0.1748975267570828
+    },
+    {
+      "point": [
+        151.8573,
+        35.2447
+      ],
+      "starId": "hyg-49451",
+      "separationArcseconds": 0.05087688664989626
+    },
+    {
+      "point": [
+        156.4784,
+        33.7961
+      ],
+      "starId": "hyg-50911",
+      "separationArcseconds": 0.10382168381215083
+    },
+    {
+      "point": [
+        163.3279,
+        34.2149
+      ],
+      "starId": "hyg-53075",
+      "separationArcseconds": 0.10858067535840406
+    },
+    {
+      "point": [
+        156.9708,
+        36.7072
+      ],
+      "starId": "hyg-51089",
+      "separationArcseconds": 0.30612660984697154
+    },
+    {
+      "point": [
+        151.8573,
+        35.2447
+      ],
+      "starId": "hyg-49451",
+      "separationArcseconds": 0.05087688664989626
+    },
+    {
+      "point": [
+        143.5558,
+        36.3976
+      ],
+      "starId": "hyg-46819",
+      "separationArcseconds": 0.1905126974398062
+    },
+    {
+      "point": [
+        91.5388,
+        -14.9353
+      ],
+      "starId": "hyg-28837",
+      "separationArcseconds": 0.24015303529188922
+    },
+    {
+      "point": [
+        89.1012,
+        -14.1677
+      ],
+      "starId": "hyg-28032",
+      "separationArcseconds": 0.10477274199770496
+    },
+    {
+      "point": [
+        86.7389,
+        -14.822
+      ],
+      "starId": "hyg-27220",
+      "separationArcseconds": 0.19997208747216122
+    },
+    {
+      "point": [
+        83.1826,
+        -17.8223
+      ],
+      "starId": "hyg-25920",
+      "separationArcseconds": 0.14271500076171478
+    },
+    {
+      "point": [
+        78.2329,
+        -16.2055
+      ],
+      "starId": "hyg-24249",
+      "separationArcseconds": 0.134396880965021
+    },
+    {
+      "point": [
+        76.3653,
+        -22.371
+      ],
+      "starId": "hyg-23630",
+      "separationArcseconds": 0.15247584637912026
+    },
+    {
+      "point": [
+        82.0613,
+        -20.7594
+      ],
+      "starId": "hyg-25542",
+      "separationArcseconds": 0.19978303322288077
+    },
+    {
+      "point": [
+        86.1158,
+        -22.4484
+      ],
+      "starId": "hyg-27006",
+      "separationArcseconds": 0.19409878673797376
+    },
+    {
+      "point": [
+        87.8304,
+        -20.8791
+      ],
+      "starId": "hyg-27585",
+      "separationArcseconds": 0.15642102519285364
+    },
+    {
+      "point": [
+        78.3078,
+        -12.9413
+      ],
+      "starId": "hyg-24270",
+      "separationArcseconds": 0.1101356090479493
+    },
+    {
+      "point": [
+        78.2329,
+        -16.2055
+      ],
+      "starId": "hyg-24249",
+      "separationArcseconds": 0.134396880965021
+    },
+    {
+      "point": [
+        79.8939,
+        -13.1768
+      ],
+      "starId": "hyg-24785",
+      "separationArcseconds": 0.1635366814359519
+    },
+    {
+      "point": [
+        -133.9824,
+        -25.282
+      ],
+      "starId": "hyg-73486",
+      "separationArcseconds": 0.13509796491333087
+    },
+    {
+      "point": [
+        -137.2804,
+        -16.0418
+      ],
+      "starId": "hyg-72396",
+      "separationArcseconds": 0.20613653493107814
+    },
+    {
+      "point": [
+        -130.7483,
+        -9.3829
+      ],
+      "starId": "hyg-74556",
+      "separationArcseconds": 0.1385842689566217
+    },
+    {
+      "point": [
+        -126.1184,
+        -14.7895
+      ],
+      "starId": "hyg-76100",
+      "separationArcseconds": 0.1591155568135071
+    },
+    {
+      "point": [
+        -125.744,
+        -28.1351
+      ],
+      "starId": "hyg-76235",
+      "separationArcseconds": 0.17581336790403732
+    },
+    {
+      "point": [
+        -125.336,
+        -29.7778
+      ],
+      "starId": "hyg-76365",
+      "separationArcseconds": 0.22765287930731753
+    },
+    {
+      "point": [
+        -137.2804,
+        -16.0418
+      ],
+      "starId": "hyg-72396",
+      "separationArcseconds": 0.20613653493107814
+    },
+    {
+      "point": [
+        -126.1184,
+        -14.7895
+      ],
+      "starId": "hyg-76100",
+      "separationArcseconds": 0.1591155568135071
+    },
+    {
+      "point": [
+        -122.2603,
+        -33.6272
+      ],
+      "starId": "hyg-77398",
+      "separationArcseconds": 0.17392255617564067
+    },
+    {
+      "point": [
+        -125.0584,
+        -34.4119
+      ],
+      "starId": "hyg-76469",
+      "separationArcseconds": 0.11090490088314642
+    },
+    {
+      "point": [
+        -129.5485,
+        -36.2614
+      ],
+      "starId": "hyg-74948",
+      "separationArcseconds": 0.3028690259751317
+    },
+    {
+      "point": [
+        -129.657,
+        -40.6475
+      ],
+      "starId": "hyg-74912",
+      "separationArcseconds": 0.0766549912242102
+    },
+    {
+      "point": [
+        -135.367,
+        -43.134
+      ],
+      "starId": "hyg-73046",
+      "separationArcseconds": 0.20399437972432688
+    },
+    {
+      "point": [
+        -139.5177,
+        -47.3882
+      ],
+      "starId": "hyg-71634",
+      "separationArcseconds": 0.10970589375719043
+    },
+    {
+      "point": [
+        -131.9288,
+        -52.0992
+      ],
+      "starId": "hyg-74167",
+      "separationArcseconds": 0.47355160038619415
+    },
+    {
+      "point": [
+        -130.3666,
+        -47.8753
+      ],
+      "starId": "hyg-74682",
+      "separationArcseconds": 0.16671189192406313
+    },
+    {
+      "point": [
+        -129.3297,
+        -44.6896
+      ],
+      "starId": "hyg-75035",
+      "separationArcseconds": 0.0880140837281142
+    },
+    {
+      "point": [
+        -126.2148,
+        -41.1668
+      ],
+      "starId": "hyg-76065",
+      "separationArcseconds": 0.16006268158764708
+    },
+    {
+      "point": [
+        -119.9695,
+        -38.3967
+      ],
+      "starId": "hyg-78148",
+      "separationArcseconds": 0.11492085054840483
+    },
+    {
+      "point": [
+        -118.3519,
+        -36.8023
+      ],
+      "starId": "hyg-78678",
+      "separationArcseconds": 0.05188808896090742
+    },
+    {
+      "point": [
+        -129.657,
+        -40.6475
+      ],
+      "starId": "hyg-74912",
+      "separationArcseconds": 0.0766549912242102
+    },
+    {
+      "point": [
+        -126.2148,
+        -41.1668
+      ],
+      "starId": "hyg-76065",
+      "separationArcseconds": 0.16006268158764708
+    },
+    {
+      "point": [
+        94.9058,
+        59.011
+      ],
+      "starId": "hyg-29987",
+      "separationArcseconds": 0.13478292842179487
+    },
+    {
+      "point": [
+        104.3192,
+        58.4228
+      ],
+      "starId": "hyg-33362",
+      "separationArcseconds": 0.15232087546157186
+    },
+    {
+      "point": [
+        111.6785,
+        49.2115
+      ],
+      "starId": "hyg-36044",
+      "separationArcseconds": 0.16179440856621505
+    },
+    {
+      "point": [
+        125.7088,
+        43.1881
+      ],
+      "starId": "hyg-40959",
+      "separationArcseconds": 0.12332700476012094
+    },
+    {
+      "point": [
+        135.1599,
+        41.7829
+      ],
+      "starId": "hyg-44120",
+      "separationArcseconds": 1.0074422520571165
+    },
+    {
+      "point": [
+        139.711,
+        36.8026
+      ],
+      "starId": "hyg-45557",
+      "separationArcseconds": 0.10142830917469038
+    },
+    {
+      "point": [
+        140.2638,
+        34.3926
+      ],
+      "starId": "hyg-45728",
+      "separationArcseconds": 0.26147160469108516
+    },
+    {
+      "point": [
+        -78.8068,
+        37.6051
+      ],
+      "starId": "hyg-91684",
+      "separationArcseconds": 0.19309845951334878
+    },
+    {
+      "point": [
+        -78.9051,
+        39.6127
+      ],
+      "starId": "hyg-91639",
+      "separationArcseconds": 0.08627964602119909
+    },
+    {
+      "point": [
+        -80.7653,
+        38.7837
+      ],
+      "starId": "hyg-90979",
+      "separationArcseconds": 0.28211761304326355
+    },
+    {
+      "point": [
+        -78.8068,
+        37.6051
+      ],
+      "starId": "hyg-91684",
+      "separationArcseconds": 0.19309845951334878
+    },
+    {
+      "point": [
+        -76.3738,
+        36.8986
+      ],
+      "starId": "hyg-92502",
+      "separationArcseconds": 0.07427654077465105
+    },
+    {
+      "point": [
+        -75.2641,
+        32.6896
+      ],
+      "starId": "hyg-92902",
+      "separationArcseconds": 0.17234016904348196
+    },
+    {
+      "point": [
+        -77.48,
+        33.3627
+      ],
+      "starId": "hyg-92133",
+      "separationArcseconds": 0.14058082446942777
+    },
+    {
+      "point": [
+        -78.8068,
+        37.6051
+      ],
+      "starId": "hyg-91684",
+      "separationArcseconds": 0.19309845951334878
+    },
+    {
+      "point": [
+        92.5603,
+        -74.753
+      ],
+      "starId": "hyg-29198",
+      "separationArcseconds": 0.7930385698698997
+    },
+    {
+      "point": [
+        82.9709,
+        -76.341
+      ],
+      "starId": "hyg-25853",
+      "separationArcseconds": 0.96933000579207
+    },
+    {
+      "point": [
+        73.7967,
+        -74.9369
+      ],
+      "starId": "hyg-22818",
+      "separationArcseconds": 0.27233768071105663
+    },
+    {
+      "point": [
+        75.6792,
+        -71.3143
+      ],
+      "starId": "hyg-23412",
+      "separationArcseconds": 0.017112997733483057
+    },
+    {
+      "point": [
+        -47.508,
+        -33.7797
+      ],
+      "starId": "hyg-102500",
+      "separationArcseconds": 0.0792007484297882
+    },
+    {
+      "point": [
+        -47.8786,
+        -43.9885
+      ],
+      "starId": "hyg-102362",
+      "separationArcseconds": 0.3957173708384484
+    },
+    {
+      "point": [
+        -39.8098,
+        -40.8095
+      ],
+      "starId": "hyg-105041",
+      "separationArcseconds": 0.2517714644384556
+    },
+    {
+      "point": [
+        -40.5155,
+        -32.1725
+      ],
+      "starId": "hyg-104802",
+      "separationArcseconds": 0.14363873209288935
+    },
+    {
+      "point": [
+        -44.6772,
+        -32.2578
+      ],
+      "starId": "hyg-103406",
+      "separationArcseconds": 0.18131547326131628
+    },
+    {
+      "point": [
+        -47.508,
+        -33.7797
+      ],
+      "starId": "hyg-102500",
+      "separationArcseconds": 0.0792007484297882
+    },
+    {
+      "point": [
+        115.3118,
+        -9.5511
+      ],
+      "starId": "hyg-37340",
+      "separationArcseconds": 0.11711932321091253
+    },
+    {
+      "point": [
+        122.1485,
+        -2.9838
+      ],
+      "starId": "hyg-39750",
+      "separationArcseconds": 0.15232087546157186
+    },
+    {
+      "point": [
+        107.9661,
+        -0.4928
+      ],
+      "starId": "hyg-34677",
+      "separationArcseconds": 0.1404127258508098
+    },
+    {
+      "point": [
+        97.2045,
+        -7.0331
+      ],
+      "starId": "hyg-30794",
+      "separationArcseconds": 0.2111174901564647
+    },
+    {
+      "point": [
+        93.7139,
+        -6.2748
+      ],
+      "starId": "hyg-29578",
+      "separationArcseconds": 0.11221743060383596
+    },
+    {
+      "point": [
+        107.9661,
+        -0.4928
+      ],
+      "starId": "hyg-34677",
+      "separationArcseconds": 0.1404127258508098
+    },
+    {
+      "point": [
+        101.9652,
+        2.4122
+      ],
+      "starId": "hyg-32492",
+      "separationArcseconds": 0.14759610520572
+    },
+    {
+      "point": [
+        95.942,
+        4.5929
+      ],
+      "starId": "hyg-30346",
+      "separationArcseconds": 0.15465967619793605
+    },
+    {
+      "point": [
+        98.2259,
+        7.333
+      ],
+      "starId": "hyg-31139",
+      "separationArcseconds": 0.19043830263159114
+    },
+    {
+      "point": [
+        100.2444,
+        9.8958
+      ],
+      "starId": "hyg-31895",
+      "separationArcseconds": 0.17394971248093155
+    },
+    {
+      "point": [
+        176.4017,
+        -66.7288
+      ],
+      "starId": "hyg-57190",
+      "separationArcseconds": 0.6050982892780699
+    },
+    {
+      "point": [
+        -175.6072,
+        -67.9607
+      ],
+      "starId": "hyg-59746",
+      "separationArcseconds": 1.2965757744242292
+    },
+    {
+      "point": [
+        -170.7041,
+        -69.1356
+      ],
+      "starId": "hyg-61392",
+      "separationArcseconds": 0.27030079919985706
+    },
+    {
+      "point": [
+        -168.43,
+        -68.1081
+      ],
+      "starId": "hyg-62127",
+      "separationArcseconds": 0.26404225118435865
+    },
+    {
+      "point": [
+        -164.4322,
+        -71.5489
+      ],
+      "starId": "hyg-63411",
+      "separationArcseconds": 1.6203479043029985
+    },
+    {
+      "point": [
+        -171.8833,
+        -72.133
+      ],
+      "starId": "hyg-61008",
+      "separationArcseconds": 0.34510489732136634
+    },
+    {
+      "point": [
+        -170.7041,
+        -69.1356
+      ],
+      "starId": "hyg-61392",
+      "separationArcseconds": 0.27030079919985706
+    },
+    {
+      "point": [
+        -118.3773,
+        -45.1732
+      ],
+      "starId": "hyg-78673",
+      "separationArcseconds": 0.1615899197492906
+    },
+    {
+      "point": [
+        -113.204,
+        -47.5548
+      ],
+      "starId": "hyg-80339",
+      "separationArcseconds": 0.05188808896090742
+    },
+    {
+      "point": [
+        -115.0399,
+        -50.1555
+      ],
+      "starId": "hyg-79759",
+      "separationArcseconds": 0.47371116625724996
+    },
+    {
+      "point": [
+        -119.1963,
+        -49.2297
+      ],
+      "starId": "hyg-78400",
+      "separationArcseconds": 0.03960037421489392
+    },
+    {
+      "point": [
+        -118.3773,
+        -45.1732
+      ],
+      "starId": "hyg-78673",
+      "separationArcseconds": 0.1615899197492906
+    },
+    {
+      "point": [
+        -143.2699,
+        -83.6679
+      ],
+      "starId": "hyg-70415",
+      "separationArcseconds": 0.7625341083286765
+    },
+    {
+      "point": [
+        -18.4854,
+        -81.3816
+      ],
+      "starId": "hyg-112050",
+      "separationArcseconds": 0.42424382752762074
+    },
+    {
+      "point": [
+        -34.6306,
+        -77.39
+      ],
+      "starId": "hyg-106746",
+      "separationArcseconds": 0.5035054056511339
+    },
+    {
+      "point": [
+        -143.2699,
+        -83.6679
+      ],
+      "starId": "hyg-70415",
+      "separationArcseconds": 0.7625341083286765
+    },
+    {
+      "point": [
+        -90.2434,
+        -9.7736
+      ],
+      "starId": "hyg-87775",
+      "separationArcseconds": 0.14540364278747028
+    },
+    {
+      "point": [
+        -93.0268,
+        2.7073
+      ],
+      "starId": "hyg-86839",
+      "separationArcseconds": 0.15263065994969185
+    },
+    {
+      "point": [
+        -94.1319,
+        4.5673
+      ],
+      "starId": "hyg-86475",
+      "separationArcseconds": 0.16185278648930046
+    },
+    {
+      "point": [
+        -96.2664,
+        12.56
+      ],
+      "starId": "hyg-85769",
+      "separationArcseconds": 0.13652393222599685
+    },
+    {
+      "point": [
+        -105.5829,
+        9.375
+      ],
+      "starId": "hyg-82745",
+      "separationArcseconds": 0.13025620235390015
+    },
+    {
+      "point": [
+        -112.2716,
+        1.9839
+      ],
+      "starId": "hyg-80637",
+      "separationArcseconds": 0.1507310714463209
+    },
+    {
+      "point": [
+        -116.4136,
+        -3.6943
+      ],
+      "starId": "hyg-79352",
+      "separationArcseconds": 0.09023995681932896
+    },
+    {
+      "point": [
+        -115.4196,
+        -4.6925
+      ],
+      "starId": "hyg-79640",
+      "separationArcseconds": 0.11467397410742129
+    },
+    {
+      "point": [
+        -110.7103,
+        -10.5671
+      ],
+      "starId": "hyg-81130",
+      "separationArcseconds": 0.14605190120797407
+    },
+    {
+      "point": [
+        -102.4055,
+        -15.7249
+      ],
+      "starId": "hyg-83755",
+      "separationArcseconds": 0.07811986874221438
+    },
+    {
+      "point": [
+        -105.5829,
+        9.375
+      ],
+      "starId": "hyg-82745",
+      "separationArcseconds": 0.13025620235390015
+    },
+    {
+      "point": [
+        -110.7103,
+        -10.5671
+      ],
+      "starId": "hyg-81130",
+      "separationArcseconds": 0.14605190120797407
+    },
+    {
+      "point": [
+        -112.2151,
+        -16.6127
+      ],
+      "starId": "hyg-80648",
+      "separationArcseconds": 0.16938215028225068
+    },
+    {
+      "point": [
+        -113.244,
+        -18.4563
+      ],
+      "starId": "hyg-80327",
+      "separationArcseconds": 0.18369653778099335
+    },
+    {
+      "point": [
+        -113.9742,
+        -20.0373
+      ],
+      "starId": "hyg-80101",
+      "separationArcseconds": 0.14047998943591372
+    },
+    {
+      "point": [
+        -113.6037,
+        -23.4472
+      ],
+      "starId": "hyg-80232",
+      "separationArcseconds": 0.12687616443962757
+    },
+    {
+      "point": [
+        -94.1319,
+        4.5673
+      ],
+      "starId": "hyg-86475",
+      "separationArcseconds": 0.16185278648930046
+    },
+    {
+      "point": [
+        -102.4055,
+        -15.7249
+      ],
+      "starId": "hyg-83755",
+      "separationArcseconds": 0.07811986874221438
+    },
+    {
+      "point": [
+        -99.4976,
+        -24.9995
+      ],
+      "starId": "hyg-84711",
+      "separationArcseconds": 0.16287101303760843
+    },
+    {
+      "point": [
+        -98.1614,
+        -29.867
+      ],
+      "starId": "hyg-85164",
+      "separationArcseconds": 0.16138517182775194
+    },
+    {
+      "point": [
+        91.893,
+        14.7685
+      ],
+      "starId": "hyg-28966",
+      "separationArcseconds": 0.11351478504033277
+    },
+    {
+      "point": [
+        88.5958,
+        20.2762
+      ],
+      "starId": "hyg-27844",
+      "separationArcseconds": 0.099500642989438
+    },
+    {
+      "point": [
+        90.9799,
+        20.1385
+      ],
+      "starId": "hyg-28645",
+      "separationArcseconds": 0.2093876342675572
+    },
+    {
+      "point": [
+        92.985,
+        14.2088
+      ],
+      "starId": "hyg-29353",
+      "separationArcseconds": 0.1364893297841216
+    },
+    {
+      "point": [
+        90.5958,
+        9.6473
+      ],
+      "starId": "hyg-28543",
+      "separationArcseconds": 0.13707638337411238
+    },
+    {
+      "point": [
+        88.7929,
+        7.4071
+      ],
+      "starId": "hyg-27919",
+      "separationArcseconds": 0.18263924563466338
+    },
+    {
+      "point": [
+        81.2828,
+        6.3497
+      ],
+      "starId": "hyg-25273",
+      "separationArcseconds": 0.12545348912157067
+    },
+    {
+      "point": [
+        73.7239,
+        10.1508
+      ],
+      "starId": "hyg-22792",
+      "separationArcseconds": 0.18495220286249087
+    },
+    {
+      "point": [
+        74.6371,
+        1.714
+      ],
+      "starId": "hyg-23069",
+      "separationArcseconds": 0.06789771467862642
+    },
+    {
+      "point": [
+        73.5629,
+        2.4407
+      ],
+      "starId": "hyg-22744",
+      "separationArcseconds": 0.10235546107870422
+    },
+    {
+      "point": [
+        72.8015,
+        5.6051
+      ],
+      "starId": "hyg-22496",
+      "separationArcseconds": 0.03851191125081615
+    },
+    {
+      "point": [
+        72.46,
+        6.9613
+      ],
+      "starId": "hyg-22396",
+      "separationArcseconds": 0.15197938320887813
+    },
+    {
+      "point": [
+        72.653,
+        8.9002
+      ],
+      "starId": "hyg-22456",
+      "separationArcseconds": 0.09352995798495006
+    },
+    {
+      "point": [
+        73.7239,
+        10.1508
+      ],
+      "starId": "hyg-22792",
+      "separationArcseconds": 0.18495220286249087
+    },
+    {
+      "point": [
+        74.0928,
+        13.5145
+      ],
+      "starId": "hyg-22904",
+      "separationArcseconds": 0.13316110250212068
+    },
+    {
+      "point": [
+        76.1423,
+        15.4041
+      ],
+      "starId": "hyg-23552",
+      "separationArcseconds": 0.025158378534829696
+    },
+    {
+      "point": [
+        77.4248,
+        15.5972
+      ],
+      "starId": "hyg-23955",
+      "separationArcseconds": 0.12026322374792114
+    },
+    {
+      "point": [
+        78.6345,
+        -8.2016
+      ],
+      "starId": "hyg-24378",
+      "separationArcseconds": 0.17935100063627804
+    },
+    {
+      "point": [
+        81.1192,
+        -2.3971
+      ],
+      "starId": "hyg-25218",
+      "separationArcseconds": 0.2080297234828993
+    },
+    {
+      "point": [
+        83.0017,
+        -0.2991
+      ],
+      "starId": "hyg-25865",
+      "separationArcseconds": 0.09453460504632193
+    },
+    {
+      "point": [
+        81.2828,
+        6.3497
+      ],
+      "starId": "hyg-25273",
+      "separationArcseconds": 0.12545348912157067
+    },
+    {
+      "point": [
+        83.7845,
+        9.9342
+      ],
+      "starId": "hyg-26142",
+      "separationArcseconds": 0.1522588429297948
+    },
+    {
+      "point": [
+        88.7929,
+        7.4071
+      ],
+      "starId": "hyg-27919",
+      "separationArcseconds": 0.18263924563466338
+    },
+    {
+      "point": [
+        85.1897,
+        -1.9426
+      ],
+      "starId": "hyg-26662",
+      "separationArcseconds": 0.10235546107870422
+    },
+    {
+      "point": [
+        86.9391,
+        -9.6696
+      ],
+      "starId": "hyg-27298",
+      "separationArcseconds": 0.056171817907016634
+    },
+    {
+      "point": [
+        85.1897,
+        -1.9426
+      ],
+      "starId": "hyg-26662",
+      "separationArcseconds": 0.10235546107870422
+    },
+    {
+      "point": [
+        84.0534,
+        -1.2019
+      ],
+      "starId": "hyg-26246",
+      "separationArcseconds": 0.08997785938276687
+    },
+    {
+      "point": [
+        83.0017,
+        -0.2991
+      ],
+      "starId": "hyg-25865",
+      "separationArcseconds": 0.09453460504632193
+    },
+    {
+      "point": [
+        -53.5881,
+        -56.7351
+      ],
+      "starId": "hyg-100425",
+      "separationArcseconds": 0.04671444955687334
+    },
+    {
+      "point": [
+        -48.7604,
+        -66.2032
+      ],
+      "starId": "hyg-102064",
+      "separationArcseconds": 0.16551762454991198
+    },
+    {
+      "point": [
+        -57.8183,
+        -66.1821
+      ],
+      "starId": "hyg-98924",
+      "separationArcseconds": 6.317781703821293
+    },
+    {
+      "point": [
+        -76.9457,
+        -62.1876
+      ],
+      "starId": "hyg-92319",
+      "separationArcseconds": 0.04203064446433173
+    },
+    {
+      "point": [
+        -84.1932,
+        -61.4939
+      ],
+      "starId": "hyg-89819",
+      "separationArcseconds": 0.07745190579625624
+    },
+    {
+      "point": [
+        -87.8549,
+        -63.6686
+      ],
+      "starId": "hyg-88589",
+      "separationArcseconds": 0.23266044632941507
+    },
+    {
+      "point": [
+        -93.5667,
+        -64.7239
+      ],
+      "starId": "hyg-86661",
+      "separationArcseconds": 0.10695899595958096
+    },
+    {
+      "point": [
+        -79.2411,
+        -71.4281
+      ],
+      "starId": "hyg-91507",
+      "separationArcseconds": 0.04681545389005153
+    },
+    {
+      "point": [
+        -59.8519,
+        -72.9105
+      ],
+      "starId": "hyg-98184",
+      "separationArcseconds": 0.4498472982864094
+    },
+    {
+      "point": [
+        -48.7604,
+        -66.2032
+      ],
+      "starId": "hyg-102064",
+      "separationArcseconds": 0.16551762454991198
+    },
+    {
+      "point": [
+        -38.3891,
+        -65.3662
+      ],
+      "starId": "hyg-105519",
+      "separationArcseconds": 0.4877325412231082
+    },
+    {
+      "point": [
+        -27.5031,
+        33.1782
+      ],
+      "starId": "hyg-109064",
+      "separationArcseconds": 0.16076936352970234
+    },
+    {
+      "point": [
+        -19.2494,
+        30.2212
+      ],
+      "starId": "hyg-111804",
+      "separationArcseconds": 0.20429517123760238
+    },
+    {
+      "point": [
+        -14.0564,
+        28.0828
+      ],
+      "starId": "hyg-113521",
+      "separationArcseconds": 0.27284019714009133
+    },
+    {
+      "point": [
+        2.0969,
+        29.0904
+      ],
+      "starId": "hyg-676",
+      "separationArcseconds": 0.15935286575493843
+    },
+    {
+      "point": [
+        3.309,
+        15.1836
+      ],
+      "starId": "hyg-1065",
+      "separationArcseconds": 0.10522260556086048
+    },
+    {
+      "point": [
+        -13.8098,
+        15.2053
+      ],
+      "starId": "hyg-113603",
+      "separationArcseconds": 0.14705105418829897
+    },
+    {
+      "point": [
+        -18.3267,
+        12.1729
+      ],
+      "starId": "hyg-112090",
+      "separationArcseconds": 0.2155238567546778
+    },
+    {
+      "point": [
+        -19.6345,
+        10.8314
+      ],
+      "starId": "hyg-111676",
+      "separationArcseconds": 0.13083512166134223
+    },
+    {
+      "point": [
+        -27.4501,
+        6.1979
+      ],
+      "starId": "hyg-109081",
+      "separationArcseconds": 0.190686172452279
+    },
+    {
+      "point": [
+        -33.9535,
+        9.875
+      ],
+      "starId": "hyg-106972",
+      "separationArcseconds": 0.04335825389064449
+    },
+    {
+      "point": [
+        -13.8098,
+        15.2053
+      ],
+      "starId": "hyg-113603",
+      "separationArcseconds": 0.14705105418829897
+    },
+    {
+      "point": [
+        -14.0564,
+        28.0828
+      ],
+      "starId": "hyg-113521",
+      "separationArcseconds": 0.27284019714009133
+    },
+    {
+      "point": [
+        -17.4992,
+        24.6016
+      ],
+      "starId": "hyg-112389",
+      "separationArcseconds": 0.11137240780700212
+    },
+    {
+      "point": [
+        -18.3672,
+        23.5657
+      ],
+      "starId": "hyg-112084",
+      "separationArcseconds": 0.17286013262462696
+    },
+    {
+      "point": [
+        -28.2472,
+        25.3451
+      ],
+      "starId": "hyg-108830",
+      "separationArcseconds": 0.3120862095848733
+    },
+    {
+      "point": [
+        -33.8386,
+        25.645
+      ],
+      "starId": "hyg-107011",
+      "separationArcseconds": 0.14494813685745658
+    },
+    {
+      "point": [
+        56.0797,
+        32.2882
+      ],
+      "starId": "hyg-17406",
+      "separationArcseconds": 0.18320733175191498
+    },
+    {
+      "point": [
+        58.533,
+        31.8836
+      ],
+      "starId": "hyg-18201",
+      "separationArcseconds": 0.12597950186516196
+    },
+    {
+      "point": [
+        59.7413,
+        35.791
+      ],
+      "starId": "hyg-18567",
+      "separationArcseconds": 0.1882429750683201
+    },
+    {
+      "point": [
+        59.4635,
+        40.0102
+      ],
+      "starId": "hyg-18485",
+      "separationArcseconds": 0.1480753664687214
+    },
+    {
+      "point": [
+        56.2985,
+        42.5785
+      ],
+      "starId": "hyg-17487",
+      "separationArcseconds": 0.18421008795210292
+    },
+    {
+      "point": [
+        55.7313,
+        47.7876
+      ],
+      "starId": "hyg-17316",
+      "separationArcseconds": 0.22843996285030235
+    },
+    {
+      "point": [
+        54.1224,
+        48.1926
+      ],
+      "starId": "hyg-16785",
+      "separationArcseconds": 0.12758155308656144
+    },
+    {
+      "point": [
+        51.0807,
+        49.8612
+      ],
+      "starId": "hyg-15824",
+      "separationArcseconds": 0.10016304165075002
+    },
+    {
+      "point": [
+        46.1991,
+        53.5064
+      ],
+      "starId": "hyg-14292",
+      "separationArcseconds": 0.1576842033769973
+    },
+    {
+      "point": [
+        42.6742,
+        55.8955
+      ],
+      "starId": "hyg-13234",
+      "separationArcseconds": 0.0525214456648347
+    },
+    {
+      "point": [
+        43.5644,
+        52.7625
+      ],
+      "starId": "hyg-13497",
+      "separationArcseconds": 0.0931250644908636
+    },
+    {
+      "point": [
+        47.2667,
+        49.6133
+      ],
+      "starId": "hyg-14596",
+      "separationArcseconds": 3.7912968431247065
+    },
+    {
+      "point": [
+        47.374,
+        44.8575
+      ],
+      "starId": "hyg-14632",
+      "separationArcseconds": 0.3676244233323737
+    },
+    {
+      "point": [
+        47.0422,
+        40.9556
+      ],
+      "starId": "hyg-14540",
+      "separationArcseconds": 0.18118517107182283
+    },
+    {
+      "point": [
+        47.8224,
+        39.6116
+      ],
+      "starId": "hyg-14781",
+      "separationArcseconds": 0.14058082446942777
+    },
+    {
+      "point": [
+        46.2941,
+        38.8403
+      ],
+      "starId": "hyg-14318",
+      "separationArcseconds": 0.16857150409803098
+    },
+    {
+      "point": [
+        44.6903,
+        39.6627
+      ],
+      "starId": "hyg-13845",
+      "separationArcseconds": 0.11500302492468863
+    },
+    {
+      "point": [
+        44.9162,
+        41.0329
+      ],
+      "starId": "hyg-13914",
+      "separationArcseconds": 0.2005617334045074
+    },
+    {
+      "point": [
+        47.0422,
+        40.9556
+      ],
+      "starId": "hyg-14540",
+      "separationArcseconds": 0.18118517107182283
+    },
+    {
+      "point": [
+        61.646,
+        50.3513
+      ],
+      "starId": "hyg-19119",
+      "separationArcseconds": 0.14833033930752387
+    },
+    {
+      "point": [
+        63.7244,
+        48.4093
+      ],
+      "starId": "hyg-19762",
+      "separationArcseconds": 0.12657798267736928
+    },
+    {
+      "point": [
+        62.1654,
+        47.7125
+      ],
+      "starId": "hyg-19296",
+      "separationArcseconds": 0.11860215897692451
+    },
+    {
+      "point": [
+        55.7313,
+        47.7876
+      ],
+      "starId": "hyg-17316",
+      "separationArcseconds": 0.22843996285030235
+    },
+    {
+      "point": [
+        47.2667,
+        49.6133
+      ],
+      "starId": "hyg-14596",
+      "separationArcseconds": 3.7912968431247065
+    },
+    {
+      "point": [
+        41.0499,
+        49.2284
+      ],
+      "starId": "hyg-12744",
+      "separationArcseconds": 0.9330191534229869
+    },
+    {
+      "point": [
+        25.9152,
+        50.6887
+      ],
+      "starId": "hyg-8053",
+      "separationArcseconds": 0.2062281715370408
+    },
+    {
+      "point": [
+        6.571,
+        -42.306
+      ],
+      "starId": "hyg-2076",
+      "separationArcseconds": 0.4314420246577401
+    },
+    {
+      "point": [
+        16.521,
+        -46.7184
+      ],
+      "starId": "hyg-5154",
+      "separationArcseconds": 0.2639885786050493
+    },
+    {
+      "point": [
+        22.0914,
+        -43.3182
+      ],
+      "starId": "hyg-6853",
+      "separationArcseconds": 0.12857729067485363
+    },
+    {
+      "point": [
+        22.8129,
+        -49.0727
+      ],
+      "starId": "hyg-7068",
+      "separationArcseconds": 0.31845367883454084
+    },
+    {
+      "point": [
+        17.0962,
+        -55.2458
+      ],
+      "starId": "hyg-5337",
+      "separationArcseconds": 0.20341468437865026
+    },
+    {
+      "point": [
+        16.521,
+        -46.7184
+      ],
+      "starId": "hyg-5154",
+      "separationArcseconds": 0.2639885786050493
+    },
+    {
+      "point": [
+        2.3527,
+        -45.7474
+      ],
+      "starId": "hyg-763",
+      "separationArcseconds": 0.4127082108508921
+    },
+    {
+      "point": [
+        6.571,
+        -42.306
+      ],
+      "starId": "hyg-2076",
+      "separationArcseconds": 0.4314420246577401
+    },
+    {
+      "point": [
+        102.0477,
+        -61.9414
+      ],
+      "starId": "hyg-32521",
+      "separationArcseconds": 0.3570786382252314
+    },
+    {
+      "point": [
+        87.4569,
+        -56.1667
+      ],
+      "starId": "hyg-27461",
+      "separationArcseconds": 0.3015874649279621
+    },
+    {
+      "point": [
+        86.8212,
+        -51.0665
+      ],
+      "starId": "hyg-27253",
+      "separationArcseconds": 0.06069844278605647
+    },
+    {
+      "point": [
+        18.4373,
+        24.5837
+      ],
+      "starId": "hyg-5730",
+      "separationArcseconds": 0.08050211744728152
+    },
+    {
+      "point": [
+        17.9152,
+        30.0896
+      ],
+      "starId": "hyg-5574",
+      "separationArcseconds": 0.2573932569844013
+    },
+    {
+      "point": [
+        19.8666,
+        27.2641
+      ],
+      "starId": "hyg-6179",
+      "separationArcseconds": 0.206205266203318
+    },
+    {
+      "point": [
+        18.4373,
+        24.5837
+      ],
+      "starId": "hyg-5730",
+      "separationArcseconds": 0.08050211744728152
+    },
+    {
+      "point": [
+        17.8634,
+        21.0347
+      ],
+      "starId": "hyg-5559",
+      "separationArcseconds": 0.18310417446234456
+    },
+    {
+      "point": [
+        22.8709,
+        15.3458
+      ],
+      "starId": "hyg-7083",
+      "separationArcseconds": 0.11990921839655883
+    },
+    {
+      "point": [
+        26.3485,
+        9.1577
+      ],
+      "starId": "hyg-8183",
+      "separationArcseconds": 0.1923877704690761
+    },
+    {
+      "point": [
+        30.5118,
+        2.7638
+      ],
+      "starId": "hyg-9467",
+      "separationArcseconds": 0.21900237650580762
+    },
+    {
+      "point": [
+        28.389,
+        3.1875
+      ],
+      "starId": "hyg-8814",
+      "separationArcseconds": 0.20723349984697406
+    },
+    {
+      "point": [
+        25.3579,
+        5.4876
+      ],
+      "starId": "hyg-7869",
+      "separationArcseconds": 0.058881420409709805
+    },
+    {
+      "point": [
+        22.5463,
+        6.1438
+      ],
+      "starId": "hyg-6993",
+      "separationArcseconds": 0.07414924583829996
+    },
+    {
+      "point": [
+        18.4329,
+        7.5754
+      ],
+      "starId": "hyg-5725",
+      "separationArcseconds": 0.23068275078515155
+    },
+    {
+      "point": [
+        15.7359,
+        7.8901
+      ],
+      "starId": "hyg-4896",
+      "separationArcseconds": 0.16531774120745926
+    },
+    {
+      "point": [
+        12.1706,
+        7.5851
+      ],
+      "starId": "hyg-3778",
+      "separationArcseconds": 0.07769546584963412
+    },
+    {
+      "point": [
+        -0.1721,
+        6.8633
+      ],
+      "starId": "hyg-117900",
+      "separationArcseconds": 0.11703863472513015
+    },
+    {
+      "point": [
+        -5.0123,
+        5.6263
+      ],
+      "starId": "hyg-116405",
+      "separationArcseconds": 0.1461812079187449
+    },
+    {
+      "point": [
+        -8.0079,
+        6.379
+      ],
+      "starId": "hyg-115465",
+      "separationArcseconds": 0.11111764786724888
+    },
+    {
+      "point": [
+        -9.9142,
+        5.3813
+      ],
+      "starId": "hyg-114864",
+      "separationArcseconds": 0.12798815909609665
+    },
+    {
+      "point": [
+        -10.7086,
+        3.2823
+      ],
+      "starId": "hyg-114609",
+      "separationArcseconds": 0.053413214750873766
+    },
+    {
+      "point": [
+        -8.2669,
+        1.2556
+      ],
+      "starId": "hyg-115376",
+      "separationArcseconds": 0.1467938593186071
+    },
+    {
+      "point": [
+        -4.4883,
+        1.78
+      ],
+      "starId": "hyg-116562",
+      "separationArcseconds": 0.1571741399233039
+    },
+    {
+      "point": [
+        -3.402,
+        3.4868
+      ],
+      "starId": "hyg-116878",
+      "separationArcseconds": 0.06691668477414191
+    },
+    {
+      "point": [
+        -5.0123,
+        5.6263
+      ],
+      "starId": "hyg-116405",
+      "separationArcseconds": 0.1461812079187449
+    },
+    {
+      "point": [
+        -10.7086,
+        3.2823
+      ],
+      "starId": "hyg-114609",
+      "separationArcseconds": 0.053413214750873766
+    },
+    {
+      "point": [
+        -14.0308,
+        3.82
+      ],
+      "starId": "hyg-113529",
+      "separationArcseconds": 0.18523291695731792
+    },
+    {
+      "point": [
+        -19.8361,
+        -27.0436
+      ],
+      "starId": "hyg-111601",
+      "separationArcseconds": 0.06907023521451247
+    },
+    {
+      "point": [
+        -15.5873,
+        -29.6222
+      ],
+      "starId": "hyg-113008",
+      "separationArcseconds": 0.4269850299497243
+    },
+    {
+      "point": [
+        -16.0129,
+        -32.5396
+      ],
+      "starId": "hyg-112886",
+      "separationArcseconds": 0.11768259355911767
+    },
+    {
+      "point": [
+        -16.8686,
+        -32.8755
+      ],
+      "starId": "hyg-112588",
+      "separationArcseconds": 0.020846068559187744
+    },
+    {
+      "point": [
+        -22.1236,
+        -32.3461
+      ],
+      "starId": "hyg-110841",
+      "separationArcseconds": 0.18047991363866225
+    },
+    {
+      "point": [
+        -27.9041,
+        -32.9885
+      ],
+      "starId": "hyg-108939",
+      "separationArcseconds": 0.24072274757545015
+    },
+    {
+      "point": [
+        -33.7633,
+        -33.0258
+      ],
+      "starId": "hyg-107037",
+      "separationArcseconds": 0.07008852456384168
+    },
+    {
+      "point": [
+        -33.066,
+        -30.8983
+      ],
+      "starId": "hyg-107265",
+      "separationArcseconds": 0.09383248155007833
+    },
+    {
+      "point": [
+        -27.9041,
+        -32.9885
+      ],
+      "starId": "hyg-108939",
+      "separationArcseconds": 0.24072274757545015
+    },
+    {
+      "point": [
+        -19.8361,
+        -27.0436
+      ],
+      "starId": "hyg-111601",
+      "separationArcseconds": 0.06907023521451247
+    },
+    {
+      "point": [
+        99.4403,
+        -43.1959
+      ],
+      "starId": "hyg-31605",
+      "separationArcseconds": 0.12317370823752682
+    },
+    {
+      "point": [
+        109.2857,
+        -37.0975
+      ],
+      "starId": "hyg-35169",
+      "separationArcseconds": 0.14753208607227858
+    },
+    {
+      "point": [
+        113.8454,
+        -28.3693
+      ],
+      "starId": "hyg-36811",
+      "separationArcseconds": 0.08865575018495997
+    },
+    {
+      "point": [
+        114.7078,
+        -26.8038
+      ],
+      "starId": "hyg-37124",
+      "separationArcseconds": 0.13351534921078953
+    },
+    {
+      "point": [
+        117.3236,
+        -24.8598
+      ],
+      "starId": "hyg-38062",
+      "separationArcseconds": 0.12496306614711261
+    },
+    {
+      "point": [
+        119.2147,
+        -22.8801
+      ],
+      "starId": "hyg-38721",
+      "separationArcseconds": 0.1794036657381726
+    },
+    {
+      "point": [
+        121.886,
+        -24.3043
+      ],
+      "starId": "hyg-39644",
+      "separationArcseconds": 0.20006654760377413
+    },
+    {
+      "point": [
+        120.896,
+        -40.0031
+      ],
+      "starId": "hyg-39318",
+      "separationArcseconds": 0.22992389015758846
+    },
+    {
+      "point": [
+        122.3831,
+        -47.3366
+      ],
+      "starId": "hyg-39840",
+      "separationArcseconds": 0.10673796039381804
+    },
+    {
+      "point": [
+        117.3236,
+        -24.8598
+      ],
+      "starId": "hyg-38062",
+      "separationArcseconds": 0.12496306614711261
+    },
+    {
+      "point": [
+        117.0215,
+        -25.9372
+      ],
+      "starId": "hyg-37962",
+      "separationArcseconds": 0.17096428746800313
+    },
+    {
+      "point": [
+        115.952,
+        -28.9548
+      ],
+      "starId": "hyg-37570",
+      "separationArcseconds": 0.18323311199994968
+    },
+    {
+      "point": [
+        113.8454,
+        -28.3693
+      ],
+      "starId": "hyg-36811",
+      "separationArcseconds": 0.08865575018495997
+    },
+    {
+      "point": [
+        120.896,
+        -40.0031
+      ],
+      "starId": "hyg-39318",
+      "separationArcseconds": 0.22992389015758846
+    },
+    {
+      "point": [
+        130.0256,
+        -35.3084
+      ],
+      "starId": "hyg-42396",
+      "separationArcseconds": 0.17343301556258275
+    },
+    {
+      "point": [
+        130.8981,
+        -33.1864
+      ],
+      "starId": "hyg-42709",
+      "separationArcseconds": 0.07035757939025297
+    },
+    {
+      "point": [
+        132.633,
+        -27.7098
+      ],
+      "starId": "hyg-43286",
+      "separationArcseconds": 0.24835252522287005
+    },
+    {
+      "point": [
+        63.6062,
+        -62.4739
+      ],
+      "starId": "hyg-19730",
+      "separationArcseconds": 0.2776963325296177
+    },
+    {
+      "point": [
+        64.121,
+        -59.3022
+      ],
+      "starId": "hyg-19871",
+      "separationArcseconds": 0.20406383250273066
+    },
+    {
+      "point": [
+        59.6865,
+        -61.4002
+      ],
+      "starId": "hyg-18550",
+      "separationArcseconds": 0.1401096401076163
+    },
+    {
+      "point": [
+        56.0499,
+        -64.8069
+      ],
+      "starId": "hyg-17398",
+      "separationArcseconds": 1.5401145918092167
+    },
+    {
+      "point": [
+        63.6062,
+        -62.4739
+      ],
+      "starId": "hyg-19730",
+      "separationArcseconds": 0.2776963325296177
+    },
+    {
+      "point": [
+        -64.9759,
+        18.0139
+      ],
+      "starId": "hyg-96450",
+      "separationArcseconds": 0.09282023531131689
+    },
+    {
+      "point": [
+        -63.1531,
+        18.5343
+      ],
+      "starId": "hyg-97056",
+      "separationArcseconds": 0.09907247662970123
+    },
+    {
+      "point": [
+        -60.3107,
+        19.4921
+      ],
+      "starId": "hyg-98026",
+      "separationArcseconds": 0.19248595254766368
+    },
+    {
+      "point": [
+        -64.7378,
+        17.476
+      ],
+      "starId": "hyg-96530",
+      "separationArcseconds": 0.2264045448420136
+    },
+    {
+      "point": [
+        -63.1531,
+        18.5343
+      ],
+      "starId": "hyg-97056",
+      "separationArcseconds": 0.09907247662970123
+    },
+    {
+      "point": [
+        -85.5932,
+        -36.7617
+      ],
+      "starId": "hyg-89364",
+      "separationArcseconds": 0.2785794199648527
+    },
+    {
+      "point": [
+        -83.957,
+        -34.3846
+      ],
+      "starId": "hyg-89906",
+      "separationArcseconds": 0.08275881227495432
+    },
+    {
+      "point": [
+        -84.7515,
+        -29.8281
+      ],
+      "starId": "hyg-89653",
+      "separationArcseconds": 0.010647211200991907
+    },
+    {
+      "point": [
+        -83.0073,
+        -25.4217
+      ],
+      "starId": "hyg-90217",
+      "separationArcseconds": 0.04898488628739321
+    },
+    {
+      "point": [
+        -86.5591,
+        -21.0588
+      ],
+      "starId": "hyg-89064",
+      "separationArcseconds": 0.13963686581153087
+    },
+    {
+      "point": [
+        -69.3404,
+        -44.459
+      ],
+      "starId": "hyg-94946",
+      "separationArcseconds": 0.18931887243578482
+    },
+    {
+      "point": [
+        -69.0284,
+        -40.6159
+      ],
+      "starId": "hyg-95052",
+      "separationArcseconds": 0.20816591316916136
+    },
+    {
+      "point": [
+        -74.347,
+        -29.8801
+      ],
+      "starId": "hyg-93213",
+      "separationArcseconds": 0.06498288783868554
+    },
+    {
+      "point": [
+        -78.5859,
+        -26.9908
+      ],
+      "starId": "hyg-91754",
+      "separationArcseconds": 0.0792007484297882
+    },
+    {
+      "point": [
+        -83.0073,
+        -25.4217
+      ],
+      "starId": "hyg-90217",
+      "separationArcseconds": 0.04898488628739321
+    },
+    {
+      "point": [
+        -61.1846,
+        -41.8683
+      ],
+      "starId": "hyg-97721",
+      "separationArcseconds": 0.05087688664989626
+    },
+    {
+      "point": [
+        -60.0659,
+        -35.2763
+      ],
+      "starId": "hyg-98101",
+      "separationArcseconds": 0.07566265175835238
+    },
+    {
+      "point": [
+        -61.0402,
+        -26.2995
+      ],
+      "starId": "hyg-97755",
+      "separationArcseconds": 0.11496194507878979
+    },
+    {
+      "point": [
+        -65.8232,
+        -24.8836
+      ],
+      "starId": "hyg-96162",
+      "separationArcseconds": 0.08908096005935864
+    },
+    {
+      "point": [
+        -68.6813,
+        -24.5086
+      ],
+      "starId": "hyg-95182",
+      "separationArcseconds": 0.09143592890074197
+    },
+    {
+      "point": [
+        -71.1149,
+        -25.2567
+      ],
+      "starId": "hyg-94348",
+      "separationArcseconds": 0.06684606028504596
+    },
+    {
+      "point": [
+        -76.1836,
+        -26.2967
+      ],
+      "starId": "hyg-92564",
+      "separationArcseconds": 0.1797718894535858
+    },
+    {
+      "point": [
+        -78.5859,
+        -26.9908
+      ],
+      "starId": "hyg-91754",
+      "separationArcseconds": 0.0792007484297882
+    },
+    {
+      "point": [
+        -84.7515,
+        -29.8281
+      ],
+      "starId": "hyg-89653",
+      "separationArcseconds": 0.010647211200991907
+    },
+    {
+      "point": [
+        -88.548,
+        -30.4241
+      ],
+      "starId": "hyg-88361",
+      "separationArcseconds": 0.14340835707358096
+    },
+    {
+      "point": [
+        -83.957,
+        -34.3846
+      ],
+      "starId": "hyg-89906",
+      "separationArcseconds": 0.08275881227495432
+    },
+    {
+      "point": [
+        -74.347,
+        -29.8801
+      ],
+      "starId": "hyg-93213",
+      "separationArcseconds": 0.06498288783868554
+    },
+    {
+      "point": [
+        -73.265,
+        -27.6704
+      ],
+      "starId": "hyg-93569",
+      "separationArcseconds": 0.17961417172520935
+    },
+    {
+      "point": [
+        -76.1836,
+        -26.2967
+      ],
+      "starId": "hyg-92564",
+      "separationArcseconds": 0.1797718894535858
+    },
+    {
+      "point": [
+        -73.8292,
+        -21.7415
+      ],
+      "starId": "hyg-93388",
+      "separationArcseconds": 0.1678413892044976
+    },
+    {
+      "point": [
+        -72.559,
+        -21.0236
+      ],
+      "starId": "hyg-93846",
+      "separationArcseconds": 0.12945596119917718
+    },
+    {
+      "point": [
+        -70.5913,
+        -18.9529
+      ],
+      "starId": "hyg-94525",
+      "separationArcseconds": 0.12255860472649538
+    },
+    {
+      "point": [
+        -69.5818,
+        -17.8472
+      ],
+      "starId": "hyg-94873",
+      "separationArcseconds": 0.12045944385514959
+    },
+    {
+      "point": [
+        -69.5682,
+        -15.955
+      ],
+      "starId": "hyg-94881",
+      "separationArcseconds": 0.16871154857188012
+    },
+    {
+      "point": [
+        -73.8292,
+        -21.7415
+      ],
+      "starId": "hyg-93388",
+      "separationArcseconds": 0.1678413892044976
+    },
+    {
+      "point": [
+        -75.5675,
+        -21.1067
+      ],
+      "starId": "hyg-92793",
+      "separationArcseconds": 0.16645669881122718
+    },
+    {
+      "point": [
+        -76.4576,
+        -22.7448
+      ],
+      "starId": "hyg-92471",
+      "separationArcseconds": 0.123556592929241
+    },
+    {
+      "point": [
+        -76.1836,
+        -26.2967
+      ],
+      "starId": "hyg-92564",
+      "separationArcseconds": 0.1797718894535858
+    },
+    {
+      "point": [
+        -120.287,
+        -26.1141
+      ],
+      "starId": "hyg-78029",
+      "separationArcseconds": 0.08270171753737193
+    },
+    {
+      "point": [
+        -119.9166,
+        -22.6217
+      ],
+      "starId": "hyg-78165",
+      "separationArcseconds": 0.15380215059229124
+    },
+    {
+      "point": [
+        -118.6407,
+        -19.8055
+      ],
+      "starId": "hyg-78580",
+      "separationArcseconds": 0.16924266071705904
+    },
+    {
+      "point": [
+        -119.9166,
+        -22.6217
+      ],
+      "starId": "hyg-78165",
+      "separationArcseconds": 0.15380215059229124
+    },
+    {
+      "point": [
+        -114.7028,
+        -25.5928
+      ],
+      "starId": "hyg-79870",
+      "separationArcseconds": 0.17911381604852628
+    },
+    {
+      "point": [
+        -112.6481,
+        -26.432
+      ],
+      "starId": "hyg-80519",
+      "separationArcseconds": 0.06491015934601692
+    },
+    {
+      "point": [
+        -111.0294,
+        -28.216
+      ],
+      "starId": "hyg-81020",
+      "separationArcseconds": 0.15389425688895433
+    },
+    {
+      "point": [
+        -107.4591,
+        -34.2932
+      ],
+      "starId": "hyg-82144",
+      "separationArcseconds": 0.8996630955808457
+    },
+    {
+      "point": [
+        -107.0324,
+        -38.0474
+      ],
+      "starId": "hyg-82263",
+      "separationArcseconds": 0.12255860472649538
+    },
+    {
+      "point": [
+        -106.3541,
+        -42.3613
+      ],
+      "starId": "hyg-82477",
+      "separationArcseconds": 0.17914018539957802
+    },
+    {
+      "point": [
+        -101.9617,
+        -43.2392
+      ],
+      "starId": "hyg-83885",
+      "separationArcseconds": 0.06577759415396581
+    },
+    {
+      "point": [
+        -95.6703,
+        -42.9978
+      ],
+      "starId": "hyg-85965",
+      "separationArcseconds": 0.08638906857122128
+    },
+    {
+      "point": [
+        -93.1038,
+        -40.127
+      ],
+      "starId": "hyg-86804",
+      "separationArcseconds": 0.08327090331520384
+    },
+    {
+      "point": [
+        -94.378,
+        -39.03
+      ],
+      "starId": "hyg-86403",
+      "separationArcseconds": 0.08287288374505188
+    },
+    {
+      "point": [
+        -96.5978,
+        -37.1038
+      ],
+      "starId": "hyg-85665",
+      "separationArcseconds": 0.10432093850430446
+    },
+    {
+      "point": [
+        14.6515,
+        -29.3574
+      ],
+      "starId": "hyg-4567",
+      "separationArcseconds": 0.17916655086964492
+    },
+    {
+      "point": [
+        -2.7686,
+        -28.1303
+      ],
+      "starId": "hyg-117085",
+      "separationArcseconds": 0.11630991943417657
+    },
+    {
+      "point": [
+        -10.294,
+        -32.532
+      ],
+      "starId": "hyg-114740",
+      "separationArcseconds": 0.09835472404818456
+    },
+    {
+      "point": [
+        -6.7573,
+        -37.8183
+      ],
+      "starId": "hyg-115865",
+      "separationArcseconds": 0.12846703429555834
+    },
+    {
+      "point": [
+        -81.1982,
+        -8.2441
+      ],
+      "starId": "hyg-90835",
+      "separationArcseconds": 0.1317704410097919
+    },
+    {
+      "point": [
+        -78.2064,
+        -4.7479
+      ],
+      "starId": "hyg-91888",
+      "separationArcseconds": 0.160269119033386
+    },
+    {
+      "point": [
+        -79.4316,
+        -9.0525
+      ],
+      "starId": "hyg-91441",
+      "separationArcseconds": 0.23811855666942425
+    },
+    {
+      "point": [
+        -82.7006,
+        -14.5658
+      ],
+      "starId": "hyg-90315",
+      "separationArcseconds": 0.05831717749304958
+    },
+    {
+      "point": [
+        -81.1982,
+        -8.2441
+      ],
+      "starId": "hyg-90835",
+      "separationArcseconds": 0.1317704410097919
+    },
+    {
+      "point": [
+        -123.4531,
+        15.4218
+      ],
+      "starId": "hyg-76997",
+      "separationArcseconds": 0.09518193937482301
+    },
+    {
+      "point": [
+        -124.6123,
+        19.6704
+      ],
+      "starId": "hyg-76616",
+      "separationArcseconds": 0.13558656674295533
+    },
+    {
+      "point": [
+        -122.8151,
+        18.1416
+      ],
+      "starId": "hyg-77214",
+      "separationArcseconds": 0.1307628969129947
+    },
+    {
+      "point": [
+        -120.8867,
+        15.6616
+      ],
+      "starId": "hyg-77836",
+      "separationArcseconds": 0.25022834054525955
+    },
+    {
+      "point": [
+        -123.4531,
+        15.4218
+      ],
+      "starId": "hyg-76997",
+      "separationArcseconds": 0.09518193937482301
+    },
+    {
+      "point": [
+        -126.2994,
+        10.5389
+      ],
+      "starId": "hyg-76044",
+      "separationArcseconds": 0.13011107004994107
+    },
+    {
+      "point": [
+        -123.933,
+        6.4256
+      ],
+      "starId": "hyg-76835",
+      "separationArcseconds": 0.14478510887103885
+    },
+    {
+      "point": [
+        -122.296,
+        4.4777
+      ],
+      "starId": "hyg-77386",
+      "separationArcseconds": 0.140379081972083
+    },
+    {
+      "point": [
+        -116.4136,
+        -3.6943
+      ],
+      "starId": "hyg-79352",
+      "separationArcseconds": 0.09023995681932896
+    },
+    {
+      "point": [
+        -102.4055,
+        -15.7249
+      ],
+      "starId": "hyg-83755",
+      "separationArcseconds": 0.07811986874221438
+    },
+    {
+      "point": [
+        -95.6033,
+        -15.3986
+      ],
+      "starId": "hyg-85998",
+      "separationArcseconds": 0.17744464711870842
+    },
+    {
+      "point": [
+        -90.2434,
+        -9.7736
+      ],
+      "starId": "hyg-87775",
+      "separationArcseconds": 0.14540364278747028
+    },
+    {
+      "point": [
+        -89.2295,
+        -8.1803
+      ],
+      "starId": "hyg-88131",
+      "separationArcseconds": 0.17728485902045807
+    },
+    {
+      "point": [
+        -84.6725,
+        -2.8988
+      ],
+      "starId": "hyg-89684",
+      "separationArcseconds": 0.09184826889049441
+    },
+    {
+      "point": [
+        -75.9451,
+        4.2036
+      ],
+      "starId": "hyg-92654",
+      "separationArcseconds": 0.0915907739378327
+    },
+    {
+      "point": [
+        151.9845,
+        -0.3716
+      ],
+      "starId": "hyg-49500",
+      "separationArcseconds": 0.13323202719556604
+    },
+    {
+      "point": [
+        148.1268,
+        -8.105
+      ],
+      "starId": "hyg-48300",
+      "separationArcseconds": 0.12049864953360188
+    },
+    {
+      "point": [
+        157.3696,
+        -2.7391
+      ],
+      "starId": "hyg-51217",
+      "separationArcseconds": 0.08698843227367548
+    },
+    {
+      "point": [
+        157.5728,
+        -0.637
+      ],
+      "starId": "hyg-51290",
+      "separationArcseconds": 0.12982031869203545
+    },
+    {
+      "point": [
+        84.4112,
+        21.1425
+      ],
+      "starId": "hyg-26386",
+      "separationArcseconds": 0.17717825356342176
+    },
+    {
+      "point": [
+        68.9802,
+        16.5093
+      ],
+      "starId": "hyg-21368",
+      "separationArcseconds": 0.15539093169927098
+    },
+    {
+      "point": [
+        67.1656,
+        15.8709
+      ],
+      "starId": "hyg-20842",
+      "separationArcseconds": 0.10602755010163267
+    },
+    {
+      "point": [
+        64.9483,
+        15.6276
+      ],
+      "starId": "hyg-20155",
+      "separationArcseconds": 0.19385528044872713
+    },
+    {
+      "point": [
+        65.7337,
+        17.5425
+      ],
+      "starId": "hyg-20405",
+      "separationArcseconds": 0.05332470894897676
+    },
+    {
+      "point": [
+        67.1542,
+        19.1804
+      ],
+      "starId": "hyg-20837",
+      "separationArcseconds": 0.21776952532434016
+    },
+    {
+      "point": [
+        81.573,
+        28.6075
+      ],
+      "starId": "hyg-25364",
+      "separationArcseconds": 0.20343790390779143
+    },
+    {
+      "point": [
+        64.9483,
+        15.6276
+      ],
+      "starId": "hyg-20155",
+      "separationArcseconds": 0.19385528044872713
+    },
+    {
+      "point": [
+        60.1701,
+        12.4903
+      ],
+      "starId": "hyg-18677",
+      "separationArcseconds": 0.1993333107603117
+    },
+    {
+      "point": [
+        51.7923,
+        9.7327
+      ],
+      "starId": "hyg-16044",
+      "separationArcseconds": 0.07195078311160212
+    },
+    {
+      "point": [
+        60.7891,
+        5.9893
+      ],
+      "starId": "hyg-18860",
+      "separationArcseconds": 0.040192340882424626
+    },
+    {
+      "point": [
+        51.7923,
+        9.7327
+      ],
+      "starId": "hyg-16044",
+      "separationArcseconds": 0.07195078311160212
+    },
+    {
+      "point": [
+        51.2033,
+        9.0289
+      ],
+      "starId": "hyg-15861",
+      "separationArcseconds": 0.1136811071588963
+    },
+    {
+      "point": [
+        54.2183,
+        0.4017
+      ],
+      "starId": "hyg-16811",
+      "separationArcseconds": 0.18599634751901176
+    },
+    {
+      "point": [
+        -87.1927,
+        -45.9544
+      ],
+      "starId": "hyg-88835",
+      "separationArcseconds": 0.15213470198544585
+    },
+    {
+      "point": [
+        -83.2566,
+        -45.9685
+      ],
+      "starId": "hyg-90143",
+      "separationArcseconds": 0.15228986235416264
+    },
+    {
+      "point": [
+        -82.7923,
+        -49.0706
+      ],
+      "starId": "hyg-90288",
+      "separationArcseconds": 0.29796343085989974
+    },
+    {
+      "point": [
+        28.2704,
+        29.5788
+      ],
+      "starId": "hyg-8777",
+      "separationArcseconds": 0.16301595478831576
+    },
+    {
+      "point": [
+        32.3859,
+        34.9873
+      ],
+      "starId": "hyg-10041",
+      "separationArcseconds": 0.08908096005935864
+    },
+    {
+      "point": [
+        34.3286,
+        33.8472
+      ],
+      "starId": "hyg-10645",
+      "separationArcseconds": 0.02608023462607586
+    },
+    {
+      "point": [
+        28.2704,
+        29.5788
+      ],
+      "starId": "hyg-8777",
+      "separationArcseconds": 0.16301595478831576
+    },
+    {
+      "point": [
+        -107.8338,
+        -69.0277
+      ],
+      "starId": "hyg-82022",
+      "separationArcseconds": 0.0792007484297882
+    },
+    {
+      "point": [
+        -121.2143,
+        -63.4307
+      ],
+      "starId": "hyg-77716",
+      "separationArcseconds": 0.8829324672092393
+    },
+    {
+      "point": [
+        -130.2726,
+        -68.6795
+      ],
+      "starId": "hyg-74717",
+      "separationArcseconds": 0.4429909525399096
+    },
+    {
+      "point": [
+        -107.8338,
+        -69.0277
+      ],
+      "starId": "hyg-82022",
+      "separationArcseconds": 0.0792007484297882
+    },
+    {
+      "point": [
+        -25.3746,
+        -60.2596
+      ],
+      "starId": "hyg-109784",
+      "separationArcseconds": 0.29835947993661815
+    },
+    {
+      "point": [
+        -10.6426,
+        -58.2357
+      ],
+      "starId": "hyg-114634",
+      "separationArcseconds": 0.18050608342255078
+    },
+    {
+      "point": [
+        7.8861,
+        -62.9582
+      ],
+      "starId": "hyg-2478",
+      "separationArcseconds": 0.3739304009675492
+    },
+    {
+      "point": [
+        5.0178,
+        -64.8748
+      ],
+      "starId": "hyg-1595",
+      "separationArcseconds": 8.666949273445516
+    },
+    {
+      "point": [
+        -0.0209,
+        -65.5771
+      ],
+      "starId": "hyg-117954",
+      "separationArcseconds": 0.30536961522953754
+    },
+    {
+      "point": [
+        -23.1668,
+        -64.9664
+      ],
+      "starId": "hyg-110492",
+      "separationArcseconds": 0.39442612695670487
+    },
+    {
+      "point": [
+        -25.3746,
+        -60.2596
+      ],
+      "starId": "hyg-109784",
+      "separationArcseconds": 0.29835947993661815
+    },
+    {
+      "point": [
+        -176.1435,
+        57.0326
+      ],
+      "starId": "hyg-59592",
+      "separationArcseconds": 0.41591183365906015
+    },
+    {
+      "point": [
+        165.932,
+        61.751
+      ],
+      "starId": "hyg-53905",
+      "separationArcseconds": 0.5663659209090754
+    },
+    {
+      "point": [
+        165.4603,
+        56.3824
+      ],
+      "starId": "hyg-53754",
+      "separationArcseconds": 0.3049052215681774
+    },
+    {
+      "point": [
+        178.4577,
+        53.6948
+      ],
+      "starId": "hyg-57828",
+      "separationArcseconds": 0.40979085912103264
+    },
+    {
+      "point": [
+        -176.1435,
+        57.0326
+      ],
+      "starId": "hyg-59592",
+      "separationArcseconds": 0.41591183365906015
+    },
+    {
+      "point": [
+        -166.4927,
+        55.9598
+      ],
+      "starId": "hyg-62757",
+      "separationArcseconds": 0.449742284558927
+    },
+    {
+      "point": [
+        -159.0186,
+        54.9254
+      ],
+      "starId": "hyg-65173",
+      "separationArcseconds": 0.4259660768798587
+    },
+    {
+      "point": [
+        -153.1148,
+        49.3133
+      ],
+      "starId": "hyg-67088",
+      "separationArcseconds": 0.28726102155268385
+    },
+    {
+      "point": [
+        178.4577,
+        53.6948
+      ],
+      "starId": "hyg-57828",
+      "separationArcseconds": 0.40979085912103264
+    },
+    {
+      "point": [
+        176.5126,
+        47.7794
+      ],
+      "starId": "hyg-57226",
+      "separationArcseconds": 0.30316519998211
+    },
+    {
+      "point": [
+        169.6197,
+        33.0943
+      ],
+      "starId": "hyg-55055",
+      "separationArcseconds": 0.13742053752705743
+    },
+    {
+      "point": [
+        169.5468,
+        31.5308
+      ],
+      "starId": "hyg-118742",
+      "separationArcseconds": 7.261783118991109
+    },
+    {
+      "point": [
+        176.5126,
+        47.7794
+      ],
+      "starId": "hyg-57226",
+      "separationArcseconds": 0.30316519998211
+    },
+    {
+      "point": [
+        167.4159,
+        44.4985
+      ],
+      "starId": "hyg-54380",
+      "separationArcseconds": 0.09008278986668167
+    },
+    {
+      "point": [
+        155.5823,
+        41.4995
+      ],
+      "starId": "hyg-50655",
+      "separationArcseconds": 0.08865575018495997
+    },
+    {
+      "point": [
+        167.4159,
+        44.4985
+      ],
+      "starId": "hyg-54380",
+      "separationArcseconds": 0.09008278986668167
+    },
+    {
+      "point": [
+        154.2741,
+        42.9144
+      ],
+      "starId": "hyg-50230",
+      "separationArcseconds": 0.4910238623261014
+    },
+    {
+      "point": [
+        165.932,
+        61.751
+      ],
+      "starId": "hyg-53905",
+      "separationArcseconds": 0.5663659209090754
+    },
+    {
+      "point": [
+        142.8821,
+        63.0619
+      ],
+      "starId": "hyg-46600",
+      "separationArcseconds": 0.5168560342435888
+    },
+    {
+      "point": [
+        127.5661,
+        60.7182
+      ],
+      "starId": "hyg-41586",
+      "separationArcseconds": 0.6523028229216533
+    },
+    {
+      "point": [
+        147.7473,
+        59.0387
+      ],
+      "starId": "hyg-48182",
+      "separationArcseconds": 1.311765659138994
+    },
+    {
+      "point": [
+        165.4603,
+        56.3824
+      ],
+      "starId": "hyg-53754",
+      "separationArcseconds": 0.3049052215681774
+    },
+    {
+      "point": [
+        165.4603,
+        56.3824
+      ],
+      "starId": "hyg-53754",
+      "separationArcseconds": 0.3049052215681774
+    },
+    {
+      "point": [
+        148.0265,
+        54.0643
+      ],
+      "starId": "hyg-48265",
+      "separationArcseconds": 0.11565831811982483
+    },
+    {
+      "point": [
+        143.2143,
+        51.6773
+      ],
+      "starId": "hyg-46720",
+      "separationArcseconds": 3.181061121219281
+    },
+    {
+      "point": [
+        134.8019,
+        48.0418
+      ],
+      "starId": "hyg-44000",
+      "separationArcseconds": 1.255092003902837
+    },
+    {
+      "point": [
+        135.9064,
+        47.1565
+      ],
+      "starId": "hyg-44343",
+      "separationArcseconds": 0.09086590621962061
+    },
+    {
+      "point": [
+        143.2143,
+        51.6773
+      ],
+      "starId": "hyg-46720",
+      "separationArcseconds": 3.181061121219281
+    },
+    {
+      "point": [
+        -123.9853,
+        77.7945
+      ],
+      "starId": "hyg-76819",
+      "separationArcseconds": 0.16551762454991198
+    },
+    {
+      "point": [
+        -115.6238,
+        75.7553
+      ],
+      "starId": "hyg-79580",
+      "separationArcseconds": 0.598891827956521
+    },
+    {
+      "point": [
+        -129.8179,
+        71.834
+      ],
+      "starId": "hyg-74868",
+      "separationArcseconds": 0.17264139146440116
+    },
+    {
+      "point": [
+        -137.3236,
+        74.1555
+      ],
+      "starId": "hyg-72380",
+      "separationArcseconds": 0.17296939947032
+    },
+    {
+      "point": [
+        -123.9853,
+        77.7945
+      ],
+      "starId": "hyg-76819",
+      "separationArcseconds": 0.16551762454991198
+    },
+    {
+      "point": [
+        -108.5073,
+        82.0373
+      ],
+      "starId": "hyg-81830",
+      "separationArcseconds": 0.20830201381342928
+    },
+    {
+      "point": [
+        -96.9458,
+        86.5865
+      ],
+      "starId": "hyg-85560",
+      "separationArcseconds": 0.17099191359526886
+    },
+    {
+      "point": [
+        37.9545,
+        89.2641
+      ],
+      "starId": "hyg-11734",
+      "separationArcseconds": 0.3828310367127493
+    },
+    {
+      "point": [
+        131.1759,
+        -54.7088
+      ],
+      "starId": "hyg-42794",
+      "separationArcseconds": 0.08178278104315855
+    },
+    {
+      "point": [
+        140.5284,
+        -55.0107
+      ],
+      "starId": "hyg-45809",
+      "separationArcseconds": 0.13079901427231153
+    },
+    {
+      "point": [
+        149.2156,
+        -54.5678
+      ],
+      "starId": "hyg-48635",
+      "separationArcseconds": 0.055153513221013466
+    },
+    {
+      "point": [
+        161.6924,
+        -49.4203
+      ],
+      "starId": "hyg-52575",
+      "separationArcseconds": 0.24768595921252884
+    },
+    {
+      "point": [
+        153.684,
+        -42.1219
+      ],
+      "starId": "hyg-50050",
+      "separationArcseconds": 0.31855748938294015
+    },
+    {
+      "point": [
+        142.675,
+        -40.4668
+      ],
+      "starId": "hyg-46518",
+      "separationArcseconds": 0.3212447890447414
+    },
+    {
+      "point": [
+        136.999,
+        -43.4326
+      ],
+      "starId": "hyg-44689",
+      "separationArcseconds": 0.06563381781996291
+    },
+    {
+      "point": [
+        122.3831,
+        -47.3366
+      ],
+      "starId": "hyg-39840",
+      "separationArcseconds": 0.10673796039381804
+    },
+    {
+      "point": [
+        176.4648,
+        6.5294
+      ],
+      "starId": "hyg-57208",
+      "separationArcseconds": 0.13776383193539654
+    },
+    {
+      "point": [
+        177.6738,
+        1.7647
+      ],
+      "starId": "hyg-57584",
+      "separationArcseconds": 0.1258669699071393
+    },
+    {
+      "point": [
+        -175.0235,
+        -0.6668
+      ],
+      "starId": "hyg-59945",
+      "separationArcseconds": 0.03776884635531612
+    },
+    {
+      "point": [
+        -169.5848,
+        -1.4494
+      ],
+      "starId": "hyg-61748",
+      "separationArcseconds": 0.12728502379989592
+    },
+    {
+      "point": [
+        -162.5125,
+        -5.539
+      ],
+      "starId": "hyg-64034",
+      "separationArcseconds": 0.1305097955341641
+    },
+    {
+      "point": [
+        -158.7018,
+        -11.1613
+      ],
+      "starId": "hyg-65269",
+      "separationArcseconds": 0.1775776940348431
+    },
+    {
+      "point": [
+        -145.9964,
+        -6.0005
+      ],
+      "starId": "hyg-69479",
+      "separationArcseconds": 0.18372224938274023
+    },
+    {
+      "point": [
+        -139.2349,
+        -5.6582
+      ],
+      "starId": "hyg-71731",
+      "separationArcseconds": 0.03088914823230981
+    },
+    {
+      "point": [
+        -164.4558,
+        10.9592
+      ],
+      "starId": "hyg-63405",
+      "separationArcseconds": 0.20889075858569459
+    },
+    {
+      "point": [
+        -166.0991,
+        3.3975
+      ],
+      "starId": "hyg-62890",
+      "separationArcseconds": 0.1404127258508098
+    },
+    {
+      "point": [
+        -169.5848,
+        -1.4494
+      ],
+      "starId": "hyg-61748",
+      "separationArcseconds": 0.12728502379989592
+    },
+    {
+      "point": [
+        -162.5125,
+        -5.539
+      ],
+      "starId": "hyg-64034",
+      "separationArcseconds": 0.1305097955341641
+    },
+    {
+      "point": [
+        -156.3267,
+        -0.5958
+      ],
+      "starId": "hyg-66040",
+      "separationArcseconds": 0.07208196058260738
+    },
+    {
+      "point": [
+        -149.5884,
+        1.5445
+      ],
+      "starId": "hyg-68302",
+      "separationArcseconds": 0.19874002022848852
+    },
+    {
+      "point": [
+        -138.4378,
+        1.8929
+      ],
+      "starId": "hyg-71994",
+      "separationArcseconds": 0.08997785938276687
+    },
+    {
+      "point": [
+        135.6116,
+        -66.3961
+      ],
+      "starId": "hyg-44254",
+      "separationArcseconds": 0.117280533642637
+    },
+    {
+      "point": [
+        126.4341,
+        -66.1369
+      ],
+      "starId": "hyg-41195",
+      "separationArcseconds": 0.24296879971759755
+    },
+    {
+      "point": [
+        121.9825,
+        -68.6171
+      ],
+      "starId": "hyg-39681",
+      "separationArcseconds": 0.18510537241492275
+    },
+    {
+      "point": [
+        109.2076,
+        -67.9572
+      ],
+      "starId": "hyg-35132",
+      "separationArcseconds": 0.1749245317023155
+    },
+    {
+      "point": [
+        107.1869,
+        -70.4989
+      ],
+      "starId": "hyg-34389",
+      "separationArcseconds": 0.15004007310614917
+    },
+    {
+      "point": [
+        121.9825,
+        -68.6171
+      ],
+      "starId": "hyg-39681",
+      "separationArcseconds": 0.18510537241492275
+    },
+    {
+      "point": [
+        135.6116,
+        -66.3961
+      ],
+      "starId": "hyg-44254",
+      "separationArcseconds": 0.117280533642637
+    },
+    {
+      "point": [
+        -70.9457,
+        21.3904
+      ],
+      "starId": "hyg-94408",
+      "separationArcseconds": 0.15469021419333642
+    },
+    {
+      "point": [
+        -67.8236,
+        24.6649
+      ],
+      "starId": "hyg-95473",
+      "separationArcseconds": 0.024395825634363558
+    },
+    {
+      "point": [
+        -61.6346,
+        24.0796
+      ],
+      "starId": "hyg-97575",
+      "separationArcseconds": 0.060151246686523704
+    },
+    {
+      "point": [
+        -59.7248,
+        27.7536
+      ],
+      "starId": "hyg-98232",
+      "separationArcseconds": 0.10230930303302949
+    },
+    {
+      "point": [
+        -56.0578,
+        27.8142
+      ],
+      "starId": "hyg-99554",
+      "separationArcseconds": 0.19766760986963816
+    }
+  ],
+  "attribution": {
+    "stars": "HYG Database v4.1, David Nash / Astronexus, CC BY-SA 4.0; filtered and reformatted by yorungez",
+    "constellations": "d3-celestial, Olaf Frohn, BSD-3-Clause; IAU/Wikipedia sources credited upstream; lines resolved to HYG IDs"
+  },
+  "limitations": [
+    "Magnitude cut is catalogue brightness, not a visibility guarantee.",
+    "HYG common labels may include unofficial secondary-star names.",
+    "Constellation figures are schematic conventions, not IAU boundary polygons.",
+    "Unknown distance is null, never the HYG 100000 parsec sentinel."
+  ]
+}

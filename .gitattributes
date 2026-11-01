@@ -1,0 +1,14 @@
+* text=auto eol=lf
+
+# Scientific/source archives and attributed assets have byte-level provenance.
+/data/** -text
+/tests/ReferenceData/** -text
+/third-party/** -text
+/docs/arsiv/** -text
+/src/Yorungez.Web/public/** -text
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.gz binary
+*.zip binary

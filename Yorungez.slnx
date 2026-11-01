@@ -1,0 +1,38 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Yorungez.Api/Yorungez.Api.csproj" />
+    <Project Path="src/Yorungez.Core/Yorungez.Core.csproj" />
+  </Folder>
+  <Folder Name="/src/BuildingBlocks/">
+    <Project Path="src/BuildingBlocks/Yorungez.Application/Yorungez.Application.csproj" />
+  </Folder>
+  <Folder Name="/src/Modules/" />
+  <Folder Name="/src/Modules/Astronomy/">
+    <Project Path="src/Modules/Astronomy/Yorungez.Astronomy.Application/Yorungez.Astronomy.Application.csproj" />
+    <Project Path="src/Modules/Astronomy/Yorungez.Astronomy.Domain/Yorungez.Astronomy.Domain.csproj" />
+    <Project Path="src/Modules/Astronomy/Yorungez.Astronomy.Infrastructure/Yorungez.Astronomy.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/src/Modules/Catalog/">
+    <Project Path="src/Modules/Catalog/Yorungez.Catalog.Application/Yorungez.Catalog.Application.csproj" />
+    <Project Path="src/Modules/Catalog/Yorungez.Catalog.Domain/Yorungez.Catalog.Domain.csproj" />
+    <Project Path="src/Modules/Catalog/Yorungez.Catalog.Infrastructure/Yorungez.Catalog.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/src/Modules/Identity/">
+    <Project Path="src/Modules/Identity/Yorungez.Identity.Application/Yorungez.Identity.Application.csproj" />
+    <Project Path="src/Modules/Identity/Yorungez.Identity.Domain/Yorungez.Identity.Domain.csproj" />
+    <Project Path="src/Modules/Identity/Yorungez.Identity.Infrastructure/Yorungez.Identity.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/src/Modules/Notebook/">
+    <Project Path="src/Modules/Notebook/Yorungez.Notebook.Application/Yorungez.Notebook.Application.csproj" />
+    <Project Path="src/Modules/Notebook/Yorungez.Notebook.Domain/Yorungez.Notebook.Domain.csproj" />
+    <Project Path="src/Modules/Notebook/Yorungez.Notebook.Infrastructure/Yorungez.Notebook.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Yorungez.Api.Tests/Yorungez.Api.Tests.csproj" />
+    <Project Path="tests/Yorungez.Astronomy.Tests/Yorungez.Astronomy.Tests.csproj" />
+    <Project Path="tests/Yorungez.Core.Tests/Yorungez.Core.Tests.csproj" />
+  </Folder>
+  <Folder Name="/tools/">
+    <Project Path="tools/Yorungez.ScienceProbe/Yorungez.ScienceProbe.csproj" />
+  </Folder>
+</Solution>

@@ -1,0 +1,161 @@
+{
+  "date": "2026-10-31",
+  "recordedAtUtc": "2026-10-31T14:40:32.322740+00:00",
+  "environment": "Windows IAB; Next.js production, separate agent build .next-planning-check at localhost:5194; no actual user GPS or sensor permission requested.",
+  "verification": {
+    "backend": {
+      "passed": 93,
+      "core": 18,
+      "astronomy": 19,
+      "api": 56,
+      "services": "Real local PostgreSQL/Redis; Gmail disabled"
+    },
+    "frontend": {
+      "passed": 29,
+      "productionBuild": true,
+      "typeScript": true
+    }
+  },
+  "publicExamplePoint": {
+    "latitude": 39.64099,
+    "longitude": 27.88639,
+    "place": "Altıeylül İlçesi, Balıkesir, TR",
+    "zone": "Europe/Istanbul"
+  },
+  "observations": [
+    {
+      "scenario": "Stellarium Web comparison",
+      "result": "Manual public Balikesir point; Tonight sunset18:08/sunrise07:36, Moon click moves to next-day morning; calendar month/year and wide view inspected. Reference tab closed; no code/calendar text copied."
+    },
+    {
+      "scenario": "Local place search",
+      "result": "Balıkesir Altıeylül returns local GeoNames district point; choosing fills coordinates/name, exact fields remain editable."
+    },
+    {
+      "scenario": "Unnamed manual point",
+      "result": "39.64099/27.88639 resolves locally to near Altıeylül İlçesi, Balıkesir, TR; native name retained in English; device GPS not measured."
+    },
+    {
+      "scenario": "Tonight Oct31-Nov1",
+      "result": "Sunset18:08, sunrise07:36, eight targets. Moon22:53-09:00. Timeline click produces target+UTC+simulation while retaining coordinates."
+    },
+    {
+      "scenario": "Second-interval keyboard navigation",
+      "result": "Enter Mercury08:20-09:00 -> Nov1 08:40:08 Europe/Istanbul =05:40:08Z, az116.6 alt2.9. Stayed inside selected second bar."
+    },
+    {
+      "scenario": "Today and date editing",
+      "result": "Today local00:00-to00:00, date change and Tonight switch work. Independent tests cover DST23/25h and polar-day null solar crossings."
+    },
+    {
+      "scenario": "Calendar tr/en",
+      "result": "October2026 Last Quarter Oct3 16:25 Istanbul/13:25Z, USNO source label. Click -> moon at exactly2026-10-03T13:25:00Z with same point. Calculated planet events have separate label."
+    },
+    {
+      "scenario": "Below-horizon selection",
+      "result": "Moon az323.7 alt-14.6, FOV105, photographic ground opacity.119; marker remains visible, centre-below-horizon text retained."
+    },
+    {
+      "scenario": "Target compass helper",
+      "result": "Moon true bearing323.7/alt-14.6 plus below-horizon notice. Sensors off, alignment/apply disabled; no physical heading certification."
+    },
+    {
+      "scenario": "Extreme zoom",
+      "result": "240 preset and zoom-out330, nadir-90 at330, ground opacity.100; circular projected terrain and rear hemisphere. Antipode rejected by math tests."
+    },
+    {
+      "scenario": "Downward look without selection",
+      "result": "No selected object; nadir-90/FOV240/ground opacity.100. Reset -> altitude14/FOV105/opacity1.000, notice removed."
+    },
+    {
+      "scenario": "Locales",
+      "result": "Menu dropdown tr/en, Today/Tonight/Calendar/source names translated; coordinate/time/mode/camera state retained across switch. Redundant Explore removed."
+    },
+    {
+      "scenario": "Responsive390x844",
+      "result": "Planner/calendar render with internal vertical scroll. Corrected short-bar time-label overflow; final planner dialog clientWidth378=scrollWidth378, 44px vertical button hit area. Default viewport restored."
+    },
+    {
+      "scenario": "Console",
+      "result": "Final captured warn/error logs empty; not an audit of every external browser/service."
+    }
+  ],
+  "screenshots": [
+    {
+      "file": "docs/ux/planning/below-horizon-tr.jpg",
+      "width": 1478,
+      "height": 877,
+      "sha256": "8b833f7e64feb15eead6d2134d3f6e2bd14cbe42c82ca846d7b593cb4aac8893"
+    },
+    {
+      "file": "docs/ux/planning/calendar-tr.jpg",
+      "width": 1478,
+      "height": 877,
+      "sha256": "3b8262406fad29ca1cdea4ff1a35b3e17022483600cf4fa1cad292f3e0c7b907"
+    },
+    {
+      "file": "docs/ux/planning/compass-target-tr.jpg",
+      "width": 1478,
+      "height": 877,
+      "sha256": "90a7d94548cdb0e0ee2eb1f9ce4e5f249052b75bfb527a65a378508ca86f8e2b"
+    },
+    {
+      "file": "docs/ux/planning/mobile-calendar-en.jpg",
+      "width": 390,
+      "height": 844,
+      "sha256": "ed60a221b6a66da4f8d1498ad3ff3ae8e43a9e6671dcf1b75b74e4c68714bd93"
+    },
+    {
+      "file": "docs/ux/planning/mobile-tonight-en.jpg",
+      "width": 390,
+      "height": 844,
+      "sha256": "6ca981d2281c5430e5a762e0d61f62b28548bd0b1482232aee309e25189fc40a"
+    },
+    {
+      "file": "docs/ux/planning/mobile-tonight-tr.jpg",
+      "width": 390,
+      "height": 844,
+      "sha256": "458ad29ac790e5b1744eafd93f46fc1af53e33052e0f1912ed46ec69cf145420"
+    },
+    {
+      "file": "docs/ux/planning/tonight-tr.jpg",
+      "width": 1478,
+      "height": 877,
+      "sha256": "79765763dd6735c6080dbb8035ea5e10882e664888a0dfdb7a2d418deca58566"
+    },
+    {
+      "file": "docs/ux/planning/wide-nadir-tr.jpg",
+      "width": 1478,
+      "height": 877,
+      "sha256": "9ca00919416c20a01d78dce04bf17979353deeffbc897c17518da123a99ee0a4"
+    },
+    {
+      "file": "docs/ux/planning/wide-night-tr.jpg",
+      "width": 1478,
+      "height": 877,
+      "sha256": "506f1016484c340833e6c974ff2867a7a323a9711a9a258b1a8720a66e33df0f"
+    }
+  ],
+  "limitations": [
+    "No physical mobile/GPS/compass/screen-reader testing.",
+    "No PWA/service-worker/offline reopen or personal records.",
+    "No independent timing certification for calculated seasons/planet events; Moon phases checked against USNO.",
+    "Rise/set sea-level0m reference, no geoid/local terrain/weather/detection calculation.",
+    "Previously recorded two raw polar-direction JPL failures and azimuth guard retained.",
+    "No deployed site, purchased domain, live email or production load/performance claim."
+  ],
+  "documentVerification": {
+    "localLinks": 336,
+    "FR": 12,
+    "UJ": 7,
+    "AC": 14,
+    "originalArchiveUnchanged": true
+  },
+  "cleanup": {
+    "agentPreviewStopped": true,
+    "agentTabsClosed": true,
+    "viewportReset": true,
+    "yorungezComposeStoppedVolumesPreserved": true,
+    "userServersNotStopped": true
+  }
+}

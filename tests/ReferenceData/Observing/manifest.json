@@ -1,0 +1,61 @@
+{
+  "source": "USNO rstt API, UT at minute precision treated as UTC",
+  "retrievedAtUtc": "2026-10-31T14:12:41.368969+00:00",
+  "toleranceSeconds": 180,
+  "rows": [
+    {
+      "site": "balikesir",
+      "latitude": 39.6484,
+      "longitude": 27.8826,
+      "date": "2026-10-31",
+      "url": "https://aa.usno.navy.mil/api/rstt/oneday?date=2026-10-31&coords=39.6484%2C27.8826&tz=0&dst=false",
+      "sha256": "71dda7f76e1f4f90f92d0f531072e4099bca8b127bcc8dc45fba6741d1665055",
+      "file": "balikesir.json"
+    },
+    {
+      "site": "balikesir-next",
+      "latitude": 39.6484,
+      "longitude": 27.8826,
+      "date": "2026-11-01",
+      "url": "https://aa.usno.navy.mil/api/rstt/oneday?date=2026-11-01&coords=39.6484%2C27.8826&tz=0&dst=false",
+      "sha256": "2ff0b30e6c0dc55feeacf5c9315b1a7dddf48fc8e8360e3f64c519b6dcff1429",
+      "file": "balikesir-next.json"
+    },
+    {
+      "site": "sydney",
+      "latitude": -33.8688,
+      "longitude": 151.2093,
+      "date": "2026-06-21",
+      "url": "https://aa.usno.navy.mil/api/rstt/oneday?date=2026-06-21&coords=-33.8688%2C151.2093&tz=0&dst=false",
+      "sha256": "c8f0a49e0b4b1913b38eed2b81e7ccfeb393b80182be4130b65ac7d182993e92",
+      "file": "sydney.json"
+    },
+    {
+      "site": "greenwich",
+      "latitude": 51.4769,
+      "longitude": 0,
+      "date": "2026-10-25",
+      "url": "https://aa.usno.navy.mil/api/rstt/oneday?date=2026-10-25&coords=51.4769%2C0&tz=0&dst=false",
+      "sha256": "60c8ea12aa7b928dd959d1694b4dfbb3565a442cc8cb21b93177ec671b0e0ee0",
+      "file": "greenwich.json"
+    },
+    {
+      "site": "kathmandu",
+      "latitude": 27.7172,
+      "longitude": 85.324,
+      "date": "2026-10-31",
+      "url": "https://aa.usno.navy.mil/api/rstt/oneday?date=2026-10-31&coords=27.7172%2C85.324&tz=0&dst=false",
+      "sha256": "5f96d6c92f92c8b588adb05fb0805d8a58357bef4c0123d3e0aaa75ca28c6f3b",
+      "file": "kathmandu.json"
+    },
+    {
+      "site": "arctic",
+      "latitude": 78.2232,
+      "longitude": 15.6469,
+      "date": "2026-06-21",
+      "url": "https://aa.usno.navy.mil/api/rstt/oneday?date=2026-06-21&coords=78.2232%2C15.6469&tz=0&dst=false",
+      "sha256": "8b70500465cf3a00fadcc08c6147244587655c02d270a13426eb3f0ac98381bc",
+      "file": "arctic.json"
+    }
+  ]
+}

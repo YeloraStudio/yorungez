@@ -1,0 +1,137 @@
+{
+  "recordedAtUtc": "2026-10-31T18:32:14.879053+00:00",
+  "environment": "Windows IAB, Next.js production .next-preview at separate localhost:5194. Own tabs only; no actual GPS or orientation permission granted; public Istanbul example used.",
+  "checks": [
+    {
+      "case": "Tonight only",
+      "observed": "Menu and panel show Tonight/Bu gece only. Local Oct31 sunset18:01 to Nov1 sunrise07:34 at Istanbul sample; intervals clipped to this window. No native today button."
+    },
+    {
+      "case": "Shared selects",
+      "observed": "Keyboard Turkish->English via ArrowDown/Enter; month/year custom lists; searchable year2027 and IANA America/New_York. Escape closes only the inner list and returns focus; selected month is scrolled into visible range."
+    },
+    {
+      "case": "Custom date grid",
+      "observed": "ArrowRight Oct31 -> Nov1, Enter selects next date. Nested year Escape keeps date panel. Turkish/English Monday-first calendar, mobile top-layer fits viewport."
+    },
+    {
+      "case": "Time draft isolation",
+      "observed": "Live clock continued through tool work while custom Hour03 and Minute13 remained unchanged, then applied. Hidden form values drive existing Temporal conversion."
+    },
+    {
+      "case": "DST repeated time",
+      "observed": "Custom IANA selection America/New_York, Nov1 2026 01:30, reject mode -> visible validation error. First occurrence -> 2026-11-01T05:30:00Z and GMT-04:00. DST gaps separately covered by existing unit tests."
+    },
+    {
+      "case": "Sensor-free Jupiter",
+      "observed": "Istanbul sample, Nov1 06:56 local, true bearing144.3deg southeast, altitude58.7deg, approximate6 fists; simulation label, no sensor start. English Nov2 04:00 local bearing97.9deg/alt30.4deg/east/3 fists also observed."
+    },
+    {
+      "case": "Polaris helper",
+      "observed": "Curious section explains approximate hand angles and north. Find Polaris -> hyg-11734/HIP11767, bearing359.2deg/alt41.1deg, preserving simulation UTC instant. Northern-hemisphere only helper."
+    },
+    {
+      "case": "No sensor promise",
+      "observed": "Phone compass is optional and starts collapsed/off; no hardware heading or device test claimed. Daylight/twilight/below-horizon/Sun brief gates checked in unit tests; twilight blocked positive binocular brief in initial UI test."
+    },
+    {
+      "case": "Local persistence",
+      "observed": "Added Jupiter favorite and public QA note, no location/time selected. Browser reload retained both through real IndexedDB. Locale switch resolves favorite target to Jupiter/Jüpiter; note text unchanged."
+    },
+    {
+      "case": "JSON privacy and freshness",
+      "observed": "Downloaded actual JSON backup through UI. Initial note/favorite lack location/instantUtc. Later explicit sample-coordinate/time copy includes target+time+location. Fresh backup retains other-tab committed record, not the stale cached list."
+    },
+    {
+      "case": "Two actual tabs",
+      "observed": "A edited old revision; B saved new version; A Save rejected and kept textarea. New-copy path did not overwrite original. Fixed selected-attachment copying and fresh list/backup, rechecked final copy against downloaded JSON."
+    },
+    {
+      "case": "Trash and restore",
+      "observed": "Public QA note moved to recoverable trash, restored, edited. At end older QA rows moved to trash, public Turkish planning note and Jupiter favorite visible. No permanent purge."
+    },
+    {
+      "case": "Mobile390x844",
+      "observed": "Date popup left36/right378/bottom667.4. Document width390. Notebook dialog client340=scroll340; no horizontal overflow. Selected month within list bounds. Temporary viewport reset."
+    },
+    {
+      "case": "Place example and browser widgets",
+      "observed": "Location placeholder İstanbul, London, Sydney…; DOM count select/input date/datetime-local/time =0."
+    },
+    {
+      "case": "Console",
+      "observed": "Final captured warn/error logs empty. No exhaustive production or third-party-service audit claimed."
+    }
+  ],
+  "verification": {
+    "frontendTests": 33,
+    "typeScriptAndProductionBuild": true,
+    "backend": "Unchanged this package; prior93 tests retained as historical baseline, not rerun.",
+    "science": "Existing144 stars/72 DSO/1781 phases/22 rise-set and frozen JPL guards remain in normal offline tests."
+  },
+  "screenshots": [
+    {
+      "file": "docs/ux/controls/date-picker-tr.jpg",
+      "width": 1478,
+      "height": 877,
+      "sha256": "e36265ed30a2fdb0a3da6c2d73e58693f6daf18b5512eb00f5c0711274a0a343"
+    },
+    {
+      "file": "docs/ux/controls/jupiter-guide-en.jpg",
+      "width": 1280,
+      "height": 720,
+      "sha256": "67c0ef2822c2cd7816bc4339bec6379d14408141bb633de7a13e401f9f3089d5"
+    },
+    {
+      "file": "docs/ux/controls/jupiter-guide-tr.jpg",
+      "width": 1478,
+      "height": 877,
+      "sha256": "5768c3d0166259738f64d97a90a45ec64cc9c5290cac235447d37f7afd6ba0d6"
+    },
+    {
+      "file": "docs/ux/controls/mobile-calendar-select-tr.jpg",
+      "width": 390,
+      "height": 844,
+      "sha256": "fe751ebcf40cc7f2d310349559895609e3f5fe4f5f405e7031ddddad62418382"
+    },
+    {
+      "file": "docs/ux/controls/mobile-date-tr.jpg",
+      "width": 390,
+      "height": 844,
+      "sha256": "163dbcec325c08d0ac89a70dc2ceb492d3c0526592eade7359f79e63d2bd2c2b"
+    },
+    {
+      "file": "docs/ux/controls/mobile-notebook-tr.jpg",
+      "width": 390,
+      "height": 844,
+      "sha256": "f6f9c51b8f4d7bb3d8d4f86bd45fd5338b2cca3131e322b07f2dbec6669e7869"
+    },
+    {
+      "file": "docs/ux/controls/notebook-conflict-en.jpg",
+      "width": 1478,
+      "height": 877,
+      "sha256": "2affd7bb91c47d230e6fc649218c48122bb1b4cfba11ce50b3547f9df6f51cd5"
+    },
+    {
+      "file": "docs/ux/controls/notebook-tr.jpg",
+      "width": 1478,
+      "height": 877,
+      "sha256": "7af3116e9501355e3d8c9782afc574f0bb9147c504bc4aea7c4b6d5f10bd4af4"
+    }
+  ],
+  "limits": [
+    "No physical GPS/compass or screen-reader sessions.",
+    "No actual storage quota/eviction pressure or non-Popover browser compatibility certification.",
+    "Local storage is not encrypted or protected from others sharing the browser profile.",
+    "No account UI/sync/approved transfer, observation record/saved-place types, permanent purge/JSON import, or service-worker/offline reopen.",
+    "Two raw polar-direction JPL failures remain documented; abs(latitude)>=89 azimuth guard retained.",
+    "No real SMTP/Gmail send, deployment or production load/SLA claim."
+  ],
+  "privateEvidence": "Only public QA content and public Istanbul example coordinates; downloaded JSON moved from Downloads into ignored .local/controls-qa. No actual user GPS, notes or tokens read.",
+  "cleanup": {
+    "agentServerStopped": true,
+    "temporaryViewportReset": true,
+    "otherUserServersUntouched": true,
+    "noBackendOrComposeServicesStartedThisPackage": true
+  }
+}

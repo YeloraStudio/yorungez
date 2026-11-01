@@ -1,0 +1,101 @@
+{
+  "date": "2026-10-31",
+  "package": "TECH-05B / K-025",
+  "sender": "sender@example.com",
+  "secretHandling": {
+    "location": ".env",
+    "gitignoreRule": ".env",
+    "sourceAndWebStaticScan": "passed; only private .env contained the value",
+    "secretValueRecorded": false,
+    "pushOrDeploymentPerformed": false
+  },
+  "smtp": {
+    "host": "smtp.gmail.com",
+    "port": 587,
+    "encryption": "required STARTTLS",
+    "authentication": "passed against Google",
+    "messagesSent": 0,
+    "command": "scripts/Test-Smtp.ps1"
+  },
+  "automated": {
+    "dotnet": {
+      "core": 18,
+      "astronomy": 19,
+      "api": 69,
+      "total": 106,
+      "passed": true
+    },
+    "client": {
+      "total": 35,
+      "passed": true
+    },
+    "releaseBuild": "passed, 0 warnings/0 errors",
+    "nextProductionBuild": "passed",
+    "powerShellSyntax": "passed"
+  },
+  "http": [
+    {
+      "path": "/",
+      "expected": "redirect to /en",
+      "passed": true
+    },
+    {
+      "path": "/api/terms",
+      "language": "en",
+      "status": 200
+    },
+    {
+      "path": "/api/terms?lang=tr",
+      "language": "tr",
+      "status": 200
+    },
+    {
+      "path": "/api/objects/sun",
+      "language": "en",
+      "status": 200
+    },
+    {
+      "path": "/api/objects/sun?lang=tr",
+      "language": "tr",
+      "status": 200
+    }
+  ],
+  "browser": [
+    "Confirmation and reset public-sample HTML reviewed; English copy, branded wordmark/CTA, source-free layout, expiry/security/copy-link visible.",
+    "Root opened English UI and custom language selector showed English."
+  ],
+  "limitations": [
+    "No email was sent to a real recipient; no Gmail/Outlook/iOS inbox rendering or deliverability certification.",
+    "No physical GPS/compass/mobile/screen reader, production deployment or database backup acceptance in this package.",
+    "Public previews contain only example.invalid URLs and a nonfunctional preview fragment."
+  ],
+  "artifacts": [
+    {
+      "path": "docs/ux/emails/confirmation.html",
+      "sha256": "a37decc055cc22d5a57a405fa000cf8f26f4ca05730b1cb0b724c2a92ecd7416",
+      "bytes": 2960
+    },
+    {
+      "path": "docs/ux/emails/confirmation.jpg",
+      "sha256": "864eb1644743977251562a2e1b5f87f63b14e35315c766c2d0c18ff09b3c64bd",
+      "bytes": 44740
+    },
+    {
+      "path": "docs/ux/emails/default-en.jpg",
+      "sha256": "ee28395723fe028efaf9f3b6719b7707c792f54719a01a046db9553309dab028",
+      "bytes": 52623
+    },
+    {
+      "path": "docs/ux/emails/reset.html",
+      "sha256": "4d94f52f8d73ac146ef4b5d1ebd8a6949fcaae281ad599a263727825056656de",
+      "bytes": 2990
+    },
+    {
+      "path": "docs/ux/emails/reset.jpg",
+      "sha256": "8ea9c72c3f288b4c30d696bca85dc2fd875eccc45638670c75edc0ddad7df8c0",
+      "bytes": 44655
+    }
+  ],
+  "cleanup": "Owned preview processes and tabs stopped; only yorungez compose containers stopped with volumes retained.",
+  "publicRedaction": "sender@example.com is a publication placeholder; the private historical SMTP account was redacted. Authentication success does not refer to the placeholder. No credential recorded."
+}

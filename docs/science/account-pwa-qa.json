@@ -1,0 +1,146 @@
+{
+  "package": "TECH-07",
+  "decisions": [
+    "K-027",
+    "K-028"
+  ],
+  "prd": "1.10",
+  "dateLocal": "2026-11-01",
+  "timeZone": "Europe/Istanbul",
+  "tests": {
+    "dotnet": {
+      "passed": 125,
+      "failed": 0,
+      "core": 18,
+      "astronomy": 19,
+      "apiIntegration": 88,
+      "evidence": "tests/*/TestResults/account-pwa-final_*.trx (ignored local artifacts)"
+    },
+    "client": {
+      "passed": 44,
+      "failed": 0
+    },
+    "productionBuild": "passed; generated HTML dependencies checked, including percent-encoded language chunks",
+    "identityEfPendingModelChanges": false
+  },
+  "migration": "20261101084830_AccountNames",
+  "names": {
+    "requiredForNewRegistration": true,
+    "maxLengthPerField": 100,
+    "unicodeAllowed": true,
+    "controlCharactersRejected": true,
+    "legacyNullsPreserved": true,
+    "ownProfileOnly": true,
+    "expectedAccountHeaderChecked": true,
+    "includedInJwtOrUrl": false
+  },
+  "accountFailure": {
+    "anonymousMeHandledWithoutBackend": true,
+    "serviceFailureDistinctFromBrowserOffline": true,
+    "entryFormAvailableOnServiceFailure": true,
+    "localAppLauncher": "scripts/Start-LocalApp.ps1",
+    "ownedStopGuard": "run ID + PID + UTC creation ticks; only owned process tree"
+  },
+  "browser": {
+    "type": "IAB",
+    "physicalDevice": false,
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "origins": [
+      "http://127.0.0.1:5199",
+      "http://127.0.0.1:5190"
+    ],
+    "syntheticAccountOnly": true,
+    "checks": [
+      "English registration form has first name, last name, email and password",
+      "Existing verified test account logged in, completed legacy profile and retained four record kinds",
+      "Public Observer shown in menu; shared session follows profile update and sign out",
+      "Owned Web and API servers stopped; new Turkish tab opened and refreshed from cached pack",
+      "Cached calendar selected 2026-11-01T20:28:00Z last-quarter event; Moon map computed azimuth 59.0 and altitude -5.9 degrees, below-horizon label retained",
+      "Visible app-shell data-load-state reached ready with both servers stopped",
+      "Unavailable Wikipedia source explained; private inventory not fabricated offline",
+      "General optional images prepared 88 of 88",
+      "Connection check recovered when server returned",
+      "New version waited; explicit update action reloaded successfully with no unsaved draft",
+      "Turkish menu sign out returned sign-in/register; Turkish four-field registration confirmed",
+      "Cleanup regression: older worker activation retains newer waiting cache in automated runtime test",
+      "Fixed latest pack 1eb03ce3148ea293e7e5 activated by explicit UI action, then normal /en opened with working map and matching visible pack version"
+    ],
+    "systemNetworkChanged": false,
+    "offlineMethod": "Stopped only owned API/Web, retained browser cache, opened a new tab and reloaded; Windows network remained online",
+    "osInstallPerformed": false
+  },
+  "pack": {
+    "versionAtHandoff": "1eb03ce3148ea293e7e5",
+    "coreFiles": 51,
+    "coreBytes": 4408440,
+    "optionalFiles": 88,
+    "optionalBytes": 13328329,
+    "catalogueStars": 5073,
+    "glossaryTerms": 52,
+    "calendarEvents": 2623,
+    "hashesVerifiedAtInstall": true,
+    "privateDataIncluded": false,
+    "postRscQueriesExternalCached": false,
+    "imagesOptional": true,
+    "workerAndPackServedFromActiveDistDir": true,
+    "updateRequiresExplicitActionAndSingleTab": true,
+    "twoTabBlockEvidence": "worker runtime automated test",
+    "cleanup": "Activation deletes only predecessor names captured and persisted at installation; a future waiting pack is retained"
+  },
+  "screenshots": [
+    {
+      "path": "docs/ux/pwa-account/final-pack-en.png",
+      "sha256": "79dfe71265b626e16bc88d049cdc82c7bca5f6d6a11b5cf7886bdecda96b1eea"
+    },
+    {
+      "path": "docs/ux/pwa-account/offline-map-tr.png",
+      "sha256": "3c8001ad4f6ab0a7fef2faa7d1be66fdbeb68db71a8c28ed5cd829dc212adef0"
+    },
+    {
+      "path": "docs/ux/pwa-account/register-en.png",
+      "sha256": "689229e7c9f9145ae719b258b4b8f0c7750b626a571f88663aeacb0216fb5de8"
+    },
+    {
+      "path": "docs/ux/pwa-account/signed-in-menu-en.png",
+      "sha256": "48dd3c98612830a05ca0b42a33f8c000b61fdbc530fa4f65faf48ac649698998"
+    },
+    {
+      "path": "docs/ux/pwa-account/update-ready-tr.png",
+      "sha256": "6fbc26b1e95a9288ddb07f300088b7ec4b2c150ce5b7b9c6f93fc9b0121ad041"
+    }
+  ],
+  "astronomyAlgorithmsAndReferenceDataChanged": false,
+  "realGpsOrSensorPermissionRequested": false,
+  "qaEmailMode": "Mailpit and fake; no real recipient messages",
+  "privateSmtpSecretCopied": false,
+  "limits": [
+    "No physical phone/GPS/compass/screen-reader or OS installation acceptance",
+    "No real airplane-mode or browser-wide offline simulation; own servers were stopped",
+    "No guarantee against browser storage eviction; first/no-cache visit needs connection",
+    "Personal records always require server connectivity; no offline queue",
+    "Production backup/restore, quotas/import/purge and extra calendar source validation remain open"
+  ],
+  "handoff": {
+    "url": "http://127.0.0.1:5190/en",
+    "api": "http://127.0.0.1:5187",
+    "launcher": "Start-LocalApp -EmailMode Auto; terminal remains running",
+    "email": "Private .env Gmail configuration; not used for QA sends",
+    "testAccountSignedOut": true,
+    "databaseVolumesRetained": true,
+    "browserDeliverable": "IAB tab 9, clean /en address, no QA account signed in",
+    "readyHttpStatus": 200,
+    "anonymousAccountStatus": 401,
+    "accountCacheControl": "no-store, private"
+  },
+  "archiveSha256": "6d748df5dd0777b5570401f1f5bb163b94c2d51567f55c7139b9d42fd4c7c1fc",
+  "documentation": {
+    "links": 562,
+    "FR": 12,
+    "UJ": 7,
+    "AC": 14,
+    "originalArchiveUnchanged": true
+  }
+}

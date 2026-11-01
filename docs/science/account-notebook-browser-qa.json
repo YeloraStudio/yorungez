@@ -1,0 +1,80 @@
+{
+  "date": "2026-10-31",
+  "package": "TECH-05 / K-024",
+  "environment": "IAB localhost 127.0.0.1:5199 + .NET localhost:5187 + PostgreSQL/Redis/Mailpit; synthetic account and public sample only",
+  "observations": [
+    "Anonymous My notebook shows login/register instead of personal record controls.",
+    "Two-field Turkish registration accepted; local Mailpit verification link opened; fragment removed from visible URL; explicit confirmation succeeded.",
+    "Verified login via same-origin BFF and HttpOnly cookie displayed private notebook.",
+    "Note created with all optional attachments off; server success shown. Reload and sign-out/sign-in returned the same server record.",
+    "Jupiter selected through search/card; Add to my notebook opened gated notebook; favorite saved and UI exposed only one instance.",
+    "Language changed TR to EN and back through custom selector; own note text remained unchanged.",
+    "Calendar and Tonight back buttons returned to menu; heading focus followed panel; close returned to map.",
+    "Forgot password displayed generic account-nondisclosing accepted message; UI reset-password submission not exercised.",
+    "Sign out removed the private record component and returned to anonymous gate.",
+    "Visible DOM native select/date/datetime-local count zero.",
+    "Final warning/error console list empty."
+  ],
+  "limitations": [
+    "No actual GPS/compass permission or physical mobile/screen-reader test.",
+    "Viewport override did not change observed dimensions (1478/1280 wide); screenshots are desktop, not mobile acceptance.",
+    "No real Gmail/external delivery, production deployment/load/backup-restore certification.",
+    "Outage/CSRF/cookie forwarding and database ownership/concurrency were tested at HTTP/unit/database layers; browser storage eviction not applicable to removed personal persistence.",
+    "Old experimental IndexedDB data was neither read, migrated nor deleted. No new personal browser database writes exist.",
+    "Database integration fixtures use fresh isolated test databases; developer UI account/public test records remain in local development database, signed out."
+  ],
+  "verification": {
+    "dotnet": {
+      "core": 18,
+      "astronomy": 19,
+      "api": 63,
+      "total": 100
+    },
+    "client": 35,
+    "productionBuild": "passed; final HTTP verified account action no-store/private + no-referrer and cross-origin POST 403/no-store",
+    "docs": "final link/identity/archive check recorded in report"
+  },
+  "screenshots": [
+    {
+      "path": "docs/ux/accounts/calendar-back-tr.jpg",
+      "sha256": "6bbbce76f507a56f931c78096ab54150250df77f7d44488d8ce87506b3d53196",
+      "bytes": 58194
+    },
+    {
+      "path": "docs/ux/accounts/desktop-login-en.jpg",
+      "sha256": "0519e0563b2d32a55d80b68deb918a87f039cfa4fc5dd2f429a99cfc023cf199",
+      "bytes": 41592
+    },
+    {
+      "path": "docs/ux/accounts/login-en.jpg",
+      "sha256": "d156c7c098f39360ece45ff5ffbbcaffa261cae933ece20c112b4f35cea1d1ae",
+      "bytes": 39814
+    },
+    {
+      "path": "docs/ux/accounts/login-tr.jpg",
+      "sha256": "20964e83d124bd5c15e59b901ea94085ca5e316616fcfa55b4429a92229e2248",
+      "bytes": 48600
+    },
+    {
+      "path": "docs/ux/accounts/notebook-en.jpg",
+      "sha256": "75d144a03b8fb33a0351466162a83ca12b48ec939e36d426ecf342d1e243ae09",
+      "bytes": 49552
+    },
+    {
+      "path": "docs/ux/accounts/notebook-tr.jpg",
+      "sha256": "1667b0ccceafb3ce2429d205adda07dfe013fbe86bdcd0c702d617149fd75521",
+      "bytes": 56252
+    },
+    {
+      "path": "docs/ux/accounts/tonight-back-tr.jpg",
+      "sha256": "4e1e745cac0601bac1be8bc6d6d9b4172100b39cdbbe5b45e01175939f9238ae",
+      "bytes": 59647
+    }
+  ],
+  "cleanup": {
+    "ownedServers": "stopped: API5187 and preview5199",
+    "ownedTabs": "10,11,12,13,14 closed; no deliverable tab left",
+    "viewportOverride": "reset",
+    "docker": "only yorungez compose containers stopped; volumes retained"
+  }
+}

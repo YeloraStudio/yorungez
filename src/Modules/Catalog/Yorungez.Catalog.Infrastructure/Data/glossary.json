@@ -1,0 +1,1232 @@
+[
+  {
+    "id": "azimuth",
+    "abbreviation": null,
+    "category": "coordinates",
+    "translations": {
+      "tr": {
+        "name": "Azimut",
+        "definition": "Bir gök cisminin ufuk düzlemindeki yönünü belirten açıdır. Haritada kullanılan başlangıç yönü ve açı birimiyle birlikte açıklanır.",
+        "aliases": [
+          "yatay yön",
+          "azimut"
+        ]
+      },
+      "en": {
+        "name": "Azimuth",
+        "definition": "The angle describing an object's direction along the horizon. It is interpreted using the map's stated reference direction and angular unit.",
+        "aliases": [
+          "horizontal direction"
+        ]
+      }
+    },
+    "sources": [
+      "https://aa.usno.navy.mil/faq/alt_az"
+    ]
+  },
+  {
+    "id": "altitude",
+    "abbreviation": null,
+    "category": "coordinates",
+    "translations": {
+      "tr": {
+        "name": "Ufuk yüksekliği",
+        "definition": "Bir gök cisminin ufka göre yukarıda veya aşağıda bulunduğunu belirten açıdır. Gözlem yerinin deniz seviyesinden yüksekliğiyle farklı bir büyüklüktür.",
+        "aliases": [
+          "yükseklik",
+          "irtifa açısı",
+          "yukseklik"
+        ]
+      },
+      "en": {
+        "name": "Altitude",
+        "definition": "The angle of an object above or below the horizon. It is a different quantity from the observing site's height above sea level.",
+        "aliases": [
+          "elevation angle"
+        ]
+      }
+    },
+    "sources": [
+      "https://aa.usno.navy.mil/faq/alt_az"
+    ]
+  },
+  {
+    "id": "ephemeris",
+    "abbreviation": null,
+    "category": "time",
+    "translations": {
+      "tr": {
+        "name": "Efemeris",
+        "definition": "Gök cisimlerinin belirli zamanlardaki konumlarını ve ilgili bilgileri veren tablo veya hesap verisidir. Kullanılan referans sistemi ve zaman ölçeği önemlidir.",
+        "aliases": [
+          "efemeris",
+          "konum çizelgesi"
+        ]
+      },
+      "en": {
+        "name": "Ephemeris",
+        "definition": "A table or computed data set describing celestial objects at specified times. Its reference frame and time scale are part of its interpretation.",
+        "aliases": [
+          "ephemerides"
+        ]
+      }
+    },
+    "sources": [
+      "https://ssd.jpl.nasa.gov/horizons/manual.html"
+    ]
+  },
+  {
+    "id": "astrometry",
+    "abbreviation": null,
+    "category": "coordinates",
+    "translations": {
+      "tr": {
+        "name": "Astrometri",
+        "definition": "Gök cisimlerinin konumlarını ve hareketlerini ölçen astronomi alanıdır. Harita konumlarının doğrulanmasıyla doğrudan ilişkilidir.",
+        "aliases": [
+          "konum astronomisi"
+        ]
+      },
+      "en": {
+        "name": "Astrometry",
+        "definition": "The branch of astronomy concerned with measuring celestial positions and motions. It directly informs validation of positions shown on a sky map.",
+        "aliases": []
+      }
+    },
+    "sources": [
+      "https://www.esa.int/Science_Exploration/Space_Science/Gaia/What_is_astrometry"
+    ]
+  },
+  {
+    "id": "utc",
+    "abbreviation": "UTC",
+    "category": "time",
+    "translations": {
+      "tr": {
+        "name": "Eşgüdümlü Evrensel Zaman",
+        "definition": "Zaman bilgilerinin ortak bir referansla ifade edilmesinde kullanılan zaman ölçeğidir. Kullanıcının yerel saatiyle aynı kavram değildir; astronomi hesaplarında diğer zaman ölçeklerine dönüşüm gerekebilir.",
+        "aliases": [
+          "evrensel zaman",
+          "eşgüdümlü zaman"
+        ]
+      },
+      "en": {
+        "name": "Coordinated Universal Time",
+        "definition": "A time scale used as a common reference for time information. It differs from local civil time; astronomical calculations can require conversion to other time scales.",
+        "aliases": [
+          "coordinated time"
+        ]
+      }
+    },
+    "sources": [
+      "https://www.bipm.org/en/time-metrology"
+    ]
+  },
+  {
+    "id": "gps",
+    "abbreviation": "GPS",
+    "category": "earth",
+    "translations": {
+      "tr": {
+        "name": "Küresel Konumlama Sistemi",
+        "definition": "Uydu sinyalleriyle konum belirlemeye yardımcı olan sistemdir. Tarayıcı konum bilgisi GPS yanında cihazın başka konum yöntemlerinden de gelebilir; sağlanan doğruluk ayrıca değerlendirilir.",
+        "aliases": [
+          "cihaz konumu",
+          "konumlama"
+        ]
+      },
+      "en": {
+        "name": "Global Positioning System",
+        "definition": "A satellite-based positioning system. Browser location may also use other methods available on the device; the reported accuracy is considered separately.",
+        "aliases": [
+          "device location",
+          "positioning"
+        ]
+      }
+    },
+    "sources": [
+      "https://www.gps.gov/systems/gps/",
+      "https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API"
+    ]
+  },
+  {
+    "id": "fits",
+    "abbreviation": "FITS",
+    "category": "data",
+    "translations": {
+      "tr": {
+        "name": "Esnek Görüntü Taşıma Sistemi",
+        "definition": "Astronomik görüntü, tablo ve başka bilimsel verileri açıklayıcı başlık bilgileriyle taşıyan dosya biçimidir. Açılımı Flexible Image Transport System'dır.",
+        "aliases": [
+          "astronomik dosya biçimi"
+        ]
+      },
+      "en": {
+        "name": "Flexible Image Transport System",
+        "definition": "A scientific file format for astronomical images, tables and other data, accompanied by descriptive header metadata.",
+        "aliases": [
+          "astronomical file format"
+        ]
+      }
+    },
+    "sources": [
+      "https://fits.gsfc.nasa.gov/fits_standard.html"
+    ]
+  },
+  {
+    "id": "wcs",
+    "abbreviation": "WCS",
+    "category": "coordinates",
+    "translations": {
+      "tr": {
+        "name": "Dünya Koordinat Sistemi",
+        "definition": "Görüntü piksel koordinatlarını gök koordinatları gibi fiziksel koordinatlarla ilişkilendiren dönüşüm bilgisidir. World Coordinate System ifadesindeki world yalnızca yeryüzü anlamına gelmez.",
+        "aliases": [
+          "piksel gök koordinatı",
+          "dünya koordinat sistemi"
+        ]
+      },
+      "en": {
+        "name": "World Coordinate System",
+        "definition": "Information mapping image pixels to physical coordinates such as positions on the sky. Here world coordinates are not restricted to locations on Earth.",
+        "aliases": [
+          "pixel sky coordinates"
+        ]
+      }
+    },
+    "sources": [
+      "https://fits.gsfc.nasa.gov/fits_wcs.html"
+    ]
+  },
+  {
+    "id": "adql",
+    "abbreviation": "ADQL",
+    "category": "data",
+    "translations": {
+      "tr": {
+        "name": "Astronomik Veri Sorgulama Dili",
+        "definition": "Astronomik katalogları sorgulamak için SQL tabanlı olarak tanımlanan dildir. Astronomiye özgü uzamsal işlemler içerir; her veritabanının doğrudan desteklediği varsayılmaz.",
+        "aliases": [
+          "katalog sorgusu"
+        ]
+      },
+      "en": {
+        "name": "Astronomical Data Query Language",
+        "definition": "A SQL-based language defined for querying astronomical data. It includes astronomy-specific spatial operations and is not assumed to be directly supported by every database.",
+        "aliases": [
+          "catalog query"
+        ]
+      }
+    },
+    "sources": [
+      "https://www.ivoa.net/documents/ADQL/"
+    ]
+  },
+  {
+    "id": "tap",
+    "abbreviation": "TAP",
+    "category": "data",
+    "translations": {
+      "tr": {
+        "name": "Tablo Erişim Protokolü",
+        "definition": "Astronomik kataloglar dahil tablo verilerine ve tablo açıklamalarına servis üzerinden erişmek için tanımlanan protokoldür. ADQL sorguları desteklenen erişim biçimlerinden biridir.",
+        "aliases": [
+          "tablo servisi"
+        ]
+      },
+      "en": {
+        "name": "Table Access Protocol",
+        "definition": "A protocol for accessing table data and metadata through a service, including astronomical catalogs. ADQL queries are one supported form of access.",
+        "aliases": [
+          "table service"
+        ]
+      }
+    },
+    "sources": [
+      "https://www.ivoa.net/documents/TAP/"
+    ]
+  },
+  {
+    "id": "hips",
+    "abbreviation": "HiPS",
+    "category": "data",
+    "translations": {
+      "tr": {
+        "name": "Hiyerarşik İlerlemeli Taramalar",
+        "definition": "Gökyüzü tarama verilerinin farklı yakınlaştırma düzeylerinde parça parça sunulmasına yönelik çok çözünürlüklü düzendir. Açılımı Hierarchical Progressive Surveys'dir.",
+        "aliases": [
+          "gökyüzü taraması"
+        ]
+      },
+      "en": {
+        "name": "Hierarchical Progressive Surveys",
+        "definition": "A multiresolution scheme for progressively serving sky survey data at different zoom levels.",
+        "aliases": [
+          "sky surveys"
+        ]
+      }
+    },
+    "sources": [
+      "https://www.ivoa.net/documents/HiPS/"
+    ]
+  },
+  {
+    "id": "healpix",
+    "abbreviation": "HEALPix",
+    "category": "data",
+    "translations": {
+      "tr": {
+        "name": "Eş Alanlı Küresel Hücreleme",
+        "definition": "Küreyi hiyerarşik ve eş alanlı hücrelere ayıran yöntemdir. Açılımı Hierarchical Equal Area isoLatitude Pixelization'dır; büyük gökyüzü verilerini bölmek ve indekslemek için değerlendirilir.",
+        "aliases": [
+          "küresel hücreleme"
+        ]
+      },
+      "en": {
+        "name": "Hierarchical Equal Area isoLatitude Pixelization",
+        "definition": "A hierarchical, equal-area pixelization of the sphere, useful for partitioning and indexing large sky data sets.",
+        "aliases": [
+          "spherical pixelization"
+        ]
+      }
+    },
+    "sources": [
+      "https://healpix.sourceforge.io/"
+    ]
+  },
+  {
+    "id": "q3c",
+    "abbreviation": "Q3C",
+    "category": "data",
+    "translations": {
+      "tr": {
+        "name": "Küre Üzerinde Hızlı Sorgulama",
+        "definition": "PostgreSQL üzerinde gök koordinatları gibi küresel konumlar için hızlı bölge ve eşleştirme sorguları sağlayan uzantıdır. İleri katalog sorgulama ihtiyacı oluştuğunda değerlendirilir.",
+        "aliases": [
+          "koni araması"
+        ]
+      },
+      "en": {
+        "name": "Quad Tree Cube",
+        "definition": "A PostgreSQL extension for fast spatial querying and cross-matching of positions on a sphere, considered when advanced catalog queries are needed.",
+        "aliases": [
+          "cone search"
+        ]
+      }
+    },
+    "sources": [
+      "https://github.com/segasai/q3c"
+    ]
+  },
+  {
+    "id": "pgsphere",
+    "abbreviation": "pgSphere",
+    "category": "data",
+    "translations": {
+      "tr": {
+        "name": "PostgreSQL Küresel Geometri Uzantısı",
+        "definition": "PostgreSQL'e küre üzerindeki geometrik nesneler ve işlemler ekleyen uzantıdır. Göksel koordinat sorguları için değerlendirilebilir; gezegen efemerisi hesaplama motoru değildir.",
+        "aliases": [
+          "küresel geometri"
+        ]
+      },
+      "en": {
+        "name": "PostgreSQL Spherical Geometry Extension",
+        "definition": "An extension adding spherical objects and operations to PostgreSQL. It can support celestial-coordinate queries, but is not a planetary ephemeris engine.",
+        "aliases": [
+          "spherical geometry"
+        ]
+      }
+    },
+    "sources": [
+      "https://pgsphere.github.io/"
+    ]
+  },
+  {
+    "id": "postgis",
+    "abbreviation": "PostGIS",
+    "category": "earth",
+    "translations": {
+      "tr": {
+        "name": "PostgreSQL Coğrafi Veri Uzantısı",
+        "definition": "Coğrafi verileri saklama, indeksleme ve sorgulama yetenekleri ekler. Yorungez'de ileride Dünya üzerindeki gözlem alanları veya çevresel analizlerde değerlendirilebilir; temel gökyüzü hesabının gereksinimi değildir.",
+        "aliases": [
+          "coğrafi bilgi sistemi",
+          "GIS"
+        ]
+      },
+      "en": {
+        "name": "PostgreSQL Geospatial Extension",
+        "definition": "Adds storage, indexing and querying of geospatial data. Yorungez can consider it for future observing-site and environmental analysis on Earth; core sky calculations do not require it.",
+        "aliases": [
+          "geographic information system",
+          "GIS"
+        ]
+      }
+    },
+    "sources": [
+      "https://postgis.net/"
+    ]
+  },
+  {
+    "id": "light-pollution",
+    "abbreviation": null,
+    "category": "earth",
+    "translations": {
+      "tr": {
+        "name": "Işık kirliliği",
+        "definition": "Yapay ışığın gece ortamını ve gökyüzünün görünüşünü etkilemesidir. Gözlem koşullarını etkileyebilir; bir gök cisminin geometrik olarak ufkun üzerinde bulunmasından ayrı değerlendirilir.",
+        "aliases": [
+          "gökyüzü parlaklığı"
+        ]
+      },
+      "en": {
+        "name": "Light pollution",
+        "definition": "The effect of artificial light on the night environment and the appearance of the sky. It can affect observing conditions and is assessed separately from whether an object is geometrically above the horizon.",
+        "aliases": [
+          "sky glow"
+        ]
+      }
+    },
+    "sources": [
+      "https://darksky.org/resources/what-is-light-pollution/"
+    ]
+  },
+  {
+    "id": "topocentric",
+    "abbreviation": null,
+    "category": "coordinates",
+    "translations": {
+      "tr": {
+        "name": "Gözlemci merkezli konum",
+        "definition": "Gökcisminin konumunu Dünya merkezinden değil, seçili gözlem noktasından hesaplamaktır. Özellikle yakındaki Ay için gözlemci konumu sonucu etkiler.",
+        "aliases": [
+          "toposentrik",
+          "topocentric"
+        ]
+      },
+      "en": {
+        "name": "Topocentric position",
+        "definition": "A position calculated for the selected observing site rather than the centre of Earth. Observer location is especially relevant for nearby objects such as the Moon.",
+        "aliases": [
+          "observer-centred"
+        ]
+      }
+    },
+    "sources": [
+      "https://github.com/cosinekitty/astronomy/blob/v2.1.19/source/csharp/README.md#Astronomy.Equator"
+    ]
+  },
+  {
+    "id": "refraction",
+    "abbreviation": null,
+    "category": "coordinates",
+    "translations": {
+      "tr": {
+        "name": "Atmosferik kırılma",
+        "definition": "Işığın atmosferde yön değiştirmesi nedeniyle gökcisminin görünen yüksekliğinin değişmesidir. Standart atmosfer modeli gerçek hava ölçümü değildir; etki ufuk yakınında daha önemlidir.",
+        "aliases": [
+          "kırılma",
+          "atmospheric refraction"
+        ]
+      },
+      "en": {
+        "name": "Atmospheric refraction",
+        "definition": "Bending of light in the atmosphere changes an object's apparent altitude. A standard-atmosphere model is not a measurement of actual weather; the effect matters especially near the horizon.",
+        "aliases": [
+          "refraction"
+        ]
+      }
+    },
+    "sources": [
+      "https://github.com/cosinekitty/astronomy/blob/v2.1.19/source/csharp/README.md#Astronomy.Horizon"
+    ]
+  },
+  {
+    "id": "right-ascension",
+    "abbreviation": "RA",
+    "category": "coordinates",
+    "translations": {
+      "tr": {
+        "name": "Sağ açıklık",
+        "definition": "Göksel ekvator boyunca ölçülen konum koordinatıdır; çoğunlukla saat birimiyle ifade edilir. Dünya üzerindeki boylamla karıştırılmaz; kullanılan referans çerçevesi ve tarih belirtilmelidir.",
+        "aliases": [
+          "sağ yükselim",
+          "right ascension"
+        ]
+      },
+      "en": {
+        "name": "Right ascension",
+        "definition": "A position coordinate measured along the celestial equator, commonly expressed in hours. It is distinct from terrestrial longitude; its reference frame and epoch must be specified.",
+        "aliases": [
+          "RA"
+        ]
+      }
+    },
+    "sources": [
+      "https://ssd.jpl.nasa.gov/horizons/manual.html"
+    ]
+  },
+  {
+    "id": "declination",
+    "abbreviation": "Dec",
+    "category": "coordinates",
+    "translations": {
+      "tr": {
+        "name": "Dik açıklık",
+        "definition": "Gökcisminin göksel ekvatorun kuzeyinde veya güneyinde hangi açıda olduğunu belirten koordinattır. Dereceyle ifade edilir; Dünya enlemiyle aynı veri değildir.",
+        "aliases": [
+          "deklinasyon",
+          "declination"
+        ]
+      },
+      "en": {
+        "name": "Declination",
+        "definition": "The angular coordinate north or south of the celestial equator, expressed in degrees. It is not the same datum as an observing site's terrestrial latitude.",
+        "aliases": [
+          "Dec"
+        ]
+      }
+    },
+    "sources": [
+      "https://ssd.jpl.nasa.gov/horizons/manual.html"
+    ]
+  },
+  {
+    "id": "arcminute",
+    "abbreviation": null,
+    "category": "coordinates",
+    "translations": {
+      "tr": {
+        "name": "Yay dakikası",
+        "definition": "Bir derecenin altmışta biridir. Açısal uzaklık ve farkları anlatır; zaman dakikası değildir. Bir yay dakikası da altmış yay saniyesine ayrılır.",
+        "aliases": [
+          "açı dakikası",
+          "arcmin"
+        ]
+      },
+      "en": {
+        "name": "Arcminute",
+        "definition": "One sixtieth of a degree, used for angular sizes, distances and differences. It is not a minute of time. One arcminute contains sixty arcseconds.",
+        "aliases": [
+          "arcmin"
+        ]
+      }
+    },
+    "sources": [
+      "https://physics.nist.gov/cuu/Units/outside.html"
+    ]
+  },
+  {
+    "id": "magnitude",
+    "abbreviation": null,
+    "category": "data",
+    "translations": {
+      "tr": {
+        "name": "Görünür kadir",
+        "definition": "Bir gökcisminin bize ne kadar parlak göründüğünü anlatan ölçektir. Daha küçük, hatta negatif değerler daha parlak hedefleri belirtir; hava koşullarını veya çıplak gözle seçilebilmeyi tek başına belirlemez.",
+        "aliases": [
+          "kadir",
+          "parlaklık"
+        ]
+      },
+      "en": {
+        "name": "Apparent magnitude",
+        "definition": "A scale describing how bright an object appears to us. Smaller, including negative, values mean brighter objects; the number alone does not determine weather or naked-eye visibility.",
+        "aliases": []
+      }
+    },
+    "sources": [
+      "https://imagine.gsfc.nasa.gov/resources/dictionary.html"
+    ]
+  },
+  {
+    "id": "j2000",
+    "abbreviation": "J2000.0",
+    "category": "coordinates",
+    "translations": {
+      "tr": {
+        "name": "J2000.0 referansı",
+        "definition": "Gök koordinatlarını ve katalog başlangıç anını yorumlamak için kullanılan standart bir referanstır. Bu katalogda başlangıç J2000.0 iken harita seçili ana göre yeniden hesaplanır.",
+        "aliases": [
+          "epoch",
+          "çağ"
+        ]
+      },
+      "en": {
+        "name": "J2000.0 reference",
+        "definition": "A standard reference used to interpret celestial coordinates and catalogue epochs. This catalogue starts at J2000.0 while the sky map is recalculated for the selected instant.",
+        "aliases": []
+      }
+    },
+    "sources": [
+      "https://docs.astropy.org/en/stable/coordinates/apply_space_motion.html"
+    ]
+  },
+  {
+    "id": "proper-motion",
+    "abbreviation": null,
+    "category": "coordinates",
+    "translations": {
+      "tr": {
+        "name": "Özdevinim",
+        "definition": "Bir yıldızın uzak yıldızlara göre gökyüzündeki konumunun yıllar içinde değişmesidir. Katalog konumunu başka bir yıla taşırken hesaba katılır.",
+        "aliases": [
+          "öz hareket",
+          "space motion"
+        ]
+      },
+      "en": {
+        "name": "Proper motion",
+        "definition": "The change in a star’s sky position relative to distant stars over time. It is included when carrying a catalogue position to another year.",
+        "aliases": []
+      }
+    },
+    "sources": [
+      "https://docs.astropy.org/en/stable/coordinates/apply_space_motion.html"
+    ]
+  },
+  {
+    "id": "parallax",
+    "abbreviation": null,
+    "category": "coordinates",
+    "translations": {
+      "tr": {
+        "name": "Paralaks",
+        "definition": "Bakış noktasının değişmesiyle bir gökcisminin görünen konumunun kaymasıdır. Yakındaki yıldızlarda Dünya’nın yıllık hareketi küçük bir konum değişimi oluşturur.",
+        "aliases": [
+          "ıraklık açısı"
+        ]
+      },
+      "en": {
+        "name": "Parallax",
+        "definition": "An apparent positional shift caused by a change of viewpoint. Earth’s annual motion produces a small shift for nearby stars.",
+        "aliases": []
+      }
+    },
+    "sources": [
+      "https://imagine.gsfc.nasa.gov/resources/dictionary.html"
+    ]
+  },
+  {
+    "id": "aberration",
+    "abbreviation": null,
+    "category": "coordinates",
+    "translations": {
+      "tr": {
+        "name": "Işık aberasyonu",
+        "definition": "Gözlemcinin hareketi ile ışığın sonlu hızının birleşmesi nedeniyle gökcisminin görünen yönünde oluşan küçük değişimdir. Yıldızın kendi özdeviniminden farklıdır.",
+        "aliases": [
+          "yıllık aberasyon"
+        ]
+      },
+      "en": {
+        "name": "Aberration of light",
+        "definition": "A small change of apparent direction caused by observer motion combined with the finite speed of light. It is distinct from the star’s own proper motion.",
+        "aliases": []
+      }
+    },
+    "sources": [
+      "https://imagine.gsfc.nasa.gov/resources/dictionary.html"
+    ]
+  },
+  {
+    "id": "constellation",
+    "abbreviation": null,
+    "category": "data",
+    "translations": {
+      "tr": {
+        "name": "Takımyıldız",
+        "definition": "Gökyüzünün adlandırılmış bölgelerinden biridir. Çizgiyle birleştirilen yıldız şekilleri öğrenmeyi kolaylaştıran şemalardır; yıldızlar uzayda birbirine yakın olmak zorunda değildir.",
+        "aliases": [
+          "takım yıldız"
+        ]
+      },
+      "en": {
+        "name": "Constellation",
+        "definition": "A named region of the sky. Connected-star figures are schematic aids; their stars need not be near each other in physical space.",
+        "aliases": []
+      }
+    },
+    "sources": [
+      "https://imagine.gsfc.nasa.gov/resources/dictionary.html"
+    ]
+  },
+  {
+    "id": "light-year",
+    "abbreviation": null,
+    "category": "data",
+    "translations": {
+      "tr": {
+        "name": "Işık yılı",
+        "definition": "Işığın boşlukta bir Julian yılda aldığı uzaklıktır. Zaman değil uzaklık birimidir; yaklaşık 9,46 trilyon kilometreye karşılık gelir.",
+        "aliases": [
+          "ışık senesi",
+          "ly"
+        ]
+      },
+      "en": {
+        "name": "Light-year",
+        "definition": "The distance light travels in vacuum in one Julian year. It is a distance unit, not a duration, equal to about 9.46 trillion kilometres.",
+        "aliases": []
+      }
+    },
+    "sources": [
+      "https://imagine.gsfc.nasa.gov/resources/dictionary.html"
+    ]
+  },
+  {
+    "id": "astronomical-unit",
+    "abbreviation": "AU / AB",
+    "category": "coordinates",
+    "translations": {
+      "tr": {
+        "name": "Astronomik birim",
+        "definition": "Dünya ile Güneş arasındaki uzaklığı anlatmakta kullanılan uzunluk birimidir. Tanımlı değeri tam olarak 149.597.870.700 metredir; anlık Dünya–Güneş uzaklığı bu değere her zaman eşit değildir.",
+        "aliases": [
+          "Astronomik birim",
+          "AU / AB"
+        ]
+      },
+      "en": {
+        "name": "Astronomical unit",
+        "definition": "A length unit useful for Solar System distances, defined as exactly 149,597,870,700 metres. The instantaneous Earth–Sun distance is not always one astronomical unit.",
+        "aliases": [
+          "Astronomical unit",
+          "AU / AB"
+        ]
+      }
+    },
+    "sources": [
+      "https://www.iau.org/public/themes/measuring/"
+    ]
+  },
+  {
+    "id": "iana-time-zone",
+    "abbreviation": "IANA",
+    "category": "time",
+    "translations": {
+      "tr": {
+        "name": "IANA saat dilimi",
+        "definition": "Europe/Istanbul gibi bir bölge kimliğidir. O bölgenin tarihe bağlı UTC ofsetini ve yaz/kış saati kurallarını seçer. Sabit GMT ofsetinden farklıdır.",
+        "aliases": [
+          "IANA saat dilimi",
+          "IANA"
+        ]
+      },
+      "en": {
+        "name": "IANA time zone",
+        "definition": "A regional identifier such as Europe/Istanbul. It selects date-dependent UTC offsets and daylight-saving rules, unlike a fixed GMT offset.",
+        "aliases": [
+          "IANA time zone",
+          "IANA"
+        ]
+      }
+    },
+    "sources": [
+      "https://www.iana.org/time-zones"
+    ]
+  },
+  {
+    "id": "local-time",
+    "abbreviation": null,
+    "category": "time",
+    "translations": {
+      "tr": {
+        "name": "Yerel saat",
+        "definition": "Aynı UTC anının seçilen bölgenin saat dilimi kurallarıyla gösterimidir. Bölge veya dil değişimi olayın gerçek anını değiştirmez. Yaz/kış saati geçişinde bazı saatler oluşmayabilir veya iki kez oluşabilir.",
+        "aliases": [
+          "Yerel saat"
+        ]
+      },
+      "en": {
+        "name": "Local time",
+        "definition": "The display of a UTC instant using a selected region's time-zone rules. Changing region or language preserves the actual instant. Daylight-saving changes can skip or repeat local clock times.",
+        "aliases": [
+          "Local time"
+        ]
+      }
+    },
+    "sources": [
+      "https://tc39.es/proposal-temporal/docs/zoneddatetime.html"
+    ]
+  },
+  {
+    "id": "location-accuracy",
+    "abbreviation": null,
+    "category": "earth",
+    "translations": {
+      "tr": {
+        "name": "Konum doğruluğu",
+        "definition": "Cihazın bildirdiği konum belirsizliğidir; metre cinsinden saklanır ve ölçüm zamanı ile değerlendirilir. Koordinattaki ondalık basamak sayısı veya haritada nokta seçmek fiziksel ölçüm doğruluğunu garanti etmez.",
+        "aliases": [
+          "Konum doğruluğu"
+        ]
+      },
+      "en": {
+        "name": "Location accuracy",
+        "definition": "The device-reported positional uncertainty, retained in metres with its measurement time. More decimal digits or manually picking a map point do not guarantee better physical accuracy.",
+        "aliases": [
+          "Location accuracy"
+        ]
+      }
+    },
+    "sources": [
+      "https://www.w3.org/TR/geolocation/"
+    ]
+  },
+  {
+    "id": "equatorial-grid",
+    "abbreviation": null,
+    "category": "coordinates",
+    "translations": {
+      "tr": {
+        "name": "Ekvatoral ızgara",
+        "definition": "Gök ekvatoruna dayanan sağ açıklık ve dik açıklık çizgileridir. Yorungez'da bu katman J2000 referansını kullanır ve gözlem konumu ile ana göre yatay görünüşe dönüştürülür.",
+        "aliases": [
+          "Ekvatoral ızgara"
+        ]
+      },
+      "en": {
+        "name": "Equatorial grid",
+        "definition": "Lines of right ascension and declination based on the celestial equator. Yorungez uses a J2000 grid transformed into the horizontal view for the observer and instant.",
+        "aliases": [
+          "Equatorial grid"
+        ]
+      }
+    },
+    "sources": [
+      "https://www.iau.org/public/themes/measuring/"
+    ]
+  },
+  {
+    "id": "azimuthal-grid",
+    "abbreviation": null,
+    "category": "coordinates",
+    "translations": {
+      "tr": {
+        "name": "Azimutal ızgara",
+        "definition": "Gözlemciye göre yön ve ufuk yüksekliği çizgileridir. Azimut kuzeyden başlayıp doğuya doğru artar; ufuk yüksekliği matematiksel ufuktan ölçülür.",
+        "aliases": [
+          "Azimutal ızgara"
+        ]
+      },
+      "en": {
+        "name": "Azimuthal grid",
+        "definition": "Lines of direction and altitude relative to the observer. Azimuth starts at north and increases toward east; altitude is measured from the mathematical horizon.",
+        "aliases": [
+          "Azimuthal grid"
+        ]
+      }
+    },
+    "sources": [
+      "https://aa.usno.navy.mil/faq/alt_az"
+    ]
+  },
+  {
+    "id": "deep-sky-object",
+    "abbreviation": "DSO",
+    "category": "data",
+    "translations": {
+      "tr": {
+        "name": "Derin uzay cismi",
+        "definition": "Güneş Sistemi dışındaki galaksi, yıldız kümesi ve bulutsu gibi hedefler için kullanılan genel addır. Haritada işaretlenmesi çıplak gözle görülebileceği anlamına gelmez.",
+        "aliases": [
+          "Derin uzay cismi",
+          "DSO"
+        ]
+      },
+      "en": {
+        "name": "Deep-sky object",
+        "definition": "A general term for targets such as galaxies, star clusters and nebulae outside the Solar System. A map marker does not imply naked-eye visibility.",
+        "aliases": [
+          "Deep-sky object",
+          "DSO"
+        ]
+      }
+    },
+    "sources": [
+      "https://science.nasa.gov/mission/hubble/science/messier-catalog/"
+    ]
+  },
+  {
+    "id": "constellation-art",
+    "abbreviation": null,
+    "category": "data",
+    "translations": {
+      "tr": {
+        "name": "Takımyıldız çizimi",
+        "definition": "Takımyıldızlarla ilişkilendirilen kültürel figürün resmidir. Bir gökcismi fotoğrafı veya IAU bölge sınırı değildir; yıldızların konumuna bağlanarak çizilir.",
+        "aliases": [
+          "Takımyıldız çizimi"
+        ]
+      },
+      "en": {
+        "name": "Constellation art",
+        "definition": "An illustration of a cultural figure associated with a constellation. It is neither a celestial photograph nor an IAU boundary; it is anchored to star positions.",
+        "aliases": [
+          "Constellation art"
+        ]
+      }
+    },
+    "sources": [
+      "https://stellarium.org/skycultures.html"
+    ]
+  },
+  {
+    "id": "atmosphere",
+    "abbreviation": null,
+    "category": "earth",
+    "translations": {
+      "tr": {
+        "name": "Atmosfer",
+        "definition": "Bir gezegeni saran gaz tabakasıdır; Dünya'da gün ışığının saçılmasına katkıda bulunur. Bu uygulamadaki atmosfer katmanı görsel bir gündüz/gece simülasyonudur, ölçülmüş hava koşulu değildir.",
+        "aliases": [
+          "Atmosfer"
+        ]
+      },
+      "en": {
+        "name": "Atmosphere",
+        "definition": "The layer of gas around a planet; on Earth it scatters daylight. This application's atmosphere layer is a day/night visual simulation, not measured weather.",
+        "aliases": [
+          "Atmosphere"
+        ]
+      }
+    },
+    "sources": [
+      "https://science.nasa.gov/earth/earth-atmosphere/"
+    ]
+  },
+  {
+    "id": "landscape",
+    "abbreviation": null,
+    "category": "earth",
+    "translations": {
+      "tr": {
+        "name": "Temsili arazi",
+        "definition": "Gözlemcinin ufuk ve yer duygusunu destekleyen görsel manzaradır. Buradaki açık alan gerçek konumun topografyası veya çevresel engel ölçümü değildir; göksel hesapları değiştirmez.",
+        "aliases": [
+          "Temsili arazi"
+        ]
+      },
+      "en": {
+        "name": "Illustrative landscape",
+        "definition": "A visual landscape supporting the observer's sense of ground and horizon. This open field is not measured terrain or obstacles at the real location and does not change celestial calculations.",
+        "aliases": [
+          "Illustrative landscape"
+        ]
+      }
+    },
+    "sources": [
+      "https://stellarium.org/guide/"
+    ]
+  },
+  {
+    "id": "gmt",
+    "abbreviation": "GMT",
+    "category": "time",
+    "translations": {
+      "tr": {
+        "name": "Greenwich Ortalama Zamanı",
+        "definition": "Greenwich meridyenine bağlı tarihsel zaman adıdır. Saat dilimi gösteriminde GMT+03:00 gibi bir ofset etiketi olarak da kullanılır. Astronomik hesapta bu etiket UTC anı, UT1 veya TT ölçeklerini birbirinin yerine geçirmez.",
+        "aliases": [
+          "Greenwich Ortalama Zamanı",
+          "GMT"
+        ]
+      },
+      "en": {
+        "name": "Greenwich Mean Time",
+        "definition": "A historical time name associated with the Greenwich meridian, also used in offset labels such as GMT+03:00. In astronomy this display label does not make UTC instants, UT1 and TT interchangeable.",
+        "aliases": [
+          "Greenwich Mean Time",
+          "GMT"
+        ]
+      }
+    },
+    "sources": [
+      "https://www.rmg.co.uk/stories/topics/what-greenwich-mean-time-gmt"
+    ]
+  },
+  {
+    "id": "compass",
+    "abbreviation": null,
+    "category": "coordinates",
+    "translations": {
+      "tr": {
+        "name": "Pusula",
+        "definition": "Dünya’nın manyetik alanından veya cihazın yön sensörlerinden yön bilgisi sağlayan araçtır. Bildirdiği kuzey, haritadaki coğrafi kuzeyle aynı olmayabilir.",
+        "aliases": []
+      },
+      "en": {
+        "name": "Compass",
+        "definition": "A tool that obtains a heading from Earth’s magnetic field or device orientation sensors. Its north reference may differ from geographic north.",
+        "aliases": []
+      }
+    },
+    "sources": [
+      "https://www.ncei.noaa.gov/products/world-magnetic-model",
+      "https://www.w3.org/TR/orientation-event/"
+    ]
+  },
+  {
+    "id": "true-north",
+    "abbreviation": null,
+    "category": "coordinates",
+    "translations": {
+      "tr": {
+        "name": "Gerçek kuzey",
+        "definition": "Dünya’nın dönüş ekseninin kuzey ucuna, yani coğrafi Kuzey Kutbu’na yönelen doğrultudur. Gökyüzü haritasındaki azimut bu kuzeyden başlar.",
+        "aliases": []
+      },
+      "en": {
+        "name": "True north",
+        "definition": "The direction toward the geographic North Pole, at the northern end of Earth’s rotation axis. The sky map measures azimuth from this north.",
+        "aliases": []
+      }
+    },
+    "sources": [
+      "https://www.ncei.noaa.gov/products/world-magnetic-model",
+      "https://www.w3.org/TR/orientation-event/"
+    ]
+  },
+  {
+    "id": "magnetic-north",
+    "abbreviation": null,
+    "category": "coordinates",
+    "translations": {
+      "tr": {
+        "name": "Manyetik kuzey",
+        "definition": "Pusulanın yerel manyetik alana göre gösterdiği kuzey yönüdür. Coğrafi kuzeyden farkı konuma ve zamana göre değişebilir; bu fark otomatik düzeltilmiş varsayılmaz.",
+        "aliases": []
+      },
+      "en": {
+        "name": "Magnetic north",
+        "definition": "The north direction indicated by a compass following the local magnetic field. Its difference from geographic north varies with place and time and must not be assumed corrected.",
+        "aliases": []
+      }
+    },
+    "sources": [
+      "https://www.ncei.noaa.gov/products/world-magnetic-model",
+      "https://www.w3.org/TR/orientation-event/"
+    ]
+  },
+  {
+    "id": "compass-calibration",
+    "abbreviation": null,
+    "category": "coordinates",
+    "translations": {
+      "tr": {
+        "name": "Pusula kalibrasyonu",
+        "definition": "Yön ölçümündeki sapmayı değerlendirme ve düzeltme işlemidir. Cihazın sensör kalibrasyonu ile haritaya bilinen gerçek yönden hizalama farklıdır; hizalama hata payını sıfırlamaz.",
+        "aliases": []
+      },
+      "en": {
+        "name": "Compass calibration",
+        "definition": "The process of assessing and correcting a heading offset. Device sensor calibration and alignment to a known true map direction are different; alignment does not remove measurement uncertainty.",
+        "aliases": []
+      }
+    },
+    "sources": [
+      "https://www.ncei.noaa.gov/products/world-magnetic-model",
+      "https://www.w3.org/TR/orientation-event/"
+    ]
+  },
+  {
+    "id": "rise-set",
+    "abbreviation": null,
+    "category": "time",
+    "translations": {
+      "tr": {
+        "name": "Doğuş ve batış",
+        "definition": "Bir cismin tanımlanan ufuk sınırından yükselerek veya alçalarak geçişidir. Bu çizelge standart atmosfer kırılması ve Güneş/Ay için üst kenarı kullanır; yerel dağ, bina ve hava koşulları hesaba katılmaz.",
+        "aliases": []
+      },
+      "en": {
+        "name": "Rise and set",
+        "definition": "The upward or downward crossing of a defined horizon. This timeline uses standard atmospheric refraction and the Sun/Moon upper limb; local mountains, buildings and weather are not evaluated.",
+        "aliases": []
+      }
+    },
+    "sources": [
+      "https://aa.usno.navy.mil/data/",
+      "https://github.com/cosinekitty/astronomy/tree/v2.1.19"
+    ]
+  },
+  {
+    "id": "moon-phase",
+    "abbreviation": null,
+    "category": "time",
+    "translations": {
+      "tr": {
+        "name": "Ay evresi",
+        "definition": "Ay’ın Güneş’ten aldığı ışığın Dünya’dan nasıl göründüğünü anlatır. Yeni Ay, ilk dördün, dolunay ve son dördün temel evrelerdir; evre zamanı her konum için aynı andır, ufuk üstünde olup olmaması ise konuma bağlıdır.",
+        "aliases": []
+      },
+      "en": {
+        "name": "Moon phase",
+        "definition": "How the sunlit Moon appears from Earth. New Moon, first quarter, full Moon and last quarter are primary phases; a phase instant is global, while being above the horizon depends on location.",
+        "aliases": []
+      }
+    },
+    "sources": [
+      "https://aa.usno.navy.mil/data/",
+      "https://github.com/cosinekitty/astronomy/tree/v2.1.19"
+    ]
+  },
+  {
+    "id": "opposition",
+    "abbreviation": null,
+    "category": "time",
+    "translations": {
+      "tr": {
+        "name": "Karşı konum",
+        "definition": "Bir dış gezegenin Dünya’dan bakıldığında göksel boylam bakımından Güneş’in karşı yönünde bulunmasıdır. Bu tarih tek başına hava koşulunu veya çıplak gözle görülebilirliği belirlemez.",
+        "aliases": []
+      },
+      "en": {
+        "name": "Opposition",
+        "definition": "A superior planet lying opposite the Sun in ecliptic longitude as viewed from Earth. The date alone does not establish weather conditions or naked-eye visibility.",
+        "aliases": []
+      }
+    },
+    "sources": [
+      "https://aa.usno.navy.mil/data/",
+      "https://github.com/cosinekitty/astronomy/tree/v2.1.19"
+    ]
+  },
+  {
+    "id": "conjunction",
+    "abbreviation": null,
+    "category": "time",
+    "translations": {
+      "tr": {
+        "name": "Kavuşum",
+        "definition": "Gökcisimlerinin tanımlanan göksel doğrultu veya boylamda aynı hizaya gelmesidir. İç gezegenlerde alt ve üst kavuşum ayrılır; gökyüzünde fiziksel olarak birbirlerine dokundukları anlamına gelmez.",
+        "aliases": []
+      },
+      "en": {
+        "name": "Conjunction",
+        "definition": "Alignment at a defined celestial direction or longitude. Inferior and superior conjunctions are distinguished for inner planets; alignment does not mean physical contact.",
+        "aliases": []
+      }
+    },
+    "sources": [
+      "https://aa.usno.navy.mil/data/",
+      "https://github.com/cosinekitty/astronomy/tree/v2.1.19"
+    ]
+  },
+  {
+    "id": "elongation",
+    "abbreviation": null,
+    "category": "time",
+    "translations": {
+      "tr": {
+        "name": "Uzanım",
+        "definition": "Bir gökcisminin Dünya’dan bakıldığında Güneş’ten açısal uzaklığıdır. Merkür ve Venüs’ün en büyük uzanımları takvimde hesaplanan olaylardır; görülebilirlik ayrıca konum ve koşullara bağlıdır.",
+        "aliases": []
+      },
+      "en": {
+        "name": "Elongation",
+        "definition": "The angular separation of an object from the Sun as seen from Earth. Greatest elongations of Mercury and Venus are calculated calendar events; observability still depends on location and conditions.",
+        "aliases": []
+      }
+    },
+    "sources": [
+      "https://aa.usno.navy.mil/data/",
+      "https://github.com/cosinekitty/astronomy/tree/v2.1.19"
+    ]
+  },
+  {
+    "id": "equinox",
+    "abbreviation": null,
+    "category": "time",
+    "translations": {
+      "tr": {
+        "name": "Ekinoks",
+        "definition": "Güneş’in görünen yolunun gök ekvatorunu geçtiği andır. Mart ve eylül ekinoksları küresel anlardır; mevsimin adı yarımküreye göre değişir.",
+        "aliases": []
+      },
+      "en": {
+        "name": "Equinox",
+        "definition": "The instant when the Sun’s apparent path crosses the celestial equator. March and September equinoxes are global instants; the seasonal name depends on hemisphere.",
+        "aliases": []
+      }
+    },
+    "sources": [
+      "https://aa.usno.navy.mil/data/",
+      "https://github.com/cosinekitty/astronomy/tree/v2.1.19"
+    ]
+  },
+  {
+    "id": "solstice",
+    "abbreviation": null,
+    "category": "time",
+    "translations": {
+      "tr": {
+        "name": "Gündönümü",
+        "definition": "Güneş’in gök ekvatoruna göre en kuzey veya en güney konuma ulaştığı andır. Haziran ve aralık gündönümlerinin yaz/kış karşılığı yarımküreye göre değişir.",
+        "aliases": []
+      },
+      "en": {
+        "name": "Solstice",
+        "definition": "The instant when the Sun reaches its northernmost or southernmost position relative to the celestial equator. The summer/winter meaning of June and December solstices depends on hemisphere.",
+        "aliases": []
+      }
+    },
+    "sources": [
+      "https://aa.usno.navy.mil/data/",
+      "https://github.com/cosinekitty/astronomy/tree/v2.1.19"
+    ]
+  },
+  {
+    "id": "twilight",
+    "abbreviation": null,
+    "category": "time",
+    "translations": {
+      "tr": {
+        "name": "Alacakaranlık",
+        "definition": "Güneş ufkun altındayken atmosferin hâlâ aydınlandığı dönemdir. Farklı alacakaranlık türleri Güneş merkezinin ufuktan ne kadar aşağıda olduğuyla tanımlanır; gündüz ışığıyla karıştırılmaz.",
+        "aliases": []
+      },
+      "en": {
+        "name": "Twilight",
+        "definition": "The period when the atmosphere remains illuminated while the Sun is below the horizon. Different twilight types are defined by the Sun’s centre depression below the horizon.",
+        "aliases": []
+      }
+    },
+    "sources": [
+      "https://aa.usno.navy.mil/data/",
+      "https://github.com/cosinekitty/astronomy/tree/v2.1.19"
+    ]
+  },
+  {
+    "id": "ellipsoidal-height",
+    "abbreviation": null,
+    "category": "earth",
+    "translations": {
+      "tr": {
+        "name": "Elipsoidal yükseklik",
+        "definition": "Bir noktanın, Dünya için kullanılan referans elipsoidine göre metre cinsinden yüksekliğidir. Ortalama deniz seviyesine göre yükseklikten farklıdır; dönüşüm için uygun jeoit modeli ve datum gerekir. Yorungez otomatik dönüşüm yapmaz; bilinmeyen değer boş bırakılır.",
+        "aliases": [
+          "elipsoid yüksekliği",
+          "GPS yüksekliği",
+          "jeoit",
+          "datum"
+        ]
+      },
+      "en": {
+        "name": "Ellipsoidal height",
+        "definition": "A point’s height in metres relative to a reference ellipsoid for Earth. It differs from height above mean sea level; conversion needs a suitable geoid model and datum. Yorungez does not convert it automatically; leave unknown values empty.",
+        "aliases": [
+          "ellipsoid height",
+          "GPS height",
+          "geoid",
+          "datum"
+        ]
+      }
+    },
+    "sources": [
+      "https://geodesy.noaa.gov/GEOID/GPSonBM96/gpsbms.html"
+    ]
+  }
+]

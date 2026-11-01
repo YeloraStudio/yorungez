@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-31",
+  "environment": "Local production Next.js, isolated .next-preview output, port 5194, ChatGPT in-app browser; normal desktop viewport and 390x844 responsive override",
+  "locationPolicy": "Labelled Istanbul example only; no actual GPS measurement during QA; sensor values were not fabricated in the browser.",
+  "checks": [
+    "Daytime shows an actual photographic meadow, wooded and mountain horizon with direction-dependent sky and compact Sun glow",
+    "2026-10-31T21:00 Europe/Istanbul equals 18:00Z; same photographed environment becomes a dark silhouette and catalogue stars remain visible",
+    "Star halos and magnitude ordering visually inspected; these are display effects, not calibrated photometry or changes to astrometry",
+    "Pointer drag and wheel zoom update camera from 180/14/105 to about 173/16/76.2 and scenery follows the view",
+    "Initial menu closed, only atmosphere/landscape/DSO layers enabled",
+    "Sidebar language native dropdown changes TR to EN and back; menu text and scene-source explanation both localized",
+    "After selecting saturn in simulation, changing language preserves canonical saturn selection, 18:00Z instant, camera and layers; English card title Saturn",
+    "Mobile Focus action collapses Saturn card while retaining selection and simulation; document clientWidth and scrollWidth both 390",
+    "Compass opens off with no heading and disabled alignment/apply buttons",
+    "Desktop Start compass waits then explains that no usable absolute heading arrived; map application remains disabled",
+    "True north button opens the new plain-language English term with source",
+    "Final console query returned no errors or warnings"
+  ],
+  "httpChecks": {
+    "catalogStatus": 200,
+    "bilingualTerms": 43,
+    "deepSkyRecords": 107,
+    "constellationArtwork": 85,
+    "unchangedBaseCatalogSha256": "f978d9ba182ab6f3c6d0b4bb2538007eaed6aa5e44f8178ae1310c0e59ab96f1",
+    "photoHeadStatus": 200,
+    "photoContentLength": 12365293
+  },
+  "automatedValidation": {
+    "frontendTests": 24,
+    "dotnetTests": {"core": 18, "astronomy": 19, "api": 47, "total": 84},
+    "productionBuild": "Passed with TypeScript in isolated output",
+    "frozenScience": "144 stellar and 72 DSO samples; frozen JS/JPL checks and existing polar guard retained"
+  },
+  "evidence": [
+    "../ux/natural/day-tr.png",
+    "../ux/natural/night-tr.png",
+    "../ux/natural/language-menu-tr.png",
+    "../ux/natural/mobile-menu-tr.png",
+    "../ux/natural/mobile-night-en.png",
+    "../ux/natural/compass-no-sensor-en.png"
+  ],
+  "notVerified": [
+    "Physical iOS/Android GPS precision, permission-denied and sensor calibration sessions",
+    "True-direction accuracy, magnetic interference and physical screen rotation",
+    "Screen reader, physical touch/pinch, complete mobile FPS/memory/network budget and participant tasks",
+    "Runtime graphics fallback/context loss on a physical unsupported device",
+    "Full Rayleigh/Mie atmospheric scattering, weather, actual local terrain, Moon/planet texture realism",
+    "Cold PWA offline reopen and personal-data synchronisation"
+  ],
+  "physicalProtocol": "../cihaz-konum-pusula-dogrulamasi.md"
+}

@@ -1,0 +1,1891 @@
+{
+  "schemaVersion": 1,
+  "source": "Astropy/ERFA ICRS space motion to airless topocentric AltAz",
+  "astropyVersion": "8.0.2",
+  "generatedAtUtc": "2026-10-30T22:40:55.145833+00:00",
+  "catalogSha256": "f978d9ba182ab6f3c6d0b4bb2538007eaed6aa5e44f8178ae1310c0e59ab96f1",
+  "positionToleranceArcminutes": 1,
+  "iersAutoDownload": false,
+  "warnings": [
+    "AstropyWarning: Tried to get polar motions for times after IERS data is valid. Defaulting to polar motion from the 50-yr mean for those. This may affect precision at the arcsec level. Please check your astropy.utils.iers.conf.iers_auto_url and point it to a newer version if necessary.",
+    "ErfaWarning: ERFA function \"d2dtf\" yielded 1 of \"dubious year (Note 5)\"",
+    "ErfaWarning: ERFA function \"dtf2d\" yielded 1 of \"dubious year (Note 6)\"",
+    "ErfaWarning: ERFA function \"taiutc\" yielded 1 of \"dubious year (Note 4)\"",
+    "ErfaWarning: ERFA function \"utctai\" yielded 1 of \"dubious year (Note 3)\"",
+    "ErfaWarning: ERFA function \"utcut1\" yielded 1 of \"dubious year (Note 3)\""
+  ],
+  "rows": [
+    {
+      "starId": "hyg-32263",
+      "hip": 32349,
+      "context": {
+        "id": "istanbul",
+        "latitude": 41.0082,
+        "longitude": 28.9784,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 53.2765408015567,
+      "altitudeDegrees": -55.69045953062202
+    },
+    {
+      "starId": "hyg-69451",
+      "hip": 69673,
+      "context": {
+        "id": "istanbul",
+        "latitude": 41.0082,
+        "longitude": 28.9784,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 288.1208644570169,
+      "altitudeDegrees": 8.450013678817335
+    },
+    {
+      "starId": "hyg-71456",
+      "hip": 71683,
+      "context": {
+        "id": "istanbul",
+        "latitude": 41.0082,
+        "longitude": 28.9784,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 216.38438177647933,
+      "altitudeDegrees": -34.74653130497517
+    },
+    {
+      "starId": "hyg-90979",
+      "hip": 91262,
+      "context": {
+        "id": "istanbul",
+        "latitude": 41.0082,
+        "longitude": 28.9784,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 274.4718425080633,
+      "altitudeDegrees": 66.83100977869401
+    },
+    {
+      "starId": "hyg-24549",
+      "hip": 24608,
+      "context": {
+        "id": "istanbul",
+        "latitude": 41.0082,
+        "longitude": 28.9784,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 32.63418236120753,
+      "altitudeDegrees": 7.866047872079241
+    },
+    {
+      "starId": "hyg-24378",
+      "hip": 24436,
+      "context": {
+        "id": "istanbul",
+        "latitude": 41.0082,
+        "longitude": 28.9784,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 68.45815096736365,
+      "altitudeDegrees": -34.450154195152926
+    },
+    {
+      "starId": "hyg-37173",
+      "hip": 37279,
+      "context": {
+        "id": "istanbul",
+        "latitude": 41.0082,
+        "longitude": 28.9784,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 19.713368540560417,
+      "altitudeDegrees": -41.870151742835546
+    },
+    {
+      "starId": "hyg-27919",
+      "hip": 27989,
+      "context": {
+        "id": "istanbul",
+        "latitude": 41.0082,
+        "longitude": 28.9784,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 47.54132700997726,
+      "altitudeDegrees": -28.89795881321817
+    },
+    {
+      "starId": "hyg-65269",
+      "hip": 65474,
+      "context": {
+        "id": "istanbul",
+        "latitude": 41.0082,
+        "longitude": 28.9784,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 273.34090479928005,
+      "altitudeDegrees": -20.94841458254627
+    },
+    {
+      "starId": "hyg-80519",
+      "hip": 80763,
+      "context": {
+        "id": "istanbul",
+        "latitude": 41.0082,
+        "longitude": 28.9784,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 232.3344328588793,
+      "altitudeDegrees": 1.3871970774370672
+    },
+    {
+      "starId": "hyg-113008",
+      "hip": 113368,
+      "context": {
+        "id": "istanbul",
+        "latitude": 41.0082,
+        "longitude": 28.9784,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 149.341625510112,
+      "altitudeDegrees": 12.308470697664724
+    },
+    {
+      "starId": "hyg-11734",
+      "hip": 11767,
+      "context": {
+        "id": "istanbul",
+        "latitude": 41.0082,
+        "longitude": 28.9784,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 0.9713132894828083,
+      "altitudeDegrees": 41.02014188145777
+    },
+    {
+      "starId": "hyg-32263",
+      "hip": 32349,
+      "context": {
+        "id": "istanbul",
+        "latitude": 41.0082,
+        "longitude": 28.9784,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-30T20:00:00Z"
+      },
+      "azimuthDegrees": 100.63959508919568,
+      "altitudeDegrees": -13.456265878828114
+    },
+    {
+      "starId": "hyg-69451",
+      "hip": 69673,
+      "context": {
+        "id": "istanbul",
+        "latitude": 41.0082,
+        "longitude": 28.9784,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-30T20:00:00Z"
+      },
+      "azimuthDegrees": 332.6369188684551,
+      "altitudeDegrees": -25.247891714433358
+    },
+    {
+      "starId": "hyg-71456",
+      "hip": 71683,
+      "context": {
+        "id": "istanbul",
+        "latitude": 41.0082,
+        "longitude": 28.9784,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-30T20:00:00Z"
+      },
+      "azimuthDegrees": 213.58310123480211,
+      "altitudeDegrees": -62.07834874004639
+    },
+    {
+      "starId": "hyg-90979",
+      "hip": 91262,
+      "context": {
+        "id": "istanbul",
+        "latitude": 41.0082,
+        "longitude": 28.9784,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-30T20:00:00Z"
+      },
+      "azimuthDegrees": 300.62174375701954,
+      "altitudeDegrees": 25.14611214796868
+    },
+    {
+      "starId": "hyg-24549",
+      "hip": 24608,
+      "context": {
+        "id": "istanbul",
+        "latitude": 41.0082,
+        "longitude": 28.9784,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-30T20:00:00Z"
+      },
+      "azimuthDegrees": 58.80412573346885,
+      "altitudeDegrees": 39.644556528251435
+    },
+    {
+      "starId": "hyg-24378",
+      "hip": 24436,
+      "context": {
+        "id": "istanbul",
+        "latitude": 41.0082,
+        "longitude": 28.9784,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-30T20:00:00Z"
+      },
+      "azimuthDegrees": 108.91719580913554,
+      "altitudeDegrees": 8.742093022949302
+    },
+    {
+      "starId": "hyg-37173",
+      "hip": 37279,
+      "context": {
+        "id": "istanbul",
+        "latitude": 41.0082,
+        "longitude": 28.9784,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-30T20:00:00Z"
+      },
+      "azimuthDegrees": 74.75709139353778,
+      "altitudeDegrees": -9.288519263828174
+    },
+    {
+      "starId": "hyg-27919",
+      "hip": 27989,
+      "context": {
+        "id": "istanbul",
+        "latitude": 41.0082,
+        "longitude": 28.9784,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-30T20:00:00Z"
+      },
+      "azimuthDegrees": 90.23637108201326,
+      "altitudeDegrees": 11.611972224797459
+    },
+    {
+      "starId": "hyg-65269",
+      "hip": 65474,
+      "context": {
+        "id": "istanbul",
+        "latitude": 41.0082,
+        "longitude": 28.9784,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-30T20:00:00Z"
+      },
+      "azimuthDegrees": 334.36389621922694,
+      "altitudeDegrees": -58.0004404230774
+    },
+    {
+      "starId": "hyg-80519",
+      "hip": 80763,
+      "context": {
+        "id": "istanbul",
+        "latitude": 41.0082,
+        "longitude": 28.9784,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-30T20:00:00Z"
+      },
+      "azimuthDegrees": 267.05586477884185,
+      "altitudeDegrees": -39.35483227048179
+    },
+    {
+      "starId": "hyg-113008",
+      "hip": 113368,
+      "context": {
+        "id": "istanbul",
+        "latitude": 41.0082,
+        "longitude": 28.9784,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-30T20:00:00Z"
+      },
+      "azimuthDegrees": 201.05600782480315,
+      "altitudeDegrees": 16.275152957467018
+    },
+    {
+      "starId": "hyg-11734",
+      "hip": 11767,
+      "context": {
+        "id": "istanbul",
+        "latitude": 41.0082,
+        "longitude": 28.9784,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-30T20:00:00Z"
+      },
+      "azimuthDegrees": 0.5251019646584847,
+      "altitudeDegrees": 41.49111607120773
+    },
+    {
+      "starId": "hyg-32263",
+      "hip": 32349,
+      "context": {
+        "id": "istanbul",
+        "latitude": 41.0082,
+        "longitude": 28.9784,
+        "elevationMeters": 0,
+        "instantUtc": "2035-12-31T08:00:00Z"
+      },
+      "azimuthDegrees": 300.5178492458205,
+      "altitudeDegrees": -52.6016975332189
+    },
+    {
+      "starId": "hyg-69451",
+      "hip": 69673,
+      "context": {
+        "id": "istanbul",
+        "latitude": 41.0082,
+        "longitude": 28.9784,
+        "elevationMeters": 0,
+        "instantUtc": "2035-12-31T08:00:00Z"
+      },
+      "azimuthDegrees": 243.32935975299583,
+      "altitudeDegrees": 53.45884851643248
+    },
+    {
+      "starId": "hyg-71456",
+      "hip": 71683,
+      "context": {
+        "id": "istanbul",
+        "latitude": 41.0082,
+        "longitude": 28.9784,
+        "elevationMeters": 0,
+        "instantUtc": "2035-12-31T08:00:00Z"
+      },
+      "azimuthDegrees": 193.626500728699,
+      "altitudeDegrees": -14.513835282770257
+    },
+    {
+      "starId": "hyg-90979",
+      "hip": 91262,
+      "context": {
+        "id": "istanbul",
+        "latitude": 41.0082,
+        "longitude": 28.9784,
+        "elevationMeters": 0,
+        "instantUtc": "2035-12-31T08:00:00Z"
+      },
+      "azimuthDegrees": 85.05165235684514,
+      "altitudeDegrees": 66.27229208961457
+    },
+    {
+      "starId": "hyg-24549",
+      "hip": 24608,
+      "context": {
+        "id": "istanbul",
+        "latitude": 41.0082,
+        "longitude": 28.9784,
+        "elevationMeters": 0,
+        "instantUtc": "2035-12-31T08:00:00Z"
+      },
+      "azimuthDegrees": 352.1876376091706,
+      "altitudeDegrees": -2.382480454663691
+    },
+    {
+      "starId": "hyg-24378",
+      "hip": 24436,
+      "context": {
+        "id": "istanbul",
+        "latitude": 41.0082,
+        "longitude": 28.9784,
+        "elevationMeters": 0,
+        "instantUtc": "2035-12-31T08:00:00Z"
+      },
+      "azimuthDegrees": 341.238903630793,
+      "altitudeDegrees": -55.85736979150698
+    },
+    {
+      "starId": "hyg-37173",
+      "hip": 37279,
+      "context": {
+        "id": "istanbul",
+        "latitude": 41.0082,
+        "longitude": 28.9784,
+        "elevationMeters": 0,
+        "instantUtc": "2035-12-31T08:00:00Z"
+      },
+      "azimuthDegrees": 305.39582474707254,
+      "altitudeDegrees": -27.159869062398798
+    },
+    {
+      "starId": "hyg-27919",
+      "hip": 27989,
+      "context": {
+        "id": "istanbul",
+        "latitude": 41.0082,
+        "longitude": 28.9784,
+        "elevationMeters": 0,
+        "instantUtc": "2035-12-31T08:00:00Z"
+      },
+      "azimuthDegrees": 333.5709527660913,
+      "altitudeDegrees": -37.97472778129521
+    },
+    {
+      "starId": "hyg-65269",
+      "hip": 65474,
+      "context": {
+        "id": "istanbul",
+        "latitude": 41.0082,
+        "longitude": 28.9784,
+        "elevationMeters": 0,
+        "instantUtc": "2035-12-31T08:00:00Z"
+      },
+      "azimuthDegrees": 230.50915725391204,
+      "altitudeDegrees": 22.176301162205576
+    },
+    {
+      "starId": "hyg-80519",
+      "hip": 80763,
+      "context": {
+        "id": "istanbul",
+        "latitude": 41.0082,
+        "longitude": 28.9784,
+        "elevationMeters": 0,
+        "instantUtc": "2035-12-31T08:00:00Z"
+      },
+      "azimuthDegrees": 180.64475328399533,
+      "altitudeDegrees": 22.484034327668578
+    },
+    {
+      "starId": "hyg-113008",
+      "hip": 113368,
+      "context": {
+        "id": "istanbul",
+        "latitude": 41.0082,
+        "longitude": 28.9784,
+        "elevationMeters": 0,
+        "instantUtc": "2035-12-31T08:00:00Z"
+      },
+      "azimuthDegrees": 109.57173227742842,
+      "altitudeDegrees": -23.26608748025106
+    },
+    {
+      "starId": "hyg-11734",
+      "hip": 11767,
+      "context": {
+        "id": "istanbul",
+        "latitude": 41.0082,
+        "longitude": 28.9784,
+        "elevationMeters": 0,
+        "instantUtc": "2035-12-31T08:00:00Z"
+      },
+      "azimuthDegrees": 0.2341199260881043,
+      "altitudeDegrees": 40.445655529481705
+    },
+    {
+      "starId": "hyg-32263",
+      "hip": 32349,
+      "context": {
+        "id": "sydney",
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 64.56541613956611,
+      "altitudeDegrees": 58.3857574363979
+    },
+    {
+      "starId": "hyg-69451",
+      "hip": 69673,
+      "context": {
+        "id": "sydney",
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 103.9173099794479,
+      "altitudeDegrees": -53.42817310917712
+    },
+    {
+      "starId": "hyg-71456",
+      "hip": 71683,
+      "context": {
+        "id": "sydney",
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 164.97428427552674,
+      "altitudeDegrees": 8.192518574377472
+    },
+    {
+      "starId": "hyg-90979",
+      "hip": 91262,
+      "context": {
+        "id": "sydney",
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 290.52018248674716,
+      "altitudeDegrees": -67.35276143139538
+    },
+    {
+      "starId": "hyg-24549",
+      "hip": 24608,
+      "context": {
+        "id": "sydney",
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 5.285778064865531,
+      "altitudeDegrees": 9.84619612394251
+    },
+    {
+      "starId": "hyg-24378",
+      "hip": 24436,
+      "context": {
+        "id": "sydney",
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 15.637102347860374,
+      "altitudeDegrees": 63.54356600502214
+    },
+    {
+      "starId": "hyg-37173",
+      "hip": 37279,
+      "context": {
+        "id": "sydney",
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 54.805838066240376,
+      "altitudeDegrees": 33.53335373601661
+    },
+    {
+      "starId": "hyg-27919",
+      "hip": 27989,
+      "context": {
+        "id": "sydney",
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 24.6924958627865,
+      "altitudeDegrees": 45.647245641261684
+    },
+    {
+      "starId": "hyg-65269",
+      "hip": 65474,
+      "context": {
+        "id": "sydney",
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 123.9839560409403,
+      "altitudeDegrees": -24.310945212902485
+    },
+    {
+      "starId": "hyg-80519",
+      "hip": 80763,
+      "context": {
+        "id": "sydney",
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 175.546715577488,
+      "altitudeDegrees": -29.562612534283712
+    },
+    {
+      "starId": "hyg-113008",
+      "hip": 113368,
+      "context": {
+        "id": "sydney",
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 245.95919547314477,
+      "altitudeDegrees": 18.056835382699315
+    },
+    {
+      "starId": "hyg-11734",
+      "hip": 11767,
+      "context": {
+        "id": "sydney",
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 359.5165516447958,
+      "altitudeDegrees": -33.256557526648194
+    },
+    {
+      "starId": "hyg-32263",
+      "hip": 32349,
+      "context": {
+        "id": "sydney",
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-30T20:00:00Z"
+      },
+      "azimuthDegrees": 296.36851709104667,
+      "altitudeDegrees": 59.04130701479394
+    },
+    {
+      "starId": "hyg-69451",
+      "hip": 69673,
+      "context": {
+        "id": "sydney",
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-30T20:00:00Z"
+      },
+      "azimuthDegrees": 70.80130470638959,
+      "altitudeDegrees": -5.617090540662123
+    },
+    {
+      "starId": "hyg-71456",
+      "hip": 71683,
+      "context": {
+        "id": "sydney",
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-30T20:00:00Z"
+      },
+      "azimuthDegrees": 146.2144553724617,
+      "altitudeDegrees": 29.153477853768763
+    },
+    {
+      "starId": "hyg-90979",
+      "hip": 91262,
+      "context": {
+        "id": "sydney",
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-30T20:00:00Z"
+      },
+      "azimuthDegrees": 69.72678114956669,
+      "altitudeDegrees": -64.74955306945579
+    },
+    {
+      "starId": "hyg-24549",
+      "hip": 24608,
+      "context": {
+        "id": "sydney",
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-30T20:00:00Z"
+      },
+      "azimuthDegrees": 327.48460223945153,
+      "altitudeDegrees": -2.047289403908148
+    },
+    {
+      "starId": "hyg-24378",
+      "hip": 24436,
+      "context": {
+        "id": "sydney",
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-30T20:00:00Z"
+      },
+      "azimuthDegrees": 286.30162123656254,
+      "altitudeDegrees": 36.298553305929396
+    },
+    {
+      "starId": "hyg-37173",
+      "hip": 37279,
+      "context": {
+        "id": "sydney",
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-30T20:00:00Z"
+      },
+      "azimuthDegrees": 336.86388956064917,
+      "altitudeDegrees": 48.4184324519037
+    },
+    {
+      "starId": "hyg-27919",
+      "hip": 27989,
+      "context": {
+        "id": "sydney",
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-30T20:00:00Z"
+      },
+      "azimuthDegrees": 308.6839615962999,
+      "altitudeDegrees": 33.20568317467337
+    },
+    {
+      "starId": "hyg-65269",
+      "hip": 65474,
+      "context": {
+        "id": "sydney",
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-30T20:00:00Z"
+      },
+      "azimuthDegrees": 89.22262717218153,
+      "altitudeDegrees": 21.73917513803669
+    },
+    {
+      "starId": "hyg-80519",
+      "hip": 80763,
+      "context": {
+        "id": "sydney",
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-30T20:00:00Z"
+      },
+      "azimuthDegrees": 127.05337984488918,
+      "altitudeDegrees": -5.360935282068425
+    },
+    {
+      "starId": "hyg-113008",
+      "hip": 113368,
+      "context": {
+        "id": "sydney",
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-30T20:00:00Z"
+      },
+      "azimuthDegrees": 211.32341164135718,
+      "altitudeDegrees": -18.780183800657277
+    },
+    {
+      "starId": "hyg-11734",
+      "hip": 11767,
+      "context": {
+        "id": "sydney",
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-30T20:00:00Z"
+      },
+      "azimuthDegrees": 359.2549543737459,
+      "altitudeDegrees": -33.79207871437424
+    },
+    {
+      "starId": "hyg-32263",
+      "hip": 32349,
+      "context": {
+        "id": "sydney",
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "elevationMeters": 0,
+        "instantUtc": "2035-12-31T08:00:00Z"
+      },
+      "azimuthDegrees": 104.51771898384693,
+      "altitudeDegrees": 8.534491886089686
+    },
+    {
+      "starId": "hyg-69451",
+      "hip": 69673,
+      "context": {
+        "id": "sydney",
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "elevationMeters": 0,
+        "instantUtc": "2035-12-31T08:00:00Z"
+      },
+      "azimuthDegrees": 240.57816030726332,
+      "altitudeDegrees": -64.32150780195579
+    },
+    {
+      "starId": "hyg-71456",
+      "hip": 71683,
+      "context": {
+        "id": "sydney",
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "elevationMeters": 0,
+        "instantUtc": "2035-12-31T08:00:00Z"
+      },
+      "azimuthDegrees": 194.05820357243962,
+      "altitudeDegrees": 7.901957621429771
+    },
+    {
+      "starId": "hyg-90979",
+      "hip": 91262,
+      "context": {
+        "id": "sydney",
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "elevationMeters": 0,
+        "instantUtc": "2035-12-31T08:00:00Z"
+      },
+      "azimuthDegrees": 303.2636804109216,
+      "altitudeDegrees": -21.323112350636933
+    },
+    {
+      "starId": "hyg-24549",
+      "hip": 24608,
+      "context": {
+        "id": "sydney",
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "elevationMeters": 0,
+        "instantUtc": "2035-12-31T08:00:00Z"
+      },
+      "azimuthDegrees": 41.38244686924915,
+      "altitudeDegrees": -11.24174241836565
+    },
+    {
+      "starId": "hyg-24378",
+      "hip": 24436,
+      "context": {
+        "id": "sydney",
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "elevationMeters": 0,
+        "instantUtc": "2035-12-31T08:00:00Z"
+      },
+      "azimuthDegrees": 84.64243040417634,
+      "altitudeDegrees": 22.542344312953695
+    },
+    {
+      "starId": "hyg-37173",
+      "hip": 37279,
+      "context": {
+        "id": "sydney",
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "elevationMeters": 0,
+        "instantUtc": "2035-12-31T08:00:00Z"
+      },
+      "azimuthDegrees": 93.84559257690496,
+      "altitudeDegrees": -14.888343997117229
+    },
+    {
+      "starId": "hyg-27919",
+      "hip": 27989,
+      "context": {
+        "id": "sydney",
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "elevationMeters": 0,
+        "instantUtc": "2035-12-31T08:00:00Z"
+      },
+      "azimuthDegrees": 77.39283443820831,
+      "altitudeDegrees": 5.304571131042501
+    },
+    {
+      "starId": "hyg-65269",
+      "hip": 65474,
+      "context": {
+        "id": "sydney",
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "elevationMeters": 0,
+        "instantUtc": "2035-12-31T08:00:00Z"
+      },
+      "azimuthDegrees": 194.93749644019167,
+      "altitudeDegrees": -43.59556519146512
+    },
+    {
+      "starId": "hyg-80519",
+      "hip": 80763,
+      "context": {
+        "id": "sydney",
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "elevationMeters": 0,
+        "instantUtc": "2035-12-31T08:00:00Z"
+      },
+      "azimuthDegrees": 229.51494942170555,
+      "altitudeDegrees": -8.908787495288628
+    },
+    {
+      "starId": "hyg-113008",
+      "hip": 113368,
+      "context": {
+        "id": "sydney",
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "elevationMeters": 0,
+        "instantUtc": "2035-12-31T08:00:00Z"
+      },
+      "azimuthDegrees": 274.3009851639825,
+      "altitudeDegrees": 67.5796191705475
+    },
+    {
+      "starId": "hyg-11734",
+      "hip": 11767,
+      "context": {
+        "id": "sydney",
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "elevationMeters": 0,
+        "instantUtc": "2035-12-31T08:00:00Z"
+      },
+      "azimuthDegrees": 0.4561502925056498,
+      "altitudeDegrees": -33.41740159121357
+    },
+    {
+      "starId": "hyg-32263",
+      "hip": 32349,
+      "context": {
+        "id": "zero",
+        "latitude": 0,
+        "longitude": 0,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 182.7663665902969,
+      "altitudeDegrees": -73.26212847833425
+    },
+    {
+      "starId": "hyg-69451",
+      "hip": 69673,
+      "context": {
+        "id": "zero",
+        "latitude": 0,
+        "longitude": 0,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 290.7674330843677,
+      "altitudeDegrees": 22.077742069778942
+    },
+    {
+      "starId": "hyg-71456",
+      "hip": 71683,
+      "context": {
+        "id": "zero",
+        "latitude": 0,
+        "longitude": 0,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 205.926211409313,
+      "altitudeDegrees": 13.863705570524727
+    },
+    {
+      "starId": "hyg-90979",
+      "hip": 91262,
+      "context": {
+        "id": "zero",
+        "latitude": 0,
+        "longitude": 0,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 358.465546655664,
+      "altitudeDegrees": 51.19884331975429
+    },
+    {
+      "starId": "hyg-24549",
+      "hip": 24608,
+      "context": {
+        "id": "zero",
+        "latitude": 0,
+        "longitude": 0,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 19.318578911038202,
+      "altitudeDegrees": -40.33922687500329
+    },
+    {
+      "starId": "hyg-24378",
+      "hip": 24436,
+      "context": {
+        "id": "zero",
+        "latitude": 0,
+        "longitude": 0,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 111.19912041365977,
+      "altitudeDegrees": -66.75732322472521
+    },
+    {
+      "starId": "hyg-37173",
+      "hip": 37279,
+      "context": {
+        "id": "zero",
+        "latitude": 0,
+        "longitude": 0,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 290.2237463755969,
+      "altitudeDegrees": -74.73003719830817
+    },
+    {
+      "starId": "hyg-27919",
+      "hip": 27989,
+      "context": {
+        "id": "zero",
+        "latitude": 0,
+        "longitude": 0,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 57.263835850062264,
+      "altitudeDegrees": -76.21164762621108
+    },
+    {
+      "starId": "hyg-65269",
+      "hip": 65474,
+      "context": {
+        "id": "zero",
+        "latitude": 0,
+        "longitude": 0,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 258.6439316920592,
+      "altitudeDegrees": 10.627906031105328
+    },
+    {
+      "starId": "hyg-80519",
+      "hip": 80763,
+      "context": {
+        "id": "zero",
+        "latitude": 0,
+        "longitude": 0,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 227.70519577496873,
+      "altitudeDegrees": 48.592966624053396
+    },
+    {
+      "starId": "hyg-113008",
+      "hip": 113368,
+      "context": {
+        "id": "zero",
+        "latitude": 0,
+        "longitude": 0,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 122.33401118124198,
+      "altitudeDegrees": 22.444673116244306
+    },
+    {
+      "starId": "hyg-11734",
+      "hip": 11767,
+      "context": {
+        "id": "zero",
+        "latitude": 0,
+        "longitude": 0,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 0.6488712034276704,
+      "altitudeDegrees": -0.34098410535950163
+    },
+    {
+      "starId": "hyg-32263",
+      "hip": 32349,
+      "context": {
+        "id": "zero",
+        "latitude": 0,
+        "longitude": 0,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-30T20:00:00Z"
+      },
+      "azimuthDegrees": 109.62620949404241,
+      "altitudeDegrees": -30.90549918494987
+    },
+    {
+      "starId": "hyg-69451",
+      "hip": 69673,
+      "context": {
+        "id": "zero",
+        "latitude": 0,
+        "longitude": 0,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-30T20:00:00Z"
+      },
+      "azimuthDegrees": 292.8323174008576,
+      "altitudeDegrees": -32.76916891084612
+    },
+    {
+      "starId": "hyg-71456",
+      "hip": 71683,
+      "context": {
+        "id": "zero",
+        "latitude": 0,
+        "longitude": 0,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-30T20:00:00Z"
+      },
+      "azimuthDegrees": 205.9605848717727,
+      "altitudeDegrees": -13.52541610367302
+    },
+    {
+      "starId": "hyg-90979",
+      "hip": 91262,
+      "context": {
+        "id": "zero",
+        "latitude": 0,
+        "longitude": 0,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-30T20:00:00Z"
+      },
+      "azimuthDegrees": 312.9761127148414,
+      "altitudeDegrees": 23.156442262919878
+    },
+    {
+      "starId": "hyg-24549",
+      "hip": 24608,
+      "context": {
+        "id": "zero",
+        "latitude": 0,
+        "longitude": 0,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-30T20:00:00Z"
+      },
+      "azimuthDegrees": 43.490819601260036,
+      "altitudeDegrees": -7.288846488207203
+    },
+    {
+      "starId": "hyg-24378",
+      "hip": 24436,
+      "context": {
+        "id": "zero",
+        "latitude": 0,
+        "longitude": 0,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-30T20:00:00Z"
+      },
+      "azimuthDegrees": 98.28763982002845,
+      "altitudeDegrees": -9.71337805920701
+    },
+    {
+      "starId": "hyg-37173",
+      "hip": 37279,
+      "context": {
+        "id": "zero",
+        "latitude": 0,
+        "longitude": 0,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-30T20:00:00Z"
+      },
+      "azimuthDegrees": 82.59342208026493,
+      "altitudeDegrees": -45.790396462337505
+    },
+    {
+      "starId": "hyg-27919",
+      "hip": 27989,
+      "context": {
+        "id": "zero",
+        "latitude": 0,
+        "longitude": 0,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-30T20:00:00Z"
+      },
+      "azimuthDegrees": 82.11612933341554,
+      "altitudeDegrees": -19.838202264716752
+    },
+    {
+      "starId": "hyg-65269",
+      "hip": 65474,
+      "context": {
+        "id": "zero",
+        "latitude": 0,
+        "longitude": 0,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-30T20:00:00Z"
+      },
+      "azimuthDegrees": 253.52301112159574,
+      "altitudeDegrees": -46.30206295047173
+    },
+    {
+      "starId": "hyg-80519",
+      "hip": 80763,
+      "context": {
+        "id": "zero",
+        "latitude": 0,
+        "longitude": 0,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-30T20:00:00Z"
+      },
+      "azimuthDegrees": 243.50215583719387,
+      "altitudeDegrees": -1.2427948156883144
+    },
+    {
+      "starId": "hyg-113008",
+      "hip": 113368,
+      "context": {
+        "id": "zero",
+        "latitude": 0,
+        "longitude": 0,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-30T20:00:00Z"
+      },
+      "azimuthDegrees": 170.13942611362458,
+      "altitudeDegrees": 60.03330077315161
+    },
+    {
+      "starId": "hyg-11734",
+      "hip": 11767,
+      "context": {
+        "id": "zero",
+        "latitude": 0,
+        "longitude": 0,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-30T20:00:00Z"
+      },
+      "azimuthDegrees": 0.5786610831580995,
+      "altitudeDegrees": 0.23296012812130248
+    },
+    {
+      "starId": "hyg-32263",
+      "hip": 32349,
+      "context": {
+        "id": "zero",
+        "latitude": 0,
+        "longitude": 0,
+        "elevationMeters": 0,
+        "instantUtc": "2035-12-31T08:00:00Z"
+      },
+      "azimuthDegrees": 251.1712127044088,
+      "altitudeDegrees": -26.614488189154063
+    },
+    {
+      "starId": "hyg-69451",
+      "hip": 69673,
+      "context": {
+        "id": "zero",
+        "latitude": 0,
+        "longitude": 0,
+        "elevationMeters": 0,
+        "instantUtc": "2035-12-31T08:00:00Z"
+      },
+      "azimuthDegrees": 345.0775617384848,
+      "altitudeDegrees": 70.31357624886193
+    },
+    {
+      "starId": "hyg-71456",
+      "hip": 71683,
+      "context": {
+        "id": "zero",
+        "latitude": 0,
+        "longitude": 0,
+        "elevationMeters": 0,
+        "instantUtc": "2035-12-31T08:00:00Z"
+      },
+      "azimuthDegrees": 179.47908817608393,
+      "altitudeDegrees": 29.019911280814284
+    },
+    {
+      "starId": "hyg-90979",
+      "hip": 91262,
+      "context": {
+        "id": "zero",
+        "latitude": 0,
+        "longitude": 0,
+        "elevationMeters": 0,
+        "instantUtc": "2035-12-31T08:00:00Z"
+      },
+      "azimuthDegrees": 47.08906946614504,
+      "altitudeDegrees": 22.966317058741883
+    },
+    {
+      "starId": "hyg-24549",
+      "hip": 24608,
+      "context": {
+        "id": "zero",
+        "latitude": 0,
+        "longitude": 0,
+        "elevationMeters": 0,
+        "instantUtc": "2035-12-31T08:00:00Z"
+      },
+      "azimuthDegrees": 328.05892731553706,
+      "altitudeDegrees": -31.994707454333692
+    },
+    {
+      "starId": "hyg-24378",
+      "hip": 24436,
+      "context": {
+        "id": "zero",
+        "latitude": 0,
+        "longitude": 0,
+        "elevationMeters": 0,
+        "instantUtc": "2035-12-31T08:00:00Z"
+      },
+      "azimuthDegrees": 257.2832459709076,
+      "altitudeDegrees": -49.81432154560334
+    },
+    {
+      "starId": "hyg-37173",
+      "hip": 37279,
+      "context": {
+        "id": "zero",
+        "latitude": 0,
+        "longitude": 0,
+        "elevationMeters": 0,
+        "instantUtc": "2035-12-31T08:00:00Z"
+      },
+      "azimuthDegrees": 275.2901245209249,
+      "altitudeDegrees": -14.227470744755276
+    },
+    {
+      "starId": "hyg-27919",
+      "hip": 27989,
+      "context": {
+        "id": "zero",
+        "latitude": 0,
+        "longitude": 0,
+        "elevationMeters": 0,
+        "instantUtc": "2035-12-31T08:00:00Z"
+      },
+      "azimuthDegrees": 279.67471450679017,
+      "altitudeDegrees": -39.8967579398358
+    },
+    {
+      "starId": "hyg-65269",
+      "hip": 65474,
+      "context": {
+        "id": "zero",
+        "latitude": 0,
+        "longitude": 0,
+        "elevationMeters": 0,
+        "instantUtc": "2035-12-31T08:00:00Z"
+      },
+      "azimuthDegrees": 236.74108744399126,
+      "altitudeDegrees": 68.97885921216972
+    },
+    {
+      "starId": "hyg-80519",
+      "hip": 80763,
+      "context": {
+        "id": "zero",
+        "latitude": 0,
+        "longitude": 0,
+        "elevationMeters": 0,
+        "instantUtc": "2035-12-31T08:00:00Z"
+      },
+      "azimuthDegrees": 136.43687329168924,
+      "altitudeDegrees": 51.9842649611854
+    },
+    {
+      "starId": "hyg-113008",
+      "hip": 113368,
+      "context": {
+        "id": "zero",
+        "latitude": 0,
+        "longitude": 0,
+        "elevationMeters": 0,
+        "instantUtc": "2035-12-31T08:00:00Z"
+      },
+      "azimuthDegrees": 124.66391499474226,
+      "altitudeDegrees": -30.229915968415263
+    },
+    {
+      "starId": "hyg-11734",
+      "hip": 11767,
+      "context": {
+        "id": "zero",
+        "latitude": 0,
+        "longitude": 0,
+        "elevationMeters": 0,
+        "instantUtc": "2035-12-31T08:00:00Z"
+      },
+      "azimuthDegrees": 359.88346613914496,
+      "altitudeDegrees": -0.578195370138758
+    },
+    {
+      "starId": "hyg-32263",
+      "hip": 32349,
+      "context": {
+        "id": "high-north",
+        "latitude": 80,
+        "longitude": -20,
+        "elevationMeters": 2500,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 337.727244820388,
+      "altitudeDegrees": -26.02254234489496
+    },
+    {
+      "starId": "hyg-69451",
+      "hip": 69673,
+      "context": {
+        "id": "high-north",
+        "latitude": 80,
+        "longitude": -20,
+        "elevationMeters": 2500,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 229.64464959733434,
+      "altitudeDegrees": 25.872909939102797
+    },
+    {
+      "starId": "hyg-71456",
+      "hip": 71683,
+      "context": {
+        "id": "high-north",
+        "latitude": 80,
+        "longitude": -20,
+        "elevationMeters": 2500,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 211.54140007294765,
+      "altitudeDegrees": -52.71037052291615
+    },
+    {
+      "starId": "hyg-90979",
+      "hip": 91262,
+      "context": {
+        "id": "high-north",
+        "latitude": 80,
+        "longitude": -20,
+        "elevationMeters": 2500,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 157.91595253444643,
+      "altitudeDegrees": 48.162723695103345
+    },
+    {
+      "starId": "hyg-24549",
+      "hip": 24608,
+      "context": {
+        "id": "high-north",
+        "latitude": 80,
+        "longitude": -20,
+        "elevationMeters": 2500,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 1.101884367631767,
+      "altitudeDegrees": 35.999482341415984
+    },
+    {
+      "starId": "hyg-24378",
+      "hip": 24436,
+      "context": {
+        "id": "high-north",
+        "latitude": 80,
+        "longitude": -20,
+        "elevationMeters": 2500,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 1.8983817410100112,
+      "altitudeDegrees": -18.198933029447627
+    },
+    {
+      "starId": "hyg-37173",
+      "hip": 37279,
+      "context": {
+        "id": "high-north",
+        "latitude": 80,
+        "longitude": -20,
+        "elevationMeters": 2500,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 325.7387741750736,
+      "altitudeDegrees": -3.0425774940612076
+    },
+    {
+      "starId": "hyg-27919",
+      "hip": 27989,
+      "context": {
+        "id": "high-north",
+        "latitude": 80,
+        "longitude": -20,
+        "elevationMeters": 2500,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 351.72579550242244,
+      "altitudeDegrees": -2.490464232692829
+    },
+    {
+      "starId": "hyg-65269",
+      "hip": 65474,
+      "context": {
+        "id": "high-north",
+        "latitude": 80,
+        "longitude": -20,
+        "elevationMeters": 2500,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 237.88044650863813,
+      "altitudeDegrees": -5.927123189922773
+    },
+    {
+      "starId": "hyg-80519",
+      "hip": 80763,
+      "context": {
+        "id": "high-north",
+        "latitude": 80,
+        "longitude": -20,
+        "elevationMeters": 2500,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 192.2467940717577,
+      "altitudeDegrees": -16.671467638137745
+    },
+    {
+      "starId": "hyg-113008",
+      "hip": 113368,
+      "context": {
+        "id": "high-north",
+        "latitude": 80,
+        "longitude": -20,
+        "elevationMeters": 2500,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 101.51589379728183,
+      "altitudeDegrees": -28.093389782494157
+    },
+    {
+      "starId": "hyg-11734",
+      "hip": 11767,
+      "context": {
+        "id": "high-north",
+        "latitude": 80,
+        "longitude": -20,
+        "elevationMeters": 2500,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 2.692800233315525,
+      "altitudeDegrees": 79.44627333285061
+    },
+    {
+      "starId": "hyg-32263",
+      "hip": 32349,
+      "context": {
+        "id": "high-north",
+        "latitude": 80,
+        "longitude": -20,
+        "elevationMeters": 2500,
+        "instantUtc": "2026-10-30T20:00:00Z"
+      },
+      "azimuthDegrees": 39.92772504472297,
+      "altitudeDegrees": -24.55858987145768
+    },
+    {
+      "starId": "hyg-69451",
+      "hip": 69673,
+      "context": {
+        "id": "high-north",
+        "latitude": 80,
+        "longitude": -20,
+        "elevationMeters": 2500,
+        "instantUtc": "2026-10-30T20:00:00Z"
+      },
+      "azimuthDegrees": 287.9857008587746,
+      "altitudeDegrees": 16.20245132546262
+    },
+    {
+      "starId": "hyg-71456",
+      "hip": 71683,
+      "context": {
+        "id": "high-north",
+        "latitude": 80,
+        "longitude": -20,
+        "elevationMeters": 2500,
+        "instantUtc": "2026-10-30T20:00:00Z"
+      },
+      "azimuthDegrees": 260.6851964442157,
+      "altitudeDegrees": -60.89909581841889
+    },
+    {
+      "starId": "hyg-90979",
+      "hip": 91262,
+      "context": {
+        "id": "high-north",
+        "latitude": 80,
+        "longitude": -20,
+        "elevationMeters": 2500,
+        "instantUtc": "2026-10-30T20:00:00Z"
+      },
+      "azimuthDegrees": 225.9344894845538,
+      "altitudeDegrees": 46.16767733392398
+    },
+    {
+      "starId": "hyg-24549",
+      "hip": 24608,
+      "context": {
+        "id": "high-north",
+        "latitude": 80,
+        "longitude": -20,
+        "elevationMeters": 2500,
+        "instantUtc": "2026-10-30T20:00:00Z"
+      },
+      "azimuthDegrees": 51.70290753411712,
+      "altitudeDegrees": 40.34907422504204
+    },
+    {
+      "starId": "hyg-24378",
+      "hip": 24436,
+      "context": {
+        "id": "high-north",
+        "latitude": 80,
+        "longitude": -20,
+        "elevationMeters": 2500,
+        "instantUtc": "2026-10-30T20:00:00Z"
+      },
+      "azimuthDegrees": 61.82667381681504,
+      "altitudeDegrees": -13.02507335154947
+    },
+    {
+      "starId": "hyg-37173",
+      "hip": 37279,
+      "context": {
+        "id": "high-north",
+        "latitude": 80,
+        "longitude": -20,
+        "elevationMeters": 2500,
+        "instantUtc": "2026-10-30T20:00:00Z"
+      },
+      "azimuthDegrees": 23.928047542465407,
+      "altitudeDegrees": -3.9858110158371347
+    },
+    {
+      "starId": "hyg-27919",
+      "hip": 27989,
+      "context": {
+        "id": "high-north",
+        "latitude": 80,
+        "longitude": -20,
+        "elevationMeters": 2500,
+        "instantUtc": "2026-10-30T20:00:00Z"
+      },
+      "azimuthDegrees": 49.42921943105471,
+      "altitudeDegrees": 0.9368690665494086
+    },
+    {
+      "starId": "hyg-65269",
+      "hip": 65474,
+      "context": {
+        "id": "high-north",
+        "latitude": 80,
+        "longitude": -20,
+        "elevationMeters": 2500,
+        "instantUtc": "2026-10-30T20:00:00Z"
+      },
+      "azimuthDegrees": 295.3399968071296,
+      "altitudeDegrees": -15.759478020747364
+    },
+    {
+      "starId": "hyg-80519",
+      "hip": 80763,
+      "context": {
+        "id": "high-north",
+        "latitude": 80,
+        "longitude": -20,
+        "elevationMeters": 2500,
+        "instantUtc": "2026-10-30T20:00:00Z"
+      },
+      "azimuthDegrees": 247.07348457488,
+      "altitudeDegrees": -22.93467986664417
+    },
+    {
+      "starId": "hyg-113008",
+      "hip": 113368,
+      "context": {
+        "id": "high-north",
+        "latitude": 80,
+        "longitude": -20,
+        "elevationMeters": 2500,
+        "instantUtc": "2026-10-30T20:00:00Z"
+      },
+      "azimuthDegrees": 156.30621620327727,
+      "altitudeDegrees": -20.38701740981175
+    },
+    {
+      "starId": "hyg-11734",
+      "hip": 11767,
+      "context": {
+        "id": "high-north",
+        "latitude": 80,
+        "longitude": -20,
+        "elevationMeters": 2500,
+        "instantUtc": "2026-10-30T20:00:00Z"
+      },
+      "azimuthDegrees": 3.592765286849971,
+      "altitudeDegrees": 80.00177854134726
+    },
+    {
+      "starId": "hyg-32263",
+      "hip": 32349,
+      "context": {
+        "id": "high-north",
+        "latitude": 80,
+        "longitude": -20,
+        "elevationMeters": 2500,
+        "instantUtc": "2035-12-31T08:00:00Z"
+      },
+      "azimuthDegrees": 274.7885378523694,
+      "altitudeDegrees": -17.87874361736046
+    },
+    {
+      "starId": "hyg-69451",
+      "hip": 69673,
+      "context": {
+        "id": "high-north",
+        "latitude": 80,
+        "longitude": -20,
+        "elevationMeters": 2500,
+        "instantUtc": "2035-12-31T08:00:00Z"
+      },
+      "azimuthDegrees": 164.09463774284734,
+      "altitudeDegrees": 28.643378291184803
+    },
+    {
+      "starId": "hyg-71456",
+      "hip": 71683,
+      "context": {
+        "id": "high-north",
+        "latitude": 80,
+        "longitude": -20,
+        "elevationMeters": 2500,
+        "instantUtc": "2035-12-31T08:00:00Z"
+      },
+      "azimuthDegrees": 163.83311087299217,
+      "altitudeDegrees": -51.484885097070105
+    },
+    {
+      "starId": "hyg-90979",
+      "hip": 91262,
+      "context": {
+        "id": "high-north",
+        "latitude": 80,
+        "longitude": -20,
+        "elevationMeters": 2500,
+        "instantUtc": "2035-12-31T08:00:00Z"
+      },
+      "azimuthDegrees": 91.87325157602655,
+      "altitudeDegrees": 39.8654722952508
+    },
+    {
+      "starId": "hyg-24549",
+      "hip": 24608,
+      "context": {
+        "id": "high-north",
+        "latitude": 80,
+        "longitude": -20,
+        "elevationMeters": 2500,
+        "instantUtc": "2035-12-31T08:00:00Z"
+      },
+      "azimuthDegrees": 307.5951054051657,
+      "altitudeDegrees": 40.46214510952073
+    },
+    {
+      "starId": "hyg-24378",
+      "hip": 24436,
+      "context": {
+        "id": "high-north",
+        "latitude": 80,
+        "longitude": -20,
+        "elevationMeters": 2500,
+        "instantUtc": "2035-12-31T08:00:00Z"
+      },
+      "azimuthDegrees": 298.87677089827974,
+      "altitudeDegrees": -13.130022419534217
+    },
+    {
+      "starId": "hyg-37173",
+      "hip": 37279,
+      "context": {
+        "id": "high-north",
+        "latitude": 80,
+        "longitude": -20,
+        "elevationMeters": 2500,
+        "instantUtc": "2035-12-31T08:00:00Z"
+      },
+      "azimuthDegrees": 265.2619392121868,
+      "altitudeDegrees": 6.040614861160692
+    },
+    {
+      "starId": "hyg-27919",
+      "hip": 27989,
+      "context": {
+        "id": "high-north",
+        "latitude": 80,
+        "longitude": -20,
+        "elevationMeters": 2500,
+        "instantUtc": "2035-12-31T08:00:00Z"
+      },
+      "azimuthDegrees": 291.2254188482878,
+      "altitudeDegrees": 3.8547725319625954
+    },
+    {
+      "starId": "hyg-65269",
+      "hip": 65474,
+      "context": {
+        "id": "high-north",
+        "latitude": 80,
+        "longitude": -20,
+        "elevationMeters": 2500,
+        "instantUtc": "2035-12-31T08:00:00Z"
+      },
+      "azimuthDegrees": 177.85656875206766,
+      "altitudeDegrees": -1.3526759409499118
+    },
+    {
+      "starId": "hyg-80519",
+      "hip": 80763,
+      "context": {
+        "id": "high-north",
+        "latitude": 80,
+        "longitude": -20,
+        "elevationMeters": 2500,
+        "instantUtc": "2035-12-31T08:00:00Z"
+      },
+      "azimuthDegrees": 134.7988083649042,
+      "altitudeDegrees": -19.642221563490175
+    },
+    {
+      "starId": "hyg-113008",
+      "hip": 113368,
+      "context": {
+        "id": "high-north",
+        "latitude": 80,
+        "longitude": -20,
+        "elevationMeters": 2500,
+        "instantUtc": "2035-12-31T08:00:00Z"
+      },
+      "azimuthDegrees": 38.63923912347615,
+      "altitudeDegrees": -37.46758402023487
+    },
+    {
+      "starId": "hyg-11734",
+      "hip": 11767,
+      "context": {
+        "id": "high-north",
+        "latitude": 80,
+        "longitude": -20,
+        "elevationMeters": 2500,
+        "instantUtc": "2035-12-31T08:00:00Z"
+      },
+      "azimuthDegrees": 358.3146226051538,
+      "altitudeDegrees": 79.49211030806867
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "retrievedAtUtc": "2026-10-31T14:01:47.375077+00:00",
+  "count": 237831,
+  "sha256": "3d435a4b6b262516e86b652dc5a09e11f725be54dc6b2cd220d5b7b201474084",
+  "jsonSha256": "5d15c4dd06d20766e8c55d114815ed9c91088aa4c6b8e15d035a1c09d4053d6c",
+  "sources": [
+    {
+      "url": "https://download.geonames.org/export/dump/cities500.zip",
+      "sha256": "fc89c44c54a66fe05d1d0060209bb1dd5090ee1cc86f0bd92c198a606c81103e"
+    },
+    {
+      "url": "https://download.geonames.org/export/dump/admin1CodesASCII.txt",
+      "sha256": "2e4867f5397acb056ea26377601b57af37cb4c81399770225018e9e439e91ad3"
+    },
+    {
+      "url": "https://download.geonames.org/export/dump/TR.zip",
+      "sha256": "d73d8132d5622491c8df2282690b25304f71be9ffdffb76e21a96190e12d0863"
+    }
+  ],
+  "author": "GeoNames",
+  "license": "CC BY 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+  "limitation": "Nearest populated-place point, not an administrative polygon, street address or GPS accuracy improvement."
+}

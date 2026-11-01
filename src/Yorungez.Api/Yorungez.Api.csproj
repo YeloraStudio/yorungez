@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <ItemGroup>
+    <ProjectReference Include="../Modules/Notebook/Yorungez.Notebook.Infrastructure/Yorungez.Notebook.Infrastructure.csproj" />
+    <ProjectReference Include="../Modules/Identity/Yorungez.Identity.Infrastructure/Yorungez.Identity.Infrastructure.csproj" />
+    <ProjectReference Include="../Modules/Catalog/Yorungez.Catalog.Infrastructure/Yorungez.Catalog.Infrastructure.csproj" />
+    <ProjectReference Include="../Modules/Astronomy/Yorungez.Astronomy.Infrastructure/Yorungez.Astronomy.Infrastructure.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
+    <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" PrivateAssets="all" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <NoDefaultLaunchSettingsFile>True</NoDefaultLaunchSettingsFile>
+  </PropertyGroup>
+
+  <ItemGroup><EmbeddedResource Include="Localization/*.json" /></ItemGroup>
+
+</Project>

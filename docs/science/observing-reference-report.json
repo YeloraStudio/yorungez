@@ -1,0 +1,208 @@
+{
+  "engine": "Astronomy Engine 2.1.19",
+  "definition": "Standard rise/set: 34 arcmin refraction and upper limb for Sun/Moon; 0 m elevation, no local terrain/weather.",
+  "source": "Frozen independent USNO rstt facts, UT minute precision treated as UTC.",
+  "samples": 22,
+  "maxDifferenceSeconds": 25.48,
+  "toleranceSeconds": 180,
+  "checks": [
+    {
+      "site": "balikesir",
+      "date": "2026-10-31",
+      "body": "Sun",
+      "event": "Rise",
+      "sourceUt": "04:36",
+      "computedUtc": "2026-10-31T04:35:35.778Z",
+      "differenceSeconds": 24.222
+    },
+    {
+      "site": "balikesir",
+      "date": "2026-10-31",
+      "body": "Sun",
+      "event": "Set",
+      "sourceUt": "15:08",
+      "computedUtc": "2026-10-31T15:08:03.550Z",
+      "differenceSeconds": 3.55
+    },
+    {
+      "site": "balikesir",
+      "date": "2026-10-31",
+      "body": "Moon",
+      "event": "Set",
+      "sourceUt": "10:26",
+      "computedUtc": "2026-10-31T10:25:55.842Z",
+      "differenceSeconds": 4.158
+    },
+    {
+      "site": "balikesir",
+      "date": "2026-10-31",
+      "body": "Moon",
+      "event": "Rise",
+      "sourceUt": "19:53",
+      "computedUtc": "2026-10-31T19:53:23.897Z",
+      "differenceSeconds": 23.897
+    },
+    {
+      "site": "balikesir-next",
+      "date": "2026-11-01",
+      "body": "Sun",
+      "event": "Rise",
+      "sourceUt": "04:37",
+      "computedUtc": "2026-11-01T04:36:42.727Z",
+      "differenceSeconds": 17.273
+    },
+    {
+      "site": "balikesir-next",
+      "date": "2026-11-01",
+      "body": "Sun",
+      "event": "Set",
+      "sourceUt": "15:07",
+      "computedUtc": "2026-11-01T15:06:52.948Z",
+      "differenceSeconds": 7.052
+    },
+    {
+      "site": "balikesir-next",
+      "date": "2026-11-01",
+      "body": "Moon",
+      "event": "Set",
+      "sourceUt": "11:07",
+      "computedUtc": "2026-11-01T11:06:42.147Z",
+      "differenceSeconds": 17.853
+    },
+    {
+      "site": "balikesir-next",
+      "date": "2026-11-01",
+      "body": "Moon",
+      "event": "Rise",
+      "sourceUt": "21:08",
+      "computedUtc": "2026-11-01T21:08:09.345Z",
+      "differenceSeconds": 9.345
+    },
+    {
+      "site": "sydney",
+      "date": "2026-06-21",
+      "body": "Sun",
+      "event": "Set",
+      "sourceUt": "06:54",
+      "computedUtc": "2026-06-21T06:53:47.329Z",
+      "differenceSeconds": 12.671
+    },
+    {
+      "site": "sydney",
+      "date": "2026-06-21",
+      "body": "Sun",
+      "event": "Rise",
+      "sourceUt": "21:00",
+      "computedUtc": "2026-06-21T21:00:12.011Z",
+      "differenceSeconds": 12.011
+    },
+    {
+      "site": "sydney",
+      "date": "2026-06-21",
+      "body": "Moon",
+      "event": "Rise",
+      "sourceUt": "01:25",
+      "computedUtc": "2026-06-21T01:24:58.693Z",
+      "differenceSeconds": 1.307
+    },
+    {
+      "site": "sydney",
+      "date": "2026-06-21",
+      "body": "Moon",
+      "event": "Set",
+      "sourceUt": "13:39",
+      "computedUtc": "2026-06-21T13:38:53.193Z",
+      "differenceSeconds": 6.807
+    },
+    {
+      "site": "greenwich",
+      "date": "2026-10-25",
+      "body": "Sun",
+      "event": "Rise",
+      "sourceUt": "06:41",
+      "computedUtc": "2026-10-25T06:41:03.343Z",
+      "differenceSeconds": 3.343
+    },
+    {
+      "site": "greenwich",
+      "date": "2026-10-25",
+      "body": "Sun",
+      "event": "Set",
+      "sourceUt": "16:46",
+      "computedUtc": "2026-10-25T16:46:19.110Z",
+      "differenceSeconds": 19.11
+    },
+    {
+      "site": "greenwich",
+      "date": "2026-10-25",
+      "body": "Moon",
+      "event": "Set",
+      "sourceUt": "05:48",
+      "computedUtc": "2026-10-25T05:48:24.751Z",
+      "differenceSeconds": 24.751
+    },
+    {
+      "site": "greenwich",
+      "date": "2026-10-25",
+      "body": "Moon",
+      "event": "Rise",
+      "sourceUt": "16:01",
+      "computedUtc": "2026-10-25T16:00:51.362Z",
+      "differenceSeconds": 8.638
+    },
+    {
+      "site": "kathmandu",
+      "date": "2026-10-31",
+      "body": "Sun",
+      "event": "Rise",
+      "sourceUt": "00:29",
+      "computedUtc": "2026-10-31T00:28:37.951Z",
+      "differenceSeconds": 22.049
+    },
+    {
+      "site": "kathmandu",
+      "date": "2026-10-31",
+      "body": "Sun",
+      "event": "Set",
+      "sourceUt": "11:36",
+      "computedUtc": "2026-10-31T11:35:40.610Z",
+      "differenceSeconds": 19.39
+    },
+    {
+      "site": "kathmandu",
+      "date": "2026-10-31",
+      "body": "Moon",
+      "event": "Set",
+      "sourceUt": "05:52",
+      "computedUtc": "2026-10-31T05:52:25.480Z",
+      "differenceSeconds": 25.48
+    },
+    {
+      "site": "kathmandu",
+      "date": "2026-10-31",
+      "body": "Moon",
+      "event": "Rise",
+      "sourceUt": "16:26",
+      "computedUtc": "2026-10-31T16:26:08.173Z",
+      "differenceSeconds": 8.173
+    },
+    {
+      "site": "arctic",
+      "date": "2026-06-21",
+      "body": "Moon",
+      "event": "Rise",
+      "sourceUt": "10:29",
+      "computedUtc": "2026-06-21T10:29:14.016Z",
+      "differenceSeconds": 14.016
+    },
+    {
+      "site": "arctic",
+      "date": "2026-06-21",
+      "body": "Moon",
+      "event": "Set",
+      "sourceUt": "22:05",
+      "computedUtc": "2026-06-21T22:04:48.194Z",
+      "differenceSeconds": 11.806
+    }
+  ]
+}

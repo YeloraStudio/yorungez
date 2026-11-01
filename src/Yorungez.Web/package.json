@@ -1,0 +1,32 @@
+{
+  "name": "yorungez-web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "predev": "node scripts/stage-assets.mjs",
+    "dev": "next dev --webpack --hostname 127.0.0.1",
+    "prebuild": "node scripts/stage-assets.mjs",
+    "build": "next build --webpack",
+    "start": "next start --hostname 127.0.0.1",
+    "typecheck": "tsc --noEmit",
+    "test": "node --experimental-strip-types --test tests/*.test.ts",
+    "postbuild": "node scripts/build-offline.mjs"
+  },
+  "dependencies": {
+    "@js-temporal/polyfill": "0.5.1",
+    "astronomy-engine": "2.1.19",
+    "geo-tz": "8.1.10",
+    "leaflet": "1.9.4",
+    "next": "16.4.3",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "@types/leaflet": "1.9.21",
+    "@types/node": "22.20.5",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "typescript": "5.9.3"
+  }
+}

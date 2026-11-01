@@ -1,0 +1,70 @@
+# Build output and local IDE state
+**/bin/
+**/obj/
+.vs/
+.idea/
+*.user
+*.suo
+TestResults/
+**/TestResults/
+
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+**/appsettings.Local.json
+.local/
+
+# Future frontend output
+node_modules/
+.next/
+out/
+src/Yorungez.Web/generated/
+*.tsbuildinfo
+
+# Documentation tooling cache
+__pycache__/
+*.pyc
+
+# Isolated agent preview, separate from the user server
+.next-preview/
+
+.next-planning-check/
+
+# Verified public offline pack generated from catalogue/build artifacts
+src/Yorungez.Web/public/pwa/
+src/Yorungez.Web/public/pwa-pack.json
+src/Yorungez.Web/public/sw.js
+
+# Private deployment state, credentials and runtime data
+**/.env
+**/.env.*
+!**/.env.example
+**/appsettings.Production.json
+**/appsettings.*.Local.json
+**/secrets/
+**/data-protection-keys/
+**/backups/
+deploy/private/
+deployment/private/
+infra/private/
+portainer/
+**/compose.override.yaml
+**/compose.override.yml
+**/docker-compose.override.yml
+*.pem
+*.key
+*.pfx
+*.p12
+*.jks
+*.kdbx
+*.dump
+*.backup
+*.bak
+*.sqlite
+*.sqlite3
+*.log
+coverage/
+.coverage*
+.DS_Store
+Thumbs.db

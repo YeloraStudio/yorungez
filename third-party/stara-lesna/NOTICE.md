@@ -1,0 +1,7 @@
+# Stara Lesna Meadows photographic panorama
+
+Photograph/panorama: **Ľubomír Hambálek** (spelled Lubomir Hambalek in the supplied readme). Original transparent `slnew.png` is redistributed unchanged as `public/landscapes/stara-lesna.png`.
+
+Source: [Stellarium landscape listing](https://stellarium.org/landscapes-europe.html), [original archive](https://github.com/Stellarium/stellarium-data/releases/download/landscapes/stara_lesna.zip). [Upstream readme](UPSTREAM-readme.txt) states Creative Commons Attribution with [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/); the listing states [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Both notices are preserved; Yorungez retains attribution/source and the more restrictive listing notice rather than erasing that discrepancy.
+
+The image is a photograph of scenery in Slovakia, used as illustrative environment at any observation location. It is not the user's local terrain, weather, survey or horizon model. Runtime equirectangular projection, bounded texture resampling and daylight grading do not modify the distributed source PNG. No Stellarium runtime code is imported. Archive/file SHA-256 and dimensions are recorded in [manifest](../../data/catalog/landscape-manifest.json). Source orientation/configuration is preserved in [landscape.ini](UPSTREAM-landscape.ini); Yorungez's illustrative orientation does not calibrate a user's true local horizon.

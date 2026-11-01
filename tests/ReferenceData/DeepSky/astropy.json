@@ -1,0 +1,879 @@
+{
+  "astropyVersion": "8.0.2",
+  "overlaySha256": "4985162ad395ca16de8606a2b7380f7708ca55d6cb7e182a0a5bf421e79eb373",
+  "toleranceArcminutes": 1,
+  "warnings": [
+    "AstropyWarning: Tried to get polar motions for times after IERS data is valid. Defaulting to polar motion from the 50-yr mean for those. This may affect precision at the arcsec level. Please check your astropy.utils.iers.conf.iers_auto_url and point it to a newer version if necessary.",
+    "ErfaWarning: ERFA function \"d2dtf\" yielded 1 of \"dubious year (Note 5)\"",
+    "ErfaWarning: ERFA function \"dtf2d\" yielded 1 of \"dubious year (Note 6)\"",
+    "ErfaWarning: ERFA function \"taiutc\" yielded 1 of \"dubious year (Note 4)\"",
+    "ErfaWarning: ERFA function \"utctai\" yielded 1 of \"dubious year (Note 3)\"",
+    "ErfaWarning: ERFA function \"utcut1\" yielded 1 of \"dubious year (Note 3)\""
+  ],
+  "rows": [
+    {
+      "id": "dso-ngc1952",
+      "site": "balikesir",
+      "context": {
+        "latitude": 39.6484,
+        "longitude": 27.8826,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 42.60858777594368,
+      "altitudeDegrees": -15.556311866680316
+    },
+    {
+      "id": "dso-ngc6205",
+      "site": "balikesir",
+      "context": {
+        "latitude": 39.6484,
+        "longitude": 27.8826,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 285.19386567326444,
+      "altitudeDegrees": 45.074206775460546
+    },
+    {
+      "id": "dso-ngc0224",
+      "site": "balikesir",
+      "context": {
+        "latitude": 39.6484,
+        "longitude": 27.8826,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 66.80412525790757,
+      "altitudeDegrees": 43.592587634288805
+    },
+    {
+      "id": "dso-ngc1976",
+      "site": "balikesir",
+      "context": {
+        "latitude": 39.6484,
+        "longitude": 27.8826,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 61.400842505092804,
+      "altitudeDegrees": -37.338461067454645
+    },
+    {
+      "id": "dso-ngc6720",
+      "site": "balikesir",
+      "context": {
+        "latitude": 39.6484,
+        "longitude": 27.8826,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 259.53705452659955,
+      "altitudeDegrees": 68.91851795500705
+    },
+    {
+      "id": "dso-ngc4594",
+      "site": "balikesir",
+      "context": {
+        "latitude": 39.6484,
+        "longitude": 27.8826,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 279.3317836206321,
+      "altitudeDegrees": -29.118964498656393
+    },
+    {
+      "id": "dso-ngc1952",
+      "site": "balikesir",
+      "context": {
+        "latitude": 39.6484,
+        "longitude": 27.8826,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-31T11:24:00Z"
+      },
+      "azimuthDegrees": 334.2376335609609,
+      "altitudeDegrees": -23.92203222602128
+    },
+    {
+      "id": "dso-ngc6205",
+      "site": "balikesir",
+      "context": {
+        "latitude": 39.6484,
+        "longitude": 27.8826,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-31T11:24:00Z"
+      },
+      "azimuthDegrees": 105.13592311155796,
+      "altitudeDegrees": 80.02268160806948
+    },
+    {
+      "id": "dso-ngc0224",
+      "site": "balikesir",
+      "context": {
+        "latitude": 39.6484,
+        "longitude": 27.8826,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-31T11:24:00Z"
+      },
+      "azimuthDegrees": 33.6481023769193,
+      "altitudeDegrees": 1.8817140910347205
+    },
+    {
+      "id": "dso-ngc1976",
+      "site": "balikesir",
+      "context": {
+        "latitude": 39.6484,
+        "longitude": 27.8826,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-31T11:24:00Z"
+      },
+      "azimuthDegrees": 319.48408801268664,
+      "altitudeDegrees": -48.73692545296956
+    },
+    {
+      "id": "dso-ngc6720",
+      "site": "balikesir",
+      "context": {
+        "latitude": 39.6484,
+        "longitude": 27.8826,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-31T11:24:00Z"
+      },
+      "azimuthDegrees": 85.95933957288148,
+      "altitudeDegrees": 53.56981097193685
+    },
+    {
+      "id": "dso-ngc4594",
+      "site": "balikesir",
+      "context": {
+        "latitude": 39.6484,
+        "longitude": 27.8826,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-31T11:24:00Z"
+      },
+      "azimuthDegrees": 231.94335141834213,
+      "altitudeDegrees": 21.782923431610683
+    },
+    {
+      "id": "dso-ngc1952",
+      "site": "balikesir",
+      "context": {
+        "latitude": 39.6484,
+        "longitude": 27.8826,
+        "elevationMeters": 0,
+        "instantUtc": "2035-06-21T00:00:00Z"
+      },
+      "azimuthDegrees": 32.52841674884141,
+      "altitudeDegrees": -21.156693613471923
+    },
+    {
+      "id": "dso-ngc6205",
+      "site": "balikesir",
+      "context": {
+        "latitude": 39.6484,
+        "longitude": 27.8826,
+        "elevationMeters": 0,
+        "instantUtc": "2035-06-21T00:00:00Z"
+      },
+      "azimuthDegrees": 279.88794508637767,
+      "altitudeDegrees": 53.88889009679797
+    },
+    {
+      "id": "dso-ngc0224",
+      "site": "balikesir",
+      "context": {
+        "latitude": 39.6484,
+        "longitude": 27.8826,
+        "elevationMeters": 0,
+        "instantUtc": "2035-06-21T00:00:00Z"
+      },
+      "azimuthDegrees": 62.21568323165999,
+      "altitudeDegrees": 35.37845061527849
+    },
+    {
+      "id": "dso-ngc1976",
+      "site": "balikesir",
+      "context": {
+        "latitude": 39.6484,
+        "longitude": 27.8826,
+        "elevationMeters": 0,
+        "instantUtc": "2035-06-21T00:00:00Z"
+      },
+      "azimuthDegrees": 49.265338556194926,
+      "altitudeDegrees": -44.837918595303705
+    },
+    {
+      "id": "dso-ngc6720",
+      "site": "balikesir",
+      "context": {
+        "latitude": 39.6484,
+        "longitude": 27.8826,
+        "elevationMeters": 0,
+        "instantUtc": "2035-06-21T00:00:00Z"
+      },
+      "azimuthDegrees": 242.28310379543004,
+      "altitudeDegrees": 77.53747279439108
+    },
+    {
+      "id": "dso-ngc4594",
+      "site": "balikesir",
+      "context": {
+        "latitude": 39.6484,
+        "longitude": 27.8826,
+        "elevationMeters": 0,
+        "instantUtc": "2035-06-21T00:00:00Z"
+      },
+      "azimuthDegrees": 271.1702956239457,
+      "altitudeDegrees": -20.126707260299153
+    },
+    {
+      "id": "dso-ngc1952",
+      "site": "istanbul",
+      "context": {
+        "latitude": 41.0082,
+        "longitude": 28.9784,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 43.23493474470257,
+      "altitudeDegrees": -13.991681171025933
+    },
+    {
+      "id": "dso-ngc6205",
+      "site": "istanbul",
+      "context": {
+        "latitude": 41.0082,
+        "longitude": 28.9784,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 284.38331197742116,
+      "altitudeDegrees": 44.61349474974127
+    },
+    {
+      "id": "dso-ngc0224",
+      "site": "istanbul",
+      "context": {
+        "latitude": 41.0082,
+        "longitude": 28.9784,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 68.42792508476775,
+      "altitudeDegrees": 44.882917437664254
+    },
+    {
+      "id": "dso-ngc1976",
+      "site": "istanbul",
+      "context": {
+        "latitude": 41.0082,
+        "longitude": 28.9784,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 61.51832080512966,
+      "altitudeDegrees": -35.95488333111116
+    },
+    {
+      "id": "dso-ngc6720",
+      "site": "istanbul",
+      "context": {
+        "latitude": 41.0082,
+        "longitude": 28.9784,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 257.3088394279821,
+      "altitudeDegrees": 67.8268376072834
+    },
+    {
+      "id": "dso-ngc4594",
+      "site": "istanbul",
+      "context": {
+        "latitude": 41.0082,
+        "longitude": 28.9784,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 280.8783305847539,
+      "altitudeDegrees": -29.702877013035504
+    },
+    {
+      "id": "dso-ngc1952",
+      "site": "istanbul",
+      "context": {
+        "latitude": 41.0082,
+        "longitude": 28.9784,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-31T11:24:00Z"
+      },
+      "azimuthDegrees": 335.52631101026407,
+      "altitudeDegrees": -23.045428846982784
+    },
+    {
+      "id": "dso-ngc6205",
+      "site": "istanbul",
+      "context": {
+        "latitude": 41.0082,
+        "longitude": 28.9784,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-31T11:24:00Z"
+      },
+      "azimuthDegrees": 114.89108220072842,
+      "altitudeDegrees": 80.34328643537518
+    },
+    {
+      "id": "dso-ngc0224",
+      "site": "istanbul",
+      "context": {
+        "latitude": 41.0082,
+        "longitude": 28.9784,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-31T11:24:00Z"
+      },
+      "azimuthDegrees": 34.360505829769906,
+      "altitudeDegrees": 3.476139472154806
+    },
+    {
+      "id": "dso-ngc1976",
+      "site": "istanbul",
+      "context": {
+        "latitude": 41.0082,
+        "longitude": 28.9784,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-31T11:24:00Z"
+      },
+      "azimuthDegrees": 321.8962663355942,
+      "altitudeDegrees": -48.21399030290672
+    },
+    {
+      "id": "dso-ngc6720",
+      "site": "istanbul",
+      "context": {
+        "latitude": 41.0082,
+        "longitude": 28.9784,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-31T11:24:00Z"
+      },
+      "azimuthDegrees": 88.48369167378753,
+      "altitudeDegrees": 54.47029153357142
+    },
+    {
+      "id": "dso-ngc4594",
+      "site": "istanbul",
+      "context": {
+        "latitude": 41.0082,
+        "longitude": 28.9784,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-31T11:24:00Z"
+      },
+      "azimuthDegrees": 232.43637862686847,
+      "altitudeDegrees": 20.289315545957248
+    },
+    {
+      "id": "dso-ngc1952",
+      "site": "istanbul",
+      "context": {
+        "latitude": 41.0082,
+        "longitude": 28.9784,
+        "elevationMeters": 0,
+        "instantUtc": "2035-06-21T00:00:00Z"
+      },
+      "azimuthDegrees": 33.22409523578168,
+      "altitudeDegrees": -19.5612404292816
+    },
+    {
+      "id": "dso-ngc6205",
+      "site": "istanbul",
+      "context": {
+        "latitude": 41.0082,
+        "longitude": 28.9784,
+        "elevationMeters": 0,
+        "instantUtc": "2035-06-21T00:00:00Z"
+      },
+      "azimuthDegrees": 278.5956283504094,
+      "altitudeDegrees": 53.28258748462923
+    },
+    {
+      "id": "dso-ngc0224",
+      "site": "istanbul",
+      "context": {
+        "latitude": 41.0082,
+        "longitude": 28.9784,
+        "elevationMeters": 0,
+        "instantUtc": "2035-06-21T00:00:00Z"
+      },
+      "azimuthDegrees": 63.52876568676013,
+      "altitudeDegrees": 36.74200258408929
+    },
+    {
+      "id": "dso-ngc1976",
+      "site": "istanbul",
+      "context": {
+        "latitude": 41.0082,
+        "longitude": 28.9784,
+        "elevationMeters": 0,
+        "instantUtc": "2035-06-21T00:00:00Z"
+      },
+      "azimuthDegrees": 49.50166913387578,
+      "altitudeDegrees": -43.31857444294439
+    },
+    {
+      "id": "dso-ngc6720",
+      "site": "istanbul",
+      "context": {
+        "latitude": 41.0082,
+        "longitude": 28.9784,
+        "elevationMeters": 0,
+        "instantUtc": "2035-06-21T00:00:00Z"
+      },
+      "azimuthDegrees": 239.64084599979878,
+      "altitudeDegrees": 76.1464614697694
+    },
+    {
+      "id": "dso-ngc4594",
+      "site": "istanbul",
+      "context": {
+        "latitude": 41.0082,
+        "longitude": 28.9784,
+        "elevationMeters": 0,
+        "instantUtc": "2035-06-21T00:00:00Z"
+      },
+      "azimuthDegrees": 272.3980625243257,
+      "altitudeDegrees": -20.91940997522651
+    },
+    {
+      "id": "dso-ngc1952",
+      "site": "sydney",
+      "context": {
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 13.246146296342772,
+      "altitudeDegrees": 32.9681061881668
+    },
+    {
+      "id": "dso-ngc6205",
+      "site": "sydney",
+      "context": {
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 21.211858184460592,
+      "altitudeDegrees": -87.21238273281222
+    },
+    {
+      "id": "dso-ngc0224",
+      "site": "sydney",
+      "context": {
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 318.8023116307201,
+      "altitudeDegrees": -3.7216129409875447
+    },
+    {
+      "id": "dso-ngc1976",
+      "site": "sydney",
+      "context": {
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 24.29192897734449,
+      "altitudeDegrees": 59.370942367505336
+    },
+    {
+      "id": "dso-ngc6720",
+      "site": "sydney",
+      "context": {
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 277.1304395146432,
+      "altitudeDegrees": -63.62672115874441
+    },
+    {
+      "id": "dso-ngc4594",
+      "site": "sydney",
+      "context": {
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 116.30688669592304,
+      "altitudeDegrees": -15.881516365092622
+    },
+    {
+      "id": "dso-ngc1952",
+      "site": "sydney",
+      "context": {
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-31T11:24:00Z"
+      },
+      "azimuthDegrees": 67.35970107684054,
+      "altitudeDegrees": -5.891310304660605
+    },
+    {
+      "id": "dso-ngc6205",
+      "site": "sydney",
+      "context": {
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-31T11:24:00Z"
+      },
+      "azimuthDegrees": 293.742013973303,
+      "altitudeDegrees": -35.02134823231496
+    },
+    {
+      "id": "dso-ngc0224",
+      "site": "sydney",
+      "context": {
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-31T11:24:00Z"
+      },
+      "azimuthDegrees": 7.004604173809613,
+      "altitudeDegrees": 14.250384183802813
+    },
+    {
+      "id": "dso-ngc1976",
+      "site": "sydney",
+      "context": {
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-31T11:24:00Z"
+      },
+      "azimuthDegrees": 90.11897087759051,
+      "altitudeDegrees": 9.489786389155764
+    },
+    {
+      "id": "dso-ngc6720",
+      "site": "sydney",
+      "context": {
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-31T11:24:00Z"
+      },
+      "azimuthDegrees": 303.6980995931738,
+      "altitudeDegrees": -9.411509051231343
+    },
+    {
+      "id": "dso-ngc4594",
+      "site": "sydney",
+      "context": {
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-31T11:24:00Z"
+      },
+      "azimuthDegrees": 191.3392334221513,
+      "altitudeDegrees": -43.67515800034703
+    },
+    {
+      "id": "dso-ngc1952",
+      "site": "sydney",
+      "context": {
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "elevationMeters": 0,
+        "instantUtc": "2035-06-21T00:00:00Z"
+      },
+      "azimuthDegrees": 25.624410355473792,
+      "altitudeDegrees": 29.63659265373476
+    },
+    {
+      "id": "dso-ngc6205",
+      "site": "sydney",
+      "context": {
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "elevationMeters": 0,
+        "instantUtc": "2035-06-21T00:00:00Z"
+      },
+      "azimuthDegrees": 289.39251760816495,
+      "altitudeDegrees": -81.04652325767644
+    },
+    {
+      "id": "dso-ngc0224",
+      "site": "sydney",
+      "context": {
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "elevationMeters": 0,
+        "instantUtc": "2035-06-21T00:00:00Z"
+      },
+      "azimuthDegrees": 325.4870232445576,
+      "altitudeDegrees": 2.220392506432406
+    },
+    {
+      "id": "dso-ngc1976",
+      "site": "sydney",
+      "context": {
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "elevationMeters": 0,
+        "instantUtc": "2035-06-21T00:00:00Z"
+      },
+      "azimuthDegrees": 43.35390974245074,
+      "altitudeDegrees": 53.83367358541674
+    },
+    {
+      "id": "dso-ngc6720",
+      "site": "sydney",
+      "context": {
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "elevationMeters": 0,
+        "instantUtc": "2035-06-21T00:00:00Z"
+      },
+      "azimuthDegrees": 281.21795130340473,
+      "altitudeDegrees": -53.98631014513198
+    },
+    {
+      "id": "dso-ngc4594",
+      "site": "sydney",
+      "context": {
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "elevationMeters": 0,
+        "instantUtc": "2035-06-21T00:00:00Z"
+      },
+      "azimuthDegrees": 124.94809368689307,
+      "altitudeDegrees": -24.24836199968308
+    },
+    {
+      "id": "dso-ngc1952",
+      "site": "zero",
+      "context": {
+        "latitude": 0,
+        "longitude": 0,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 35.59831108861677,
+      "altitudeDegrees": -62.550827922197826
+    },
+    {
+      "id": "dso-ngc6205",
+      "site": "zero",
+      "context": {
+        "latitude": 0,
+        "longitude": 0,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 325.8795804686389,
+      "altitudeDegrees": 44.12274889587269
+    },
+    {
+      "id": "dso-ngc0224",
+      "site": "zero",
+      "context": {
+        "latitude": 0,
+        "longitude": 0,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 48.7290013873176,
+      "altitudeDegrees": -0.1683280597198824
+    },
+    {
+      "id": "dso-ngc1976",
+      "site": "zero",
+      "context": {
+        "latitude": 0,
+        "longitude": 0,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 108.24486250931027,
+      "altitudeDegrees": -72.53380734882502
+    },
+    {
+      "id": "dso-ngc6720",
+      "site": "zero",
+      "context": {
+        "latitude": 0,
+        "longitude": 0,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 4.4926741624051045,
+      "altitudeDegrees": 56.855475664768164
+    },
+    {
+      "id": "dso-ngc4594",
+      "site": "zero",
+      "context": {
+        "latitude": 0,
+        "longitude": 0,
+        "elevationMeters": 0,
+        "instantUtc": "2000-01-01T12:00:00Z"
+      },
+      "azimuthDegrees": 258.37900485864054,
+      "altitudeDegrees": -0.4547382563554343
+    },
+    {
+      "id": "dso-ngc1952",
+      "site": "zero",
+      "context": {
+        "latitude": 0,
+        "longitude": 0,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-31T11:24:00Z"
+      },
+      "azimuthDegrees": 296.7938163820239,
+      "altitudeDegrees": -33.674670185570236
+    },
+    {
+      "id": "dso-ngc6205",
+      "site": "zero",
+      "context": {
+        "latitude": 0,
+        "longitude": 0,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-31T11:24:00Z"
+      },
+      "azimuthDegrees": 40.99846513293954,
+      "altitudeDegrees": 38.14059879705038
+    },
+    {
+      "id": "dso-ngc0224",
+      "site": "zero",
+      "context": {
+        "latitude": 0,
+        "longitude": 0,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-31T11:24:00Z"
+      },
+      "azimuthDegrees": 20.93176453555912,
+      "altitudeDegrees": -44.9015121559468
+    },
+    {
+      "id": "dso-ngc1976",
+      "site": "zero",
+      "context": {
+        "latitude": 0,
+        "longitude": 0,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-31T11:24:00Z"
+      },
+      "azimuthDegrees": 263.3197530217461,
+      "altitudeDegrees": -36.44091110691286
+    },
+    {
+      "id": "dso-ngc6720",
+      "site": "zero",
+      "context": {
+        "latitude": 0,
+        "longitude": 0,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-31T11:24:00Z"
+      },
+      "azimuthDegrees": 55.73358807186298,
+      "altitudeDegrees": 14.29768275576429
+    },
+    {
+      "id": "dso-ngc4594",
+      "site": "zero",
+      "context": {
+        "latitude": 0,
+        "longitude": 0,
+        "elevationMeters": 0,
+        "instantUtc": "2026-10-31T11:24:00Z"
+      },
+      "azimuthDegrees": 239.17755737834634,
+      "altitudeDegrees": 66.54176250886415
+    },
+    {
+      "id": "dso-ngc1952",
+      "site": "zero",
+      "context": {
+        "latitude": 0,
+        "longitude": 0,
+        "elevationMeters": 0,
+        "instantUtc": "2035-06-21T00:00:00Z"
+      },
+      "azimuthDegrees": 11.842745657920517,
+      "altitudeDegrees": -67.46221993382329
+    },
+    {
+      "id": "dso-ngc6205",
+      "site": "zero",
+      "context": {
+        "latitude": 0,
+        "longitude": 0,
+        "elevationMeters": 0,
+        "instantUtc": "2035-06-21T00:00:00Z"
+      },
+      "azimuthDegrees": 336.9508217149881,
+      "altitudeDegrees": 49.84240899561849
+    },
+    {
+      "id": "dso-ngc0224",
+      "site": "zero",
+      "context": {
+        "latitude": 0,
+        "longitude": 0,
+        "elevationMeters": 0,
+        "instantUtc": "2035-06-21T00:00:00Z"
+      },
+      "azimuthDegrees": 47.89763422377425,
+      "altitudeDegrees": -9.071105784619673
+    },
+    {
+      "id": "dso-ngc1976",
+      "site": "zero",
+      "context": {
+        "latitude": 0,
+        "longitude": 0,
+        "elevationMeters": 0,
+        "instantUtc": "2035-06-21T00:00:00Z"
+      },
+      "azimuthDegrees": 138.45420819002572,
+      "altitudeDegrees": -82.814260880668
+    },
+    {
+      "id": "dso-ngc6720",
+      "site": "zero",
+      "context": {
+        "latitude": 0,
+        "longitude": 0,
+        "elevationMeters": 0,
+        "instantUtc": "2035-06-21T00:00:00Z"
+      },
+      "azimuthDegrees": 21.29186232118292,
+      "altitudeDegrees": 54.14483368055081
+    },
+    {
+      "id": "dso-ngc4594",
+      "site": "zero",
+      "context": {
+        "latitude": 0,
+        "longitude": 0,
+        "elevationMeters": 0,
+        "instantUtc": "2035-06-21T00:00:00Z"
+      },
+      "azimuthDegrees": 257.9502652521525,
+      "altitudeDegrees": 11.18680670618074
+    }
+  ]
+}

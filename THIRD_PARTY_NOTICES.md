@@ -1,0 +1,38 @@
+# Third-party dependency inventory
+
+**TECH-04C:** [GeoNames CC BY 4.0 attribution and modifications](third-party/geonames/NOTICE.md), [source/derived SHA manifest](data/places/manifest.json). USNO numeric primary-phase/rise-set facts retain URLs, retrieval/hash and time-precision attribution in [events](data/events/README.md) and [observing references](tests/ReferenceData/Observing/README.md). These are factual data, not copied website prose or Stellarium calendar assets/code.
+
+**TECH-04B addition:** Stara Lesna Meadows original photographic PNG, Ľubomír Hambálek, [upstream source and licence discrepancy](third-party/stara-lesna/NOTICE.md), [SHA manifest](data/catalog/landscape-manifest.json). Listing: CC BY-SA 4.0; supplied archive readme: CC BY 4.0; both retained. No Stellarium runtime code imported; WebGL scene and compass adapter are Yorungez code, original Yorungez code is Apache-2.0 (K-029 / ADR-0014).
+
+Recorded 2026-10-31. This inventory records selected components; it does not replace upstream license texts. Original Yorungez code/documentation is Apache-2.0; third-party material retains its own terms. Package artifacts retain their license metadata. Redis/PostgreSQL/Mailpit are separate local development services. TECH-02B/03 adds the initial HYG/d3-derived catalogue and Next.js frontend; data licenses are separate from runtime code.
+
+| Component | Pinned version | License evidence |
+|---|---|---|
+| MediatR | 12.5.0 | Apache-2.0, verified in downloaded NuGet metadata and [tagged LICENSE](https://raw.githubusercontent.com/LuckyPennySoftware/MediatR/v12.5.0/LICENSE) |
+| CosineKitty.AstronomyEngine (C#), astronomy-engine (JS probe + Web Worker) | 2.1.19 | MIT verified in package metadata and [upstream license](https://raw.githubusercontent.com/cosinekitty/astronomy/v2.1.19/LICENSE); preserved [LICENSE](third-party/astronomy-engine/LICENSE) and [upstream record](third-party/astronomy-engine/UPSTREAM.json) |
+| ASP.NET Core / EF Core / Microsoft caching and testing packages | 10.0.14 package line | MIT, package metadata; [ASP.NET Core](https://github.com/dotnet/aspnetcore/blob/main/LICENSE.txt), [EF Core](https://github.com/dotnet/efcore/blob/main/LICENSE.txt) |
+| Npgsql / Npgsql EF provider | 10.0.3 | PostgreSQL license, downloaded package metadata; [Npgsql license](https://github.com/npgsql/npgsql/blob/main/LICENSE) |
+| System.IdentityModel.Tokens.Jwt | 8.23.0 | MIT, downloaded package metadata; [source license](https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet/blob/dev/LICENSE.txt) |
+| MailKit (with MimeKit dependency) | 4.18.2 MailKit | MIT, downloaded package metadata; [MailKit license](https://github.com/jstedfast/MailKit/blob/master/LICENSE) |
+| PostgreSQL server | 18.6-alpine | [PostgreSQL license](https://www.postgresql.org/about/licence/) |
+| Redis server | 8.10.3-alpine | AGPLv3 option selected from Redis 8's [AGPLv3/RSALv2/SSPLv1 alternatives](https://redis.io/legal/licenses/); no modified Redis distribution |
+| Mailpit local email sink | v1.32.0 | [MIT](https://github.com/axllent/mailpit/blob/develop/LICENSE) |
+| Next.js / React + React DOM | 16.4.3 / 19.3.1 | MIT package metadata and bundled LICENSE texts; exact graph in `src/Yorungez.Web/package-lock.json` |
+| Sharp (existing locked Next.js dependency; build-time PWA icon rasterization) | 0.35.5 | Apache-2.0 package metadata/LICENSE; original native dependency notices remain in installed artifacts. TECH-07 uses the existing SVG brand icon. |
+| TypeScript; Node/React type definitions | 5.9.3; 22.20.5 / 19.3.0 | TypeScript Apache-2.0, type definitions MIT; development-only package metadata/LICENSE files |
+| HYG Database | 4.1, commit c7f7f883fe678cc7680169a50ccd7dcc49b060ce | [CC BY-SA 4.0 license notice](third-party/hyg/LICENSE.md); David Nash / Astronexus. Derived star data remains CC BY-SA 4.0; [source hashes, attribution and modifications](data/catalog/README.md) |
+| d3-celestial constellation line/name data only | commit 7e720a3de062059d4c5400a379146a601d9010e0 | [BSD-3-Clause](third-party/d3-celestial/LICENSE), copyright Olaf Frohn; IAU/Wikipedia naming-source attribution retained. No d3 runtime/other star data/artwork imported |
+| Astropy, astropy-iers-data, NumPy, PyERFA | 8.0.2 / 0.2026.10.19.0.52.1 / 2.5.4 / 2.0.1.5 | Isolated validation tools, BSD-3-Clause package metadata/licenses; [locked versions](scripts/science/requirements-reference.lock.txt). Not production Python dependencies |
+| packaging; PyYAML (reference environment) | 26.3; 6.0.3 | packaging BSD-2-Clause/Apache-2.0, PyYAML MIT, package metadata; validation-only |
+| Leaflet | 1.9.4 | [BSD-2-Clause](third-party/leaflet/LICENSE); optional user-opened Earth picker. OSM attribution/cache policy applies separately |
+| @js-temporal/polyfill | 0.5.1 | [ISC](third-party/temporal/LICENSE); explicit IANA local-time / UTC / DST handling |
+| geo-tz (server only, comprehensive/all data) | 8.1.10 | [MIT](third-party/geo-tz/LICENSE.md) code; timezone-boundary-builder geographic data under ODbL, derived from OSM. Server data stays out of browser bundles; full npm lock records transitives |
+| OpenNGC data | commit be3cd6c5498806a2fbb2f7e0452ef802dbb02be0 | [CC BY-SA 4.0](third-party/openngc/LICENSE.txt), Mattia Verga and contributors; 107 Messier matches reformatted; manifest records source/content hashes |
+| Stellarium Western artwork | commit 014fbb5e59233d133c22f9811af96b67d05a95c9 | Johan Meuris, Free Art License; [upstream and licence notice](third-party/stellarium-art/NOTICE.md), 85 unmodified images. No Stellarium engine code imported |
+| Wikipedia extracts / Wikimedia Commons Sun photograph | pinned revisions in sun-content.json | Text: Wikipedia contributors, CC BY-SA 4.0. Photograph: Matúš Motlo, CC BY-SA 4.0. Per-item source/revision/licence/credit/hash retained in [data record](data/catalog/README.md); archive image, not live photography |
+
+Docker image digests are in `compose.yaml`. Direct .NET pins are in `Directory.Packages.props`; resolved graphs including tests are in `packages.lock.json` (restore `--locked-mode`). Frontend/probe graphs are in their own npm lock files. Preserve upstream copyright/license/NOTICE files when packaging components; produce a release-specific complete transitive inventory before distribution. This initial prototype inventory does not approve all future source/data licenses.
+
+MediatR 12.5.0 is an explicit older Apache-2.0 pin chosen to meet the requested no-paid-license foundation. It is not a noncommercial-only license. Later releases require a fresh licensing and maintenance assessment; automated major-version migration must not silently change this decision.
+
+Numeric NASA/JPL Horizons observer ephemerides are retained as validation facts with request URLs, retrieval times, response signatures and hashes in [reference data](tests/ReferenceData/Horizons/README.md). They are not redistributed as an astronomical image/star catalogue or as Yorungez-authored observations. [Method and limitations](docs/astronomi-denemesi.md). JavaScript probe dependencies use `tools/science-js/package-lock.json`; the Web uses its own lock with the same Astronomy Engine 2.1.19 MIT pin. Astropy/ERFA produces [frozen stellar numeric references](tests/ReferenceData/Stars/README.md) only. Stellarium Web Engine, Aladin and Skyfield runtimes remain uninstalled candidates. Separately, 85 Stellarium skyculture illustrations are redistributed under Johan Meuris’s Free Art License with source/attribution; this does not import Stellarium AGPL engine code. Astropy also produces the [72 frozen DSO references](tests/ReferenceData/DeepSky/README.md).

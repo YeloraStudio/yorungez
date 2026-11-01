@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "generatedAtUtc": "2026-10-31T10:33:58.220Z",
+  "profile": "production",
+  "viewport": {
+    "width": 1200,
+    "height": 493,
+    "dpr": 1
+  },
+  "catalogVersion": "hyg-4.1-d3-2022.1",
+  "catalogSha256": "f978d9ba182ab6f3c6d0b4bb2538007eaed6aa5e44f8178ae1310c0e59ab96f1",
+  "starsAndPlanets": 5082,
+  "frameCalculationMilliseconds": 8.099999999976717,
+  "scope": "Browser, fixed synthetic observer, shared CPU projection + star layer only. rAF includes browser scheduling; draw time is CPU submission, not GPU completion. No physical mobile device or production load test.",
+  "records": [
+    {
+      "renderer": "canvas",
+      "status": "measured",
+      "warmupFrames": 30,
+      "measuredFrames": 120,
+      "cpuP50Milliseconds": 0.20000000001164153,
+      "cpuP95Milliseconds": 0.30000000004656613,
+      "frameIntervalP95Milliseconds": 6.199999999999818,
+      "intervalsOver25ms": 0
+    },
+    {
+      "renderer": "svg",
+      "status": "measured",
+      "warmupFrames": 30,
+      "measuredFrames": 120,
+      "cpuP50Milliseconds": 3.2000000000116415,
+      "cpuP95Milliseconds": 5.7999999999883585,
+      "frameIntervalP95Milliseconds": 12.100000000000364,
+      "intervalsOver25ms": 0
+    },
+    {
+      "renderer": "webgl",
+      "status": "measured",
+      "warmupFrames": 30,
+      "measuredFrames": 120,
+      "cpuP50Milliseconds": 0.5,
+      "cpuP95Milliseconds": 0.7000000000116415,
+      "frameIntervalP95Milliseconds": 6.199999999999818,
+      "intervalsOver25ms": 0
+    }
+  ]
+}

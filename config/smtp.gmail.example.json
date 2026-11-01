@@ -1,0 +1,12 @@
+{
+  "Email": {
+    "Host": "smtp.gmail.com",
+    "Port": 587,
+    "Sender": "sender@example.com",
+    "UserName": "sender@example.com",
+    "Password": "replace-with-private-google-app-password",
+    "RequireTls": true,
+    "RunOutboxWorker": false,
+    "FrontendBaseUrl": "https://replace-with-deployed-frontend.invalid"
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-31",
+  "environment": "Local production Next.js at 127.0.0.1:5192, ChatGPT in-app browser; desktop 1280x720 and viewport override 390x844",
+  "locationData": "Labelled Istanbul example and public Balikesir city-centre test coordinates; actual device geolocation was not requested during QA.",
+  "boot": {
+    "catalogFetchStartToFirstAcceptedCalculatedFrameMs": [128, 69, 53],
+    "scope": "Three same-machine production samples in an already used preview browser/cache; excludes navigation, paint and physical phone performance. Not an SLA."
+  },
+  "checks": [
+    "Initial left menu closed and only atmosphere, landscape and deep-sky layers enabled",
+    "Sun search resolves the solar Sun ID; real licensed archive photo, brief article and Wikipedia revision link",
+    "Manual Balikesir plus local 2026-10-31T14:24 Europe/Istanbul equals 2026-10-31T11:24Z; entered value survives a live-clock render before Apply",
+    "TR-to-EN switch preserves manual context, selected Sun, simulation instant, camera and layers",
+    "OpenStreetMap loads only after explicit map action; actual tiles and attribution visible; arrow-pan and Enter update coordinate draft; Cancel preserves observation context",
+    "Constellation lines, licensed art, azimuthal and J2000 equatorial grids, atmosphere and night switches change checked state; art and grids visually inspected",
+    "390x844 mobile card focus action collapses content while selected Sun remains; restore reopens photograph and description; document clientWidth and scrollWidth both 390",
+    "Final production session console error and warning query returned an empty array"
+  ],
+  "additionalDevelopmentChecks": [
+    "Pointer drag and wheel change camera and field of view; keyboard and zoom controls operate",
+    "Fullscreen control enters and exits using the native fullscreen event-driven state"
+  ],
+  "productionHttpChecks": {
+    "catalog": 200,
+    "conditionalCatalog": 304,
+    "starCount": 5073,
+    "deepSkyCount": 107,
+    "artFigureCount": 85,
+    "bilingualTermCount": 39,
+    "overlaySha256": "4985162ad395ca16de8606a2b7380f7708ca55d6cb7e182a0a5bf421e79eb373",
+    "balikesirZone": "Europe/Istanbul",
+    "timeZoneCacheControl": "no-store",
+    "invalidLatitude": 400,
+    "sunRevisionTr": 38205844,
+    "sunRevisionEn": 1382445123,
+    "sunPhotos": "Both languages return licensed archive photograph metadata"
+  },
+  "documentVerification": {
+    "localLinks": 230,
+    "requirements": "12 FR / 7 UJ / 14 AC identities and trace rows retained",
+    "originalArchiveSha256": "6d748df5dd0777b5570401f1f5bb163b94c2d51567f55c7139b9d42fd4c7c1fc"
+  },
+  "evidence": [
+    "../ux/planetarium/desktop-sun-tr.png",
+    "../ux/planetarium/mobile-sun-en.png",
+    "../ux/planetarium/mobile-map-en.png",
+    "../ux/planetarium/desktop-art-grids-en.png"
+  ],
+  "notVerified": [
+    "Physical phone GPS precision and permission-denied interactions",
+    "Continuous location tracking (not implemented; one fresh measurement is used)",
+    "Physical touch/pinch, compass/calibration and mobile performance/memory",
+    "Screen reader and representative participant tasks",
+    "Cold offline PWA reopen, account UI and personal record synchronisation"
+  ]
+}

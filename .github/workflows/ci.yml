@@ -1,0 +1,72 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  publication:
+    name: Publication safety
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.12'
+      - run: python scripts/check_publication.py
+      - run: python scripts/verify_docs.py
+      - name: Verify pinned Gitleaks and scan history
+        shell: bash
+        run: |
+          set -euo pipefail
+          tool_dir="$(mktemp -d)"
+          trap 'rm -rf -- "$tool_dir"' EXIT
+          curl --fail --silent --show-error --location --proto '=https' --tlsv1.2             https://github.com/gitleaks/gitleaks/releases/download/v8.30.1/gitleaks_8.30.1_linux_x64.tar.gz             --output "$tool_dir/gitleaks.tar.gz"
+          printf '%s  %s\n' 551f6fc83ea457d62a0d98237cbad105af8d557003051f41f3e7ca7b3f2470eb "$tool_dir/gitleaks.tar.gz" | sha256sum --check --status
+          tar -xzf "$tool_dir/gitleaks.tar.gz" -C "$tool_dir" gitleaks
+          "$tool_dir/gitleaks" git . --redact --no-banner
+  application:
+    name: Application and science
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      DOTNET_CLI_TELEMETRY_OPTOUT: '1'
+      NEXT_TELEMETRY_DISABLED: '1'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
+        with:
+          global-json-file: global.json
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22.20.0'
+          package-manager-cache: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.12'
+      - name: Backend integration tests with disposable local infrastructure
+        shell: pwsh
+        run: ./scripts/Verify-Backend.ps1
+      - name: Client tests, types and production PWA build
+        shell: pwsh
+        run: ./scripts/Verify-Web.ps1
+      - name: Install locked scientific probe
+        working-directory: tools/science-js
+        run: npm ci --ignore-scripts --no-fund --no-audit
+      - name: Frozen scientific references and cross-port parity
+        shell: pwsh
+        run: ./scripts/Verify-Science.ps1 -Offline
+      - name: Remove this ephemeral runner's infrastructure
+        if: always()
+        run: docker compose down --volumes --remove-orphans

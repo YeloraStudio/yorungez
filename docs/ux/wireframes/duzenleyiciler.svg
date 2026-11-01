@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1140" height="590" viewBox="0 0 1140 590" role="img" aria-labelledby="title desc">
+<title id="title">yorungez konum ve zaman düzenleyicileri</title><desc id="desc">Solda geçersiz enlem örneği ve alan hatası; sağda tarih/saat, saat dilimi bağlamı ve iptal/uygula eylemleri. Sayılar varsayılan konum değildir.</desc>
+<rect width="1140" height="590" fill="#ffffff"/>
+<text x="24" y="19" font-family="Segoe UI, Arial, sans-serif" font-size="25" font-weight="600" fill="#20252b" dominant-baseline="hanging">Konum ve zaman düzenleyicileri</text>
+<text x="24" y="59" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="400" fill="#59616a" dominant-baseline="hanging">Düşük ayrıntılı akış taslağı · aynı anda açılan iki pencereyi temsil etmez</text>
+<rect x="24" y="104" width="522" height="452" rx="8" fill="#ffffff" stroke="#b5bbc2"/>
+<text x="46" y="125" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="600" fill="#20252b" dominant-baseline="hanging">Koordinat gir</text>
+<line x1="46" y1="169" x2="524" y2="169" stroke="#b5bbc2" stroke-width="1"/>
+<rect x="594" y="104" width="522" height="452" rx="8" fill="#ffffff" stroke="#b5bbc2"/>
+<text x="616" y="125" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="600" fill="#20252b" dominant-baseline="hanging">Tarih ve saat</text>
+<line x1="616" y1="169" x2="1094" y2="169" stroke="#b5bbc2" stroke-width="1"/>
+<text x="46" y="192" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="600" fill="#20252b" dominant-baseline="hanging">Enlem</text>
+<rect x="46" y="221" width="478" height="47" rx="5" fill="#ffffff" stroke="#20252b"/>
+<text x="60" y="234" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="400" fill="#20252b" dominant-baseline="hanging">91</text>
+<text x="46" y="280" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="600" fill="#20252b" dominant-baseline="hanging">Enlem −90 ile +90 arasında olmalı.</text>
+<text x="46" y="324" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="600" fill="#20252b" dominant-baseline="hanging">Boylam</text>
+<rect x="46" y="353" width="478" height="47" rx="5" fill="#ffffff" stroke="#b5bbc2"/>
+<text x="60" y="366" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="400" fill="#59616a" dominant-baseline="hanging">−180 … +180</text>
+<text x="46" y="422" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="400" fill="#59616a" dominant-baseline="hanging">Örnek hata · uygulanmış konum değişmez</text>
+<rect x="266" y="485" width="118" height="42" rx="6" fill="#ffffff" stroke="#b5bbc2"/>
+<text x="310.0" y="497.0" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="400" fill="#20252b" dominant-baseline="hanging">İptal</text>
+<rect x="396" y="485" width="128" height="42" rx="6" fill="#ffffff" stroke="#b5bbc2"/>
+<text x="435.5" y="497.0" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="400" fill="#20252b" dominant-baseline="hanging">Uygula</text>
+<text x="616" y="192" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="600" fill="#20252b" dominant-baseline="hanging">Tarih</text>
+<rect x="616" y="221" width="224" height="47" rx="5" fill="#ffffff" stroke="#b5bbc2"/>
+<text x="630" y="234" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="400" fill="#59616a" dominant-baseline="hanging">Tarih seç</text>
+<text x="860" y="192" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="600" fill="#20252b" dominant-baseline="hanging">Saat</text>
+<rect x="860" y="221" width="234" height="47" rx="5" fill="#ffffff" stroke="#b5bbc2"/>
+<text x="874" y="234" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="400" fill="#59616a" dominant-baseline="hanging">Saat seç</text>
+<text x="616" y="291" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="600" fill="#20252b" dominant-baseline="hanging">Saat dilimi</text>
+<rect x="616" y="322" width="478" height="47" rx="5" fill="#f1f3f5" stroke="#b5bbc2"/>
+<text x="630" y="337" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="400" fill="#20252b" dominant-baseline="hanging">Seçili konumun saat dilimi</text>
+<text x="616" y="394" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="400" fill="#20252b" dominant-baseline="hanging">Uyguladığında simülasyon başlar.</text>
+<text x="616" y="426" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="400" fill="#59616a" dominant-baseline="hanging">İptal mevcut zamanı korur.</text>
+<rect x="836" y="485" width="118" height="42" rx="6" fill="#ffffff" stroke="#b5bbc2"/>
+<text x="880.0" y="497.0" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="400" fill="#20252b" dominant-baseline="hanging">İptal</text>
+<rect x="966" y="485" width="128" height="42" rx="6" fill="#20252b" stroke="#20252b"/>
+<text x="1005.5" y="497.0" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="400" fill="#ffffff" dominant-baseline="hanging">Uygula</text>
+</svg>

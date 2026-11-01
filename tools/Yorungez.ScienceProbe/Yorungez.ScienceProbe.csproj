@@ -1,0 +1,4 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><TargetFramework>net10.0</TargetFramework><OutputType>Exe</OutputType></PropertyGroup>
+  <ItemGroup><ProjectReference Include="../../src/Modules/Astronomy/Yorungez.Astronomy.Infrastructure/Yorungez.Astronomy.Infrastructure.csproj" /></ItemGroup>
+</Project>

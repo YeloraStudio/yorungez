@@ -1,0 +1,296 @@
+{
+  "schemaVersion": 1,
+  "generatedAtUtc": "2026-10-30T21:36:57.2370493+00:00",
+  "engine": "Astronomy Engine",
+  "version": "2.1.19",
+  "upstreamCommit": "61dc07020aaa6885d2c7f688a4d82beaf6edb9ef",
+  "license": "MIT",
+  "referenceSha256": "707a43a38552b16700515362c923ba0045b145acfbb6c8ea9f0d53195856ae99",
+  "referenceSource": "NASA/JPL Horizons observer ephemeris",
+  "decision": "initial scoped adapter; polar azimuth withheld; rendering and broader validation remain open",
+  "tolerances": {
+    "positionArcminutes": 1,
+    "crossingSeconds": 60,
+    "polarAzimuthPublication": "withheld at abs(latitude)>=89"
+  },
+  "summary": {
+    "directionComparisons": 1168,
+    "originalDirectionalTargetFailures": 2,
+    "publishedDirectionComparisons": 1166,
+    "maxPublishedDirectionErrorArcminutes": 0.3354583028705404,
+    "maxRawDirectionErrorArcminutes": 3.891399811847251,
+    "maxAltitudeErrorArcminutes": 0.2689914881216282,
+    "maxCrossingErrorSeconds": 0.3906942,
+    "eventWindowStatusesMatch": true
+  },
+  "originalTargetExceptions": [
+    {
+      "id": "near-north-pole-neptune",
+      "instantUtc": "2026-03-20T12:00:00.000Z",
+      "azimuthDegrees": 175.89143861371693,
+      "altitudeDegrees": -0.3915137715986816,
+      "referenceAzimuthDegrees": 175.956196232,
+      "referenceAltitudeDegrees": -0.395124214,
+      "directionErrorArcminutes": 3.891399811847251,
+      "altitudeErrorArcminutes": 0.21662654407910154,
+      "azimuthPublished": false,
+      "directionalTargetMet": false
+    },
+    {
+      "id": "near-south-pole-venus",
+      "instantUtc": "2026-12-21T12:00:00.000Z",
+      "azimuthDegrees": 281.88251963740413,
+      "altitudeDegrees": 12.885237415763584,
+      "referenceAzimuthDegrees": 281.938443332,
+      "referenceAltitudeDegrees": 12.885265844,
+      "directionErrorArcminutes": 3.2709279934793445,
+      "altitudeErrorArcminutes": 0.001705694184934714,
+      "azimuthPublished": false,
+      "directionalTargetMet": false
+    }
+  ],
+  "positionCases": [
+    {
+      "id": "istanbul-sun",
+      "instantUtc": "2026-10-30T19:59:59.999Z",
+      "azimuthDegrees": 311.2426942687851,
+      "altitudeDegrees": -54.2345615003903,
+      "referenceAzimuthDegrees": 311.242355037,
+      "referenceAltitudeDegrees": -54.234381341,
+      "directionErrorArcminutes": 0.01607383479293767,
+      "altitudeErrorArcminutes": 0.010809563417808477,
+      "azimuthPublished": true,
+      "directionalTargetMet": true
+    },
+    {
+      "id": "istanbul-moon",
+      "instantUtc": "2026-10-30T19:59:59.999Z",
+      "azimuthDegrees": 66.9813856579955,
+      "altitudeDegrees": 13.361391062162355,
+      "referenceAzimuthDegrees": 66.9817397,
+      "referenceAltitudeDegrees": 13.362234521,
+      "directionErrorArcminutes": 0.05466504576554962,
+      "altitudeErrorArcminutes": 0.05060753025869502,
+      "azimuthPublished": true,
+      "directionalTargetMet": true
+    },
+    {
+      "id": "istanbul-saturn",
+      "instantUtc": "2026-10-30T19:59:59.999Z",
+      "azimuthDegrees": 177.61598933315946,
+      "altitudeDegrees": 50.205227012372916,
+      "referenceAzimuthDegrees": 177.610958841,
+      "referenceAltitudeDegrees": 50.205456331,
+      "directionErrorArcminutes": 0.19367175881735657,
+      "altitudeErrorArcminutes": 0.013759117625085082,
+      "azimuthPublished": true,
+      "directionalTargetMet": true
+    },
+    {
+      "id": "zero-jupiter-midnight",
+      "instantUtc": "2026-01-01T00:00:00.000Z",
+      "azimuthDegrees": 28.130547716912293,
+      "altitudeDegrees": 64.88734256335297,
+      "referenceAzimuthDegrees": 28.131671878,
+      "referenceAltitudeDegrees": 64.886724705,
+      "directionErrorArcminutes": 0.04683739349353478,
+      "altitudeErrorArcminutes": 0.03707150117804758,
+      "azimuthPublished": true,
+      "directionalTargetMet": true
+    },
+    {
+      "id": "south-moon",
+      "instantUtc": "2026-06-21T00:00:00.000Z",
+      "azimuthDegrees": 97.9731523144242,
+      "altitudeDegrees": -18.05928977279656,
+      "referenceAzimuthDegrees": 97.972543433,
+      "referenceAltitudeDegrees": -18.059036699,
+      "directionErrorArcminutes": 0.03790727299319054,
+      "altitudeErrorArcminutes": 0.01518442779364193,
+      "azimuthPublished": true,
+      "directionalTargetMet": true
+    },
+    {
+      "id": "dateline-east-mars",
+      "instantUtc": "2026-10-30T23:59:00.000Z",
+      "azimuthDegrees": 285.0574363131533,
+      "altitudeDegrees": 14.260124250722825,
+      "referenceAzimuthDegrees": 285.057846542,
+      "referenceAltitudeDegrees": 14.260659544,
+      "directionErrorArcminutes": 0.040007669086226695,
+      "altitudeErrorArcminutes": 0.032117596630456546,
+      "azimuthPublished": true,
+      "directionalTargetMet": true
+    },
+    {
+      "id": "dateline-west-mars",
+      "instantUtc": "2026-10-30T23:59:00.000Z",
+      "azimuthDegrees": 285.0574363131533,
+      "altitudeDegrees": 14.260124250722825,
+      "referenceAzimuthDegrees": 285.057846542,
+      "referenceAltitudeDegrees": 14.260659544,
+      "directionErrorArcminutes": 0.040007669086226695,
+      "altitudeErrorArcminutes": 0.032117596630456546,
+      "azimuthPublished": true,
+      "directionalTargetMet": true
+    },
+    {
+      "id": "near-north-pole-neptune",
+      "instantUtc": "2026-03-20T12:00:00.000Z",
+      "azimuthDegrees": 175.89143861371693,
+      "altitudeDegrees": -0.3915137715986816,
+      "referenceAzimuthDegrees": 175.956196232,
+      "referenceAltitudeDegrees": -0.395124214,
+      "directionErrorArcminutes": 3.891399811847251,
+      "altitudeErrorArcminutes": 0.21662654407910154,
+      "azimuthPublished": false,
+      "directionalTargetMet": false
+    },
+    {
+      "id": "near-south-pole-venus",
+      "instantUtc": "2026-12-21T12:00:00.000Z",
+      "azimuthDegrees": 281.88251963740413,
+      "altitudeDegrees": 12.885237415763584,
+      "referenceAzimuthDegrees": 281.938443332,
+      "referenceAltitudeDegrees": 12.885265844,
+      "directionErrorArcminutes": 3.2709279934793445,
+      "altitudeErrorArcminutes": 0.001705694184934714,
+      "azimuthPublished": false,
+      "directionalTargetMet": false
+    },
+    {
+      "id": "past-mercury",
+      "instantUtc": "2000-01-01T12:00:00.000Z",
+      "azimuthDegrees": 187.85446202022445,
+      "altitudeDegrees": 13.741544196735518,
+      "referenceAzimuthDegrees": 187.855584867,
+      "referenceAltitudeDegrees": 13.741685543,
+      "directionErrorArcminutes": 0.06598966906542332,
+      "altitudeErrorArcminutes": 0.008480775868875412,
+      "azimuthPublished": true,
+      "directionalTargetMet": true
+    },
+    {
+      "id": "future-uranus",
+      "instantUtc": "2035-12-31T07:59:59.999Z",
+      "azimuthDegrees": 202.40725547367003,
+      "altitudeDegrees": 77.3323215404687,
+      "referenceAzimuthDegrees": 202.392024583,
+      "referenceAltitudeDegrees": 77.327838349,
+      "directionErrorArcminutes": 0.3354583028705404,
+      "altitudeErrorArcminutes": 0.2689914881216282,
+      "azimuthPublished": true,
+      "directionalTargetMet": true
+    },
+    {
+      "id": "high-observer-moon",
+      "instantUtc": "2026-10-30T04:00:00.000Z",
+      "azimuthDegrees": 51.89264960777215,
+      "altitudeDegrees": 12.265086822301768,
+      "referenceAzimuthDegrees": 51.89202868,
+      "referenceAltitudeDegrees": 12.265712317,
+      "directionErrorArcminutes": 0.05228596524718718,
+      "altitudeErrorArcminutes": 0.03752968189392192,
+      "azimuthPublished": true,
+      "directionalTargetMet": true
+    }
+  ],
+  "crossingCases": [
+    {
+      "id": "equinox-sun-istanbul",
+      "risingUtc": "2026-03-20T04:12:14.2127714+00:00",
+      "settingUtc": "2026-03-20T16:11:32.4956351+00:00",
+      "referenceRisingUtc": "2026-03-20T04:12:14.1015708+00:00",
+      "referenceSettingUtc": "2026-03-20T16:11:32.3457592+00:00",
+      "risingErrorSeconds": 0.1112006,
+      "settingErrorSeconds": 0.1498759,
+      "windowStatusesMatch": true
+    },
+    {
+      "id": "moon-sydney",
+      "risingUtc": "2026-10-30T13:16:18.8303921+00:00",
+      "settingUtc": "2026-10-30T22:50:33.2267732+00:00",
+      "referenceRisingUtc": "2026-10-30T13:16:18.8594851+00:00",
+      "referenceSettingUtc": "2026-10-30T22:50:32.836079+00:00",
+      "risingErrorSeconds": 0.029093,
+      "settingErrorSeconds": 0.3906942,
+      "windowStatusesMatch": true
+    },
+    {
+      "id": "polar-summer-sun",
+      "risingUtc": null,
+      "settingUtc": null,
+      "referenceRisingUtc": null,
+      "referenceSettingUtc": null,
+      "risingErrorSeconds": null,
+      "settingErrorSeconds": null,
+      "windowStatusesMatch": true
+    },
+    {
+      "id": "polar-winter-sun",
+      "risingUtc": null,
+      "settingUtc": null,
+      "referenceRisingUtc": null,
+      "referenceSettingUtc": null,
+      "risingErrorSeconds": null,
+      "settingErrorSeconds": null,
+      "windowStatusesMatch": true
+    }
+  ],
+  "crossLanguage": {
+    "positionComparisons": 1168,
+    "maxAzimuthDeltaDegrees": 1.1368683772161603e-13,
+    "maxAltitudeDeltaDegrees": 8.526512829121202e-14,
+    "maxCrossingDeltaSeconds": 0,
+    "crossingStatusesMatch": true
+  },
+  "desktopCSharp": {
+    "environment": {
+      "runtime": ".NET 10.0.14",
+      "os": "Microsoft Windows 10.0.26300",
+      "architecture": "X64",
+      "logicalProcessors": 16,
+      "scope": "local desktop process; not mobile, browser rendering, API throughput or production load"
+    },
+    "benchmark": {
+      "warmupBatches": 200,
+      "measuredBatches": 1000,
+      "bodiesPerBatch": 9,
+      "p50Milliseconds": 0.0468,
+      "p95Milliseconds": 0.0554,
+      "p99Milliseconds": 0.0756,
+      "maxMilliseconds": 0.9788,
+      "allocatedBytesPerBatch": 8465.968
+    }
+  },
+  "desktopJavaScript": {
+    "environment": {
+      "runtime": "v22.20.0",
+      "os": "Windows_NT",
+      "architecture": "x64",
+      "logicalProcessors": 16,
+      "scope": "Node desktop process; not mobile, browser rendering or worker scheduling"
+    },
+    "benchmark": {
+      "warmupBatches": 200,
+      "measuredBatches": 1000,
+      "bodiesPerBatch": 9,
+      "p50Milliseconds": 0.06350000000000477,
+      "p95Milliseconds": 0.12080000000000268,
+      "p99Milliseconds": 0.17429999999998813,
+      "maxMilliseconds": 0.3930000000000007
+    }
+  },
+  "browserAsset": {
+    "file": "astronomy.browser.min.js",
+    "rawBytes": 116424,
+    "gzipBytes": 46706
+  },
+  "limitations": [
+    "Samples do not establish uniform accuracy across dates or sites.",
+    "Polar directional failures are retained, not accepted by a relaxed tolerance.",
+    "Five-minute JPL series roots are interpolated references, not exact event solutions.",
+    "Standard refraction is not independently validated against measured weather.",
+    "No mobile/browser rendering, accessibility, production load or offline PWA test yet."
+  ]
+}

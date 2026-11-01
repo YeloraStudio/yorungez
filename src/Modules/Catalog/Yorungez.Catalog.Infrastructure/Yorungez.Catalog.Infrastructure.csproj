@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><TargetFramework>net10.0</TargetFramework></PropertyGroup>
+  <ItemGroup><FrameworkReference Include="Microsoft.AspNetCore.App" /></ItemGroup>
+  <ItemGroup><ProjectReference Include="../Yorungez.Catalog.Application/Yorungez.Catalog.Application.csproj" /></ItemGroup>
+  <ItemGroup><EmbeddedResource Include="Data/glossary.json" /></ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="../../../../data/events/calendar.json" LogicalName="Yorungez.Catalog.Infrastructure.Data.calendar.json" />
+    <EmbeddedResource Include="../../../../data/events/manifest.json" LogicalName="Yorungez.Catalog.Infrastructure.Data.calendar-manifest.json" />
+    <EmbeddedResource Include="../../../../data/places/cities.json.gz" LogicalName="Yorungez.Catalog.Infrastructure.Data.cities.json.gz" />
+    <EmbeddedResource Include="../../../../data/places/manifest.json" LogicalName="Yorungez.Catalog.Infrastructure.Data.places-manifest.json" />
+    <EmbeddedResource Include="../../../../data/catalog/overlays.json" LogicalName="Yorungez.Catalog.Infrastructure.Data.overlays.json" />
+    <EmbeddedResource Include="../../../../data/catalog/overlays-manifest.json" LogicalName="Yorungez.Catalog.Infrastructure.Data.overlays-manifest.json" />
+    <EmbeddedResource Include="../../../../data/catalog/bright-sky.json" LogicalName="Yorungez.Catalog.Infrastructure.Data.bright-sky.json" />
+    <EmbeddedResource Include="../../../../data/catalog/manifest.json" LogicalName="Yorungez.Catalog.Infrastructure.Data.catalog-manifest.json" />
+  </ItemGroup>
+</Project>

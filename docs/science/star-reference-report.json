@@ -1,0 +1,1039 @@
+{
+  "schemaVersion": 1,
+  "generatedAtUtc": "2026-10-31T10:35:04.730Z",
+  "engine": "Astronomy Engine 2.1.19 plus yorungez star adapter",
+  "reference": "Astropy 8.0.2 / ERFA, frozen bundled IERS",
+  "catalogSha256": "f978d9ba182ab6f3c6d0b4bb2538007eaed6aa5e44f8178ae1310c0e59ab96f1",
+  "toleranceArcminutes": 1,
+  "referenceWarnings": [
+    "AstropyWarning: Tried to get polar motions for times after IERS data is valid. Defaulting to polar motion from the 50-yr mean for those. This may affect precision at the arcsec level. Please check your astropy.utils.iers.conf.iers_auto_url and point it to a newer version if necessary.",
+    "ErfaWarning: ERFA function \"d2dtf\" yielded 1 of \"dubious year (Note 5)\"",
+    "ErfaWarning: ERFA function \"dtf2d\" yielded 1 of \"dubious year (Note 6)\"",
+    "ErfaWarning: ERFA function \"taiutc\" yielded 1 of \"dubious year (Note 4)\"",
+    "ErfaWarning: ERFA function \"utctai\" yielded 1 of \"dubious year (Note 3)\"",
+    "ErfaWarning: ERFA function \"utcut1\" yielded 1 of \"dubious year (Note 3)\""
+  ],
+  "summary": {
+    "samples": 144,
+    "maxSeparationArcminutes": 0.30757846432765157,
+    "maxAltitudeErrorArcminutes": 0.26480732466175994
+  },
+  "benchmark": {
+    "environment": "local Node desktop, fixed observer/instant, no rendering",
+    "starsPerBatch": 5073,
+    "warmupBatches": 10,
+    "measuredBatches": 100,
+    "p50Milliseconds": 0.5937999999999874,
+    "p95Milliseconds": 1.214100000000002
+  },
+  "samples": [
+    {
+      "starId": "hyg-32263",
+      "site": "istanbul",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.08797723950092967,
+      "altitudeErrorArcminutes": 0.056634189365922794
+    },
+    {
+      "starId": "hyg-69451",
+      "site": "istanbul",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.0765735927979136,
+      "altitudeErrorArcminutes": 0.06129214957514506
+    },
+    {
+      "starId": "hyg-71456",
+      "site": "istanbul",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.23519923892880742,
+      "altitudeErrorArcminutes": 0.2115939406706957
+    },
+    {
+      "starId": "hyg-90979",
+      "site": "istanbul",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.07639001327294564,
+      "altitudeErrorArcminutes": 0.07345007502095768
+    },
+    {
+      "starId": "hyg-24549",
+      "site": "istanbul",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.06313616109588416,
+      "altitudeErrorArcminutes": 0.03728543060789846
+    },
+    {
+      "starId": "hyg-24378",
+      "site": "istanbul",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.09121085036057165,
+      "altitudeErrorArcminutes": 0.06696704789717955
+    },
+    {
+      "starId": "hyg-37173",
+      "site": "istanbul",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.0917579275699784,
+      "altitudeErrorArcminutes": 0.022418970811202144
+    },
+    {
+      "starId": "hyg-27919",
+      "site": "istanbul",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.09046660973912149,
+      "altitudeErrorArcminutes": 0.05193591539594422
+    },
+    {
+      "starId": "hyg-65269",
+      "site": "istanbul",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.08867663001756688,
+      "altitudeErrorArcminutes": 0.07254444766140011
+    },
+    {
+      "starId": "hyg-80519",
+      "site": "istanbul",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.07567652336174888,
+      "altitudeErrorArcminutes": 0.054438573284976144
+    },
+    {
+      "starId": "hyg-113008",
+      "site": "istanbul",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.07905818202421214,
+      "altitudeErrorArcminutes": 0.04118207403742247
+    },
+    {
+      "starId": "hyg-11734",
+      "site": "istanbul",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.005028023704831586,
+      "altitudeErrorArcminutes": 0.004568438881591419
+    },
+    {
+      "starId": "hyg-32263",
+      "site": "istanbul",
+      "instantUtc": "2026-10-30T20:00:00Z",
+      "separationArcminutes": 0.017069085503504174,
+      "altitudeErrorArcminutes": 0.007025729629965838
+    },
+    {
+      "starId": "hyg-69451",
+      "site": "istanbul",
+      "instantUtc": "2026-10-30T20:00:00Z",
+      "separationArcminutes": 0.0199198986445143,
+      "altitudeErrorArcminutes": 0.004701921325462877
+    },
+    {
+      "starId": "hyg-71456",
+      "site": "istanbul",
+      "instantUtc": "2026-10-30T20:00:00Z",
+      "separationArcminutes": 0.2755722377694855,
+      "altitudeErrorArcminutes": 0.24030440661263697
+    },
+    {
+      "starId": "hyg-90979",
+      "site": "istanbul",
+      "instantUtc": "2026-10-30T20:00:00Z",
+      "separationArcminutes": 0.0051267383530767315,
+      "altitudeErrorArcminutes": 0.0014652404200887759
+    },
+    {
+      "starId": "hyg-24549",
+      "site": "istanbul",
+      "instantUtc": "2026-10-30T20:00:00Z",
+      "separationArcminutes": 0.007428537260080713,
+      "altitudeErrorArcminutes": 0.005219047062468007
+    },
+    {
+      "starId": "hyg-24378",
+      "site": "istanbul",
+      "instantUtc": "2026-10-30T20:00:00Z",
+      "separationArcminutes": 0.01662082187522551,
+      "altitudeErrorArcminutes": 0.0065346985940806235
+    },
+    {
+      "starId": "hyg-37173",
+      "site": "istanbul",
+      "instantUtc": "2026-10-30T20:00:00Z",
+      "separationArcminutes": 0.013967350666113315,
+      "altitudeErrorArcminutes": 0.005788362668006641
+    },
+    {
+      "starId": "hyg-27919",
+      "site": "istanbul",
+      "instantUtc": "2026-10-30T20:00:00Z",
+      "separationArcminutes": 0.015169594896511315,
+      "altitudeErrorArcminutes": 0.007134416105891717
+    },
+    {
+      "starId": "hyg-65269",
+      "site": "istanbul",
+      "instantUtc": "2026-10-30T20:00:00Z",
+      "separationArcminutes": 0.00820582633622068,
+      "altitudeErrorArcminutes": 0.0005446988997448443
+    },
+    {
+      "starId": "hyg-80519",
+      "site": "istanbul",
+      "instantUtc": "2026-10-30T20:00:00Z",
+      "separationArcminutes": 0.011911436725894018,
+      "altitudeErrorArcminutes": 0.004174006270858399
+    },
+    {
+      "starId": "hyg-113008",
+      "site": "istanbul",
+      "instantUtc": "2026-10-30T20:00:00Z",
+      "separationArcminutes": 0.012321205024886591,
+      "altitudeErrorArcminutes": 0.0014727673233494443
+    },
+    {
+      "starId": "hyg-11734",
+      "site": "istanbul",
+      "instantUtc": "2026-10-30T20:00:00Z",
+      "separationArcminutes": 0.007700508211921371,
+      "altitudeErrorArcminutes": 0.0024116945100161047
+    },
+    {
+      "starId": "hyg-32263",
+      "site": "istanbul",
+      "instantUtc": "2035-12-31T08:00:00Z",
+      "separationArcminutes": 0.042083929420194385,
+      "altitudeErrorArcminutes": 0.02516923064163734
+    },
+    {
+      "starId": "hyg-69451",
+      "site": "istanbul",
+      "instantUtc": "2035-12-31T08:00:00Z",
+      "separationArcminutes": 0.05292048574447476,
+      "altitudeErrorArcminutes": 0.03796841362955661
+    },
+    {
+      "starId": "hyg-71456",
+      "site": "istanbul",
+      "instantUtc": "2035-12-31T08:00:00Z",
+      "separationArcminutes": 0.3058117321604862,
+      "altitudeErrorArcminutes": 0.10985234677384881
+    },
+    {
+      "starId": "hyg-90979",
+      "site": "istanbul",
+      "instantUtc": "2035-12-31T08:00:00Z",
+      "separationArcminutes": 0.030905497483886917,
+      "altitudeErrorArcminutes": 0.02884377400903304
+    },
+    {
+      "starId": "hyg-24549",
+      "site": "istanbul",
+      "instantUtc": "2035-12-31T08:00:00Z",
+      "separationArcminutes": 0.02681246741128697,
+      "altitudeErrorArcminutes": 0.0011133737137836164
+    },
+    {
+      "starId": "hyg-24378",
+      "site": "istanbul",
+      "instantUtc": "2035-12-31T08:00:00Z",
+      "separationArcminutes": 0.04041358635052636,
+      "altitudeErrorArcminutes": 0.006748016965474335
+    },
+    {
+      "starId": "hyg-37173",
+      "site": "istanbul",
+      "instantUtc": "2035-12-31T08:00:00Z",
+      "separationArcminutes": 0.04257843045977856,
+      "altitudeErrorArcminutes": 0.02282561304937758
+    },
+    {
+      "starId": "hyg-27919",
+      "site": "istanbul",
+      "instantUtc": "2035-12-31T08:00:00Z",
+      "separationArcminutes": 0.04126891353426327,
+      "altitudeErrorArcminutes": 0.010607438346994513
+    },
+    {
+      "starId": "hyg-65269",
+      "site": "istanbul",
+      "instantUtc": "2035-12-31T08:00:00Z",
+      "separationArcminutes": 0.047706897304295545,
+      "altitudeErrorArcminutes": 0.026854309883219685
+    },
+    {
+      "starId": "hyg-80519",
+      "site": "istanbul",
+      "instantUtc": "2035-12-31T08:00:00Z",
+      "separationArcminutes": 0.04600705672666001,
+      "altitudeErrorArcminutes": 0.0028774906568429515
+    },
+    {
+      "starId": "hyg-113008",
+      "site": "istanbul",
+      "instantUtc": "2035-12-31T08:00:00Z",
+      "separationArcminutes": 0.03144955856547412,
+      "altitudeErrorArcminutes": 0.021927216393322624
+    },
+    {
+      "starId": "hyg-11734",
+      "site": "istanbul",
+      "instantUtc": "2035-12-31T08:00:00Z",
+      "separationArcminutes": 0.005024891304752977,
+      "altitudeErrorArcminutes": 0.0005309450035895225
+    },
+    {
+      "starId": "hyg-32263",
+      "site": "sydney",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.08057233385579102,
+      "altitudeErrorArcminutes": 0.062153453853710516
+    },
+    {
+      "starId": "hyg-69451",
+      "site": "sydney",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.07985350892631186,
+      "altitudeErrorArcminutes": 0.07163360390322282
+    },
+    {
+      "starId": "hyg-71456",
+      "site": "sydney",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.23121433264626304,
+      "altitudeErrorArcminutes": 0.09758806430916422
+    },
+    {
+      "starId": "hyg-90979",
+      "site": "sydney",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.08380263228146408,
+      "altitudeErrorArcminutes": 0.08352254091590794
+    },
+    {
+      "starId": "hyg-24549",
+      "site": "sydney",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.05620598057697144,
+      "altitudeErrorArcminutes": 0.0040126430012321634
+    },
+    {
+      "starId": "hyg-24378",
+      "site": "sydney",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.08425456565922157,
+      "altitudeErrorArcminutes": 0.016187412482651098
+    },
+    {
+      "starId": "hyg-37173",
+      "site": "sydney",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.08462719113375614,
+      "altitudeErrorArcminutes": 0.05857198933568952
+    },
+    {
+      "starId": "hyg-27919",
+      "site": "sydney",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.08317589936747782,
+      "altitudeErrorArcminutes": 0.02762393734215607
+    },
+    {
+      "starId": "hyg-65269",
+      "site": "sydney",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.09014071157551756,
+      "altitudeErrorArcminutes": 0.06733300415532995
+    },
+    {
+      "starId": "hyg-80519",
+      "site": "sydney",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.08186993043159403,
+      "altitudeErrorArcminutes": 0.009634275682941507
+    },
+    {
+      "starId": "hyg-113008",
+      "site": "sydney",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.08191865194692578,
+      "altitudeErrorArcminutes": 0.07320677101404272
+    },
+    {
+      "starId": "hyg-11734",
+      "site": "sydney",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.008582221704274183,
+      "altitudeErrorArcminutes": 0.007670413331908321
+    },
+    {
+      "starId": "hyg-32263",
+      "site": "sydney",
+      "instantUtc": "2026-10-30T20:00:00Z",
+      "separationArcminutes": 0.020266766526911298,
+      "altitudeErrorArcminutes": 0.011409259917627423
+    },
+    {
+      "starId": "hyg-69451",
+      "site": "sydney",
+      "instantUtc": "2026-10-30T20:00:00Z",
+      "separationArcminutes": 0.02429358564435634,
+      "altitudeErrorArcminutes": 0.01711447989823256
+    },
+    {
+      "starId": "hyg-71456",
+      "site": "sydney",
+      "instantUtc": "2026-10-30T20:00:00Z",
+      "separationArcminutes": 0.27889731976015686,
+      "altitudeErrorArcminutes": 0.26480732466175994
+    },
+    {
+      "starId": "hyg-90979",
+      "site": "sydney",
+      "instantUtc": "2026-10-30T20:00:00Z",
+      "separationArcminutes": 0.007236898885521812,
+      "altitudeErrorArcminutes": 0.00024765727431486084
+    },
+    {
+      "starId": "hyg-24549",
+      "site": "sydney",
+      "instantUtc": "2026-10-30T20:00:00Z",
+      "separationArcminutes": 0.011697920347069608,
+      "altitudeErrorArcminutes": 0.0009332866897704406
+    },
+    {
+      "starId": "hyg-24378",
+      "site": "sydney",
+      "instantUtc": "2026-10-30T20:00:00Z",
+      "separationArcminutes": 0.017610343441417774,
+      "altitudeErrorArcminutes": 0.010239952279391673
+    },
+    {
+      "starId": "hyg-37173",
+      "site": "sydney",
+      "instantUtc": "2026-10-30T20:00:00Z",
+      "separationArcminutes": 0.019257045811451504,
+      "altitudeErrorArcminutes": 0.0005421733185073663
+    },
+    {
+      "starId": "hyg-27919",
+      "site": "sydney",
+      "instantUtc": "2026-10-30T20:00:00Z",
+      "separationArcminutes": 0.01801539272043877,
+      "altitudeErrorArcminutes": 0.006114222732378494
+    },
+    {
+      "starId": "hyg-65269",
+      "site": "sydney",
+      "instantUtc": "2026-10-30T20:00:00Z",
+      "separationArcminutes": 0.013297277176690634,
+      "altitudeErrorArcminutes": 0.010570499009645573
+    },
+    {
+      "starId": "hyg-80519",
+      "site": "sydney",
+      "instantUtc": "2026-10-30T20:00:00Z",
+      "separationArcminutes": 0.01027252560545791,
+      "altitudeErrorArcminutes": 0.004477621899710016
+    },
+    {
+      "starId": "hyg-113008",
+      "site": "sydney",
+      "instantUtc": "2026-10-30T20:00:00Z",
+      "separationArcminutes": 0.00552272113469507,
+      "altitudeErrorArcminutes": 0.004825243240915711
+    },
+    {
+      "starId": "hyg-11734",
+      "site": "sydney",
+      "instantUtc": "2026-10-30T20:00:00Z",
+      "separationArcminutes": 0.013791423021588901,
+      "altitudeErrorArcminutes": 0.010931546121639713
+    },
+    {
+      "starId": "hyg-32263",
+      "site": "sydney",
+      "instantUtc": "2035-12-31T08:00:00Z",
+      "separationArcminutes": 0.04522724204308865,
+      "altitudeErrorArcminutes": 0.03654855474106711
+    },
+    {
+      "starId": "hyg-69451",
+      "site": "sydney",
+      "instantUtc": "2035-12-31T08:00:00Z",
+      "separationArcminutes": 0.04552371680303788,
+      "altitudeErrorArcminutes": 0.03471508031651638
+    },
+    {
+      "starId": "hyg-71456",
+      "site": "sydney",
+      "instantUtc": "2035-12-31T08:00:00Z",
+      "separationArcminutes": 0.29840750702076113,
+      "altitudeErrorArcminutes": 0.12643671362768671
+    },
+    {
+      "starId": "hyg-90979",
+      "site": "sydney",
+      "instantUtc": "2035-12-31T08:00:00Z",
+      "separationArcminutes": 0.028134078986188082,
+      "altitudeErrorArcminutes": 0.020955222994061273
+    },
+    {
+      "starId": "hyg-24549",
+      "site": "sydney",
+      "instantUtc": "2035-12-31T08:00:00Z",
+      "separationArcminutes": 0.03282838162795435,
+      "altitudeErrorArcminutes": 0.021534142427945824
+    },
+    {
+      "starId": "hyg-24378",
+      "site": "sydney",
+      "instantUtc": "2035-12-31T08:00:00Z",
+      "separationArcminutes": 0.04595860603603044,
+      "altitudeErrorArcminutes": 0.036928039997619067
+    },
+    {
+      "starId": "hyg-37173",
+      "site": "sydney",
+      "instantUtc": "2035-12-31T08:00:00Z",
+      "separationArcminutes": 0.0442894978189057,
+      "altitudeErrorArcminutes": 0.03389743677782775
+    },
+    {
+      "starId": "hyg-27919",
+      "site": "sydney",
+      "instantUtc": "2035-12-31T08:00:00Z",
+      "separationArcminutes": 0.045971365675041474,
+      "altitudeErrorArcminutes": 0.03493913730329368
+    },
+    {
+      "starId": "hyg-65269",
+      "site": "sydney",
+      "instantUtc": "2035-12-31T08:00:00Z",
+      "separationArcminutes": 0.040585712378942956,
+      "altitudeErrorArcminutes": 0.01022487441616704
+    },
+    {
+      "starId": "hyg-80519",
+      "site": "sydney",
+      "instantUtc": "2035-12-31T08:00:00Z",
+      "separationArcminutes": 0.039512806690846974,
+      "altitudeErrorArcminutes": 0.027310264230671066
+    },
+    {
+      "starId": "hyg-113008",
+      "site": "sydney",
+      "instantUtc": "2035-12-31T08:00:00Z",
+      "separationArcminutes": 0.03546651772010049,
+      "altitudeErrorArcminutes": 0.03273520041233269
+    },
+    {
+      "starId": "hyg-11734",
+      "site": "sydney",
+      "instantUtc": "2035-12-31T08:00:00Z",
+      "separationArcminutes": 0.0034976804544143464,
+      "altitudeErrorArcminutes": 0.0005413456094061075
+    },
+    {
+      "starId": "hyg-32263",
+      "site": "zero",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.08974906580041693,
+      "altitudeErrorArcminutes": 0.005350328684414762
+    },
+    {
+      "starId": "hyg-69451",
+      "site": "zero",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.07404950266066827,
+      "altitudeErrorArcminutes": 0.07248972222953398
+    },
+    {
+      "starId": "hyg-71456",
+      "site": "zero",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.23781001890605413,
+      "altitudeErrorArcminutes": 0.20816629889996108
+    },
+    {
+      "starId": "hyg-90979",
+      "site": "zero",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.07453424567958877,
+      "altitudeErrorArcminutes": 0.0023878771570196022
+    },
+    {
+      "starId": "hyg-24549",
+      "site": "zero",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.065539313210791,
+      "altitudeErrorArcminutes": 0.03226776683973753
+    },
+    {
+      "starId": "hyg-24378",
+      "site": "zero",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.09360767093690464,
+      "altitudeErrorArcminutes": 0.08707262436274732
+    },
+    {
+      "starId": "hyg-37173",
+      "site": "zero",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.09302212706128347,
+      "altitudeErrorArcminutes": 0.08793428538666603
+    },
+    {
+      "starId": "hyg-27919",
+      "site": "zero",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.09263463262161094,
+      "altitudeErrorArcminutes": 0.07940759131543018
+    },
+    {
+      "starId": "hyg-65269",
+      "site": "zero",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.08645046683125632,
+      "altitudeErrorArcminutes": 0.0863387108593372
+    },
+    {
+      "starId": "hyg-80519",
+      "site": "zero",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.07308180728345665,
+      "altitudeErrorArcminutes": 0.06314606764902919
+    },
+    {
+      "starId": "hyg-113008",
+      "site": "zero",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.08013233270891018,
+      "altitudeErrorArcminutes": 0.07941822386690944
+    },
+    {
+      "starId": "hyg-11734",
+      "site": "zero",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.00728820711408063,
+      "altitudeErrorArcminutes": 0.006970683586012827
+    },
+    {
+      "starId": "hyg-32263",
+      "site": "zero",
+      "instantUtc": "2026-10-30T20:00:00Z",
+      "separationArcminutes": 0.014843114505822687,
+      "altitudeErrorArcminutes": 0.013851838202327826
+    },
+    {
+      "starId": "hyg-69451",
+      "site": "zero",
+      "instantUtc": "2026-10-30T20:00:00Z",
+      "separationArcminutes": 0.020385025408193033,
+      "altitudeErrorArcminutes": 0.019373026396749538
+    },
+    {
+      "starId": "hyg-71456",
+      "site": "zero",
+      "instantUtc": "2026-10-30T20:00:00Z",
+      "separationArcminutes": 0.2764767747360559,
+      "altitudeErrorArcminutes": 0.2530221642766861
+    },
+    {
+      "starId": "hyg-90979",
+      "site": "zero",
+      "instantUtc": "2026-10-30T20:00:00Z",
+      "separationArcminutes": 0.007159063845614409,
+      "altitudeErrorArcminutes": 0.007141662202414523
+    },
+    {
+      "starId": "hyg-24549",
+      "site": "zero",
+      "instantUtc": "2026-10-30T20:00:00Z",
+      "separationArcminutes": 0.004957595309579872,
+      "altitudeErrorArcminutes": 0.004248664400616775
+    },
+    {
+      "starId": "hyg-24378",
+      "site": "zero",
+      "instantUtc": "2026-10-30T20:00:00Z",
+      "separationArcminutes": 0.01468510526620706,
+      "altitudeErrorArcminutes": 0.013228236411961802
+    },
+    {
+      "starId": "hyg-37173",
+      "site": "zero",
+      "instantUtc": "2026-10-30T20:00:00Z",
+      "separationArcminutes": 0.011563903104986641,
+      "altitudeErrorArcminutes": 0.00970751313232654
+    },
+    {
+      "starId": "hyg-27919",
+      "site": "zero",
+      "instantUtc": "2026-10-30T20:00:00Z",
+      "separationArcminutes": 0.01286170822504872,
+      "altitudeErrorArcminutes": 0.011393794165854843
+    },
+    {
+      "starId": "hyg-65269",
+      "site": "zero",
+      "instantUtc": "2026-10-30T20:00:00Z",
+      "separationArcminutes": 0.008348963389584727,
+      "altitudeErrorArcminutes": 0.008285880373506416
+    },
+    {
+      "starId": "hyg-80519",
+      "site": "zero",
+      "instantUtc": "2026-10-30T20:00:00Z",
+      "separationArcminutes": 0.01394290524515026,
+      "altitudeErrorArcminutes": 0.011526506703161132
+    },
+    {
+      "starId": "hyg-113008",
+      "site": "zero",
+      "instantUtc": "2026-10-30T20:00:00Z",
+      "separationArcminutes": 0.013758275551797485,
+      "altitudeErrorArcminutes": 0.004033016358846453
+    },
+    {
+      "starId": "hyg-11734",
+      "site": "zero",
+      "instantUtc": "2026-10-30T20:00:00Z",
+      "separationArcminutes": 0.008324884104034477,
+      "altitudeErrorArcminutes": 0.007573790285346216
+    },
+    {
+      "starId": "hyg-32263",
+      "site": "zero",
+      "instantUtc": "2035-12-31T08:00:00Z",
+      "separationArcminutes": 0.04303967371251887,
+      "altitudeErrorArcminutes": 0.04301801037371433
+    },
+    {
+      "starId": "hyg-69451",
+      "site": "zero",
+      "instantUtc": "2035-12-31T08:00:00Z",
+      "separationArcminutes": 0.05489897323577621,
+      "altitudeErrorArcminutes": 0.01519678704113403
+    },
+    {
+      "starId": "hyg-71456",
+      "site": "zero",
+      "instantUtc": "2035-12-31T08:00:00Z",
+      "separationArcminutes": 0.30757846432765157,
+      "altitudeErrorArcminutes": 0.00638483423401226
+    },
+    {
+      "starId": "hyg-90979",
+      "site": "zero",
+      "instantUtc": "2035-12-31T08:00:00Z",
+      "separationArcminutes": 0.030000405665807334,
+      "altitudeErrorArcminutes": 0.028692430678418646
+    },
+    {
+      "starId": "hyg-24549",
+      "site": "zero",
+      "instantUtc": "2035-12-31T08:00:00Z",
+      "separationArcminutes": 0.026559057970823856,
+      "altitudeErrorArcminutes": 0.01961390276605357
+    },
+    {
+      "starId": "hyg-24378",
+      "site": "zero",
+      "instantUtc": "2035-12-31T08:00:00Z",
+      "separationArcminutes": 0.04029263131968036,
+      "altitudeErrorArcminutes": 0.04016008248854064
+    },
+    {
+      "starId": "hyg-37173",
+      "site": "zero",
+      "instantUtc": "2035-12-31T08:00:00Z",
+      "separationArcminutes": 0.043998752494459274,
+      "altitudeErrorArcminutes": 0.043708799796498
+    },
+    {
+      "starId": "hyg-27919",
+      "site": "zero",
+      "instantUtc": "2035-12-31T08:00:00Z",
+      "separationArcminutes": 0.04156019276235369,
+      "altitudeErrorArcminutes": 0.04084589882026535
+    },
+    {
+      "starId": "hyg-65269",
+      "site": "zero",
+      "instantUtc": "2035-12-31T08:00:00Z",
+      "separationArcminutes": 0.050014774342789316,
+      "altitudeErrorArcminutes": 0.04182116918542533
+    },
+    {
+      "starId": "hyg-80519",
+      "site": "zero",
+      "instantUtc": "2035-12-31T08:00:00Z",
+      "separationArcminutes": 0.04674544742108925,
+      "altitudeErrorArcminutes": 0.03360075951192698
+    },
+    {
+      "starId": "hyg-113008",
+      "site": "zero",
+      "instantUtc": "2035-12-31T08:00:00Z",
+      "separationArcminutes": 0.028893970774607952,
+      "altitudeErrorArcminutes": 0.028654093972022565
+    },
+    {
+      "starId": "hyg-11734",
+      "site": "zero",
+      "instantUtc": "2035-12-31T08:00:00Z",
+      "separationArcminutes": 0.006441302049899314,
+      "altitudeErrorArcminutes": 0.000008335080192711786
+    },
+    {
+      "starId": "hyg-32263",
+      "site": "high-north",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.08528455680083927,
+      "altitudeErrorArcminutes": 0.005110758213220379
+    },
+    {
+      "starId": "hyg-69451",
+      "site": "high-north",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.07562933218604902,
+      "altitudeErrorArcminutes": 0.01662486088335413
+    },
+    {
+      "starId": "hyg-71456",
+      "site": "high-north",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.2357568801172645,
+      "altitudeErrorArcminutes": 0.03645953552634751
+    },
+    {
+      "starId": "hyg-90979",
+      "site": "high-north",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.0789872508278626,
+      "altitudeErrorArcminutes": 0.006186852353522454
+    },
+    {
+      "starId": "hyg-24549",
+      "site": "high-north",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.06154222646820368,
+      "altitudeErrorArcminutes": 0.0028822930210026243
+    },
+    {
+      "starId": "hyg-24378",
+      "site": "high-north",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.08957858846493968,
+      "altitudeErrorArcminutes": 0.0033780670226946086
+    },
+    {
+      "starId": "hyg-37173",
+      "site": "high-north",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.08862377720439908,
+      "altitudeErrorArcminutes": 0.00962223093558201
+    },
+    {
+      "starId": "hyg-27919",
+      "site": "high-north",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.08833472721708599,
+      "altitudeErrorArcminutes": 0.00047667134548845524
+    },
+    {
+      "starId": "hyg-65269",
+      "site": "high-north",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.08690387942954582,
+      "altitudeErrorArcminutes": 0.01964018092516895
+    },
+    {
+      "starId": "hyg-80519",
+      "site": "high-north",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.0765627457029519,
+      "altitudeErrorArcminutes": 0.00714111343604884
+    },
+    {
+      "starId": "hyg-113008",
+      "site": "high-north",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.08219489207222891,
+      "altitudeErrorArcminutes": 0.022286290663160457
+    },
+    {
+      "starId": "hyg-11734",
+      "site": "high-north",
+      "instantUtc": "2000-01-01T12:00:00Z",
+      "separationArcminutes": 0.007652479447952887,
+      "altitudeErrorArcminutes": 0.007624296894732652
+    },
+    {
+      "starId": "hyg-32263",
+      "site": "high-north",
+      "instantUtc": "2026-10-30T20:00:00Z",
+      "separationArcminutes": 0.016197109935329166,
+      "altitudeErrorArcminutes": 0.0048416433676123916
+    },
+    {
+      "starId": "hyg-69451",
+      "site": "high-north",
+      "instantUtc": "2026-10-30T20:00:00Z",
+      "separationArcminutes": 0.023307964249877293,
+      "altitudeErrorArcminutes": 0.0010708300430906093
+    },
+    {
+      "starId": "hyg-71456",
+      "site": "high-north",
+      "instantUtc": "2026-10-30T20:00:00Z",
+      "separationArcminutes": 0.27881398587568595,
+      "altitudeErrorArcminutes": 0.09289357711722346
+    },
+    {
+      "starId": "hyg-90979",
+      "site": "high-north",
+      "instantUtc": "2026-10-30T20:00:00Z",
+      "separationArcminutes": 0.007095552464910876,
+      "altitudeErrorArcminutes": 0.004638008054627107
+    },
+    {
+      "starId": "hyg-24549",
+      "site": "high-north",
+      "instantUtc": "2026-10-30T20:00:00Z",
+      "separationArcminutes": 0.0072258309262295175,
+      "altitudeErrorArcminutes": 0.004073992160584794
+    },
+    {
+      "starId": "hyg-24378",
+      "site": "high-north",
+      "instantUtc": "2026-10-30T20:00:00Z",
+      "separationArcminutes": 0.014814092221643219,
+      "altitudeErrorArcminutes": 0.003905070507919106
+    },
+    {
+      "starId": "hyg-37173",
+      "site": "high-north",
+      "instantUtc": "2026-10-30T20:00:00Z",
+      "separationArcminutes": 0.0143949882720404,
+      "altitudeErrorArcminutes": 0.004704857456028222
+    },
+    {
+      "starId": "hyg-27919",
+      "site": "high-north",
+      "instantUtc": "2026-10-30T20:00:00Z",
+      "separationArcminutes": 0.014208660980744324,
+      "altitudeErrorArcminutes": 0.004212804553331839
+    },
+    {
+      "starId": "hyg-65269",
+      "site": "high-north",
+      "instantUtc": "2026-10-30T20:00:00Z",
+      "separationArcminutes": 0.011599928165438228,
+      "altitudeErrorArcminutes": 0.0003379403519687685
+    },
+    {
+      "starId": "hyg-80519",
+      "site": "high-north",
+      "instantUtc": "2026-10-30T20:00:00Z",
+      "separationArcminutes": 0.013290072146424154,
+      "altitudeErrorArcminutes": 0.003767092587096954
+    },
+    {
+      "starId": "hyg-113008",
+      "site": "high-north",
+      "instantUtc": "2026-10-30T20:00:00Z",
+      "separationArcminutes": 0.009330242159658702,
+      "altitudeErrorArcminutes": 0.0021611071814220395
+    },
+    {
+      "starId": "hyg-11734",
+      "site": "high-north",
+      "instantUtc": "2026-10-30T20:00:00Z",
+      "separationArcminutes": 0.011177459019506055,
+      "altitudeErrorArcminutes": 0.010396213485819317
+    },
+    {
+      "starId": "hyg-32263",
+      "site": "high-north",
+      "instantUtc": "2035-12-31T08:00:00Z",
+      "separationArcminutes": 0.0452804453456293,
+      "altitudeErrorArcminutes": 0.004166293049223668
+    },
+    {
+      "starId": "hyg-69451",
+      "site": "high-north",
+      "instantUtc": "2035-12-31T08:00:00Z",
+      "separationArcminutes": 0.05048903485066857,
+      "altitudeErrorArcminutes": 0.0030303839188405846
+    },
+    {
+      "starId": "hyg-71456",
+      "site": "high-north",
+      "instantUtc": "2035-12-31T08:00:00Z",
+      "separationArcminutes": 0.3031136935252714,
+      "altitudeErrorArcminutes": 0.030636678877868917
+    },
+    {
+      "starId": "hyg-90979",
+      "site": "high-north",
+      "instantUtc": "2035-12-31T08:00:00Z",
+      "separationArcminutes": 0.027723007107297262,
+      "altitudeErrorArcminutes": 0.002344989233193928
+    },
+    {
+      "starId": "hyg-24549",
+      "site": "high-north",
+      "instantUtc": "2035-12-31T08:00:00Z",
+      "separationArcminutes": 0.030285083041422144,
+      "altitudeErrorArcminutes": 0.0031883386503750444
+    },
+    {
+      "starId": "hyg-24378",
+      "site": "high-north",
+      "instantUtc": "2035-12-31T08:00:00Z",
+      "separationArcminutes": 0.04389500328951036,
+      "altitudeErrorArcminutes": 0.003526126615760461
+    },
+    {
+      "starId": "hyg-37173",
+      "site": "high-north",
+      "instantUtc": "2035-12-31T08:00:00Z",
+      "separationArcminutes": 0.04543711154254239,
+      "altitudeErrorArcminutes": 0.0034980181696830925
+    },
+    {
+      "starId": "hyg-27919",
+      "site": "high-north",
+      "instantUtc": "2035-12-31T08:00:00Z",
+      "separationArcminutes": 0.04471024692611236,
+      "altitudeErrorArcminutes": 0.00372381329193594
+    },
+    {
+      "starId": "hyg-65269",
+      "site": "high-north",
+      "instantUtc": "2035-12-31T08:00:00Z",
+      "separationArcminutes": 0.04585840395137048,
+      "altitudeErrorArcminutes": 0.0015353339231172214
+    },
+    {
+      "starId": "hyg-80519",
+      "site": "high-north",
+      "instantUtc": "2035-12-31T08:00:00Z",
+      "separationArcminutes": 0.04262050356140438,
+      "altitudeErrorArcminutes": 0.0031103092971562774
+    },
+    {
+      "starId": "hyg-113008",
+      "site": "high-north",
+      "instantUtc": "2035-12-31T08:00:00Z",
+      "separationArcminutes": 0.03086615971494583,
+      "altitudeErrorArcminutes": 0.00019271921360086708
+    },
+    {
+      "starId": "hyg-11734",
+      "site": "high-north",
+      "instantUtc": "2035-12-31T08:00:00Z",
+      "separationArcminutes": 0.0020076573975858266,
+      "altitudeErrorArcminutes": 0.00031376616590250705
+    }
+  ]
+}

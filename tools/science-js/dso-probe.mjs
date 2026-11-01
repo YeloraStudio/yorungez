@@ -1,0 +1,14 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import crypto from 'node:crypto';
+import { fileURLToPath } from 'node:url';
+import { buildFrame } from '../../src/Yorungez.Web/lib/sky/frame.ts';
+import { separationArcminutes } from '../../src/Yorungez.Web/lib/sky/star-math.ts';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..');
+const raw=fs.readFileSync(path.join(root,'data/catalog/overlays.json')),overlays=JSON.parse(raw);
+const refs=JSON.parse(fs.readFileSync(path.join(root,'tests/ReferenceData/DeepSky/astropy.json')));
+if(refs.overlaySha256!==crypto.createHash('sha256').update(raw).digest('hex'))throw new Error('Reference/catalogue fingerprint mismatch');
+const catalog={schemaVersion:1,version:'reference-probe',epoch:'J2000',stars:[],constellations:[],...overlays};
+const samples=refs.rows.map(row=>{const f=buildFrame(catalog,row.context,1),index=9+catalog.deepSky.findIndex(o=>o.id===row.id);return {id:row.id,site:row.site,instantUtc:row.context.instantUtc,separationArcminutes:separationArcminutes(f.angles[index*2],f.angles[index*2+1],row.azimuthDegrees,row.altitudeDegrees),altitudeErrorArcminutes:Math.abs(f.angles[index*2+1]-row.altitudeDegrees)*60};});
+const report={schemaVersion:1,generatedAtUtc:new Date().toISOString(),reference:`Astropy ${refs.astropyVersion} / ERFA, bundled IERS, airless ICRS AltAz`,overlaySha256:refs.overlaySha256,toleranceArcminutes:1,referenceWarnings:refs.warnings,scope:'J2000 stationary DSO direction rotated with Astronomy Engine; no annual aberration, refraction, weather or terrain. A sampled trial, not all-target accuracy certification.',summary:{samples:samples.length,maxSeparationArcminutes:Math.max(...samples.map(s=>s.separationArcminutes)),maxAltitudeErrorArcminutes:Math.max(...samples.map(s=>s.altitudeErrorArcminutes))},samples};
+const output=process.argv[2]?path.resolve(process.argv[2]):path.join(root,'.local/science/dso-report.json');fs.mkdirSync(path.dirname(output),{recursive:true});fs.writeFileSync(output,JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report.summary));if(report.summary.maxSeparationArcminutes>1)throw new Error('DSO reference trial failed; report retained');

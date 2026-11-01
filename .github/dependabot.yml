@@ -1,0 +1,26 @@
+version: 2
+updates:
+  - package-ecosystem: nuget
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    ignore:
+      # Preserve the explicit Apache-2.0 MediatR 12 dependency decision.
+      - dependency-name: MediatR
+        versions: ['>=13']
+  - package-ecosystem: npm
+    directory: /src/Yorungez.Web
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+  - package-ecosystem: npm
+    directory: /tools/science-js
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 3
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5

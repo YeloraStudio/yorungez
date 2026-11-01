@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "sha256": "33d048e56976d41768dda4d528f18538bbdf6ed984d74f23091e13dd53bd44fe",
+  "eventCount": 2623,
+  "source": "USNO phase facts + Astronomy Engine 2.1.19 calculated seasons/planet events",
+  "phaseReferenceCount": 1781,
+  "maxPhaseDifferenceSeconds": 79.946,
+  "toleranceSeconds": 120,
+  "engineVersion": "2.1.19",
+  "generatedAtUtc": "2026-10-31T14:01:21.693Z",
+  "sources": [
+    {
+      "id": "usno",
+      "url": "https://aa.usno.navy.mil/data/MoonPhases"
+    },
+    {
+      "id": "astronomy-engine",
+      "url": "https://github.com/cosinekitty/astronomy/tree/v2.1.19"
+    }
+  ]
+}

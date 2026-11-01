@@ -1,0 +1,24 @@
+name: Bug report
+description: Report an application or scientific-comparison problem.
+body:
+  - type: markdown
+    attributes:
+      value: "Use public example coordinates and synthetic accounts. Never post secrets, private locations or personal records. For vulnerabilities use Security → Report a vulnerability."
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem and expected behaviour
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction and environment
+      description: Include revision, browser/OS and steps. Scientific comparisons need UTC, frame, units, reference and tolerance.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Sanitized evidence
+      description: Review screenshots and logs for private information.
