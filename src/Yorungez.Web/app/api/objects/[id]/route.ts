@@ -1,10 +1,11 @@
+import { plainArticleText } from "../../../../lib/article-text.ts";
 import catalog from "../../../../generated/catalog.json";
 import overlays from "../../../../generated/overlays.json";
 import sun from "../../../../generated/sun-content.json";
 type Language = "tr" | "en";
 const titles:Record<string,Record<Language,string>>={sun:{tr:"Güneş",en:"Sun"},moon:{tr:"Ay",en:"Moon"},mercury:{tr:"Merkür",en:"Mercury_(planet)"},venus:{tr:"Venüs",en:"Venus"},mars:{tr:"Mars",en:"Mars"},jupiter:{tr:"Jüpiter",en:"Jupiter"},saturn:{tr:"Satürn",en:"Saturn"},uranus:{tr:"Uranüs",en:"Uranus"},neptune:{tr:"Neptün",en:"Neptune"}};
 const cache=new Map<string,{expires:number;value:unknown}>(),inflight=new Map<string,Promise<unknown>>();
-const clean=(text:string)=>text.replace(/<[^>]*>/g,"").slice(0,1500);
+const clean = plainArticleText;
 async function query(url:URL){const response=await fetch(url,{headers:{"User-Agent":"Yorungez/0.2 (astronomy object information)","Accept":"application/json"},signal:AbortSignal.timeout(5000)});if(!response.ok)throw new Error("upstream");return response.json();}
 async function article(title:string,language:Language){
   const url=new URL(`https://${language}.wikipedia.org/w/api.php`);
