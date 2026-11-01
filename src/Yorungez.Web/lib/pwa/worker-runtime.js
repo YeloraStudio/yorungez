@@ -1,7 +1,7 @@
 /* General public data only. Never persist requests, credentials or account responses. */
 const PACK=/*__PACK__*/;
 const PREFIX='yorungez-public-',NAME=PREFIX+PACK.version,CORE=new Map(PACK.core.map(e=>[e.url,e])),OPTIONAL=new Map(PACK.optional.map(e=>[e.url,e]));
-let networkUnavailable=false,optionalJob=null;
+let networkUnavailable=false,optionalJob=null,networkJob=null;
 const canonical=url=>new URL(url,self.location.origin).href;
 function publicEntry(request){const url=new URL(request.url);if(request.method!=='GET'||url.origin!==self.location.origin||url.search||request.headers.has('Range')||request.headers.has('RSC'))return null;return CORE.get(url.pathname)||OPTIONAL.get(url.pathname)||null}
 async function broadcast(data){for(const c of await self.clients.matchAll({type:'window'}))c.postMessage(data)}
@@ -31,7 +31,10 @@ self.addEventListener('message',event=>{
  if(event.data?.type==='REPAIR_CORE')event.waitUntil(fill(PACK.core).catch(()=>reply({type:'PACK_ERROR'})).then(()=>status()).then(reply));
  if(event.data?.type==='CACHE_IMAGES'){if(!optionalJob)optionalJob=fill(PACK.optional).then(()=>networkState(false)).catch(()=>reply({type:'PACK_ERROR'})).finally(()=>{optionalJob=null});event.waitUntil(optionalJob.then(()=>status()).then(reply))}
  if(event.data?.type==='ACTIVATE_UPDATE')event.waitUntil(self.clients.matchAll({type:'window',includeUncontrolled:true}).then(tabs=>tabs.length>1?reply({type:'UPDATE_BLOCKED'}):self.skipWaiting()));
- if(event.data?.type==='CHECK_NETWORK')event.waitUntil(fetch(canonical('/pwa-online.json'),{cache:'no-store',credentials:'omit',signal:AbortSignal.timeout(4000)}).then(r=>{if(!r.ok)throw Error();return networkState(false)}).catch(()=>networkState(true)).then(()=>status()).then(reply));
+ if(event.data?.type==='CHECK_NETWORK'){
+  if(!networkJob)networkJob=fetch(canonical('/pwa-online.json'),{cache:'no-store',credentials:'omit',signal:AbortSignal.timeout(4000)}).then(async r=>{if(!r.ok||(await r.json()).online!==true)throw Error('not-online-marker');return networkState(false)}).catch(()=>networkState(true)).finally(()=>{networkJob=null});
+  event.waitUntil(networkJob.then(()=>status()).then(reply));
+ }
 
 });
 async function publicResponse(request,entry){const cache=await caches.open(NAME),hit=await cache.match(canonical(entry.url));if(hit)return hit;

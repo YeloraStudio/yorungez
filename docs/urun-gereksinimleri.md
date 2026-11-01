@@ -1,5 +1,7 @@
 # yorungez — Ürün Vizyonu, Gereksinimler ve UX Taslağı
 
+**K-030 / TECH-08 (1 Kasım 2026):** Responsive safe-area/VisualViewport, anında geçersiz sensör/hizalama temizliği ve PWA açılış/geri dönüş kontrolü uygulandı; 49 istemci testi ve üretim derlemesi geçti. IAB/Brave kontrolleri fiziksel kabul değildir; S23/Chrome ve iPhone 15/Safari oturumu, erişilebilir HTTPS adresi henüz olmadığı için bekliyor. [Kanıt ve sınırlar](responsive-cihaz-ve-pwa-kabulu.md), [telefon kartı](telefon-kabul-oturumu.md), [ADR](adr/0015-responsive-sensor-ve-pwa-kabulu.md). Önceki plan ve bilimsel sınırlar korunur.
+
 **K-029 / açık kaynak yayın (1 Kasım 2026):** Özgün kod ve özgün proje belgeleri Apache-2.0; üçüncü taraf veri/görseller kendi lisanslarında. Public kaynak hedefi `YeloraStudio/yorungez`; gerçek ortam/SMTP/Portainer/veritabanı verileri özel kalır. Public metinlerde `sender@example.com` redakte örnektir, gerçek gönderen özel yapılandırmadadır; tarihsel SMTP başarı kaydı örnek hesabın kullanıldığı anlamına gelmez. [Karar](adr/0014-acik-kaynak-yayin-ve-apache-2.md), [yayın incelemesi](open-source-publication.md). Önceki ürün planı ve açık kabul işleri korunur.
 
 **Güncel TECH-07 / K-027–028 (1 Kasım 2026):** Menüde giriş/kayıt veya doğrulanmış oturumun ad-soyadı; kayıt için ad/soyad/e-posta/parola. Servis hatası ve çevrimdışı durum ayrıldı, ortak yerel başlatıcı eklendi. Genel katalog/terim/takvim için hash doğrulamalı PWA paketi ve yeniden açılış uygulandı; kişisel kayıt/oturum/koordinat cache'e girmez. 125 .NET/44 istemci testi; fiziksel cihaz/üretim backup kabulü açık. [Uygulama ve kanıt](hesap-menusu-ve-cevrimdisi-gokyuzu.md), [hesap ADR](adr/0012-hesap-menusu-ve-ad-soyad.md), [PWA ADR](adr/0013-genel-gokyuzu-pwa-ve-cevrimdisi-paket.md).
@@ -16,7 +18,7 @@
 
 **31 Ekim görünüm ek kararı:** Beğenilen tam ekran yerleşim korunur. UI kaynak paleti #3C3F43/#9EA1A6/#8B2333/#C9B6A6/#F7F1E6; dil seçimi sol menüde açılır liste. Görsel gökyüzü/çevre daha doğal, kaynaklı fotoğraf ve kadir sıralı ışıkla sunulur; fotoğraf yerel topografya, görsel atmosfer gözlem koşulu değildir. Pusulada kaynak/kuzey belirsizliği, izin/hizalama ve fiziksel kabul ayrılır. [Güncel paket](dogal-gorunum-ve-pusula.md).
 
-> **Belge sürümü:** 1.11
+> **Belge sürümü:** 1.12
 > **Tarih:** 1 Kasım 2026
 > **Durum:** Güncel ürün referansı; modüler backend ve ilk tr/en harita akışı uygulandı, kabul kapsamı kısmi
 > **Proje adı:** yorungez (yörünge + gezmek; ad kullanıcı tarafından kesinleştirildi)  
@@ -241,7 +243,7 @@ Dürbün/teleskop bilgisi girmek hiçbir temel ekrana erişim koşulu değildir.
 | **UJ-04** | Kaydetme isteği → hızlı kayıt/giriş → e-posta doğrulama → hesaba kaydet | Anonim kalıcı veri oluşmaz; hesap kaydı özel kalır, revizyonla korunur |
 | **UJ-05** | Gözlem/anı oluştur → isteğe bağlı nesne ve konum bağla → sakla | Minimum alanlarla kişisel kayıt oluşturulur |
 | **UJ-06** | Mobilde haritayı gez → cihaz pusulasını kullan/manuel yönet → ayrıntı panelini aç | Sensör yokken de görev tamamlanır |
-| **UJ-07** | İnternet kesilir → önbellekli atlası aç → not kaydet → sonra eşitle | Kullanıcı veri güncelliği ve eşitleme durumunu anlar |
+| **UJ-07** | İnternet kesilir → hazırlanmış genel gökyüzünü aç → kişisel kayıt için bağlantı/giriş gerektiğini gör → bağlantı dönünce sunucu kaydına eriş | Genel paket/güncellik ve kişisel bağlantı gereksinimi ayrılır; anonim veya offline kişisel yazma yoktur |
 
 **Bağlamsal durum:** Seçili konum, tarih/saat, gök cismi, harita yönü/ölçeği ve gerçek zaman-simülasyon modu tek bir tutarlı deneyim oluşturmalıdır.
 

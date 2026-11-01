@@ -1,10 +1,14 @@
 export interface OrientationSample {absolute?:boolean;alpha:number|null;beta:number|null;gamma:number|null;webkitCompassHeading?:number;webkitCompassAccuracy?:number}
 export interface Heading {degrees:number;accuracy:number|null;source:'webkit'|'absolute'}
 export const wrapDegrees=(n:number)=>((n%360)+360)%360;
+function invalidReading(e:OrientationSample,screenAngle:number):boolean{
+ return !Number.isFinite(screenAngle)||e.beta===null||e.gamma===null||!Number.isFinite(e.beta)||!Number.isFinite(e.gamma)||Math.abs(e.beta)>35||Math.abs(e.gamma)>35||
+  (e.webkitCompassHeading!==undefined&&(!Number.isFinite(e.webkitCompassHeading)||(e.webkitCompassAccuracy!==undefined&&(!Number.isFinite(e.webkitCompassAccuracy)||e.webkitCompassAccuracy<0||e.webkitCompassAccuracy>30))));
+}
 // This tool reads the top edge of a FLAT phone, not the rear-camera optical axis.
 // Relative alpha is deliberately rejected: it cannot identify north.
 export function readHeading(e:OrientationSample,screenAngle=0):Heading|null{
- if(e.beta===null||e.gamma===null||!Number.isFinite(e.beta)||!Number.isFinite(e.gamma)||Math.abs(e.beta)>35||Math.abs(e.gamma)>35)return null;
+ if(invalidReading(e,screenAngle))return null;
  if(Number.isFinite(e.webkitCompassHeading)){
   if(e.webkitCompassAccuracy!==undefined&&(!Number.isFinite(e.webkitCompassAccuracy)||e.webkitCompassAccuracy<0||e.webkitCompassAccuracy>30))return null;
   return {degrees:wrapDegrees(e.webkitCompassHeading!+screenAngle),accuracy:e.webkitCompassAccuracy??null,source:'webkit'};
@@ -25,7 +29,12 @@ export class HeadingSession{
   if(generation!==this.generation)return;
   this.state('waiting');
   this.timer=setTimeout(()=>{if(generation===this.generation){this.generation++;this.unsubscribe?.();this.unsubscribe=undefined;this.state('unavailable');}},this.timeout);
-  try{this.unsubscribe=this.port.subscribe((event,angle)=>{if(generation!==this.generation)return;const value=readHeading(event,angle);if(value){clearTimeout(this.timer);this.timer=setTimeout(()=>{if(generation===this.generation){this.generation++;this.unsubscribe?.();this.unsubscribe=undefined;this.state('unavailable')}},this.timeout);this.heading(value);this.state('ready');}});}catch{clearTimeout(this.timer);this.state('unavailable');}
+  try{this.unsubscribe=this.port.subscribe((event,angle)=>{if(generation!==this.generation)return;const value=readHeading(event,angle);if(value){clearTimeout(this.timer);this.timer=setTimeout(()=>{if(generation===this.generation){this.generation++;this.unsubscribe?.();this.unsubscribe=undefined;this.state('unavailable')}},this.timeout);this.heading(value);this.state('ready');}else if(invalidReading(event,angle)){
+   // Invalidate immediately on tilt/bad accuracy; do not leave the last heading
+   // actionable until the no-data deadline. Relative companion events alone
+   // are ignored because Android may emit them alongside absolute events.
+   this.state('waiting');
+  }});}catch{clearTimeout(this.timer);this.state('unavailable');}
  }
  stop(report=true){this.generation++;clearTimeout(this.timer);this.unsubscribe?.();this.unsubscribe=undefined;if(report)this.state('idle');}
 }

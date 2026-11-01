@@ -3,7 +3,7 @@ import test from 'node:test';
 import fs from 'node:fs';
 import vm from 'node:vm';
 import {webcrypto,createHash} from 'node:crypto';
-function harness({fail='',old=false,privateResponse=false}={}){
+function harness({fail='',old=false,privateResponse=false,badOnlineMarker=false}={}){
  const resources=[{url:'/en',text:'<html>public sky</html>'},{url:'/tr',text:'<html>genel gökyüzü</html>'},{url:'/pwa/catalog.json',text:'{"public":true}'},{url:'/_next/static/worker.js',text:'/* public engine */'},{url:'/_next/static/chunks/app/%5Blang%5D/page.js',text:'/* language hydration */'},{url:'/pwa/offline-en.html',text:'Account connection needed'},{url:'/pwa/offline-tr.html',text:'Hesap bağlantısı gerekli'}];
  const row=(e:{url:string;text:string})=>({url:e.url,bytes:Buffer.byteLength(e.text),sha256:createHash('sha256').update(e.text).digest('hex')});
  const pack={version:'test-new',core:resources.map(row),optional:[row({url:'/landscapes/stara-lesna.png',text:'public image'})],coreBytes:100,optionalBytes:12};
@@ -11,13 +11,13 @@ function harness({fail='',old=false,privateResponse=false}={}){
  const caches={open:async(name:string)=>{if(!stores.has(name))stores.set(name,new Map());const data=stores.get(name)!;return {match:async(input:string)=>data.get(String(input))?.clone(),put:async(input:string,response:Response)=>{data.set(String(input),response.clone())}}},delete:async(name:string)=>stores.delete(name),keys:async()=>[...stores.keys()]};
  const handlers=new Map<string,(e:any)=>void>(),outbound:any[]=[],calls:any[]=[];let unreachable=false,tabCount=1,skipped=false;
  const scope={location:{origin:'https://sky.test'},navigator:{onLine:true},clients:{claim:async()=>{},matchAll:async()=>Array.from({length:tabCount},()=>({postMessage:(v:unknown)=>outbound.push(v)}))},skipWaiting:async()=>{skipped=true},addEventListener:(type:string,fn:(e:any)=>void)=>handlers.set(type,fn)};
- const fetcher=async(input:Request|string,init?:RequestInit)=>{const url=typeof input==='string'?input:input.url;calls.push({url,init});if(unreachable||url.endsWith(fail||'/never'))throw Error('network unavailable');const pathname=new URL(url).pathname;const r=resources.find(r=>r.url===pathname);return new Response(r?.text??(pathname.startsWith('/api/')?'private synthetic response':'public image'),{headers:{'Cache-Control':privateResponse?'private, no-store':'public'}})};
+ const fetcher=async(input:Request|string,init?:RequestInit)=>{const url=typeof input==='string'?input:input.url;calls.push({url,init});if(unreachable||url.endsWith(fail||'/never'))throw Error('network unavailable');const pathname=new URL(url).pathname;const r=resources.find(r=>r.url===pathname);return new Response(r?.text??(pathname==='/pwa-online.json'?(badOnlineMarker?'captive portal':'{"online":true}'):pathname.startsWith('/api/')?'private synthetic response':'public image'),{headers:{'Cache-Control':privateResponse?'private, no-store':'public'}})};
  const context=vm.createContext({self:scope,caches,fetch:fetcher,crypto:webcrypto,URL,Response,Headers,AbortSignal,console});
  vm.runInContext(fs.readFileSync(new URL('../lib/pwa/worker-runtime.js',import.meta.url),'utf8').replace('/*__PACK__*/',JSON.stringify(pack)),context);
  async function life(type:string){let result:Promise<unknown>|undefined;handlers.get(type)!({waitUntil:(p:Promise<unknown>)=>result=p});return result}
  async function request(path:string,method='GET',headers:Record<string,string>={},mode='cors'){let result:Promise<Response>|undefined;handlers.get('fetch')!({request:{url:'https://sky.test'+path,method,headers:new Headers(headers),mode},respondWith:(p:Promise<Response>)=>result=p});return result!}
  async function message(type:string){let result:Promise<unknown>|undefined;handlers.get('message')!({data:{type},source:{url:'https://sky.test/en',postMessage:(v:unknown)=>outbound.push(v)},waitUntil:(p:Promise<unknown>)=>result=p});await result}
- return {stores,calls,outbound,life,request,message,offline:()=>unreachable=true,tabs:(n:number)=>tabCount=n,skipped:()=>skipped};
+ return {stores,calls,outbound,life,request,message,offline:()=>unreachable=true,online:()=>unreachable=false,tabs:(n:number)=>tabCount=n,skipped:()=>skipped};
 }
 test('the installed public shell, worker and catalogue reopen when the server is unreachable',async()=>{
  const h=harness();await h.life('install');h.offline();
@@ -48,4 +48,17 @@ test('activating an older installed worker never deletes a newer waiting public 
  h.stores.set('yorungez-public-future',new Map([['https://sky.test/en',new Response('future public sky')]]));
  await h.life('activate');assert.ok(!h.stores.has('yorungez-public-old'));assert.ok(h.stores.has('yorungez-public-future'));
  await h.message('CLEAN_OLD_PACKS');assert.ok(h.stores.has('yorungez-public-future'));
+});
+
+
+test('public connection checks recover from server outage without caching their probe or personal data',async()=>{
+ const h=harness();await h.life('install');h.offline();await h.message('CHECK_NETWORK');
+ assert.equal(h.outbound.at(-1).unavailable,true);
+ h.online();await Promise.all([h.message('CHECK_NETWORK'),h.message('CHECK_NETWORK'),h.message('CHECK_NETWORK')]);
+ assert.equal(h.outbound.at(-1).unavailable,false);
+ const probes=h.calls.filter(c=>c.url.endsWith('/pwa-online.json'));assert.equal(probes.length,2);
+ assert.ok(probes.every(p=>p.init.credentials==='omit'&&p.init.cache==='no-store'));
+ assert.ok([...h.stores.values()].every(v=>![...v.keys()].some(k=>k.includes('pwa-online'))));
+ const captive=harness({badOnlineMarker:true});await captive.life('install');await captive.message('CHECK_NETWORK');
+ assert.equal(captive.outbound.at(-1).unavailable,true); // HTTP 200 is not sufficient evidence of this app being online.
 });

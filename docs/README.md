@@ -43,6 +43,9 @@ Detailed product/delivery records are currently mostly Turkish. Newer decisions 
 - [0013: public PWA package](adr/0013-genel-gokyuzu-pwa-ve-cevrimdisi-paket.md)
 - [0014: Apache-2.0 / public publication](adr/0014-acik-kaynak-yayin-ve-apache-2.md)
 
+- [Responsive / sensor / PWA acceptance preparation](responsive-cihaz-ve-pwa-kabulu.md) and [phone session card](telefon-kabul-oturumu.md)
+- [0015: responsive / sensor / PWA acceptance](adr/0015-responsive-sensor-ve-pwa-kabulu.md)
+
 ## Publication
 
 - [Publication review / limits](open-source-publication.md)

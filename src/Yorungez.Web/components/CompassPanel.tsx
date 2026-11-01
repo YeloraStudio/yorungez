@@ -17,7 +17,7 @@ export default function CompassPanel({language,azimuth,onApply,onTerm,target,zon
    const read=(e:Event)=>cb(e as unknown as OrientationSample,screen.orientation?.angle??0);
    window.addEventListener('deviceorientationabsolute',read);window.addEventListener('deviceorientation',read);
    return()=>{window.removeEventListener('deviceorientationabsolute',read);window.removeEventListener('deviceorientation',read)};
-  }},setState,setHeading);session.current=runner;
+  }},next=>{setState(next);if(next!=='ready'){setHeading(null);setOffset(null)}},setHeading);session.current=runner;
   const hidden=()=>{if(document.hidden){runner.stop();setHeading(null);setOffset(null)}};document.addEventListener('visibilitychange',hidden);
   return()=>{runner.stop(false);session.current=null;document.removeEventListener('visibilitychange',hidden)};
  },[]);
