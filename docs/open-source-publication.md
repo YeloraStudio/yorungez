@@ -54,8 +54,10 @@ Hosted initial-snapshot results:
 
 - [CI run 41296049358](https://github.com/YeloraStudio/yorungez/actions/runs/41296049358): publication safety, 18 core + 19 astronomy + 88 API tests (125 total), 44 client tests, typecheck, production PWA build, frozen-reference integrity and C#/JavaScript scientific parity passed.
 - [CodeQL run 41296049386](https://github.com/YeloraStudio/yorungez/actions/runs/41296049386): all four analyses completed successfully; one tag-stripping alert was reported. Successful analysis execution alone does not mean zero findings.
-- [Follow-up PR #4](https://github.com/YeloraStudio/yorungez/pull/4) adds the 45th client test and fixes the formatter. The subsequent JavaScript analysis marked the follow-up alert fixed; the patch will merge only after all six required checks pass. The final default-branch alert state remains independently inspectable in the Security tab.
+- [Follow-up PR #4](https://github.com/YeloraStudio/yorungez/pull/4) adds the 45th client test and fixes the formatter. All six required checks and the CodeQL result gate passed on the reviewed head: 125 .NET tests, 45 client tests, production PWA build, scientific integrity/parity and all four analyses. PR #4 was squash-merged through branch protection as `23102cde3f16f572fc869643e02a9e5cfd694312`. No alert was manually dismissed; the default-branch state is updated by its own subsequent analysis.
 - The local application remained available: frontend and API readiness returned HTTP 200 after publication. No user service was stopped or production deployment performed.
+
+Final remote-tree verification found 553 public files and no private runtime paths. A fresh history scan across fetched branches found no secrets. The only additional local source diff during handoff was removal of an unused `Microsoft.AspNetCore.Authentication.Cookies` import; it changes no authentication behaviour and is included with this final evidence update. Dependency-bot proposals remain unmerged and are not part of this release.
 
 ## Remaining work
 
