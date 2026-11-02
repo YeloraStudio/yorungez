@@ -76,6 +76,8 @@ python scripts/verify_docs.py
 python scripts/check_publication.py
 ```
 
+Backend testleri [yerel sentetik PostgreSQL/anahtarlık kurtarma provasını](docs/yerel-yedek-geri-yukleme.md) da kapsar. Projenin PostgreSQL servisi açıkken yalnız bu prova için `./scripts/Verify-Recovery.ps1 -Offline` çalıştırılabilir. Kendi test veritabanlarını oluşturup kaldırır; üretim kurtarma kabulü bekler.
+
 Offline bilimsel kontrol bağımlılıkların kurulu olmasını bekler. Normal testler donmuş referansları okur; dış bilimsel veri indirmez. Entegrasyon testleri kendi yerel test veritabanlarını oluşturup temizler, e-posta yakalama kullanır. Yayın kontrolü Git index'ini tarar; özel `.env` değerlerini göstermeden karşılaştırır. CI ayrıca Gitleaks taraması yapar. Bunlar bütün sızıntıları veya hataları bulma garantisi vermez.
 
 ## Gizlilik, yol haritası ve katkı
