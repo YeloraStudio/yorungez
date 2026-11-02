@@ -40,6 +40,8 @@ The name combines the Turkish words *yörünge* (orbit) and *gezmek* (to explore
 
 The current catalogue contains **5,073 stars, 88 constellations, 107 Messier matches and 85 attributed constellation illustrations**. The event snapshot contains **2,623 records**. These are bounded datasets, not complete catalogues of everything observable.
 
+Live mode computes directions locally for the current UTC time and observer; catalogue data and photographs are versioned or archival. The sources panel distinguishes calculation time, simulation and package preparation dates. Wikipedia/Commons use on-demand cached APIs; a continuously updated discovery/event alert feed is not connected yet. See the [runtime API inventory and refresh plan](docs/canli-hesap-ve-veri-guncelligi.md).
+
 ## Status and scientific boundaries
 
 **Active development / experimental preview.** Implemented software and recorded developer checks are distinct from full product acceptance. Physical GPS/compass validation, broader browser/device acceptance and production backup/restore acceptance remain open. There is no production-readiness or blanket scientific-accuracy certification.

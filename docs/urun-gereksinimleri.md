@@ -1,5 +1,7 @@
 # yorungez — Ürün Vizyonu, Gereksinimler ve UX Taslağı
 
+**K-035 / TECH-11B (2 Kasım 2026):** Giriş/kayıt başlıkları ve alan hizası düzeltildi; iki dilde canlı/simülasyon/eski hesap durumu, sonuç UTC anı ve özgün katalog/olay hazırlanma tarihleri kaynak paneline eklendi. 53 istemci testi, tip kontrolü, üretim derlemesi ve 320 px/PWA yeniden açılış kontrolü geçti. Sürekli olay akışı henüz bağlı değil; geniş atlas/kaynak yenileme FR-08/P1 işidir. [Uygulama, canlı API envanteri ve sınırlar](canli-hesap-ve-veri-guncelligi.md). Önceki P0/P1/P2 ve K-032 beklemesi korunur.
+
 **K-034 / TECH-11A (2 Kasım 2026):** İki dil/klavye ilk denetim paketi: seçimde Home/End başlangıç odağı, hesap görünümü değişiminde başlık odağı/etkin durum, parola ve tarih yardım ilişkileri düzeltildi. 51 istemci testi, tip kontrolü ve üretim derlemesi; iki dilde IAB klavye/320 px kontrolü geçti. [Kanıt ve açık kabul işleri](iki-dil-klavye-denetimi.md). Tam ekran okuyucu/kontrast/E2E/sözlük ve K-032 fiziksel/üretim işleri açık kalır.
 
 **K-033 / TECH-10 (2 Kasım 2026):** Yerel sentetik PostgreSQL yedek/geri yükleme provası uygulandı: iki ayrı test DB, dört kayıt türü/sahiplik/revizyon, kopya şifreli keyring+test sertifikası, bozuk arşiv/eksik anahtar retleri, kuyruk ve oturum iptali/yeni giriş; 127 .NET testi geçti. Gerçek veriler/normal uygulama değişmedi; üretim backup kabulü ve K-032 deployment/HTTPS beklemesi sürer. [Kanıt ve tekrar çalıştırma](yerel-yedek-geri-yukleme.md). Sırada iki dil/erişilebilirlik yerel paketi var.
@@ -26,7 +28,7 @@
 
 **31 Ekim görünüm ek kararı:** Beğenilen tam ekran yerleşim korunur. UI kaynak paleti #3C3F43/#9EA1A6/#8B2333/#C9B6A6/#F7F1E6; dil seçimi sol menüde açılır liste. Görsel gökyüzü/çevre daha doğal, kaynaklı fotoğraf ve kadir sıralı ışıkla sunulur; fotoğraf yerel topografya, görsel atmosfer gözlem koşulu değildir. Pusulada kaynak/kuzey belirsizliği, izin/hizalama ve fiziksel kabul ayrılır. [Güncel paket](dogal-gorunum-ve-pusula.md).
 
-> **Belge sürümü:** 1.13
+> **Belge sürümü:** 1.14
 > **Tarih:** 2 Kasım 2026
 > **Durum:** Güncel ürün referansı; modüler backend ve ilk tr/en harita akışı uygulandı, kabul kapsamı kısmi
 > **Proje adı:** yorungez (yörünge + gezmek; ad kullanıcı tarafından kesinleştirildi)  
@@ -213,6 +215,8 @@ Kayıt oluştururken minimum zorunlu alan kullanılır. Gözlemde açıklama ve 
 - **Küratörlü bilgi:** Bilimsel kataloglar ve açıklamalar kaynak, sürüm ve doğrulama geçmişiyle güncellenir. AI kaynak metnini denetimsiz değiştirmez.
 
 Her veri alanı için kaynak, son başarıyla güncellenme zamanı, hesaplanma zamanı ve gerektiğinde **güncel / gecikmiş / erişilemiyor** durumu tanımlanmalıdır.
+
+**K-035 netleştirmesi:** Canlı hesap ile katalog/olay yenilemesi ayrı izlenir. Galaksi/bulutsu/yıldız atlasının genişletilmesi ve önemli yeni/geçici olayların güvenilir kaynaklardan doğrulanarak alınması FR-03/04/08 kapsamındadır. Paket hazırlanma tarihi yeni gözlem veya son başarılı sağlayıcı alımı yerine kullanılmaz. Mevcut yerel hesap ve kaynak paneli uygulanmıştır; sürekli olay akışı, kaynak sağlık takibi ve zamanlanmış veri yenilemesi açık teslimatlardır. [Çalışan API/veri envanteri ve kabul sözleşmesi](canli-hesap-ve-veri-guncelligi.md).
 
 ### FR-09 — PWA ve çevrimdışı kullanım
 

@@ -39,5 +39,9 @@ for(const [folder,dataFile,manifestFile] of [['events','calendar.json','calendar
  fs.writeFileSync(path.join(generated,dataFile),data);fs.writeFileSync(path.join(generated,manifestFile),m);
 }
 
+const {scienceStatus}=await import('./science-status.mjs');
+const eventManifest=JSON.parse(fs.readFileSync(path.join(generated,'calendar-manifest.json'),'utf8'));
+const engineVersion=JSON.parse(fs.readFileSync(path.join(web,'package.json'),'utf8')).dependencies['astronomy-engine'];
+fs.writeFileSync(path.join(generated,'data-status.json'),JSON.stringify(scienceStatus(manifest,overlayManifest,eventManifest,engineVersion)));
 const {verifyBrand}=await import('./verify-brand.mjs');await verifyBrand();
 const {stageOffline}=await import("./stage-offline.mjs");await stageOffline(web);

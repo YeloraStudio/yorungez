@@ -9,7 +9,7 @@ const text={
 export default function AccountPanel({language,onSignedIn,initialView='login'}:{language:Language;initialView?:'login'|'register';onSignedIn:(user:AccountUser)=>void}){
  const t=text[language],id=useId(),[view,setView]=useState<'login'|'register'|'wait'|'forgot'>(initialView),[email,setEmail]=useState(''),[busy,setBusy]=useState(false),[error,setError]=useState(''),[message,setMessage]=useState(false);
  const heading=useRef<HTMLHeadingElement>(null),previousView=useRef(view);
- useEffect(()=>{if(previousView.current!==view){heading.current?.focus({preventScroll:true});previousView.current=view}},[view]);
+ useEffect(()=>{if(previousView.current!==view){heading.current?.focus();previousView.current=view}},[view]);
  const move=(v:typeof view)=>{setView(v);setError('');setMessage(false)};
  async function submit(form:HTMLFormElement,action:string){
   setBusy(true);setError('');setMessage(false);
