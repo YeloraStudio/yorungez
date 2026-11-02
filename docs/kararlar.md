@@ -1,5 +1,7 @@
 # yorungez — Karar kaydı
 
+**K-034 / TECH-11A (2 Kasım 2026):** İki dil/klavye ilk denetim paketi: seçimde Home/End başlangıç odağı, hesap görünümü değişiminde başlık odağı/etkin durum, parola ve tarih yardım ilişkileri düzeltildi. 51 istemci testi, tip kontrolü ve üretim derlemesi; iki dilde IAB klavye/320 px kontrolü geçti. [Kanıt ve açık kabul işleri](iki-dil-klavye-denetimi.md). Tam ekran okuyucu/kontrast/E2E/sözlük ve K-032 fiziksel/üretim işleri açık kalır.
+
 **K-033 / TECH-10 (2 Kasım 2026):** Yerel sentetik PostgreSQL yedek/geri yükleme provası uygulandı: iki ayrı test DB, dört kayıt türü/sahiplik/revizyon, kopya şifreli keyring+test sertifikası, bozuk arşiv/eksik anahtar retleri, kuyruk ve oturum iptali/yeni giriş; 127 .NET testi geçti. Gerçek veriler/normal uygulama değişmedi; üretim backup kabulü ve K-032 deployment/HTTPS beklemesi sürer. [Kanıt ve tekrar çalıştırma](yerel-yedek-geri-yukleme.md). Sırada iki dil/erişilebilirlik yerel paketi var.
 
 **K-032 (2 Kasım 2026):** Kullanıcı deployment, HTTPS erişimi ve uygulamanın canlı yayınını kendisi yeniden haber verene kadar erteledi; alt alan adı yalnız olası ileriki seçenektir. Buna bağlı fiziksel cihaz kabulü bekler. Sıradaki yerel paket: test verisiyle yedek/geri yükleme, ardından iki dil/erişilebilirlik, kayıt yaşam döngüsü ve ölçüm; P1/P2 hedefleri korunur. [Yerel çalışma sırası ve sınırlar](yayin-oncesi-yerel-plan.md).
