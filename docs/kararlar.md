@@ -1,5 +1,7 @@
 # yorungez — Karar kaydı
 
+**K-036 / TECH-11C (2 Kasım 2026):** Kullanıcı yeni alanlar yerine mevcut deneyimin derinleştirilmesini önceliklendirdi. Aynı 52 kaynaklı terim ortak bileşende iki dilden aranır; kartta tam terim odağı/geri dönüş, ayrı statik sözlük, sabit terim bağlantıları ve genel PWA kapsamı geliştirildi. 55 istemci testi, tip/üretim derlemesi ve iki dil/320 px/sunucusuz sözlük kontrolü geçti. [Kanıt ve kalan kabul işleri](sozluk-ve-terim-baglantilari.md). Diğer P0/P1/P2 hedefleri ve K-032 beklemesi korunur.
+
 **K-035 / TECH-11B (2 Kasım 2026):** Giriş/kayıt başlıkları ve alan hizası düzeltildi; iki dilde canlı/simülasyon/eski hesap durumu, sonuç UTC anı ve özgün katalog/olay hazırlanma tarihleri kaynak paneline eklendi. 53 istemci testi, tip kontrolü, üretim derlemesi ve 320 px/PWA yeniden açılış kontrolü geçti. Sürekli olay akışı henüz bağlı değil; geniş atlas/kaynak yenileme FR-08/P1 işidir. [Uygulama, canlı API envanteri ve sınırlar](canli-hesap-ve-veri-guncelligi.md). Önceki P0/P1/P2 ve K-032 beklemesi korunur.
 
 **K-034 / TECH-11A (2 Kasım 2026):** İki dil/klavye ilk denetim paketi: seçimde Home/End başlangıç odağı, hesap görünümü değişiminde başlık odağı/etkin durum, parola ve tarih yardım ilişkileri düzeltildi. 51 istemci testi, tip kontrolü ve üretim derlemesi; iki dilde IAB klavye/320 px kontrolü geçti. [Kanıt ve açık kabul işleri](iki-dil-klavye-denetimi.md). Tam ekran okuyucu/kontrast/E2E/sözlük ve K-032 fiziksel/üretim işleri açık kalır.

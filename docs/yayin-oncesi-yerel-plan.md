@@ -1,8 +1,10 @@
 # K-032 — Dağıtım ertelenirken yerel çalışma sırası
 
+**K-036 / TECH-11C:** Kullanıcı mevcut özelliklerin derinliğini önceliklendirdi. İkinci sıradaki [sözlük/sabit terim bağlantıları](sozluk-ve-terim-baglantilari.md) uygulandı; sırada mevcut harita/hesap/defter/takvim/gece/hata yüzeylerinde okunabilirlik, klavye/odak ve iki dil kabulünü derinleştirmek var. Sonraki yaşam döngüsü/performans işleri korunur; yeni bağımsız alan açmak bu sağlamlaştırmanın önüne geçmez. P1/P2 kapsamı iptal edilmez.
+
 **TECH-11B / K-035:** Kullanıcının form boşluğu ve canlı bilimsel veri talebi [uygulandı ve envanterlendi](canli-hesap-ve-veri-guncelligi.md): canlı hesap/özgün paket tarihi/simülasyon ayrımı görünür. Sürekli olay akışı henüz yok; aşağıdaki FR-08/P1 veri yenileme kabulüne bağlıdır. İkinci sıradaki kalan sözlük/erişilebilirlik işleri devam eder.
 
-**TECH-11A sonucu:** İkinci sıradaki iki dil/erişilebilirlik işinin [ilk klavye/form paketi](iki-dil-klavye-denetimi.md) tamamlandı; gerçek ekran okuyucu/kontrast, kapsamlı E2E ve sözlük/derin bağlantı işleri açık. Bu satır ikinci sıranın tümü tamamlandı anlamına gelmez.
+**TECH-11A sonucu:** İkinci sıradaki iki dil/erişilebilirlik işinin [ilk klavye/form paketi](iki-dil-klavye-denetimi.md) tamamlandı; gerçek ekran okuyucu/kontrast ve kapsamlı E2E açık kalır. O aşamada açık olan sözlük/derin bağlantı kısmı TECH-11C ile uygulandı. Bu satır ikinci sıranın tümü tamamlandı anlamına gelmez.
 
 **TECH-10 sonucu:** Birinci sıradaki sentetik yerel yedek/geri yükleme provası geçti; [127 .NET testi, kanıt ve sınırlar](yerel-yedek-geri-yukleme.md). Sıradaki yerel paket ikinci sıradaki iki dil/erişilebilirlik denetimidir. Üretim yedek kabulü bekler.
 
@@ -15,7 +17,7 @@ Bu karar geliştirmeyi durdurmaz. HTTPS kökenine bağlı fiziksel GPS/pusula/PW
 | Sıra | İş ve mevcut iz | Somut çıktı / sınır |
 |---|---|---|
 | 1 | Yerel yedek/geri yükleme provası — A-006, ARCH-01, AC-07 | Ayrı ve açıkça test için oluşturulmuş veritabanında sentetik hesap/favori/not/gözlem/konum verisini yedekle, başka test veritabanına geri yükle ve sahiplik/ilişki/revizyon bütünlüğünü doğrula. Gereken Data Protection anahtarlarının kurtarma planıyla ilişkisini belgelemek dahil; gerçek kullanıcı verisi/sırları public çıktıya girmez. Bu, üretim yedek kabulünü kapatmaz. |
-| 2 | İki dil ve erişilebilirlik — FR-11–12, UX-01/02, AC-13–14 | Harita/hesap/defter/takvim/Bu gece/hata/boş/offline akışlarını iki dilde denetle; klavye, odak dönüşü, kontrast, büyütme ve masaüstü ekran okuyucu değerlendirmesi. Ayrı sözlük sayfası ve terim derin bağlantıları mevcut açık kapsamdır. Telefon okuyucuları ayrıca bekler. |
+| 2 | İki dil ve erişilebilirlik — FR-11–12, UX-01/02, AC-13–14 | Harita/hesap/defter/takvim/Bu gece/hata/boş/offline akışlarını iki dilde denetle; klavye, odak dönüşü, kontrast, büyütme ve masaüstü ekran okuyucu değerlendirmesi. Ayrı sözlük sayfası ve terim bağlantıları TECH-11C ile uygulandı; bütün yüzeylerden erişim ve gerçek yardımcı teknoloji kabulü açıktır. Telefon okuyucuları ayrıca bekler. |
 | 3 | Kişisel veri yaşam döngüsü — DOM-01, A-006/A-013, FR-06–07 | Mevcut çöp/geri yükleme/dışa aktarma korunarak kota, kalıcı silme ve içe aktarma sözleşmesini kesinleştir; kayıp/yanlış hesap/çakışma sınırlarını doğrula. Yeni saklama süresi veya kota sayısı bu planla otomatik seçilmez. Hesap zorunluluğu, sunucu kalıcılığı ve açık sayfa taslağının yalnız bellekte kalması sürer. |
 | 4 | Yerel performans bütçesi — A-009, FR-02/09 | İlk açılış, hesap süresi, pan/zoom, bellek ve genel paket boyutunu tekrarlanabilir masaüstü senaryolarıyla ölç; başlangıç/kayıp Worker/büyük ekran senaryolarını izle. Gerçek telefon ve üretim Core Web Vitals ölçümleri ayrı bekler. |
 | 5 | Gerçek görev değerlendirmesi — DISC-03, A-012, KG-01–08 | Yerel prototiple arama, hedefi anlama, zaman değiştirme, kişisel kayıt ve bağlantı sınırlarının anlaşılmasını gözle; katılımcı/başarı sonucu uydurma. Kullanıcıya/katılımcıya bağlı oturumlar yazılım testiyle kapatılmaz. |

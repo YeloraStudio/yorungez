@@ -1,5 +1,7 @@
 # yorungez — Yol haritası ve başlangıç iş listesi
 
+**K-036 / TECH-11C (2 Kasım 2026):** Kullanıcı yeni alanlar yerine mevcut deneyimin derinleştirilmesini önceliklendirdi. Aynı 52 kaynaklı terim ortak bileşende iki dilden aranır; kartta tam terim odağı/geri dönüş, ayrı statik sözlük, sabit terim bağlantıları ve genel PWA kapsamı geliştirildi. 55 istemci testi, tip/üretim derlemesi ve iki dil/320 px/sunucusuz sözlük kontrolü geçti. [Kanıt ve kalan kabul işleri](sozluk-ve-terim-baglantilari.md). Diğer P0/P1/P2 hedefleri ve K-032 beklemesi korunur.
+
 **K-035 / TECH-11B (2 Kasım 2026):** Giriş/kayıt başlıkları ve alan hizası düzeltildi; iki dilde canlı/simülasyon/eski hesap durumu, sonuç UTC anı ve özgün katalog/olay hazırlanma tarihleri kaynak paneline eklendi. 53 istemci testi, tip kontrolü, üretim derlemesi ve 320 px/PWA yeniden açılış kontrolü geçti. Sürekli olay akışı henüz bağlı değil; geniş atlas/kaynak yenileme FR-08/P1 işidir. [Uygulama, canlı API envanteri ve sınırlar](canli-hesap-ve-veri-guncelligi.md). Önceki P0/P1/P2 ve K-032 beklemesi korunur.
 
 **K-034 / TECH-11A (2 Kasım 2026):** İki dil/klavye ilk denetim paketi: seçimde Home/End başlangıç odağı, hesap görünümü değişiminde başlık odağı/etkin durum, parola ve tarih yardım ilişkileri düzeltildi. 51 istemci testi, tip kontrolü ve üretim derlemesi; iki dilde IAB klavye/320 px kontrolü geçti. [Kanıt ve açık kabul işleri](iki-dil-klavye-denetimi.md). Tam ekran okuyucu/kontrast/E2E/sözlük ve K-032 fiziksel/üretim işleri açık kalır.
@@ -69,9 +71,11 @@ Bir taslağın dosya olarak bulunması aşamanın tamamlandığı anlamına gelm
 
 | **TECH-11B** — Hesap formu ve canlı veri durumu | Yerel paket geçti | [Kanıt ve çalışan API envanteri](canli-hesap-ve-veri-guncelligi.md); 53 istemci testi, başlık boşlukları, iki dil/320 px, canlı-simülasyon/özgün kaynak tarihleri ve genel PWA yeniden açılışı. Sürekli olay akışı/kaynak yenileme tamamlanmadı. | FR-02–05/08–09/11; K-035 |
 
+| **TECH-11C** — Mevcut sözlüğü derinleştirme | Yerel paket geçti | [Kanıt](sozluk-ve-terim-baglantilari.md); 52 terim için ortak panel/sayfa/çapraz arama/bağlantı/odak/PWA, 55 istemci testi. Ekran okuyucu ve tüm yüzeylerin kabulü açık. | FR-09/11–12; AC-11–14; K-036 |
+
 ## Sıradaki çalışma paketi
 
-K-032 ile deployment/HTTPS/canlı yayın ve buna bağlı fiziksel telefon oturumu beklemede. **Yerel test verisiyle DB yedek/geri yükleme provası TECH-10 ile geçti.** Sırada iki dil/erişilebilirlik, ardından kişisel kayıt yaşam döngüsü ve tekrarlanabilir performans ölçümü var. P1 ek olay kaynakları, atlas, görünürlük ve veri yenileme; P2 ekipman/ileri planlama sırası korunur. [Güncel çalışma sırası](yayin-oncesi-yerel-plan.md), [hesap/PWA ayrıntısı](kisisel-kayit-hesap-cevrimdisi-akislari.md).
+K-032 ile deployment/HTTPS/canlı yayın ve buna bağlı fiziksel telefon oturumu beklemede. **Yerel test verisiyle DB yedek/geri yükleme provası TECH-10 ile geçti.** K-036 ile öncelik mevcut yüzeyleri derinleştirmektir. Sözlük/terim bağlantıları TECH-11C ile uygulandı; sırada kalan iki dil/erişilebilirlik, ardından kişisel kayıt yaşam döngüsü ve tekrarlanabilir performans ölçümü var. P1 ek olay kaynakları, atlas, görünürlük ve veri yenileme; P2 ekipman/ileri planlama sırası korunur. [Güncel çalışma sırası](yayin-oncesi-yerel-plan.md), [hesap/PWA ayrıntısı](kisisel-kayit-hesap-cevrimdisi-akislari.md).
 
 **TECH-02A — İlk hesap adaptörü:** Uygulandı; [ADR-0003](adr/0003-ilk-astronomi-adaptoru-ve-dogruluk-sinirlari.md). 12 konum/dört günlük seri, 1.168 JPL karşılaştırması, iki korunmuş kutup istisnası, C#/JS eşliği, offline tekrar üretim ve iki dilli anonim API. TECH-02B/03 ilk katalog/çizim/UI ekledi; güncel terim sayısı 52 (TECH-06). TECH-02 bütünü henüz tamamlanmadı; gerçek cihaz ve geniş bilimsel doğrulama açık. [FR/UJ/AC izlenebilirliği](teslimat-izlenebilirligi.md) kalan ayrıntıları korur.
 

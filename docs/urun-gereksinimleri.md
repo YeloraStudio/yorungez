@@ -1,5 +1,7 @@
 # yorungez — Ürün Vizyonu, Gereksinimler ve UX Taslağı
 
+**K-036 / TECH-11C (2 Kasım 2026):** Kullanıcı yeni alanlar yerine mevcut deneyimin derinleştirilmesini önceliklendirdi. Aynı 52 kaynaklı terim ortak bileşende iki dilden aranır; kartta tam terim odağı/geri dönüş, ayrı statik sözlük, sabit terim bağlantıları ve genel PWA kapsamı geliştirildi. 55 istemci testi, tip/üretim derlemesi ve iki dil/320 px/sunucusuz sözlük kontrolü geçti. [Kanıt ve kalan kabul işleri](sozluk-ve-terim-baglantilari.md). Diğer P0/P1/P2 hedefleri ve K-032 beklemesi korunur.
+
 **K-035 / TECH-11B (2 Kasım 2026):** Giriş/kayıt başlıkları ve alan hizası düzeltildi; iki dilde canlı/simülasyon/eski hesap durumu, sonuç UTC anı ve özgün katalog/olay hazırlanma tarihleri kaynak paneline eklendi. 53 istemci testi, tip kontrolü, üretim derlemesi ve 320 px/PWA yeniden açılış kontrolü geçti. Sürekli olay akışı henüz bağlı değil; geniş atlas/kaynak yenileme FR-08/P1 işidir. [Uygulama, canlı API envanteri ve sınırlar](canli-hesap-ve-veri-guncelligi.md). Önceki P0/P1/P2 ve K-032 beklemesi korunur.
 
 **K-034 / TECH-11A (2 Kasım 2026):** İki dil/klavye ilk denetim paketi: seçimde Home/End başlangıç odağı, hesap görünümü değişiminde başlık odağı/etkin durum, parola ve tarih yardım ilişkileri düzeltildi. 51 istemci testi, tip kontrolü ve üretim derlemesi; iki dilde IAB klavye/320 px kontrolü geçti. [Kanıt ve açık kabul işleri](iki-dil-klavye-denetimi.md). Tam ekran okuyucu/kontrast/E2E/sözlük ve K-032 fiziksel/üretim işleri açık kalır.
@@ -28,7 +30,7 @@
 
 **31 Ekim görünüm ek kararı:** Beğenilen tam ekran yerleşim korunur. UI kaynak paleti #3C3F43/#9EA1A6/#8B2333/#C9B6A6/#F7F1E6; dil seçimi sol menüde açılır liste. Görsel gökyüzü/çevre daha doğal, kaynaklı fotoğraf ve kadir sıralı ışıkla sunulur; fotoğraf yerel topografya, görsel atmosfer gözlem koşulu değildir. Pusulada kaynak/kuzey belirsizliği, izin/hizalama ve fiziksel kabul ayrılır. [Güncel paket](dogal-gorunum-ve-pusula.md).
 
-> **Belge sürümü:** 1.14
+> **Belge sürümü:** 1.15
 > **Tarih:** 2 Kasım 2026
 > **Durum:** Güncel ürün referansı; modüler backend ve ilk tr/en harita akışı uygulandı, kabul kapsamı kısmi
 > **Proje adı:** yorungez (yörünge + gezmek; ad kullanıcı tarafından kesinleştirildi)  
@@ -243,7 +245,7 @@ Dürbün/teleskop bilgisi girmek hiçbir temel ekrana erişim koşulu değildir.
 - Bilimsel terimin/teknik kısaltmanın sabit kimliği, açılımı, sade Türkçe/İngilizce tanımı, alternatif adları, kategorisi ve kaynakları saklanır.
 - Sözlük giriş yapmadan aranabilir; nesne kartları ve ilgili kontrollerden açıklamaya ulaşılır. Açıklama yalnızca fareyle üzerine gelmeye bağlı olmaz; klavye, dokunma ve ekran okuyucu kullanımı gözetilir.
 - Azimut, yükseklik, efemeris ve UTC gibi keşif terimleriyle FITS/ADQL gibi veri terimleri aynı tanım düzenini kullanabilir; kullanıcıya gereksiz teknik ayrıntı dayatılmaz.
-- Backend ve harita kartından erişilen iki dilli sözlük penceresi hazırdır (39 terim). Ayrı sözlük sayfası/derin bağlantılar, ekran okuyucu ve bütün ürün yüzeyleri için kabul açık kalır.
+- Backend, ortak harita penceresi ve ayrı genel sözlük sayfası aynı 52 kaynaklı terimi kullanır. İki dilden arama, sabit terim bağlantıları, seçili terim odağı ve iki genel HTML’in PWA paketi TECH-11C ile uygulandı. Gerçek ekran okuyucu/dokunma ve bütün ürün yüzeyleri için kabul açık kalır.
 
 ## 5. Temel kullanıcı yolculukları
 

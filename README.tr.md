@@ -26,7 +26,7 @@ Canlı mod, güncel UTC anı ve gözlem konumuna göre yönleri yerelde hesaplar
 - Kaynaklı takvim; hesaplanan olaylar ve bağımsız referansla karşılaştırılan Ay evreleri ayrı gösterilir.
 - Sensörsüz yön/yükseklik ve dürbün rehberi; uygun cihazlarda izin/hizalama gerektiren pusula.
 - Atmosfer, temsili fotoğraf arazi, derin uzay, takımyıldız çizgileri/çizimleri, ızgaralar, gece ve tam ekran katmanları. Ufuk altındaki hedeflerde arazi saydamlaşır.
-- 52 sade açıklamalı ve kaynaklı Türkçe/İngilizce terim.
+- 52 sade açıklamalı Türkçe/İngilizce terim; ortak harita/sözlük sayfasında iki dilden arama, tüm kaynaklar ve sabit terim bağlantıları.
 - Doğrulanmış hesaba bağlı PostgreSQL defteri: not, favori, gözlem ve kayıtlı konum. Kişisel kayıtlar bağlantı gerektirir.
 - Genel katalog/terim/takvim ve hesaplama varlıklarını sürümlü, hash kontrollü paketle yeniden açabilen PWA.
 

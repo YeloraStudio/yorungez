@@ -1,5 +1,7 @@
 # ADR-0013 — Genel gökyüzü PWA ve çevrimdışı paket
 
+**TECH-11C / 2 Kasım 2026 eklemesi:** İki genel statik sözlük HTML’i (`/en/terms`, `/tr/terms`) ve derlenmiş bağımlılıkları açık çekirdek envanterine eklendi; sorgu/RSC/kişisel veri dışlama, hash ve açık güncelleme sözleşmesi korunur. Test edilen paket yaklaşık 5,2 MiB/68 çekirdek dosyadır. [Kanıt ve sınırlar](../sozluk-ve-terim-baglantilari.md). Aşağıdaki ilk paket boyutu tarihsel kanıttır.
+
 **1 Kasım 2026 / K-028 / TECH-07 / PRD 1.10 — Uygulandı; tarayıcı kabulü sınırlı.**
 
 İz: FR-02–04/FR-08–09/FR-11–12; UJ-01–03/UJ-07; AC-01/AC-03/AC-05/AC-09–14; SN-D01–04. [Hesap zorunlu kişisel veri kararı](0010-hesap-zorunlu-defter-ve-sunucu-kayitlari.md) korunur.
