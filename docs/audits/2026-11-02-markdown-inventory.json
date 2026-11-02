@@ -1,7 +1,7 @@
 {
   "auditDate": "2026-11-02",
   "baselineCommit": "e32287378e71dabf9279fd8f2203f92649bc599a",
-  "scope": "Every tracked Markdown file at audit start; private/runtime/generated files excluded. All bytes read for inventory and structure; current decisions, source archive and implementation contracts reviewed separately. This manifest is not test execution evidence.",
+  "scope": "Every tracked Markdown file at audit start. Fingerprints identify Git blob bytes at baselineCommit, independent of checkout newline conversion. Private/runtime/generated files excluded. All files inventoried; current decisions, source archive and implementation contracts reviewed separately. This manifest is not test execution evidence.",
   "count": 79,
   "files": [
     {
@@ -91,7 +91,7 @@
     {
       "path": "docs/adr/0003-ilk-astronomi-adaptoru-ve-dogruluk-sinirlari.md",
       "lines": 38,
-      "sha256": "e70a244c289613ba1089b610bcd909a3e2663e950d17b57b6ea1e1bbfbb90e19",
+      "sha256": "322e5505da76330f3221b646f35414691b6c61dcb9ad6685a40d255245e16b28",
       "category": "architecture decision"
     },
     {
@@ -115,25 +115,25 @@
     {
       "path": "docs/adr/0007-gozlem-takvimi-ve-yer-adlari.md",
       "lines": 21,
-      "sha256": "3e6dfbe86d0731a9654e3d37fa5941072a0695248079b99aa62bb1c9d5e6f7d5",
+      "sha256": "d419fdd6ba0ac5c452bf49eee66620526162dc8d3a7ba9e499dcc38a3c15650c",
       "category": "architecture decision"
     },
     {
       "path": "docs/adr/0008-ortak-kontroller-ve-sensorsuz-rehber.md",
       "lines": 13,
-      "sha256": "1397e7be84ef676898e518841f6e1b86a343b21b1501754989d38b09eedb097b",
+      "sha256": "1dd1f16d5914eea8b95e3945ee593ac7c1891d1565c3fb7913ae3a42933fa090",
       "category": "architecture decision"
     },
     {
       "path": "docs/adr/0009-yerel-defter-ve-kayipsiz-duzenleme.md",
       "lines": 17,
-      "sha256": "ccdb60212cddccda8eb6b50eae6675a768040d0ca760ef441e298efb8be35fea",
+      "sha256": "afcf87bca5b05265be981cfc32a11a709b78aa182107f2d269e0dfced7b361da",
       "category": "architecture decision"
     },
     {
       "path": "docs/adr/0010-hesap-zorunlu-defter-ve-sunucu-kayitlari.md",
       "lines": 31,
-      "sha256": "9312b431db8c2e58bf432bd9a92f31c819439f0a563dcee35f52f00882cfd5a1",
+      "sha256": "c5625984553f2ce242ec8b48e8b0cf7562e5656844c030b0e4083e462543240e",
       "category": "architecture decision"
     },
     {
@@ -169,13 +169,13 @@
     {
       "path": "docs/alan-sozlugu.md",
       "lines": 84,
-      "sha256": "43babc8bc5d5bbd2958f69f18e53cf2863e8ae57d8946201fe43f6c318fd44d5",
+      "sha256": "5e11542e345cf57fb59a76c8ceaf4c1e895e92b478908d3da6152ec472d2aca6",
       "category": "project requirements, delivery, evidence or guidance"
     },
     {
       "path": "docs/altyapi-ve-kimlik.md",
       "lines": 84,
-      "sha256": "e23ffb75e886a36800cc106a58791b7c2c9f2875cfa459bbf22e0bef4dc08038",
+      "sha256": "4bc689e1ddb128801f34d24ab4a7393dc8fa24b9abfc652f4337be1d8273a1b3",
       "category": "project requirements, delivery, evidence or guidance"
     },
     {
@@ -193,7 +193,7 @@
     {
       "path": "docs/baglam-ve-sinir-durumlari.md",
       "lines": 127,
-      "sha256": "584492648659aa128bd9f436e825bff8153d0c2d158910dd20049076cd565928",
+      "sha256": "f4af43a408ea5648fe1a081862190201d1be13457bbb5309d9456f0c76ca5f84",
       "category": "project requirements, delivery, evidence or guidance"
     },
     {
@@ -217,13 +217,13 @@
     {
       "path": "docs/dogal-gorunum-ve-pusula.md",
       "lines": 43,
-      "sha256": "d53ca1596ec3332d0b7cf55bfe990c811001c993bd0ea5436f5c5132ccdae36f",
+      "sha256": "1b9e82b0dea20a606b2864c2ab3e9cf85f979adc74bd8b31f002da44fc889871",
       "category": "project requirements, delivery, evidence or guidance"
     },
     {
       "path": "docs/eposta-ve-varsayilan-dil.md",
       "lines": 45,
-      "sha256": "c64f2962e0c12ac61c63be9269738444df083d87c0a60125194bdd1b1a76cc21",
+      "sha256": "9ceab56d4cdca93a35c821c8b552f7640438a563384ae7dc118257a35c9d1016",
       "category": "project requirements, delivery, evidence or guidance"
     },
     {
@@ -235,31 +235,31 @@
     {
       "path": "docs/gozlem-cizelgesi-ve-takvim.md",
       "lines": 48,
-      "sha256": "86cbbf5eb5b7bfb51d82a710076b8ea677de8565b3206866812c056ee9179ae5",
+      "sha256": "c5638c73a8438ad5976dde76a00b869c7fcaac0f65478196cd3c03f59989ef10",
       "category": "project requirements, delivery, evidence or guidance"
     },
     {
       "path": "docs/gozlem-kayitlari-ve-kayitli-konumlar.md",
       "lines": 49,
-      "sha256": "c50d4479b6e9fe9a7a99bef9cefd80adc18c1d65916167075b3ab92a9e7cd6b0",
+      "sha256": "f11ad8c6ca745e68010ec525ba0aa396693cfcf36cdef9c415d3efe839a978df",
       "category": "project requirements, delivery, evidence or guidance"
     },
     {
       "path": "docs/harita-ve-katalog-denemesi.md",
       "lines": 61,
-      "sha256": "d584548ded2d4b6bb3f6a6b392c6b93477c80fcddb88a91e71dbf08494767b9a",
+      "sha256": "220ee2c078e4936339c8377331b811ffaae31303558758541375d5dedf9e4f86",
       "category": "project requirements, delivery, evidence or guidance"
     },
     {
       "path": "docs/hesap-menusu-ve-cevrimdisi-gokyuzu.md",
       "lines": 50,
-      "sha256": "d480836713e8a8933239b5ff571551f2551c645f32ad424191dc6c2001f3af6f",
+      "sha256": "2c4a1cff4a7bbc3f9cc915f1a36362a1e170b1d6d70053dffa9f8f0b871d2275",
       "category": "project requirements, delivery, evidence or guidance"
     },
     {
       "path": "docs/hesap-ve-sunucu-defteri.md",
       "lines": 24,
-      "sha256": "b6f53309a9c86ec4e0537cdc23ae66f6e3e475a4fed437bc297012040640db6a",
+      "sha256": "6528df823e69d9bfc80dd1d88bca1457510811aa1c7ec1b23e9d5ad7c527c90b",
       "category": "project requirements, delivery, evidence or guidance"
     },
     {
@@ -277,13 +277,13 @@
     {
       "path": "docs/kisisel-kayit-hesap-cevrimdisi-akislari.md",
       "lines": 64,
-      "sha256": "c15b5a09ee68c97157f3b7d181fdde0f5a2c42a06a506833d0cafe6547adc1d9",
+      "sha256": "cbe3e01baf512ec762418d68266e95c87d8073cfc308227cb08c0953e1a56fd3",
       "category": "project requirements, delivery, evidence or guidance"
     },
     {
       "path": "docs/kullanici-gorevleri.md",
       "lines": 65,
-      "sha256": "45202c6622b039e165ca6cd6d3812f604260f051c3af333a18fbf15b760281a2",
+      "sha256": "1079feeec12df362fdd252a22ee52fd33026e86420aebe924c4ed3aada8cc836",
       "category": "project requirements, delivery, evidence or guidance"
     },
     {
@@ -307,7 +307,7 @@
     {
       "path": "docs/ortak-bilesenler-ve-sensorsuz-gozlem.md",
       "lines": 34,
-      "sha256": "64836fb01707d5d6007e49b80803d49634900eb7be0a9539d0022bf46ce586a1",
+      "sha256": "941f29bd73d7980370d02c5be31f82dbcc0c97f124e9461e21afcc28fc1e660e",
       "category": "project requirements, delivery, evidence or guidance"
     },
     {
@@ -337,13 +337,13 @@
     {
       "path": "docs/tam-ekran-harita-gelistirmesi.md",
       "lines": 88,
-      "sha256": "ed84324636bb05d1535f54b74c048e4de9035c475e8fd1e830172879366ed5ea",
+      "sha256": "3d55137556bb1c8d1c9e6f06ff3c30511d5cd7b270916389028410d02cc0398b",
       "category": "project requirements, delivery, evidence or guidance"
     },
     {
       "path": "docs/teknik-baslangic.md",
       "lines": 47,
-      "sha256": "5fce0359ba084e7d17ff7e2c87394c89166662c7a8c2a1b2604e2d965c56dbe7",
+      "sha256": "672fa8ffe6b975beb1807dacc1c38553b4aee90a46e27d58d17089d16d5712e4",
       "category": "project requirements, delivery, evidence or guidance"
     },
     {
@@ -373,7 +373,7 @@
     {
       "path": "docs/ux-akislari.md",
       "lines": 172,
-      "sha256": "6754e6900af45ee6394c43367a3e2749fc0991fdeae7a0a08322611ef78ff30a",
+      "sha256": "a2ba06eb592ee0ea80927e144e1925b644addfd94dbef48e74576473184e4161",
       "category": "project requirements, delivery, evidence or guidance"
     },
     {
