@@ -6,7 +6,7 @@
 
 **Durum:** Protokol hazır, fiziksel cihaz oturumu **yürütülmedi**. Yazılım testleri/masaüstü sensör yokluğu kontrolü cihaz kabulü yerine geçmez. İz: FR-01–02/11–12, UJ-01/06, AC-01–03/09/11/13–14. [Uygulama](dogal-gorunum-ve-pusula.md).
 
-Test bir HTTPS geliştirme ortamında yürütülür. Telefonun `localhost` adresi geliştirme bilgisayarı değildir; LAN HTTP'sinde GPS/pusula desteği varmış gibi sonuç çıkarılmaz. Bu protokol public deployment/erişim açma yetkisi değildir. Kullanıcı izni/cihaz ayarı bilinçli yönetilir. Kayıtlara gerçek koordinat, adres, ham sensör akışı veya kişisel ekran görüntüsü yazılmaz; yalnız cihaz/tarayıcı sürümü, yuvarlanmış hata aralığı, durum ve süre sınıfı tutulur.
+Test güvenilir HTTPS geliştirme ortamında veya K-037 ile S23/Chrome için kullanıcı yetkili USB `adb reverse` üzerinden telefonun localhost kökeninde yürütülür; [yerel adımlar ve sınırlar](gok-cismi-gorselleri-ve-yerel-telefon-testi.md). Gerçek cihaz denemesi henüz yapılmadı. Telefonun `localhost` adresi geliştirme bilgisayarı değildir; LAN HTTP'sinde GPS/pusula desteği varmış gibi sonuç çıkarılmaz. Bu protokol public deployment/erişim açma yetkisi değildir. Kullanıcı izni/cihaz ayarı bilinçli yönetilir. Kayıtlara gerçek koordinat, adres, ham sensör akışı veya kişisel ekran görüntüsü yazılmaz; yalnız cihaz/tarayıcı sürümü, yuvarlanmış hata aralığı, durum ve süre sınıfı tutulur.
 
 | ID | Türkçe senaryo / beklenen | English scenario / expected | Sonuç |
 |---|---|---|---|

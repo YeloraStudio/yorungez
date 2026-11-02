@@ -1,5 +1,7 @@
 # K-032 — Dağıtım ertelenirken yerel çalışma sırası
 
+**K-037 güncel öncelik:** Kullanıcı bilgi/görsellik ve mevcut nesne kartlarının UX geliştirmesini öne aldı. [TECH-11D](gok-cismi-gorselleri-ve-yerel-telefon-testi.md) kaynaklı görsel/kısa bilgi paketi uygulandı; sırada kalan atlas nesnelerinin görselleri/bilgileri ve S23 yerel denemesi var. Yeni yedek/çöp/yaşam döngüsü işleri ve genel klavye/hata sağlamlaştırma paketi şimdilik ertelendi; aşağıdaki önceki sıra güncel öncelik değildir. Mevcut çalışan kişisel kayıtlar ve tüm FR/UJ/AC kalanları korunur. USB-localhost ile S23 denemesi deployment gerektirmez; kullanıcı seçimi/fiziksel bağlantı bekler.
+
 **K-036 / TECH-11C:** Kullanıcı mevcut özelliklerin derinliğini önceliklendirdi. İkinci sıradaki [sözlük/sabit terim bağlantıları](sozluk-ve-terim-baglantilari.md) uygulandı; sırada mevcut harita/hesap/defter/takvim/gece/hata yüzeylerinde okunabilirlik, klavye/odak ve iki dil kabulünü derinleştirmek var. Sonraki yaşam döngüsü/performans işleri korunur; yeni bağımsız alan açmak bu sağlamlaştırmanın önüne geçmez. P1/P2 kapsamı iptal edilmez.
 
 **TECH-11B / K-035:** Kullanıcının form boşluğu ve canlı bilimsel veri talebi [uygulandı ve envanterlendi](canli-hesap-ve-veri-guncelligi.md): canlı hesap/özgün paket tarihi/simülasyon ayrımı görünür. Sürekli olay akışı henüz yok; aşağıdaki FR-08/P1 veri yenileme kabulüne bağlıdır. İkinci sıradaki kalan sözlük/erişilebilirlik işleri devam eder.
@@ -37,7 +39,7 @@ Bu karar geliştirmeyi durdurmaz. HTTPS kökenine bağlı fiziksel GPS/pusula/PW
 ## Beklemede kalan işler
 
 - Domain/alt alan adı, DNS, HTTPS, tünel, sunucu/Portainer dağıtımı ve canlı yayın.
-- Erişilebilir HTTPS ortamına bağlı [S23/Chrome ve iPhone 15/Safari kabul oturumu](telefon-kabul-oturumu.md).
+- [S23/Chrome USB-localhost veya güvenilir HTTPS; iPhone 15/Safari güvenilir HTTPS kabul oturumu](telefon-kabul-oturumu.md).
 - Üretim yükü/gerçek mobil performans, gerçek OS kurulum ve depolama temizliği kabulü; üretim backup/restore ve işletim kabulü.
 
 Kaynaklar: [gereksinimler](urun-gereksinimleri.md), [yol haritası](yol-haritasi.md), [kararlar](kararlar.md), [kişisel kayıt kalanları](kisisel-kayit-hesap-cevrimdisi-akislari.md).

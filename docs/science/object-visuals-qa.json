@@ -1,0 +1,33 @@
+{
+  "package": "TECH-11D / K-037",
+  "date": "2026-11-02",
+  "scope": "Sourced archive photographs, honest calculated finder fields and existing card UX; no ephemeris change",
+  "automated": {"clientTests": 59, "typecheck": "passed", "productionBuild": "passed", "powershellAstAndWhatIf": "passed; no device access"},
+  "ui": {
+    "environment": "IAB production preview; desktop, 393x852, 320x740 and 780x360 viewport",
+    "languages": ["en", "tr"],
+    "archiveIdentityAndLoadedImage": ["sun", "moon", "mercury", "venus", "mars", "jupiter", "saturn", "uranus", "neptune", "hyg-32263", "dso-ngc0224", "dso-ngc1976"],
+    "exactMarsBeforeMarsic": "passed",
+    "missingArticleFinder": "hyg-118360; labelled calculated sky view, catalogue information and no useless retry",
+    "moonPhaseAndActualCredit": "passed; visible archival phase warning and Gregory H. Revera / CC BY-SA 3.0",
+    "horizontalOverflow": false,
+    "longCardHeaderAndClose": "accessible after scroll; landscape checked",
+    "viewportOverrideReset": true
+  },
+  "offline": {
+    "coreVersion": "eaa63fa06f02104527a3",
+    "coreFiles": 68,
+    "approximateCoreMiB": 5.3,
+    "optionalImages": 99,
+    "approximateImageMiB": 13.9,
+    "explicitUpdateFromPreviousPack": "passed",
+    "imagesPreparedFromUi": "99/99",
+    "ownPreviewStoppedAndMapReopened": true,
+    "preparedSaturnPhotographLoaded": true,
+    "unavailableWikipediaExplanation": "shown without blocking map or photograph",
+    "ownPreviewRestarted": true,
+    "osNetworkOrNormalBackendStopped": false
+  },
+  "physicalPhone": {"status": "pending user choice and physical connection", "adbForwardCreated": false, "lanBindingOrFirewallChanged": false},
+  "limits": ["No real account, email or personal coordinates used", "Twelve local photo targets; not all catalogue objects have real photographs", "Finder diagram is not a photograph or independent astrometric validation", "No physical touch, sensor or OS installation acceptance", "Public deployment, DNS, HTTPS and tunnels remain deferred"]
+}
