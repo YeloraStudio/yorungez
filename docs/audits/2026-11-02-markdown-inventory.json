@@ -1,0 +1,483 @@
+{
+  "auditDate": "2026-11-02",
+  "baselineCommit": "e32287378e71dabf9279fd8f2203f92649bc599a",
+  "scope": "Every tracked Markdown file at audit start; private/runtime/generated files excluded. All bytes read for inventory and structure; current decisions, source archive and implementation contracts reviewed separately. This manifest is not test execution evidence.",
+  "count": 79,
+  "files": [
+    {
+      "path": ".github/pull_request_template.md",
+      "lines": 11,
+      "sha256": "fe5a44454f96d3d3240f433db2bc67271634f1086c5c4c7da2dd3edd381312cd",
+      "category": "project requirements, delivery, evidence or guidance"
+    },
+    {
+      "path": "AGENTS.md",
+      "lines": 90,
+      "sha256": "557d63eadca442441dbffdc564ed0b341c34fe69963eb08761d1271b94674267",
+      "category": "project requirements, delivery, evidence or guidance"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "lines": 45,
+      "sha256": "dabe4a7192397f94315d9eca76b050ba016cc072df6d1a48a9a7bb3d9437f11f",
+      "category": "project requirements, delivery, evidence or guidance"
+    },
+    {
+      "path": "README.md",
+      "lines": 182,
+      "sha256": "ac928d60a43afea7db24718fc9212ea225ed6870ac842daf347bfbb83404c875",
+      "category": "project requirements, delivery, evidence or guidance"
+    },
+    {
+      "path": "README.tr.md",
+      "lines": 103,
+      "sha256": "167a5b8166a6bfc7dbe53bce3382c70206fd3c0b5a8044b1fd80e62785556272",
+      "category": "project requirements, delivery, evidence or guidance"
+    },
+    {
+      "path": "SECURITY.md",
+      "lines": 24,
+      "sha256": "c51fead8ba890b3225d47fc08dac5bc7b779f95dd64ca6340357738451429d43",
+      "category": "project requirements, delivery, evidence or guidance"
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "lines": 42,
+      "sha256": "ee0ed4786c4ebede90bbcd9469488176d30b100a62fef5d2bc81e3ff4866d4bd",
+      "category": "project requirements, delivery, evidence or guidance"
+    },
+    {
+      "path": "data/branding/README.md",
+      "lines": 37,
+      "sha256": "27721d75082b4be09dc0fe2760ad7b7ee2e29d9065d09a831f80188e152cbf90",
+      "category": "project requirements, delivery, evidence or guidance"
+    },
+    {
+      "path": "data/catalog/README.md",
+      "lines": 54,
+      "sha256": "075765e941eb50e42581d43b5f0675519962c116f16ffb39ca9f116ce487f06a",
+      "category": "project requirements, delivery, evidence or guidance"
+    },
+    {
+      "path": "data/events/README.md",
+      "lines": 18,
+      "sha256": "8cc7025296782bdd72afcaee636842f9ebe00d582eef9b2739f18ae1849e43dd",
+      "category": "project requirements, delivery, evidence or guidance"
+    },
+    {
+      "path": "data/places/README.md",
+      "lines": 15,
+      "sha256": "24b01c8c44a883c6bc035a91e89a7e2839355993692d1541178b4319efda336e",
+      "category": "project requirements, delivery, evidence or guidance"
+    },
+    {
+      "path": "docs/README.md",
+      "lines": 68,
+      "sha256": "39af1689fa422383c45847952eb98dd2c417cb9dec61b380ea5db67724bae593",
+      "category": "project requirements, delivery, evidence or guidance"
+    },
+    {
+      "path": "docs/adr/0001-teknik-temel-ve-ilk-dikey-akis.md",
+      "lines": 40,
+      "sha256": "eadf2821bab7625fca870ad9f9a0843b30806509f0508b84424fde309daafda9",
+      "category": "architecture decision"
+    },
+    {
+      "path": "docs/adr/0002-moduler-temel-cqrs-ve-lisanslar.md",
+      "lines": 38,
+      "sha256": "539b0ac34ee1fd73ddd9ed959256251197aba5883d4f333b7f6b57a946296be4",
+      "category": "architecture decision"
+    },
+    {
+      "path": "docs/adr/0003-ilk-astronomi-adaptoru-ve-dogruluk-sinirlari.md",
+      "lines": 38,
+      "sha256": "e70a244c289613ba1089b610bcd909a3e2663e950d17b57b6ea1e1bbfbb90e19",
+      "category": "architecture decision"
+    },
+    {
+      "path": "docs/adr/0004-ilk-harita-ve-parlak-katalog.md",
+      "lines": 28,
+      "sha256": "c2b033c6afd8a01f165b91fd2e3afdb6af69f8f6f5de2818917f344a45a45991",
+      "category": "architecture decision"
+    },
+    {
+      "path": "docs/adr/0005-tam-ekran-konum-ve-yerel-zaman.md",
+      "lines": 29,
+      "sha256": "e5b451cdf93ccf6559a07f1f365ec4e00c2cbd5ac3eb83c1ab84df768fc9ebeb",
+      "category": "architecture decision"
+    },
+    {
+      "path": "docs/adr/0006-fotograf-cevre-ve-pusula-siniri.md",
+      "lines": 11,
+      "sha256": "e9e3fb9440b257e0647a2734b4a94e03187f0f5299caa0a28846bb7dd83096ac",
+      "category": "architecture decision"
+    },
+    {
+      "path": "docs/adr/0007-gozlem-takvimi-ve-yer-adlari.md",
+      "lines": 21,
+      "sha256": "3e6dfbe86d0731a9654e3d37fa5941072a0695248079b99aa62bb1c9d5e6f7d5",
+      "category": "architecture decision"
+    },
+    {
+      "path": "docs/adr/0008-ortak-kontroller-ve-sensorsuz-rehber.md",
+      "lines": 13,
+      "sha256": "1397e7be84ef676898e518841f6e1b86a343b21b1501754989d38b09eedb097b",
+      "category": "architecture decision"
+    },
+    {
+      "path": "docs/adr/0009-yerel-defter-ve-kayipsiz-duzenleme.md",
+      "lines": 17,
+      "sha256": "ccdb60212cddccda8eb6b50eae6675a768040d0ca760ef441e298efb8be35fea",
+      "category": "architecture decision"
+    },
+    {
+      "path": "docs/adr/0010-hesap-zorunlu-defter-ve-sunucu-kayitlari.md",
+      "lines": 31,
+      "sha256": "9312b431db8c2e58bf432bd9a92f31c819439f0a563dcee35f52f00882cfd5a1",
+      "category": "architecture decision"
+    },
+    {
+      "path": "docs/adr/0011-gozlem-kaydi-ve-kayitli-konumlar.md",
+      "lines": 50,
+      "sha256": "34cbae365dddd849048bb3783cb198acb4f9572d1d57fcdd9c56931873d26abf",
+      "category": "architecture decision"
+    },
+    {
+      "path": "docs/adr/0012-hesap-menusu-ve-ad-soyad.md",
+      "lines": 17,
+      "sha256": "74e873399eae9e61a5c59bf17ff02f5be7ea1f206d02372ba11a64ecbee6ada3",
+      "category": "architecture decision"
+    },
+    {
+      "path": "docs/adr/0013-genel-gokyuzu-pwa-ve-cevrimdisi-paket.md",
+      "lines": 29,
+      "sha256": "92083740f0cb5998a0814a4a4bf97560fa67b41443aac7d6f1071bcb6ac21872",
+      "category": "architecture decision"
+    },
+    {
+      "path": "docs/adr/0014-acik-kaynak-yayin-ve-apache-2.md",
+      "lines": 21,
+      "sha256": "2cc61b7bee69fc0b2fa6deb75b0686bfd36d62c218e2bc6b93e48cf33513bc29",
+      "category": "architecture decision"
+    },
+    {
+      "path": "docs/adr/0015-responsive-sensor-ve-pwa-kabulu.md",
+      "lines": 29,
+      "sha256": "a1df6b0ec21bbac75e6571c124159c5130470a6e21ac7c3f36c1f4c961aae003",
+      "category": "architecture decision"
+    },
+    {
+      "path": "docs/alan-sozlugu.md",
+      "lines": 84,
+      "sha256": "43babc8bc5d5bbd2958f69f18e53cf2863e8ae57d8946201fe43f6c318fd44d5",
+      "category": "project requirements, delivery, evidence or guidance"
+    },
+    {
+      "path": "docs/altyapi-ve-kimlik.md",
+      "lines": 84,
+      "sha256": "e23ffb75e886a36800cc106a58791b7c2c9f2875cfa459bbf22e0bef4dc08038",
+      "category": "project requirements, delivery, evidence or guidance"
+    },
+    {
+      "path": "docs/arsiv/OpenSky_Proje_Gereksinimleri_UX_v1.md",
+      "lines": 353,
+      "sha256": "6d748df5dd0777b5570401f1f5bb163b94c2d51567f55c7139b9d42fd4c7c1fc",
+      "category": "historical source archive"
+    },
+    {
+      "path": "docs/astronomi-denemesi.md",
+      "lines": 56,
+      "sha256": "82bc5c0eb704f544aba1fa0ecbbae1e0519e13b7f2dea0935450d4ed71262d60",
+      "category": "project requirements, delivery, evidence or guidance"
+    },
+    {
+      "path": "docs/baglam-ve-sinir-durumlari.md",
+      "lines": 127,
+      "sha256": "584492648659aa128bd9f436e825bff8153d0c2d158910dd20049076cd565928",
+      "category": "project requirements, delivery, evidence or guidance"
+    },
+    {
+      "path": "docs/bilimsel-veri-stratejisi.md",
+      "lines": 68,
+      "sha256": "501591556280dcca6c03ffa29a1ed73f206395f9b57688df7576d26743bd877a",
+      "category": "project requirements, delivery, evidence or guidance"
+    },
+    {
+      "path": "docs/canli-hesap-ve-veri-guncelligi.md",
+      "lines": 62,
+      "sha256": "97369db0328796c93139f6e6dac9d7d8775c4d72a18490405f26050edde23b21",
+      "category": "project requirements, delivery, evidence or guidance"
+    },
+    {
+      "path": "docs/cihaz-konum-pusula-dogrulamasi.md",
+      "lines": 30,
+      "sha256": "4b01a569a32cd6a517df2e1a2c0c4decd166abd56c81e559c25e4493ea6fae63",
+      "category": "project requirements, delivery, evidence or guidance"
+    },
+    {
+      "path": "docs/dogal-gorunum-ve-pusula.md",
+      "lines": 43,
+      "sha256": "d53ca1596ec3332d0b7cf55bfe990c811001c993bd0ea5436f5c5132ccdae36f",
+      "category": "project requirements, delivery, evidence or guidance"
+    },
+    {
+      "path": "docs/eposta-ve-varsayilan-dil.md",
+      "lines": 45,
+      "sha256": "c64f2962e0c12ac61c63be9269738444df083d87c0a60125194bdd1b1a76cc21",
+      "category": "project requirements, delivery, evidence or guidance"
+    },
+    {
+      "path": "docs/gok-cismi-gorselleri-ve-yerel-telefon-testi.md",
+      "lines": 56,
+      "sha256": "843d38c073d5e284233738f9080aaf940e0e29fea2ade1d24f3ffc0655651f21",
+      "category": "project requirements, delivery, evidence or guidance"
+    },
+    {
+      "path": "docs/gozlem-cizelgesi-ve-takvim.md",
+      "lines": 48,
+      "sha256": "86cbbf5eb5b7bfb51d82a710076b8ea677de8565b3206866812c056ee9179ae5",
+      "category": "project requirements, delivery, evidence or guidance"
+    },
+    {
+      "path": "docs/gozlem-kayitlari-ve-kayitli-konumlar.md",
+      "lines": 49,
+      "sha256": "c50d4479b6e9fe9a7a99bef9cefd80adc18c1d65916167075b3ab92a9e7cd6b0",
+      "category": "project requirements, delivery, evidence or guidance"
+    },
+    {
+      "path": "docs/harita-ve-katalog-denemesi.md",
+      "lines": 61,
+      "sha256": "d584548ded2d4b6bb3f6a6b392c6b93477c80fcddb88a91e71dbf08494767b9a",
+      "category": "project requirements, delivery, evidence or guidance"
+    },
+    {
+      "path": "docs/hesap-menusu-ve-cevrimdisi-gokyuzu.md",
+      "lines": 50,
+      "sha256": "d480836713e8a8933239b5ff571551f2551c645f32ad424191dc6c2001f3af6f",
+      "category": "project requirements, delivery, evidence or guidance"
+    },
+    {
+      "path": "docs/hesap-ve-sunucu-defteri.md",
+      "lines": 24,
+      "sha256": "b6f53309a9c86ec4e0537cdc23ae66f6e3e475a4fed437bc297012040640db6a",
+      "category": "project requirements, delivery, evidence or guidance"
+    },
+    {
+      "path": "docs/iki-dil-klavye-denetimi.md",
+      "lines": 33,
+      "sha256": "a3d4cd0819a6c3f6423e196b26fcdb2b85206da46619b84e165ded180eae42a7",
+      "category": "project requirements, delivery, evidence or guidance"
+    },
+    {
+      "path": "docs/kararlar.md",
+      "lines": 99,
+      "sha256": "b345308acba8de4fd0c6aa1e15c7e551866c7aa0e3f67fcd4a6acfbb97a08644",
+      "category": "project requirements, delivery, evidence or guidance"
+    },
+    {
+      "path": "docs/kisisel-kayit-hesap-cevrimdisi-akislari.md",
+      "lines": 64,
+      "sha256": "c15b5a09ee68c97157f3b7d181fdde0f5a2c42a06a506833d0cafe6547adc1d9",
+      "category": "project requirements, delivery, evidence or guidance"
+    },
+    {
+      "path": "docs/kullanici-gorevleri.md",
+      "lines": 65,
+      "sha256": "45202c6622b039e165ca6cd6d3812f604260f051c3af333a18fbf15b760281a2",
+      "category": "project requirements, delivery, evidence or guidance"
+    },
+    {
+      "path": "docs/marka-logolari.md",
+      "lines": 27,
+      "sha256": "645d4dce0d31c5de5329d07e485b3c71f0b6588bf07725b6d27ed4a76878bcb9",
+      "category": "project requirements, delivery, evidence or guidance"
+    },
+    {
+      "path": "docs/mobil-kart-samanyolu-ve-pusula-erisim.md",
+      "lines": 39,
+      "sha256": "f368f958ae3f06fe49af26e972f7311738440c25e302f004360c6d02b6d066a2",
+      "category": "project requirements, delivery, evidence or guidance"
+    },
+    {
+      "path": "docs/open-source-publication.md",
+      "lines": 66,
+      "sha256": "33e07645c0e8f9920eba2dbe5a63f2d98edf4062f73d48a168db6793ac743eef",
+      "category": "project requirements, delivery, evidence or guidance"
+    },
+    {
+      "path": "docs/ortak-bilesenler-ve-sensorsuz-gozlem.md",
+      "lines": 34,
+      "sha256": "64836fb01707d5d6007e49b80803d49634900eb7be0a9539d0022bf46ce586a1",
+      "category": "project requirements, delivery, evidence or guidance"
+    },
+    {
+      "path": "docs/project-status-history.md",
+      "lines": 125,
+      "sha256": "f0bdb93ef7469e2251eb9d115aa1cf703abb2fc8c3effb2dc28a9bde0517af61",
+      "category": "project requirements, delivery, evidence or guidance"
+    },
+    {
+      "path": "docs/responsive-cihaz-ve-pwa-kabulu.md",
+      "lines": 39,
+      "sha256": "9cd26f60c8ef6938ea464a76a6f559480e8e3abbb55a6cf969f8615f071ee0ae",
+      "category": "project requirements, delivery, evidence or guidance"
+    },
+    {
+      "path": "docs/science/motor-adaylari.md",
+      "lines": 22,
+      "sha256": "462992a37a2315436ad0b3af67a3684b1da73bc738bb12984c56f934399e6fea",
+      "category": "project requirements, delivery, evidence or guidance"
+    },
+    {
+      "path": "docs/sozluk-ve-terim-baglantilari.md",
+      "lines": 40,
+      "sha256": "6e96e360a0315fa3e83f58a86f09fcc895b761d80995482a3b7ed201cf0d08a5",
+      "category": "project requirements, delivery, evidence or guidance"
+    },
+    {
+      "path": "docs/tam-ekran-harita-gelistirmesi.md",
+      "lines": 88,
+      "sha256": "ed84324636bb05d1535f54b74c048e4de9035c475e8fd1e830172879366ed5ea",
+      "category": "project requirements, delivery, evidence or guidance"
+    },
+    {
+      "path": "docs/teknik-baslangic.md",
+      "lines": 47,
+      "sha256": "5fce0359ba084e7d17ff7e2c87394c89166662c7a8c2a1b2604e2d965c56dbe7",
+      "category": "project requirements, delivery, evidence or guidance"
+    },
+    {
+      "path": "docs/telefon-kabul-oturumu.md",
+      "lines": 37,
+      "sha256": "5e8dce63decd6454dd3393102c76e513e69ef1e39aee4c1cee4a7f64c2e9c851",
+      "category": "project requirements, delivery, evidence or guidance"
+    },
+    {
+      "path": "docs/teslimat-izlenebilirligi.md",
+      "lines": 93,
+      "sha256": "1bc9289f9fb32ad5104435d1510ebc3553a9fdaa8eda4744d3cab541e0bf64f2",
+      "category": "project requirements, delivery, evidence or guidance"
+    },
+    {
+      "path": "docs/urun-gereksinimleri.md",
+      "lines": 445,
+      "sha256": "7687b4b9928d6d95a3c5fde46117de93a14883c5a71edf4f1218e262c4498903",
+      "category": "project requirements, delivery, evidence or guidance"
+    },
+    {
+      "path": "docs/urun-kesfi.md",
+      "lines": 79,
+      "sha256": "ea69a9627e818adf22df41f0033be1e33cd0f15bb2713329835e894ee9e8afea",
+      "category": "project requirements, delivery, evidence or guidance"
+    },
+    {
+      "path": "docs/ux-akislari.md",
+      "lines": 172,
+      "sha256": "6754e6900af45ee6394c43367a3e2749fc0991fdeae7a0a08322611ef78ff30a",
+      "category": "project requirements, delivery, evidence or guidance"
+    },
+    {
+      "path": "docs/yayin-oncesi-yerel-plan.md",
+      "lines": 47,
+      "sha256": "c735a2afb05e9183ca851990f3661269884cc5e80bce757a6b0506679990e4aa",
+      "category": "project requirements, delivery, evidence or guidance"
+    },
+    {
+      "path": "docs/yerel-yedek-geri-yukleme.md",
+      "lines": 44,
+      "sha256": "a8980a965e577fd44d926e9cc22a56e7b35f93a3693c1218ca653fff96803c0f",
+      "category": "project requirements, delivery, evidence or guidance"
+    },
+    {
+      "path": "docs/yerellestirme-ve-terimler.md",
+      "lines": 47,
+      "sha256": "5c6a7b047597e0af12fb18e6b595d81bc5459ab0e1ce5920ecc2b0cd24155a96",
+      "category": "project requirements, delivery, evidence or guidance"
+    },
+    {
+      "path": "docs/yol-haritasi.md",
+      "lines": 148,
+      "sha256": "60fdaef2bd7b4bad0813a4a5f0d1346e2b99e48cb6ab557d26dd12f612928273",
+      "category": "project requirements, delivery, evidence or guidance"
+    },
+    {
+      "path": "src/Yorungez.Web/AGENTS.md",
+      "lines": 9,
+      "sha256": "063098f6cb31bb44c6f8fbea25b3876de7ee1e5f7d00a50dbab506f6415eb7f0",
+      "category": "project requirements, delivery, evidence or guidance"
+    },
+    {
+      "path": "src/Yorungez.Web/README.md",
+      "lines": 61,
+      "sha256": "1976db36a2d6d5b0b072808360173de9d958293f7e1a55f72f274d0804c34edb",
+      "category": "project requirements, delivery, evidence or guidance"
+    },
+    {
+      "path": "tests/ReferenceData/DeepSky/README.md",
+      "lines": 7,
+      "sha256": "b37f787a443ba9352689182b6cdd34f07ab94644b31f6e432bc3b409174e41bd",
+      "category": "project requirements, delivery, evidence or guidance"
+    },
+    {
+      "path": "tests/ReferenceData/Horizons/README.md",
+      "lines": 9,
+      "sha256": "675a1160bba6dc9d1b009c5aaad1f7c80fd8d90b0c6fbf3f5f7e246624dd0fb9",
+      "category": "project requirements, delivery, evidence or guidance"
+    },
+    {
+      "path": "tests/ReferenceData/Observing/README.md",
+      "lines": 15,
+      "sha256": "743df61bb32c6b90982eccff21dd88c1785ae78003ff4e07872436c56777bd58",
+      "category": "project requirements, delivery, evidence or guidance"
+    },
+    {
+      "path": "tests/ReferenceData/README.md",
+      "lines": 10,
+      "sha256": "4af015d1d8bcbf2ab530bd59993e1a6ede97da405e989f1414349ba106477fd4",
+      "category": "project requirements, delivery, evidence or guidance"
+    },
+    {
+      "path": "tests/ReferenceData/Stars/README.md",
+      "lines": 7,
+      "sha256": "1478077bbf95f407893599ebe6da02a2faf8850995c60bb40060a12860e2985e",
+      "category": "project requirements, delivery, evidence or guidance"
+    },
+    {
+      "path": "third-party/geo-tz/LICENSE.md",
+      "lines": 21,
+      "sha256": "8a1b9161f7e098069e1766e669a1f82053f3a4f78556e7289e03fb9e06b7d218",
+      "category": "third-party attribution/licence"
+    },
+    {
+      "path": "third-party/geonames/NOTICE.md",
+      "lines": 7,
+      "sha256": "26f0cd48945c5221c6615a28315323759ab0e7c7637d773d8b798450cd571cf4",
+      "category": "third-party attribution/licence"
+    },
+    {
+      "path": "third-party/hyg/LICENSE.md",
+      "lines": 10,
+      "sha256": "f404190403d31e0ce7223f4cb7af954485ad88077358330754dc5c892a856627",
+      "category": "third-party attribution/licence"
+    },
+    {
+      "path": "third-party/stara-lesna/NOTICE.md",
+      "lines": 7,
+      "sha256": "3f38b4de7098e872d2d1783f8493024c6e0cf9dba264b1a0add45ce84f29618a",
+      "category": "third-party attribution/licence"
+    },
+    {
+      "path": "third-party/stellarium-art/NOTICE.md",
+      "lines": 7,
+      "sha256": "d2a30c30f43d0ae487710d7364c25d696055cbed7cbf58468dc4f96811a39464",
+      "category": "third-party attribution/licence"
+    },
+    {
+      "path": "third-party/stellarium-art/UPSTREAM-description.md",
+      "lines": 174,
+      "sha256": "dfac2bb33ce1bbd0082601b2fad90182c085b15bbdeeb3b49490dc7ad7b804e1",
+      "category": "third-party attribution/licence"
+    }
+  ],
+  "lineCount": 4585
+}

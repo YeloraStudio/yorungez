@@ -92,7 +92,7 @@ Kişisel kayıtlar doğrulanmış hesapla sunucuda kalır; anonim kalıcı defte
 
 [Güvenlik](SECURITY.md), [yayın incelemesi](docs/open-source-publication.md), [katkı rehberi](CONTRIBUTING.md), [gereksinimler](docs/urun-gereksinimleri.md), [yol haritası](docs/yol-haritasi.md) ve [izlenebilirlik](docs/teslimat-izlenebilirligi.md) kapsamı açıklar. Yayınlama önceki planı değiştirmez veya eksik kabul işlerini kapatmaz.
 
-Sırada fiziksel GPS/pusula ve çok tarayıcı PWA kabulü, üretim yedekleme/geri yükleme doğrulaması ve ek olay türlerinin kaynaklandırılması vardır. Sonraki katalog/ekipman/Dünya gözlem alanları kapsamı mevcut önceliklerle ilerler.
+Güncel öncelik kaynaklı nesne görselleri/kısa bilgiler ve atlas derinliğidir. Fiziksel GPS/pusula, çok tarayıcı PWA, bilimsel olay/koşul ve üretim kabulü açık; yeni yedek/çöp işleri ve public deployment kullanıcı kararıyla ertelenmiştir. [2 Kasım plan denetimi ve checklist](docs/web-tamamlama-ve-ortak-backend-mobil-hedef.md) bütün kalanları içerir. Kullanıcının sonraki platform hedefi, Web kabulünden sonra aynı .NET backend/hesap/verilerle mobil uygulamadır; framework seçilmedi, P1/P2 kapsamı korunur.
 
 ## Lisans
 

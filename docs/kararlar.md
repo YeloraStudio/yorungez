@@ -1,5 +1,7 @@
 # yorungez — Karar kaydı
 
+**K-039 / 2 Kasım 2026 — Güncel durum denetimi:** Önce Web kabulünü tamamlamak, ardından aynı .NET backend/hesap/verilerle mobil uygulama geliştirmek kullanıcı hedefidir. [Plan, eksikler, kanıt ve mobil hazırlık](web-tamamlama-ve-ortak-backend-mobil-hedef.md). Bilgi/görsel önceliği, K-032 yayın beklemesi ve açık P0/P1/P2 kapsamı korunur; aşağıdaki eski paketler kendi aşamalarının tarihsel kanıtıdır.
+
 **K-038 / TECH-11E (2 Kasım 2026):** S23 Chrome/Brave ve PWA ekleyip genel kullanım için kullanıcı olumlu test bildirdi; pusulada Chrome Hareket sensörleri engeli doğrulandı. Ortak kartta tek saydam yüzey/sabit başlık, iki dilde kaynaklı Samanyolu araması ve Yay bölgesi navigasyonu, açık Andromeda/M31 ayrımı ve yerel sensör erişim tanısı uygulandı. 62 istemci testi/tip/üretim derlemesi, dar-yatay UI ve sunucusuz Samanyolu kontrolü geçti. Fiziksel pusula izin sonrası kabulü, ölçümlü GPS ve tam cihaz protokolü açıktır. [Kanıt ve sınırlar](mobil-kart-samanyolu-ve-pusula-erisim.md). Bilgi/görsel önceliği, K-032 public yayın beklemesi ve önceki bilimsel sınırlar korunur.
 
 **K-037 / TECH-11D (2 Kasım 2026):** Kullanıcı bilgi/görsel/kart UI-UX ve yerel mobil denemeyi önceliklendirdi; yeni yedek/çöp/kişisel yaşam döngüsü işleri şimdilik ertelendi. 12 hedef için kaynaklı yerel arşiv fotoğrafı, diğerlerinde lisanslı fotoğraf veya açıkça etiketli hesaplanan kesit; kısa açıklama öne alındı, Mars/Marsic arama sırası düzeltildi. 59 istemci testi/tip/üretim derlemesi, iki dil/dar-yatay görünüm ve hazırlanmış fotoğrafın sunucusuz açılışı geçti. S23 USB-localhost yardımcısı hazır; gerçek cihaz henüz denenmedi. [Kanıt, sınırlar ve telefon adımları](gok-cismi-gorselleri-ve-yerel-telefon-testi.md). Public deployment/DNS/HTTPS beklemesi ve önceki bilimsel hedefler korunur.
@@ -34,7 +36,7 @@
 
 **K-021 — TECH-04C / kullanıcı düzeltmeleri:** Bugün/Bu gece zaman çizelgesi ve hedefe navigasyon, kaynaklı Takvim, pusula hedef yardımı, ufuk altı/aşağı bakışta saydam arazi ve 330° stereografik zoom; yerel şehir/ilçe + manuel ad/koordinat/yükseklik. Keşfet düğmesi kaldırılır; ortak arama/FR-03 atlas sürer. [ADR-0007](adr/0007-gozlem-takvimi-ve-yer-adlari.md), [kanıt](gozlem-cizelgesi-ve-takvim.md). Hesaplanan olay ile bağımsız USNO evresi ayrı; tüm ürün/cihaz kabulü değildir.
 
-**Güncelleme:** 1 Kasım 2026
+**Güncelleme:** 2 Kasım 2026
 **Amaç:** Kullanıcı kararlarını, başlangıç gereksinimlerini ve araştırılacak konuları birbirinden ayırmak.
 
 Kaynak: [Ürün gereksinimleri](urun-gereksinimleri.md) ve kullanıcının 30 Ekim 2026 tarihli adlandırma/başlama talimatı. Bu kayıt hukuki marka uygunluğu veya alan adı sahipliği doğrulaması değildir.
@@ -47,7 +49,7 @@ Kaynak: [Ürün gereksinimleri](urun-gereksinimleri.md) ve kullanıcının 30 Ek
 | K-002 | Planlanan alan adı `yorungez.com` | Kullanıcı yakın zamanda satın alacak. Mevcut durum: satın alma bekliyor. |
 | K-003 | Harita merkezli astronomi keşfi | Gereksinimler §1–3; temel kullanım hesap ve ekipman gerektirmez. |
 | K-004 | Harita merkezli ortak arama ve menü | K-022 ile Gökyüzü/Bu gece/Takvim/Defterim; gereksiz Keşfet düğmesi kaldırıldı, FR-03 atlas kapsamı korunur. Konum seçici/Defterim erişimi sürer. |
-| K-005 | Next.js + TypeScript, PWA, ASP.NET Core modüler monolit | Gereksinimler §7; ilk Web sürümleri Next 16.4.3/React 19.3.1/TS 5.9.3 sabit; PWA/dağıtım henüz yok. Python yardımcı doğrulama/veri işleri içindir. |
+| K-005 | Next.js + TypeScript, PWA, ASP.NET Core modüler monolit | Gereksinimler §7; ilk Web sürümleri Next 16.4.3/React 19.3.1/TS 5.9.3 sabit; genel PWA TECH-07 ile uygulandı, public dağıtım K-032 ile bekliyor. Python yardımcı doğrulama/veri işleri içindir. |
 | K-006 | Önce dokümantasyon, ardından MVP-0 | Gereksinimler §9–10; ilk teknik doğrulama harita, konum/zaman ve nesne deneyimidir. |
 | K-007 | Görünürlük üç ayrı değerlendirmedir | FR-05; geometrik durum, koşullar ve algılanabilirlik karıştırılmaz. |
 | K-008 | Kişisel veriler varsayılan olarak özel | FR-01, FR-06–07; K-024 ile yalnız doğrulanmış hesaba özel sunucu kaydı, anonim kalıcılık yok. |
@@ -55,9 +57,10 @@ Kaynak: [Ürün gereksinimleri](urun-gereksinimleri.md) ve kullanıcının 30 Ek
 | K-010 | Lisans ücreti gerektirmeyen altyapı önceliği; PostGIS koşullu | Kullanıcı gerektiğinde ücretsiz coğrafi araçlara başvurmayı onayladı. Barındırma/işletim maliyetleri ayrı; PostGIS henüz kurulmadı. |
 | K-011 | İlk teknik temel backend host'u/çekirdeği; ilk ürün hedefi harita akışı | [ADR-0001](adr/0001-teknik-temel-ve-ilk-dikey-akis.md): .NET 10 temeli, ardından motor denemesi ve Next.js harita akışı. P0 hesap/üyelik işleri bu doğrulamayı geciktirmez. |
 | K-012 | PostGIS çekirdek astronomi bağımlılığı değildir | Kullanıcının özellik ayrımı: göksel konum/görünürlük hesabı astronomi motoruna aittir. Basit koordinat saklama PostGIS istemez; gözlem noktası/alan/arazi sorguları sonraki aşamada değerlendirilir. |
-| K-013 | Bütün ürün yüzeyleri Türkçe/İngilizce eşli geliştirilecek | FR-11/AC-13; backend/e-postalar ve ilk harita UI eşli uygulandı. Bütün ürün/hesap/offline/erişilebilirlik kabulü açık. |
-| K-014 | Terimler ve kısaltmalar kaynaklı/sade açıklamalarla saklanacak | FR-12/AC-14; 52 tr/en terim ve ilk kart/sözlük penceresi çalışır. Ayrı sözlük/derin bağlantı/ekran okuyucu açık. |
+| K-013 | Bütün ürün yüzeyleri Türkçe/İngilizce eşli geliştirilecek | FR-11/AC-13; backend ve ürün UI eşli geliştirilir; K-025 ile işlem e-postaları sabit İngilizce, varsayılan dil en. Bütün ürün/hesap/offline/erişilebilirlik kabulü açık. |
+| K-014 | Terimler ve kısaltmalar kaynaklı/sade açıklamalarla saklanacak | FR-12/AC-14; 52 tr/en terim, ortak panel, ayrı statik sözlük ve sabit terim bağlantıları TECH-11C ile çalışır. Gerçek ekran okuyucu ve bütün yüzeylerden erişim kabulü açık. |
 | K-015 | .NET 10, Clean Architecture, CQRS/MediatR, PostgreSQL, Redis ve JWT/e-posta doğrulaması | Kullanıcı açıkça seçti; [ADR-0002](adr/0002-moduler-temel-cqrs-ve-lisanslar.md). MediatR 12.5.0 Apache-2.0 sabit; Identity ve Catalog modülleri, kalıcı oturumlar ve şifreli outbox yerelde sınandı. |
+| K-039 | Web tamamlandıktan sonra aynı backend ile mobil uygulama | Kullanıcının 2 Kasım hedefi; aynı .NET API/Identity/Notebook/PostgreSQL kullanılacak. Framework ve platform dağıtımı seçilmedi; ortak sözleşme/Next.js servis sınırları ve kabul checklist'i [denetimde](web-tamamlama-ve-ortak-backend-mobil-hedef.md). Önceki kapsam ve yayın beklemesi sürer. |
 
 **K-019 — 31 Ekim kullanıcı düzeltmeleri:** Tam ekran harita; kalıcı üst/yan çubuk yok, kapalı sol menü, gri/bordo saydam kartlar. Varsayılan yalnız atmosfer/temsili arazi/DSO açık; çizgi/ad, gerçek kaynaklı çizim, azimutal/J2000 ekvatoral ızgara, gece ve tam ekran kapalı. İzin verilmiş cihaz konumu otomatik tazelenir; hassasiyet/ölçüm zamanı ve manuel/OSM seçimi korunur. Wikipedia özeti/gerçek fotoğraf/isteğe bağlı ayrıntı, rahat zoom/pan ve konuma göre yerel IANA/GMT + UTC birlikte sunulur. İlk an UTC’dir; dil/konum/bölge değişimi anı değiştirmez. [ADR-0005](adr/0005-tam-ekran-konum-ve-yerel-zaman.md), [uygulama ve sınırlar](tam-ekran-harita-gelistirmesi.md). Önceki hedefler, FR/UJ/AC, P0/P1/P2 korunur.
 
@@ -73,7 +76,7 @@ Kaynak: [Ürün gereksinimleri](urun-gereksinimleri.md) ve kullanıcının 30 Ek
 | A-002 | Harita motoru ve projeksiyon yaklaşımı | İlk prototip seçildi; cihaz/tam performans açık | ADR-0004/0005: Canvas 2D/stereografik; ortak SVG/WebGL deneyi, yeni katmanlar ve sınırlı yerel başlangıç ölçümü. Fiziksel mobil, tam kare/açılış/bellek ve ekran okuyucu açık. |
 | A-003 | Astronomi hesaplama motoru | İlk adaptör seçildi; geniş doğrulama açık | ADR-0003: dokuz hedef, sınırlı teknik tarih aralığı, JPL örnekleri ve port eşliği. Kutup yönü, geniş hedef/tarih, standart doğuş-batışın geniş rakım/ufuk doğrulaması ve daha hassas zaman/Dünya yönelimi hâlâ açık (ilk 0 m çizelge ADR-0007 ile eklendi). |
 | A-004 | PostgreSQL ve gerekirse PostGIS | PostgreSQL seçildi/yerelde kuruldu; PostGIS koşullu açık | PostgreSQL 18.6 ve Identity migration'ı gerçek servisle doğrulandı. PostGIS tip/SRID/indeks/kaynak ve sorgu ihtiyacı sonraki aşamada gerekçelendirilecek; henüz kurulmadı. [Özellik matrisi](bilimsel-veri-stratejisi.md). |
-| A-005 | Katalog kapsamı ve içerik lisansları | İlk parlak yıldız/takımyıldız dilimi seçildi; geniş kapsam açık | HYG 4.1/d3 verisi: 5073 yıldız/88 iki dilli figür, CC BY-SA 4.0/BSD ve atıflar. TECH-04: 107 OpenNGC Messier eşleşmesi, 85 FAL çizimi, lisanslı Sun Wikipedia/Commons paketi eklendi. Tam katalog, otomatik yenileme ve kalite genişlemesi açık. |
+| A-005 | Katalog kapsamı ve içerik lisansları | İlk parlak yıldız/takımyıldız dilimi seçildi; geniş kapsam açık | HYG 4.1/d3 verisi: 5073 yıldız/88 iki dilli figür, CC BY-SA 4.0/BSD ve atıflar. 107 OpenNGC Messier eşleşmesi, 85 FAL çizimi; TECH-11E ile Samanyolu geniş kaydı dahil 13 yerel fotoğraf hedefi ve kaynaklı kart akışı var. Tam katalog, otomatik yenileme ve kalite genişlemesi açık. |
 | A-006 | Hesap zorunlu kişisel kalıcılık | K-024/ADR-0010; PostgreSQL, revizyon ve sahiplik uygulandı | TECH-10 sentetik yerel yedek/geri yükleme geçti; üretim DB backup kabulü, kalıcı silme/kota/içe aktarma açık; anonim ve offline kişisel yazma kaldırıldı |
 | A-007 | Konum yüksekliği, ufuk ve kırılma varsayımları | Açık | MVP-0/P0 hesap kapsamı; P1 yerel ufuk profilleriyle sınırın tanımlanması |
 | A-008 | Hava ve ışık kirliliği kaynakları | Açık | P1 veri kapsamı, lisans, kapsanan tarih/konum, yenileme ve hata davranışı |
