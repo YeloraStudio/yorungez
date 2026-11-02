@@ -6,7 +6,7 @@ const digest=bytes=>crypto.createHash('sha256').update(bytes).digest('hex');
 async function walk(dir){const rows=[];for(const e of await fs.readdir(dir,{withFileTypes:true})){const file=path.join(dir,e.name);if(e.isDirectory())rows.push(...await walk(file));else rows.push(file)}return rows}
 async function entry(url,file){const bytes=await fs.readFile(file);return {url,bytes:bytes.length,sha256:digest(bytes)}}
 const core=[];
-for(const lang of ['en','tr'])core.push(await entry('/'+lang,path.join(dist,'server/app',lang+'.html')));
+for(const lang of ['en','tr'])for(const page of [lang,lang+'/terms'])core.push(await entry('/'+page,path.join(dist,'server/app',page+'.html')));
 for(const file of await walk(path.join(dist,'static')))if(/\.(js|css|woff2)$/.test(file))core.push(await entry('/_next/static/'+path.relative(path.join(dist,'static'),file).replaceAll('\\','/').split('/').map(encodeURIComponent).join('/'),file));
 for(const name of ['catalog.json','calendar.json','icon-192.png','icon-512.png','offline-en.html','offline-tr.html'])core.push(await entry('/pwa/'+name,path.join(web,'public/pwa',name)));
 core.push(await entry('/favicon.svg',path.join(web,'public/favicon.svg')));
@@ -21,8 +21,8 @@ for(const [purpose,role] of [['any','app192'],['any','app512'],['maskable','mask
  if(!manifest.icons?.some(i=>i.src===asset.src&&i.purpose===purpose&&i.sizes===`${asset.width}x${asset.height}`))throw new Error('Missing manifest brand icon: '+role);
 }
 const urls=new Set(core.map(e=>e.url));
-for(const lang of ['en','tr']){
- const html=await fs.readFile(path.join(dist,'server/app',lang+'.html'),'utf8');
+for(const lang of ['en','tr'])for(const page of [lang,lang+'/terms']){
+ const html=await fs.readFile(path.join(dist,'server/app',page+'.html'),'utf8');
  for(const m of html.matchAll(/(?:src|href)="(\/(?:_next\/static\/|brand\/)[^"?]+)"/g))if(!urls.has(m[1]))throw new Error('Missing encoded shell dependency: '+m[1]);
 }
 for(const lang of ['en','tr']){

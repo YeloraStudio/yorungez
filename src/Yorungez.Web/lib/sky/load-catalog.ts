@@ -1,5 +1,6 @@
 import type { SkyCatalog } from "./types.ts";
-export interface BilingualTerm { id:string;abbreviation:string|null;sources:string[];translations:Record<"tr"|"en",{name:string;definition:string;aliases:string[]}> }
+import type {BilingualTerm} from '../glossary.ts';
+export type {BilingualTerm} from '../glossary.ts';
 export async function loadSkyCatalog(signal:AbortSignal,fetcher:typeof fetch=fetch,timeoutMs=10000):Promise<{catalog:SkyCatalog;glossary:BilingualTerm[]}> {
   const response=await fetcher("/pwa/catalog.json",{cache:"no-cache",signal:AbortSignal.any([signal,AbortSignal.timeout(timeoutMs)])});
   if(!response.ok)throw new Error("catalog-http");

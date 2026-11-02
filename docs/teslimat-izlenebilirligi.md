@@ -1,5 +1,7 @@
 # yorungez — Gereksinim ve teslimat izlenebilirliği
 
+**K-036 / TECH-11C (2 Kasım 2026):** Kullanıcı yeni alanlar yerine mevcut deneyimin derinleştirilmesini önceliklendirdi. Aynı 52 kaynaklı terim ortak bileşende iki dilden aranır; kartta tam terim odağı/geri dönüş, ayrı statik sözlük, sabit terim bağlantıları ve genel PWA kapsamı geliştirildi. 55 istemci testi, tip/üretim derlemesi ve iki dil/320 px/sunucusuz sözlük kontrolü geçti. [Kanıt ve kalan kabul işleri](sozluk-ve-terim-baglantilari.md). Diğer P0/P1/P2 hedefleri ve K-032 beklemesi korunur.
+
 **K-035 / TECH-11B (2 Kasım 2026):** Giriş/kayıt başlıkları ve alan hizası düzeltildi; iki dilde canlı/simülasyon/eski hesap durumu, sonuç UTC anı ve özgün katalog/olay hazırlanma tarihleri kaynak paneline eklendi. 53 istemci testi, tip kontrolü, üretim derlemesi ve 320 px/PWA yeniden açılış kontrolü geçti. Sürekli olay akışı henüz bağlı değil; geniş atlas/kaynak yenileme FR-08/P1 işidir. [Uygulama, canlı API envanteri ve sınırlar](canli-hesap-ve-veri-guncelligi.md). Önceki P0/P1/P2 ve K-032 beklemesi korunur.
 
 **K-034 / TECH-11A (2 Kasım 2026):** İki dil/klavye ilk denetim paketi: seçimde Home/End başlangıç odağı, hesap görünümü değişiminde başlık odağı/etkin durum, parola ve tarih yardım ilişkileri düzeltildi. 51 istemci testi, tip kontrolü ve üretim derlemesi; iki dilde IAB klavye/320 px kontrolü geçti. [Kanıt ve açık kabul işleri](iki-dil-klavye-denetimi.md). Tam ekran okuyucu/kontrast/E2E/sözlük ve K-032 fiziksel/üretim işleri açık kalır.
@@ -47,7 +49,7 @@
 | FR-09 PWA/offline | ADR-0013 hash doğrulamalı genel envanter ve TECH-09 marka/manifest varlıkları, iki dil shell/Worker/katalog/terim/takvim, isteğe bağlı 88 görsel; sunucular kapalı yeni sekme/yenileme ve takvim→Ay hesabı testli; tek sekmeli açık güncelleme | Fiziksel kurulum/çok tarayıcı/kota/eviction ve DB backup kabulü; özel offline yazma yok |
 | FR-10 Ekipman | İsteğe bağlı P2 sınırı korunuyor | Profiller ve görüş alanı; temel deneyimin ön koşulu olmayacak |
 | FR-11 İki dil | Backend/UI/hesap ve dört envanter türü/özel gözlem tarihi ve 52 terim tr/en; varsayılan en/açık tr, K-025 ile İngilizce markalı e-posta; bağlamı koruyan dil geçişi; Wikipedia eksikse sessiz dil fallback yok | Kalan ürün/offline ekranları; ekran okuyucu ve kapsamlı iki dilde E2E; gerçek mail istemcisi render kabulü |
-| FR-12 Terimler | 52 kaynaklı tr/en kayıt, AU/AB/IANA/GMT/DSO/ızgara/atmosfer/arazi dahil; karttan sözlük/arama, Enter/ESC odak dönüşü; sürüm .7 / NOAA elipsoidal yükseklik | Ayrı sözlük sayfası/derin bağlantı, ekran okuyucu/gerçek dokunma ve kullanıcı değerlendirmesi |
+| FR-12 Terimler | 52 kaynaklı tr/en kayıt; TECH-11C ortak panel/statik sayfa, iki dilden arama, tüm kaynaklar, sabit hash bağlantısı/dil/geri-ileri/odak dönüşü ve genel PWA HTML; sürüm .7 korunur | Gerçek ekran okuyucu/dokunma, tüm yüzeylerden erişim ve kullanıcı değerlendirmesi |
 
 ## Yolculuklar
 
@@ -78,7 +80,7 @@
 | AC-11 | Manuel klavye/yumuşak pan/zoom, katmanlar/tam ekran ve dar ekranda küçülen kart var; düz pusula yazılımı/izin/kalibrasyon açıklamaları var; fiziksel cihaz/gerçek yön/performans kabulü açık |
 | AC-12 | Genel service worker/ilk kurulum/hash/ayrı görsel/sürüm akışı ve sunucular kapalı yeni sekme+yenileme+takvim→hesap geliştirici testli. İlk ziyaret/cache yoksa bağlantı gerekir; fiziksel kurulum/çok tarayıcı/eviction kabulü açık |
 | AC-13 | Backend ve ilk frontend akışı iki dilde geliştirici testli; bütün ekranlar/cihaz/ekran okuyucu açık |
-| AC-14 | Karttan açıklama, sade iki dil, kaynak ve klavye/ESC testi var; ayrı sözlük/derin bağlantı/ekran okuyucu açık |
+| AC-14 | Karttan tam terim, sade iki dil, tüm kaynaklar, klavye/ESC; TECH-11C ayrı sözlük/sabit bağlantı/çapraz arama/320 px ve sunucusuz açılış var; gerçek ekran okuyucu/dokunma ve bütün yüzeyler açık |
 
 ## Sürüm ve açık kararlar
 

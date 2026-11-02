@@ -1,0 +1,31 @@
+{
+  "package": "TECH-11C / K-036",
+  "date": "2026-11-02",
+  "scope": "Deepen the existing sourced bilingual glossary; no new scientific catalogue or algorithm",
+  "automated": { "clientTests": 55, "typecheck": "passed", "productionBuild": "passed" },
+  "ui": {
+    "environment": "IAB production preview; desktop default and 320x740 viewport",
+    "languages": ["en", "tr"],
+    "crossLanguageSearch": "passed",
+    "immediateInitialSearchRetained": true,
+    "emptyAndClearFocus": "passed",
+    "exactCardTermFocusAndEscapeReturn": "passed; Jupiter target and live mode preserved",
+    "directLinkAndLanguagePreserveTermId": "passed",
+    "hashBackAndForward": "passed",
+    "unknownFragmentRecovery": "passed",
+    "horizontalOverflowAt320": false,
+    "measuredSelectedTermLinkHeightsPixels": [44, 44],
+    "multipleSources": "Compass: NOAA and W3C both shown"
+  },
+  "offline": {
+    "coreVersion": "17e506e5fa91853fc5db",
+    "coreFiles": 68,
+    "approximateCoreMiB": 5.2,
+    "explicitUpdateFromOldPack": "passed",
+    "ownPreviewStoppedAndGlossaryReopened": true,
+    "bothLanguageSearchAndNavigation": "passed",
+    "ownPreviewRestarted": true,
+    "osNetworkAndBackendStopped": false
+  },
+  "limits": ["No real accounts, forms, email or personal coordinates", "No physical touch or screen-reader acceptance", "No new scientific accuracy claim", "Deployment and HTTPS remain deferred"]
+}
