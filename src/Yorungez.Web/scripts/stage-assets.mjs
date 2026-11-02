@@ -31,6 +31,9 @@ for(const row of Object.values(sun))if(row.image?.sha256&&crypto.createHash('sha
 const media=JSON.parse(fs.readFileSync(path.join(root,'data/catalog/object-media.json'),'utf8'));
 for(const row of Object.values(media.images))if(crypto.createHash('sha256').update(fs.readFileSync(path.join(web,'public',row.url))).digest('hex')!==row.sha256)throw new Error('Object photograph fingerprint mismatch');
 const photos={sun:sun.en.image,...media.images};
+const features=JSON.parse(fs.readFileSync(path.join(root,'data/catalog/sky-features.json'),'utf8'));
+for(const row of Object.values(features).filter(value=>typeof value==='object'))if(crypto.createHash('sha256').update(fs.readFileSync(path.join(web,'public',row.image.url))).digest('hex')!==row.image.sha256)throw new Error('Sky feature photograph fingerprint mismatch');
+fs.copyFileSync(path.join(root,'data/catalog/sky-features.json'),path.join(generated,'sky-features.json'));
 fs.writeFileSync(path.join(generated,'object-photos.json'),JSON.stringify(Object.fromEntries(Object.entries(photos).map(([id,row])=>[id,Object.fromEntries(['url','sourceUrl','credit','license','licenseUrl'].map(key=>[key,row[key]]))]))));
 console.log(`Staged verified catalogue: ${catalog.stars.length} stars, 88 constellation identities.`);
 

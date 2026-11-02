@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import ObjectVisual,{visualText} from "./ObjectVisual";
+import ObjectCardShell from './ObjectCardShell';
 import photos from "../generated/object-photos.json";
 import type {ArchiveImage} from "../lib/object-media.ts";
 import { messages } from "../lib/i18n.ts";
@@ -22,9 +23,7 @@ export default function ObjectCard({object,catalog,frame,language,onClose,onFocu
  const kind=dso?(t.dsoTypes[dso.type as keyof typeof t.dsoTypes]??t.deepSky):t[objectCategory(object.kind,object.id)];
  const v=visualText[language];
  const shortExtract=article?(article.extract.length>180?article.extract.slice(0,180).replace(/\s+\S*$/,"")+"…":article.extract):"";
- return <section id="object-panel" className={`object-card glass${compact?" compact-card":""}`} aria-labelledby="object-heading" data-object-id={object.id}>
-  <div className="card-heading"><div><span className="eyebrow">{kind}</span><h2 id="object-heading" tabIndex={-1}>{object.name}</h2><small className="catalog-id">{star?.hip?`HIP ${star.hip} · `:""}{dso?.designation??object.id}</small></div><button className="icon-button" aria-label={t.closeCard} onClick={onClose}>×</button></div>
-  {compact&&<button className="card-restore secondary-button" onClick={onExpand}>{t.more} ↗</button>}
+ return <ObjectCardShell id={object.id} name={object.name} category={kind} subtitle={`${star?.hip?`HIP ${star.hip} · `:""}${dso?.designation??object.id}`} closeLabel={t.closeCard} onClose={onClose} compact={compact} restoreLabel={t.more} onExpand={onExpand}>
   <ObjectVisual object={object} catalog={catalog} frame={frame} language={language} image={(photos as Record<string,ArchiveImage>)[object.id]??article?.image??null}/>
   <div className="object-about">  {state==="loading"&&<p className="muted" role="status">{t.articleLoading}</p>}
   {state==="error"&&<p className="muted">{t.articleUnavailable} <button className="inline-term" onClick={()=>setAttempt(a=>a+1)}>{t.retry}</button></p>}
@@ -40,5 +39,5 @@ export default function ObjectCard({object,catalog,frame,language,onClose,onFocu
    {solar>=0&&frame&&<><div><dt><button onClick={()=>onTerm("astronomical-unit")}>{t.earthDistance} ⓘ</button></dt><dd>{format(frame.solarEquatorial[solar*3+2],6)} {t.au}</dd></div><div className="fact-caption">{t.ofDate}</div><div><dt>{t.ra}</dt><dd>{format(frame.solarEquatorial[solar*3],4)} h</dd></div><div><dt>{t.dec}</dt><dd>{format(frame.solarEquatorial[solar*3+1],4)}°</dd></div></>}
   </dl><p className="muted compact">{t.modelHelp}</p><p className="source-credit">{t.objectSources}</p></details>
   <p className="conditions-note">ⓘ {t.conditions}<span>{t.conditionsHelp}</span></p>
- </section>;
+ </ObjectCardShell>;
 }

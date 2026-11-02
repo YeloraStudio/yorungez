@@ -15,6 +15,8 @@ Yorungez, **“Buradan gökyüzünde ne var, nereye bakmalıyım, ne zaman göre
 
 *Ekran görüntüsü genel örnek konum kullanır. Fotoğraf arazi temsili çevredir; kullanıcının gerçek arazisi değildir.*
 
+Samanyolu / Milky Way araması kaynaklı panorama ve galaksimizin içinden bakış açıklamasını açar; Yay bölgesine geçiş vardır, tüm galaksiye tek konum atanmaz. [Mobil kart ve sensör izinleri](docs/mobil-kart-samanyolu-ve-pusula-erisim.md).
+
 Canlı mod, güncel UTC anı ve gözlem konumuna göre yönleri yerelde hesaplar; kataloglar sürümlü, fotoğraflar arşivdir. Kaynak paneli hesap anı/simülasyon/paket tarihlerini ayırır. Wikipedia/Commons isteğe bağlı önbellekli API kullanır; sürekli yeni olay/uyarı akışı henüz bağlı değildir. [Çalışan API envanteri ve yenileme planı](docs/canli-hesap-ve-veri-guncelligi.md).
 
 ## Mevcut deneyim

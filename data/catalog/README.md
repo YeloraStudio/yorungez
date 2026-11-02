@@ -45,3 +45,10 @@ The Sirius file body/API declares public domain while structured data also decla
 Neptune is an enhanced-colour Voyager image; Venus/Mercury/other spacecraft images may be processed composites. Sirius diffraction spikes/rings are telescope imaging artifacts. None is a calibrated naked-eye view. PWA includes the general photos only in its optional image pack; a first visit/unprepared images need a connection. Finder diagrams for remaining objects are computed from the existing horizontal frame and explicitly labelled as diagrams, not sourced photographs. Full catalogue photo coverage remains open.
 
 The pinned Sun text archive is retained byte-for-byte. TECH-11D displays only its original first paragraph: a later Turkish paragraph contains a wrong km/s unit for Galactic motion. See [NASA Sun facts](https://science.nasa.gov/sun/facts/); the bad unit is not republished or silently presented as corrected source prose.
+
+
+## TECH-11E — Extended Milky Way feature
+
+[sky-features.json](sky-features.json) contains original paired en/tr educational summaries with NASA source links and the ESO/S. Brunier `eso0932a` CC BY 4.0 screensize JPEG provenance. The supplied 155,879-byte preview is unchanged, hashed and optional in the public PWA image pack. Its credit is always visible next to the image. [ESO source](https://www.eso.org/public/images/eso0932a/) / [rights](https://www.eso.org/public/outreach/copyright/). The restricted 800-million-pixel original is not redistributed. Source release date is not the capture instant.
+
+Refresh only: `python scripts/science/prepare_milky_way.py --refresh`, after reviewing source/rights. Normal build verifies SHA and does not download. This is an extended feature within our home galaxy, not a new ephemeris target: no fabricated point coordinates/rise-set time, calibrated sky texture or personal notebook target is added. Its region action opens existing schematic `con-sgr`; original point catalogue and references stay unchanged. [Implementation and limits](../../docs/mobil-kart-samanyolu-ve-pusula-erisim.md).

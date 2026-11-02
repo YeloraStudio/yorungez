@@ -1,5 +1,7 @@
 # yorungez — Ürün Vizyonu, Gereksinimler ve UX Taslağı
 
+**K-038 / TECH-11E (2 Kasım 2026):** S23 Chrome/Brave ve PWA ekleyip genel kullanım için kullanıcı olumlu test bildirdi; pusulada Chrome Hareket sensörleri engeli doğrulandı. Ortak kartta tek saydam yüzey/sabit başlık, iki dilde kaynaklı Samanyolu araması ve Yay bölgesi navigasyonu, açık Andromeda/M31 ayrımı ve yerel sensör erişim tanısı uygulandı. 62 istemci testi/tip/üretim derlemesi, dar-yatay UI ve sunucusuz Samanyolu kontrolü geçti. Fiziksel pusula izin sonrası kabulü, ölçümlü GPS ve tam cihaz protokolü açıktır. [Kanıt ve sınırlar](mobil-kart-samanyolu-ve-pusula-erisim.md). Bilgi/görsel önceliği, K-032 public yayın beklemesi ve önceki bilimsel sınırlar korunur.
+
 **K-037 / TECH-11D (2 Kasım 2026):** Kullanıcı bilgi/görsel/kart UI-UX ve yerel mobil denemeyi önceliklendirdi; yeni yedek/çöp/kişisel yaşam döngüsü işleri şimdilik ertelendi. 12 hedef için kaynaklı yerel arşiv fotoğrafı, diğerlerinde lisanslı fotoğraf veya açıkça etiketli hesaplanan kesit; kısa açıklama öne alındı, Mars/Marsic arama sırası düzeltildi. 59 istemci testi/tip/üretim derlemesi, iki dil/dar-yatay görünüm ve hazırlanmış fotoğrafın sunucusuz açılışı geçti. S23 USB-localhost yardımcısı hazır; gerçek cihaz henüz denenmedi. [Kanıt, sınırlar ve telefon adımları](gok-cismi-gorselleri-ve-yerel-telefon-testi.md). Public deployment/DNS/HTTPS beklemesi ve önceki bilimsel hedefler korunur.
 
 **K-036 / TECH-11C (2 Kasım 2026):** Kullanıcı yeni alanlar yerine mevcut deneyimin derinleştirilmesini önceliklendirdi. Aynı 52 kaynaklı terim ortak bileşende iki dilden aranır; kartta tam terim odağı/geri dönüş, ayrı statik sözlük, sabit terim bağlantıları ve genel PWA kapsamı geliştirildi. 55 istemci testi, tip/üretim derlemesi ve iki dil/320 px/sunucusuz sözlük kontrolü geçti. [Kanıt ve kalan kabul işleri](sozluk-ve-terim-baglantilari.md). Diğer P0/P1/P2 hedefleri ve K-032 beklemesi korunur.
@@ -32,7 +34,7 @@
 
 **31 Ekim görünüm ek kararı:** Beğenilen tam ekran yerleşim korunur. UI kaynak paleti #3C3F43/#9EA1A6/#8B2333/#C9B6A6/#F7F1E6; dil seçimi sol menüde açılır liste. Görsel gökyüzü/çevre daha doğal, kaynaklı fotoğraf ve kadir sıralı ışıkla sunulur; fotoğraf yerel topografya, görsel atmosfer gözlem koşulu değildir. Pusulada kaynak/kuzey belirsizliği, izin/hizalama ve fiziksel kabul ayrılır. [Güncel paket](dogal-gorunum-ve-pusula.md).
 
-> **Belge sürümü:** 1.16
+> **Belge sürümü:** 1.17
 > **Tarih:** 2 Kasım 2026
 > **Durum:** Güncel ürün referansı; modüler backend ve ilk tr/en harita akışı uygulandı, kabul kapsamı kısmi
 > **Proje adı:** yorungez (yörünge + gezmek; ad kullanıcı tarafından kesinleştirildi)  

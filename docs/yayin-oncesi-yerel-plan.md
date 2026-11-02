@@ -1,5 +1,7 @@
 # K-032 — Dağıtım ertelenirken yerel çalışma sırası
 
+**K-038:** [Bilgi/görsel ve fiziksel deneme geri bildirimi](mobil-kart-samanyolu-ve-pusula-erisim.md) mevcut önceliği derinleştirir: mobil kart rengi, Samanyolu ve engelli sensör izni. S23 genel kullanım bildirimi olumlu; tam cihaz kabulü açık. Yeni yedek/çöp işleri bu önceliğin önüne geçmez.
+
 **K-037 güncel öncelik:** Kullanıcı bilgi/görsellik ve mevcut nesne kartlarının UX geliştirmesini öne aldı. [TECH-11D](gok-cismi-gorselleri-ve-yerel-telefon-testi.md) kaynaklı görsel/kısa bilgi paketi uygulandı; sırada kalan atlas nesnelerinin görselleri/bilgileri ve S23 yerel denemesi var. Yeni yedek/çöp/yaşam döngüsü işleri ve genel klavye/hata sağlamlaştırma paketi şimdilik ertelendi; aşağıdaki önceki sıra güncel öncelik değildir. Mevcut çalışan kişisel kayıtlar ve tüm FR/UJ/AC kalanları korunur. USB-localhost ile S23 denemesi deployment gerektirmez; kullanıcı seçimi/fiziksel bağlantı bekler.
 
 **K-036 / TECH-11C:** Kullanıcı mevcut özelliklerin derinliğini önceliklendirdi. İkinci sıradaki [sözlük/sabit terim bağlantıları](sozluk-ve-terim-baglantilari.md) uygulandı; sırada mevcut harita/hesap/defter/takvim/gece/hata yüzeylerinde okunabilirlik, klavye/odak ve iki dil kabulünü derinleştirmek var. Sonraki yaşam döngüsü/performans işleri korunur; yeni bağımsız alan açmak bu sağlamlaştırmanın önüne geçmez. P1/P2 kapsamı iptal edilmez.

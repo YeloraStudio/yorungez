@@ -1,5 +1,7 @@
 # TECH-11D / K-037 — Kaynaklı nesne görselleri ve yerel mobil önizleme
 
+**Güncel K-038:** USB-localhost kuruldu, kullanıcı S23 Chrome/Brave ve PWA genel kullanımını denedi. Yeni [mobil kart/Samanyolu/pusula erişim paketi](mobil-kart-samanyolu-ve-pusula-erisim.md) 13. yerel fotoğraf hedefini ve izin engeli bilgisini içerir. Aşağıdaki K-037 sayıları/durumları kendi aşamasının kanıtıdır.
+
 **2 Kasım 2026.** Kullanıcı bilgi, görsellik ve mevcut kartların UI/UX geliştirmesini öne aldı; yeni yedek/çöp/kişisel yaşam döngüsü işleri şimdilik ertelendi. Önceki çalışan kişisel kayıtlar kaldırılmadı. İz: **FR-02–03/FR-08–09/FR-11, UJ-01–02, AC-02–03/AC-11–13**. K-032 public deployment/DNS/HTTPS beklemesi sürer; yerel telefon denemesi yeni talep kapsamındadır.
 
 ## Görsel ve bilginin sunumu

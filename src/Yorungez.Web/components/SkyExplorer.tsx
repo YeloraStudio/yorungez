@@ -23,7 +23,10 @@ import PlaceSearch,{placeTitle} from "./PlaceSearch";
 import type {Place} from "../lib/server/planning-catalog.ts";
 import {planningText} from "../lib/planning-text.ts";
 import CompassPanel,{compassText} from "./CompassPanel";
+import MilkyWayCard from './MilkyWayCard';
+import featureData from '../generated/sky-features.json';
 import type { SelectedObject } from "./ObjectCard";
+type SearchTarget=SelectedObject|{id:string;name:string;kind:'feature';index:-1};
 import { messages } from "../lib/i18n.ts";
 import { explorerText } from "../lib/explorer-text.ts";
 import {findObjects,objectSearchEntry} from "../lib/sky/object-search.ts";
@@ -122,17 +125,18 @@ export default function SkyExplorer({initialLanguage}:{initialLanguage:Language}
   ...catalog.constellations.map((c,i)=>({id:c.id,name:c.names[language],kind:"constellation" as const,index:catalog.stars.length+9+i})),
   ...(catalog.deepSky??[]).map((d,i)=>({id:d.id,name:d.name,kind:"deepSky" as const,index:catalog.stars.length+9+catalog.constellations.length+i}))
  ]:[],[catalog,language]);
- const searchable=useMemo(()=>objects.map(object=>{
+ const searchable=useMemo(()=>{const rows=objects.map(object=>{
   let aliases:string[]=[];if(catalog&&object.kind==="star"){const star=catalog.stars[object.index];aliases=[star.designation,...(star.hip?[`HIP ${star.hip}`]:[])]}
   if(catalog&&object.kind==="constellation"){const c=catalog.constellations.find(c=>c.id===object.id)!;aliases=[c.iau,c.names.tr,c.names.en]}
-  if(catalog&&object.kind==="deepSky"){const d=catalog.deepSky!.find(d=>d.id===object.id)!;aliases=[d.designation,...d.aliases]}
+  if(catalog&&object.kind==="deepSky"){const d=catalog.deepSky!.find(d=>d.id===object.id)!;aliases=[d.designation,...d.aliases,...(d.name==='M31'?['Andromeda Galaxy','Andromeda Galaksisi']:[])]}
   if(object.kind==="solar")aliases=[messages.tr.celestialNames[object.id as keyof typeof messages.tr.celestialNames],messages.en.celestialNames[object.id as keyof typeof messages.en.celestialNames]];
-  return objectSearchEntry(object,[object.name,object.id,...aliases]);
- }),[objects,catalog]);
+  return objectSearchEntry<SearchTarget>(object,[object.name,object.id,...aliases]);
+ });const f=featureData.milkyWay;return [...rows,objectSearchEntry<SearchTarget>({id:f.id,name:f.names[language],kind:'feature',index:-1},[...f.aliases,f.names.en,f.names.tr])]},[objects,catalog,language]);
  const found=findObjects(searchable,query);
  const chosen=objects.find(o=>o.id===selected),shown=frame?.context??context;
  const format=(n:number,digits=1)=>Number.isFinite(n)?new Intl.NumberFormat(language,{maximumFractionDigits:digits,minimumFractionDigits:digits}).format(n):"—";
  function select(id:string,focus=false){setSelected(id);setCardExpanded(true);setQuery("");setLayerMenu(false);
+  if(id===featureData.milkyWay.id){focusPending.current=null;requestAnimationFrame(()=>document.getElementById('object-heading')?.focus({preventScroll:true}));return;}
   if(focus&&catalog){const index=objectIndex(catalog,id);if(frame&&index>=0&&frame.canPublishAzimuth&&frame.context.latitude===context.latitude&&frame.context.longitude===context.longitude&&frame.context.instantUtc===context.instantUtc)setCamera(c=>normalizedCamera({...c,azimuth:frame.angles[index*2],altitude:frame.angles[index*2+1]}));else focusPending.current=id;}
   requestAnimationFrame(()=>document.getElementById("object-heading")?.focus({preventScroll:true}));
  }
@@ -159,7 +163,7 @@ export default function SkyExplorer({initialLanguage}:{initialLanguage:Language}
    {catalog&&<SkyMap catalog={catalog} frame={frame} camera={camera} onCamera={setCamera} language={language} text={messages[language]} selected={selected} layers={layers} onSelect={id=>select(id)}/>}
    <div className="floating-brand"><button className="icon-button glass menu-button" aria-label={t.openMenu} onClick={()=>setModal("menu")}><Icon name="menu"/></button><BrandLogo/></div>
    <div className="search-wrap glass"><Icon name="search"/><input id="sky-search" ref={search} value={query} placeholder={t.searchHelp} aria-label={t.search} autoComplete="off" onChange={e=>setQuery(e.target.value)} onKeyDown={e=>{if(e.key==="Escape")setQuery("");if(e.key==="Enter"&&found[0]){e.preventDefault();select(found[0].id,true)}}}/>{query&&<button className="icon-button" aria-label={t.clear} onClick={()=>setQuery("")}>×</button>}
-    {query&&<div id="search-results" className="search-results glass">{found.length?found.map(object=><button key={object.id} onClick={()=>select(object.id,true)}><span>{object.kind==="deepSky"?"◎":object.kind==="constellation"?"⌁":"✧"}</span><span>{object.name}<small>{t[objectCategory(object.kind,object.id)]} · {object.id}</small></span><Icon name="arrow" size={15}/></button>):<p>{t.noResults}</p>}</div>}
+    {query&&<div id="search-results" className="search-results glass">{found.length?found.map(object=><button key={object.id} onClick={()=>select(object.id,true)}><span>{object.kind==="deepSky"||object.kind==='feature'?"◎":object.kind==="constellation"?"⌁":"✧"}</span><span>{object.id==='dso-ngc0224'?`${object.name} · ${language==='tr'?'Andromeda Galaksisi':'Andromeda Galaxy'}`:object.name}<small>{object.kind==='feature'?(language==='tr'?'Galaksi · içinde bulunduğumuz galaksi':'Galaxy · our home galaxy'):t[objectCategory(object.kind,object.id)]} · {object.id}</small></span><Icon name="arrow" size={15}/></button>):<p>{t.noResults}</p>}</div>}
    </div>
    {(!frame||loadState==="error")&&<div className="map-status glass" role="status">{loadState!=="error"&&<span className="orbit-spinner"/>}<span>{loadState==="error"?(fetchError?t.fetchError:t.computeError):loadState==="catalog"?t.catalogLoading:t.calculationLoading}</span>{loadState==="error"&&<button className="primary-button" onClick={()=>catalog?setComputeAttempt(a=>a+1):setFetchAttempt(a=>a+1)}>{t.retry}</button>}</div>}
    {frame&&!frame.canPublishAzimuth&&<p className="polar-notice glass" role="status">{t.polar}</p>}
@@ -176,6 +180,7 @@ export default function SkyExplorer({initialLanguage}:{initialLanguage:Language}
    <p id="map-help" className="sr-only">{t.mapHelp}</p>
   </main>
   {catalog&&chosen&&<ObjectCard key={chosen.id+":"+language} object={chosen} catalog={catalog} frame={frame} language={language} onClose={()=>{setSelected(null);document.querySelector<HTMLElement>(".sky-viewport")?.focus()}} compact={!cardExpanded} onExpand={()=>setCardExpanded(true)} onFocus={()=>{select(chosen.id,true);if(matchMedia("(max-width:650px)").matches)setCardExpanded(false)}} onCompass={()=>setModal("compass")} onNotebook={openNotebook} onTerm={openTerm}/>}
+  {catalog&&selected===featureData.milkyWay.id&&<MilkyWayCard key={language} language={language} catalog={catalog} frame={frame} onClose={()=>{setSelected(null);search.current?.focus()}} onRegion={()=>{setCamera(c=>({...c,fieldOfView:105}));select(featureData.milkyWay.region.id,true)}}/>}
   {(pwa.offline||pwa.waiting)&&<button type="button" className="pwa-badge glass" onClick={()=>setModal("offline")}>{pwa.offline?(language==="tr"?"Çevrimdışı · genel gökyüzü":"Offline · public sky"):(language==="tr"?"Güncelleme hazır":"Update ready")}</button>}
   <dialog ref={dialog} className={`app-dialog glass ${modal==="menu"?"drawer-dialog":modal==="tonight"||modal==="calendar"?"drawer-dialog planning-dialog":modal==="glossary"?"glossary-dialog":""}`} onClose={()=>setModal(null)} aria-labelledby="dialog-title">
    <div className="dialog-top">{modal!=="menu"&&<button type="button" className="icon-button panel-back" aria-label={language==="tr"?"Menüye geri dön":"Back to menu"} title={language==="tr"?"Menüye geri dön":"Back to menu"} onClick={()=>setModal("menu")}>←</button>}<h2 id="dialog-title" tabIndex={-1}>{dialogTitle}</h2><button className="icon-button" aria-label={modal==="menu"?t.closeMenu:t.close} onClick={()=>setModal(null)}>×</button></div>
