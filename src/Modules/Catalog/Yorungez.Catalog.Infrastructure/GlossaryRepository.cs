@@ -1,6 +1,6 @@
-using System.Text.Json;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
+using System.Text.Json;
 using Yorungez.Catalog.Application;
 using Yorungez.Catalog.Domain;
 

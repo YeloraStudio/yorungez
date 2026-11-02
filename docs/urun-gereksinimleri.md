@@ -1,5 +1,7 @@
 # yorungez — Ürün Vizyonu, Gereksinimler ve UX Taslağı
 
+**K-040 / TECH-11F (3 Kasım 2026):** Özgün 4096×2048 arazi artık uygun GPU'da 4K yüklenir; sınırlı/tahsis hatalı cihazda daha küçük doku ve sade yol korunur. Atmosferde gereksiz ikinci büyük fotoğraf kopyası kaldırıldı, CPU yalnız önceki 2K alfa maskesini tutar. 64 istemci testi/tip/üretim derlemesi ve masaüstü/390 px 4K yükleme kontrolü geçti; fiziksel FPS/bellek kabulü açık, gerçek 8K kaynak henüz yok. [Kanıt ve sınırlar](yerel-4k-panorama.md). Bilgi/görsel önceliği, Web sonrası ortak backend mobil hedefi ve yayın beklemesi korunur.
+
 **K-039 / 2 Kasım 2026 — Güncel durum denetimi:** Önce Web kabulünü tamamlamak, ardından aynı .NET backend/hesap/verilerle mobil uygulama geliştirmek kullanıcı hedefidir. [Plan, eksikler, kanıt ve mobil hazırlık](web-tamamlama-ve-ortak-backend-mobil-hedef.md). Bilgi/görsel önceliği, K-032 yayın beklemesi ve açık P0/P1/P2 kapsamı korunur; aşağıdaki eski paketler kendi aşamalarının tarihsel kanıtıdır.
 
 **K-038 / TECH-11E (2 Kasım 2026):** S23 Chrome/Brave ve PWA ekleyip genel kullanım için kullanıcı olumlu test bildirdi; pusulada Chrome Hareket sensörleri engeli doğrulandı. Ortak kartta tek saydam yüzey/sabit başlık, iki dilde kaynaklı Samanyolu araması ve Yay bölgesi navigasyonu, açık Andromeda/M31 ayrımı ve yerel sensör erişim tanısı uygulandı. 62 istemci testi/tip/üretim derlemesi, dar-yatay UI ve sunucusuz Samanyolu kontrolü geçti. Fiziksel pusula izin sonrası kabulü, ölçümlü GPS ve tam cihaz protokolü açıktır. [Kanıt ve sınırlar](mobil-kart-samanyolu-ve-pusula-erisim.md). Bilgi/görsel önceliği, K-032 public yayın beklemesi ve önceki bilimsel sınırlar korunur.
@@ -36,7 +38,7 @@
 
 **31 Ekim görünüm ek kararı:** Beğenilen tam ekran yerleşim korunur. UI kaynak paleti #3C3F43/#9EA1A6/#8B2333/#C9B6A6/#F7F1E6; dil seçimi sol menüde açılır liste. Görsel gökyüzü/çevre daha doğal, kaynaklı fotoğraf ve kadir sıralı ışıkla sunulur; fotoğraf yerel topografya, görsel atmosfer gözlem koşulu değildir. Pusulada kaynak/kuzey belirsizliği, izin/hizalama ve fiziksel kabul ayrılır. [Güncel paket](dogal-gorunum-ve-pusula.md).
 
-> **Belge sürümü:** 1.18
+> **Belge sürümü:** 1.19
 > **Tarih:** 2 Kasım 2026
 > **Durum:** Güncel ürün referansı; modüler backend ve ilk tr/en harita akışı uygulandı, kabul kapsamı kısmi
 > **Proje adı:** yorungez (yörünge + gezmek; ad kullanıcı tarafından kesinleştirildi)  
@@ -134,6 +136,8 @@ Sosyal medya akışı, genel amaçlı forum, ekipman pazaryeri, reklam/alışver
 - Tam konum paylaşımında açık onay; kayıtlı kişisel konumlar varsayılan olarak özel.
 
 ### FR-02 — Canlı gökyüzü haritası
+
+- K-040: Kaynaklı fotoğraf panorama uygun GPU'da özgün 4096×2048 kullanır; tahsis/boyut sınırında küçük doku/sade harita korunur. 8K kaynak henüz yok; fotoğraf gerçek yerel arazi veya bilimsel ufuk ölçümü değildir.
 
 - Tarih, saat ve gözlemci koordinatına göre gök cisimlerinin konumları.
 - Güneş, Ay, gezegenler, parlak yıldızlar ve temel takımyıldızlar ilk sürümde.
@@ -415,6 +419,8 @@ Bu değerler **hedef** niteliğindedir; tamamlandığına dair ölçüm veya gar
 Bu maddeler **alınmış kararlar gibi sunulmamalı**; ADR veya ürün kararıyla kesinleştirilmelidir.
 
 ## 12. Bu belgede yapılan temizlik ve güncelleme
+
+- **1.19 — 3 Kasım 2026:** K-040/TECH-11F özgün 4K panorama ve bellek/tahsis korumaları; kaynak/atıf/bilimsel model değişmedi. 64 istemci testi ve yerel tarayıcı kanıtı; fiziksel kabul ve gerçek 8K kaynak açık.
 
 - **1.18 — 2 Kasım 2026:** K-039 ile bütün Markdown/plan envanteri ve kod sınırı denetimi; güncel tablo sapmaları düzeltildi, aynı backend ile Web sonrası mobil hedefi/açık hazırlık işleri kaydedildi. Mevcut FR/UJ/AC kimlikleri, bilimsel sınırlar ve ertelenmiş işler korunur; yeni uygulama özelliği/test sonucu değildir.
 

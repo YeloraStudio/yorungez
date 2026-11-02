@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import fs from 'node:fs';import crypto from 'node:crypto';
-import {screenRay,landscapeUv} from '../lib/sky/natural-scene.ts';
+import {screenRay,landscapeUv,uploadPanorama} from '../lib/sky/natural-scene.ts';
 import {horizontalVector,projector} from '../lib/sky/projection.ts';
 import {daylight,starAppearance} from '../lib/sky/appearance.ts';
 import {readHeading,HeadingSession} from '../lib/location/compass.ts';
@@ -20,6 +20,22 @@ test('visual exposure preserves dark nights and magnitude ordering without chang
 test('panorama is an unchanged, attributed photograph verified without downloads',()=>{
  const m=JSON.parse(fs.readFileSync(new URL('../../../data/catalog/landscape-manifest.json',import.meta.url),'utf8'));
  const bytes=fs.readFileSync(new URL('../../../'+m.file,import.meta.url));assert.equal(crypto.createHash('sha256').update(bytes).digest('hex'),m.sha256);assert.equal(bytes.readUInt32BE(16),4096);assert.ok(m.author&&m.licenseUrl&&m.sourceUrl);
+});
+
+test('panorama preserves native 4K detail without upscaling or exceeding the GPU limit',()=>{
+ const attempted:number[]=[];const upload=(width:number)=>{attempted.push(width);return true};
+ assert.equal(uploadPanorama(4096,8192,upload),4096);assert.deepEqual(attempted,[4096]);attempted.length=0;
+ assert.equal(uploadPanorama(4096,2048,upload),2048);assert.deepEqual(attempted,[2048]);attempted.length=0;
+ assert.equal(uploadPanorama(2048,8192,upload),2048);assert.deepEqual(attempted,[2048]);
+ assert.equal(uploadPanorama(4096,NaN,()=>{throw new Error('invalid capability')}),0);
+});
+
+test('a failed 4K allocation retries smaller textures and all failures keep the simplified fallback',()=>{
+ const attempted:number[]=[];
+ assert.equal(uploadPanorama(4096,8192,width=>{attempted.push(width);return width<=2048}),2048);
+ assert.deepEqual(attempted,[4096,2048]);attempted.length=0;
+ assert.equal(uploadPanorama(4096,8192,width=>{attempted.push(width);return false}),0);
+ assert.deepEqual(attempted,[4096,2048,1024,512]);
 });
 test('relative orientation, tilted phones and bad compass accuracy cannot invent north',()=>{
  const base={alpha:90,beta:0,gamma:0};assert.equal(readHeading(base),null);assert.equal(readHeading({...base,absolute:true})?.degrees,270);
