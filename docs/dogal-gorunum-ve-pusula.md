@@ -1,5 +1,7 @@
 # TECH-04B — Doğal gökyüzü, marka paleti ve pusula aracı
 
+**K-040 güncellemesi (3 Kasım 2026):** Aşağıdaki 2K GPU sınırı ilk aşamanın tarihsel kanıtıdır; [TECH-11F](yerel-4k-panorama.md) özgün 4K yükleme/tek fotoğraf GPU kopyası ve 2K alfa maskesini uygular. Kaynak dosya/lisans/bilimsel sınırlar değişmedi.
+
 **Sonraki güncel paket:** [TECH-04C çizelge/takvim/yer adı/saydam geniş açı](gozlem-cizelgesi-ve-takvim.md). Aşağıdaki sayılar ve ekranlar bu belgenin kendi aşamasının tarihsel kanıtıdır; yeni kapsam ve kalanlar güncel kayıtta tutulur.
 
 **31 Ekim 2026.** Kullanıcının renk/görünüm düzeltmesi ve mevcut sonraki konum/pusula basamağı. İz: FR-01–03/08–09/11–12; UJ-01–03/06; AC-01–04/09–14; K-020. [Önceki tam ekran paketi](tam-ekran-harita-gelistirmesi.md), [bütün kalan işler](teslimat-izlenebilirligi.md). MVP-0/P0/P1/P2 kapsamı korunur.

@@ -10,6 +10,12 @@ export function screenRay(camera:Camera,width:number,height:number,x:number,y:nu
 }
 // Equirectangular texture: authored rotation is illustrative, never a local horizon survey.
 export function landscapeUv(az:number,alt:number):[number,number]{return [((az/360+.25)%1+1)%1,(90-alt)/180];}
+// Keep the source's real detail; bounded retries are only for texture allocation.
+export function uploadPanorama(sourceWidth:number,maxTextureSize:number,upload:(width:number)=>boolean):number{
+ if(!Number.isFinite(sourceWidth)||!Number.isFinite(maxTextureSize))return 0;
+ for(const width of [4096,2048,1024,512])if(width<=sourceWidth&&width<=maxTextureSize&&upload(width))return width;
+ return 0;
+}
 const vertex=`attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}`;
 const fragment=`precision highp float;
 uniform vec2 size;uniform float scale,az,alt,day,atmosphere,landscape,hasTexture,foreground,groundOpacity;
@@ -36,7 +42,7 @@ export function createNaturalScene(onLoad:()=>void){
  const sky=document.createElement('canvas'),ground=document.createElement('canvas');
  sky.className='natural-sky';ground.className='photographic-ground';
  sky.setAttribute('aria-hidden','true');ground.setAttribute('aria-hidden','true');
- let alive=true,loaded=false,started=false,usable=true,pixels:Uint8ClampedArray|null=null,textureWidth=0,textureHeight=0;
+ let alive=true,loaded=false,started=false,usable=true,alphaMask:Uint8Array|null=null,maskWidth=0,maskHeight=0;
  const image=new Image();image.decoding='async';
  const layers=[sky,ground].map((canvas,index)=>{
   const gl=canvas.getContext('webgl',{alpha:true,antialias:false,premultipliedAlpha:false});
@@ -53,17 +59,33 @@ export function createNaturalScene(onLoad:()=>void){
   }catch{gl.getExtension("WEBGL_lose_context")?.loseContext();return null;}
  });
  usable=layers.every(Boolean);
- function lost(event:Event){event.preventDefault();usable=false;sky.style.display="none";ground.style.display="none";if(alive)onLoad();}
+ function lost(event:Event){event.preventDefault();usable=false;loaded=false;alphaMask=null;delete ground.dataset.panoramaSize;sky.style.display="none";ground.style.display="none";if(alive)onLoad();}
  for(const canvas of [sky,ground])canvas.addEventListener("webglcontextlost",lost);
  if(!usable){sky.style.display="none";ground.style.display="none";}
  image.onload=()=>{if(!alive||!usable)return;
-  const sample=document.createElement('canvas');sample.width=2048;sample.height=1024;
-  const ctx=sample.getContext('2d',{willReadFrequently:true})!;ctx.drawImage(image,0,0,2048,1024);pixels=ctx.getImageData(0,0,2048,1024).data;textureWidth=2048;textureHeight=1024;
-  for(const layer of layers)if(layer){const {gl,texture}=layer;gl.bindTexture(gl.TEXTURE_2D,texture);gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL,false);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,sample);}
-  loaded=true;image.onload=null;image.onerror=null;image.src='';onLoad();
+  const sample=document.createElement('canvas');
+  try{
+   // Occlusion keeps its previous 2K sampling; retain alpha only, not a second RGBA image.
+   maskWidth=Math.min(2048,image.naturalWidth);maskHeight=maskWidth/2;sample.width=maskWidth;sample.height=maskHeight;
+   const ctx=sample.getContext('2d',{willReadFrequently:true});if(!ctx)throw new Error('panorama-mask');
+   ctx.drawImage(image,0,0,maskWidth,maskHeight);const rgba=ctx.getImageData(0,0,maskWidth,maskHeight).data;
+   alphaMask=new Uint8Array(maskWidth*maskHeight);for(let i=0;i<alphaMask.length;i++)alphaMask[i]=rgba[i*4+3];
+   // The atmosphere pass needs only its 1x1 placeholder; the full photo belongs to the ground pass.
+   const layer=layers[1];if(!layer)throw new Error('panorama-layer');const {gl,texture}=layer;
+   gl.bindTexture(gl.TEXTURE_2D,texture);gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL,false);
+   const width=uploadPanorama(image.naturalWidth,gl.getParameter(gl.MAX_TEXTURE_SIZE),size=>{
+    if(gl.isContextLost())return false;
+    if(size===image.naturalWidth)gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,image);
+    else{sample.width=size;sample.height=size/2;ctx.drawImage(image,0,0,size,size/2);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,sample);}
+    return gl.getError()===gl.NO_ERROR;
+   });
+   if(!width)throw new Error('panorama-texture');
+   ground.dataset.panoramaSize=`${width}x${width/2}`;loaded=true;onLoad();
+  }catch{alphaMask=null;lost(new Event('texture-unavailable'));}
+  finally{sample.width=sample.height=1;image.onload=null;image.onerror=null;image.src='';}
  };
  image.onerror=()=>{if(alive)lost(new Event('texture-unavailable'))};
- function occludes(az:number,alt:number){if(!usable||!loaded||!pixels)return alt<0;const [u,v]=landscapeUv(az,alt),x=Math.min(textureWidth-1,Math.floor(u*textureWidth)),y=Math.max(0,Math.min(textureHeight-1,Math.floor(v*textureHeight)));return pixels[(y*textureWidth+x)*4+3]>128;}
+ function occludes(az:number,alt:number){if(!usable||!loaded||!alphaMask)return alt<0;const [u,v]=landscapeUv(az,alt),x=Math.min(maskWidth-1,Math.floor(u*maskWidth)),y=Math.max(0,Math.min(maskHeight-1,Math.floor(v*maskHeight)));return alphaMask[y*maskWidth+x]>128;}
  function draw(camera:Camera,width:number,height:number,dpr:number,sun:[number,number,number],sunAlt:number,atmosphere:boolean,landscape:boolean,groundOpacity=1){
   if(!usable)return;
   if(landscape&&!started){started=true;image.src='/landscapes/stara-lesna.png';}
