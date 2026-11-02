@@ -28,6 +28,10 @@ for(const asset of overlayManifest.artFiles){if(crypto.createHash('sha256').upda
 for(const file of ['overlays.json','overlays-manifest.json','sun-content.json'])fs.copyFileSync(path.join(root,'data/catalog',file),path.join(generated,file));
 const sun=JSON.parse(fs.readFileSync(path.join(generated,'sun-content.json')));
 for(const row of Object.values(sun))if(row.image?.sha256&&crypto.createHash('sha256').update(fs.readFileSync(path.join(web,'public',row.image.url))).digest('hex')!==row.image.sha256)throw new Error('Object photograph fingerprint mismatch');
+const media=JSON.parse(fs.readFileSync(path.join(root,'data/catalog/object-media.json'),'utf8'));
+for(const row of Object.values(media.images))if(crypto.createHash('sha256').update(fs.readFileSync(path.join(web,'public',row.url))).digest('hex')!==row.sha256)throw new Error('Object photograph fingerprint mismatch');
+const photos={sun:sun.en.image,...media.images};
+fs.writeFileSync(path.join(generated,'object-photos.json'),JSON.stringify(Object.fromEntries(Object.entries(photos).map(([id,row])=>[id,Object.fromEntries(['url','sourceUrl','credit','license','licenseUrl'].map(key=>[key,row[key]]))]))));
 console.log(`Staged verified catalogue: ${catalog.stars.length} stars, 88 constellation identities.`);
 
 const landscape=JSON.parse(fs.readFileSync(path.join(root,'data/catalog/landscape-manifest.json')));

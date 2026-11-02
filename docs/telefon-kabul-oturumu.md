@@ -1,12 +1,12 @@
 # Telefon kabul oturumu — S23 / iPhone 15
 
-**K-032 / 2 Kasım 2026:** Kullanıcı deployment/HTTPS ve canlı yayını erteledi. Bu oturum, kullanıcı ortam hazır olduğunu bildirene kadar beklemede; domain/alt alan adı/tünel kurulumu kendiliğinden başlatılmaz. Yerel geliştirme [ayrı iş sırasıyla](yayin-oncesi-yerel-plan.md) devam eder.
+**K-032 / 2 Kasım 2026:** Kullanıcı deployment/HTTPS ve canlı yayını erteledi. Public HTTPS oturumu, kullanıcı ortam hazır olduğunu bildirene kadar beklemede; domain/alt alan adı/tünel kurulumu kendiliğinden başlatılmaz. Yerel geliştirme [ayrı iş sırasıyla](yayin-oncesi-yerel-plan.md) devam eder.
 
 **Durum: hazırlanmış protokol; fiziksel oturum yürütülmedi.** Mevcut [DV-01–12 protokolünün](cihaz-konum-pusula-dogrulamasi.md) cihaz bazlı uygulama kartıdır. Masaüstü viewport veya sentetik sensör sonucu telefon kabulü olarak işaretlenmez.
 
 ## Ortam ön koşulu
 
-Her iki telefonun açabileceği, geçerli sertifikalı bir HTTPS test kökeni gerekir. Şu anda hazır adres yoktur. Bilgisayardaki `127.0.0.1` adresi telefonda bilgisayarı göstermez; LAN HTTP veya atlanmış sertifika uyarısı sensör/PWA kabulü için kullanılmaz. Bu belge public deploy, tünel, router portu veya yeni sunucu erişimi açmaz. Uygun ortam hazırlanırken gerçek sırlar GitHub'a veya istemciye konmaz; test hesabı ve posta yakalama kullanılır.
+K-037: S23/Chrome için kullanıcı yetkili USB bağlantısı üzerinden `adb reverse` ile telefonun güvenilir localhost kökeninde yerel üretim PWA denemesi yapılabilir. [Yardımcı, fiziksel adımlar ve sınırlar](gok-cismi-gorselleri-ve-yerel-telefon-testi.md). Bu alternatif henüz cihazda yürütülmedi; iPhone için geçerli değildir. Her iki telefonda ortak kabul için geçerli sertifikalı HTTPS test kökeni gerekir; şu anda hazır adres yoktur. Bilgisayardaki `127.0.0.1` adresi telefonda bilgisayarı göstermez; LAN HTTP veya atlanmış sertifika uyarısı sensör/PWA kabulü için kullanılmaz. Bu belge public deploy, tünel, router portu veya yeni sunucu erişimi açmaz. Uygun ortam hazırlanırken gerçek sırlar GitHub'a veya istemciye konmaz; test hesabı ve posta yakalama kullanılır.
 
 Test URL'si, Web/BFF kökeni, API'nin beklediği Web kökeni ve e-posta dönüş adresi aynı ortamla tutarlı olmalıdır. Altyapı/SMTP portları public açılmaz. HTTPS hazır olunca bu adres buraya canlı sır/erişim bilgisi yazılarak değil, oturumda doğrulanarak kullanılır.
 

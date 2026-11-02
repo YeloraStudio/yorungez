@@ -1,5 +1,7 @@
 # yorungez — Bilimsel veri ve hesaplama stratejisi
 
+**TECH-11D:** [Kaynaklı fotoğraf/hesaplanan kesit ayrımı](gok-cismi-gorselleri-ve-yerel-telefon-testi.md) uygulandı. Fotoğraf arşiv/işlenmiş görüntüdür; seçili an veya çıplak göz görünümü değildir. Kesit aynı hesap karesini kullanır; yeni efemeris veya bağımsız bilimsel doğrulama sayılmaz. Model/kutup/doğuş-batış sınırları değişmedi.
+
 **K-035 / TECH-11B (2 Kasım 2026):** Giriş/kayıt başlıkları ve alan hizası düzeltildi; iki dilde canlı/simülasyon/eski hesap durumu, sonuç UTC anı ve özgün katalog/olay hazırlanma tarihleri kaynak paneline eklendi. 53 istemci testi, tip kontrolü, üretim derlemesi ve 320 px/PWA yeniden açılış kontrolü geçti. Sürekli olay akışı henüz bağlı değil; geniş atlas/kaynak yenileme FR-08/P1 işidir. [Uygulama, canlı API envanteri ve sınırlar](canli-hesap-ve-veri-guncelligi.md). Önceki P0/P1/P2 ve K-032 beklemesi korunur.
 
 **TECH-04D:** Gece penceresi standart sunset–sunrise kesişimidir; sivil/astronomik alacakaranlık ayrılır. Sensörsüz yön ve yaklaşık yumruk açısı NASA kaynaklı öğretici yardımdır, kalibre ölçüm/algılanabilirlik değildir. 0 m/üst kenar ve kutup yön sınırı korunur. [Model/kanıt](ortak-bilesenler-ve-sensorsuz-gozlem.md).

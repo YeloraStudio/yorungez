@@ -26,6 +26,7 @@ import CompassPanel,{compassText} from "./CompassPanel";
 import type { SelectedObject } from "./ObjectCard";
 import { messages } from "../lib/i18n.ts";
 import { explorerText } from "../lib/explorer-text.ts";
+import {findObjects,objectSearchEntry} from "../lib/sky/object-search.ts";
 import { SOLAR_IDS, objectCategory } from "../lib/sky/frame-contract.ts";
 import type { SkyFrame } from "../lib/sky/frame-contract.ts";
 import { SkyWorkerClient } from "../lib/sky/worker-client.ts";
@@ -53,7 +54,6 @@ function Icon({ name, size = 18 }: { name: string; size?: number }) {
   };
   return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={paths[name] ?? paths.star} /></svg>;
 }
-const normalize=(value:string)=>value.normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/ı/g,"i").toLowerCase();
 const initialCamera:Camera={azimuth:180,altitude:14,fieldOfView:105};
 const parseCoordinate=(value:string)=>/^[+-]?(?:\d+(?:[.,]\d+)?|[.,]\d+)$/.test(value.trim())?Number(value.trim().replace(",",".")):NaN;
 function objectIndex(c:SkyCatalog,id:string){const star=c.stars.findIndex(s=>s.id===id);if(star>=0)return star;const solar=SOLAR_IDS.indexOf(id as typeof SOLAR_IDS[number]);if(solar>=0)return c.stars.length+solar;const pattern=c.constellations.findIndex(s=>s.id===id);if(pattern>=0)return c.stars.length+9+pattern;const dso=c.deepSky?.findIndex(s=>s.id===id)??-1;return dso<0?-1:c.stars.length+9+c.constellations.length+dso;}
@@ -123,13 +123,13 @@ export default function SkyExplorer({initialLanguage}:{initialLanguage:Language}
   ...(catalog.deepSky??[]).map((d,i)=>({id:d.id,name:d.name,kind:"deepSky" as const,index:catalog.stars.length+9+catalog.constellations.length+i}))
  ]:[],[catalog,language]);
  const searchable=useMemo(()=>objects.map(object=>{
-  let aliases="";if(catalog&&object.kind==="star"){const s=catalog.stars[object.index];aliases=`${s.designation} HIP ${s.hip??""}`}
-  if(catalog&&object.kind==="constellation"){const c=catalog.constellations.find(c=>c.id===object.id)!;aliases=`${c.iau} ${c.names.tr} ${c.names.en}`}
-  if(catalog&&object.kind==="deepSky"){const d=catalog.deepSky!.find(d=>d.id===object.id)!;aliases=`${d.designation} ${d.aliases.join(" ")}`}
-  if(object.kind==="solar")aliases=`${messages.tr.celestialNames[object.id as keyof typeof messages.tr.celestialNames]} ${messages.en.celestialNames[object.id as keyof typeof messages.en.celestialNames]}`;
-  return {object,key:normalize(`${object.name} ${object.id} ${aliases}`)};
+  let aliases:string[]=[];if(catalog&&object.kind==="star"){const star=catalog.stars[object.index];aliases=[star.designation,...(star.hip?[`HIP ${star.hip}`]:[])]}
+  if(catalog&&object.kind==="constellation"){const c=catalog.constellations.find(c=>c.id===object.id)!;aliases=[c.iau,c.names.tr,c.names.en]}
+  if(catalog&&object.kind==="deepSky"){const d=catalog.deepSky!.find(d=>d.id===object.id)!;aliases=[d.designation,...d.aliases]}
+  if(object.kind==="solar")aliases=[messages.tr.celestialNames[object.id as keyof typeof messages.tr.celestialNames],messages.en.celestialNames[object.id as keyof typeof messages.en.celestialNames]];
+  return objectSearchEntry(object,[object.name,object.id,...aliases]);
  }),[objects,catalog]);
- const found=query.trim()?searchable.filter(row=>row.key.includes(normalize(query.trim()))).slice(0,12).map(row=>row.object):[];
+ const found=findObjects(searchable,query);
  const chosen=objects.find(o=>o.id===selected),shown=frame?.context??context;
  const format=(n:number,digits=1)=>Number.isFinite(n)?new Intl.NumberFormat(language,{maximumFractionDigits:digits,minimumFractionDigits:digits}).format(n):"—";
  function select(id:string,focus=false){setSelected(id);setCardExpanded(true);setQuery("");setLayerMenu(false);
