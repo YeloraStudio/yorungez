@@ -1,0 +1,32 @@
+{
+  "package": "TECH-11B / K-035",
+  "date": "2026-11-02",
+  "environment": "IAB, separate production preview on loopback; public Istanbul example only",
+  "automated": { "clientTests": 53, "typecheck": "passed", "webProductionBuild": "passed" },
+  "forms": {
+    "languages": ["en", "tr"],
+    "viewports": [{ "width": 1280, "height": 720 }, { "width": 320, "height": 740 }],
+    "tabsToHeadingPixels": 28,
+    "headingToFormPixels": 20,
+    "actionMinimumHeightPixels": 48,
+    "equalActionWidths": true,
+    "horizontalOverflowAt320": false,
+    "submitted": false
+  },
+  "sources": {
+    "liveStatus": "passed in both languages",
+    "simulationStatus": "passed; Moon event 2026-11-09T07:02:00Z",
+    "returnToNow": "passed",
+    "originalPreparationTimesDisplayed": true,
+    "continuousEventFeed": "not implemented; stated in UI",
+    "externalApiFreshness": "on-demand cached content; not a continuous ephemeris feed"
+  },
+  "offline": {
+    "coreVersion": "8176d93f303f18bf031b",
+    "previewServerStoppedAndReloaded": true,
+    "localCalculationAndMetadataAvailable": true,
+    "osNetworkOrBackendStopped": false,
+    "ownPreviewRestarted": true
+  },
+  "limits": ["No form submission or real email", "No personal coordinates or sensor permission", "No physical device or screen-reader acceptance", "No new astrometric accuracy claim", "Deployment and HTTPS remain deferred"]
+}

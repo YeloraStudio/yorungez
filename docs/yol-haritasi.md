@@ -1,5 +1,7 @@
 # yorungez — Yol haritası ve başlangıç iş listesi
 
+**K-035 / TECH-11B (2 Kasım 2026):** Giriş/kayıt başlıkları ve alan hizası düzeltildi; iki dilde canlı/simülasyon/eski hesap durumu, sonuç UTC anı ve özgün katalog/olay hazırlanma tarihleri kaynak paneline eklendi. 53 istemci testi, tip kontrolü, üretim derlemesi ve 320 px/PWA yeniden açılış kontrolü geçti. Sürekli olay akışı henüz bağlı değil; geniş atlas/kaynak yenileme FR-08/P1 işidir. [Uygulama, canlı API envanteri ve sınırlar](canli-hesap-ve-veri-guncelligi.md). Önceki P0/P1/P2 ve K-032 beklemesi korunur.
+
 **K-034 / TECH-11A (2 Kasım 2026):** İki dil/klavye ilk denetim paketi: seçimde Home/End başlangıç odağı, hesap görünümü değişiminde başlık odağı/etkin durum, parola ve tarih yardım ilişkileri düzeltildi. 51 istemci testi, tip kontrolü ve üretim derlemesi; iki dilde IAB klavye/320 px kontrolü geçti. [Kanıt ve açık kabul işleri](iki-dil-klavye-denetimi.md). Tam ekran okuyucu/kontrast/E2E/sözlük ve K-032 fiziksel/üretim işleri açık kalır.
 
 **K-033 / TECH-10 (2 Kasım 2026):** Yerel sentetik PostgreSQL yedek/geri yükleme provası uygulandı: iki ayrı test DB, dört kayıt türü/sahiplik/revizyon, kopya şifreli keyring+test sertifikası, bozuk arşiv/eksik anahtar retleri, kuyruk ve oturum iptali/yeni giriş; 127 .NET testi geçti. Gerçek veriler/normal uygulama değişmedi; üretim backup kabulü ve K-032 deployment/HTTPS beklemesi sürer. [Kanıt ve tekrar çalıştırma](yerel-yedek-geri-yukleme.md). Sırada iki dil/erişilebilirlik yerel paketi var.
@@ -64,6 +66,8 @@ Bir taslağın dosya olarak bulunması aşamanın tamamlandığı anlamına gelm
 | **TECH-06** — Gözlem ve kayıtlı konum | Yazılım, migration ve sınırlı API/tarayıcı doğrulaması tamamlandı | [Uygulama/kanıt](gozlem-kayitlari-ve-kayitli-konumlar.md), ADR-0011; açık gerçek zaman girişi, kişisel beyan, bağımsız konum kopyası, haritada bağlam koruma, export v2. 120 .NET/38 istemci testi; fiziksel cihaz/üretim/ileri bağlar açık. | FR-01/FR-04/FR-06–07/FR-09/FR-11–12; UJ-03–05/UJ-07; K-026 |
 | **TECH-07 / UX-02C** — Hesap menüsü ve genel PWA | Ad-soyad/ortak oturum ve genel çevrimdışı paket uygulandı | [Kanıt](hesap-menusu-ve-cevrimdisi-gokyuzu.md); 125 .NET/44 istemci, hash/başarısız paket/özel veri hariç tutma, sunucusuz yeniden açılış. Fiziksel/üretim kapsamı açık. | FR-07/FR-09/FR-11; UJ-04/UJ-07; AC-07–09/AC-12–13; K-027–028 |
 | **TECH-10** — Yerel yedek/geri yükleme | Sentetik yerel prova geçti | [Kanıt](yerel-yedek-geri-yukleme.md); arşiv/iki DB/keyring/sertifika/sahiplik/revizyon/kuyruk/oturum kontrolü, 127 .NET testi. Üretim kabulü açık. | FR-06–09; AC-07–09; A-006; K-033 |
+
+| **TECH-11B** — Hesap formu ve canlı veri durumu | Yerel paket geçti | [Kanıt ve çalışan API envanteri](canli-hesap-ve-veri-guncelligi.md); 53 istemci testi, başlık boşlukları, iki dil/320 px, canlı-simülasyon/özgün kaynak tarihleri ve genel PWA yeniden açılışı. Sürekli olay akışı/kaynak yenileme tamamlanmadı. | FR-02–05/08–09/11; K-035 |
 
 ## Sıradaki çalışma paketi
 

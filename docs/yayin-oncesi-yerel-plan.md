@@ -1,5 +1,7 @@
 # K-032 — Dağıtım ertelenirken yerel çalışma sırası
 
+**TECH-11B / K-035:** Kullanıcının form boşluğu ve canlı bilimsel veri talebi [uygulandı ve envanterlendi](canli-hesap-ve-veri-guncelligi.md): canlı hesap/özgün paket tarihi/simülasyon ayrımı görünür. Sürekli olay akışı henüz yok; aşağıdaki FR-08/P1 veri yenileme kabulüne bağlıdır. İkinci sıradaki kalan sözlük/erişilebilirlik işleri devam eder.
+
 **TECH-11A sonucu:** İkinci sıradaki iki dil/erişilebilirlik işinin [ilk klavye/form paketi](iki-dil-klavye-denetimi.md) tamamlandı; gerçek ekran okuyucu/kontrast, kapsamlı E2E ve sözlük/derin bağlantı işleri açık. Bu satır ikinci sıranın tümü tamamlandı anlamına gelmez.
 
 **TECH-10 sonucu:** Birinci sıradaki sentetik yerel yedek/geri yükleme provası geçti; [127 .NET testi, kanıt ve sınırlar](yerel-yedek-geri-yukleme.md). Sıradaki yerel paket ikinci sıradaki iki dil/erişilebilirlik denetimidir. Üretim yedek kabulü bekler.
@@ -23,7 +25,7 @@ Bu karar geliştirmeyi durdurmaz. HTTPS kökenine bağlı fiziksel GPS/pusula/PW
 - **DATA-P1 / FR-04:** Meteor yağmurları, tutulmalar, kavuşumlar, asteroit ve Ay–yıldız olayları için tür bazında kaynak/lisans/zaman tanımı ve bağımsız doğrulama. Kaynak bulmak uygulamanın ve bilimsel kabulün tamamlandığı anlamına gelmez.
 - **FR-03 / A-005:** Daha geniş Messier/NGC/yıldız atlası; eksik görseller, alternatif adlar/katalog kimlikleri, nesneye uygun fiziksel bilgiler ve kısa/açılabilir kaynaklı açıklamalar.
 - **FR-05 / A-003/A-007/A-009:** Astronomik karanlık ve Ay ışığı; doğuş-batış, kırılma, yükseklik ve ufuk varsayımlarının daha geniş konum/tarih/hedef örnekleriyle sınanması. Mevcut kutup yön kısıtları ve bilinmeyen koşul açıklamaları korunur.
-- **FR-08:** Veri kaynağı envanteri, sürüm/lisans/son başarılı yenileme ve güncel/gecikmiş/erişilemiyor durumları; kontrollü içeri alma ve yenileme politikası. Normal build/test bilimsel veri indirmez.
+- **FR-08 / K-035:** Çalışan hesap ve kaynak/paket tarihleri TECH-11B ile görünür; sırada sağlayıcı başına son başarılı alım/sağlık, güncel/gecikmiş/erişilemiyor durumları, kontrollü içeri alma ve zamanlanmış yenileme var. Önemli yeni/geçici gök olayı akışı tür/kaynak/lisans ve bağımsız doğrulamayla genişletilir; henüz bağlı değildir. Normal build/test bilimsel veri indirmez.
 - **A-008 / P1:** Hava, bulutluluk, ışık kirliliği ve yerel ufuk/arazi kaynakları araştırması ve ardından uygunluk değerlendirmesi. Veri yoksa bilinmiyor; doğrulanmamış skor yok. PostGIS yalnız gerçek Dünya mekânsal sorgusu gerektirdiğinde değerlendirilir.
 
 ## Daha sonraki P2

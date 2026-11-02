@@ -103,3 +103,16 @@
 .drawer-brand>.brand-logo{width:240px}
 .account-wordmark{display:inline-block;max-width:100%;margin-bottom:20px}.account-wordmark>.brand-logo{width:180px}
 @media(max-width:650px){.floating-brand>.brand-logo{width:130px}}
+
+/* Account headings have their own rhythm; drawer account actions keep their existing layout. */
+.account-panel>.account-tabs{align-items:stretch;gap:12px}
+.account-panel>.account-tabs>button{flex:1 1 0;min-height:48px;justify-content:center;text-align:center}
+.account-panel>h3{margin:28px 0 20px;line-height:1.4;font-size:18px}
+.account-panel form{gap:20px;margin:0 0 20px}
+.account-panel .name-fields{gap:16px;align-items:start}
+.account-panel form>.primary-button{width:100%;margin-top:4px}
+.science-status{padding:0 0 20px;margin:0 0 24px;border-bottom:1px solid var(--border)}
+.science-status h3{font-size:17px;margin:0 0 14px;line-height:1.5}
+.science-status dl{margin:18px 0}.science-status dl>div{display:grid;grid-template-columns:1fr;gap:6px;padding:10px 0;border-bottom:1px solid var(--border)}
+.science-status dt{font-size:11px;color:var(--muted)}.science-status dd{margin:0;font-size:13px;line-height:1.6;overflow-wrap:anywhere}
+.science-status details{padding:10px 0}.science-status details p{margin:12px 0 0}

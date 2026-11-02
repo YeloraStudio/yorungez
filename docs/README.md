@@ -16,6 +16,8 @@ Detailed product/delivery records are currently mostly Turkish. Newer decisions 
 
 ## Current implementation
 
+- [Account spacing / live scientific calculations / current API inventory](canli-hesap-ve-veri-guncelligi.md)
+
 - [Bilingual keyboard / account / date control audit, first package](iki-dil-klavye-denetimi.md)
 
 - [Local PostgreSQL / key-ring recovery drill](yerel-yedek-geri-yukleme.md)
