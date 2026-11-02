@@ -1,8 +1,10 @@
 # K-032 — Dağıtım ertelenirken yerel çalışma sırası
 
+**K-039 / 2 Kasım 2026 — Güncel durum denetimi:** Önce Web kabulünü tamamlamak, ardından aynı .NET backend/hesap/verilerle mobil uygulama geliştirmek kullanıcı hedefidir. [Plan, eksikler, kanıt ve mobil hazırlık](web-tamamlama-ve-ortak-backend-mobil-hedef.md). Bilgi/görsel önceliği, K-032 yayın beklemesi ve açık P0/P1/P2 kapsamı korunur; aşağıdaki eski paketler kendi aşamalarının tarihsel kanıtıdır.
+
 **K-038:** [Bilgi/görsel ve fiziksel deneme geri bildirimi](mobil-kart-samanyolu-ve-pusula-erisim.md) mevcut önceliği derinleştirir: mobil kart rengi, Samanyolu ve engelli sensör izni. S23 genel kullanım bildirimi olumlu; tam cihaz kabulü açık. Yeni yedek/çöp işleri bu önceliğin önüne geçmez.
 
-**K-037 güncel öncelik:** Kullanıcı bilgi/görsellik ve mevcut nesne kartlarının UX geliştirmesini öne aldı. [TECH-11D](gok-cismi-gorselleri-ve-yerel-telefon-testi.md) kaynaklı görsel/kısa bilgi paketi uygulandı; sırada kalan atlas nesnelerinin görselleri/bilgileri ve S23 yerel denemesi var. Yeni yedek/çöp/yaşam döngüsü işleri ve genel klavye/hata sağlamlaştırma paketi şimdilik ertelendi; aşağıdaki önceki sıra güncel öncelik değildir. Mevcut çalışan kişisel kayıtlar ve tüm FR/UJ/AC kalanları korunur. USB-localhost ile S23 denemesi deployment gerektirmez; kullanıcı seçimi/fiziksel bağlantı bekler.
+**K-037 güncel öncelik:** Kullanıcı bilgi/görsellik ve mevcut nesne kartlarının UX geliştirmesini öne aldı. [TECH-11D](gok-cismi-gorselleri-ve-yerel-telefon-testi.md) kaynaklı görsel/kısa bilgi paketi uygulandı; sırada kalan atlas nesnelerinin görselleri/bilgileri ve S23 yerel denemesi var. Yeni yedek/çöp/yaşam döngüsü işleri ve genel klavye/hata sağlamlaştırma paketi şimdilik ertelendi; aşağıdaki önceki sıra güncel öncelik değildir. Mevcut çalışan kişisel kayıtlar ve tüm FR/UJ/AC kalanları korunur. USB-localhost denemesi deployment gerektirmez; TECH-11E ile S23 genel kullanım/PWA olumlu bildirimi alındı, tam GPS/pusula/cihaz protokolü açık.
 
 **K-036 / TECH-11C:** Kullanıcı mevcut özelliklerin derinliğini önceliklendirdi. İkinci sıradaki [sözlük/sabit terim bağlantıları](sozluk-ve-terim-baglantilari.md) uygulandı; sırada mevcut harita/hesap/defter/takvim/gece/hata yüzeylerinde okunabilirlik, klavye/odak ve iki dil kabulünü derinleştirmek var. Sonraki yaşam döngüsü/performans işleri korunur; yeni bağımsız alan açmak bu sağlamlaştırmanın önüne geçmez. P1/P2 kapsamı iptal edilmez.
 
@@ -14,7 +16,7 @@
 
 **2 Kasım 2026.** Kullanıcı uygulamanın deployment, HTTPS erişimi ve canlı yayına alınmasını erteledi. `yorungez.com` henüz alınmadı. Mevcut bir alan adında alt alan adı kullanılması yalnız gelecekteki bir olasılıktır; seçilmiş veya yapılandırılmış ortam değildir. Kullanıcı yeniden haber vermeden DNS/alt alan adı bağlama, tünel açma, HTTPS ortamı veya sunucu/Portainer dağıtımı yapılmaz.
 
-Bu karar geliştirmeyi durdurmaz. HTTPS kökenine bağlı fiziksel GPS/pusula/PWA kurulum kabulü beklemede tutulur; yapılmış sayılmaz. P0/P1/P2 kapsamı ve [FR/UJ/AC kalanları](teslimat-izlenebilirligi.md) korunur. Aşağıdaki sıra, mevcut açık işlerin yerelde yürütülebilen bölümüdür; bu dosya işlerin uygulandığına dair kanıt değildir.
+Bu karar geliştirmeyi durdurmaz. S23 USB-localhost genel kullanım/PWA denemesi TECH-11E ile bildirildi; güvenilir HTTPS gerektiren diğer cihazlar ve tam fiziksel GPS/pusula/PWA protokolü bekler, yapılmış sayılmaz. P0/P1/P2 kapsamı ve [FR/UJ/AC kalanları](teslimat-izlenebilirligi.md) korunur. Aşağıdaki sıra, mevcut açık işlerin yerelde yürütülebilen bölümüdür; bu dosya işlerin uygulandığına dair kanıt değildir.
 
 ## Önce P0 sağlamlaştırma
 

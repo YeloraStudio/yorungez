@@ -1,5 +1,7 @@
 # yorungez — Ürün Vizyonu, Gereksinimler ve UX Taslağı
 
+**K-039 / 2 Kasım 2026 — Güncel durum denetimi:** Önce Web kabulünü tamamlamak, ardından aynı .NET backend/hesap/verilerle mobil uygulama geliştirmek kullanıcı hedefidir. [Plan, eksikler, kanıt ve mobil hazırlık](web-tamamlama-ve-ortak-backend-mobil-hedef.md). Bilgi/görsel önceliği, K-032 yayın beklemesi ve açık P0/P1/P2 kapsamı korunur; aşağıdaki eski paketler kendi aşamalarının tarihsel kanıtıdır.
+
 **K-038 / TECH-11E (2 Kasım 2026):** S23 Chrome/Brave ve PWA ekleyip genel kullanım için kullanıcı olumlu test bildirdi; pusulada Chrome Hareket sensörleri engeli doğrulandı. Ortak kartta tek saydam yüzey/sabit başlık, iki dilde kaynaklı Samanyolu araması ve Yay bölgesi navigasyonu, açık Andromeda/M31 ayrımı ve yerel sensör erişim tanısı uygulandı. 62 istemci testi/tip/üretim derlemesi, dar-yatay UI ve sunucusuz Samanyolu kontrolü geçti. Fiziksel pusula izin sonrası kabulü, ölçümlü GPS ve tam cihaz protokolü açıktır. [Kanıt ve sınırlar](mobil-kart-samanyolu-ve-pusula-erisim.md). Bilgi/görsel önceliği, K-032 public yayın beklemesi ve önceki bilimsel sınırlar korunur.
 
 **K-037 / TECH-11D (2 Kasım 2026):** Kullanıcı bilgi/görsel/kart UI-UX ve yerel mobil denemeyi önceliklendirdi; yeni yedek/çöp/kişisel yaşam döngüsü işleri şimdilik ertelendi. 12 hedef için kaynaklı yerel arşiv fotoğrafı, diğerlerinde lisanslı fotoğraf veya açıkça etiketli hesaplanan kesit; kısa açıklama öne alındı, Mars/Marsic arama sırası düzeltildi. 59 istemci testi/tip/üretim derlemesi, iki dil/dar-yatay görünüm ve hazırlanmış fotoğrafın sunucusuz açılışı geçti. S23 USB-localhost yardımcısı hazır; gerçek cihaz henüz denenmedi. [Kanıt, sınırlar ve telefon adımları](gok-cismi-gorselleri-ve-yerel-telefon-testi.md). Public deployment/DNS/HTTPS beklemesi ve önceki bilimsel hedefler korunur.
@@ -34,7 +36,7 @@
 
 **31 Ekim görünüm ek kararı:** Beğenilen tam ekran yerleşim korunur. UI kaynak paleti #3C3F43/#9EA1A6/#8B2333/#C9B6A6/#F7F1E6; dil seçimi sol menüde açılır liste. Görsel gökyüzü/çevre daha doğal, kaynaklı fotoğraf ve kadir sıralı ışıkla sunulur; fotoğraf yerel topografya, görsel atmosfer gözlem koşulu değildir. Pusulada kaynak/kuzey belirsizliği, izin/hizalama ve fiziksel kabul ayrılır. [Güncel paket](dogal-gorunum-ve-pusula.md).
 
-> **Belge sürümü:** 1.17
+> **Belge sürümü:** 1.18
 > **Tarih:** 2 Kasım 2026
 > **Durum:** Güncel ürün referansı; modüler backend ve ilk tr/en harita akışı uygulandı, kabul kapsamı kısmi
 > **Proje adı:** yorungez (yörünge + gezmek; ad kullanıcı tarafından kesinleştirildi)  
@@ -143,7 +145,7 @@ Sosyal medya akışı, genel amaçlı forum, ekipman pazaryeri, reklam/alışver
 
 ### FR-03 — Gök cismi atlası
 
-- K-037: Her kart görsel alanı taşır; doğru kimlik/lisans/atıfla arşiv fotoğrafı, yoksa fotoğraf olmadığı belirtilen aynı hesap karesinden konum kesiti. Yerel fotoğraf kapsamı 12 hedef; bütün katalog için fotoğraf tamamlanmış sayılmaz. Fotoğraf seçili an/evre/çıplak göz görünümü değildir. Kısa kaynak açıklaması önce, ayrıntılar açılabilir; geçici ağ hatası ve bağlı makale yokluğu ayrılır.
+- K-037: Her kart görsel alanı taşır; doğru kimlik/lisans/atıfla arşiv fotoğrafı, yoksa fotoğraf olmadığı belirtilen aynı hesap karesinden konum kesiti. K-038 ile yerel fotoğraf kapsamı 13 hedef (Samanyolu geniş galaksi kaydı dahil); bütün katalog için fotoğraf tamamlanmış sayılmaz. Fotoğraf seçili an/evre/çıplak göz görünümü değildir. Kısa kaynak açıklaması önce, ayrıntılar açılabilir; geçici ağ hatası ve bağlı makale yokluğu ayrılır.
 
 Her nesnenin tekil bir kimliği ve tutarlı bir bilgi kartı bulunur. Nesne türüne göre geçerli alanlar gösterilir:
 
@@ -299,6 +301,8 @@ Dürbün/teleskop bilgisi girmek hiçbir temel ekrana erişim koşulu değildir.
 
 **Önemli ayrım:** Bu tablo zorunlu olarak sekiz ayrı deploy edilecek servis anlamına gelmez. Modüler monolitte modüller tek uygulama içinde açık sınırlar ve sorumluluklarla çalışır.
 
+**K-039 — Web sonrası mobil hedef:** Önce Web sürümünün kabul ölçütleri kapatılacak, ardından aynı .NET backend, hesap ve PostgreSQL kayıtlarıyla mobil istemci geliştirilecek. API `/api/v1` ve Bearer/refresh temeli mevcut; OpenAPI/uyumluluk, mobil oturum/dönüş bağlantıları, Next.js saat dilimi ve nesne içerik servislerinin ortak sınırı henüz hazır değil. Mobil framework seçilmedi; P0/P1/P2 korunur. [Durum ve hazırlık checklist'i](web-tamamlama-ve-ortak-backend-mobil-hedef.md).
+
 ### 7.1 İlk hesap adaptörü ve dış kaynak değerlendirme listesi
 
 İlk sınırlı hesap adaptörü Astronomy Engine 2.1.19 [ADR-0003](adr/0003-ilk-astronomi-adaptoru-ve-dogruluk-sinirlari.md); ilk Canvas 2D harita/HYG 4.1 yıldız/d3-celestial takımyıldız verisi [ADR-0004](adr/0004-ilk-harita-ve-parlak-katalog.md) ile uygulandı. Bağımsız örnek doğrulama, kutup yön sınırı ve teknik ilk tarih aralığı açıktır; bütün olay modelleri, geniş katalog veya gerçek cihaz kabulü tamamlanmış değildir. [İzlenebilirlik tablosu](teslimat-izlenebilirligi.md) bütün FR/UJ/AC kalanlarını tutar. Diğer araç ve veriler nihai seçilmiş bağımlılıklar değildir:
@@ -411,6 +415,8 @@ Bu değerler **hedef** niteliğindedir; tamamlandığına dair ölçüm veya gar
 Bu maddeler **alınmış kararlar gibi sunulmamalı**; ADR veya ürün kararıyla kesinleştirilmelidir.
 
 ## 12. Bu belgede yapılan temizlik ve güncelleme
+
+- **1.18 — 2 Kasım 2026:** K-039 ile bütün Markdown/plan envanteri ve kod sınırı denetimi; güncel tablo sapmaları düzeltildi, aynı backend ile Web sonrası mobil hedefi/açık hazırlık işleri kaydedildi. Mevcut FR/UJ/AC kimlikleri, bilimsel sınırlar ve ertelenmiş işler korunur; yeni uygulama özelliği/test sonucu değildir.
 
 - **1.10 — 1 Kasım 2026:** K-027–028/ADR-0012–0013; hesap menüsü/ad-soyad, servis/çevrimdışı hata ayrımı, ortak yerel başlatıcı ve yalnız genel veriye ait sürümlü PWA/çevrimdışı açılış. 125 .NET/44 istemci testi; bütün kimlikler ve açık fiziksel/üretim sınırları korunur.
 - **1.9 — 1 Kasım 2026:** K-026/ADR-0011; hesapta ayrı gözlem/kayıtlı konum, açık gerçek zaman girişi, geçmişi koruyan konum kopyası; 52 terim. 120 .NET/38 istemci testi ve üretim derlemesi. Bütün kimlikler ve kalan kapsam korunur.

@@ -6,6 +6,8 @@ Detailed product/delivery records are currently mostly Turkish. Newer decisions 
 
 ## Product and delivery
 
+- [2 November audit: full plan, remaining Web acceptance and the same-backend mobile goal](web-tamamlama-ve-ortak-backend-mobil-hedef.md)
+
 - [Requirements / product vision](urun-gereksinimleri.md)
 - [Roadmap](yol-haritasi.md) and [traceability](teslimat-izlenebilirligi.md)
 - [Current local work order / deployment deferred by owner](yayin-oncesi-yerel-plan.md)

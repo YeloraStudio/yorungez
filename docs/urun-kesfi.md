@@ -1,6 +1,8 @@
 # yorungez — Ürün keşfi
 
-**Tarih:** 30 Ekim 2026  
+**K-039 kapsam düzeltmesi:** K-024 ile kaldırılmış anonim kayıt/aktarım ifadeleri güncel hesap zorunlu sunucu modeliyle düzeltildi. Masa başı araştırma tarihi/gerçek kullanıcı kabulü değişmedi. [Bütün planın denetimi ve Web sonrası mobil hedef](web-tamamlama-ve-ortak-backend-mobil-hedef.md).
+
+**İlk inceleme:** 30 Ekim 2026; kapsam düzeltmesi K-039 / 2 Kasım 2026
 **Durum:** İlk taslak; kaynaklara dayalı masa başı incelemesi yapıldı, kullanıcı araştırması ve kullanılabilirlik testi henüz yapılmadı.  
 **Kapsam kaynağı:** [Ürün gereksinimleri](urun-gereksinimleri.md), özellikle §1–3 ve §9–10.
 
@@ -19,7 +21,7 @@ Bu deneyim hesap veya ekipman bilgisi girmeden başlar. Kullanıcının bilgi d�
 | Meraklı / ekipmansız ziyaretçi | Baktığı parlak nesneyi tanımak | Konum ve zamanı seçip harita veya aramadan aynı bilgi kartına ulaşır | UJ-01–02, AC-01–04 |
 | Yeni amatör gözlemci | Bir hedefi ne zaman ve hangi yönde arayacağını anlamak | Yön/yükseklik ile ufuk durumunu ve hesaplanabiliyorsa uygun zamanı ayırt eder | FR-01, FR-03–05, AC-06 |
 | Öğrenci / öğretmen | Gökyüzünün zamanla değişimini keşfetmek | Simülasyonu kullanır ve tek eylemle canlı zamana döner | UJ-03, AC-03, AC-05 |
-| Kişisel kayıt tutan gözlemci | Favori, not ve gözlemlerine tekrar ulaşmak | Anonim kayıtlarını saklar; hesap seçerse açık onayla kayıpsız taşır | UJ-04–05, AC-07–09 |
+| Kişisel kayıt tutan gözlemci | Favori, not ve gözlemlerine tekrar ulaşmak | Doğrulanmış hesapla sunucuya kaydeder; başka oturumdan aynı özel kayda erişir, çakışmayı fark eder | UJ-04–05, AC-07–09 |
 | Mobil / bağlantısı değişken kullanıcı | Sensör veya ağ olmadığında desteklenen işleri sürdürmek | Manuel yönlendirme ve önbellekli işlevlerle devam eder; veri güncelliğini anlar | UJ-06–07, AC-10–12 |
 
 Bunlar başlangıç belgesindeki hedef kitlenin görev tanımlarıdır; yapılmış görüşme veya doğrulanmış pazar büyüklüğü verisi değildir.
@@ -43,7 +45,7 @@ Kaynaklar: [Stellarium Labs — Stellarium Web](https://stellarium-labs.com/stel
 | Aşama | Amaç | Dahil olan ana deneyim |
 |---|---|---|
 | **MVP-0** | Harita çekirdeğinin teknik ve UX doğrulaması | Bir konum ve seçili zaman; temel nesne arama/seçme, bilgi kartı, mobil/masaüstü etkileşim, canlı/simülasyon ayrımı |
-| **P0** | İlk herkese açık kullanılabilir sürüm | Temel harita/atlas/olay bilgileri, anonim yerel kayıtlar, doğrulanmış hesap ve senkronizasyon, PWA ve tanımlı temel çevrimdışı durumlar |
+| **P0** | İlk herkese açık kullanılabilir sürüm | Temel harita/atlas/olay bilgileri, doğrulanmış hesaba özel sunucu kayıtları (anonim kişisel kalıcılık yok), PWA ve tanımlı temel çevrimdışı durumlar |
 | **P1** | Astronomi derinliği | Daha geniş katalog ve takvim, gözlem pencereleri, hava/ışık kirliliği, yerel ufuk ve gelişmiş çevrimdışı veri |
 | **P2** | İsteğe bağlı uzmanlaşma | Ekipman profilleri, görüş alanı simülasyonu, gelişmiş koordinatlar ve ileri planlama |
 
@@ -61,7 +63,7 @@ Henüz ölçüm sonucu yoktur. Aşağıdaki tablo değerlendirme yöntemini öne
 | Nesneye ulaşma | Aynı hedefin aramadan ve haritadan bulunması; bilgi kartı ve bağlamın karşılaştırılması | UJ-02, AC-04 |
 | Zamanı anlama | Kullanıcının canlı/simülasyon modunu doğru tanıması; şimdiye dönüş görevi | UJ-03, AC-05 |
 | Bilimsel doğruluk | Sabit konum/zaman senaryolarında bağımsız referansla karşılaştırma; toleranslar özellik bazında tanımlanacak | AC-03, AC-06, A-003, A-009 |
-| Kayıt bütünlüğü ve gizlilik | Yerel kayıt → doğrulanmış hesap → açık onaylı aktarım; tekrar ve çatışma senaryoları, izinsiz paylaşım kontrolü | UJ-04–05, AC-07–09 |
+| Kayıt bütünlüğü ve gizlilik | Kayıt/giriş → doğrulama → hesaba özel sunucu kaydı → başka oturumdan erişim; tekrar, sahiplik ve revizyon çatışması kontrolü | UJ-04–05, AC-07–09 |
 | Hata ve çevrimdışı süreklilik | Sensör yokluğu, harici kaynak hatası, ağ kesintisi ve yeniden bağlantı görevleri | UJ-06–07, AC-10–12 |
 | Performans ve erişilebilirlik | Kaynak belgedeki LCP ≤ 2,5 sn, INP ≤ 200 ms, CLS ≤ 0,1 ve WCAG 2.2 AA hedefleri; harita için ayrıca cihaz/işlem bütçesi belirlenecek | Gereksinimler §8, A-009 |
 

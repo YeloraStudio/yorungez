@@ -159,11 +159,14 @@ See [SECURITY.md](SECURITY.md) and the [publication review](docs/open-source-pub
 
 The [requirements](docs/urun-gereksinimleri.md), [roadmap](docs/yol-haritasi.md) and [traceability](docs/teslimat-izlenebilirligi.md) remain the source of scope. Publication does not complete remaining acceptance work:
 
+- Sourced atlas photographs, concise information, catalogue coverage and independently validated event types; the current information/visual priority remains in place.
 - Physical GPS/compass permission, direction, calibration and stale-data acceptance.
 - Cross-browser/device PWA installation, update and storage-eviction acceptance.
-- Production hardening and demonstrated backup/restore for private records.
+- Production acceptance remains open; public deployment is deferred by the owner. A synthetic local restore drill passed, and new backup/trash work is currently deferred.
 - Additional calendar event types with explicit sources and independent validation.
 - Later catalogue, equipment and terrestrial observing-site capabilities, guided by existing priorities.
+
+The [2 November plan audit and checklist](docs/web-tamamlama-ve-ortak-backend-mobil-hedef.md) records implemented, partial and deferred work. The next platform goal is a mobile application using the same .NET backend, accounts and data **after Web acceptance**; no native framework has been selected.
 
 ## Contribute
 
