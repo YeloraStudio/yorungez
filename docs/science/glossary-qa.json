@@ -14,11 +14,13 @@
     "hashBackAndForward": "passed",
     "unknownFragmentRecovery": "passed",
     "horizontalOverflowAt320": false,
+    "longPanelHeaderVisibleAtLastTerm": true,
+    "longPanelMeasuredScrollPixels": 10668,
     "measuredSelectedTermLinkHeightsPixels": [44, 44],
     "multipleSources": "Compass: NOAA and W3C both shown"
   },
   "offline": {
-    "coreVersion": "17e506e5fa91853fc5db",
+    "coreVersion": "f6cf8fe82ae8ce0ff320",
     "coreFiles": 68,
     "approximateCoreMiB": 5.2,
     "explicitUpdateFromOldPack": "passed",

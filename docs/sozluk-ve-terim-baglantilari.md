@@ -19,7 +19,7 @@ Genel, hesap gerektirmeyen sayfalar **`/en/terms`** ve **`/tr/terms`**. Sabit ba
 
 Doğrudan bağlantı ve hash değişimi ilgili başlığı odaklar ve görünür alana getirir. Dil bağlantısı aynı terimi korur. Tarayıcı geri/ileri navigasyonu hash seçimini geri yükler. Arama başlatmak hedef seçimini kaldırır; arama taslağı URL'ye veya tarayıcı kalıcılığına yazılmaz. Eksik/bozuk hash hata fırlatmaz; kullanıcıya açıklanır ve bütün terimler aranabilir kalır. Haritadaki ayrı sayfa/terim bağlantıları yeni sekmede açılarak mevcut haritanın bellekteki bağlamını korur.
 
-Sayfa `h1 → h2`, harita dialog'u `h2 → h3` başlık düzenini kullanır. Sözlükte iç içe iki kaydırma kutusu kaldırıldı; sayfa/dialog kendi yüzeyinde kayar. Uzun başlık/kısaltma ve kaynak adresleri dar ekranda kırılır. Kaynak/terim bağlantılarının dokunma yüksekliği en az 44 px; arama yazısı 16 px'tir.
+Sayfa `h1 → h2`, harita dialog'u `h2 → h3` başlık düzenini kullanır. Sözlükte iç içe iki kaydırma kutusu kaldırıldı; sayfa/dialog kendi yüzeyinde kayar. Uzun panelde geri/kapat başlığı sabit kalır; 52 terimli listenin sonuna klavyeyle gidildiğinde de erişilebilirdir. [Son terimde başlık kanıtı](ux/glossary/long-panel-header-en.jpg). Uzun başlık/kısaltma ve kaynak adresleri dar ekranda kırılır. Kaynak/terim bağlantılarının dokunma yüksekliği en az 44 px; arama yazısı 16 px'tir.
 
 ![Search Turkish while reading English](ux/glossary/search-desktop-en.jpg)
 
@@ -27,7 +27,7 @@ Sayfa `h1 → h2`, harita dialog'u `h2 → h3` başlık düzenini kullanır. Sö
 
 ## Genel PWA ve mahremiyet
 
-`build-offline.mjs`, iki sözlük HTML'ini ve derleme bağımlılıklarını mevcut SHA-256/byte çekirdek envanterine ekler; her HTML'in statik bağımlılıkları derlemede doğrulanır. Test edilen yerel paket **`17e506e5fa91853fc5db`**, **68 çekirdek dosya / yaklaşık 5,2 MiB**; önceki TECH-11B yaklaşık 5,1 MiB idi. İsteğe bağlı 88 görsel/12,7 MiB değişmedi.
+`build-offline.mjs`, iki sözlük HTML'ini ve derleme bağımlılıklarını mevcut SHA-256/byte çekirdek envanterine ekler; her HTML'in statik bağımlılıkları derlemede doğrulanır. Test edilen yerel paket **`f6cf8fe82ae8ce0ff320`**, **68 çekirdek dosya / yaklaşık 5,2 MiB**; önceki TECH-11B yaklaşık 5,1 MiB idi. İsteğe bağlı 88 görsel/12,7 MiB değişmedi.
 
 Önbellek yalnız açık envanterdeki genel GET kaynaklarını kapsar. Sorgulu URL, RSC, POST, kişisel kayıt, oturum ve koordinat önbelleği eklenmedi. Aynı iki dildeki tanımlar statik HTML'de bulunur; arama istemcide çalışır. Sözlük kendi başına yeni PWA kaydı başlatmaz; ilk hazır haritadan sonraki mevcut kayıt/güncelleme sözleşmesi korunur. İlk ziyaret/paket hazırlanmamışsa bağlantı gereksinimi sürer.
 
