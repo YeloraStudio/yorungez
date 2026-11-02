@@ -1,5 +1,7 @@
 # TECH-04 — Gerçek cihaz GPS ve pusula doğrulama protokolü
 
+**K-038:** [S23 genel kullanım/PWA kullanıcı bildirimi ve sensör izin engeli](mobil-kart-samanyolu-ve-pusula-erisim.md) kaydedildi. Kontrollü DV ölçümleri ve izin sonrası pusula kabulü yerine geçmez; iPhone bekler.
+
 **TECH-08 hazırlığı:** S23/Chrome ve iPhone 15/Safari cihaz matrisi belirlendi; erişilebilir HTTPS test adresi henüz yok. [Oturum kartı](telefon-kabul-oturumu.md), [masaüstü kanıt ve yazılım düzeltmeleri](responsive-cihaz-ve-pwa-kabulu.md). Aşağıdaki DV satırları fiziksel ölçüm yapılana kadar bekliyor kalır.
 
 **TECH-04D ek senaryosu:** Sensörsüz hedef yön/yükseklik/meraklısına ve özel liste/tarih kontrolleri masaüstünde sınanır; DV-07/12 fiziksel GPS/pusula ve VoiceOver/TalkBack yerine geçmez. Sensör bölümü kapatılınca dinleyici durmalı. [Güncel yazılım](ortak-bilesenler-ve-sensorsuz-gozlem.md).

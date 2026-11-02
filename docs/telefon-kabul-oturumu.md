@@ -1,5 +1,7 @@
 # Telefon kabul oturumu — S23 / iPhone 15
 
+**K-038 güncel cihaz bildirimi:** S23 Chrome/Brave ve PWA ekleyip genel kullanım için kullanıcı olumlu sonuç bildirdi. USB-localhost yönlendirmesi kuruldu. Pusulada sensör erişimi açılamadı; Chrome Hareket sensörleri engeli kullanıcı tarafından doğrulandı. İzin sonrası pusula/ölçümlü GPS/tam DV ve iPhone kabulü açık; [kapsam ve kanıt](mobil-kart-samanyolu-ve-pusula-erisim.md). Aşağıdaki önceki hazırlık kaydı tarihsel durumdur.
+
 **K-032 / 2 Kasım 2026:** Kullanıcı deployment/HTTPS ve canlı yayını erteledi. Public HTTPS oturumu, kullanıcı ortam hazır olduğunu bildirene kadar beklemede; domain/alt alan adı/tünel kurulumu kendiliğinden başlatılmaz. Yerel geliştirme [ayrı iş sırasıyla](yayin-oncesi-yerel-plan.md) devam eder.
 
 **Durum: hazırlanmış protokol; fiziksel oturum yürütülmedi.** Mevcut [DV-01–12 protokolünün](cihaz-konum-pusula-dogrulamasi.md) cihaz bazlı uygulama kartıdır. Masaüstü viewport veya sentetik sensör sonucu telefon kabulü olarak işaretlenmez.
@@ -14,7 +16,7 @@ Test URL'si, Web/BFF kökeni, API'nin beklediği Web kökeni ve e-posta dönüş
 
 | Cihaz | Tarayıcı | OS/tarayıcı sürümü | Sonuç |
 |---|---|---|---|
-| Samsung Galaxy S23 | Chrome | Oturumda kaydedilecek | Bekliyor |
+| Samsung Galaxy S23 | Chrome / Brave / PWA | Sürümler henüz kaydedilmedi | Genel kullanım/kurulum kullanıcı bildirimi olumlu; pusula başlangıçta engelli; tam DV açık |
 | iPhone 15 | Safari | Oturumda kaydedilecek | Bekliyor |
 
 Chrome/Brave/Edge masaüstü sonuçları ayrı tutulur; kurulu olması test edildiği anlamına gelmez. Bilgisayarda IAB ve Brave yazılım kontrolleri [TECH-08'de](responsive-cihaz-ve-pwa-kabulu.md) kayıtlıdır.

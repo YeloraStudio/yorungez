@@ -1,0 +1,41 @@
+{
+  "package": "TECH-11E / K-038",
+  "date": "2026-11-02",
+  "automated": {"clientTests": 62, "typecheck": "passed", "productionBuild": "passed"},
+  "ownerReport": {
+    "device": "Samsung Galaxy S23",
+    "ChromeAndBraveGeneralUse": "positive user report",
+    "PwaAddedAndUsed": "positive user report",
+    "osAndBrowserVersions": "not collected",
+    "compassInitialResult": "sensor access could not be opened",
+    "chromeMotionSensorSetting": "user confirmed blocked",
+    "afterPermissionChange": "not yet observed or confirmed"
+  },
+  "ui": {
+    "environment": "IAB production preview on isolated localhost:5197; public Istanbul example only",
+    "languages": ["en", "tr"],
+    "viewports": [[320,740],[393,852],[780,360]],
+    "horizontalOverflow": false,
+    "headerAndBodyBackground": "transparent; one panel surface",
+    "scrolledBodyHeaderAndCloseAccessible": true,
+    "compactCardRestore": "passed",
+    "milkyWaySearchAndVisibleEsoCredit": "passed",
+    "milkyWayNoFabricatedPointCoordinates": true,
+    "regionNavigation": "con-sgr; schematic Sagittarius / Archer / Yay",
+    "andromedaConstellationAndM31Labels": "distinct",
+    "sensorDiagnostics": "trusted context, granted request and permissions, relative-only data; no north invented"
+  },
+  "offline": {
+    "version": "2d7195b7d24710660484",
+    "coreFiles": 68,
+    "approximateCoreMiB": 5.3,
+    "optionalImages": 100,
+    "approximateImageMiB": 14.1,
+    "imagesPreparedFromUi": "100/100",
+    "qaPreviewStoppedAndMilkyWayReopened": true,
+    "searchTextImageAndCredit": "passed",
+    "phonePreview5196KeptRunningDuringOfflineTest": true,
+    "qaPreviewRestarted": true
+  },
+  "limits": ["User report is separate from controlled physical acceptance", "No real account, email, coordinates or raw sensor stream retained", "No sensor policy or browser protection bypass", "No ephemeris or calibrated Milky Way rendering change", "S23 compass after grant, quantitative GPS, full device versions/protocol and iPhone acceptance remain open", "Public deployment remains deferred"]
+}

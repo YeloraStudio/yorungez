@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "milkyWay": {
+    "id": "milky-way",
+    "names": {
+      "en": "Milky Way",
+      "tr": "Samanyolu"
+    },
+    "aliases": [
+      "Milky Way",
+      "milkyway",
+      "Milky Way Galaxy",
+      "Samanyolu",
+      "Samanyolu Galaksisi",
+      "Saman yolu"
+    ],
+    "description": {
+      "en": "The Milky Way is our home galaxy. We look through its disk from within, seeing a broad band of stars, gas and dust across the sky. It is an extended sky feature, rather than a single target with one direction or rise/set time.",
+      "tr": "Samanyolu, içinde bulunduğumuz galaksidir. Diskine içeriden baktığımız için gökyüzüne yayılan yıldız, gaz ve toz kuşağını görürüz. Tek bir yönü veya doğuş/batış saati olan noktasal bir hedef değildir."
+    },
+    "region": {
+      "id": "con-sgr",
+      "en": "The central region lies toward Sagittarius. Explore that constellation as a schematic region; its marker is not a precise position for the whole galaxy. Dark skies are needed to see the band; weather, moonlight and light pollution still matter.",
+      "tr": "Merkez bölgesi Yay takımyıldızı yönündedir. Yay'ı şematik bir bölge olarak inceleyebilirsin; işareti tüm galaksinin hassas konumu değildir. Kuşağı görmek için karanlık gökyüzü gerekir; hava, Ay ışığı ve ışık kirliliği de etkilidir."
+    },
+    "sources": [
+      {
+        "label": "NASA · Milky Way",
+        "url": "https://imagine.gsfc.nasa.gov/science/objects/milkyway1.html"
+      },
+      {
+        "label": "NASA Night Sky Network · City of Stars, pp. 1, 4",
+        "url": "https://nightsky.jpl.nasa.gov/docs/DiscoverySeptember.pdf"
+      }
+    ],
+    "image": {
+      "url": "/objects/milky-way.jpg",
+      "originalUrl": "https://cdn.eso.org/images/screen/eso0932a.jpg",
+      "sourceUrl": "https://www.eso.org/public/images/eso0932a/",
+      "credit": "ESO/S. Brunier",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "rightsSourceUrl": "https://www.eso.org/public/outreach/copyright/",
+      "sourceReleaseDate": "2009-09-14",
+      "note": "Unaltered supplied screensize JPEG. Processed all-sky panorama from within our galaxy, not an external view, current date or naked-eye brightness. Full-resolution 800-million-pixel original is not redistributed.",
+      "sha256": "9055c7a801035211706565d838a6fa52ac9e670168b788e0008bd947e55e5c0e",
+      "bytes": 155879,
+      "fetchedAtUtc": "2026-11-02T19:03:13.223587+00:00"
+    }
+  }
+}

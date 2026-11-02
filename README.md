@@ -34,6 +34,7 @@ The name combines the Turkish words *yörünge* (orbit) and *gezmek* (to explore
 | Browse events | A sourced calendar distinguishing calculated events from independently compared Moon-phase references. |
 | Find a direction | True-bearing/altitude guidance and a sensor-free observing brief; optional device compass with permission/alignment safeguards. |
 | Adjust the view | Atmosphere, photographic landscape, deep-sky objects, constellations, artwork, grids, night mode and full screen. Terrain becomes transparent for targets below the horizon. |
+| Explore our galaxy | Search Milky Way / Samanyolu for an attributed archival panorama and extended-sky context; explore the Sagittarius region without inventing one position for the whole galaxy. |
 | Learn terminology | 52 paired English/Turkish terms with plain-language explanations, all sources, cross-language search and stable links on shared map/standalone glossary surfaces. |
 | Keep a notebook | Verified accounts save notes, favourites, observations and locations in PostgreSQL. Personal records require a connection. |
 | Reopen offline | A versioned, hash-checked PWA package provides the general catalogue, terms, calendar and calculation assets. |

@@ -16,6 +16,8 @@ Detailed product/delivery records are currently mostly Turkish. Newer decisions 
 
 ## Current implementation
 
+- [Mobile card surface / Milky Way search / browser compass access and owner device report](mobil-kart-samanyolu-ve-pusula-erisim.md)
+
 - [Sourced object photographs / card UX / domain-free S23 local preview](gok-cismi-gorselleri-ve-yerel-telefon-testi.md)
 
 - [Deepen the shared glossary: bilingual search, stable term links and offline pages](sozluk-ve-terim-baglantilari.md)
