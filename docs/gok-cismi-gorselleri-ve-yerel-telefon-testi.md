@@ -21,9 +21,9 @@ Diğer hedefler lisansı bilinen Commons fotoğrafını kullanabilir. Fotoğraf 
 
 ## PWA ve doğrulama
 
-**59 istemci testi, TypeScript ve üretim derlemesi geçti.** Yeni regresyonlar: fotoğraf hak/URL/MIME doğrulaması, bütün yerel fotoğraf hash/atıfları, kuzey geçişinde kesit ve kutup engeli, Mars/Marsic ve katalog kimlikleri. Normal test/build dışarıdan bilimsel veri veya fotoğraf indirmez; fotoğraf yenileme yalnız `python scripts/science/prepare_object_media.py --refresh` ile açıktır.
+**59 istemci testi, TypeScript ve üretim derlemesi geçti.** Yeni regresyonlar: fotoğraf hak/URL/MIME doğrulaması, bütün yerel fotoğraf hash/atıfları, kuzey geçişinde kesit ve kutup engeli, Mars/Marsic ve katalog kimlikleri. İlk CodeQL incelemesinin bulduğu çift HTML entity çözümleme düzeltilerek tek geçiş ve iç içe entity regresyonu eklendi; yeni derleme yeniden doğrulandı. Normal test/build dışarıdan bilimsel veri veya fotoğraf indirmez; fotoğraf yenileme yalnız `python scripts/science/prepare_object_media.py --refresh` ile açıktır.
 
-Test edilen paket **`eaa63fa06f02104527a3`**: **68 çekirdek dosya / yaklaşık 5,3 MiB**, **99 isteğe bağlı görsel / yaklaşık 13,9 MiB**. Yeni fotoğraflar çekirdeğe zorunlu indirme değildir. Hazırlanan genel görseller çevrimdışı açılır; ansiklopedi metinleri harici/isteğe bağlıdır ve offline garantili değildir. Kişisel kayıt/oturum/koordinat kalıcılığı eklenmedi.
+Test edilen paket **`d1302ee3a9a1c169defa`**: **68 çekirdek dosya / yaklaşık 5,3 MiB**, **99 isteğe bağlı görsel / yaklaşık 13,9 MiB**. Yeni fotoğraflar çekirdeğe zorunlu indirme değildir. Hazırlanan genel görseller çevrimdışı açılır; ansiklopedi metinleri harici/isteğe bağlıdır ve offline garantili değildir. Kişisel kayıt/oturum/koordinat kalıcılığı eklenmedi.
 
 IAB üretim önizlemesinde 12 hedefin doğru fotoğrafı, iki dil, 393×852/320×740/780×360 viewport ve masaüstü kontrol edildi. Yatay taşma görülmedi; uzun kartta başlık/kapat kaydırmaya rağmen erişilebilir kaldı. Önceki paketten açık güncelleme yapıldı, 99 görsel UI'dan hazırlandı; yalnız ajanın 5196 önizlemesi kapatılıp yeniden açılan haritada Satürn fotoğrafı doğrulandı, Wikipedia bağlantı hatası dürüstçe gösterildi. Önizleme yeniden başlatıldı. İşletim sistemi ağı, normal Web/API/Docker veya kullanıcı sekmeleri kapatılmadı. [Makine okunur kanıt ve sınırlar](science/object-visuals-qa.json).
 

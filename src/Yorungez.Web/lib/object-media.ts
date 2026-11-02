@@ -4,7 +4,8 @@ interface CommonsInfo {url?:string;thumburl?:string;descriptionurl?:string;mime?
 /** Interpret explicit per-file rights; a missing URL is not itself a missing public-domain declaration. */
 export function commonsImage(info:CommonsInfo|undefined):ArchiveImage|null{
  if(!info)return null;
- const value=(key:string)=>plainArticleText(info.extmetadata?.[key]?.value??'').replace(/&amp;/g,'&').replace(/&quot;/g,'"').replace(/&#0?39;/g,"'").replace(/&nbsp;/g,' ');
+ const entities:Record<string,string>={'&amp;':'&','&quot;':'"','&#39;':"'",'&#039;':"'",'&nbsp;':' '};
+ const value=(key:string)=>plainArticleText(info.extmetadata?.[key]?.value??'').replace(/&(?:amp|quot|nbsp|#0?39);/g,entity=>entities[entity]);
  const url=info.thumburl??info.url,sourceUrl=info.descriptionurl,credit=value('Artist'),license=value('LicenseShortName');
  if(!url||!sourceUrl||!credit||!license)return null;
  if(info.mime&&!['image/jpeg','image/png','image/webp'].includes(info.mime))return null;

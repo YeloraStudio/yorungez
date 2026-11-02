@@ -10,6 +10,7 @@ import type {SkyFrame} from '../lib/sky/frame-contract.ts';
 const info={url:'https://upload.wikimedia.org/wikipedia/commons/a/ab/example.jpg',descriptionurl:'https://commons.wikimedia.org/wiki/File:Example.jpg',extmetadata:{Artist:{value:'NASA &amp; ESA'},LicenseShortName:{value:'Public domain'},Copyrighted:{value:'False'}}};
 test('explicit Commons public-domain metadata has a source-backed rights link; unknown rights and unsafe URLs remain rejected',()=>{
  const photo=commonsImage(info);assert.equal(photo?.credit,'NASA & ESA');assert.equal(photo?.licenseUrl,info.descriptionurl+'#Licensing');
+ assert.equal(commonsImage({...info,extmetadata:{...info.extmetadata,Artist:{value:'NASA &amp;quot; &quot;ESA&quot; &#039;team&#39;'}}})?.credit,'NASA &quot; "ESA" \'team\'');
  assert.equal(commonsImage({...info,extmetadata:{...info.extmetadata,Copyrighted:{value:'True'}}}),null);
  assert.equal(commonsImage({...info,url:'http://upload.wikimedia.org/a.jpg'}),null);
  assert.equal(commonsImage({...info,mime:'image/svg+xml'}),null);
