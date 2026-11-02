@@ -16,6 +16,8 @@ Detailed product/delivery records are currently mostly Turkish. Newer decisions 
 
 ## Current implementation
 
+- [Bilingual keyboard / account / date control audit, first package](iki-dil-klavye-denetimi.md)
+
 - [Local PostgreSQL / key-ring recovery drill](yerel-yedek-geri-yukleme.md)
 
 - [Brand integration / evidence](marka-logolari.md), [brand originals / exports / prompt](../data/branding/README.md)

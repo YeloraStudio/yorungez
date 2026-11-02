@@ -1,5 +1,5 @@
 "use client";
-import {useState} from 'react';
+import {useEffect,useId,useRef,useState} from 'react';
 import {accountRequest,AccountError,type AccountUser} from '../lib/account.ts';
 import type {Language} from '../lib/sky/types.ts';
 const text={
@@ -7,7 +7,9 @@ const text={
  en:{intro:'Sign in or create a free account to keep notes, favorites, observations and locations in your account. Exploring the sky does not require an account.',login:'Sign in',register:'Create account',email:'Email',password:'Password',help:'Use 15–128 characters. Choose a long, memorable password.',forgot:'Forgot password',reset:'Send reset link',wait:'Check your email',waiting:'If the address is eligible, a verification link will be sent. Open it to verify your email, then sign in.',resend:'Resend verification email',accepted:'If the address is eligible, an email will be sent. Check your inbox and spam folder.',unverified:'Verify your email before signing in.',invalid:'The email or password is incorrect. Try again.',unavailable:'The server could not be reached. The account service is temporarily unavailable. Please retry shortly.',limit:'Too many attempts. Wait a little and try again.',input:'Check the fields. Registration passwords must contain 15–128 characters.',busy:'Working…',back:'Back to sign in',firstName:'First name',lastName:'Last name',invalidName:'Enter your first and last name, up to 100 characters each.',offline:'You are offline. Account actions require a connection.'}
 } as const;
 export default function AccountPanel({language,onSignedIn,initialView='login'}:{language:Language;initialView?:'login'|'register';onSignedIn:(user:AccountUser)=>void}){
- const t=text[language],[view,setView]=useState<'login'|'register'|'wait'|'forgot'>(initialView),[email,setEmail]=useState(''),[busy,setBusy]=useState(false),[error,setError]=useState(''),[message,setMessage]=useState(false);
+ const t=text[language],id=useId(),[view,setView]=useState<'login'|'register'|'wait'|'forgot'>(initialView),[email,setEmail]=useState(''),[busy,setBusy]=useState(false),[error,setError]=useState(''),[message,setMessage]=useState(false);
+ const heading=useRef<HTMLHeadingElement>(null),previousView=useRef(view);
+ useEffect(()=>{if(previousView.current!==view){heading.current?.focus({preventScroll:true});previousView.current=view}},[view]);
  const move=(v:typeof view)=>{setView(v);setError('');setMessage(false)};
  async function submit(form:HTMLFormElement,action:string){
   setBusy(true);setError('');setMessage(false);
@@ -17,13 +19,13 @@ export default function AccountPanel({language,onSignedIn,initialView='login'}:{
   finally{const password=form.elements.namedItem('password');if(password instanceof HTMLInputElement)password.value='';setBusy(false)}
  }
  const action=view==='register'?'register':view==='forgot'?'forgot-password':view==='wait'?'resend-confirmation':'login';
- return <section className="account-panel"><p className="muted">{t.intro}</p><div className="account-tabs" aria-label={language==='tr'?'Hesap işlemleri':'Account actions'}><button type="button" className={view==='login'?'primary-button':'secondary-button'} disabled={busy} onClick={()=>move('login')}>{t.login}</button><button type="button" className={view==='register'?'primary-button':'secondary-button'} disabled={busy} onClick={()=>move('register')}>{t.register}</button></div>
-  <h3>{view==='wait'?t.wait:view==='forgot'?t.forgot:view==='register'?t.register:t.login}</h3>{view==='wait'&&<p>{t.waiting}</p>}
+ return <section className="account-panel" aria-labelledby={id+'-heading'} aria-busy={busy}><p className="muted">{t.intro}</p><div className="account-tabs" aria-label={language==='tr'?'Hesap işlemleri':'Account actions'}><button type="button" className={view==='login'?'primary-button':'secondary-button'} aria-pressed={view==='login'} disabled={busy} onClick={()=>move('login')}>{t.login}</button><button type="button" className={view==='register'?'primary-button':'secondary-button'} aria-pressed={view==='register'} disabled={busy} onClick={()=>move('register')}>{t.register}</button></div>
+  <h3 ref={heading} id={id+'-heading'} tabIndex={-1}>{view==='wait'?t.wait:view==='forgot'?t.forgot:view==='register'?t.register:t.login}</h3>{view==='wait'&&<p>{t.waiting}</p>}
   {error&&<p className="form-error" role="alert">{error==='Identity.InvalidName'?t.invalidName:error==='Account.Offline'?t.offline:error==='Identity.EmailNotConfirmed'?t.unverified:error==='Identity.InvalidCredentials'?t.invalid:error==='Common.RateLimited'?t.limit:error.includes('Invalid')?t.input:t.unavailable}</p>}
   {message&&<p role="status">{t.accepted}</p>}
   <form key={view} onSubmit={e=>{e.preventDefault();void submit(e.currentTarget,action)}}>{view==='register'&&<div className="name-fields"><label>{t.firstName}<input name="firstName" autoComplete="given-name" maxLength={100} required disabled={busy}/></label><label>{t.lastName}<input name="lastName" autoComplete="family-name" maxLength={100} required disabled={busy}/></label></div>}<label>{t.email}<input name="email" type="email" autoComplete="email" maxLength={254} required value={email} disabled={busy} onChange={e=>setEmail(e.target.value)}/></label>
-   {(view==='login'||view==='register')&&<label>{t.password}<input name="password" type="password" autoComplete={view==='register'?'new-password':'current-password'} minLength={view==='register'?15:1} maxLength={128} required disabled={busy}/></label>}
-   {view==='register'&&<p className="muted compact">{t.help}</p>}<button className="primary-button" disabled={busy}>{busy?t.busy:view==='wait'?t.resend:view==='forgot'?t.reset:view==='register'?t.register:t.login}</button>
+   {(view==='login'||view==='register')&&<label>{t.password}<input name="password" type="password" autoComplete={view==='register'?'new-password':'current-password'} minLength={view==='register'?15:1} aria-describedby={view==='register'?id+'-password-help':undefined} maxLength={128} required disabled={busy}/></label>}
+   {view==='register'&&<p className="muted compact" id={id+'-password-help'}>{t.help}</p>}<button className="primary-button" disabled={busy}>{busy?t.busy:view==='wait'?t.resend:view==='forgot'?t.reset:view==='register'?t.register:t.login}</button>
   </form>
   {view==='login'&&<div className="notebook-actions"><button type="button" className="inline-term" disabled={busy} onClick={()=>move('forgot')}>{t.forgot}</button><button type="button" className="inline-term" disabled={busy} onClick={()=>move('wait')}>{t.resend}</button></div>}
   {(view==='wait'||view==='forgot')&&<button type="button" className="inline-term" disabled={busy} onClick={()=>move('login')}>{t.back}</button>}

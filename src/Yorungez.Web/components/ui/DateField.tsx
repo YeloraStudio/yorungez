@@ -23,10 +23,10 @@ export default function DateField({label,value,onChange,language,name,min='2000-
     <button type="button" className="calendar-step" aria-label={text.next} disabled={day.with({day:1}).toString()>=maximum.with({day:1}).toString()} onClick={()=>move(day.add({months:1}).toString())}>›</button>
    </div>
    <p className="calendar-caption" aria-live="polite">{monthName(day.month)} {day.year}</p>
-   <table ref={grid} className="date-grid" role="grid" aria-label={`${monthName(day.month)} ${day.year}`} onKeyDown={event=>{const next=moveCalendarDay(cursor,event.key,event.shiftKey);if(next){event.preventDefault();event.stopPropagation();move(next,true)}}}>
+   <table ref={grid} className="date-grid" role="grid" aria-label={`${monthName(day.month)} ${day.year}`} aria-describedby={id+'-help'} onKeyDown={event=>{const next=moveCalendarDay(cursor,event.key,event.shiftKey);if(next){event.preventDefault();event.stopPropagation();move(next,true)}}}>
     <thead><tr>{Array.from({length:7},(_,i)=>{const d=new Date(Date.UTC(2026,5,1+i));return <th key={i} scope="col" abbr={new Intl.DateTimeFormat(language,{weekday:'long',timeZone:'UTC'}).format(d)}>{new Intl.DateTimeFormat(language,{weekday:'short',timeZone:'UTC'}).format(d)}</th>})}</tr></thead>
     <tbody>{Array.from({length:6},(_,week)=><tr key={week}>{cells.slice(week*7,week*7+7).map(cell=>{const v=cell.toString(),selected=v===value;return <td key={v} role="gridcell" aria-selected={selected}><button data-day={v} type="button" tabIndex={v===cursor?0:-1} className={cell.month===day.month?'':'other-month'} disabled={v<min||v>max} aria-label={format(v,'full')} data-selected={selected} onClick={()=>{onChange(v);close()}}>{cell.day}</button></td>})}</tr>)}</tbody>
-   </table><p className="picker-help">{text.help}</p><button type="button" className="picker-close" onClick={()=>close()}>{text.close}</button>
+   </table><p className="picker-help" id={id+'-help'}>{text.help}</p><button type="button" className="picker-close" onClick={()=>close()}>{text.close}</button>
   </PickerPopover>}
  </div>;
 }

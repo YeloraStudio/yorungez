@@ -1,5 +1,7 @@
 # K-032 — Dağıtım ertelenirken yerel çalışma sırası
 
+**TECH-11A sonucu:** İkinci sıradaki iki dil/erişilebilirlik işinin [ilk klavye/form paketi](iki-dil-klavye-denetimi.md) tamamlandı; gerçek ekran okuyucu/kontrast, kapsamlı E2E ve sözlük/derin bağlantı işleri açık. Bu satır ikinci sıranın tümü tamamlandı anlamına gelmez.
+
 **TECH-10 sonucu:** Birinci sıradaki sentetik yerel yedek/geri yükleme provası geçti; [127 .NET testi, kanıt ve sınırlar](yerel-yedek-geri-yukleme.md). Sıradaki yerel paket ikinci sıradaki iki dil/erişilebilirlik denetimidir. Üretim yedek kabulü bekler.
 
 **2 Kasım 2026.** Kullanıcı uygulamanın deployment, HTTPS erişimi ve canlı yayına alınmasını erteledi. `yorungez.com` henüz alınmadı. Mevcut bir alan adında alt alan adı kullanılması yalnız gelecekteki bir olasılıktır; seçilmiş veya yapılandırılmış ortam değildir. Kullanıcı yeniden haber vermeden DNS/alt alan adı bağlama, tünel açma, HTTPS ortamı veya sunucu/Portainer dağıtımı yapılmaz.

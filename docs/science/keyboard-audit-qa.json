@@ -1,0 +1,38 @@
+{
+  "date": "2026-11-02",
+  "scope": "local-IAB-production-build; anonymous UI only",
+  "pack": "921777d6a6d69d7b38a2",
+  "languages": [
+    "en",
+    "tr"
+  ],
+  "viewport": {
+    "width": 320,
+    "height": 740
+  },
+  "results": [
+    "Home focuses first option without selecting",
+    "End focuses last option without selecting",
+    "Escape restores trigger and preserves selection",
+    "nested month escape preserves date/time dialog",
+    "date grid keyboard help is associated",
+    "registration password help is associated in both languages",
+    "account action pressed state identifies view",
+    "register/login/forgot/back moves focus to view heading",
+    "Tab from heading enters first form field",
+    "Escape from account dialog returns to menu trigger",
+    "320px form has no horizontal overflow in both languages"
+  ],
+  "formSubmitted": false,
+  "realEmailSent": false,
+  "physicalDeviceAcceptance": false,
+  "screenReaderAcceptance": false,
+  "contrastAcceptance": false,
+  "fullWcagAcceptance": false,
+  "remaining": [
+    "full authenticated browser E2E with test email capture",
+    "real assistive technology",
+    "contrast and zoom across transparent surfaces",
+    "standalone glossary and term deep links"
+  ]
+}
