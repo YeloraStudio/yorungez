@@ -31,7 +31,7 @@ try:
                     "-out", str(directory / "cert.pem")], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     subprocess.run(["openssl", "pkcs12", "-export", "-inkey", str(directory / "key.pem"),
                     "-in", str(directory / "cert.pem"), "-out", str(directory / "keyring.pfx"),
-                    "-passout", "env:YORUNGEZ_CERT_PASSWORD"], check=True)
+                    "-passout", "env:YORUNGEZ_CERT_PASSWORD"], env=env, check=True)
 finally:
     for name in ["key.pem", "cert.pem"]:
         (directory / name).unlink(missing_ok=True)
