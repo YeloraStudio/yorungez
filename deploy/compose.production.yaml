@@ -3,6 +3,7 @@ x-api-environment: &api-environment
   ASPNETCORE_ENVIRONMENT: Production
   ASPNETCORE_HTTP_PORTS: '8080'
   ASPNETCORE_HTTPS_PORT: '443'
+  Serilog__MinimumLevel__Default: ${API_LOG_LEVEL:-Information}
   AllowedHosts: 'api.yorungez.com;yorungez-api-internal;api;localhost;127.0.0.1'
   ConnectionStrings__Identity: 'Host=postgres;Database=yorungez;Username=yorungez;Password=${POSTGRES_PASSWORD:?required}'
   ConnectionStrings__Redis: 'redis:6379,password=${REDIS_PASSWORD:?required},abortConnect=false'
@@ -26,6 +27,11 @@ x-api-environment: &api-environment
   ReverseProxy__TrustCloudflare: 'true'
 x-api: &api
   image: ${API_IMAGE:?build and tag the API image first}
+  logging:
+    driver: json-file
+    options:
+      max-size: '10m'
+      max-file: '5'
   environment: *api-environment
   volumes:
     - ${KEYRING_PATH:?absolute Ubuntu directory}:/var/lib/yorungez/keys

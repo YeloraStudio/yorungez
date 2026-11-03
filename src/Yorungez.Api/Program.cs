@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Serilog;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Http.Features;
@@ -31,6 +32,8 @@ var previewEmails = args.Contains("--preview-emails", StringComparer.Ordinal);
 var builder = WebApplication.CreateBuilder(args.Where(a => a is not ("--migrate" or "--check-smtp" or "--preview-emails")).ToArray());
 if (builder.Environment.IsDevelopment())
     builder.Configuration.AddJsonFile("appsettings.Local.json", optional: true, reloadOnChange: false).AddEnvironmentVariables();
+builder.Logging.ClearProviders();
+builder.Services.AddSerilog(ApiLogging.CreateLogger(builder.Configuration, builder.Environment.EnvironmentName), dispose: true);
 
 builder.Services.AddSingleton<ITextCatalog, TextCatalog>();
 builder.Services.Configure<RequestLocalizationOptions>(options =>
@@ -176,6 +179,8 @@ app.UseForwardedHeaders();
 // the rate-limit partition of the Cloudflare edge that carried the request.
 if (app.Configuration.GetValue("ReverseProxy:TrustCloudflare", false))
     app.Use(CloudflareClientAddress.Middleware(CloudflareClientAddress.EdgeNetworks));
+app.UseRouting();
+app.UseMiddleware<HttpRequestTelemetry>();
 app.UseRequestLocalization();
 app.UseExceptionHandler();
 app.UseStatusCodePages(async context =>

@@ -8,6 +8,7 @@ Recorded 2026-10-31. This inventory records selected components; it does not rep
 
 | Component | Pinned version | License evidence |
 |---|---|---|
+| Serilog.AspNetCore (and Serilog logging dependencies) | 10.0.0 integration; transitive pins in API lockfile | Apache-2.0; [upstream licence](https://github.com/serilog/serilog-aspnetcore/blob/v10.0.0/LICENSE), NuGet package licence metadata |
 | MediatR | 12.5.0 | Apache-2.0, verified in downloaded NuGet metadata and [tagged LICENSE](https://raw.githubusercontent.com/LuckyPennySoftware/MediatR/v12.5.0/LICENSE) |
 | CosineKitty.AstronomyEngine (C#), astronomy-engine (JS probe + Web Worker) | 2.1.19 | MIT verified in package metadata and [upstream license](https://raw.githubusercontent.com/cosinekitty/astronomy/v2.1.19/LICENSE); preserved [LICENSE](third-party/astronomy-engine/LICENSE) and [upstream record](third-party/astronomy-engine/UPSTREAM.json) |
 | ASP.NET Core / EF Core / Microsoft caching and testing packages | 10.0.14 package line | MIT, package metadata; [ASP.NET Core](https://github.com/dotnet/aspnetcore/blob/main/LICENSE.txt), [EF Core](https://github.com/dotnet/efcore/blob/main/LICENSE.txt) |

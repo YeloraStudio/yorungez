@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <ItemGroup>
+    <PackageReference Include="Serilog.AspNetCore" />
     <ProjectReference Include="../Modules/Notebook/Yorungez.Notebook.Infrastructure/Yorungez.Notebook.Infrastructure.csproj" />
     <ProjectReference Include="../Modules/Identity/Yorungez.Identity.Infrastructure/Yorungez.Identity.Infrastructure.csproj" />
     <ProjectReference Include="../Modules/Catalog/Yorungez.Catalog.Infrastructure/Yorungez.Catalog.Infrastructure.csproj" />

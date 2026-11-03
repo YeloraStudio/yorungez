@@ -21,7 +21,7 @@ public static class LocalizedProblems
     }
 }
 
-public sealed class ApiExceptionHandler(ILogger<ApiExceptionHandler> logger) : IExceptionHandler
+public sealed class ApiExceptionHandler : IExceptionHandler
 {
     public async ValueTask<bool> TryHandleAsync(HttpContext context, Exception error, CancellationToken ct)
     {
@@ -32,7 +32,7 @@ public sealed class ApiExceptionHandler(ILogger<ApiExceptionHandler> logger) : I
             BadHttpRequestException e => (e.StatusCode, e.StatusCode == 413 ? "Sky.RequestTooLarge" : "Common.InvalidInput"),
             _ => (500, "Common.Unexpected")
         };
-        if (status == 500) logger.LogError("Request failed ({ExceptionType}); request data omitted. Trace {TraceId}.", error.GetType().Name, context.TraceIdentifier);
+        context.Items[HttpRequestTelemetry.FailureKey] = error;
         await LocalizedProblems.Write(context, status, code);
         return true;
     }
