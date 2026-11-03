@@ -19,9 +19,24 @@ Yorungez is an open-source, map-first astronomy application built around one que
 
 The name combines the Turkish words *yörünge* (orbit) and *gezmek* (to explore). The experience starts with a full-screen sky, without requiring an account or equipment. English and Turkish are developed together; English is the default.
 
-![Yorungez's Turkish sky map reopening offline with public Istanbul example coordinates](docs/ux/pwa-account/offline-map-tr.png)
+## Day and night
 
-*Development screenshot using a public example location. Photographed terrain is an illustrative landscape, not the observer's actual surroundings. Object positions use the selected location and time.*
+The same public Istanbul example, camera and default layers on **3 November 2026**. Only the simulation time changes: **12:00 / 09:00 UTC** and **22:00 / 19:00 UTC** (`Europe/Istanbul`, GMT+03:00). Open either image for full size.
+
+| Day · 12:00 local | Night · 22:00 local |
+|---|---|
+| [![Yorungez daytime simulation with the Sun and photographic landscape](docs/ux/showcase/day.jpg)](docs/ux/showcase/day.jpg) | [![Yorungez night simulation with stars and the same landscape silhouette](docs/ux/showcase/night.jpg)](docs/ux/showcase/night.jpg) |
+
+<details>
+<summary>Mobile / PWA layout · night</summary>
+
+<img src="docs/ux/showcase/mobile-night.jpg" alt="Yorungez night simulation in a 390 by 844 responsive viewport" width="300">
+
+[Open the mobile screenshot](docs/ux/showcase/mobile-night.jpg). This is a responsive browser capture, not a physical-device performance or sensor test.
+
+</details>
+
+Actual application screenshots, with no personal account or device location. The landscape is **Ľubomír Hambálek's Stara Lesna Meadows**, an illustrative photographed environment in Slovakia, not the observer's local terrain. [Capture details and attribution](docs/ux/showcase/README.md). Celestial directions are calculated for the selected location/time; atmospheric brightness is an illustrative rendering.
 
 ## What you can do
 
@@ -33,7 +48,8 @@ The name combines the Turkish words *yörünge* (orbit) and *gezmek* (to explore
 | Plan tonight | Sunset-to-sunrise visibility intervals and navigation to a selected target and instant; explicit polar conditions. |
 | Browse events | A sourced calendar distinguishing calculated events from independently compared Moon-phase references. |
 | Find a direction | True-bearing/altitude guidance and a sensor-free observing brief; optional device compass with permission/alignment safeguards. |
-| Adjust the view | Atmosphere, photographic landscape, deep-sky objects, constellations, artwork, grids, night mode and full screen. Terrain becomes transparent for targets below the horizon. |
+| Adjust the view | Atmosphere, native **4096×2048 panorama** on supported GPUs with bounded lower-resolution fallback, deep-sky objects, constellations, artwork, grids, night mode and full screen. Terrain becomes transparent below the horizon. |
+| Inspect object imagery | 13 locally bundled archive-photo targets; licensed on-demand imagery or an explicitly labelled calculated finder view elsewhere. Source, credit and scientific context stay separate. |
 | Explore our galaxy | Search Milky Way / Samanyolu for an attributed archival panorama and extended-sky context; explore the Sagittarius region without inventing one position for the whole galaxy. |
 | Learn terminology | 52 paired English/Turkish terms with plain-language explanations, all sources, cross-language search and stable links on shared map/standalone glossary surfaces. |
 | Keep a notebook | Verified accounts save notes, favourites, observations and locations in PostgreSQL. Personal records require a connection. |
@@ -45,7 +61,7 @@ Live mode computes directions locally for the current UTC time and observer; cat
 
 ## Status and scientific boundaries
 
-**Active development / experimental preview.** Implemented software and recorded developer checks are distinct from full product acceptance. Physical GPS/compass validation, broader browser/device acceptance and production backup/restore acceptance remain open. There is no production-readiness or blanket scientific-accuracy certification.
+**Active development / experimental preview.** S23 Chrome/Brave and added-PWA general use received positive owner feedback; measured GPS, post-permission compass and the complete iPhone/Safari protocol remain open. Implemented software and recorded developer checks are distinct from full product acceptance. Physical GPS/compass validation, broader browser/device acceptance and production backup/restore acceptance remain open. There is no production-readiness or blanket scientific-accuracy certification.
 
 Calculations use pinned Astronomy Engine 2.1.19 behind application adapters. Ordinary tests read frozen independent references and do not contact JPL or download fresh catalogues.
 
@@ -55,7 +71,7 @@ Calculations use pinned Astronomy Engine 2.1.19 behind application adapters. Ord
 | JPL Horizons comparisons | 1,168 comparisons; two polar-azimuth exceptions remain documented. The API withholds azimuth at absolute latitude ≥89°. |
 | USNO Moon phases | 1,781 reference instants; maximum recorded difference 79.946 s against a 120 s tolerance. |
 | USNO rise/set | 22 reference samples; maximum recorded difference 25.48 s against a 180 s tolerance. |
-| Application checks | Pre-publication baseline: 125 .NET tests and 44 client tests, with a production Web build. Current CI is linked above. |
+| Application checks | **3 November 2026 baseline: 127 .NET tests, 65 client tests**, typecheck and production Web build; Linux production image/migration/readiness/BFF smoke checks passed in [PR #18 CI](https://github.com/YeloraStudio/yorungez/actions/runs/41627158885). |
 
 The present calculation interval is **2000-01-01 through 2036-01-01 exclusive**. Geometric position, standard rise/set, weather conditions and actual detectability are separate concepts. Unknown weather or local obstructions remain unknown. A personal observation is a user's declaration, not independent scientific verification. Rendering brightness is not calibrated photometry.
 
@@ -145,13 +161,26 @@ python scripts/check_publication.py
 
 This checks indexed blobs for private paths/common secret forms and locally compares private environment values without displaying them. CI also runs Gitleaks against Git history. These checks complement review; they cannot guarantee detection of every possible secret or defect.
 
+## Deploy on your own server
+
+The **Ubuntu + Docker Standalone + Portainer + Traefik** package is ready for operator-run installation. The domain has been acquired; this repository does not establish that the application is already live.
+
+| Configured deployment origin | Service |
+|---|---|
+| `https://yorungez.com` | Next.js Web / PWA / same-origin BFF |
+| `https://api.yorungez.com` | ASP.NET Core API / future mobile clients |
+
+Use the [deployment runbook](deploy/README.md), [production stack](deploy/compose.production.yaml) and [placeholder environment template](deploy/.env.example). Separate non-root images, one-shot migrations, isolated database networking, durable PostgreSQL/Redis/keyring storage and explicitly trusted proxy hops are included. The host initializer prepares an encrypted PFX and a placeholder-only private template; operators supply real secrets locally.
+
+Build both images on the selected Docker host, enter the actual Traefik network/IP/entrypoint/resolver and private configuration, then deploy through Portainer. Public DNS/TLS, real SMTP delivery and production acceptance are operator tasks. CI builds and smoke-tests disposable containers; it does not connect to your server or publish images automatically.
+
 ## Privacy and deployment
 
 - Basic exploration is anonymous. Personal saves require a verified account and are scoped to its owner in PostgreSQL.
 - Personal notebooks have no browser-persisted/offline write queue. PWA caches contain public general assets; account/API responses and personal coordinates are excluded.
 - Location permission is optional. Manual input works without it; external map tiles load only after the relevant user action.
-- `.env`, local settings, key rings, database dumps, production overrides and Portainer configuration stay outside Git. Only placeholder templates and generic local development infrastructure are published.
-- Keep production secrets in a private server environment or secret store. The committed Compose file is a development setup, not a production deployment recipe. CI has no live deployment access.
+- `.env`, local settings, key rings, database dumps, production overrides and Portainer configuration stay outside Git. Only placeholder templates and generic development/production recipes are published; actual server settings remain private.
+- Keep production secrets in a private server environment or secret store. Root `compose.yaml` is the local development setup; `deploy/compose.production.yaml` is the separate operator-run production recipe. CI has no live deployment access.
 
 See [SECURITY.md](SECURITY.md) and the [publication review](docs/open-source-publication.md). Report vulnerabilities privately through the repository's Security tab.
 
@@ -162,7 +191,7 @@ The [requirements](docs/urun-gereksinimleri.md), [roadmap](docs/yol-haritasi.md)
 - Sourced atlas photographs, concise information, catalogue coverage and independently validated event types; the current information/visual priority remains in place.
 - Physical GPS/compass permission, direction, calibration and stale-data acceptance.
 - Cross-browser/device PWA installation, update and storage-eviction acceptance.
-- Production acceptance remains open; public deployment is deferred by the owner. A synthetic local restore drill passed, and new backup/trash work is currently deferred.
+- Production acceptance remains open; the deployment package is prepared and the owner will perform the actual server rollout. A synthetic local restore drill passed, and new backup/trash work is currently deferred.
 - Additional calendar event types with explicit sources and independent validation.
 - Later catalogue, equipment and terrestrial observing-site capabilities, guided by existing priorities.
 
@@ -183,5 +212,3 @@ Original Yorungez code and original project documentation use **[Apache-2.0](LIC
 Read [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md), [source notices](third-party/), [catalogue provenance](data/catalog/README.md) and [landscape attribution](third-party/stara-lesna/NOTICE.md) before redistributing a bundle or derived dataset.
 
 Built by [YeloraStudio](https://github.com/YeloraStudio) and contributors, following the evidence wherever it leads.
-
-Deployment preparation for your own Ubuntu/Portainer/Traefik host: [API + Web runbook](deploy/README.md). Deployment is operator-run; the repository does not deploy automatically.
