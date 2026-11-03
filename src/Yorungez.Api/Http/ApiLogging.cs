@@ -85,8 +85,12 @@ public sealed class HttpRequestTelemetry(RequestDelegate next, ILogger<HttpReque
         context.TraceIdentifier = requestId;
         context.Response.Headers["X-Request-ID"] = requestId;
         var route = (context.GetEndpoint() as RouteEndpoint)?.RoutePattern.RawText ?? "[unmatched]";
-        var method = context.Request.Method is "GET" or "POST" or "PUT" or "PATCH" or "DELETE" or "HEAD" or "OPTIONS"
-            ? context.Request.Method : "OTHER";
+        // Emit only application-owned constants, never the original input string.
+        var method = context.Request.Method switch
+        {
+            "GET" => "GET", "POST" => "POST", "PUT" => "PUT", "PATCH" => "PATCH",
+            "DELETE" => "DELETE", "HEAD" => "HEAD", "OPTIONS" => "OPTIONS", _ => "OTHER"
+        };
         var trace = Activity.Current?.TraceId.ToString();
         var span = Activity.Current?.SpanId.ToString();
         var health = route is "/health/live" or "/health/ready";
