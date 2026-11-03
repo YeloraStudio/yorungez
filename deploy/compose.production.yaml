@@ -110,6 +110,18 @@ services:
       traefik.http.routers.yorungez-web.tls: 'true'
       traefik.http.routers.yorungez-web.tls.certresolver: ${TRAEFIK_CERTRESOLVER:?required}
       traefik.http.services.yorungez-web.loadbalancer.server.port: '3000'
+      # www gets its own certificate and a permanent redirect to the apex; the
+      # request never reaches the Web container. `$$` keeps the regex group
+      # away from compose interpolation.
+      traefik.http.routers.yorungez-www.rule: Host(`www.yorungez.com`)
+      traefik.http.routers.yorungez-www.entrypoints: ${TRAEFIK_ENTRYPOINT:-websecure}
+      traefik.http.routers.yorungez-www.tls: 'true'
+      traefik.http.routers.yorungez-www.tls.certresolver: ${TRAEFIK_CERTRESOLVER:?required}
+      traefik.http.routers.yorungez-www.middlewares: yorungez-www-redirect
+      traefik.http.routers.yorungez-www.service: yorungez-web
+      traefik.http.middlewares.yorungez-www-redirect.redirectregex.regex: ^https?://www\.yorungez\.com/(.*)
+      traefik.http.middlewares.yorungez-www-redirect.redirectregex.replacement: https://yorungez.com/$${1}
+      traefik.http.middlewares.yorungez-www-redirect.redirectregex.permanent: 'true'
 volumes:
   postgres-data:
   redis-data:

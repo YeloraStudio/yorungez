@@ -9,6 +9,32 @@
 
 Tarayıcı hesap/defter için Web'in aynı kökenli `/api/...` BFF rotalarını kullanır. API alan adı ayrıca doğrudan JWT istemcileri/ileriki mobil için ayrıdır. Web'e JWT/SMTP sırrı verilmez. Cookie `__Host-`, HttpOnly/Secure/host-only kalır; wildcard cookie veya geniş CORS açılmaz.
 
+## Otomatik dağıtım (K-042)
+
+`main`'e gelen her push [`ci.yml`](../.github/workflows/ci.yml) üzerinden canlıya çıkar. Portainer adımları (aşağıda) elle kurulum için geçerli kalır; iki yolu aynı sunucuda birlikte kullanmayın.
+
+| Adım | Ne yapar |
+|---|---|
+| `gate` | Gitleaks ile bütün geçmiş, yayın denetimi, belge bağlantıları, backend entegrasyon testleri, Web testleri/tip/derleme, donmuş bilimsel referanslar |
+| `containers` | İki production imajını runner'da kurar, `compose.production.yaml` ile başlatır, health uçlarını çağırır |
+| `build` | Yalnız `main`: `yorungez-api` ve `yorungez-web` imajlarını ECR'a `:<sha>` ve `:latest` olarak gönderir |
+| `deploy` | `compose.production.yaml` dosyasını sunucuya eşitler, `api web` servislerini çeker ve başlatır; `migrate` her dağıtımda API'den önce koşar. PostgreSQL ve Redis yeniden başlatılmaz |
+
+Sunucu: `yelora-dev`, klasör `/home/yelora-dev/compose-projects/cnonestudio.com/yorungez`.
+
+```text
+yorungez/
+  compose.production.yaml   CI her dağıtımda üzerine yazar
+  .env                      yalnız sunucuda, 600; CI dokunmaz
+  private/                  initialize-production.py çıktısı: keys/ ve keyring.pfx
+```
+
+`.env` içinde `API_IMAGE`/`WEB_IMAGE` ECR adresini `:latest` ile gösterir; `TRAEFIK_NETWORK=traefik`, `TRAEFIK_CERTRESOLVER=le`. `TRAEFIK_IP`, Traefik konteynerinin `traefik` ağındaki o anki adresidir. Traefik yeniden yaratılıp başka adres alırsa API gerçek istemci adresini göremez ve hız sınırı bütün istemcileri tek adres sayar; bu durumda `.env` güncellenip `api` yeniden başlatılır.
+
+DNS: `yorungez.com`, `www.yorungez.com` ve `api.yorungez.com` A kayıtları sunucuya gider. İlk sertifikalar alınana kadar Cloudflare kayıtları DNS-only kalır; sonra proxy açılırsa SSL modu Full (strict) olmalıdır.
+
+Geri alma: sunucuda `.env` içindeki etiketi bir önceki commit sha'sına çevirip `docker compose -f compose.production.yaml up -d api web`. Geri alınamaz bir şema değişikliği varsa bu yeterli değildir, aşağıdaki migration notuna bakın.
+
 ## 1. Mevcut sunucuda kontrol edilecekler
 
 - Docker Engine + Compose v2, Git, Python 3 ve OpenSSL. Traefik Docker provider ve çalışan HTTPS entrypoint/certificate resolver mevcut olmalı.
@@ -72,7 +98,7 @@ Portainer → ilgili **Docker Standalone environment** → Stacks → Add stack:
 - Traefik resolver'ın ACME challenge yöntemi ve 80/443 erişimi mevcut kurulumunuzla uyumlu olmalı. HTTP→HTTPS yönlendirmesi Traefik'te mevcut global entrypoint yönlendirmesiyle sağlanmalı; bu stack başka projelerin global ayarlarını değiştirmez.
 - Cloudflare kullanılıyorsa origin'in geçerli sertifikasından sonra **Full (strict)** kullanın. Flexible'a düşürmeyin. DNS-only test veya proxy seçimi mevcut challenge/ingress düzeninize göre yapılır.
 - `/api/*`, `/en/account/*`, `/tr/account/*`, `/sw.js`, `/pwa-pack.json` için HTML/yanıtları “Cache Everything” ile cache'lemeyin; origin Cache-Control/no-store korunmalı. Özel kullanıcı verileri PWA/CDN'e girmemeli.
-- `www` için bu pakette router yok; ana adres `yorungez.com`. `www` gerekirse ayrı redirect/router/sertifika kararıdır.
+- `www.yorungez.com` kendi sertifikasıyla `https://yorungez.com/...` adresine kalıcı (308) yönlenir; istek Web konteynerine ulaşmaz.
 
 API forwarded headers yalnız **tam adresi tanımlı Traefik ve Web** hop'larından kabul edilir; `X-Forwarded-Host` kullanılmaz. Web HTTPS scheme bilgisini kendi sabit public origin ayarından üretir, istemcinin rastgele forwarding başlıklarını kopyalamaz. API health uçları container içi HTTP probe için açık kalır; ürün uçları production HTTPS yönlendirmesini korur.
 
