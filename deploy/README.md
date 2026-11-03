@@ -118,3 +118,7 @@ API forwarded headers yalnız **tam adresi tanımlı Traefik ve Web** hop'ların
 [CI container smoke testi](../scripts/Verify-Containers.sh) yalnız disposable Linux runner'da kendine ait fixture/volume/network kullanır; gerçek Portainer'a bağlanmaz. [Smoke override](compose.smoke.yaml) host test portları açar ve outbox worker'ı kapatır: **üretime uygulanmaz**.
 
 Kaynaklar: [Portainer stack kurulumu](https://docs.portainer.io/user/docker/stacks/add), [ASP.NET Core güvenilen proxy başlıkları](https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/proxy-load-balancer?view=aspnetcore-10.0). Mevcut .NET/CQRS/mimari, lisans, bilimsellik ve aynı backend ile mobil hedefi korunur.
+
+## API diagnostics (K-043)
+
+[Structured Serilog fields, levels, privacy boundaries and Portainer/Docker instructions](../docs/api-logging.md). `API_LOG_LEVEL` defaults to Information; successful probes are Debug. API containers use bounded Docker log rotation.

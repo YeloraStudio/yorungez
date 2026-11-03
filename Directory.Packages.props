@@ -1,6 +1,7 @@
 <Project>
   <PropertyGroup><ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally></PropertyGroup>
   <ItemGroup>
+    <PackageVersion Include="Serilog.AspNetCore" Version="10.0.0" />
     <!-- Last pre-commercial MediatR line: keep this an explicit license decision. -->
     <PackageVersion Include="MediatR" Version="12.5.0" />
     <PackageVersion Include="CosineKitty.AstronomyEngine" Version="2.1.19" />

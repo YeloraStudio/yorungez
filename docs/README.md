@@ -18,6 +18,8 @@ Detailed product/delivery records are currently mostly Turkish. Newer decisions 
 
 ## Current implementation
 
+- [API structured logging, privacy and Portainer diagnostics](api-logging.md)
+
 - [Native 4K panorama / bounded GPU fallback / source and 8K limits](yerel-4k-panorama.md)
 
 - [Mobile card surface / Milky Way search / browser compass access and owner device report](mobil-kart-samanyolu-ve-pusula-erisim.md)
