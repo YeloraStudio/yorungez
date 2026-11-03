@@ -25,13 +25,13 @@ public sealed class ApiLoggingTests
         public string[] Lines() => Events.Select(e => { var writer = new StringWriter(); new ApiJsonFormatter().Format(e, writer); return writer.ToString(); }).ToArray();
     }
 
-    private static async Task<(WebApplication App, Capture Capture)> Start()
+    private static async Task<(WebApplication App, Capture Capture)> Start(LogEventLevel minimum = LogEventLevel.Debug)
     {
         var capture = new Capture();
         var builder = WebApplication.CreateBuilder(new WebApplicationOptions { EnvironmentName = "Testing" });
         builder.WebHost.UseTestServer();
         builder.Logging.ClearProviders();
-        builder.Services.AddSerilog(new LoggerConfiguration().MinimumLevel.Debug()
+        builder.Services.AddSerilog(new LoggerConfiguration().MinimumLevel.Is(minimum)
             .MinimumLevel.Override("Microsoft", LogEventLevel.Warning).WriteTo.Sink(capture).CreateLogger(), dispose: true);
         builder.Services.AddSingleton<ITextCatalog, TextCatalog>();
         builder.Services.AddExceptionHandler<ApiExceptionHandler>();
@@ -45,6 +45,8 @@ public sealed class ApiLoggingTests
         app.MapGet("/objects/{id}", () => Results.StatusCode(403));
         app.MapPost("/login", () => Results.StatusCode(401));
         app.MapGet("/health/ready", () => Results.Ok());
+        app.MapGet("/ok", () => Results.Ok());
+        app.MapGet("/slow", async () => { await Task.Delay(1100); return Results.Ok(); });
         app.MapPost("/limited", () => Results.StatusCode(429));
         app.MapGet("/fault", () => { ThrowPrivateFailure(); return Results.Ok(); });
         await app.StartAsync();
@@ -72,7 +74,7 @@ public sealed class ApiLoggingTests
         var completed = events[1].RootElement;
         Assert.Equal("/objects/{id}", completed.GetProperty("Route").GetString());
         Assert.Equal(403, completed.GetProperty("StatusCode").GetInt32());
-        Assert.Equal("Warning", completed.GetProperty("Level").GetString());
+        Assert.Equal("Information", completed.GetProperty("Level").GetString());
         Assert.True(completed.GetProperty("ElapsedMs").GetDouble() >= 0);
         var id = completed.GetProperty("RequestId").GetString();
         Assert.True(Guid.TryParseExact(id, "N", out _));
@@ -122,7 +124,37 @@ public sealed class ApiLoggingTests
         Assert.DoesNotContain("PRIVATE_", string.Join("", lines));
         var completed = lines.Where(line => line.Contains("HttpRequestCompleted")).Select(line => JsonDocument.Parse(line)).ToArray();
         Assert.Equal(new[] { 401, 429 }, completed.Select(d => d.RootElement.GetProperty("StatusCode").GetInt32()));
-        Assert.All(completed, d => Assert.Equal("Warning", d.RootElement.GetProperty("Level").GetString()));
+        Assert.Equal("Information", completed[0].RootElement.GetProperty("Level").GetString());
+        Assert.Equal("Warning", completed[1].RootElement.GetProperty("Level").GetString());
+    }
+
+    [Fact]
+    public async Task Production_level_is_quiet_for_routine_traffic_but_keeps_errors_and_rate_limits()
+    {
+        var (app, capture) = await Start(LogEventLevel.Warning); await using var owned = app;
+        using var client = app.GetTestClient();
+        foreach (var path in new[] { "/ok", "/health/ready", "/objects/example", "/not-found" })
+            using (await client.GetAsync(path)) { }
+        using (await client.PostAsync("/login", new StringContent("PRIVATE_BODY"))) { }
+        Assert.Empty(capture.Lines());
+        using (await client.PostAsync("/limited", new StringContent("PRIVATE_BODY"))) { }
+        using (await client.GetAsync("/fault")) { }
+        var completions = capture.Lines().Where(line => line.Contains("HttpRequestCompleted")).ToArray();
+        Assert.Equal(2, completions.Length);
+        Assert.DoesNotContain("HttpRequestStarted", string.Join("", capture.Lines()));
+        Assert.Contains("\"StatusCode\":429", completions[0]);
+        Assert.Contains("\"StatusCode\":500", completions[1]);
+    }
+
+    [Fact]
+    public async Task Slow_success_remains_visible_at_production_level()
+    {
+        var (app, capture) = await Start(LogEventLevel.Warning); await using var owned = app;
+        using var client = app.GetTestClient(); using var response = await client.GetAsync("/slow");
+        using var record = JsonDocument.Parse(Assert.Single(capture.Lines()));
+        Assert.Equal("Warning", record.RootElement.GetProperty("Level").GetString());
+        Assert.Equal("SlowRequest", record.RootElement.GetProperty("Outcome").GetString());
+        Assert.Equal(200, record.RootElement.GetProperty("StatusCode").GetInt32());
     }
 
     [Fact]

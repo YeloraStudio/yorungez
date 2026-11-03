@@ -11,7 +11,7 @@ public static class ApiLogging
 {
     public static Serilog.Core.Logger CreateLogger(IConfiguration configuration, string environment)
     {
-        if (!Enum.TryParse<LogEventLevel>(configuration["Serilog:MinimumLevel:Default"] ?? "Information", true, out var level) || !Enum.IsDefined(level))
+        if (!Enum.TryParse<LogEventLevel>(configuration["Serilog:MinimumLevel:Default"] ?? "Warning", true, out var level) || !Enum.IsDefined(level))
             throw new InvalidOperationException("Invalid API log level.");
         return new LoggerConfiguration().MinimumLevel.Is(level)
             .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
@@ -93,8 +93,7 @@ public sealed class HttpRequestTelemetry(RequestDelegate next, ILogger<HttpReque
         };
         var trace = Activity.Current?.TraceId.ToString();
         var span = Activity.Current?.SpanId.ToString();
-        var health = route is "/health/live" or "/health/ready";
-        logger.Log(health ? LogLevel.Debug : LogLevel.Information,
+        logger.Log(LogLevel.Debug,
             "{Event} {RequestMethod} {Route} request={RequestId} trace={TraceId} span={SpanId}",
             "HttpRequestStarted", method, route, requestId, trace, span);
         Exception? failure = null;
@@ -106,11 +105,17 @@ public sealed class HttpRequestTelemetry(RequestDelegate next, ILogger<HttpReque
             failure ??= context.Items.TryGetValue(FailureKey, out var value) ? value as Exception : null;
             var aborted = failure is OperationCanceledException && context.RequestAborted.IsCancellationRequested;
             var status = aborted ? 499 : failure is not null && context.Response.StatusCode < 400 ? 500 : context.Response.StatusCode;
-            var level = status >= 500 ? LogLevel.Error : status >= 400 ? LogLevel.Warning : health ? LogLevel.Debug : LogLevel.Information;
+            var elapsedMs = Math.Round(Stopwatch.GetElapsedTime(started).TotalMilliseconds, 3);
+            var slow = elapsedMs >= 1000;
+            var level = status >= 500 ? LogLevel.Error
+                : slow ? LogLevel.Warning
+                : aborted ? LogLevel.Debug
+                : status is 401 or 403 or 404 ? LogLevel.Information
+                : status >= 400 ? LogLevel.Warning : LogLevel.Debug;
             logger.Log(level,
                 "{Event} {RequestMethod} {Route} status={StatusCode} elapsed={ElapsedMs} outcome={Outcome} request={RequestId} trace={TraceId} span={SpanId} exception={ExceptionType} frames={ExceptionFrames}",
-                "HttpRequestCompleted", method, route, status, Math.Round(Stopwatch.GetElapsedTime(started).TotalMilliseconds, 3),
-                aborted ? "ClientAborted" : unhandled ? "UnhandledFailure" : failure is not null ? "HandledFailure" : "Completed", requestId, trace, span,
+                "HttpRequestCompleted", method, route, status, elapsedMs,
+                aborted ? "ClientAborted" : unhandled ? "UnhandledFailure" : failure is not null ? "HandledFailure" : slow ? "SlowRequest" : "Completed", requestId, trace, span,
                 failure?.GetType().FullName, failure is null ? null : ApiLogging.ExceptionFrames(failure));
         }
     }
