@@ -13,12 +13,15 @@ Tarayıcı hesap/defter için Web'in aynı kökenli `/api/...` BFF rotalarını 
 
 `main`'e gelen her push [`ci.yml`](../.github/workflows/ci.yml) üzerinden canlıya çıkar. Portainer adımları (aşağıda) elle kurulum için geçerli kalır; iki yolu aynı sunucuda birlikte kullanmayın.
 
-| Adım | Ne yapar |
+| İş | Ne yapar |
 |---|---|
-| `gate` | Gitleaks ile bütün geçmiş, yayın denetimi, belge bağlantıları, backend entegrasyon testleri, Web testleri/tip/derleme, donmuş bilimsel referanslar |
-| `containers` | İki production imajını runner'da kurar, `compose.production.yaml` ile başlatır, health uçlarını çağırır |
-| `build` | Yalnız `main`: `yorungez-api` ve `yorungez-web` imajlarını ECR'a `:<sha>` ve `:latest` olarak gönderir |
-| `deploy` | `compose.production.yaml` dosyasını sunucuya eşitler, `api web` servislerini çeker ve başlatır; `migrate` her dağıtımda API'den önce koşar. PostgreSQL ve Redis yeniden başlatılmaz |
+| `Publication safety` | Yayın denetimi, belge bağlantıları, gitleaks ile bütün geçmiş |
+| `Application and science` | Backend entegrasyon testleri, Web testleri/tip/derleme, donmuş bilimsel referanslar |
+| `Production containers` | İki production imajını runner'da kurar, `compose.production.yaml` ile başlatır, health uçlarını çağırır |
+| `Build api/web image` | Yalnız `main`: `yorungez-api` ve `yorungez-web` imajlarını ECR'a `:<sha>` ve `:latest` olarak gönderir |
+| `Deploy to production` | `compose.production.yaml` dosyasını sunucuya eşitler, `api web` servislerini çeker ve başlatır, ardından API, ana adres ve `www` için genel yoldan 200 bekler. `migrate` her dağıtımda API'den önce koşar; PostgreSQL ve Redis yeniden başlatılmaz |
+
+**Secret'lar.** Depo public. `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `SSH_HOST`, `SSH_USER`, `SSH_KEY`, `SSH_KNOWN_HOSTS` yalnız `production` environment'ında durur ve bu environment'a yalnız korumalı dallar erişir; pull request'ler (fork dahil) ulaşamaz. Secret kullanan adımlarda üçüncü taraf action yoktur. AWS hesap numarası ve ECR jetonu günlükte maskelenir; jeton sunucuya stdin ile gider. Sunucu adresi secret olduğu için günlükte görünmez, Cloudflare arkasındaki origin açığa çıkmaz.
 
 Sunucu: `yelora-dev`, klasör `/home/yelora-dev/compose-projects/cnonestudio.com/yorungez`.
 
@@ -29,11 +32,13 @@ yorungez/
   private/                  initialize-production.py çıktısı: keys/ ve keyring.pfx
 ```
 
-`.env` içinde `API_IMAGE`/`WEB_IMAGE` ECR adresini `:latest` ile gösterir; `TRAEFIK_NETWORK=traefik`, `TRAEFIK_CERTRESOLVER=le`. `TRAEFIK_IP`, Traefik konteynerinin `traefik` ağındaki o anki adresidir. Traefik yeniden yaratılıp başka adres alırsa API gerçek istemci adresini göremez ve hız sınırı bütün istemcileri tek adres sayar; bu durumda `.env` güncellenip `api` yeniden başlatılır.
+`.env` içinde `API_IMAGE`/`WEB_IMAGE` ECR adresini `:latest` ile gösterir; `TRAEFIK_NETWORK=traefik`, `TRAEFIK_CERTRESOLVER=le` (Cloudflare DNS challenge). `TRAEFIK_IP`, Traefik konteynerinin `traefik` ağındaki o anki adresidir. Traefik yeniden yaratılıp başka adres alırsa API gerçek istemci adresini göremez ve hız sınırı bütün istemcileri tek adres sayar; bu durumda `.env` güncellenip `api` yeniden başlatılır. Cloudflare proxy açıkken API istemci yerine Cloudflare edge adresini görür; bu ayrı bir iştir.
 
-DNS: `yorungez.com`, `www.yorungez.com` ve `api.yorungez.com` A kayıtları sunucuya gider. İlk sertifikalar alınana kadar Cloudflare kayıtları DNS-only kalır; sonra proxy açılırsa SSL modu Full (strict) olmalıdır.
+E-posta: mailcow (`mail.yelorastudio.com:587`, STARTTLS), gönderen `info@yorungez.com`. Alan adında MX, SPF, DKIM ve DMARC kayıtları vardır.
 
-Geri alma: sunucuda `.env` içindeki etiketi bir önceki commit sha'sına çevirip `docker compose -f compose.production.yaml up -d api web`. Geri alınamaz bir şema değişikliği varsa bu yeterli değildir, aşağıdaki migration notuna bakın.
+DNS: `yorungez.com`, `www.yorungez.com` ve `api.yorungez.com` Cloudflare'de proxied. Sertifika alındıktan sonra SSL modu Full (strict) olmalıdır.
+
+Geri alma: sunucuda `.env` içindeki `:latest` etiketini bir önceki commit sha'sına çevirip `docker compose -f compose.production.yaml up -d api web`. Geri alınamaz bir şema değişikliği varsa bu yeterli değildir, aşağıdaki migration notuna bakın.
 
 ## 1. Mevcut sunucuda kontrol edilecekler
 
