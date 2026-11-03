@@ -19,6 +19,29 @@ cleanup() {
   sudo rm -rf -- "$private_dir"
 }
 trap cleanup EXIT
+sudo python3 - "$PWD/deploy/initialize-production.py" "$private_dir/initializer" <<'PY'
+import getpass, os, pathlib, runpy, secrets, subprocess, sys
+script, target = sys.argv[1:]
+password = secrets.token_hex(32)
+getpass.getpass = lambda prompt: password
+sys.argv = [script, '--directory', target]
+runpy.run_path(script, run_name='__main__')
+folder = pathlib.Path(target)
+template = (folder / '.env').read_text()
+assert password not in template and 'KEYRING_CERT_PASSWORD=replace-me' in template
+assert (folder / '.env').stat().st_mode & 0o777 == 0o600
+assert (folder / 'keys').stat().st_uid == 1654
+assert not (folder / 'key.pem').exists()
+subprocess.run(['openssl', 'pkcs12', '-in', str(folder / 'keyring.pfx'), '-noout',
+                '-passin', 'env:TEST_PFX_PASSWORD'], env=dict(os.environ, TEST_PFX_PASSWORD=password), check=True)
+try:
+    runpy.run_path(script, run_name='__main__')
+except SystemExit as error:
+    assert 'already exists' in str(error)
+else:
+    raise AssertionError('Initializer overwrote an existing target')
+print('Private initializer: encrypted PFX, permissions, placeholder-only template and overwrite refusal passed.')
+PY
 mkdir "$KEYRING_PATH"
 openssl req -x509 -newkey rsa:2048 -nodes -days 1 -subj /CN=smoke-keyring \
   -keyout "$private_dir/key.pem" -out "$private_dir/cert.pem" >/dev/null 2>&1
