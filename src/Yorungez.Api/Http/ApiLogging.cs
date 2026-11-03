@@ -50,6 +50,12 @@ public sealed class ApiJsonFormatter : ITextFormatter
             foreach (var name in RequestFields)
                 if (logEvent.Properties.TryGetValue(name, out var value)) fields[name] = Value(value);
         }
+        else if (Equals(source?.Value, typeof(Yorungez.Identity.Infrastructure.EmailOutboxDispatcher).FullName)
+            || Equals(source?.Value, typeof(Yorungez.Identity.Infrastructure.EmailOutboxWorker).FullName))
+        {
+            foreach (var name in new[] { "Event", "FailureCategory", "ExceptionType", "SmtpStatusCode", "Attempt" })
+                if (logEvent.Properties.TryGetValue(name, out var value)) fields[name] = Value(value);
+        }
         else
         {
             fields["Event"] = "RuntimeDiagnostic";

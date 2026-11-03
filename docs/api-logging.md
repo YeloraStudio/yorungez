@@ -34,4 +34,12 @@ docker compose --env-file .env -f compose.production.yaml logs --tail 100 -f api
 
 ## Validation and delivery
 
-Seven isolated TestServer/formatter tests verify correlation, safe route normalization, 401/403/404/429/500 levels, exception handling, probe noise and sensitive-data exclusion. Release API compilation passed. K-043 subsequently passed full CI and production deployment in PR #22. K-044 adds quiet-default and slow-request tests; CI and production acceptance must be checked for that revision. Scientific and physical-device acceptance remain open.
+Nine isolated TestServer/formatter tests verify correlation, safe route normalization, 401/403/404/429/500 levels, exception handling, probe noise and sensitive-data exclusion. Release API compilation passed. K-043 subsequently passed full CI and production deployment in PR #22. K-044 adds quiet-default and slow-request tests; CI and production acceptance must be checked for that revision. Scientific and physical-device acceptance remain open.
+
+## Email delivery diagnosis (4 November)
+
+A successful `--check-smtp` verifies connection, STARTTLS and authentication only; it does not submit mail or prove inbox delivery. Resend returns 202 even for an unknown/already confirmed account or the one-minute resend cooldown, to avoid disclosing account state. Accepted requests can queue encrypted payloads; the five-second worker retries failures up to ten attempts with backoff. `SentAt` records completed delivery-adapter execution, not final inbox placement.
+
+Email worker warnings now preserve `EmailDeliveryFailed` / `EmailQueueUnavailable`, `FailureCategory`, exception type, attempt and numeric SMTP status (when available). Categories distinguish SMTP rejection, authentication, TLS, payload decryption and transport failures. Raw SMTP response, exception message, recipient and protected body remain excluded. This diagnostic correction alone does not prove or repair the current production delivery problem; check queue counters and mail-server delivery logs.
+
+EF warning 10102 came from a readiness `Take(1)` without ordering; readiness now orders by the account primary key, preserving its schema check.

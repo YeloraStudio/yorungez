@@ -112,7 +112,7 @@ public sealed class EmailOutboxDispatcher(IdentityStore store, IEmailDelivery de
             catch (Exception ex) when (ex is not OperationCanceledException)
             {
                 row.NextAttemptAt = clock.GetUtcNow().AddSeconds(Math.Min(3600, 15 * Math.Pow(2, row.Attempts)));
-                logger.LogWarning("Email outbox attempt failed ({ExceptionType}); payload and recipient omitted.", ex.GetType().Name);
+                EmailOutboxDiagnostics.Failed(logger, ex, row.Attempts);
             }
             row.LeaseUntil = null;
             row.Version = Guid.NewGuid();
@@ -137,9 +137,33 @@ public sealed class EmailOutboxWorker(IServiceScopeFactory scopes, ILogger<Email
             catch (OperationCanceledException) when (stoppingToken.IsCancellationRequested) { break; }
             catch (Exception ex)
             {
-                logger.LogWarning("Email outbox is unavailable ({ExceptionType}).", ex.GetType().Name);
+                EmailOutboxDiagnostics.Failed(logger, ex, workerFailure: true);
             }
             if (!await timer.WaitForNextTickAsync(stoppingToken)) break;
         }
+    }
+}
+
+// Fixed categories/numeric codes only: SMTP response text can include the recipient.
+public static class EmailOutboxDiagnostics
+{
+    public static void Failed(ILogger logger, Exception error, int attempt = 0, bool workerFailure = false)
+    {
+        var category = error switch
+        {
+            MailKit.Security.AuthenticationException => "Authentication",
+            SslHandshakeException => "TlsHandshake",
+            SmtpCommandException => "SmtpRejected",
+            SmtpProtocolException => "SmtpProtocol",
+            System.Security.Cryptography.CryptographicException => "PayloadDecryption",
+            System.Net.Sockets.SocketException => "Network",
+            TimeoutException => "Timeout",
+            IOException => "Transport",
+            _ => workerFailure ? "QueueUnavailable" : "Unexpected"
+        };
+        logger.LogWarning(new EventId(workerFailure ? 4102 : 4101),
+            "{Event} category={FailureCategory} type={ExceptionType} smtpStatus={SmtpStatusCode} attempt={Attempt}",
+            workerFailure ? "EmailQueueUnavailable" : "EmailDeliveryFailed", category, error.GetType().FullName,
+            error is SmtpCommandException command ? (int?)command.StatusCode : null, attempt);
     }
 }
