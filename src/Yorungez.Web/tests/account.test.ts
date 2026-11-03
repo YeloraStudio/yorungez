@@ -8,10 +8,11 @@ test('production BFF sets its own HTTPS scheme and preserves the trusted public 
   globalThis.fetch=async(_input,init)=>{
    const headers=init!.headers as Record<string,string>;
    assert.equal(headers['X-Forwarded-Proto'],'https');assert.equal(headers.Origin,'https://yorungez.com');
-   assert.equal(headers['X-Forwarded-For'],undefined);
+   // Only the proxy-observed (last) hop and the edge's visitor header reach the API.
+   assert.equal(headers['X-Forwarded-For'],'172.70.1.10');assert.equal(headers['CF-Connecting-IP'],'203.0.113.7');
    return Response.json({code:'Identity.InvalidCredentials'},{status:401});
   };
-  const response=await accountProxy(new Request('http://web:3000/api/account/login',{method:'POST',headers:{Origin:'https://yorungez.com','Content-Type':'application/json','X-Yorungez-Request':'1','X-Forwarded-Proto':'http','X-Forwarded-For':'192.0.2.99'},body:'{}'}),'/api/v1/session/login');
+  const response=await accountProxy(new Request('http://web:3000/api/account/login',{method:'POST',headers:{Origin:'https://yorungez.com','Content-Type':'application/json','X-Yorungez-Request':'1','X-Forwarded-Proto':'http','X-Forwarded-For':'192.0.2.99, 172.70.1.10','CF-Connecting-IP':'203.0.113.7'},body:'{}'}),'/api/v1/session/login');
   assert.equal(response.status,401);
  }finally{globalThis.fetch=previousFetch;if(previousOrigin===undefined)delete process.env.YORUNGEZ_WEB_ORIGIN;else process.env.YORUNGEZ_WEB_ORIGIN=previousOrigin}
 });

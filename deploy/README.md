@@ -32,7 +32,7 @@ yorungez/
   private/                  initialize-production.py çıktısı: keys/ ve keyring.pfx
 ```
 
-`.env` içinde `API_IMAGE`/`WEB_IMAGE` ECR adresini `:latest` ile gösterir; `TRAEFIK_NETWORK=traefik`, `TRAEFIK_CERTRESOLVER=le` (Cloudflare DNS challenge). `TRAEFIK_IP`, Traefik konteynerinin `traefik` ağındaki o anki adresidir. Traefik yeniden yaratılıp başka adres alırsa API gerçek istemci adresini göremez ve hız sınırı bütün istemcileri tek adres sayar; bu durumda `.env` güncellenip `api` yeniden başlatılır. Cloudflare proxy açıkken API istemci yerine Cloudflare edge adresini görür; bu ayrı bir iştir.
+`.env` içinde `API_IMAGE`/`WEB_IMAGE` ECR adresini `:latest` ile gösterir; `TRAEFIK_NETWORK=traefik`, `TRAEFIK_CERTRESOLVER=le` (Cloudflare DNS challenge). `TRAEFIK_IP`, Traefik konteynerinin `traefik` ağındaki o anki adresidir. Traefik yeniden yaratılıp başka adres alırsa API gerçek istemci adresini göremez ve hız sınırı bütün istemcileri tek adres sayar; bu durumda `.env` güncellenip `api` yeniden başlatılır. Cloudflare proxy açık olduğu için `ReverseProxy__TrustCloudflare=true`: Traefik'in gördüğü adres bir Cloudflare edge aralığındaysa API ziyaretçi adresini `CF-Connecting-IP` başlığından alır; değilse (Cloudflare atlanıp origin'e doğrudan gelinirse) başlık yok sayılır. Aralıklar `Http/CloudflareClientAddress.cs` içinde kaynak ve tarihiyle durur; listede olmayan yeni bir aralık yalnız edge adresine düşer.
 
 E-posta: mailcow (`mail.yelorastudio.com:587`, STARTTLS), gönderen `info@yorungez.com`. Alan adında MX, SPF, DKIM ve DMARC kayıtları vardır.
 
@@ -105,7 +105,7 @@ Portainer → ilgili **Docker Standalone environment** → Stacks → Add stack:
 - `/api/*`, `/en/account/*`, `/tr/account/*`, `/sw.js`, `/pwa-pack.json` için HTML/yanıtları “Cache Everything” ile cache'lemeyin; origin Cache-Control/no-store korunmalı. Özel kullanıcı verileri PWA/CDN'e girmemeli.
 - `www.yorungez.com` kendi sertifikasıyla `https://yorungez.com/...` adresine kalıcı (301) yönlenir; istek Web konteynerine ulaşmaz.
 
-API forwarded headers yalnız **tam adresi tanımlı Traefik ve Web** hop'larından kabul edilir; `X-Forwarded-Host` kullanılmaz. Web HTTPS scheme bilgisini kendi sabit public origin ayarından üretir, istemcinin rastgele forwarding başlıklarını kopyalamaz. API health uçları container içi HTTP probe için açık kalır; ürün uçları production HTTPS yönlendirmesini korur.
+API forwarded headers yalnız **tam adresi tanımlı Traefik ve Web** hop'larından kabul edilir; `X-Forwarded-Host` kullanılmaz. Web HTTPS scheme bilgisini kendi sabit public origin ayarından üretir. API'ye `X-Forwarded-For` başlığının yalnız son girdisini (Traefik'in gördüğü adres) ve `CF-Connecting-IP` başlığını iletir; ikisine güvenip güvenmemeye API karar verir, bu yüzden istemci kendi hız sınırı kovasını seçemez. API health uçları container içi HTTP probe için açık kalır; ürün uçları production HTTPS yönlendirmesini korur.
 
 ## 6. Sizin yapacağınız yayın kabulü
 
