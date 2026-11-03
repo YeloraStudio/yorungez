@@ -121,4 +121,4 @@ Kaynaklar: [Portainer stack kurulumu](https://docs.portainer.io/user/docker/stac
 
 ## API diagnostics (K-043)
 
-[Structured Serilog fields, levels, privacy boundaries and Portainer/Docker instructions](../docs/api-logging.md). `API_LOG_LEVEL` defaults to Information; successful probes are Debug. API containers use bounded Docker log rotation.
+[Structured Serilog fields, levels, privacy boundaries and Portainer/Docker instructions](../docs/api-logging.md). `API_LOG_LEVEL` defaults to Warning; successful probes are Debug. API containers use bounded Docker log rotation.
