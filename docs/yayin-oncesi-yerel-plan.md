@@ -1,5 +1,7 @@
 # K-032 — Dağıtım ertelenirken yerel çalışma sırası
 
+**K-041 / 3 Kasım 2026 — Deployment hazırlığı:** Kullanıcı yorungez.com alan adını satın aldı; Natro nameserver güncellemesi önceki oturumda onaylandı. Ubuntu/Portainer + Traefik/Docker Standalone için Web (`yorungez.com`) ve API (`api.yorungez.com`) hazırlığı yetkilendirildi. [Image/stack/özel ortam/kurulum rehberi](../deploy/README.md). Gerçek deployment, sunucu/DNS/TLS değişiklikleri kullanıcı tarafından yapılacak; K-032'nin ajan için yayın yasağı sürer. Bilimsel/cihaz/işletim kabulü tamamlandı sayılmaz; P0/P1/P2 ve ortak backend ile mobil hedefi korunur.
+
 **K-039 / 2 Kasım 2026 — Güncel durum denetimi:** Önce Web kabulünü tamamlamak, ardından aynı .NET backend/hesap/verilerle mobil uygulama geliştirmek kullanıcı hedefidir. [Plan, eksikler, kanıt ve mobil hazırlık](web-tamamlama-ve-ortak-backend-mobil-hedef.md). Bilgi/görsel önceliği, K-032 yayın beklemesi ve açık P0/P1/P2 kapsamı korunur; aşağıdaki eski paketler kendi aşamalarının tarihsel kanıtıdır.
 
 **K-038:** [Bilgi/görsel ve fiziksel deneme geri bildirimi](mobil-kart-samanyolu-ve-pusula-erisim.md) mevcut önceliği derinleştirir: mobil kart rengi, Samanyolu ve engelli sensör izni. S23 genel kullanım bildirimi olumlu; tam cihaz kabulü açık. Yeni yedek/çöp işleri bu önceliğin önüne geçmez.

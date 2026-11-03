@@ -70,3 +70,5 @@ Detailed product/delivery records are currently mostly Turkish. Newer decisions 
 - [Publication review / limits](open-source-publication.md)
 - [Contribution guide](../CONTRIBUTING.md), [security reporting](../SECURITY.md)
 - [Code licence](../LICENSE), [NOTICE](../NOTICE), [third-party licences](../THIRD_PARTY_NOTICES.md)
+
+- [Ubuntu/Portainer + Traefik: API and Web deployment preparation](../deploy/README.md)

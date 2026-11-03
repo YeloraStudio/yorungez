@@ -1,0 +1,126 @@
+name: yorungez-production
+x-api-environment: &api-environment
+  ASPNETCORE_ENVIRONMENT: Production
+  ASPNETCORE_HTTP_PORTS: '8080'
+  ASPNETCORE_HTTPS_PORT: '443'
+  AllowedHosts: 'api.yorungez.com;yorungez-api-internal;api;localhost;127.0.0.1'
+  ConnectionStrings__Identity: 'Host=postgres;Database=yorungez;Username=yorungez;Password=${POSTGRES_PASSWORD:?required}'
+  ConnectionStrings__Redis: 'redis:6379,password=${REDIS_PASSWORD:?required},abortConnect=false'
+  Jwt__Issuer: https://api.yorungez.com
+  Jwt__Audience: yorungez-api
+  Jwt__SigningKey: ${JWT_SIGNING_KEY:?required}
+  Email__FrontendBaseUrl: https://yorungez.com
+  Email__Host: ${SMTP_HOST:-smtp.gmail.com}
+  Email__Port: ${SMTP_PORT:-587}
+  Email__Sender: ${SMTP_SENDER:?required}
+  Email__UserName: ${SMTP_USERNAME:?required}
+  Email__Password: ${SMTP_PASSWORD:?required}
+  Email__RequireTls: 'true'
+  Email__RunOutboxWorker: 'true'
+  DataProtection__KeyRingPath: /var/lib/yorungez/keys
+  DataProtection__CertificatePath: /run/yorungez/keyring.pfx
+  DataProtection__CertificatePassword: ${KEYRING_CERT_PASSWORD:?required}
+  ReverseProxy__KnownProxies__0: ${TRAEFIK_IP:?set exact Traefik container IP}
+  ReverseProxy__KnownProxies__1: ${WEB_INTERNAL_IP:-10.89.0.3}
+x-api: &api
+  image: ${API_IMAGE:?build and tag the API image first}
+  environment: *api-environment
+  volumes:
+    - ${KEYRING_PATH:?absolute Ubuntu directory}:/var/lib/yorungez/keys
+    - ${KEYRING_CERT_PATH:?absolute Ubuntu PFX path}:/run/yorungez/keyring.pfx:ro
+  security_opt: [no-new-privileges:true]
+  tmpfs: [/tmp]
+services:
+  postgres:
+    image: postgres:18.6-alpine@sha256:10a5c69a83035ab5239f5620d708520e8b28f5aa1f2b20143e6024532edadfb5
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: yorungez
+      POSTGRES_USER: yorungez
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?required}
+    volumes: [postgres-data:/var/lib/postgresql]
+    networks: [database]
+    healthcheck:
+      test: [CMD-SHELL, 'pg_isready -U yorungez -d yorungez']
+      interval: 5s
+      timeout: 3s
+      retries: 30
+  redis:
+    image: redis:8.10.3-alpine@sha256:21090af93f8324db2f0f0f4f38a7c60369d47d917e000c3423d89d2ae2883537
+    restart: unless-stopped
+    environment:
+      REDIS_PASSWORD: ${REDIS_PASSWORD:?required}
+    command: [sh, -c, 'exec redis-server --requirepass "$$REDIS_PASSWORD" --appendonly yes']
+    volumes: [redis-data:/data]
+    networks: [database]
+    healthcheck:
+      test: [CMD-SHELL, 'REDISCLI_AUTH="$$REDIS_PASSWORD" redis-cli ping | grep -q PONG']
+      interval: 5s
+      timeout: 3s
+      retries: 30
+  migrate:
+    <<: *api
+    command: [--migrate]
+    restart: 'no'
+    healthcheck:
+      disable: true
+    networks: [database]
+    depends_on:
+      postgres: {condition: service_healthy}
+      redis: {condition: service_healthy}
+  api:
+    <<: *api
+    restart: unless-stopped
+    networks:
+      database: {}
+      application:
+        ipv4_address: ${API_INTERNAL_IP:-10.89.0.2}
+        aliases: [yorungez-api-internal]
+      edge: {}
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+    labels:
+      traefik.enable: 'true'
+      traefik.docker.network: ${TRAEFIK_NETWORK:?existing Traefik network}
+      traefik.http.routers.yorungez-api.rule: Host(`api.yorungez.com`)
+      traefik.http.routers.yorungez-api.entrypoints: ${TRAEFIK_ENTRYPOINT:-websecure}
+      traefik.http.routers.yorungez-api.tls: 'true'
+      traefik.http.routers.yorungez-api.tls.certresolver: ${TRAEFIK_CERTRESOLVER:?existing resolver name}
+      traefik.http.services.yorungez-api.loadbalancer.server.port: '8080'
+  web:
+    image: ${WEB_IMAGE:?build and tag the Web image first}
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      YORUNGEZ_API_ORIGIN: http://yorungez-api-internal:8080
+      YORUNGEZ_WEB_ORIGIN: https://yorungez.com
+      YORUNGEZ_ENABLE_LAB: '0'
+    security_opt: [no-new-privileges:true]
+    networks:
+      application:
+        ipv4_address: ${WEB_INTERNAL_IP:-10.89.0.3}
+      edge: {}
+    depends_on:
+      api: {condition: service_healthy}
+    labels:
+      traefik.enable: 'true'
+      traefik.docker.network: ${TRAEFIK_NETWORK:?required}
+      traefik.http.routers.yorungez-web.rule: Host(`yorungez.com`)
+      traefik.http.routers.yorungez-web.entrypoints: ${TRAEFIK_ENTRYPOINT:-websecure}
+      traefik.http.routers.yorungez-web.tls: 'true'
+      traefik.http.routers.yorungez-web.tls.certresolver: ${TRAEFIK_CERTRESOLVER:?required}
+      traefik.http.services.yorungez-web.loadbalancer.server.port: '3000'
+volumes:
+  postgres-data:
+  redis-data:
+networks:
+  database:
+    internal: true
+  application:
+    internal: true
+    ipam:
+      config:
+        - subnet: ${APP_SUBNET:-10.89.0.0/24}
+  edge:
+    external: true
+    name: ${TRAEFIK_NETWORK:?required}

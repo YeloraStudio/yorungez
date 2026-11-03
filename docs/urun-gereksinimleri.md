@@ -1,5 +1,7 @@
 # yorungez — Ürün Vizyonu, Gereksinimler ve UX Taslağı
 
+**K-041 / 3 Kasım 2026 — Deployment hazırlığı:** Kullanıcı yorungez.com alan adını satın aldı; Natro nameserver güncellemesi önceki oturumda onaylandı. Ubuntu/Portainer + Traefik/Docker Standalone için Web (`yorungez.com`) ve API (`api.yorungez.com`) hazırlığı yetkilendirildi. [Image/stack/özel ortam/kurulum rehberi](../deploy/README.md). Gerçek deployment, sunucu/DNS/TLS değişiklikleri kullanıcı tarafından yapılacak; K-032'nin ajan için yayın yasağı sürer. Bilimsel/cihaz/işletim kabulü tamamlandı sayılmaz; P0/P1/P2 ve ortak backend ile mobil hedefi korunur.
+
 **K-040 / TECH-11F (3 Kasım 2026):** Özgün 4096×2048 arazi artık uygun GPU'da 4K yüklenir; sınırlı/tahsis hatalı cihazda daha küçük doku ve sade yol korunur. Atmosferde gereksiz ikinci büyük fotoğraf kopyası kaldırıldı, CPU yalnız önceki 2K alfa maskesini tutar. 64 istemci testi/tip/üretim derlemesi ve masaüstü/390 px 4K yükleme kontrolü geçti; fiziksel FPS/bellek kabulü açık, gerçek 8K kaynak henüz yok. [Kanıt ve sınırlar](yerel-4k-panorama.md). Bilgi/görsel önceliği, Web sonrası ortak backend mobil hedefi ve yayın beklemesi korunur.
 
 **K-039 / 2 Kasım 2026 — Güncel durum denetimi:** Önce Web kabulünü tamamlamak, ardından aynı .NET backend/hesap/verilerle mobil uygulama geliştirmek kullanıcı hedefidir. [Plan, eksikler, kanıt ve mobil hazırlık](web-tamamlama-ve-ortak-backend-mobil-hedef.md). Bilgi/görsel önceliği, K-032 yayın beklemesi ve açık P0/P1/P2 kapsamı korunur; aşağıdaki eski paketler kendi aşamalarının tarihsel kanıtıdır.
@@ -38,11 +40,11 @@
 
 **31 Ekim görünüm ek kararı:** Beğenilen tam ekran yerleşim korunur. UI kaynak paleti #3C3F43/#9EA1A6/#8B2333/#C9B6A6/#F7F1E6; dil seçimi sol menüde açılır liste. Görsel gökyüzü/çevre daha doğal, kaynaklı fotoğraf ve kadir sıralı ışıkla sunulur; fotoğraf yerel topografya, görsel atmosfer gözlem koşulu değildir. Pusulada kaynak/kuzey belirsizliği, izin/hizalama ve fiziksel kabul ayrılır. [Güncel paket](dogal-gorunum-ve-pusula.md).
 
-> **Belge sürümü:** 1.19
+> **Belge sürümü:** 1.20
 > **Tarih:** 2 Kasım 2026
 > **Durum:** Güncel ürün referansı; modüler backend ve ilk tr/en harita akışı uygulandı, kabul kapsamı kısmi
 > **Proje adı:** yorungez (yörünge + gezmek; ad kullanıcı tarafından kesinleştirildi)  
-> **Planlanan alan adı:** yorungez.com (satın alma bekliyor)  
+> **Alan adı:** yorungez.com (satın alındı; Web/API deployment kabulü bekliyor)
 > **Başlangıç kaynağı:** [Değiştirilmeden saklanan 1.0 belgesi](arsiv/OpenSky_Proje_Gereksinimleri_UX_v1.md)  
 > **Kapsam:** Ürün, kullanıcı deneyimi, iş kuralları, modül sınırları ve yol haritası. Bu belge bir kodlama talimatı değildir.
 

@@ -1,5 +1,7 @@
 # yorungez — Yol haritası ve başlangıç iş listesi
 
+**K-041 / 3 Kasım 2026 — Deployment hazırlığı:** Kullanıcı yorungez.com alan adını satın aldı; Natro nameserver güncellemesi önceki oturumda onaylandı. Ubuntu/Portainer + Traefik/Docker Standalone için Web (`yorungez.com`) ve API (`api.yorungez.com`) hazırlığı yetkilendirildi. [Image/stack/özel ortam/kurulum rehberi](../deploy/README.md). Gerçek deployment, sunucu/DNS/TLS değişiklikleri kullanıcı tarafından yapılacak; K-032'nin ajan için yayın yasağı sürer. Bilimsel/cihaz/işletim kabulü tamamlandı sayılmaz; P0/P1/P2 ve ortak backend ile mobil hedefi korunur.
+
 **K-040 / TECH-11F (3 Kasım 2026):** Özgün 4096×2048 arazi artık uygun GPU'da 4K yüklenir; sınırlı/tahsis hatalı cihazda daha küçük doku ve sade yol korunur. Atmosferde gereksiz ikinci büyük fotoğraf kopyası kaldırıldı, CPU yalnız önceki 2K alfa maskesini tutar. 64 istemci testi/tip/üretim derlemesi ve masaüstü/390 px 4K yükleme kontrolü geçti; fiziksel FPS/bellek kabulü açık, gerçek 8K kaynak henüz yok. [Kanıt ve sınırlar](yerel-4k-panorama.md). Bilgi/görsel önceliği, Web sonrası ortak backend mobil hedefi ve yayın beklemesi korunur.
 
 **K-039 / 2 Kasım 2026 — Güncel durum denetimi:** Önce Web kabulünü tamamlamak, ardından aynı .NET backend/hesap/verilerle mobil uygulama geliştirmek kullanıcı hedefidir. [Plan, eksikler, kanıt ve mobil hazırlık](web-tamamlama-ve-ortak-backend-mobil-hedef.md). Bilgi/görsel önceliği, K-032 yayın beklemesi ve açık P0/P1/P2 kapsamı korunur; aşağıdaki eski paketler kendi aşamalarının tarihsel kanıtıdır.

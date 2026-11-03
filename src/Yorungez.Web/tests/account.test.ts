@@ -1,6 +1,20 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import {accountProxy,validMutation} from '../lib/server/account-proxy.ts';
+test('production BFF sets its own HTTPS scheme and preserves the trusted public origin',async()=>{
+ const previousFetch=globalThis.fetch,previousOrigin=process.env.YORUNGEZ_WEB_ORIGIN;
+ try{
+  process.env.YORUNGEZ_WEB_ORIGIN='https://yorungez.com';
+  globalThis.fetch=async(_input,init)=>{
+   const headers=init!.headers as Record<string,string>;
+   assert.equal(headers['X-Forwarded-Proto'],'https');assert.equal(headers.Origin,'https://yorungez.com');
+   assert.equal(headers['X-Forwarded-For'],undefined);
+   return Response.json({code:'Identity.InvalidCredentials'},{status:401});
+  };
+  const response=await accountProxy(new Request('http://web:3000/api/account/login',{method:'POST',headers:{Origin:'https://yorungez.com','Content-Type':'application/json','X-Yorungez-Request':'1','X-Forwarded-Proto':'http','X-Forwarded-For':'192.0.2.99'},body:'{}'}),'/api/v1/session/login');
+  assert.equal(response.status,401);
+ }finally{globalThis.fetch=previousFetch;if(previousOrigin===undefined)delete process.env.YORUNGEZ_WEB_ORIGIN;else process.env.YORUNGEZ_WEB_ORIGIN=previousOrigin}
+});
 test('account mutations reject absent/cross-site origin, ordinary forms and absent request headers',async()=>{
  const url='https://yorungez.test/api/account/login';
  const make=(headers:Record<string,string>)=>new Request(url,{method:'POST',headers,body:'{}'});
