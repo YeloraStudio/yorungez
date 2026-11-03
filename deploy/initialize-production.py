@@ -1,8 +1,8 @@
 """Run once on Ubuntu as root. Creates private local material; never prints secrets."""
 import argparse
+import getpass
 import os
 from pathlib import Path
-import secrets
 import subprocess
 
 parser = argparse.ArgumentParser()
@@ -13,6 +13,9 @@ if os.name != "posix" or os.geteuid() != 0:
 directory = Path(args.directory).resolve()
 if directory.exists():
     raise SystemExit("Target already exists; refusing to overwrite secrets or key rings.")
+password = getpass.getpass("Keyring PFX password (at least 32 characters; save in your private secret manager): ")
+if len(password) < 32 or password != getpass.getpass("Confirm PFX password: "):
+    raise SystemExit("Passwords must match and contain at least 32 characters.")
 os.umask(0o077)
 directory.mkdir(parents=True, mode=0o700)
 keys = directory / "keys"
@@ -21,7 +24,6 @@ os.chown(keys, 1654, 1654)
 # The API user must traverse this directory to reach both read-only cert and writable key ring.
 os.chown(directory, 0, 1654)
 directory.chmod(0o710)
-password = secrets.token_hex(32)
 env = dict(os.environ, YORUNGEZ_CERT_PASSWORD=password)
 try:
     subprocess.run(["openssl", "req", "-x509", "-newkey", "rsa:3072", "-nodes", "-days", "3650",
@@ -38,12 +40,10 @@ os.chown(certificate, 1654, 1654)
 certificate.chmod(0o400)
 template = (Path(__file__).parent / ".env.example").read_text()
 for key, value in {
-    "POSTGRES_PASSWORD": secrets.token_hex(32), "REDIS_PASSWORD": secrets.token_hex(32),
-    "JWT_SIGNING_KEY": secrets.token_hex(64), "KEYRING_CERT_PASSWORD": password,
     "KEYRING_PATH": str(keys), "KEYRING_CERT_PATH": str(certificate),
 }.items():
     template = "\n".join(f"{key}={value}" if line.startswith(key + "=") else line for line in template.splitlines()) + "\n"
 destination = directory / ".env"
 destination.write_text(template)
 destination.chmod(0o600)
-print(f"Private material created in {directory}. Fill image tags, Traefik settings and SMTP in .env locally. No secrets printed.")
+print(f"Encrypted PFX and template created in {directory}. Fill ALL secrets (including the same PFX password), image tags, Traefik and SMTP locally. No passwords saved to the template or printed.")

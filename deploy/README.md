@@ -37,12 +37,12 @@ Build bağlamı **repo kökü** olmalı. Web hash'li kaynak verileri build'de ha
 sudo python3 deploy/initialize-production.py --directory /opt/yorungez/private
 ```
 
-Bu araç benzersiz DB/Redis/JWT sırlarını, kalıcı keyring dizinini ve keyring şifreleme PFX'ini üretir; mevcut hedefi **üzerine yazmayı reddeder**, sırları ekrana basmaz. PFX, public HTTPS sertifikası değildir. Traefik HTTPS sertifikasını mevcut resolver'ıyla ayrı yönetir. Oluşturulan `/opt/yorungez/private/.env` dosyasını sunucuda özel editörünüzle doldurun:
+Bu araç kalıcı keyring dizinini, şifreli PFX'i ve yalnız placeholder içeren özel ortam şablonunu hazırlar; mevcut hedefi **üzerine yazmayı reddeder**. PFX parolasını gizli terminal isteminde siz seçersiniz (en az 32 karakter); araç parolayı ortam dosyasına yazmaz/ekrana basmaz. Parolayı kendi secret yöneticinizde koruyun. PFX, public HTTPS sertifikası değildir. Traefik HTTPS sertifikasını mevcut resolver'ıyla ayrı yönetir. Oluşturulan `/opt/yorungez/private/.env` dosyasını sunucuda özel editörünüzle doldurun:
 
 - `API_IMAGE=yorungez-api:<VERSION>`, `WEB_IMAGE=yorungez-web:<VERSION>`.
 - Gerçek `TRAEFIK_NETWORK`, `TRAEFIK_IP`, `TRAEFIK_ENTRYPOINT`, `TRAEFIK_CERTRESOLVER`.
 - SMTP gönderen/kullanıcı ve **gerçek uygulama parolası**; public `sender@example.com` yalnız örnektir. Yerel proje `.env` dosyasını repo/image'a taşımayın. Google uygulama parolasını boşluksuz girin. İşlem e-postaları İngilizce/markalı kalır.
-- Verilen uygulama sırları hex'tir; bağlantı dizesi/Compose ayracı sorunlarını önler. El ile değiştirirken `$`, `;`, `,`, tırnak ve satır sonu gibi karakterlerin parse etkisini değerlendirin.
+- `POSTGRES_PASSWORD`, `REDIS_PASSWORD` için ayrı ayrı `openssl rand -hex 32`, JWT için `openssl rand -hex 64` ile sunucuda değer üretip kendi özel yapılandırmanıza girin; sohbet/log/public dosyalara koymayın. `KEYRING_CERT_PASSWORD`, PFX oluştururken seçtiğiniz **aynı** parola olmalıdır. Hex değerler bağlantı dizesi/Compose ayracı sorunlarını önler; `$`, `;`, `,`, tırnak ve satır sonu gibi karakterlerin parse etkisini değerlendirin.
 
 PFX, PFX parolası ve keyring birlikte korunmalı; her deploy'da yeniden oluşturulmaz. Kaybolmaları cookie/token/outbox içeriklerini okunamaz yapabilir. Bu dosyalar özel kalır, public repoya/sohbete kopyalanmaz. Portainer environment değerleri yetkili Portainer yöneticilerince görülebilir; bu bir secret vault iddiası değildir.
 
