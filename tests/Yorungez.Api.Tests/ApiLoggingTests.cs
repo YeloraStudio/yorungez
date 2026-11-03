@@ -39,6 +39,8 @@ public sealed class ApiLoggingTests
         var app = builder.Build();
         app.UseRouting();
         app.UseMiddleware<HttpRequestTelemetry>();
+        app.UseRequestLocalization(new RequestLocalizationOptions()
+            .SetDefaultCulture("en").AddSupportedCultures("en", "tr").AddSupportedUICultures("en", "tr"));
         app.UseExceptionHandler();
         app.MapGet("/objects/{id}", () => Results.StatusCode(403));
         app.MapPost("/login", () => Results.StatusCode(401));
