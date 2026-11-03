@@ -103,7 +103,7 @@ Portainer → ilgili **Docker Standalone environment** → Stacks → Add stack:
 - Traefik resolver'ın ACME challenge yöntemi ve 80/443 erişimi mevcut kurulumunuzla uyumlu olmalı. HTTP→HTTPS yönlendirmesi Traefik'te mevcut global entrypoint yönlendirmesiyle sağlanmalı; bu stack başka projelerin global ayarlarını değiştirmez.
 - Cloudflare kullanılıyorsa origin'in geçerli sertifikasından sonra **Full (strict)** kullanın. Flexible'a düşürmeyin. DNS-only test veya proxy seçimi mevcut challenge/ingress düzeninize göre yapılır.
 - `/api/*`, `/en/account/*`, `/tr/account/*`, `/sw.js`, `/pwa-pack.json` için HTML/yanıtları “Cache Everything” ile cache'lemeyin; origin Cache-Control/no-store korunmalı. Özel kullanıcı verileri PWA/CDN'e girmemeli.
-- `www.yorungez.com` kendi sertifikasıyla `https://yorungez.com/...` adresine kalıcı (308) yönlenir; istek Web konteynerine ulaşmaz.
+- `www.yorungez.com` kendi sertifikasıyla `https://yorungez.com/...` adresine kalıcı (301) yönlenir; istek Web konteynerine ulaşmaz.
 
 API forwarded headers yalnız **tam adresi tanımlı Traefik ve Web** hop'larından kabul edilir; `X-Forwarded-Host` kullanılmaz. Web HTTPS scheme bilgisini kendi sabit public origin ayarından üretir, istemcinin rastgele forwarding başlıklarını kopyalamaz. API health uçları container içi HTTP probe için açık kalır; ürün uçları production HTTPS yönlendirmesini korur.
 
