@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.HttpOverrides;
+using System.Net;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -102,6 +104,13 @@ builder.Services.AddOptions<JwtBearerOptions>(JwtBearerDefaults.AuthenticationSc
         };
     });
 builder.Services.AddAuthorization();
+builder.Services.Configure<ForwardedHeadersOptions>(options =>
+{
+    options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+    options.ForwardLimit = 1;
+    foreach (var address in builder.Configuration.GetSection("ReverseProxy:KnownProxies").Get<string[]>() ?? [])
+        options.KnownProxies.Add(IPAddress.Parse(address));
+});
 builder.Services.AddRateLimiter(o =>
 {
     o.AddPolicy("notebook", context => RateLimitPartition.GetFixedWindowLimiter(
@@ -162,6 +171,7 @@ if (migrate)
     return;
 }
 
+app.UseForwardedHeaders();
 app.UseRequestLocalization();
 app.UseExceptionHandler();
 app.UseStatusCodePages(async context =>
@@ -175,7 +185,7 @@ app.UseStatusCodePages(async context =>
 if (!app.Environment.IsDevelopment() && !app.Environment.IsEnvironment("Testing"))
 {
     app.UseHsts();
-    app.UseHttpsRedirection();
+    app.UseWhen(context => !context.Request.Path.StartsWithSegments("/health"), branch => branch.UseHttpsRedirection());
 }
 app.Use(BrowserAuthentication.Guard);
 app.UseAuthentication();

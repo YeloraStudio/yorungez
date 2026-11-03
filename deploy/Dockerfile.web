@@ -1,0 +1,25 @@
+FROM node:22.20.0-bookworm-slim AS build
+WORKDIR /source
+COPY src/Yorungez.Web/package*.json src/Yorungez.Web/
+RUN cd src/Yorungez.Web && npm ci --no-fund --no-audit
+COPY . .
+ENV NEXT_TELEMETRY_DISABLED=1
+RUN cd src/Yorungez.Web && npm run build \
+    && node -e "const fs=require('fs'),ts=require('typescript');fs.writeFileSync('next.config.mjs',ts.transpileModule(fs.readFileSync('next.config.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022}}).outputText)" \
+    && npm prune --omit=dev
+
+FROM node:22.20.0-bookworm-slim AS runtime
+ENV NODE_ENV=production NEXT_TELEMETRY_DISABLED=1
+WORKDIR /app
+COPY --from=build --chown=node:node /source/src/Yorungez.Web/package*.json ./
+COPY --from=build --chown=node:node /source/src/Yorungez.Web/node_modules ./node_modules
+COPY --from=build --chown=node:node /source/src/Yorungez.Web/.next ./.next
+COPY --from=build --chown=node:node /source/src/Yorungez.Web/public ./public
+COPY --from=build --chown=node:node /source/src/Yorungez.Web/generated ./generated
+COPY --from=build --chown=node:node /source/src/Yorungez.Web/next.config.mjs ./
+COPY --from=build /source/LICENSE /source/NOTICE /source/THIRD_PARTY_NOTICES.md /licenses/
+COPY --from=build /source/third-party /licenses/third-party
+USER node
+EXPOSE 3000
+HEALTHCHECK --interval=30s --timeout=5s --start-period=30s CMD node -e "fetch('http://127.0.0.1:3000/en').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+CMD ["node", "node_modules/next/dist/bin/next", "start", "--hostname", "0.0.0.0", "--port", "3000"]

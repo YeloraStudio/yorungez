@@ -101,3 +101,5 @@ Güncel öncelik kaynaklı nesne görselleri/kısa bilgiler ve atlas derinliğid
 Yeniden dağıtım öncesi [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md), [kaynak lisansları](third-party/) ve [katalog kökenini](data/catalog/README.md) incele.
 
 [YeloraStudio](https://github.com/YeloraStudio) ve katkıda bulunanlar tarafından geliştirilir.
+
+Ubuntu/Portainer/Traefik için [API + Web deployment hazırlığı](deploy/README.md) hazırlandı; yayını sunucu yöneticisi yapar, otomatik deployment yoktur.

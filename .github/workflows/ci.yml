@@ -10,6 +10,18 @@ concurrency:
   group: ci-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 jobs:
+  containers:
+    name: Production containers
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Build and smoke test isolated production containers
+        run: bash scripts/Verify-Containers.sh
   publication:
     name: Publication safety
     runs-on: ubuntu-24.04

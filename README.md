@@ -183,3 +183,5 @@ Original Yorungez code and original project documentation use **[Apache-2.0](LIC
 Read [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md), [source notices](third-party/), [catalogue provenance](data/catalog/README.md) and [landscape attribution](third-party/stara-lesna/NOTICE.md) before redistributing a bundle or derived dataset.
 
 Built by [YeloraStudio](https://github.com/YeloraStudio) and contributors, following the evidence wherever it leads.
+
+Deployment preparation for your own Ubuntu/Portainer/Traefik host: [API + Web runbook](deploy/README.md). Deployment is operator-run; the repository does not deploy automatically.

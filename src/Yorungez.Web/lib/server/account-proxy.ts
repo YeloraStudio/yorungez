@@ -18,6 +18,8 @@ export async function accountProxy(request:Request,path:string){
   if(cookie)headers.Cookie=cookie;
   const owner=request.headers.get('X-Yorungez-Account');if(owner)headers['X-Yorungez-Account']=owner;
   headers.Origin=request.headers.get('Origin')??new URL(request.url).origin;
+  // This server is an explicitly trusted API proxy; never forward the client's supplied proto.
+  if(process.env.YORUNGEZ_WEB_ORIGIN?.startsWith('https://'))headers['X-Forwarded-Proto']='https';
   let body:string|undefined;
   if(request.method!=='GET'){headers['Content-Type']='application/json';try{body=JSON.stringify(await readJson(request,65536))}catch{return Response.json({code:'Common.InvalidInput'},{status:400,headers:privateHeaders})}}
   const upstream=await fetch(new URL(path,process.env.YORUNGEZ_API_ORIGIN??'http://127.0.0.1:5187'),{method:request.method,headers,body,cache:'no-store',redirect:'error',signal:AbortSignal.timeout(15000)});

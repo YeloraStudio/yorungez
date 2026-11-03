@@ -1,0 +1,8 @@
+# Disposable Linux CI fixture only. Never use this override in production.
+services:
+  api:
+    ports: ['127.0.0.1:18080:8080']
+    environment:
+      Email__RunOutboxWorker: 'false'
+  web:
+    ports: ['127.0.0.1:13000:3000']

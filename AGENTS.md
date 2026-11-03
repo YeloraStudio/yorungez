@@ -1,5 +1,7 @@
 # yorungez çalışma rehberi
 
+**K-041 / 3 Kasım 2026 — Deployment hazırlığı:** Kullanıcı yorungez.com alan adını satın aldı; Natro nameserver güncellemesi önceki oturumda onaylandı. Ubuntu/Portainer + Traefik/Docker Standalone için Web (`yorungez.com`) ve API (`api.yorungez.com`) hazırlığı yetkilendirildi. [Image/stack/özel ortam/kurulum rehberi](deploy/README.md). Gerçek deployment, sunucu/DNS/TLS değişiklikleri kullanıcı tarafından yapılacak; K-032'nin ajan için yayın yasağı sürer. Bilimsel/cihaz/işletim kabulü tamamlandı sayılmaz; P0/P1/P2 ve ortak backend ile mobil hedefi korunur.
+
 **K-040 / TECH-11F (3 Kasım 2026):** Özgün 4096×2048 arazi artık uygun GPU'da 4K yüklenir; sınırlı/tahsis hatalı cihazda daha küçük doku ve sade yol korunur. Atmosferde gereksiz ikinci büyük fotoğraf kopyası kaldırıldı, CPU yalnız önceki 2K alfa maskesini tutar. 64 istemci testi/tip/üretim derlemesi ve masaüstü/390 px 4K yükleme kontrolü geçti; fiziksel FPS/bellek kabulü açık, gerçek 8K kaynak henüz yok. [Kanıt ve sınırlar](docs/yerel-4k-panorama.md). Bilgi/görsel önceliği, Web sonrası ortak backend mobil hedefi ve yayın beklemesi korunur.
 
 **K-039 / 2 Kasım 2026 — Güncel durum denetimi:** Önce Web kabulünü tamamlamak, ardından aynı .NET backend/hesap/verilerle mobil uygulama geliştirmek kullanıcı hedefidir. [Plan, eksikler, kanıt ve mobil hazırlık](docs/web-tamamlama-ve-ortak-backend-mobil-hedef.md). Bilgi/görsel önceliği, K-032 yayın beklemesi ve açık P0/P1/P2 kapsamı korunur; aşağıdaki eski paketler kendi aşamalarının tarihsel kanıtıdır.
@@ -50,7 +52,7 @@
 ## Kimlik
 
 - Ürün adı **yorungez**; kökeni **yörünge + gezmek**. Kod, klasör ve erişilebilir marka metinlerinde bu ASCII yazımı kullanılır. K-031: kullanıcının sağladığı logodaki görsel Yörüngez harfleri korunur; teknik ad değişmez.
-- `yorungez.com` planlanan alan adıdır. Satın alınmış, bağlanmış veya yayında olduğu kanıt olmadan söylenmez.
+- `yorungez.com` kullanıcı tarafından satın alındı (K-041); Natro NS güncellemesi onaylandı. DNS yayılımı/TLS/uygulama yayını ayrı kabul ister; uygulama yayında diye sunma.
 - Kullanıcı proje ve klasör adlandırmasını kendisi yönetir. Mevcut görev gerektirmedikçe uygulamanın proje kayıtlarını veya sohbet ayarlarını değiştirme.
 
 ## Korunacak ürün kuralları
