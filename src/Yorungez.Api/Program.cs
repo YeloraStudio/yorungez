@@ -172,6 +172,10 @@ if (migrate)
 }
 
 app.UseForwardedHeaders();
+// Production sits behind Cloudflare; without this every visitor would share
+// the rate-limit partition of the Cloudflare edge that carried the request.
+if (app.Configuration.GetValue("ReverseProxy:TrustCloudflare", false))
+    app.Use(CloudflareClientAddress.Middleware(CloudflareClientAddress.EdgeNetworks));
 app.UseRequestLocalization();
 app.UseExceptionHandler();
 app.UseStatusCodePages(async context =>

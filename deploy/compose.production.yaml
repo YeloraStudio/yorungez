@@ -22,6 +22,8 @@ x-api-environment: &api-environment
   DataProtection__CertificatePassword: ${KEYRING_CERT_PASSWORD:?required}
   ReverseProxy__KnownProxies__0: ${TRAEFIK_IP:?set exact Traefik container IP}
   ReverseProxy__KnownProxies__1: ${WEB_INTERNAL_IP:-10.89.0.3}
+  # Cloudflare proxies the public hostnames; see Http/CloudflareClientAddress.cs.
+  ReverseProxy__TrustCloudflare: 'true'
 x-api: &api
   image: ${API_IMAGE:?build and tag the API image first}
   environment: *api-environment
