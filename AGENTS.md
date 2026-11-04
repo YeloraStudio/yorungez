@@ -1,5 +1,7 @@
 # yorungez çalışma rehberi
 
+**K-047 / 4 Kasım 2026 — Telefonla gökyüzü takibi:** Kullanıcı arka kamera doğrultusu/eğim ve isteğe bağlı yerel kamera istedi. Düz pusula ayrıca kalır; yeni açık hizalamalı takip roll ve canlı konumu kullanır, göreli veri hizasız uygulanmaz, kamera self/izinli/yerel ve ses-kayıt-yüklemesizdir. Önceki düz-telefon ve kamera kapalı kapsamı yeni isteğe bağlı mod için genişler. [Sözleşme, kaynaklar, test ve fiziksel kabul sınırları](docs/phone-sky-tracking.md). S23/iPhone gerçek yön doğruluğu kabulü açıktır.
+
 **K-046 / 4 Kasım 2026 — Hesapta kalıcı dil:** Varsayılan en, desteklenen en/tr. Hesap dil tercihi PostgreSQL profilinde; cookie/JWT ortak backend endpoint'i web/PWA ve ileriki mobil istemci için kullanılır. Anonim aynı tarayıcı tercihi yalnız dil çerezidir; kişisel kayıt/konum kalıcılığı eklenmez. [Sözleşme, yaşam döngüsü ve doğrulama](docs/account-language-preference.md).
 
 **K-045 / 4 Kasım 2026 — Küçültülebilir paneller:** Kullanıcının seçtiği bilgi kartı, konum ve saat panelleri masaüstü/mobil için bağımsız küçült/aç kontrollerine sahip. TR/EN, klavye ve görünür kısa özet korunur; astronomi, koordinat/zaman ve kalıcılık kuralları değişmez. [Uygulama ve yerel doğrulama](docs/collapsible-map-panels.md). Canlıya alma K-042 onay kuralına tabidir.

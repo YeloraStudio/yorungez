@@ -18,6 +18,8 @@ Detailed product/delivery records are currently mostly Turkish. Newer decisions 
 
 ## Current implementation
 
+- [Phone pointing, optional rear camera and physical acceptance](phone-sky-tracking.md)
+
 - [Account language preference for Web/PWA and the shared mobile API](account-language-preference.md)
 
 - [Collapsible object, location and time panels](collapsible-map-panels.md)

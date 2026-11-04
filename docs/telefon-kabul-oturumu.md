@@ -1,5 +1,7 @@
 # Telefon kabul oturumu — S23 / iPhone 15
 
+**K-047 / 4 Kasım 2026:** Kullanıcı S23 Brave üzerinde sensör izni ve kullanılabilir düz-telefon verisi bildirdi; önceki izin engeli bildirimi tarihsel kaldı. Sürekli arka-eksen takip ve isteğe bağlı kamera için [yeni fiziksel protokol](phone-sky-tracking.md#fiziksel-s23--iphone-15-kabulü) uygulanacak; yön doğruluğu, kamera ve iPhone kabulü açık. HTTPS yayın artık mevcut; aşağıdaki eski yayın bekleme kayıtları tarihsel durumdur.
+
 **K-038 güncel cihaz bildirimi:** S23 Chrome/Brave ve PWA ekleyip genel kullanım için kullanıcı olumlu sonuç bildirdi. USB-localhost yönlendirmesi kuruldu. Pusulada sensör erişimi açılamadı; Chrome Hareket sensörleri engeli kullanıcı tarafından doğrulandı. İzin sonrası pusula/ölçümlü GPS/tam DV ve iPhone kabulü açık; [kapsam ve kanıt](mobil-kart-samanyolu-ve-pusula-erisim.md). Aşağıdaki önceki hazırlık kaydı tarihsel durumdur.
 
 **K-032 / 2 Kasım 2026:** Kullanıcı deployment/HTTPS ve canlı yayını erteledi. Public HTTPS oturumu, kullanıcı ortam hazır olduğunu bildirene kadar beklemede; domain/alt alan adı/tünel kurulumu kendiliğinden başlatılmaz. Yerel geliştirme [ayrı iş sırasıyla](yayin-oncesi-yerel-plan.md) devam eder.

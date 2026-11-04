@@ -11,5 +11,5 @@ export interface ArtAnchor { x: number; y: number; star: Pick<StarRecord,"id"|"r
 export interface SkyCatalog { schemaVersion: number; version: string; epoch: string; stars: StarRecord[]; constellations: ConstellationRecord[];
   deepSky?: DeepSkyRecord[]; art?: { figures: { id: string; src: string; size: number[]; anchors: number[] }[]; anchors: ArtAnchor[] } }
 export interface ObserverContext { latitude: number; longitude: number; elevationMeters: number | null; instantUtc: string; source?: "example" | "manual" | "device"; accuracyMeters?: number; measuredAtUtc?: string; placeName?:string }
-export interface Camera { azimuth: number; altitude: number; fieldOfView: number }
+export interface Camera { azimuth: number; altitude: number; fieldOfView: number; roll?:number; projection?:'perspective' }
 export type Language = "tr" | "en";

@@ -1,6 +1,7 @@
 import type { Camera } from "./types.ts";
 const RAD = Math.PI / 180;
 export function projectionScale(camera: Camera, width: number, height: number) {
+  if(camera.projection==='perspective')return Math.max(width,height)/(2*Math.tan(camera.fieldOfView*RAD/2));
   return Math.max(width, height) / (4 * Math.tan(camera.fieldOfView * RAD / 4));
 }
 export function projector(camera: Camera, width: number, height: number) {
@@ -11,9 +12,10 @@ export function projector(camera: Camera, width: number, height: number) {
   const scale = projectionScale(camera, width, height);
   return (x: number, y: number, z: number): [number, number] | null => {
     const depth = x * cx + y * cy + z * cz;
-    if (depth <= -0.999999) return null;
-    const k = 2 * scale / (1 + depth);
-    return [width / 2 + k * (x * rx + y * ry), height / 2 - k * (x * ux + y * uy + z * uz)];
+    if (depth <= (camera.projection==='perspective'?0:-0.999999)) return null;
+    const k = camera.projection==='perspective'?scale/depth:2 * scale / (1 + depth),roll=(camera.roll??0)*RAD;
+    const r=x*rx+y*ry,u=x*ux+y*uy+z*uz;
+    return [width/2+k*(r*Math.cos(roll)-u*Math.sin(roll)),height/2-k*(u*Math.cos(roll)+r*Math.sin(roll))];
   };
 }
 export function horizontalVector(azimuth: number, altitude: number): [number, number, number] {
@@ -22,7 +24,8 @@ export function horizontalVector(azimuth: number, altitude: number): [number, nu
 }
 export function normalizedCamera(camera: Camera): Camera {
   return { azimuth: ((camera.azimuth % 360) + 360) % 360,
-    altitude: Math.max(-90, Math.min(90, camera.altitude)), fieldOfView: Math.max(0.6, Math.min(330, camera.fieldOfView)) };
+    altitude: Math.max(-90, Math.min(90, camera.altitude)), fieldOfView: Math.max(0.6, Math.min(camera.projection==='perspective'?120:330, camera.fieldOfView)),
+    ...(camera.roll===undefined?{}:{roll:((camera.roll+180)%360+360)%360-180}),...(camera.projection?{projection:camera.projection}:{}) };
 }
 export function equatorialVector(matrix: Float64Array, raHours: number, decDegrees: number): [number, number, number] {
   const ra = raHours * 15 * RAD, dec = decDegrees * RAD;
