@@ -18,6 +18,8 @@ Detailed product/delivery records are currently mostly Turkish. Newer decisions 
 
 ## Current implementation
 
+- [Account language preference for Web/PWA and the shared mobile API](account-language-preference.md)
+
 - [Collapsible object, location and time panels](collapsible-map-panels.md)
 
 - [API structured logging, privacy and Portainer diagnostics](api-logging.md)
