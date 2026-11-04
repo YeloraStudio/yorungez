@@ -39,6 +39,7 @@ concurrency:
   group: mobile-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 env:
+  FLUTTER_VERSION: 3.41.6
   FLUTTER_REVISION: db50e20168db8fee486b9abf32fc912de3bc5b6a
 jobs:
   android:
@@ -57,7 +58,10 @@ jobs:
           git -C "$sdk" remote add origin https://github.com/flutter/flutter.git
           git -C "$sdk" fetch --depth 1 origin "$FLUTTER_REVISION"
           git -C "$sdk" checkout --detach FETCH_HEAD
+          # Flutter derives its SDK version from the matching release tag.
+          git -C "$sdk" fetch --depth 1 origin "refs/tags/$FLUTTER_VERSION:refs/tags/$FLUTTER_VERSION"
           test "$(git -C "$sdk" rev-parse HEAD)" = "$FLUTTER_REVISION"
+          test "$(git -C "$sdk" rev-parse "refs/tags/$FLUTTER_VERSION^{commit}")" = "$FLUTTER_REVISION"
           echo "$sdk/bin" >> "$GITHUB_PATH"
       - name: Prepare locked dependencies
         working-directory: src/Yorungez.Mobile
@@ -94,7 +98,10 @@ jobs:
           git -C "$sdk" remote add origin https://github.com/flutter/flutter.git
           git -C "$sdk" fetch --depth 1 origin "$FLUTTER_REVISION"
           git -C "$sdk" checkout --detach FETCH_HEAD
+          # Flutter derives its SDK version from the matching release tag.
+          git -C "$sdk" fetch --depth 1 origin "refs/tags/$FLUTTER_VERSION:refs/tags/$FLUTTER_VERSION"
           test "$(git -C "$sdk" rev-parse HEAD)" = "$FLUTTER_REVISION"
+          test "$(git -C "$sdk" rev-parse "refs/tags/$FLUTTER_VERSION^{commit}")" = "$FLUTTER_REVISION"
           echo "$sdk/bin" >> "$GITHUB_PATH"
       - name: Build unsigned iOS application
         working-directory: src/Yorungez.Mobile
