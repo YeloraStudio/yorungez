@@ -4,9 +4,9 @@ import ObjectCardShell from './ObjectCardShell';
 import ObjectVisual from './ObjectVisual';
 import type {Language,SkyCatalog} from '../lib/sky/types.ts';
 import type {SkyFrame} from '../lib/sky/frame-contract.ts';
-export default function MilkyWayCard({language,catalog,frame,onClose,onRegion}:{language:Language;catalog:SkyCatalog;frame:SkyFrame|null;onClose:()=>void;onRegion:()=>void}){
+export default function MilkyWayCard({language,catalog,frame,onClose,onRegion,compact,onExpand,onCollapse}:{language:Language;catalog:SkyCatalog;frame:SkyFrame|null;onClose:()=>void;onRegion:()=>void;compact:boolean;onExpand:()=>void;onCollapse:()=>void}){
  const f=featureData.milkyWay,tr=language==='tr';
- return <ObjectCardShell id={f.id} name={f.names[language]} category={tr?'Galaksi':'Galaxy'} subtitle={tr?'İçinde bulunduğumuz galaksi':'Our home galaxy'} closeLabel={tr?'Bilgi kartını kapat':'Close information card'} onClose={onClose}>
+ return <ObjectCardShell id={f.id} name={f.names[language]} category={tr?'Galaksi':'Galaxy'} subtitle={tr?'İçinde bulunduğumuz galaksi':'Our home galaxy'} closeLabel={tr?'Bilgi kartını kapat':'Close information card'} onClose={onClose} compact={compact} language={language} onExpand={onExpand} onCollapse={onCollapse}>
   <ObjectVisual object={{id:f.id,name:f.names[language],kind:'extended',index:-1}} catalog={catalog} frame={frame} language={language} image={f.image} alwaysCredit/>
   <div className="object-about"><p>{f.description[language]}</p></div>
   <p className="muted">{f.region[language]}</p>

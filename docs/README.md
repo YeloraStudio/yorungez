@@ -18,6 +18,8 @@ Detailed product/delivery records are currently mostly Turkish. Newer decisions 
 
 ## Current implementation
 
+- [Collapsible object, location and time panels](collapsible-map-panels.md)
+
 - [API structured logging, privacy and Portainer diagnostics](api-logging.md)
 
 - [Native 4K panorama / bounded GPU fallback / source and 8K limits](yerel-4k-panorama.md)
