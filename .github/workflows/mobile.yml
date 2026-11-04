@@ -1,0 +1,113 @@
+name: Mobile verification
+on:
+  pull_request:
+    paths:
+      - 'src/Yorungez.Mobile/**'
+      - 'data/catalog/**'
+      - 'data/audio/**'
+      - 'data/sky/**'
+      - 'tests/ReferenceData/**'
+      - 'tools/science-js/**'
+      - 'data/branding/**'
+      - 'third-party/**'
+      - 'LICENSE'
+      - 'src/Yorungez.Web/public/objects/**'
+      - '.github/workflows/mobile.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'src/Yorungez.Mobile/**'
+      - 'data/catalog/**'
+      - 'data/audio/**'
+      - 'data/sky/**'
+      - 'tests/ReferenceData/**'
+      - 'tools/science-js/**'
+      - 'data/branding/**'
+      - 'third-party/**'
+      - 'LICENSE'
+      - 'src/Yorungez.Web/public/objects/**'
+      - '.github/workflows/mobile.yml'
+  workflow_dispatch:
+    inputs:
+      build_ios:
+        description: Also build the unsigned iOS application on macOS
+        type: boolean
+        default: false
+permissions:
+  contents: read
+concurrency:
+  group: mobile-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+env:
+  FLUTTER_VERSION: 3.41.6
+  FLUTTER_REVISION: db50e20168db8fee486b9abf32fc912de3bc5b6a
+jobs:
+  android:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Install pinned official Flutter SDK
+        shell: bash
+        run: |
+          set -euo pipefail
+          sdk="$RUNNER_TEMP/yorungez-flutter"
+          git init "$sdk"
+          git -C "$sdk" remote add origin https://github.com/flutter/flutter.git
+          git -C "$sdk" fetch --depth 1 origin "$FLUTTER_REVISION"
+          git -C "$sdk" checkout --detach FETCH_HEAD
+          # Flutter derives its SDK version from the matching release tag.
+          git -C "$sdk" fetch --depth 1 origin "refs/tags/$FLUTTER_VERSION:refs/tags/$FLUTTER_VERSION"
+          test "$(git -C "$sdk" rev-parse HEAD)" = "$FLUTTER_REVISION"
+          test "$(git -C "$sdk" rev-parse "refs/tags/$FLUTTER_VERSION^{commit}")" = "$FLUTTER_REVISION"
+          echo "$sdk/bin" >> "$GITHUB_PATH"
+      - name: Prepare locked dependencies
+        working-directory: src/Yorungez.Mobile
+        run: |
+          flutter config --no-analytics --jdk-dir="$JAVA_HOME_17_X64"
+          flutter --version
+          flutter pub get --enforce-lockfile
+          dart run tool/stage_assets.dart
+          flutter gen-l10n
+      - name: Analyze, test and build development APK
+        working-directory: src/Yorungez.Mobile
+        run: |
+          dart format --output=none --set-exit-if-changed lib tool test
+          flutter analyze --no-pub
+          npm ci --prefix ../../tools/science-js --ignore-scripts --no-audit --no-fund
+          python3 tool/check_science.py
+          python3 tool/check_satellite.py
+          python3 tool/check_magnetic.py
+          flutter test --no-pub
+          flutter build apk --debug --no-pub
+  ios:
+    if: github.event_name == 'workflow_dispatch' && inputs.build_ios
+    runs-on: macos-15
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Install pinned official Flutter SDK
+        run: |
+          set -euo pipefail
+          sdk="$RUNNER_TEMP/yorungez-flutter"
+          git init "$sdk"
+          git -C "$sdk" remote add origin https://github.com/flutter/flutter.git
+          git -C "$sdk" fetch --depth 1 origin "$FLUTTER_REVISION"
+          git -C "$sdk" checkout --detach FETCH_HEAD
+          # Flutter derives its SDK version from the matching release tag.
+          git -C "$sdk" fetch --depth 1 origin "refs/tags/$FLUTTER_VERSION:refs/tags/$FLUTTER_VERSION"
+          test "$(git -C "$sdk" rev-parse HEAD)" = "$FLUTTER_REVISION"
+          test "$(git -C "$sdk" rev-parse "refs/tags/$FLUTTER_VERSION^{commit}")" = "$FLUTTER_REVISION"
+          echo "$sdk/bin" >> "$GITHUB_PATH"
+      - name: Build unsigned iOS application
+        working-directory: src/Yorungez.Mobile
+        run: |
+          flutter config --no-analytics
+          flutter pub get --enforce-lockfile
+          dart run tool/stage_assets.dart
+          flutter gen-l10n
+          flutter build ios --no-codesign --no-pub

@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "eso0932a",
+  "file": "eso0932a.jpg",
+  "sha256": "60400c92c54b7c1bd12299c69e83b16e5b6256e7dabacc478c021758ecd28179",
+  "size": [
+    6000,
+    3000
+  ],
+  "sourceUrl": "https://cdn.eso.org/images/large/eso0932a.jpg",
+  "sourcePage": "https://www.eso.org/public/images/eso0932a/",
+  "credit": "ESO/S. Brunier",
+  "license": "CC-BY-4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+  "rightsPage": "https://www.eso.org/public/outreach/copyright/",
+  "projection": "Galactic CAR; longitude decreases left-to-right, l=0 at u=0.5; b=+90 at v=0",
+  "registrationEvidence": "https://www.hnsky.org/toast_pr.htm",
+  "limitations": "Photographic multi-epoch composite; local distortions up to about 1 degree reported by HNSKY author. Not used for point positions, current planets, naked-eye visibility or astrometry. Runtime low-pass filtering, projection and brightness scaling; no AI modification. The restricted 800-million-pixel original is not included."
+}

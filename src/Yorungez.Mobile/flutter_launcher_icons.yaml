@@ -1,0 +1,7 @@
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: ../../data/branding/source/app-icon-fullbleed.png
+  remove_alpha_ios: true
+  background_color_ios: '#3C3F43'
+  min_sdk_android: 24

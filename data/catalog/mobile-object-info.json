@@ -1,0 +1,209 @@
+{
+  "schemaVersion": 1,
+  "version": "2026-11-04.1",
+  "authorship": "Original Yorungez bilingual factual summaries, not copied article extracts",
+  "descriptions": {
+    "sun": {
+      "text": {
+        "en": "Star at the centre of the Solar System",
+        "tr": "Güneş Sistemi’nin merkezindeki yıldız"
+      },
+      "sources": [
+        {
+          "label": "NASA Science",
+          "url": "https://science.nasa.gov/sun/"
+        }
+      ]
+    },
+    "moon": {
+      "text": {
+        "en": "Natural satellite of the Earth",
+        "tr": "Dünya’nın doğal uydusu"
+      },
+      "sources": [
+        {
+          "label": "NASA Science",
+          "url": "https://science.nasa.gov/moon/"
+        }
+      ]
+    },
+    "mercury": {
+      "text": {
+        "en": "Closest planet to the Sun",
+        "tr": "Güneş’e en yakın gezegen"
+      },
+      "sources": [
+        {
+          "label": "NASA Science",
+          "url": "https://science.nasa.gov/mercury/"
+        }
+      ]
+    },
+    "venus": {
+      "text": {
+        "en": "Second planet from the Sun",
+        "tr": "Güneş’e uzaklıkta ikinci gezegen"
+      },
+      "sources": [
+        {
+          "label": "NASA Science",
+          "url": "https://science.nasa.gov/venus/"
+        }
+      ]
+    },
+    "mars": {
+      "text": {
+        "en": "Fourth planet from the Sun",
+        "tr": "Güneş’e uzaklıkta dördüncü gezegen"
+      },
+      "sources": [
+        {
+          "label": "NASA Science",
+          "url": "https://science.nasa.gov/mars/"
+        }
+      ]
+    },
+    "jupiter": {
+      "text": {
+        "en": "Largest planet in the Solar System",
+        "tr": "Güneş Sistemi’nin en büyük gezegeni"
+      },
+      "sources": [
+        {
+          "label": "NASA Science",
+          "url": "https://science.nasa.gov/jupiter/"
+        }
+      ]
+    },
+    "saturn": {
+      "text": {
+        "en": "Gas giant with a prominent ring system",
+        "tr": "Belirgin halka sistemine sahip gaz devi"
+      },
+      "sources": [
+        {
+          "label": "NASA Science",
+          "url": "https://science.nasa.gov/saturn/"
+        }
+      ]
+    },
+    "uranus": {
+      "text": {
+        "en": "Ice giant with a strongly tilted rotation axis",
+        "tr": "Dönme ekseni çok eğik olan buz devi"
+      },
+      "sources": [
+        {
+          "label": "NASA Science",
+          "url": "https://science.nasa.gov/uranus/"
+        }
+      ]
+    },
+    "neptune": {
+      "text": {
+        "en": "Outermost planet in the Solar System",
+        "tr": "Güneş Sistemi’nin en dıştaki gezegeni"
+      },
+      "sources": [
+        {
+          "label": "NASA Science",
+          "url": "https://science.nasa.gov/neptune/"
+        }
+      ]
+    }
+  },
+  "constellationLatinNames": {
+    "con-and": "Andromeda",
+    "con-ant": "Antlia",
+    "con-aps": "Apus",
+    "con-aqr": "Aquarius",
+    "con-aql": "Aquila",
+    "con-ara": "Ara",
+    "con-ari": "Aries",
+    "con-aur": "Auriga",
+    "con-boo": "Bootes",
+    "con-cae": "Caelum",
+    "con-cam": "Camelopardalis",
+    "con-cnc": "Cancer",
+    "con-cvn": "Canes Venatici",
+    "con-cma": "Canis Maior",
+    "con-cmi": "Canis Minor",
+    "con-cap": "Capricornus",
+    "con-car": "Carina",
+    "con-cas": "Cassiopeia",
+    "con-cen": "Centaurus",
+    "con-cep": "Cepheus",
+    "con-cet": "Cetus",
+    "con-cha": "Chamaeleon",
+    "con-cir": "Circinus",
+    "con-col": "Columba",
+    "con-com": "Coma Berenices",
+    "con-cra": "Corona Australis",
+    "con-crb": "Corona Borealis",
+    "con-crv": "Corvus",
+    "con-crt": "Crater",
+    "con-cru": "Crux",
+    "con-cyg": "Cygnus",
+    "con-del": "Delphinus",
+    "con-dor": "Dorado",
+    "con-dra": "Draco",
+    "con-equ": "Equuleus",
+    "con-eri": "Eridanus",
+    "con-for": "Fornax",
+    "con-gem": "Gemini",
+    "con-gru": "Grus",
+    "con-her": "Hercules",
+    "con-hor": "Horologium",
+    "con-hya": "Hydra",
+    "con-hyi": "Hydrus",
+    "con-ind": "Indus",
+    "con-lac": "Lacerta",
+    "con-leo": "Leo",
+    "con-lmi": "Leo Minor",
+    "con-lep": "Lepus",
+    "con-lib": "Libra",
+    "con-lup": "Lupus",
+    "con-lyn": "Lynx",
+    "con-lyr": "Lyra",
+    "con-men": "Mensa",
+    "con-mic": "Microscopium",
+    "con-mon": "Monoceros",
+    "con-mus": "Musca",
+    "con-nor": "Norma",
+    "con-oct": "Octans",
+    "con-oph": "Ophiuchus",
+    "con-ori": "Orion",
+    "con-pav": "Pavo",
+    "con-peg": "Pegasus",
+    "con-per": "Perseus",
+    "con-phe": "Phoenix",
+    "con-pic": "Pictor",
+    "con-psc": "Pisces",
+    "con-psa": "Piscis Austrinus",
+    "con-pup": "Puppis",
+    "con-pyx": "Pyxis",
+    "con-ret": "Reticulum",
+    "con-sge": "Sagitta",
+    "con-sgr": "Sagittarius",
+    "con-sco": "Scorpius",
+    "con-scl": "Sculptor",
+    "con-sct": "Scutum",
+    "con-ser": "Serpens",
+    "con-sex": "Sextans",
+    "con-tau": "Taurus",
+    "con-tel": "Telescopium",
+    "con-tri": "Triangulum",
+    "con-tra": "Triangulum Australe",
+    "con-tuc": "Tucana",
+    "con-uma": "Ursa Maior",
+    "con-umi": "Ursa Minor",
+    "con-vel": "Vela",
+    "con-vir": "Virgo",
+    "con-vol": "Volans",
+    "con-vul": "Vulpecula"
+  },
+  "constellationNameSource": {
+    "url": "https://raw.githubusercontent.com/ofrohn/d3-celestial/7e720a3de062059d4c5400a379146a601d9010e0/data/constellations.json",
+    "sha256": "ab4ae692027cbc042c0d6791a84456a65eb7c55656107fd00c58ff6e55d4d8b2"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "title": "Cylinder Four",
+  "artist": "Chris Zabriskie",
+  "album": "Cylinders",
+  "year": 2014,
+  "sourceUrl": "https://chriszabriskie.com/cylinders/",
+  "downloadUrl": "https://audio.chriszabriskie.com/cylinders/cylinders-04.m4a",
+  "rightsUrl": "https://chriszabriskie.com/use/",
+  "license": "CC BY 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+  "sha256": "2d1fdd762455510e5e4c247a02b344cddce463adb90794d46e4b90eeeaa0fdae",
+  "bytes": 3592706,
+  "retrievedDate": "2026-11-04",
+  "modifications": "Original author-hosted audio unchanged. App repeats playback and controls volume locally."
+}
