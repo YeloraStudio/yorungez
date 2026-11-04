@@ -50,6 +50,9 @@ builder.Services.AddMediatR(c =>
 });
 builder.Services.AddScoped<IGlossaryRepository, GlossaryRepository>();
 builder.Services.AddSingleton<ISkyCatalogRepository, SkyCatalogRepository>();
+builder.Services.AddSingleton(TimeProvider.System);
+builder.Services.AddSingleton<IIssElementsRepository, IssElementsRepository>();
+builder.Services.AddHttpClient("CelesTrak", client => { client.Timeout = TimeSpan.FromSeconds(10); client.DefaultRequestHeaders.UserAgent.ParseAdd("Yorungez/0.1 (+https://github.com/YeloraStudio/yorungez)"); });
 builder.Services.AddSingleton<IPlanningCatalog, PlanningCatalogRepository>();
 builder.Services.AddSingleton<ISkyCalculator, AstronomyEngineCalculator>();
 builder.Services.AddStackExchangeRedisCache(o =>

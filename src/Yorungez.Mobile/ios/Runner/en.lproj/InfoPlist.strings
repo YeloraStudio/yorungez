@@ -1,0 +1,3 @@
+"NSCameraUsageDescription" = "Show calculated sky markers on a local camera preview. No recording or upload.";
+"NSLocationWhenInUseUsageDescription" = "Calculate the sky from your location while exploring.";
+"NSMotionUsageDescription" = "Follow the direction and tilt of your phone.";

@@ -1,5 +1,28 @@
 # Third-party dependency inventory
 
+## Flutter foundation — 4 November 2026
+
+Exact direct/transitive app versions are in [pubspec.lock](src/Yorungez.Mobile/pubspec.lock). Licence texts were inspected in the locally resolved package archives; this table is a direct-dependency inventory, not a complete native release SBOM.
+
+| Component | Resolved version | Licence |
+|---|---|---|
+| Flutter SDK / flutter_localizations | 3.41.6, revision db50e20168db8fee486b9abf32fc912de3bc5b6a | BSD-3-Clause; SDK/package notices retained by Flutter's bundled licence registry |
+| flutter_riverpod | 3.3.2 | MIT |
+| go_router | 17.5.0 | BSD-3-Clause |
+| dio | 5.11.1 | MIT |
+| crypto | 3.0.8 | BSD-3-Clause |
+| intl | 0.20.2 | BSD-3-Clause |
+| flutter_launcher_icons (development asset exporter) | 0.14.4 | MIT |
+| camera | 0.12.0+2 | BSD-3-Clause; official Flutter package licence inspected locally |
+| geolocator | 14.1.2 | MIT |
+| just_audio | 0.10.6 | MIT |
+| shared_preferences | 2.5.6 | BSD-3-Clause |
+| ffi | 2.2.0 | BSD-3-Clause |
+| audio_session | 0.2.4 | MIT |
+
+The native Sources screen exposes the generated Flutter software-licence registry and separately staged HYG/OpenNGC/d3-celestial/Astronomy Engine notices. K-050 now builds the pinned MIT C source recorded in [its manifest](third-party/astronomy-engine/source/c/manifest.json), using an original Apache-2.0 wrapper; native pose adapters are original Kotlin/Swift code. Twelve bundled archive images retain their canonical per-file rights below. [Cylinder Four by Chris Zabriskie](data/audio/README.md) is unchanged author-hosted CC BY 4.0 audio with source/hash/attribution. No AR, personal database or credential-storage package is adopted. Shared preferences store only notice version and mute. Preserve transitive/native notices and perform release-specific review before store distribution. [Current evidence](docs/mobile-sky-first-evidence.md); [initial foundation snapshot](docs/mobile-foundation.md).
+
+
 **TECH-04C:** [GeoNames CC BY 4.0 attribution and modifications](third-party/geonames/NOTICE.md), [source/derived SHA manifest](data/places/manifest.json). USNO numeric primary-phase/rise-set facts retain URLs, retrieval/hash and time-precision attribution in [events](data/events/README.md) and [observing references](tests/ReferenceData/Observing/README.md). These are factual data, not copied website prose or Stellarium calendar assets/code.
 
 **TECH-04B addition:** Stara Lesna Meadows original photographic PNG, Ľubomír Hambálek, [upstream source and licence discrepancy](third-party/stara-lesna/NOTICE.md), [SHA manifest](data/catalog/landscape-manifest.json). Listing: CC BY-SA 4.0; supplied archive readme: CC BY 4.0; both retained. No Stellarium runtime code imported; WebGL scene and compass adapter are Yorungez code, original Yorungez code is Apache-2.0 (K-029 / ADR-0014).
@@ -41,3 +64,12 @@ Docker image digests are in `compose.yaml`. Direct .NET pins are in `Directory.P
 MediatR 12.5.0 is an explicit older Apache-2.0 pin chosen to meet the requested no-paid-license foundation. It is not a noncommercial-only license. Later releases require a fresh licensing and maintenance assessment; automated major-version migration must not silently change this decision.
 
 Numeric NASA/JPL Horizons observer ephemerides are retained as validation facts with request URLs, retrieval times, response signatures and hashes in [reference data](tests/ReferenceData/Horizons/README.md). They are not redistributed as an astronomical image/star catalogue or as Yorungez-authored observations. [Method and limitations](docs/astronomi-denemesi.md). JavaScript probe dependencies use `tools/science-js/package-lock.json`; the Web uses its own lock with the same Astronomy Engine 2.1.19 MIT pin. Astropy/ERFA produces [frozen stellar numeric references](tests/ReferenceData/Stars/README.md) only. Stellarium Web Engine, Aladin and Skyfield runtimes remain uninstalled candidates. Separately, 85 Stellarium skyculture illustrations are redistributed under Johan Meuris’s Free Art License with source/attribution; this does not import Stellarium AGPL engine code. Astropy also produces the [72 frozen DSO references](tests/ReferenceData/DeepSky/README.md).
+
+
+**K-051 mobile additions (4 November 2026):** [Current implementation evidence](docs/mobile-immersive-discovery-evidence.md). path_provider 2.1.6 is a direct BSD-3-Clause dependency for a non-personal expiring public orbital packet; the previous UI-preferences-only statement is superseded only for this explicit public cache. Native personal storage remains absent.
+
+- [ESO/S. Brunier 360° large JPEG](data/sky/manifest.json): CC BY 4.0, exact source/hash, runtime projection/low-pass/brightness/latitude weighting. This 6000×3000 publicly supplied image is separate from the earlier Web preview; the restricted 800-million-pixel original is excluded.
+- Existing 85 Johan Meuris Free Art License 1.3 figures and their original catalogue anchors now also ship in the mobile client. Cultural illustration and true astronomical vectors remain distinct.
+- [Vallado SGP4 source/verification/use permission](third-party/sgp4/NOTICE.md): unmodified official C++ source, exact archive/file hashes; authors permit personal/commercial use with citation. No named upstream software licence is inferred and these files are not relabelled MIT/Apache-2.0.
+- [WMM2025 NOAA/NCEI public-domain source/coefficients/test values](third-party/wmm2025/NOTICE.md), with model validity and deterministic numeric transcription. Original Yorungez wrappers remain Apache-2.0.
+- [Original EN/TR mobile summaries and derived Latin names](data/catalog/mobile-object-info.json): NASA factual source links and the same SHA-pinned d3-celestial name source/notice. No competitor brief/art/music asset is copied.

@@ -1,0 +1,3 @@
+"NSCameraUsageDescription" = "Hesaplanan gök cisimlerini yerel kamera önizlemesinde göster. Kayıt veya yükleme yapılmaz.";
+"NSLocationWhenInUseUsageDescription" = "Keşif sırasında gökyüzünü konumundan hesapla.";
+"NSMotionUsageDescription" = "Telefonunun yönünü ve eğimini takip et.";

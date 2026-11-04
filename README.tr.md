@@ -1,5 +1,7 @@
 # yorungez
 
+[Flutter Android/iOS istemcisi](src/Yorungez.Mobile/README.md) tam ekran telefonla takip, bir saniyelik keşif, koordinatlara bağlı kozmik gökyüzü/takımyıldız görselleri, evreli gezegen çizimi ve hesaplanan izleri içerir; yerel SGP4 ve ortak ISS veri endpoint’i de hazırdır. [Güncel uygulama kanıtları ve açık fiziksel/iOS/özellik eşliği işleri](docs/mobile-immersive-discovery-evidence.md) ayrı izlenir.
+
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="data/branding/exports/wordmark-on-dark.svg">
   <img src="data/branding/exports/wordmark-on-light.svg" alt="yorungez" width="360">

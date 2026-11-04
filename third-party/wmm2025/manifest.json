@@ -1,0 +1,23 @@
+{
+  "source": "https://www.ngdc.noaa.gov/geomag/WMM/data/WMM2025/wmm2025_Linux.zip",
+  "archiveSha256": "e3a0fb9c9275f72574200456da20c3e7408dd7fa54e48abf3c4a0681b1ed3c2b",
+  "validFrom": 2025,
+  "validUntilExclusive": 2030,
+  "files": {
+    "GeomagnetismLibrary.c": {
+      "sha256": "ed78fe13b7d4cd0eb15d1799127d25460e2d72d0113e2b985bc2c4098940932e"
+    },
+    "GeomagnetismHeader.h": {
+      "sha256": "e13e82148574d343270c216a79af29b950f7900863a1168b0c0988ed2f96744e"
+    },
+    "WMM.COF": {
+      "sha256": "06791cd95faba7bdf4a709808f2715a53fe689b29c23b9886bc2196fa9b3eb13"
+    },
+    "WMM2025_TEST_VALUES.txt": {
+      "sha256": "ae289c94e2200e4deeae2dfdedf543a8a0e93096512b30d6a754199731f570d0"
+    },
+    "WMM_Readme.txt": {
+      "sha256": "9bdad8f1549ad4f57f8bc3f9d347e3ff4cb1a634ce02888cac077d2ec5e72583"
+    }
+  }
+}

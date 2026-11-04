@@ -31,3 +31,6 @@ src/Yorungez.Web/generated
 src/Yorungez.Web/public/pwa
 src/Yorungez.Web/public/pwa-pack.json
 src/Yorungez.Web/public/sw.js
+
+# Flutter is built by its own pinned mobile workflow, never in API/web images.
+src/Yorungez.Mobile

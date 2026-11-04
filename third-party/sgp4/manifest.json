@@ -1,0 +1,25 @@
+{
+  "source": "https://celestrak.org/publications/AIAA/2006-6753/AIAA-2006-6753.zip",
+  "archiveSha256": "3642043b706c76be87cf012db3f22e04da6b80498d00f515e51879e0ffadc115",
+  "version": "SGP4 Version 2020-07-13",
+  "files": {
+    "SGP4-VER.TLE": {
+      "sha256": "d246d1d9d768ace445a38a965713fa9ba52d80fd8a41a0502ff83d7acffe2881"
+    },
+    "SGP4.cpp": {
+      "sha256": "2ee7ad0e8f201e8251894083fe21e33a7aace2f43c871bf04357eb44a891b06e"
+    },
+    "SGP4.h": {
+      "sha256": "2a5ec44e059a52b3173d78d9a28bda8142b4f6497c1eb16febc2cea4b5006b0c"
+    },
+    "00005.e": {
+      "sha256": "5fd9b6dedbd755f0f336b143a076bbe6308e22c2f79f21910367963868b64869"
+    },
+    "08195.e": {
+      "sha256": "627eb33a5a1c68287122ff29c0e2f08a4908e4bba3c38ed517e79e26e209a710"
+    },
+    "06251.e": {
+      "sha256": "d806df44648b1009dfd0ba7d8ff5348638c35255df94945299ce7b29cb1718aa"
+    }
+  }
+}

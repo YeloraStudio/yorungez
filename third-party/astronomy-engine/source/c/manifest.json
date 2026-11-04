@@ -1,0 +1,17 @@
+{
+  "revision": "61dc07020aaa6885d2c7f688a4d82beaf6edb9ef",
+  "version": "2.1.19",
+  "license": "MIT",
+  "files": {
+    "astronomy.c": {
+      "url": "https://raw.githubusercontent.com/cosinekitty/astronomy/61dc07020aaa6885d2c7f688a4d82beaf6edb9ef/source/c/astronomy.c",
+      "sha256": "388920479d819713963ffd0f8ab0677944f66c6c94239ceddddd3b0d5d064432",
+      "bytes": 481221
+    },
+    "astronomy.h": {
+      "url": "https://raw.githubusercontent.com/cosinekitty/astronomy/61dc07020aaa6885d2c7f688a4d82beaf6edb9ef/source/c/astronomy.h",
+      "sha256": "83a31011957c2b87e22f0828820f370f1a495aa4d51357bb57d714cde839dc00",
+      "bytes": 63933
+    }
+  }
+}

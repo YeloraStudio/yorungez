@@ -54,6 +54,15 @@ public static class Endpoints
             return Results.Ok(snapshot);
         });
 
+        app.MapGet("/api/v1/catalog/satellites/iss", async (HttpContext context, ISender sender, CancellationToken ct) =>
+        {
+            var elements = await sender.Send(new GetIssElementsQuery(), ct);
+            if (elements is null) { context.Response.Headers.CacheControl = "no-store"; return Results.Json(new { code = "Satellite.ElementsUnavailable" }, statusCode: 503); }
+            context.Response.Headers.CacheControl = "public, max-age=300, must-revalidate";
+            context.Response.Headers.ETag = "\"" + elements.Sha256 + "\"";
+            return Results.Ok(elements);
+        }).RequireRateLimiting("astronomy");
+
         app.MapGet("/api/v1/events/calendar", async (int year, int month, HttpContext context, ISender sender, CancellationToken ct) =>
         {
             var result=await sender.Send(new GetCalendarMonthQuery(year,month),ct);

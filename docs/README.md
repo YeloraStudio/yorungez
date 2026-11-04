@@ -18,6 +18,16 @@ Detailed product/delivery records are currently mostly Turkish. Newer decisions 
 
 ## Current implementation
 
+- [Mobile open-source licensing and authorized source/API/Web publication](mobile-open-source-publication.md)
+
+- [Mobile screen-awake, one-second discovery and visual polish](mobile-screen-awake-and-polish.md)
+
+- [Immersive mobile discovery contract](mobile-immersive-discovery-plan.md) and [current implementation/evidence](mobile-immersive-discovery-evidence.md)
+
+- [Mobile sky-first end-to-end plan](mobile-sky-first-plan.md) and [native implementation/evidence/open gates](mobile-sky-first-evidence.md)
+
+- [Flutter Android/iOS foundation, reproducible setup and remaining gates](mobile-foundation.md)
+
 - [Phone pointing, optional rear camera and physical acceptance](phone-sky-tracking.md)
 
 - [Account language preference for Web/PWA and the shared mobile API](account-language-preference.md)
@@ -58,6 +68,11 @@ Detailed product/delivery records are currently mostly Turkish. Newer decisions 
 - [Reference data / refresh instructions](../tests/ReferenceData/README.md)
 - [Catalogue provenance](../data/catalog/README.md), [events](../data/events/README.md), [places](../data/places/README.md)
 - [Physical GPS / compass acceptance protocol (pending)](cihaz-konum-pusula-dogrulamasi.md)
+
+## Research
+
+- [Flutter Android/iOS research library: architecture, stack, native sensors/camera, rendering, scientific data, offline/API, UX and distribution](research/mobile/README.md) — K-048 confirmed product direction, ten English catalogues, source register, 28-package metadata snapshot and unrun validation experiments.
+- [4 November 2026: Stellarium Mobile / SkyView Lite comparison, sensors, privacy and Yorungez recommendations](arastirma-stellarium-skyview-2026-11-04.md) — source research; competitor physical testing and product decisions remain separate.
 
 ## Architecture decisions
 

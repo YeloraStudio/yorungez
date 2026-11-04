@@ -1,0 +1,608 @@
+{
+  "research_date": "2026-11-04",
+  "purpose": "Flutter Android/iOS feasibility research; not a dependency lockfile or an install recommendation for every package",
+  "licence_note": "SPDX identifiers are pub.dev classifier metadata for the stated classifier version. Inspect the exact selected archive and transitive/native licences before adoption. Empty or stale classification is unresolved.",
+  "packages": [
+    {
+      "name": "camera",
+      "registry_url": "https://pub.dev/packages/camera",
+      "metadata_url": "https://pub.dev/api/packages/camera",
+      "metrics_url": "https://pub.dev/api/packages/camera/metrics",
+      "status": "research_candidate_not_integrated",
+      "observed_version": "0.12.2",
+      "published_at": "2026-10-27T21:07:05.285083Z",
+      "archive_sha256": "4a0863bc142f6fbfdca19161205574fd8a8f00d4753b48d214c4dfbdcc534c51",
+      "environment": {
+        "sdk": "^3.12.0",
+        "flutter": ">=3.44.0"
+      },
+      "repository": "https://github.com/flutter/packages/tree/main/packages/camera/camera",
+      "homepage": null,
+      "discontinued": false,
+      "replaced_by": null,
+      "license_classifier_version": "0.12.2",
+      "license_identifiers_from_registry": [
+        "BSD-3-Clause"
+      ]
+    },
+    {
+      "name": "connectivity_plus",
+      "registry_url": "https://pub.dev/packages/connectivity_plus",
+      "metadata_url": "https://pub.dev/api/packages/connectivity_plus",
+      "metrics_url": "https://pub.dev/api/packages/connectivity_plus/metrics",
+      "status": "research_candidate_not_integrated",
+      "observed_version": "7.3.2",
+      "published_at": "2026-10-01T19:32:11.339157Z",
+      "archive_sha256": "d7749fd36d8b404a4935612b94eca7c3ce3705377ab678e24ff2a4301436f741",
+      "environment": {
+        "sdk": ">=3.2.0 <4.0.0",
+        "flutter": ">=3.7.0"
+      },
+      "repository": "https://github.com/fluttercommunity/plus_plugins/tree/main/packages/connectivity_plus/connectivity_plus",
+      "homepage": "https://github.com/fluttercommunity/plus_plugins",
+      "discontinued": false,
+      "replaced_by": null,
+      "license_classifier_version": "7.3.2",
+      "license_identifiers_from_registry": [
+        "BSD-3-Clause"
+      ]
+    },
+    {
+      "name": "crypto",
+      "registry_url": "https://pub.dev/packages/crypto",
+      "metadata_url": "https://pub.dev/api/packages/crypto",
+      "metrics_url": "https://pub.dev/api/packages/crypto/metrics",
+      "status": "research_candidate_not_integrated",
+      "observed_version": "3.0.8",
+      "published_at": "2026-10-26T07:36:22.513425Z",
+      "archive_sha256": "e3626ae6270383c9e3a549f34c9e4cd26c09ae6a9adaab2bf4737a00340efdc4",
+      "environment": {
+        "sdk": "^3.4.0"
+      },
+      "repository": "https://github.com/dart-lang/core/tree/main/pkgs/crypto",
+      "homepage": null,
+      "discontinued": false,
+      "replaced_by": null,
+      "license_classifier_version": "3.0.8",
+      "license_identifiers_from_registry": [
+        "BSD-3-Clause"
+      ]
+    },
+    {
+      "name": "dio",
+      "registry_url": "https://pub.dev/packages/dio",
+      "metadata_url": "https://pub.dev/api/packages/dio",
+      "metrics_url": "https://pub.dev/api/packages/dio/metrics",
+      "status": "research_candidate_not_integrated",
+      "observed_version": "5.11.1",
+      "published_at": "2026-09-04T02:46:21.721502Z",
+      "archive_sha256": "852ec3b48cc431ac04fff978413c541502b67ffc3e26921e74e3d994694192c1",
+      "environment": {
+        "sdk": ">=2.18.0 <4.0.0"
+      },
+      "repository": "https://github.com/cfug/dio/blob/main/dio",
+      "homepage": "https://github.com/cfug/dio",
+      "discontinued": false,
+      "replaced_by": null,
+      "license_classifier_version": "5.11.1",
+      "license_identifiers_from_registry": [
+        "MIT"
+      ]
+    },
+    {
+      "name": "drift",
+      "registry_url": "https://pub.dev/packages/drift",
+      "metadata_url": "https://pub.dev/api/packages/drift",
+      "metrics_url": "https://pub.dev/api/packages/drift/metrics",
+      "status": "research_candidate_not_integrated",
+      "observed_version": "2.35.3",
+      "published_at": "2026-10-23T15:42:38.337543Z",
+      "archive_sha256": "3179e7323b36d1852b42997b92ac72e8abcb61b1d58cfa8c6da9b540ab02a540",
+      "environment": {
+        "sdk": ">=3.10.0 <4.0.0"
+      },
+      "repository": "https://github.com/simolus3/drift",
+      "homepage": "https://drift.simonbinder.eu/",
+      "discontinued": false,
+      "replaced_by": null,
+      "license_classifier_version": "2.35.3",
+      "license_identifiers_from_registry": [
+        "MIT"
+      ]
+    },
+    {
+      "name": "ffigen",
+      "registry_url": "https://pub.dev/packages/ffigen",
+      "metadata_url": "https://pub.dev/api/packages/ffigen",
+      "metrics_url": "https://pub.dev/api/packages/ffigen/metrics",
+      "status": "research_candidate_not_integrated",
+      "observed_version": "23.0.0",
+      "published_at": "2026-10-06T09:17:56.426358Z",
+      "archive_sha256": "6f55d99ac1857fc063b58c3b31753df2bba417028ba98d30c6d625a385855064",
+      "environment": {
+        "sdk": ">=3.10.0 <4.0.0"
+      },
+      "repository": "https://github.com/dart-lang/native/tree/main/pkgs/ffigen",
+      "homepage": null,
+      "discontinued": false,
+      "replaced_by": null,
+      "license_classifier_version": "23.0.0",
+      "license_identifiers_from_registry": [
+        "BSD-3-Clause"
+      ]
+    },
+    {
+      "name": "flutter_bloc",
+      "registry_url": "https://pub.dev/packages/flutter_bloc",
+      "metadata_url": "https://pub.dev/api/packages/flutter_bloc",
+      "metrics_url": "https://pub.dev/api/packages/flutter_bloc/metrics",
+      "status": "research_candidate_not_integrated",
+      "observed_version": "9.1.1",
+      "published_at": "2025-05-02T04:01:45.969428Z",
+      "archive_sha256": "cf51747952201a455a1c840f8171d273be009b932c75093020f9af64f2123e38",
+      "environment": {
+        "sdk": ">=2.14.0 <4.0.0"
+      },
+      "repository": "https://github.com/felangel/bloc/tree/master/packages/flutter_bloc",
+      "homepage": "https://bloclibrary.dev",
+      "discontinued": false,
+      "replaced_by": null,
+      "license_classifier_version": "9.1.1",
+      "license_identifiers_from_registry": [
+        "MIT"
+      ]
+    },
+    {
+      "name": "flutter_compass",
+      "registry_url": "https://pub.dev/packages/flutter_compass",
+      "metadata_url": "https://pub.dev/api/packages/flutter_compass",
+      "metrics_url": "https://pub.dev/api/packages/flutter_compass/metrics",
+      "status": "research_candidate_not_integrated",
+      "observed_version": "0.8.1",
+      "published_at": "2024-11-17T13:38:31.566122Z",
+      "archive_sha256": "1b4d7e6c95a675ec8482b5c9c9ccf1ebf0ced3dbec59dce28ad609da953de850",
+      "environment": {
+        "sdk": ">=2.12.0 <4.0.0",
+        "flutter": ">=1.10.0"
+      },
+      "repository": null,
+      "homepage": "https://github.com/hemanthrajv/flutter_compass",
+      "discontinued": false,
+      "replaced_by": null,
+      "license_classifier_version": "0.8.1",
+      "license_identifiers_from_registry": [
+        "MIT"
+      ]
+    },
+    {
+      "name": "flutter_local_notifications",
+      "registry_url": "https://pub.dev/packages/flutter_local_notifications",
+      "metadata_url": "https://pub.dev/api/packages/flutter_local_notifications",
+      "metrics_url": "https://pub.dev/api/packages/flutter_local_notifications/metrics",
+      "status": "research_candidate_not_integrated",
+      "observed_version": "22.3.3",
+      "published_at": "2026-10-25T03:06:31.843179Z",
+      "archive_sha256": "fd5fc8966a8b34337ac182dc394f3506139b69d8138d4e9e174a13d6468adcd4",
+      "environment": {
+        "sdk": "^3.10.0",
+        "flutter": ">=3.38.1"
+      },
+      "repository": null,
+      "homepage": "https://github.com/MaikuB/flutter_local_notifications/tree/master/flutter_local_notifications",
+      "discontinued": false,
+      "replaced_by": null,
+      "license_classifier_version": "22.3.3",
+      "license_identifiers_from_registry": [
+        "BSD-3-Clause"
+      ]
+    },
+    {
+      "name": "flutter_riverpod",
+      "registry_url": "https://pub.dev/packages/flutter_riverpod",
+      "metadata_url": "https://pub.dev/api/packages/flutter_riverpod",
+      "metrics_url": "https://pub.dev/api/packages/flutter_riverpod/metrics",
+      "status": "research_candidate_not_integrated",
+      "observed_version": "3.4.3",
+      "published_at": "2026-09-03T22:15:17.166817Z",
+      "archive_sha256": "2b7f9d2a3c730ac1a98221b420cef966b990fca7ab546ede324642ca57a533e3",
+      "environment": {
+        "sdk": "^3.12.0",
+        "flutter": ">=3.0.0"
+      },
+      "repository": "https://github.com/rrousselGit/riverpod",
+      "homepage": "https://riverpod.dev",
+      "discontinued": false,
+      "replaced_by": null,
+      "license_classifier_version": "3.4.3",
+      "license_identifiers_from_registry": [
+        "MIT"
+      ]
+    },
+    {
+      "name": "flutter_scene",
+      "registry_url": "https://pub.dev/packages/flutter_scene",
+      "metadata_url": "https://pub.dev/api/packages/flutter_scene",
+      "metrics_url": "https://pub.dev/api/packages/flutter_scene/metrics",
+      "status": "research_candidate_not_integrated",
+      "observed_version": "0.24.3",
+      "published_at": "2026-10-09T05:55:02.553506Z",
+      "archive_sha256": "6d2a4acb76307b2cf45a6e458fdf61c6bcf02693514656433e5ae67eda9d4056",
+      "environment": {
+        "sdk": "^3.10.0",
+        "flutter": ">=3.47.0"
+      },
+      "repository": "https://github.com/bdero/flutter_scene",
+      "homepage": "https://fscene.dev",
+      "discontinued": false,
+      "replaced_by": null,
+      "license_classifier_version": "0.24.3",
+      "license_identifiers_from_registry": [
+        "MIT"
+      ]
+    },
+    {
+      "name": "flutter_secure_storage",
+      "registry_url": "https://pub.dev/packages/flutter_secure_storage",
+      "metadata_url": "https://pub.dev/api/packages/flutter_secure_storage",
+      "metrics_url": "https://pub.dev/api/packages/flutter_secure_storage/metrics",
+      "status": "research_candidate_not_integrated",
+      "observed_version": "11.2.0",
+      "published_at": "2026-09-16T11:48:19.409417Z",
+      "archive_sha256": "d4e1fb6b2cb524868929e78dc0282fa000554b22060fb53789dc481c9fc95bb8",
+      "environment": {
+        "sdk": ">=3.8.0 <4.0.0",
+        "flutter": ">=3.19.0"
+      },
+      "repository": "https://github.com/mogol/flutter_secure_storage/tree/develop/flutter_secure_storage",
+      "homepage": null,
+      "discontinued": false,
+      "replaced_by": null,
+      "license_classifier_version": "11.2.0",
+      "license_identifiers_from_registry": [
+        "BSD-3-Clause"
+      ]
+    },
+    {
+      "name": "freezed",
+      "registry_url": "https://pub.dev/packages/freezed",
+      "metadata_url": "https://pub.dev/api/packages/freezed",
+      "metrics_url": "https://pub.dev/api/packages/freezed/metrics",
+      "status": "research_candidate_not_integrated",
+      "observed_version": "4.0.3",
+      "published_at": "2026-10-17T17:34:42.812516Z",
+      "archive_sha256": "cb910646cb09265d49077b63b600ef1f5a718c1d6031836432237ddeabae1b12",
+      "environment": {
+        "sdk": ">=3.13.0 <4.0.0"
+      },
+      "repository": "https://github.com/rrousselGit/freezed",
+      "homepage": null,
+      "discontinued": false,
+      "replaced_by": null,
+      "license_classifier_version": "4.0.3",
+      "license_identifiers_from_registry": [
+        "MIT"
+      ]
+    },
+    {
+      "name": "freezed_annotation",
+      "registry_url": "https://pub.dev/packages/freezed_annotation",
+      "metadata_url": "https://pub.dev/api/packages/freezed_annotation",
+      "metrics_url": "https://pub.dev/api/packages/freezed_annotation/metrics",
+      "status": "research_candidate_not_integrated",
+      "observed_version": "3.1.0",
+      "published_at": "2025-07-02T21:12:09.638932Z",
+      "archive_sha256": "7294967ff0a6d98638e7acb774aac3af2550777accd8149c90af5b014e6d44d8",
+      "environment": {
+        "sdk": ">=3.0.0 <4.0.0"
+      },
+      "repository": "https://github.com/rrousselGit/freezed",
+      "homepage": null,
+      "discontinued": false,
+      "replaced_by": null,
+      "license_classifier_version": "3.1.0",
+      "license_identifiers_from_registry": [
+        "MIT"
+      ]
+    },
+    {
+      "name": "geolocator",
+      "registry_url": "https://pub.dev/packages/geolocator",
+      "metadata_url": "https://pub.dev/api/packages/geolocator",
+      "metrics_url": "https://pub.dev/api/packages/geolocator/metrics",
+      "status": "research_candidate_not_integrated",
+      "observed_version": "14.1.2",
+      "published_at": "2026-10-19T15:29:42.700997Z",
+      "archive_sha256": "2b3bc0f7320d5a5fa02f8209ffcf1aaa7c2cabb7b2bedbc0cfeb5ff2778b8b09",
+      "environment": {
+        "sdk": "^3.5.0",
+        "flutter": ">=2.8.0"
+      },
+      "repository": "https://github.com/baseflow/flutter-geolocator/tree/main/geolocator",
+      "homepage": null,
+      "discontinued": false,
+      "replaced_by": null,
+      "license_classifier_version": "14.1.2",
+      "license_identifiers_from_registry": [
+        "MIT"
+      ]
+    },
+    {
+      "name": "go_router",
+      "registry_url": "https://pub.dev/packages/go_router",
+      "metadata_url": "https://pub.dev/api/packages/go_router",
+      "metrics_url": "https://pub.dev/api/packages/go_router/metrics",
+      "status": "research_candidate_not_integrated",
+      "observed_version": "18.1.2",
+      "published_at": "2026-10-29T16:02:02.070838Z",
+      "archive_sha256": "f1c2d3c2b0b2096b435d7af033dd4e586fa31f51d988c5985e64495cd926d872",
+      "environment": {
+        "sdk": "^3.12.0",
+        "flutter": ">=3.44.0"
+      },
+      "repository": "https://github.com/flutter/packages/tree/main/packages/go_router",
+      "homepage": null,
+      "discontinued": false,
+      "replaced_by": null,
+      "license_classifier_version": "18.1.2",
+      "license_identifiers_from_registry": [
+        "BSD-3-Clause"
+      ]
+    },
+    {
+      "name": "http",
+      "registry_url": "https://pub.dev/packages/http",
+      "metadata_url": "https://pub.dev/api/packages/http",
+      "metrics_url": "https://pub.dev/api/packages/http/metrics",
+      "status": "research_candidate_not_integrated",
+      "observed_version": "1.6.0",
+      "published_at": "2025-11-10T18:27:56.434747Z",
+      "archive_sha256": "87721a4a50b19c7f1d49001e51409bddc46303966ce89a65af4f4e6004896412",
+      "environment": {
+        "sdk": "^3.4.0"
+      },
+      "repository": "https://github.com/dart-lang/http/tree/master/pkgs/http",
+      "homepage": null,
+      "discontinued": false,
+      "replaced_by": null,
+      "license_classifier_version": "1.6.0",
+      "license_identifiers_from_registry": [
+        "BSD-3-Clause"
+      ]
+    },
+    {
+      "name": "intl",
+      "registry_url": "https://pub.dev/packages/intl",
+      "metadata_url": "https://pub.dev/api/packages/intl",
+      "metrics_url": "https://pub.dev/api/packages/intl/metrics",
+      "status": "research_candidate_not_integrated",
+      "observed_version": "0.20.3",
+      "published_at": "2026-06-25T09:21:11.857146Z",
+      "archive_sha256": "1ca20c894b1717686a2319b8548763d812bc0aabdac580420a44c5178c57a867",
+      "environment": {
+        "sdk": "^3.9.0"
+      },
+      "repository": "https://github.com/dart-lang/i18n/tree/main/pkgs/intl",
+      "homepage": null,
+      "discontinued": false,
+      "replaced_by": null,
+      "license_classifier_version": "0.20.3",
+      "license_identifiers_from_registry": [
+        "BSD-3-Clause"
+      ]
+    },
+    {
+      "name": "json_annotation",
+      "registry_url": "https://pub.dev/packages/json_annotation",
+      "metadata_url": "https://pub.dev/api/packages/json_annotation",
+      "metrics_url": "https://pub.dev/api/packages/json_annotation/metrics",
+      "status": "research_candidate_not_integrated",
+      "observed_version": "4.12.0",
+      "published_at": "2026-05-15T18:27:32.045501Z",
+      "archive_sha256": "2a743920d81b7910627f68ee2c9ac1fc0bfee32b9fc3403587d7c6791ca12f80",
+      "environment": {
+        "sdk": "^3.9.0"
+      },
+      "repository": "https://github.com/google/json_serializable.dart/tree/master/json_annotation",
+      "homepage": null,
+      "discontinued": false,
+      "replaced_by": null,
+      "license_classifier_version": "4.12.0",
+      "license_identifiers_from_registry": [
+        "BSD-3-Clause"
+      ]
+    },
+    {
+      "name": "json_serializable",
+      "registry_url": "https://pub.dev/packages/json_serializable",
+      "metadata_url": "https://pub.dev/api/packages/json_serializable",
+      "metrics_url": "https://pub.dev/api/packages/json_serializable/metrics",
+      "status": "research_candidate_not_integrated",
+      "observed_version": "6.15.2",
+      "published_at": "2026-10-20T19:29:24.929546Z",
+      "archive_sha256": "cc7822761b40be9237bcaae62b755ffe5453ceff96a0001f1f5f2439251c66f1",
+      "environment": {
+        "sdk": "^3.12.0"
+      },
+      "repository": "https://github.com/google/json_serializable.dart/tree/master/json_serializable",
+      "homepage": null,
+      "discontinued": false,
+      "replaced_by": null,
+      "license_classifier_version": "6.15.2",
+      "license_identifiers_from_registry": [
+        "BSD-3-Clause"
+      ]
+    },
+    {
+      "name": "path_provider",
+      "registry_url": "https://pub.dev/packages/path_provider",
+      "metadata_url": "https://pub.dev/api/packages/path_provider",
+      "metrics_url": "https://pub.dev/api/packages/path_provider/metrics",
+      "status": "research_candidate_not_integrated",
+      "observed_version": "2.1.6",
+      "published_at": "2026-06-15T13:51:07.158561Z",
+      "archive_sha256": "a7f4874f987173da295a61c181b8ee71dab59b332a486b391babf26a1b884825",
+      "environment": {
+        "sdk": "^3.10.0",
+        "flutter": ">=3.38.0"
+      },
+      "repository": "https://github.com/flutter/packages/tree/main/packages/path_provider/path_provider",
+      "homepage": null,
+      "discontinued": false,
+      "replaced_by": null,
+      "license_classifier_version": "2.1.6",
+      "license_identifiers_from_registry": [
+        "BSD-3-Clause"
+      ]
+    },
+    {
+      "name": "permission_handler",
+      "registry_url": "https://pub.dev/packages/permission_handler",
+      "metadata_url": "https://pub.dev/api/packages/permission_handler",
+      "metrics_url": "https://pub.dev/api/packages/permission_handler/metrics",
+      "status": "research_candidate_not_integrated",
+      "observed_version": "13.0.2",
+      "published_at": "2026-09-04T09:59:07.411412Z",
+      "archive_sha256": "e6bcecadfe40df6b888141f23cbaf6ba6c3da49fb33f6ff887d060dd48544fbd",
+      "environment": {
+        "sdk": "^3.6.0",
+        "flutter": ">=3.24.0"
+      },
+      "repository": "https://github.com/baseflow/flutter-permission-handler",
+      "homepage": null,
+      "discontinued": false,
+      "replaced_by": null,
+      "license_classifier_version": "13.0.2",
+      "license_identifiers_from_registry": [
+        "MIT"
+      ]
+    },
+    {
+      "name": "pigeon",
+      "registry_url": "https://pub.dev/packages/pigeon",
+      "metadata_url": "https://pub.dev/api/packages/pigeon",
+      "metrics_url": "https://pub.dev/api/packages/pigeon/metrics",
+      "status": "research_candidate_not_integrated",
+      "observed_version": "29.1.0",
+      "published_at": "2026-10-30T15:02:28.503046Z",
+      "archive_sha256": "9d355b97019c8278498fd5d89b63ea346cdfa740ab128c342a7968e61fdafd0c",
+      "environment": {
+        "sdk": "^3.11.0"
+      },
+      "repository": "https://github.com/flutter/packages/tree/main/packages/pigeon",
+      "homepage": null,
+      "discontinued": false,
+      "replaced_by": null,
+      "license_classifier_version": "29.1.0",
+      "license_identifiers_from_registry": [
+        "BSD-3-Clause"
+      ]
+    },
+    {
+      "name": "sensors_plus",
+      "registry_url": "https://pub.dev/packages/sensors_plus",
+      "metadata_url": "https://pub.dev/api/packages/sensors_plus",
+      "metrics_url": "https://pub.dev/api/packages/sensors_plus/metrics",
+      "status": "research_candidate_not_integrated",
+      "observed_version": "7.1.1",
+      "published_at": "2026-10-01T19:31:49.473313Z",
+      "archive_sha256": "50a01f66846bff68de947bd5df225c3627c923c467f758867f3916350be059ac",
+      "environment": {
+        "sdk": ">=3.3.0 <4.0.0",
+        "flutter": ">=3.19.0"
+      },
+      "repository": "https://github.com/fluttercommunity/plus_plugins/tree/main/packages/sensors_plus/sensors_plus",
+      "homepage": "https://github.com/fluttercommunity/plus_plugins",
+      "discontinued": false,
+      "replaced_by": null,
+      "license_classifier_version": "7.1.1",
+      "license_identifiers_from_registry": [
+        "BSD-3-Clause"
+      ]
+    },
+    {
+      "name": "sqlite3",
+      "registry_url": "https://pub.dev/packages/sqlite3",
+      "metadata_url": "https://pub.dev/api/packages/sqlite3",
+      "metrics_url": "https://pub.dev/api/packages/sqlite3/metrics",
+      "status": "research_candidate_not_integrated",
+      "observed_version": "3.8.0",
+      "published_at": "2026-10-23T14:38:43.613381Z",
+      "archive_sha256": "5340531ad17f386ae444873f643f281060b6238cc702edeee6b1e90bc4c6874e",
+      "environment": {
+        "sdk": ">=3.10.0 <4.0.0"
+      },
+      "repository": null,
+      "homepage": "https://github.com/simolus3/sqlite3.dart/tree/main/sqlite3",
+      "discontinued": false,
+      "replaced_by": null,
+      "license_classifier_version": "3.8.0",
+      "license_identifiers_from_registry": [
+        "MIT"
+      ]
+    },
+    {
+      "name": "thermion_flutter",
+      "registry_url": "https://pub.dev/packages/thermion_flutter",
+      "metadata_url": "https://pub.dev/api/packages/thermion_flutter",
+      "metrics_url": "https://pub.dev/api/packages/thermion_flutter/metrics",
+      "status": "research_candidate_not_integrated",
+      "observed_version": "0.6.1",
+      "published_at": "2026-11-03T01:09:55.036926Z",
+      "archive_sha256": "45f70a45271ce0d7cf8afb480c1d436c187d2345543338e2dcefc223b04f3ddf",
+      "environment": {
+        "sdk": ">=3.12.0 <4.0.0",
+        "flutter": ">=3.44.0"
+      },
+      "repository": "https://github.com/nmfisher/thermion",
+      "homepage": "https://thermion.dev",
+      "discontinued": false,
+      "replaced_by": null,
+      "license_classifier_version": "0.6.1",
+      "license_identifiers_from_registry": [
+        "Apache-2.0"
+      ]
+    },
+    {
+      "name": "timezone",
+      "registry_url": "https://pub.dev/packages/timezone",
+      "metadata_url": "https://pub.dev/api/packages/timezone",
+      "metrics_url": "https://pub.dev/api/packages/timezone/metrics",
+      "status": "research_candidate_not_integrated",
+      "observed_version": "0.11.2",
+      "published_at": "2026-10-12T13:20:31.340351Z",
+      "archive_sha256": "9f4e5a1a0e4fef7dd3424842c0575db01bfb7a11730e8d55753fcd5c5c98767b",
+      "environment": {
+        "sdk": "^3.10.0"
+      },
+      "repository": "https://github.com/dart-lang/labs/tree/main/pkgs/timezone",
+      "homepage": null,
+      "discontinued": false,
+      "replaced_by": null,
+      "license_classifier_version": "0.11.2",
+      "license_identifiers_from_registry": [
+        "BSD-2-Clause"
+      ]
+    },
+    {
+      "name": "vector_math",
+      "registry_url": "https://pub.dev/packages/vector_math",
+      "metadata_url": "https://pub.dev/api/packages/vector_math",
+      "metrics_url": "https://pub.dev/api/packages/vector_math/metrics",
+      "status": "research_candidate_not_integrated",
+      "observed_version": "2.4.4",
+      "published_at": "2026-10-26T22:12:37.036663Z",
+      "archive_sha256": "fa49e1674cb84acb900141714e6c6e1f9ae099827c24d141430ff6819db4e1bc",
+      "environment": {
+        "sdk": "^3.10.0"
+      },
+      "repository": "https://github.com/flutter/core-packages/tree/main/packages/vector_math",
+      "homepage": null,
+      "discontinued": false,
+      "replaced_by": null,
+      "license_classifier_version": "2.4.4",
+      "license_identifiers_from_registry": [
+        "BSD-3-Clause"
+      ]
+    }
+  ]
+}
