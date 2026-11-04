@@ -11,7 +11,7 @@ import type { SkyFrame } from "../lib/sky/frame-contract.ts";
 import type { Language, SkyCatalog } from "../lib/sky/types.ts";
 export interface SelectedObject {id:string;name:string;kind:"star"|"solar"|"constellation"|"deepSky";index:number}
 interface Article {title:string;extract:string;url:string;revision?:number;fetchedAtUtc:string;license:string;licenseUrl:string;image:null|{url:string;sourceUrl:string;credit:string;license:string;licenseUrl:string}}
-export default function ObjectCard({object,catalog,frame,language,onClose,onFocus,onTerm,onCompass,onNotebook,compact,onExpand}:{object:SelectedObject;catalog:SkyCatalog;frame:SkyFrame|null;language:Language;onClose:()=>void;onFocus:()=>void;onTerm:(id:string)=>void;onCompass:()=>void;onNotebook:()=>void;compact:boolean;onExpand:()=>void}){
+export default function ObjectCard({object,catalog,frame,language,onClose,onFocus,onTerm,onCompass,onNotebook,compact,onExpand,onCollapse}:{object:SelectedObject;catalog:SkyCatalog;frame:SkyFrame|null;language:Language;onClose:()=>void;onFocus:()=>void;onTerm:(id:string)=>void;onCompass:()=>void;onNotebook:()=>void;compact:boolean;onExpand:()=>void;onCollapse:()=>void}){
  const t={...messages[language],...explorerText[language]},[article,setArticle]=useState<Article|null>(null),[state,setState]=useState("loading"),[attempt,setAttempt]=useState(0);
  useEffect(()=>{const controller=new AbortController();setArticle(null);setState("loading");
   fetch(`/api/objects/${encodeURIComponent(object.id)}?lang=${language}`,{signal:AbortSignal.any([controller.signal,AbortSignal.timeout(12000)])}).then(r=>{if(!r.ok)throw new Error(r.status===404?"missing":"unavailable");return r.json()}).then(data=>{if(!controller.signal.aborted){setArticle(data);setState("ready")}}).catch(error=>{if(!controller.signal.aborted)setState(error instanceof Error&&error.message==="missing"?"missing":"error")});return()=>controller.abort();
@@ -23,7 +23,7 @@ export default function ObjectCard({object,catalog,frame,language,onClose,onFocu
  const kind=dso?(t.dsoTypes[dso.type as keyof typeof t.dsoTypes]??t.deepSky):t[objectCategory(object.kind,object.id)];
  const v=visualText[language];
  const shortExtract=article?(article.extract.length>180?article.extract.slice(0,180).replace(/\s+\S*$/,"")+"…":article.extract):"";
- return <ObjectCardShell id={object.id} name={object.name} category={kind} subtitle={`${star?.hip?`HIP ${star.hip} · `:""}${dso?.designation??object.id}`} closeLabel={t.closeCard} onClose={onClose} compact={compact} restoreLabel={t.more} onExpand={onExpand}>
+ return <ObjectCardShell id={object.id} name={object.name} category={kind} subtitle={`${star?.hip?`HIP ${star.hip} · `:""}${dso?.designation??object.id}`} closeLabel={t.closeCard} onClose={onClose} compact={compact} language={language} onExpand={onExpand} onCollapse={onCollapse}>
   <ObjectVisual object={object} catalog={catalog} frame={frame} language={language} image={(photos as Record<string,ArchiveImage>)[object.id]??article?.image??null}/>
   <div className="object-about">  {state==="loading"&&<p className="muted" role="status">{t.articleLoading}</p>}
   {state==="error"&&<p className="muted">{t.articleUnavailable} <button className="inline-term" onClick={()=>setAttempt(a=>a+1)}>{t.retry}</button></p>}

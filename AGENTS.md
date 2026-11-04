@@ -1,5 +1,7 @@
 # yorungez çalışma rehberi
 
+**K-045 / 4 Kasım 2026 — Küçültülebilir paneller:** Kullanıcının seçtiği bilgi kartı, konum ve saat panelleri masaüstü/mobil için bağımsız küçült/aç kontrollerine sahip. TR/EN, klavye ve görünür kısa özet korunur; astronomi, koordinat/zaman ve kalıcılık kuralları değişmez. [Uygulama ve yerel doğrulama](docs/collapsible-map-panels.md). Canlıya alma K-042 onay kuralına tabidir.
+
 **K-044 / 3 Kasım 2026 — Sessiz üretim logları:** Kullanıcı canlı log gürültüsünü azaltmamızı istedi. Varsayılan Warning; başlangıç/başarılı istek/sağlıklı probe Debug, olağan 401/403/404 Information; diğer 4xx ve en az 1000 ms istekler Warning, 5xx Error. Request kimliği ve hassas veri dışlama korunur. Debug yalnız geçici ayrıntılı tanı içindir; açık operatör override değeri korunur. K-043 uygulaması PR #22 ile canlıya çıktı.
 
 **K-043 / 3 Kasım 2026 — API gözlemlenebilirliği:** Canlı deployment değişiklikleri pull edildi. Serilog 10 ile güvenli JSON request başlangıç/tamamlanma, route şablonu, status/süre, request/trace kimliği ve mesaj içermeyen exception türü/metot çerçeveleri hazırlandı. Payload, token, cookie, e-posta ve hassas konum loglanmaz; başarılı sağlık kontrolleri Debug, 4xx Warning, 5xx Error. [Alanlar, işletim ve doğrulama sınırları](docs/api-logging.md). Feature branch çalışmasıdır; push/canlı kabulü K-042 onayına tabidir.

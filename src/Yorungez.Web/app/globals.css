@@ -129,3 +129,18 @@
 .object-secondary-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}.object-secondary-actions .compass-object{width:100%;min-height:44px;margin:0;padding:8px;font-size:11px;line-height:1.5}
 .night .object-visual-stage{filter:sepia(1) saturate(2) hue-rotate(295deg) brightness(.7)}
 .object-about{min-height:100px;margin:0 0 14px;font-size:13px;line-height:1.65}.object-about p{margin:0 0 8px;line-height:1.65}.object-summary{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:4;overflow:hidden}.object-about .wiki-reference{font-size:11px}.object-card .encyclopedia{font-size:12px;line-height:1.7;margin:16px 0}.object-card .encyclopedia summary{cursor:pointer;min-height:32px}
+
+/* Collapsible map panels share the same touch/keyboard control on all viewports. */
+.card-heading-actions{display:flex;align-items:flex-start;flex-shrink:0;gap:4px}
+.object-card .card-heading-actions .icon-button{margin:0;width:44px;height:44px}
+.card-heading>div:first-child{min-width:0;overflow-wrap:anywhere}
+.object-card.compact-card{max-height:none}
+.object-card.compact-card .card-heading{margin-bottom:0}
+.object-card-body[hidden],.context-panel [hidden]{display:none!important}
+.context-panel{display:flex;align-items:center;border-radius:13px;max-width:100%;min-width:0}
+.context-panel>.collapse-toggle{width:44px;height:44px;flex-shrink:0;margin-right:4px}
+.context-panel .location-chip,.context-panel .time-bar{min-width:0;flex:1}
+.location-chip>span{min-width:0;overflow-wrap:anywhere}
+.location-context.is-collapsed .location-chip{min-height:44px;padding-top:8px;padding-bottom:8px}
+.context-summary{min-height:44px;display:flex;align-items:center;gap:8px;text-align:left;padding:8px 12px;font-size:12px}
+@media(max-width:650px){.context-panel{width:100%}.context-panel .time-bar{gap:6px;padding-right:4px}.context-panel .time-mode{padding:6px 4px}.time-display{min-width:0}.time-display strong,.time-display span,.time-display small{overflow-wrap:anywhere}.context-panel.is-collapsed{width:auto}.context-summary{font-size:11px}}
