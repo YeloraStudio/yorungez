@@ -1,5 +1,7 @@
 # yorungez — Karar kaydı
 
+**K-046 / 4 Kasım 2026 — Hesapta kalıcı dil:** Varsayılan en, desteklenen en/tr. Hesap dil tercihi PostgreSQL profilinde; cookie/JWT ortak backend endpoint'i web/PWA ve ileriki mobil istemci için kullanılır. Anonim aynı tarayıcı tercihi yalnız dil çerezidir; kişisel kayıt/konum kalıcılığı eklenmez. [Sözleşme, yaşam döngüsü ve doğrulama](account-language-preference.md).
+
 **K-045 / 4 Kasım 2026 — Küçültülebilir paneller:** Kullanıcının seçtiği bilgi kartı, konum ve saat panelleri masaüstü/mobil için bağımsız küçült/aç kontrollerine sahip. TR/EN, klavye ve görünür kısa özet korunur; astronomi, koordinat/zaman ve kalıcılık kuralları değişmez. [Uygulama ve yerel doğrulama](collapsible-map-panels.md). Canlıya alma K-042 onay kuralına tabidir.
 
 **K-044 / 3 Kasım 2026 — Sessiz üretim logları:** Kullanıcı canlı log gürültüsünü azaltmamızı istedi. Varsayılan Warning; başlangıç/başarılı istek/sağlıklı probe Debug, olağan 401/403/404 Information; diğer 4xx ve en az 1000 ms istekler Warning, 5xx Error. Request kimliği ve hassas veri dışlama korunur. Debug yalnız geçici ayrıntılı tanı içindir; açık operatör override değeri korunur. K-043 uygulaması PR #22 ile canlıya çıktı.

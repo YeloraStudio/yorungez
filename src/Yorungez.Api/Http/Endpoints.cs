@@ -113,6 +113,12 @@ public static class Endpoints
                 throw new Yorungez.Application.AppFailure("Identity.AccountChanged", Yorungez.Application.FailureKind.Conflict);
             return Results.Ok(await sender.Send(new SaveProfileCommand(UserId(user), input.FirstName, input.LastName), ct));
         }).RequireAuthorization();
+        auth.MapPost("/language", async (LanguageInput input, ClaimsPrincipal user, HttpContext context, ISender sender, CancellationToken ct) =>
+        {
+            if (context.Request.Headers["X-Yorungez-Account"] is { Count: > 0 } expected && expected != UserId(user).ToString())
+                throw new Yorungez.Application.AppFailure("Identity.AccountChanged", Yorungez.Application.FailureKind.Conflict);
+            return Results.Ok(await sender.Send(new SaveLanguageCommand(UserId(user), input.PreferredLanguage), ct));
+        }).RequireAuthorization();
         auth.MapGet("/me", async (ClaimsPrincipal user, ISender sender, CancellationToken ct) =>
             Results.Ok(await sender.Send(new CurrentUserQuery(UserId(user)), ct))).RequireAuthorization();
 
@@ -146,3 +152,4 @@ public static class Endpoints
 
 public sealed record RegistrationInput(string Email, string Password, string? FirstName, string? LastName);
 public sealed record ProfileInput(string? FirstName, string? LastName);
+public sealed record LanguageInput(string? PreferredLanguage);

@@ -10,6 +10,7 @@ public sealed class Account : IdentityUser<Guid>
 {
     public string? FirstName { get; set; }
     public string? LastName { get; set; }
+    public string PreferredLanguage { get; set; } = "en";
 }
 
 public sealed class PendingEmail
@@ -36,7 +37,8 @@ public sealed class IdentityStore(DbContextOptions<IdentityStore> options)
     {
         base.OnModelCreating(builder);
         builder.HasDefaultSchema("identity");
-        builder.Entity<Account>(b => { b.Property(a => a.FirstName).HasMaxLength(100); b.Property(a => a.LastName).HasMaxLength(100); });
+        builder.Entity<Account>(b => { b.Property(a => a.FirstName).HasMaxLength(100); b.Property(a => a.LastName).HasMaxLength(100);
+            b.Property(a => a.PreferredLanguage).HasMaxLength(2).IsRequired().HasDefaultValue("en"); });
         builder.Entity<RefreshSession>(b =>
         {
             b.ToTable("RefreshSessions");

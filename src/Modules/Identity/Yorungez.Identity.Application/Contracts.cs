@@ -5,7 +5,7 @@ namespace Yorungez.Identity.Application;
 
 public sealed record TokenPair(string AccessToken, DateTimeOffset AccessExpiresAt,
     string RefreshToken, DateTimeOffset RefreshExpiresAt);
-public sealed record UserProfile(Guid Id, string Email, bool EmailConfirmed, string? FirstName, string? LastName);
+public sealed record UserProfile(Guid Id, string Email, bool EmailConfirmed, string? FirstName, string? LastName, string PreferredLanguage = "en");
 public sealed record BrowserSession(Guid UserId, Guid FamilyId, string StampHash, DateTimeOffset ExpiresAt);
 public sealed record BrowserLoginCommand(string Email, string Password) : ICommand<BrowserSession>;
 public sealed record RegisterCommand(string Email, string Password, string Language, string? FirstName = null, string? LastName = null) : ICommand<ActionReceipt>;
@@ -17,6 +17,7 @@ public sealed record ResendConfirmationCommand(string Email, string Language) : 
 public sealed record ForgotPasswordCommand(string Email, string Language) : ICommand<ActionReceipt>;
 public sealed record ResetPasswordCommand(Guid UserId, string Token, string Password) : ICommand<ActionReceipt>;
 public sealed record SaveProfileCommand(Guid UserId, string? FirstName, string? LastName) : ICommand<UserProfile>;
+public sealed record SaveLanguageCommand(Guid UserId, string? PreferredLanguage) : ICommand<UserProfile>;
 public sealed record CurrentUserQuery(Guid UserId) : IQuery<UserProfile>;
 
 public interface IIdentityGateway
@@ -31,6 +32,7 @@ public interface IIdentityGateway
     Task ForgotPasswordAsync(ForgotPasswordCommand command, CancellationToken ct);
     Task ResetPasswordAsync(ResetPasswordCommand command, CancellationToken ct);
     Task<UserProfile> SaveProfileAsync(SaveProfileCommand command, CancellationToken ct);
+    Task<UserProfile> SaveLanguageAsync(SaveLanguageCommand command, CancellationToken ct);
     Task<UserProfile> CurrentUserAsync(Guid userId, CancellationToken ct);
     Task<bool> ValidateSessionAsync(Guid userId, Guid familyId, string stampHash, CancellationToken ct);
 }
@@ -91,6 +93,16 @@ public sealed class SaveProfileHandler(IIdentityGateway gateway) : IRequestHandl
 public sealed class CurrentUserHandler(IIdentityGateway gateway) : IRequestHandler<CurrentUserQuery, UserProfile>
 {
     public Task<UserProfile> Handle(CurrentUserQuery request, CancellationToken ct) => gateway.CurrentUserAsync(request.UserId, ct);
+}
+
+public sealed class SaveLanguageHandler(IIdentityGateway gateway) : IRequestHandler<SaveLanguageCommand, UserProfile>
+{
+    public Task<UserProfile> Handle(SaveLanguageCommand request, CancellationToken ct)
+    {
+        if (request.PreferredLanguage is not ("en" or "tr"))
+            throw new AppFailure("Common.InvalidInput", FailureKind.Validation);
+        return gateway.SaveLanguageAsync(request, ct);
+    }
 }
 
 internal static class Input

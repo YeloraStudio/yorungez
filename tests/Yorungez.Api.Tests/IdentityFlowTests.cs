@@ -68,6 +68,46 @@ public sealed class IdentityFlowTests(AppFactory app) : IClassFixture<AppFactory
     }
 
     [Fact]
+    public async Task Language_preference_is_persisted_for_browser_and_mobile_and_is_account_scoped()
+    {
+        using var client = app.Client("en");var address = await Confirmed(client);var pair = await Login(client,address);
+        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",pair.AccessToken);
+        var before = (await client.GetFromJsonAsync<UserProfile>("/api/v1/auth/me"))!;
+        Assert.Equal("en",before.PreferredLanguage);
+        using var anonymous = app.Client();
+        Assert.Equal(HttpStatusCode.Unauthorized,(await anonymous.PostAsJsonAsync("/api/v1/auth/language",new {preferredLanguage="tr"})).StatusCode);
+        client.DefaultRequestHeaders.Add("X-Yorungez-Account",Guid.NewGuid().ToString());
+        Assert.Equal(HttpStatusCode.Conflict,(await client.PostAsJsonAsync("/api/v1/auth/language",new {preferredLanguage="tr"})).StatusCode);
+        client.DefaultRequestHeaders.Remove("X-Yorungez-Account");
+        foreach(var invalid in new string?[] {null,"","fr","TR","tr-TR"})
+            Assert.Equal(HttpStatusCode.BadRequest,(await client.PostAsJsonAsync("/api/v1/auth/language",new {preferredLanguage=invalid})).StatusCode);
+        var saved = await client.PostAsJsonAsync("/api/v1/auth/language",new {preferredLanguage="tr"});
+        Assert.Equal(HttpStatusCode.OK,saved.StatusCode);
+        Assert.Equal("tr",(await saved.Content.ReadFromJsonAsync<UserProfile>())!.PreferredLanguage);
+        await using(var scope=app.Services.CreateAsyncScope())
+            Assert.Equal("tr",(await scope.ServiceProvider.GetRequiredService<IdentityStore>().Users.AsNoTracking().SingleAsync(u=>u.Id==before.Id)).PreferredLanguage);
+        using var secondDevice = app.Client("en");var secondPair = await Login(secondDevice,address);
+        secondDevice.DefaultRequestHeaders.Authorization=new AuthenticationHeaderValue("Bearer",secondPair.AccessToken);
+        Assert.Equal("tr",(await secondDevice.GetFromJsonAsync<UserProfile>("/api/v1/auth/me"))!.PreferredLanguage);
+        using var browser = app.Client("en");
+        browser.DefaultRequestHeaders.Add("Origin","https://localhost");
+        browser.DefaultRequestHeaders.Add("X-Yorungez-Request","1");
+        var browserLogin=await browser.PostAsJsonAsync("/api/v1/session/login",new {email=address,password=Password});
+        Assert.Equal(HttpStatusCode.OK,browserLogin.StatusCode);
+        Assert.Equal("tr",(await browserLogin.Content.ReadFromJsonAsync<UserProfile>())!.PreferredLanguage);
+        Assert.Equal("tr",(await browser.GetFromJsonAsync<UserProfile>("/api/v1/auth/me"))!.PreferredLanguage);
+        Assert.Equal(HttpStatusCode.OK,(await browser.PostAsJsonAsync("/api/v1/auth/language",new {preferredLanguage="tr"})).StatusCode);
+        Assert.Equal(HttpStatusCode.OK,(await secondDevice.PostAsJsonAsync("/api/v1/auth/profile",new {firstName="Public",lastName="Observer"})).StatusCode);
+        Assert.Equal("tr",(await client.GetFromJsonAsync<UserProfile>("/api/v1/auth/me"))!.PreferredLanguage);
+        using var other = app.Client("en");var otherAddress=await Confirmed(other);var otherPair=await Login(other,otherAddress);
+        other.DefaultRequestHeaders.Authorization=new AuthenticationHeaderValue("Bearer",otherPair.AccessToken);
+        Assert.Equal("en",(await other.GetFromJsonAsync<UserProfile>("/api/v1/auth/me"))!.PreferredLanguage);
+        Assert.Equal(HttpStatusCode.OK,(await secondDevice.PostAsJsonAsync("/api/v1/auth/language",new {preferredLanguage="en"})).StatusCode);
+        Assert.Equal("en",(await client.GetFromJsonAsync<UserProfile>("/api/v1/auth/me"))!.PreferredLanguage);
+        Assert.Equal("en",(await browser.GetFromJsonAsync<UserProfile>("/api/v1/auth/me"))!.PreferredLanguage);
+    }
+
+    [Fact]
     public async Task Profile_names_survive_login_and_updates_are_scoped_to_the_signed_in_account()
     {
         using var client = app.Client();var address=await Confirmed(client);var pair=await Login(client,address);

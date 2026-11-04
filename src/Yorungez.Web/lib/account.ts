@@ -1,5 +1,5 @@
 import type {Language} from './sky/types.ts';
-export interface AccountUser {id:string;email:string;emailConfirmed:boolean;firstName:string|null;lastName:string|null}
+export interface AccountUser {id:string;email:string;emailConfirmed:boolean;firstName:string|null;lastName:string|null;preferredLanguage?:Language}
 export class AccountError extends Error {status:number;constructor(code:string,status:number){super(code);this.status=status}}
 export async function accountRequest(path:string,language:Language,body?:unknown,owner?:string){
  const response=await fetch(path,{method:body===undefined?'GET':'POST',credentials:'same-origin',cache:'no-store',

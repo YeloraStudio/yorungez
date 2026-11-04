@@ -22,7 +22,7 @@ public sealed class IdentityGateway(IdentityStore store, UserManager<Account> us
         var address = command.Email.Trim();
         if (await users.FindByEmailAsync(address) is not null) return;
         await using var transaction = await store.Database.BeginTransactionAsync(ct);
-        var account = new Account { Id = Guid.NewGuid(), UserName = address, Email = address, FirstName = command.FirstName!.Trim(), LastName = command.LastName!.Trim() };
+        var account = new Account { Id = Guid.NewGuid(), UserName = address, Email = address, FirstName = command.FirstName!.Trim(), LastName = command.LastName!.Trim(), PreferredLanguage = command.Language is "tr" ? "tr" : "en" };
         var result = await users.CreateAsync(account, command.Password);
         if (!result.Succeeded)
         {
@@ -139,13 +139,21 @@ public sealed class IdentityGateway(IdentityStore store, UserManager<Account> us
         var user = await users.FindByIdAsync(command.UserId.ToString()) ?? throw InvalidCredentials();
         user.FirstName = command.FirstName!.Trim(); user.LastName = command.LastName!.Trim();
         if (!(await users.UpdateAsync(user)).Succeeded) throw new AppFailure("Identity.InvalidInput", FailureKind.Validation);
-        return new(user.Id, user.Email!, user.EmailConfirmed, user.FirstName, user.LastName);
+        return new(user.Id, user.Email!, user.EmailConfirmed, user.FirstName, user.LastName, user.PreferredLanguage);
     }
 
     public async Task<UserProfile> CurrentUserAsync(Guid userId, CancellationToken ct)
     {
         var user = await users.FindByIdAsync(userId.ToString()) ?? throw InvalidCredentials();
-        return new(user.Id, user.Email!, user.EmailConfirmed, user.FirstName, user.LastName);
+        return new(user.Id, user.Email!, user.EmailConfirmed, user.FirstName, user.LastName, user.PreferredLanguage);
+    }
+
+    public async Task<UserProfile> SaveLanguageAsync(SaveLanguageCommand command, CancellationToken ct)
+    {
+        var user = await users.FindByIdAsync(command.UserId.ToString()) ?? throw InvalidCredentials();
+        user.PreferredLanguage = command.PreferredLanguage!;
+        if (!(await users.UpdateAsync(user)).Succeeded) throw new AppFailure("Common.InvalidInput", FailureKind.Validation);
+        return new(user.Id, user.Email!, user.EmailConfirmed, user.FirstName, user.LastName, user.PreferredLanguage);
     }
 
     public async Task<bool> ValidateSessionAsync(Guid userId, Guid familyId, string stampHash, CancellationToken ct)
