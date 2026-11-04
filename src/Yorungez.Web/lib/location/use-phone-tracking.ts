@@ -35,7 +35,7 @@ export function usePhoneTracking(contextKey:string|null,onPose:(p:PhonePose)=>vo
  function start(){if(!latest.current.contextKey)return;setAlignmentError(false);void session.current?.start()}
  function stop(){session.current?.stop();video.current?.stop();setAlignmentError(false)}
  function align(azimuth:number,altitude:number){const ok=session.current?.align(azimuth,altitude)??false;setAlignmentError(!ok);return ok}
- function startCamera(){if(state==='tracking'&&latest.current.contextKey)void video.current?.start()}
+ function startCamera(){if((state==='tracking'||state==='align')&&latest.current.contextKey)void video.current?.start()}
  function stopCamera(){video.current?.stop()}
  return {state,sample,start,stop,align,alignmentError,contextReady:!!contextKey,stream,videoState,startCamera,stopCamera};
 }

@@ -14,7 +14,7 @@ Kullanıcı hedefi: telefonu gökyüzündeki gerçek cisme çevirirken harita ay
 
 ## İsteğe bağlı arka kamera
 
-Takip hizalandıktan sonra ayrı kullanıcı eylemi ve getUserMedia izni gerekir. Yalnız environment kamerayı ister; ön kameraya sessiz fallback yok. Dönen track getSettings().facingMode ile doğrulanır; doğrulanamazsa görüntülenmeden kapatılır. audio=false ve microphone=() korunur. Permissions-Policy kamerayı/sensörleri sadece self için açar; bu başlık tarayıcı izni yerine geçmez.
+Sensör verisi geldikten sonra, hizalama öncesi veya sonrasında ayrı kullanıcı eylemi ve getUserMedia izni gerekir. Hizalama öncesi önizlemede gökcismi çizimleri gizlenir; gerçek hedef nişangâha getirilip haritadaki Hizala düğmesiyle referans bağlanır. Yalnız environment kamerayı ister; ön kameraya sessiz fallback yok. Dönen track getSettings().facingMode ile doğrulanır; doğrulanamazsa görüntülenmeden kapatılır. audio=false ve microphone=() korunur. Permissions-Policy kamerayı/sensörleri sadece self için açar; bu başlık tarayıcı izni yerine geçmez.
 
 Video yalnız yerel MediaStream/srcObject ile görüntülenir. Ses, MediaRecorder, kare yükleme veya sensör/GPS/video loglama yoktur. Kamera kapanınca, takip durunca, sensör bozulunca veya sayfa gizlenince bütün track'ler durdurulur; geç gelen stream de kapatılır.
 

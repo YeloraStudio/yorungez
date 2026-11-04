@@ -16,7 +16,7 @@ import type { Texts } from "../lib/i18n.ts";
 interface Props {
   catalog: SkyCatalog; frame: SkyFrame | null; camera: Camera; language: Language; text: Texts;
   selected: string | null; layers: Layers;
-  tracking?:boolean;cameraOverlay?:boolean;
+  tracking?:boolean;cameraOverlay?:boolean;cameraPreview?:boolean;
   onCamera: (camera: Camera) => void; onSelect: (id: string) => void; renderer?: RendererKind;
 }
 const solarColors=["#fff2c5","#e9edf5","#c3b8a8","#f0d7ad","#e7a28a","#dfc5a5","#ebd3a3","#a0d6de","#9eaedc"];
@@ -132,7 +132,7 @@ export default function SkyMap(props:Props){
     return()=>{resize.disconnect();viewport.removeEventListener("wheel",wheel);cancelAnimationFrame(scheduled);renderer.dispose();natural.dispose();for(const image of images.values())image.onload=null;};
   },[props.catalog,props.renderer]);
   useEffect(()=>{requestDraw.current()},[props.frame,props.camera,props.language,props.selected,props.layers,props.tracking,props.cameraOverlay]);
-  return <div ref={host} className={`sky-viewport${props.cameraOverlay?' camera-overlay':''}`} role="region" tabIndex={0} aria-label={props.text.mapLabel} aria-describedby="map-help"
+  return <div ref={host} className={`sky-viewport${props.cameraOverlay?' camera-overlay':''}${props.cameraPreview?' camera-preview':''}`} role="region" tabIndex={0} aria-label={props.text.mapLabel} aria-describedby="map-help"
     onKeyDown={event => {
       const c = props.camera; let next = c;
       if (event.key === "ArrowLeft") next = { ...c, azimuth: c.azimuth - 5 };

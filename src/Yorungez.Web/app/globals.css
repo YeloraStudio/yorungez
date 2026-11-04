@@ -151,3 +151,8 @@
 .phone-tracking-hud button{min-height:44px;padding:6px}.phone-tracking-hud button:last-child{color:#f0b0bd;border-left:1px solid var(--border)}
 .phone-tracking-panel>button{margin:4px 8px 10px 0}.phone-tracking-panel h3{margin-top:20px;font-size:15px}.phone-tracking-panel p{font-size:13px}
 @media(max-width:650px){.phone-tracking-hud{top:126px;left:14px;transform:none;max-width:calc(100% - 86px);font-size:10px}}
+
+.camera-preview .star-surface,.camera-preview .sky-overlay{visibility:hidden}
+.camera-reticle{position:absolute;z-index:4;left:50%;top:50%;width:32px;height:32px;border:1px solid #fff9;border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;box-shadow:0 0 3px #000}
+.camera-reticle::before,.camera-reticle::after{content:'';position:absolute;background:#fff9}.camera-reticle::before{left:15px;top:-5px;width:1px;height:40px}.camera-reticle::after{top:15px;left:-5px;height:1px;width:40px}
+.phone-tracking-hud{flex-wrap:wrap}.phone-tracking-hud button{overflow-wrap:anywhere}.phone-tracking-hud button:first-child{max-width:230px}
