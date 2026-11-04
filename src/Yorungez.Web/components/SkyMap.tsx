@@ -16,6 +16,7 @@ import type { Texts } from "../lib/i18n.ts";
 interface Props {
   catalog: SkyCatalog; frame: SkyFrame | null; camera: Camera; language: Language; text: Texts;
   selected: string | null; layers: Layers;
+  tracking?:boolean;cameraOverlay?:boolean;cameraPreview?:boolean;
   onCamera: (camera: Camera) => void; onSelect: (id: string) => void; renderer?: RendererKind;
 }
 const solarColors=["#fff2c5","#e9edf5","#c3b8a8","#f0d7ad","#e7a28a","#dfc5a5","#ebd3a3","#a0d6de","#9eaedc"];
@@ -47,9 +48,10 @@ export default function SkyMap(props:Props){
       ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,width,height);bg.setTransform(dpr,0,0,dpr,0,0);
       const previous=view.current,target=p.camera,reduced=matchMedia("(prefers-reduced-motion: reduce)").matches;
       const da=((target.azimuth-previous.azimuth+540)%360)-180;
-      const moving=Math.abs(da)+Math.abs(target.altitude-previous.altitude)+Math.abs(target.fieldOfView-previous.fieldOfView)>.015;
-      view.current=reduced||!moving?target:{azimuth:previous.azimuth+da*.28,altitude:previous.altitude+(target.altitude-previous.altitude)*.28,fieldOfView:previous.fieldOfView+(target.fieldOfView-previous.fieldOfView)*.28};
-      if(moving&&!reduced)schedule();
+      const dr=(((target.roll??0)-(previous.roll??0)+540)%360)-180;
+      const moving=Math.abs(da)+Math.abs(dr)+Math.abs(target.altitude-previous.altitude)+Math.abs(target.fieldOfView-previous.fieldOfView)>.015;
+      view.current=p.tracking||reduced||!moving?target:{...target,azimuth:previous.azimuth+da*.28,altitude:previous.altitude+(target.altitude-previous.altitude)*.28,roll:(previous.roll??0)+dr*.28,fieldOfView:previous.fieldOfView+(target.fieldOfView-previous.fieldOfView)*.28};
+      if(moving&&!reduced&&!p.tracking)schedule();
       const camera=view.current,project=projector(camera,width,height),sunIndex=catalog.stars.length;
       const sunAlt=frame?.angles[sunIndex*2+1]??-30,day=p.layers.atmosphere?daylight(sunAlt):0;
       const sky=bg.createLinearGradient(0,0,0,height);
@@ -57,11 +59,12 @@ export default function SkyMap(props:Props){
       if(!natural.gpu){bg.fillStyle=sky;bg.fillRect(0,0,width,height)}else bg.clearRect(0,0,width,height);
       if(!frame)return;
       const selectedIndex=p.selected?ids.indexOf(p.selected):-1,selectedHidden=selectedIndex>=0&&natural.occludes(frame.angles[selectedIndex*2],frame.angles[selectedIndex*2+1]);
-      const groundOpacity=terrainOpacity(camera.altitude,selectedHidden);const reveal=p.layers.landscape&&groundOpacity<.5;if(exploration.current!==reveal){exploration.current=reveal;setExploring(reveal)}viewport.dataset.groundOpacity=groundOpacity.toFixed(3);viewport.dataset.fieldOfView=camera.fieldOfView.toFixed(1);viewport.dataset.cameraAltitude=camera.altitude.toFixed(1);
+      const groundOpacity=terrainOpacity(camera.altitude,selectedHidden);const reveal=p.layers.landscape&&groundOpacity<.5;if(exploration.current!==reveal){exploration.current=reveal;setExploring(reveal)}viewport.dataset.groundOpacity=groundOpacity.toFixed(3);viewport.dataset.fieldOfView=camera.fieldOfView.toFixed(1);viewport.dataset.cameraAltitude=camera.altitude.toFixed(1);viewport.dataset.cameraRoll=(camera.roll??0).toFixed(1);viewport.dataset.cameraAzimuth=camera.azimuth.toFixed(1);
       natural.draw(camera,width,height,dpr,[frame.vectors[sunIndex*3],frame.vectors[sunIndex*3+1],frame.vectors[sunIndex*3+2]],sunAlt,p.layers.atmosphere,p.layers.landscape,groundOpacity);
       if(projected.current.length!==ids.length*2)projected.current=new Float32Array(ids.length*2);
       projected.current.fill(NaN);
       if(frame.canPublishAzimuth)for(let i=0;i<ids.length;i++){
+        if(p.cameraOverlay&&frame.angles[i*2+1]<0)continue;
         if((i>=catalog.stars.length+9&&i<catalog.stars.length+9+catalog.constellations.length&&!p.layers.constellations)||(i>=catalog.stars.length+9+catalog.constellations.length&&!p.layers.deepSky))continue;
         if(i<opacities.length)opacities[i]=frame.angles[i*2+1]<0?1:1-day*.999;
         if(p.layers.landscape&&groundOpacity>.95&&ids[i]!==p.selected&&natural.occludes(frame.angles[i*2],frame.angles[i*2+1]))continue;
@@ -70,10 +73,10 @@ export default function SkyMap(props:Props){
         if(point){projected.current[i*2]=point[0];projected.current[i*2+1]=point[1];}
       }
       renderer.element.style.opacity="1";
-      if(p.layers.art&&frame.canPublishAzimuth)drawConstellationArt(bg,catalog,frame.artVectors,project,images,schedule);
+      if(p.layers.art&&!p.cameraOverlay&&frame.canPublishAzimuth)drawConstellationArt(bg,catalog,frame.artVectors,project,images,schedule);
       renderer.draw({points:projected.current,radii,colors,opacities,count:radii.length,width,height,dpr});
       function curve(points:[number,number,number][],color:string,lineWidth=1){ctx.beginPath();let active=false,prior:[number,number]|null=null;
-        for(const vector of points){const point=project(...vector);if(!point||(prior&&Math.hypot(point[0]-prior[0],point[1]-prior[1])>Math.max(width,height)/2)){active=false;prior=point;continue;}if(active)ctx.lineTo(...point);else ctx.moveTo(...point);active=true;prior=point;}
+        for(const vector of points){const point=p.cameraOverlay&&vector[2]<0?null:project(...vector);if(!point||(prior&&Math.hypot(point[0]-prior[0],point[1]-prior[1])>Math.max(width,height)/2)){active=false;prior=point;continue;}if(active)ctx.lineTo(...point);else ctx.moveTo(...point);active=true;prior=point;}
         ctx.strokeStyle=color;ctx.lineWidth=lineWidth;ctx.stroke();}
       if(p.layers.azimuthalGrid){
         for(const alt of [-60,-30,30,60])curve(Array.from({length:181},(_,i)=>horizontalVector(i*2,alt)),"rgba(213,201,203,.24)");
@@ -128,8 +131,8 @@ export default function SkyMap(props:Props){
     viewport.addEventListener("wheel",wheel,{passive:false});schedule();
     return()=>{resize.disconnect();viewport.removeEventListener("wheel",wheel);cancelAnimationFrame(scheduled);renderer.dispose();natural.dispose();for(const image of images.values())image.onload=null;};
   },[props.catalog,props.renderer]);
-  useEffect(()=>{requestDraw.current()},[props.frame,props.camera,props.language,props.selected,props.layers]);
-  return <div ref={host} className="sky-viewport" role="region" tabIndex={0} aria-label={props.text.mapLabel} aria-describedby="map-help"
+  useEffect(()=>{requestDraw.current()},[props.frame,props.camera,props.language,props.selected,props.layers,props.tracking,props.cameraOverlay]);
+  return <div ref={host} className={`sky-viewport${props.cameraOverlay?' camera-overlay':''}${props.cameraPreview?' camera-preview':''}`} role="region" tabIndex={0} aria-label={props.text.mapLabel} aria-describedby="map-help"
     onKeyDown={event => {
       const c = props.camera; let next = c;
       if (event.key === "ArrowLeft") next = { ...c, azimuth: c.azimuth - 5 };

@@ -144,3 +144,15 @@
 .location-context.is-collapsed .location-chip{min-height:44px;padding-top:8px;padding-bottom:8px}
 .context-summary{min-height:44px;display:flex;align-items:center;gap:8px;text-align:left;padding:8px 12px;font-size:12px}
 @media(max-width:650px){.context-panel{width:100%}.context-panel .time-bar{gap:6px;padding-right:4px}.context-panel .time-mode{padding:6px 4px}.time-display{min-width:0}.time-display strong,.time-display span,.time-display small{overflow-wrap:anywhere}.context-panel.is-collapsed{width:auto}.context-summary{font-size:11px}}
+
+.rear-camera-view{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+.camera-overlay .natural-sky,.camera-overlay .photographic-ground,.camera-overlay .sky-background{visibility:hidden}
+.phone-tracking-hud{position:absolute;z-index:7;left:50%;top:82px;transform:translateX(-50%);display:flex;gap:8px;align-items:center;max-width:calc(100% - 28px);border-radius:12px;padding:5px 9px;font-size:11px}
+.phone-tracking-hud button{min-height:44px;padding:6px}.phone-tracking-hud button:last-child{color:#f0b0bd;border-left:1px solid var(--border)}
+.phone-tracking-panel>button{margin:4px 8px 10px 0}.phone-tracking-panel h3{margin-top:20px;font-size:15px}.phone-tracking-panel p{font-size:13px}
+@media(max-width:650px){.phone-tracking-hud{top:126px;left:14px;transform:none;max-width:calc(100% - 86px);font-size:10px}}
+
+.camera-preview .star-surface,.camera-preview .sky-overlay{visibility:hidden}
+.camera-reticle{position:absolute;z-index:4;left:50%;top:50%;width:32px;height:32px;border:1px solid #fff9;border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;box-shadow:0 0 3px #000}
+.camera-reticle::before,.camera-reticle::after{content:'';position:absolute;background:#fff9}.camera-reticle::before{left:15px;top:-5px;width:1px;height:40px}.camera-reticle::after{top:15px;left:-5px;height:1px;width:40px}
+.phone-tracking-hud{flex-wrap:wrap}.phone-tracking-hud button{overflow-wrap:anywhere}.phone-tracking-hud button:first-child{max-width:230px}

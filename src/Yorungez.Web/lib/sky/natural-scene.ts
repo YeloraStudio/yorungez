@@ -5,7 +5,8 @@ const RAD=Math.PI/180;
 // Inverse of the shared stereographic projector: ENU, azimuth clockwise from north.
 export function screenRay(camera:Camera,width:number,height:number,x:number,y:number):[number,number,number]{
  const scale=projectionScale(camera,width,height),a=(x-width/2)/scale,b=(height/2-y)/scale,d=4+a*a+b*b;
- const r=4*a/d,u=4*b/d,f=(4-a*a-b*b)/d,az=camera.azimuth*RAD,alt=camera.altitude*RAD;
+ const perspective=camera.projection==='perspective',length=Math.hypot(a,b,1),rr=perspective?a/length:4*a/d,uu=perspective?b/length:4*b/d,
+  f=perspective?1/length:(4-a*a-b*b)/d,roll=(camera.roll??0)*RAD,r=rr*Math.cos(roll)+uu*Math.sin(roll),u=uu*Math.cos(roll)-rr*Math.sin(roll),az=camera.azimuth*RAD,alt=camera.altitude*RAD;
  return [r*Math.cos(az)-u*Math.sin(alt)*Math.sin(az)+f*Math.cos(alt)*Math.sin(az),-r*Math.sin(az)-u*Math.sin(alt)*Math.cos(az)+f*Math.cos(alt)*Math.cos(az),u*Math.cos(alt)+f*Math.sin(alt)];
 }
 // Equirectangular texture: authored rotation is illustrative, never a local horizon survey.
@@ -18,13 +19,14 @@ export function uploadPanorama(sourceWidth:number,maxTextureSize:number,upload:(
 }
 const vertex=`attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}`;
 const fragment=`precision highp float;
-uniform vec2 size;uniform float scale,az,alt,day,atmosphere,landscape,hasTexture,foreground,groundOpacity;
+uniform vec2 size;uniform float scale,az,alt,roll,perspective,day,atmosphere,landscape,hasTexture,foreground,groundOpacity;
 uniform vec3 sun;uniform sampler2D pano;
 void main(){
  vec2 v=(gl_FragCoord.xy-size*.5)/scale;float d=4.+dot(v,v);
  vec3 c=vec3(cos(alt)*sin(az),cos(alt)*cos(az),sin(alt));
  vec3 r=vec3(cos(az),-sin(az),0.);vec3 u=vec3(-sin(alt)*sin(az),-sin(alt)*cos(az),cos(alt));
- vec3 ray=normalize(r*(4.*v.x/d)+u*(4.*v.y/d)+c*((4.-dot(v,v))/d));
+ v=vec2(v.x*cos(roll)+v.y*sin(roll),v.y*cos(roll)-v.x*sin(roll));
+ vec3 ray=perspective>.5?normalize(r*v.x+u*v.y+c):normalize(r*(4.*v.x/d)+u*(4.*v.y/d)+c*((4.-dot(v,v))/d));
  float elevation=asin(clamp(ray.z,-1.,1.));float horizon=exp(-max(0.,elevation)*3.8);
  float mu=clamp(dot(ray,sun),-1.,1.);float sunset=exp(-pow((asin(clamp(sun.z,-1.,1.))+.045)/.13,2.));
  vec3 night=mix(vec3(.032,.043,.068),vec3(.13,.15,.20),horizon*.7);
@@ -52,7 +54,7 @@ export function createNaturalScene(onLoad:()=>void){
   const vs=compile(gl.VERTEX_SHADER,vertex),fs=compile(gl.FRAGMENT_SHADER,fragment),program=gl.createProgram()!;
   gl.attachShader(program,vs);gl.attachShader(program,fs);gl.linkProgram(program);if(!gl.getProgramParameter(program,gl.LINK_STATUS))throw new Error('scene-program');
   const buffer=gl.createBuffer(),texture=gl.createTexture();gl.bindBuffer(gl.ARRAY_BUFFER,buffer);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,-1,1,1,-1,1,1]),gl.STATIC_DRAW);
-  const uniforms=Object.fromEntries(['size','scale','az','alt','day','atmosphere','landscape','hasTexture','foreground','groundOpacity','sun','pano'].map(n=>[n,gl.getUniformLocation(program,n)]));
+  const uniforms=Object.fromEntries(['size','scale','az','alt','roll','perspective','day','atmosphere','landscape','hasTexture','foreground','groundOpacity','sun','pano'].map(n=>[n,gl.getUniformLocation(program,n)]));
   gl.bindTexture(gl.TEXTURE_2D,texture);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.REPEAT);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
   gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,1,1,0,gl.RGBA,gl.UNSIGNED_BYTE,new Uint8Array([0,0,0,0]));
   return {canvas,gl,program,buffer,texture,vs,fs,uniforms,index};
@@ -93,7 +95,7 @@ export function createNaturalScene(onLoad:()=>void){
    const w=Math.round(width*dpr),h=Math.round(height*dpr);if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h;}
    gl.viewport(0,0,w,h);gl.useProgram(program);gl.bindBuffer(gl.ARRAY_BUFFER,layer.buffer);const pos=gl.getAttribLocation(program,'p');gl.enableVertexAttribArray(pos);gl.vertexAttribPointer(pos,2,gl.FLOAT,false,0,0);
    gl.uniform2f(u.size,w,h);gl.uniform1f(u.scale,projectionScale(camera,width,height)*dpr);gl.uniform1f(u.az,camera.azimuth*RAD);gl.uniform1f(u.alt,camera.altitude*RAD);gl.uniform1f(u.day,daylight(sunAlt));
-   gl.uniform1f(u.atmosphere,+atmosphere);gl.uniform1f(u.landscape,+landscape);gl.uniform1f(u.hasTexture,+loaded);gl.uniform1f(u.foreground,index);gl.uniform1f(u.groundOpacity,groundOpacity);gl.uniform3f(u.sun,...sun);gl.uniform1i(u.pano,0);gl.bindTexture(gl.TEXTURE_2D,layer.texture);gl.drawArrays(gl.TRIANGLES,0,6);
+   gl.uniform1f(u.roll,(camera.roll??0)*RAD);gl.uniform1f(u.perspective,+(camera.projection==='perspective'));gl.uniform1f(u.atmosphere,+atmosphere);gl.uniform1f(u.landscape,+landscape);gl.uniform1f(u.hasTexture,+loaded);gl.uniform1f(u.foreground,index);gl.uniform1f(u.groundOpacity,groundOpacity);gl.uniform3f(u.sun,...sun);gl.uniform1i(u.pano,0);gl.bindTexture(gl.TEXTURE_2D,layer.texture);gl.drawArrays(gl.TRIANGLES,0,6);
   }
  }
  return {sky,ground,draw,occludes,get gpu(){return usable},dispose(){alive=false;for(const canvas of [sky,ground])canvas.removeEventListener("webglcontextlost",lost);image.onload=null;image.onerror=null;for(const l of layers)if(l){l.gl.deleteTexture(l.texture);l.gl.deleteBuffer(l.buffer);l.gl.deleteProgram(l.program);l.gl.deleteShader(l.vs);l.gl.deleteShader(l.fs);l.gl.getExtension('WEBGL_lose_context')?.loseContext();}sky.remove();ground.remove();}};
