@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../app/providers.dart';
 import '../../core/presentation/catalogue_state.dart';
 import '../../l10n/generated/app_localizations.dart';
 import 'catalogue_screen.dart';
+import '../../core/presentation/external_link.dart';
+import '../../account/account_models.dart';
+import '../../account/account_widgets.dart';
+import '../../account/notebook_screen.dart';
 
 class ObjectScreen extends ConsumerWidget {
   const ObjectScreen({super.key, required this.id});
@@ -50,6 +55,33 @@ class ObjectScreen extends ConsumerWidget {
                   ),
                   const SizedBox(height: 8),
                   SelectableText(object.designation),
+                  const SizedBox(height: 16),
+                  if (object.summaries[language] case final String brief)
+                    Text(brief),
+                  FilledButton.icon(
+                    onPressed: () {
+                      ref.read(skyFocusProvider.notifier).request(object.id);
+                      context.go('/');
+                    },
+                    icon: const Icon(Icons.center_focus_strong),
+                    label: Text(text.focusTarget),
+                  ),
+                  const SizedBox(height: 12),
+                  _NotebookActions(id: object.id, name: object.name(language)),
+                  const SizedBox(height: 12),
+                  ExternalLink(
+                    url: Uri.https('$language.wikipedia.org', '/w/index.php', {
+                      'search':
+                          '${object.name(language)} ${object.designation}',
+                    }).toString(),
+                    label: text.wikipediaSearch,
+                  ),
+                  for (final source
+                      in catalogue.infoSources[id] ?? <Map<String, dynamic>>[])
+                    ExternalLink(
+                      url: source['url'] as String,
+                      label: source['label'] as String?,
+                    ),
                   const SizedBox(height: 24),
                   if (image != null) ...[
                     ClipRRect(
@@ -71,13 +103,15 @@ class ObjectScreen extends ConsumerWidget {
                         fontSize: 12,
                       ),
                     ),
-                    SelectableText(
-                      image['sourceUrl'] as String,
-                      style: const TextStyle(fontSize: 12),
+                    ExternalLink(
+                      url: image['sourceUrl'] as String,
+                      label: text.imageSource,
+                      small: true,
                     ),
-                    SelectableText(
-                      image['licenseUrl'] as String,
-                      style: const TextStyle(fontSize: 12),
+                    ExternalLink(
+                      url: image['licenseUrl'] as String,
+                      label: text.imageLicence,
+                      small: true,
                     ),
                   ] else
                     Text(
@@ -167,6 +201,71 @@ class ObjectScreen extends ConsumerWidget {
           },
         ),
       ),
+    );
+  }
+}
+
+class _NotebookActions extends ConsumerStatefulWidget {
+  const _NotebookActions({required this.id, required this.name});
+  final String id, name;
+  @override
+  ConsumerState<_NotebookActions> createState() => _NotebookActionsState();
+}
+
+class _NotebookActionsState extends ConsumerState<_NotebookActions> {
+  bool _busy = false;
+  @override
+  Widget build(BuildContext context) {
+    final t = AppLocalizations.of(context);
+    return Wrap(
+      spacing: 12,
+      runSpacing: 12,
+      children: [
+        OutlinedButton.icon(
+          onPressed: _busy
+              ? null
+              : () async {
+                  if (ref.read(accountStateProvider).user == null) {
+                    context.push('/account');
+                    return;
+                  }
+                  setState(() => _busy = true);
+                  try {
+                    await ref.read(accountSessionProvider).saveEntry({
+                      'id': 'favorite:${widget.id}',
+                      'kind': 'favorite',
+                      'expectedRevision': 0,
+                      'target': {'id': widget.id, 'name': widget.name},
+                    });
+                    ref.invalidate(notebookProvider);
+                    if (context.mounted) {
+                      ScaffoldMessenger.of(
+                        context,
+                      ).showSnackBar(SnackBar(content: Text(t.recordSaved)));
+                    }
+                  } on AccountFailure catch (error) {
+                    if (context.mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text(accountError(t, error))),
+                      );
+                    }
+                  } finally {
+                    if (mounted) setState(() => _busy = false);
+                  }
+                },
+          icon: const Icon(Icons.star_outline),
+          label: Text(t.addFavorite),
+        ),
+        OutlinedButton.icon(
+          onPressed: () => showNoteEditor(
+            context,
+            ref,
+            target: {'id': widget.id, 'name': widget.name},
+          ),
+          icon: const Icon(Icons.edit_note),
+          label: Text(t.addNote),
+        ),
+      ],
     );
   }
 }

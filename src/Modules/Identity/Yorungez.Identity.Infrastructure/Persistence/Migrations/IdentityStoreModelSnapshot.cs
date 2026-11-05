@@ -281,6 +281,27 @@ namespace Yorungez.Identity.Infrastructure.Persistence.Migrations
                     b.ToTable("AspNetUsers", "identity");
                 });
 
+            modelBuilder.Entity("Yorungez.Identity.Infrastructure.Persistence.AccountExplorationPreferences", b =>
+                {
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
+
+                    b.Property<bool>("MusicEnabled")
+                        .HasColumnType("boolean");
+
+                    b.Property<long>("Revision")
+                        .IsConcurrencyToken()
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("SkyLayersJson")
+                        .IsRequired()
+                        .HasColumnType("jsonb");
+
+                    b.HasKey("UserId");
+
+                    b.ToTable("ExplorationPreferences", "identity");
+                });
+
             modelBuilder.Entity("Yorungez.Identity.Infrastructure.Persistence.PendingEmail", b =>
                 {
                     b.Property<Guid>("Id")
@@ -383,6 +404,15 @@ namespace Yorungez.Identity.Infrastructure.Persistence.Migrations
                     b.HasOne("Yorungez.Identity.Infrastructure.Persistence.Account", null)
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Yorungez.Identity.Infrastructure.Persistence.AccountExplorationPreferences", b =>
+                {
+                    b.HasOne("Yorungez.Identity.Infrastructure.Persistence.Account", null)
+                        .WithOne()
+                        .HasForeignKey("Yorungez.Identity.Infrastructure.Persistence.AccountExplorationPreferences", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

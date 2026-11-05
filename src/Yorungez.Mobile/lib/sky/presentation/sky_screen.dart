@@ -4,7 +4,6 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
@@ -23,6 +22,9 @@ import '../domain/sky_geometry.dart';
 import 'sky_painter.dart';
 import 'sky_sidebar.dart';
 import '../domain/dwell_selection.dart';
+import '../data/device_location.dart';
+import '../../account/account_models.dart';
+import '../../account/account_widgets.dart';
 
 class SkyScreen extends ConsumerStatefulWidget {
   const SkyScreen({super.key, this.initialObserver});
@@ -32,7 +34,7 @@ class SkyScreen extends ConsumerStatefulWidget {
 }
 
 class _SkyScreenState extends ConsumerState<SkyScreen>
-    with WidgetsBindingObserver, SingleTickerProviderStateMixin {
+    with WidgetsBindingObserver, SingleTickerProviderStateMixin, RouteAware {
   final _preferences = MobilePreferences();
   final _screenAwake = ScreenAwake();
   final _layers = <SkyLayer>{
@@ -77,11 +79,17 @@ class _SkyScreenState extends ConsumerState<SkyScreen>
   double? _yawOffset;
   double _fov = 60;
   String? _selected, _issue;
+  String? _pendingFocus, _focusedTarget;
+  PageRoute<dynamic>? _route;
+  bool _routeVisible = true, _preferencesBusy = false;
+  DateTime? _deviceRetryAt;
+  bool _manualViewRequested = false;
 
   @override
   void initState() {
     super.initState();
     _observer = widget.initialObserver;
+    _pendingFocus = ref.read(skyFocusProvider);
     _selectionAnimation =
         AnimationController(
           vsync: this,
@@ -119,6 +127,13 @@ class _SkyScreenState extends ConsumerState<SkyScreen>
       unawaited(_calculate());
       unawaited(_requestTrack());
       unawaited(_loadIss());
+      if (_observer?.device == true &&
+          _onboarding == null &&
+          _observer?.measuredAt != null &&
+          DateTime.now().difference(_observer!.measuredAt!) >
+              const Duration(minutes: 1)) {
+        unawaited(_locate(request: false));
+      }
     });
   }
 
@@ -131,10 +146,21 @@ class _SkyScreenState extends ConsumerState<SkyScreen>
       /* Optional UI storage. */
     }
     if (!mounted) return;
+    final accountPreferences = ref.read(accountStateProvider).preferences;
+    if (accountPreferences != null) music = accountPreferences.musicEnabled;
     setState(() {
       _loading = false;
       _onboarding = completed ? null : 0;
       _muted = !music;
+      if (accountPreferences != null) {
+        _layers
+          ..clear()
+          ..addAll(
+            SkyLayer.values.where(
+              (layer) => accountPreferences.layers.contains(layer.name),
+            ),
+          );
+      }
     });
     if (completed) {
       if (_observer == null) {
@@ -142,7 +168,13 @@ class _SkyScreenState extends ConsumerState<SkyScreen>
       } else {
         unawaited(_calculate());
       }
-      if (mounted && _observer != null) _startTracking();
+      if (mounted &&
+          _observer != null &&
+          _focusedTarget == null &&
+          _pendingFocus == null &&
+          _active) {
+        _startTracking();
+      }
       if (mounted && !_muted) unawaited(_playMusic());
     }
   }
@@ -181,6 +213,10 @@ class _SkyScreenState extends ConsumerState<SkyScreen>
       ref.read(skyFrameProvider.notifier).publish(frame);
       setState(() {
         _frame = frame;
+        final focused = frame.points[_focusedTarget];
+        if (!_following && focused != null) {
+          _pose = ViewPose.horizon(focused.azimuth, focused.altitude);
+        }
         if (_selected == issObject.id &&
             !frame.points.containsKey(issObject.id)) {
           _selected = null;
@@ -188,6 +224,7 @@ class _SkyScreenState extends ConsumerState<SkyScreen>
         }
         if (_issue == 'calculation') _issue = null;
       });
+      _consumeFocus();
     } catch (_) {
       _worker?.close();
       _worker = null;
@@ -202,6 +239,7 @@ class _SkyScreenState extends ConsumerState<SkyScreen>
     _stopTracking();
     _generation++;
     _dwell.reset();
+    _pendingFocus ??= _focusedTarget;
     _selected = null;
     _track = null;
     ref.read(skyFrameProvider.notifier).publish(null);
@@ -211,49 +249,62 @@ class _SkyScreenState extends ConsumerState<SkyScreen>
       _issue = null;
     });
     unawaited(_calculate());
-    if (resumeTracking && _onboarding == null) _startTracking();
+    if ((resumeTracking || (observer.device && !_manualViewRequested)) &&
+        _onboarding == null &&
+        _active) {
+      _startTracking();
+    }
   }
 
   Future<void> _locate({bool request = true}) async {
     if (_locating) return;
+    if (!request &&
+        _deviceRetryAt != null &&
+        DateTime.now().isBefore(_deviceRetryAt!)) {
+      return;
+    }
+    _deviceRetryAt = DateTime.now().add(const Duration(minutes: 1));
     if (mounted) setState(() => _locating = true);
-    final generation = _generation;
+    var generation = _generation;
     try {
-      var permission = await Geolocator.checkPermission();
-      if (permission == LocationPermission.denied && request) {
-        permission = await Geolocator.requestPermission();
-      }
-      if (permission == LocationPermission.denied ||
-          permission == LocationPermission.deniedForever) {
+      final source = ref.read(deviceLocationProvider);
+      if (!await source.permitted(request: request)) {
+        if (mounted && generation == _generation && _observer?.device == true) {
+          _stopTracking();
+          _generation++;
+          ref.read(skyFrameProvider.notifier).publish(null);
+          setState(() {
+            _observer = null;
+            _frame = null;
+            _track = null;
+            _selected = null;
+          });
+        }
         if (request && mounted) setState(() => _issue = 'denied');
         return;
       }
-      if (!await Geolocator.isLocationServiceEnabled()) {
-        throw StateError('Location disabled');
+      try {
+        final cached = await source.recent();
+        if (!mounted || generation != _generation || !_active) return;
+        final observer = cached == null
+            ? null
+            : deviceObserver(cached, DateTime.now(), provisional: true);
+        if (_observer == null && observer != null) {
+          _setObserver(observer);
+          generation = _generation;
+        }
+      } catch (_) {
+        /* A fresh fix is still attempted if the OS cache is absent. */
       }
-      final fix = await Geolocator.getCurrentPosition(
-        locationSettings: const LocationSettings(
-          accuracy: LocationAccuracy.best,
-          timeLimit: Duration(seconds: 15),
-        ),
-      );
+      final fix = await source.current();
       if (!mounted || generation != _generation || !_active) return;
-      if (DateTime.now().difference(fix.timestamp).abs() >
-          const Duration(seconds: 30)) {
-        throw StateError('Old location');
-      }
-      // GPS altitude semantics differ by OS; do not silently label it ellipsoidal.
-      _setObserver(
-        SkyObserver(
-          fix.latitude,
-          fix.longitude,
-          device: true,
-          accuracy: fix.accuracy,
-          measuredAt: fix.timestamp,
-        ),
-      );
+      final observer = deviceObserver(fix, DateTime.now());
+      if (observer == null) throw StateError('Invalid device fix');
+      _setObserver(observer);
     } catch (_) {
-      if (mounted && request) setState(() => _issue = 'gps');
+      if (mounted && (request || _observer?.device == true)) {
+        setState(() => _issue = 'gps');
+      }
     } finally {
       if (mounted) setState(() => _locating = false);
     }
@@ -416,6 +467,7 @@ class _SkyScreenState extends ConsumerState<SkyScreen>
   }
 
   Future<void> _toggleMusic() async {
+    if (_preferencesBusy) return;
     setState(() => _muted = !_muted);
     if (_muted) {
       await _audio?.pause();
@@ -423,10 +475,79 @@ class _SkyScreenState extends ConsumerState<SkyScreen>
       await _playMusic();
     }
     try {
-      await _preferences.setMusic(!_muted);
+      if (ref.read(accountStateProvider).user == null) {
+        await _preferences.setMusic(!_muted);
+      } else {
+        await _savePreferences();
+      }
     } catch (_) {
       /* UI preference only. */
     }
+  }
+
+  Future<void> _savePreferences() async {
+    if (_preferencesBusy) return;
+    setState(() => _preferencesBusy = true);
+    try {
+      await ref
+          .read(accountSessionProvider)
+          .savePreferences(!_muted, _layers.map((l) => l.name).toSet());
+    } on AccountFailure catch (error) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(accountError(AppLocalizations.of(context), error)),
+          ),
+        );
+      }
+    } finally {
+      if (mounted) setState(() => _preferencesBusy = false);
+    }
+  }
+
+  Future<void> _applyPreferences(ExplorationPreferences preferences) async {
+    if (!mounted) return;
+    setState(() {
+      _muted = !preferences.musicEnabled;
+      _layers
+        ..clear()
+        ..addAll(
+          SkyLayer.values.where(
+            (layer) => preferences.layers.contains(layer.name),
+          ),
+        );
+    });
+    if (_muted) {
+      await _audio?.pause();
+    } else if (_active && _onboarding == null) {
+      await _playMusic();
+    }
+  }
+
+  Future<void> _anonymousPreferences() async {
+    final epoch = ref.read(accountStateProvider).epoch;
+    var music = true;
+    try {
+      music = await _preferences.musicEnabled();
+    } catch (_) {
+      /* Optional anonymous UI preference. */
+    }
+    if (!mounted ||
+        ref.read(accountStateProvider).user != null ||
+        ref.read(accountStateProvider).epoch != epoch) {
+      return;
+    }
+    await _applyPreferences(
+      ExplorationPreferences(music, {
+        'stars',
+        'solar',
+        'deepSky',
+        'horizon',
+        'constellations',
+        'figures',
+        'cosmic',
+      }, 0),
+    );
   }
 
   Future<void> _startExploring() async {
@@ -457,6 +578,8 @@ class _SkyScreenState extends ConsumerState<SkyScreen>
 
   void _startTracking() {
     _stopTracking();
+    _manualViewRequested = false;
+    _focusedTarget = null;
     setState(() {
       _following = true;
       _issue = null;
@@ -550,12 +673,20 @@ class _SkyScreenState extends ConsumerState<SkyScreen>
   }
 
   void _focus(String id) {
+    if (!_active) {
+      _pendingFocus = id;
+      return;
+    }
     final point = _frame?.points[id];
     if (point == null) {
       if (id == issObject.id) setState(() => _issue = "iss");
       return;
     }
     _stopTracking();
+    _followOnResume = false;
+    _focusedTarget = id;
+    _manualViewRequested = true;
+    unawaited(_closeCamera());
     setState(() {
       _selected = id;
       _dwell.reset();
@@ -569,6 +700,14 @@ class _SkyScreenState extends ConsumerState<SkyScreen>
   Future<void> _search() async {
     final id = await context.push<String>('/catalogue?pick=true');
     if (mounted && id != null) _focus(id);
+  }
+
+  void _consumeFocus() {
+    final id = _pendingFocus;
+    if (id == null || !_active || _frame == null || _onboarding != null) return;
+    _pendingFocus = null;
+    _focus(id);
+    ref.read(skyFocusProvider.notifier).consumed(id);
   }
 
   Future<void> _sheet(Widget child) async {
@@ -891,8 +1030,35 @@ class _SkyScreenState extends ConsumerState<SkyScreen>
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final route = ModalRoute.of(context);
+    if (route is PageRoute<dynamic> && route != _route) {
+      skyRouteObserver.unsubscribe(this);
+      _route = route;
+      skyRouteObserver.subscribe(this, route);
+    }
+  }
+
+  @override
+  void didPushNext() {
+    _routeVisible = false;
+    didChangeAppLifecycleState(
+      WidgetsBinding.instance.lifecycleState ?? AppLifecycleState.resumed,
+    );
+  }
+
+  @override
+  void didPopNext() {
+    _routeVisible = true;
+    didChangeAppLifecycleState(
+      WidgetsBinding.instance.lifecycleState ?? AppLifecycleState.resumed,
+    );
+  }
+
+  @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    _active = state == AppLifecycleState.resumed;
+    _active = state == AppLifecycleState.resumed && _routeVisible;
     unawaited(_screenAwake.setActive(_active));
     if (!_active) {
       _followOnResume = _following || _followOnResume;
@@ -910,7 +1076,11 @@ class _SkyScreenState extends ConsumerState<SkyScreen>
       }
       if (mounted) setState(() {});
       unawaited(_calculate());
-      if (_observer?.device == true) unawaited(_locate(request: false));
+      _deviceRetryAt = null;
+      if (_onboarding == null &&
+          (_observer == null || _observer?.device == true)) {
+        unawaited(_locate(request: false));
+      }
       if (_onboarding == null && !_muted) unawaited(_playMusic());
     }
   }
@@ -922,6 +1092,7 @@ class _SkyScreenState extends ConsumerState<SkyScreen>
     _generation++;
     _cameraGeneration++;
     WidgetsBinding.instance.removeObserver(this);
+    skyRouteObserver.unsubscribe(this);
     _timer?.cancel();
     _dwellTimer?.cancel();
     _selectionAnimation.dispose();
@@ -957,6 +1128,21 @@ class _SkyScreenState extends ConsumerState<SkyScreen>
     final t = AppLocalizations.of(context),
         language = ref.watch(localeProvider).languageCode;
     ref.watch(catalogueProvider);
+    ref.listen(skyFocusProvider, (_, next) {
+      if (next != null) {
+        _pendingFocus = next;
+        unawaited(_calculate());
+      }
+    });
+    ref.listen(accountStateProvider.select((s) => s.preferences), (_, next) {
+      if (next != null) unawaited(_applyPreferences(next));
+    });
+    ref.listen(accountStateProvider.select((s) => s.user?.id), (
+      previous,
+      next,
+    ) {
+      if (previous != null && next == null) unawaited(_anonymousPreferences());
+    });
     final frame = _frame, point = frame?.points[_selected];
     final landscape =
         MediaQuery.orientationOf(context) == Orientation.landscape;
@@ -1004,6 +1190,7 @@ class _SkyScreenState extends ConsumerState<SkyScreen>
       drawer: _onboarding != null
           ? null
           : SkySidebar(
+              savingPreferences: _preferencesBusy,
               layers: _layers,
               muted: _muted,
               language: language,
@@ -1017,9 +1204,8 @@ class _SkyScreenState extends ConsumerState<SkyScreen>
               showSources: () => unawaited(_sourceSheet()),
               showConnection: () => context.push('/connection'),
               toggleMusic: _toggleMusic,
-              changeLanguage: (code) =>
-                  ref.read(localeProvider.notifier).select(code),
               changeLayer: (layer, enabled) {
+                if (_preferencesBusy) return;
                 _dwell.reset();
                 setState(() {
                   if (enabled) {
@@ -1028,6 +1214,9 @@ class _SkyScreenState extends ConsumerState<SkyScreen>
                     _layers.remove(layer);
                   }
                 });
+                if (ref.read(accountStateProvider).user != null) {
+                  unawaited(_savePreferences());
+                }
               },
               showPrivacy: () => unawaited(
                 _sheet(
@@ -1060,6 +1249,8 @@ class _SkyScreenState extends ConsumerState<SkyScreen>
                     ? null
                     : (details) {
                         _dwell.reset();
+                        _focusedTarget = null;
+                        _manualViewRequested = true;
                         setState(
                           () => _pose = ViewPose.horizon(
                             (_pose.forward.azimuth -
@@ -1129,6 +1320,8 @@ class _SkyScreenState extends ConsumerState<SkyScreen>
                           _following ? t.stopTracking : t.startTracking,
                           () {
                             if (_following) {
+                              _manualViewRequested = true;
+                              _followOnResume = false;
                               _stopTracking();
                               setState(() {});
                             } else {
@@ -1384,7 +1577,7 @@ class _SkyScreenState extends ConsumerState<SkyScreen>
                     'assets/generated/app-icon.png',
                     height: 76,
                     width: 76,
-                    semanticLabel: 'yorungez',
+                    semanticLabel: 'Yorungez',
                   ),
                 ),
               ),
@@ -1412,20 +1605,7 @@ class _SkyScreenState extends ConsumerState<SkyScreen>
                   style: const TextStyle(color: Color(0xFFC9B6A6)),
                 ),
                 const SizedBox(height: 18),
-                DropdownButtonFormField<String>(
-                  isExpanded: true,
-                  initialValue: ref.watch(localeProvider).languageCode,
-                  decoration: InputDecoration(labelText: t.language),
-                  items: const [
-                    DropdownMenuItem(value: 'en', child: Text('English')),
-                    DropdownMenuItem(value: 'tr', child: Text('Türkçe')),
-                  ],
-                  onChanged: (value) {
-                    if (value != null) {
-                      ref.read(localeProvider.notifier).select(value);
-                    }
-                  },
-                ),
+                const LanguagePicker(),
               ],
               if (step == 1) ...[
                 Text(t.locationRationale),

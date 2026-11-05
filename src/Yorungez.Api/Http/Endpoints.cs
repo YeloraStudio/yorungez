@@ -130,6 +130,14 @@ public static class Endpoints
         }).RequireAuthorization();
         auth.MapGet("/me", async (ClaimsPrincipal user, ISender sender, CancellationToken ct) =>
             Results.Ok(await sender.Send(new CurrentUserQuery(UserId(user)), ct))).RequireAuthorization();
+        auth.MapGet("/exploration-preferences", async (ClaimsPrincipal user, ISender sender, CancellationToken ct) =>
+            Results.Ok(await sender.Send(new GetExplorationPreferences(UserId(user)), ct))).RequireAuthorization();
+        auth.MapPost("/exploration-preferences", async (ExplorationPreferencesInput input, ClaimsPrincipal user, HttpContext context, ISender sender, CancellationToken ct) =>
+        {
+            if (context.Request.Headers["X-Yorungez-Account"] is { Count: > 0 } expected && expected != UserId(user).ToString())
+                throw new Yorungez.Application.AppFailure("Identity.AccountChanged", Yorungez.Application.FailureKind.Conflict);
+            return Results.Ok(await sender.Send(new SaveExplorationPreferences(UserId(user), input.MusicEnabled, input.SkyLayers, input.ExpectedRevision), ct));
+        }).RequireAuthorization();
 
         app.MapPost("/api/v1/session/login", async (Credentials input, HttpContext context, ISender sender, CancellationToken ct) =>
         {
@@ -162,3 +170,4 @@ public static class Endpoints
 public sealed record RegistrationInput(string Email, string Password, string? FirstName, string? LastName);
 public sealed record ProfileInput(string? FirstName, string? LastName);
 public sealed record LanguageInput(string? PreferredLanguage);
+public sealed record ExplorationPreferencesInput(bool MusicEnabled, string[]? SkyLayers, long ExpectedRevision);

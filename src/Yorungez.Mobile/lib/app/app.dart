@@ -9,9 +9,12 @@ import '../core/presentation/sources_screen.dart';
 import '../l10n/generated/app_localizations.dart';
 import 'providers.dart';
 import '../sky/presentation/sky_screen.dart';
+import '../account/account_screen.dart';
+import '../account/notebook_screen.dart';
 
 final routerProvider = Provider((ref) {
   final router = GoRouter(
+    observers: [skyRouteObserver],
     routes: [
       GoRoute(path: '/', builder: (_, _) => const SkyScreen()),
       GoRoute(
@@ -26,18 +29,54 @@ final routerProvider = Provider((ref) {
       ),
       GoRoute(path: '/connection', builder: (_, _) => const ServiceScreen()),
       GoRoute(path: '/sources', builder: (_, _) => const SourcesScreen()),
+      GoRoute(
+        path: '/account',
+        builder: (_, state) => AccountScreen(
+          initialMode: state.uri.queryParameters['mode'] ?? 'login',
+        ),
+      ),
+      GoRoute(path: '/notebook', builder: (_, _) => const NotebookScreen()),
     ],
   );
   ref.onDispose(router.dispose);
   return router;
 });
 
-class YorungezApp extends ConsumerWidget {
+class YorungezApp extends ConsumerStatefulWidget {
   const YorungezApp({super.key});
+  @override
+  ConsumerState<YorungezApp> createState() => _YorungezAppState();
+}
+
+class _YorungezAppState extends ConsumerState<YorungezApp>
+    with WidgetsBindingObserver {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+    Future.microtask(() async {
+      if (!mounted) return;
+      await ref.read(localeProvider.notifier).restore();
+      if (mounted) await ref.read(accountSessionProvider).initialise();
+    });
+  }
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) => MaterialApp.router(
-    title: 'yorungez',
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      ref.read(accountSessionProvider).retry();
+    }
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) => MaterialApp.router(
+    title: 'Yorungez',
     debugShowCheckedModeBanner: false,
     locale: ref.watch(localeProvider),
     supportedLocales: AppLocalizations.supportedLocales,
@@ -55,6 +94,13 @@ class YorungezApp extends ConsumerWidget {
         error: Color(0xFFFFB4AB),
       ),
       appBarTheme: const AppBarTheme(backgroundColor: Color(0xFF17191C)),
+      segmentedButtonTheme: SegmentedButtonThemeData(
+        style: SegmentedButton.styleFrom(
+          selectedBackgroundColor: const Color(0xFF8B2333),
+          selectedForegroundColor: const Color(0xFFF7F1E6),
+          foregroundColor: const Color(0xFFF7F1E6),
+        ),
+      ),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: const Color(0xFF272A2E),

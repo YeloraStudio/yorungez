@@ -68,6 +68,54 @@ public sealed class IdentityFlowTests(AppFactory app) : IClassFixture<AppFactory
     }
 
     [Fact]
+    public async Task Exploration_preferences_are_shared_persisted_owner_scoped_and_revision_checked()
+    {
+        using var client = app.Client();
+        Assert.Equal(HttpStatusCode.Unauthorized, (await client.GetAsync("/api/v1/auth/exploration-preferences")).StatusCode);
+        var address = await Confirmed(client);
+        var pair = await Login(client, address);
+        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", pair.AccessToken);
+        var initialResponse = await client.GetAsync("/api/v1/auth/exploration-preferences");
+        Assert.True(initialResponse.Headers.CacheControl!.NoStore);
+        var initial = (await initialResponse.Content.ReadFromJsonAsync<ExplorationPreferences>())!;
+        Assert.True(initial.MusicEnabled);
+        Assert.Equal(0, initial.Revision);
+        var changed = await client.PostAsJsonAsync("/api/v1/auth/exploration-preferences", new { musicEnabled = false, skyLayers = new[] { "stars", "cosmic" }, expectedRevision = 0 });
+        Assert.Equal(HttpStatusCode.OK, changed.StatusCode);
+        var saved = (await changed.Content.ReadFromJsonAsync<ExplorationPreferences>())!;
+        Assert.False(saved.MusicEnabled);
+        Assert.Equal(1, saved.Revision);
+        using var second = app.Client();
+        second.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", (await Login(second, address)).AccessToken);
+        var fromSecond = (await second.GetFromJsonAsync<ExplorationPreferences>("/api/v1/auth/exploration-preferences"))!;
+        Assert.Equal(saved.SkyLayers, fromSecond.SkyLayers);
+        Assert.False(fromSecond.MusicEnabled);
+        Assert.Equal(HttpStatusCode.Conflict, (await second.PostAsJsonAsync("/api/v1/auth/exploration-preferences", new { musicEnabled = true, skyLayers = new[] { "stars" }, expectedRevision = 0 })).StatusCode);
+        client.DefaultRequestHeaders.Add("X-Yorungez-Account", Guid.NewGuid().ToString());
+        Assert.Equal(HttpStatusCode.Conflict, (await client.PostAsJsonAsync("/api/v1/auth/exploration-preferences", new { musicEnabled = true, skyLayers = new[] { "stars" }, expectedRevision = 1 })).StatusCode);
+        client.DefaultRequestHeaders.Remove("X-Yorungez-Account");
+        foreach (var invalid in new[] { new[] { "invalid" }, new[] { "stars", "stars" } })
+            Assert.Equal(HttpStatusCode.BadRequest, (await client.PostAsJsonAsync("/api/v1/auth/exploration-preferences", new { musicEnabled = true, skyLayers = invalid, expectedRevision = 1 })).StatusCode);
+        var otherAddress = await Confirmed(client);
+        using var other = app.Client();
+        other.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", (await Login(other, otherAddress)).AccessToken);
+        Assert.Equal(0, (await other.GetFromJsonAsync<ExplorationPreferences>("/api/v1/auth/exploration-preferences"))!.Revision);
+        var user = (await client.GetFromJsonAsync<UserProfile>("/api/v1/auth/me"))!;
+        await using (var scope = app.Services.CreateAsyncScope())
+        {
+            var row = await scope.ServiceProvider.GetRequiredService<IdentityStore>().ExplorationPreferences.AsNoTracking().SingleAsync(p => p.UserId == user.Id);
+            Assert.Equal(1, row.Revision);
+            Assert.False(row.MusicEnabled);
+        }
+        Assert.Equal(HttpStatusCode.OK, (await client.PostAsJsonAsync("/api/v1/auth/language", new { preferredLanguage = "tr" })).StatusCode);
+        Assert.Equal(1, (await client.GetFromJsonAsync<ExplorationPreferences>("/api/v1/auth/exploration-preferences"))!.Revision);
+        var simultaneous = await Task.WhenAll(client.PostAsJsonAsync("/api/v1/auth/exploration-preferences", new { musicEnabled = true, skyLayers = new[] { "solar" }, expectedRevision = 1 }),
+            second.PostAsJsonAsync("/api/v1/auth/exploration-preferences", new { musicEnabled = false, skyLayers = new[] { "deepSky" }, expectedRevision = 1 }));
+        Assert.Single(simultaneous, r => r.StatusCode == HttpStatusCode.OK);
+        Assert.Single(simultaneous, r => r.StatusCode == HttpStatusCode.Conflict);
+    }
+
+    [Fact]
     public async Task Language_preference_is_persisted_for_browser_and_mobile_and_is_account_scoped()
     {
         using var client = app.Client("en");var address = await Confirmed(client);var pair = await Login(client,address);

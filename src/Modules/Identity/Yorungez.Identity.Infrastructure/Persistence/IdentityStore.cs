@@ -27,11 +27,20 @@ public sealed class PendingEmail
     public Guid Version { get; set; } = Guid.NewGuid();
 }
 
+public sealed class AccountExplorationPreferences
+{
+    public Guid UserId { get; set; }
+    public bool MusicEnabled { get; set; } = true;
+    public string SkyLayersJson { get; set; } = "[]";
+    public long Revision { get; set; }
+}
+
 public sealed class IdentityStore(DbContextOptions<IdentityStore> options)
     : IdentityDbContext<Account, IdentityRole<Guid>, Guid>(options)
 {
     public DbSet<RefreshSession> RefreshSessions => Set<RefreshSession>();
     public DbSet<PendingEmail> PendingEmails => Set<PendingEmail>();
+    public DbSet<AccountExplorationPreferences> ExplorationPreferences => Set<AccountExplorationPreferences>();
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
@@ -39,6 +48,14 @@ public sealed class IdentityStore(DbContextOptions<IdentityStore> options)
         builder.HasDefaultSchema("identity");
         builder.Entity<Account>(b => { b.Property(a => a.FirstName).HasMaxLength(100); b.Property(a => a.LastName).HasMaxLength(100);
             b.Property(a => a.PreferredLanguage).HasMaxLength(2).IsRequired().HasDefaultValue("en"); });
+        builder.Entity<AccountExplorationPreferences>(b =>
+        {
+            b.ToTable("ExplorationPreferences");
+            b.HasKey(p => p.UserId);
+            b.Property(p => p.SkyLayersJson).HasColumnType("jsonb").IsRequired();
+            b.Property(p => p.Revision).IsConcurrencyToken();
+            b.HasOne<Account>().WithOne().HasForeignKey<AccountExplorationPreferences>(p => p.UserId).OnDelete(DeleteBehavior.Cascade);
+        });
         builder.Entity<RefreshSession>(b =>
         {
             b.ToTable("RefreshSessions");

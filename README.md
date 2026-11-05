@@ -2,6 +2,8 @@
 
 The [Flutter Android/iOS client](src/Yorungez.Mobile/README.md) now includes a full-screen phone-driven sky, one-second discovery, registered cosmic/constellation imagery, phased solar illustrations and calculated tracks, plus local SGP4 and a shared ISS data endpoint. [Current implementation evidence and physical/iOS/parity limits](docs/mobile-immersive-discovery-evidence.md) remain explicit.
 
+Native accounts now share the API profile, language and server notebook; music/layer preferences, secure refresh, working source links and detail-to-sky focus are covered in the [account integration evidence](docs/mobile-account-integration.md).
+
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="data/branding/exports/wordmark-on-dark.svg">
   <img src="data/branding/exports/wordmark-on-light.svg" alt="yorungez" width="360">

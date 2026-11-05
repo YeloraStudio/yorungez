@@ -58,5 +58,6 @@
   "Notebook.AccountChanged": "The signed-in account changed. Check your account again.",
   "Notebook.FutureObservation": "An actual observation cannot have a future time.",
   "Identity.InvalidName": "Enter your first and last name (1–100 characters each).",
-  "Identity.AccountChanged": "The signed-in account changed. Reload your account before editing."
+  "Identity.AccountChanged": "The signed-in account changed. Reload your account before editing.",
+  "Identity.PreferencesConflict": "Preferences changed on another device. Reload them before saving again."
 }
