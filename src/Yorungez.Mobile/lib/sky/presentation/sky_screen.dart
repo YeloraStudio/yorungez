@@ -25,6 +25,7 @@ import '../domain/dwell_selection.dart';
 import '../data/device_location.dart';
 import '../../account/account_models.dart';
 import '../../account/account_widgets.dart';
+import '../../planning/planning_time.dart';
 
 class SkyScreen extends ConsumerStatefulWidget {
   const SkyScreen({super.key, this.initialObserver});
@@ -190,15 +191,14 @@ class _SkyScreenState extends ConsumerState<SkyScreen>
     _calculating = true;
     final observer = _observer!,
         generation = _generation,
-        instant = DateTime.now().toUtc();
+        instant = ref.read(skyInstantProvider) ?? DateTime.now().toUtc();
     try {
       final catalogue = await ref.read(catalogueProvider.future);
       _catalogue = catalogue;
       if (!mounted || !_active) return;
       if (_worker == null) {
-        final worker = await SkyWorker.start(catalogue);
+        final worker = await ref.read(skyWorkerProvider.future);
         if (!mounted) {
-          worker.close();
           return;
         }
         _worker = worker;
@@ -226,7 +226,7 @@ class _SkyScreenState extends ConsumerState<SkyScreen>
       });
       _consumeFocus();
     } catch (_) {
-      _worker?.close();
+      if (mounted) ref.invalidate(skyWorkerProvider);
       _worker = null;
       if (mounted && _active) setState(() => _issue = 'calculation');
     } finally {
@@ -577,6 +577,7 @@ class _SkyScreenState extends ConsumerState<SkyScreen>
   }
 
   void _startTracking() {
+    ref.read(skyInstantProvider.notifier).select(null);
     _stopTracking();
     _manualViewRequested = false;
     _focusedTarget = null;
@@ -1098,7 +1099,6 @@ class _SkyScreenState extends ConsumerState<SkyScreen>
     _selectionAnimation.dispose();
     _visuals.close();
     _stopTracking();
-    _worker?.close();
     unawaited(_closeCamera());
     unawaited(_audio?.close());
     unawaited(SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge));
@@ -1128,6 +1128,21 @@ class _SkyScreenState extends ConsumerState<SkyScreen>
     final t = AppLocalizations.of(context),
         language = ref.watch(localeProvider).languageCode;
     ref.watch(catalogueProvider);
+    final planningZone = ref.watch(planningZoneProvider);
+    final simulation = ref.watch(skyInstantProvider);
+    ref.listen(skyInstantProvider, (_, next) {
+      _generation++;
+      _frame = null;
+      ref.read(skyFrameProvider.notifier).publish(null);
+      _track = null;
+      _dwell.reset();
+      if (next != null) {
+        _stopTracking();
+        _followOnResume = false;
+        unawaited(_closeCamera());
+      }
+      unawaited(_calculate());
+    });
     ref.listen(skyFocusProvider, (_, next) {
       if (next != null) {
         _pendingFocus = next;
@@ -1146,7 +1161,9 @@ class _SkyScreenState extends ConsumerState<SkyScreen>
     final frame = _frame, point = frame?.points[_selected];
     final landscape =
         MediaQuery.orientationOf(context) == Orientation.landscape;
-    final status = _following
+    final status = simulation != null
+        ? t.simulation
+        : _following
         ? (_aligned
               ? (_yawOffset != null
                     ? t.alignedNorth
@@ -1181,6 +1198,20 @@ class _SkyScreenState extends ConsumerState<SkyScreen>
               '${_observer!.latitude.toStringAsFixed(4)}, ${_observer!.longitude.toStringAsFixed(4)}'
               '${_observer!.accuracy == null ? '' : ' · ±${_observer!.accuracy!.round()} m'}';
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerTop,
+      floatingActionButton: simulation == null
+          ? null
+          : SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 64),
+                child: FilledButton.icon(
+                  onPressed: () =>
+                      ref.read(skyInstantProvider.notifier).select(null),
+                  icon: const Icon(Icons.history),
+                  label: Text(t.backToLive),
+                ),
+              ),
+            ),
       key: _scaffold,
       backgroundColor: Colors.black,
       onDrawerChanged: (open) {
@@ -1195,10 +1226,16 @@ class _SkyScreenState extends ConsumerState<SkyScreen>
               muted: _muted,
               language: language,
               location: location,
-              clock: DateFormat(
-                "yyyy-MM-dd HH:mm:ss 'UTC'",
-                language,
-              ).format(frame?.instant ?? DateTime.now().toUtc()),
+              clock:
+                  '${PlanningTime.label(frame?.instant ?? DateTime.now().toUtc(), planningZone, language)}\n$planningZone\n${PlanningTime.utc(frame?.instant ?? DateTime.now().toUtc(), language)}',
+              simulated: simulation != null,
+              showTonight: () => context.push('/tonight'),
+              showCalendar: () => context.push('/calendar'),
+              showReminders: () => context.push('/reminders'),
+              showTimeZone: () => context.push('/time-zone'),
+              returnToLive: () {
+                ref.read(skyInstantProvider.notifier).select(null);
+              },
               changeLocation: () => unawaited(_locationSheet()),
               calibrate: () => unawaited(_calibration()),
               showSources: () => unawaited(_sourceSheet()),

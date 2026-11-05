@@ -8,6 +8,7 @@ import 'package:ffi/ffi.dart';
 import '../../catalogue/data/catalogue_repository.dart';
 import '../domain/sky_geometry.dart';
 import 'native_satellite.dart';
+import '../../planning/night_plan.dart';
 import 'native_magnetic.dart';
 import '../../catalogue/domain/sky_object.dart';
 
@@ -49,6 +50,19 @@ typedef _Calculate =
       int,
     );
 
+typedef _CrossNative =
+    Int32 Function(
+      Double,
+      Double,
+      Double,
+      Double,
+      Int32,
+      Pointer<Double>,
+      Int32,
+    );
+typedef _CrossDart =
+    int Function(double, double, double, double, int, Pointer<Double>, int);
+
 final class NativeSky {
   NativeSky() {
     final lib = Platform.isIOS
@@ -66,8 +80,52 @@ final class NativeSky {
       throw const FormatException('Unsupported calculation ABI');
     }
     _calculate = lib.lookupFunction<_CalculateNative, _Calculate>('yg_sky');
+    _crossings = lib.lookupFunction<_CrossNative, _CrossDart>('yg_crossings');
   }
   late final _Calculate _calculate;
+  late final _CrossDart _crossings;
+  Crossings crossings(
+    SkyObserver observer,
+    DateTime start,
+    DateTime end,
+    int index,
+  ) {
+    final out = calloc<Double>(18);
+    try {
+      if (_crossings(
+            start.millisecondsSinceEpoch / 1000,
+            end.millisecondsSinceEpoch / 1000,
+            observer.latitude,
+            observer.longitude,
+            index,
+            out,
+            18,
+          ) !=
+          0) {
+        throw const FormatException('Rise/set calculation failed');
+      }
+      final raw = out.asTypedList(18), count = raw[0].toInt();
+      if (count < 0 || count > 8) {
+        throw const FormatException('Invalid crossing count');
+      }
+      return (
+        above: raw[1] == 1,
+        edges: [
+          for (var i = 0; i < count; i++)
+            (
+              time: DateTime.fromMillisecondsSinceEpoch(
+                (raw[2 + 2 * i] * 1000).round(),
+                isUtc: true,
+              ),
+              up: raw[3 + 2 * i] == 1,
+            ),
+        ],
+      );
+    } finally {
+      calloc.free(out);
+    }
+  }
+
   Float64List calculate(
     SkyObserver observer,
     DateTime instant,
@@ -178,6 +236,29 @@ final class SkyWorker {
   Future<Float64List> _enqueue(Object message) {
     if (_closed) throw StateError('Calculation worker closed');
     final result = Completer<Float64List>();
+    if (message is (String, SkyObserver, DateTime, String, List<double>) &&
+        message.$1 == 'plan') {
+      // Rapid date changes retain only the newest queued plan; never flood the native worker.
+      for (final old
+          in _queue
+              .where(
+                (job) =>
+                    (job.$1
+                            as (
+                              String,
+                              SkyObserver,
+                              DateTime,
+                              String,
+                              List<double>,
+                            ))
+                        .$1 ==
+                    'plan',
+              )
+              .toList()) {
+        _queue.remove(old);
+        old.$2.completeError(StateError('Superseded planning request'));
+      }
+    }
     _queue.add((message, result));
     _pump();
     return result.future.timeout(const Duration(seconds: 8));
@@ -220,6 +301,21 @@ final class SkyWorker {
     )).whenComplete(() => _trackOutstanding = false);
   }
 
+  Future<NightPlan> plan(
+    SkyObserver observer,
+    DateTime start,
+    DateTime end,
+  ) async {
+    final raw = await _enqueue((
+      'plan',
+      observer,
+      start,
+      '',
+      <double>[end.millisecondsSinceEpoch.toDouble()],
+    ));
+    return NightPlan.decode(raw);
+  }
+
   void close() {
     if (_closed) return;
     _closed = true;
@@ -250,7 +346,28 @@ void _runWorker(
       final request =
           message as (String, SkyObserver, DateTime, String, List<double>);
       engine ??= NativeSky();
-      if (request.$1 == 'frame') {
+      if (request.$1 == 'plan') {
+        final observer = request.$2, start = request.$3;
+        final end = DateTime.fromMillisecondsSinceEpoch(
+          request.$5.single.round(),
+          isUtc: true,
+        );
+        final standard = SkyObserver(observer.latitude, observer.longitude);
+        input.$1.send(
+          calculateNightPlan(
+            observer,
+            start,
+            end,
+            (index) => engine!.crossings(observer, start, end, index),
+            (index, instant, seaLevel) => engine!.calculate(
+              seaLevel ? standard : observer,
+              instant,
+              const [],
+              const [],
+            )[index * 8 + 1],
+          ).encode(),
+        );
+      } else if (request.$1 == 'frame') {
         final raw = engine!.calculate(
           request.$2,
           request.$3,

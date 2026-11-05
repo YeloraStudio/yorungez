@@ -79,3 +79,7 @@ Numeric NASA/JPL Horizons observer ephemerides are retained as validation facts 
 - flutter_secure_storage **11.2.0**, BSD-3-Clause, German Saprykin and contributors. [Exact package licence](third-party/flutter-account-plugins/flutter_secure_storage.LICENSE); [upstream package](https://pub.dev/packages/flutter_secure_storage). Only rotating refresh credentials use platform-secure storage; no personal inventory is stored by this plugin.
 - url_launcher **6.3.3**, BSD-3-Clause, The Flutter Authors. [Exact package licence](third-party/flutter-account-plugins/url_launcher.LICENSE); [upstream package](https://pub.dev/packages/url_launcher). User-initiated HTTPS links open in the external browser.
 - The resolved application lockfile pins platform implementations. Flutter's generated software licence page retains their bundled package notices; the two direct plugin licences are also copied into the offline public source-notice asset.
+
+## Native planning time zones
+
+The Flutter client uses `timezone` **0.11.2** (Dart authors, BSD-3-Clause) with bundled IANA tzdb 2025c for offline local-time presentation. [Exact licence](third-party/flutter-account-plugins/timezone-LICENSE), [upstream](https://pub.dev/packages/timezone). UTC instants remain authoritative; timezone rules are versioned and may change.

@@ -59,5 +59,10 @@
   "Notebook.FutureObservation": "An actual observation cannot have a future time.",
   "Identity.InvalidName": "Enter your first and last name (1–100 characters each).",
   "Identity.AccountChanged": "The signed-in account changed. Reload your account before editing.",
-  "Identity.PreferencesConflict": "Preferences changed on another device. Reload them before saving again."
+  "Identity.PreferencesConflict": "Preferences changed on another device. Reload them before saving again.",
+  "Reminders.InvalidInput": "Choose a supported time zone and reminder lead time.",
+  "Reminders.InvalidEvent": "This event is not in the current verified calendar. Refresh the calendar and retry.",
+  "Reminders.InvalidTime": "Schedule at least two minutes ahead and within the next year.",
+  "Reminders.Limit": "You can have up to 100 active reminders.",
+  "Reminders.Conflict": "This reminder already exists, changed, or is being sent. Refresh before trying again."
 }

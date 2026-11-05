@@ -1,0 +1,36 @@
+{
+  "source": "data/branding/source/app-icon-fullbleed.png",
+  "sourceSha256": "0e5181d3c96f43bcaa4525e6e1c2a2521291cb23bc6d7b5d47a84ef53514c381",
+  "emblem": "data/branding/exports/mark-on-dark.svg",
+  "emblemSha256": "36d5325fad2533ce6a703b60c3c77ea5bdb7fe131bfeeadfdbd7790e9d2e5ee1",
+  "files": {
+    "app-icon-1024.png": {
+      "width": 1024,
+      "height": 1024,
+      "channels": 3,
+      "bytes": 1308244,
+      "sha256": "7548cc36ef2898a1b0993074759b94f33438677baa7751b6f86b43fcd576ec3c"
+    },
+    "google-play-icon-512.png": {
+      "width": 512,
+      "height": 512,
+      "channels": 4,
+      "bytes": 333452,
+      "sha256": "4f6834ce9995d45d86477302715f9fd7756ff1b926102e8b8f49934ce2d265dd"
+    },
+    "adaptive-foreground.png": {
+      "width": 1024,
+      "height": 1024,
+      "channels": 4,
+      "bytes": 28938,
+      "sha256": "d6283876ab14294943aa000be34add721cc90565a73c44c444a6ffedaf4dc296"
+    },
+    "adaptive-monochrome.png": {
+      "width": 1024,
+      "height": 1024,
+      "channels": 4,
+      "bytes": 19443,
+      "sha256": "02a69c33eed04407c5e3fd9a917b53895dc3fc450fa186c6953e225ef7e56ae8"
+    }
+  }
+}

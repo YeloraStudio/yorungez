@@ -5,6 +5,7 @@ on:
       - 'src/Yorungez.Mobile/**'
       - 'data/catalog/**'
       - 'data/audio/**'
+      - 'data/events/**'
       - 'data/sky/**'
       - 'tests/ReferenceData/**'
       - 'tools/science-js/**'
@@ -19,6 +20,7 @@ on:
       - 'src/Yorungez.Mobile/**'
       - 'data/catalog/**'
       - 'data/audio/**'
+      - 'data/events/**'
       - 'data/sky/**'
       - 'tests/ReferenceData/**'
       - 'tools/science-js/**'
@@ -74,10 +76,11 @@ jobs:
       - name: Analyze, test and build development APK
         working-directory: src/Yorungez.Mobile
         run: |
-          dart format --output=none --set-exit-if-changed lib tool test
+          dart format --output=none --set-exit-if-changed lib tool test integration_test test_driver
           flutter analyze --no-pub
           npm ci --prefix ../../tools/science-js --ignore-scripts --no-audit --no-fund
           python3 tool/check_science.py
+          python3 tool/check_planning.py
           python3 tool/check_satellite.py
           python3 tool/check_magnetic.py
           flutter test --no-pub

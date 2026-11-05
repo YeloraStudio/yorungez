@@ -11,6 +11,7 @@ import '../../core/presentation/external_link.dart';
 import '../../account/account_models.dart';
 import '../../account/account_widgets.dart';
 import '../../account/notebook_screen.dart';
+import '../../planning/planning_time.dart';
 
 class ObjectScreen extends ConsumerWidget {
   const ObjectScreen({super.key, required this.id});
@@ -121,14 +122,13 @@ class ObjectScreen extends ConsumerWidget {
                   const SizedBox(height: 28),
                   if (current != null) ...[
                     Text(
-                      text.skyTitle,
+                      ref.watch(skyInstantProvider) == null
+                          ? text.skyTitle
+                          : text.simulation,
                       style: Theme.of(context).textTheme.titleMedium,
                     ),
                     Text(
-                      DateFormat(
-                        "yyyy-MM-dd HH:mm:ss 'UTC'",
-                        language,
-                      ).format(frame!.instant),
+                      '${PlanningTime.label(frame!.instant, ref.watch(planningZoneProvider), language)}\n${ref.watch(planningZoneProvider)}\n${PlanningTime.utc(frame.instant, language)}',
                     ),
                     _Field(
                       text.azimuthLabel,
@@ -236,6 +236,9 @@ class _NotebookActionsState extends ConsumerState<_NotebookActions> {
                       'kind': 'favorite',
                       'expectedRevision': 0,
                       'target': {'id': widget.id, 'name': widget.name},
+                      'instantUtc': ref
+                          .read(skyInstantProvider)
+                          ?.toIso8601String(),
                     });
                     if (context.mounted) {
                       ScaffoldMessenger.of(
@@ -260,6 +263,7 @@ class _NotebookActionsState extends ConsumerState<_NotebookActions> {
             context,
             ref,
             target: {'id': widget.id, 'name': widget.name},
+            instantUtc: ref.read(skyInstantProvider),
           ),
           icon: const Icon(Icons.edit_note),
           label: Text(t.addNote),

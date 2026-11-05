@@ -13,6 +13,52 @@
 
 YG_EXPORT int yg_abi_version(void) { return 2; }
 
+/* Planning ABI: [count, initiallyAbove, (unixSeconds, rises)*8]. Standard
+ * sea-level rise/set, 34 arcmin refraction and Sun/Moon upper limb, exactly as
+ * the Web planner. Invoked only on the same serial worker as yg_sky. */
+YG_EXPORT int yg_crossings(double start, double end, double lat, double lon,
+    int index, double *out, int length)
+{
+    const astro_body_t bodies[9] = {BODY_SUN, BODY_MOON, BODY_MERCURY,
+        BODY_VENUS, BODY_MARS, BODY_JUPITER, BODY_SATURN, BODY_URANUS, BODY_NEPTUNE};
+    if (!out || length != 18 || index < 0 || index > 8 || !isfinite(start) ||
+        !isfinite(end) || start < 946684800 || end > 2082758400 ||
+        end <= start || end-start > 27*3600 || !isfinite(lat) || fabs(lat)>=89 ||
+        !isfinite(lon) || fabs(lon)>180) return 1;
+    astro_observer_t observer = Astronomy_MakeObserver(lat, lon, 0);
+    astro_time_t begin = Astronomy_TimeFromDays((start-946728000.0)/86400.0);
+    int count = 0;
+    for (int direction = -1; direction <= 1; direction += 2) {
+        astro_time_t cursor = begin;
+        for (int n = 0; n < 4; ++n) {
+            double left = (end - (cursor.ut*86400.0+946728000.0))/86400.0;
+            astro_search_result_t found = Astronomy_SearchRiseSet(bodies[index], observer,
+                (astro_direction_t)direction, cursor, left);
+            if (found.status == ASTRO_SEARCH_FAILURE) break;
+            if (found.status != ASTRO_SUCCESS) return 2;
+            double time = found.time.ut*86400.0+946728000.0;
+            if (time >= end) break;
+            out[2+2*count] = time; out[3+2*count] = direction == 1; ++count;
+            cursor = Astronomy_AddDays(found.time, 1.0/86400.0);
+        }
+    }
+    for (int i = 0; i < count; ++i) for (int j = i+1; j < count; ++j)
+        if (out[2+2*j] < out[2+2*i]) {
+            double t=out[2+2*i], up=out[3+2*i]; out[2+2*i]=out[2+2*j];
+            out[3+2*i]=out[3+2*j]; out[2+2*j]=t; out[3+2*j]=up;
+        }
+    out[0]=count;
+    if (count) out[1]=!out[3];
+    else {
+        astro_equatorial_t eq = Astronomy_Equator(bodies[index], &begin, observer, EQUATOR_OF_DATE, ABERRATION);
+        if (eq.status) return 2;
+        astro_horizon_t h = Astronomy_Horizon(&begin, observer, eq.ra, eq.dec, REFRACTION_NONE);
+        double radius = index == 0 ? 695700 : index == 1 ? 1737.4 : 0;
+        out[1] = h.altitude + asin(radius/(eq.dist*KM_PER_AU))*RAD2DEG + 34.0/60 > 0;
+    }
+    return 0;
+}
+
 /* Output: 9 solar records [az,alt,RA-of-date,Dec-of-date,AU,mag,radius-deg,illuminated-fraction],
  * star [az,alt] pairs, DSO [az,alt] pairs, row-major EQJ-to-ENU matrix.
  * Input star records: Cartesian pc position followed by pc/year velocity.

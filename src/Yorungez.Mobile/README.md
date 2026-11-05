@@ -6,6 +6,8 @@ Foreground sky/onboarding now prevents automatic display sleep and releases the 
 
 ## Current working slice
 
+Native Tonight/Calendar now reuse canonical offline events and the shared solver, with explicit device/manual IANA local time plus UTC, standard visibility intervals and event-to-simulation/live navigation. Verified accounts can schedule/cancel server email reminders; future push remains disabled until APNs/FCM and consent are implemented. [Delivery, API and verification](../../docs/mobile-night-calendar-reminders.md). [Native icon exports](../../data/branding/mobile/manifest.json) and [English store showcase](../../data/store/google-play/en-US/README.md) preserve the owner logo.
+
 Home is a full-screen, phone-first calculated sky with no mobile terrain or ordinary zoom. First launch explains privacy and optional foreground GPS/rear camera, supports manual coordinates/an explicit Istanbul example, and gives calibration guidance. Search is secondary. [Binding requirements](../../docs/mobile-immersive-discovery-plan.md) and [implementation evidence / open gates](../../docs/mobile-immersive-discovery-evidence.md) are the current contract.
 
 - Offline catalogue: 5,073 stars, 88 constellations, 107 deep-sky objects, nine solar bodies and ISS identity (5,278 total; a station direction requires fresh elements).
@@ -38,6 +40,7 @@ For the host reference/ABI tests, install GCC, Python and Node, then restore the
 ```sh
 npm ci --prefix ../../tools/science-js --ignore-scripts --no-audit --no-fund
 python tool/check_science.py
+python tool/check_planning.py
 python tool/check_satellite.py
 python tool/check_magnetic.py
 flutter analyze --no-pub
@@ -53,7 +56,7 @@ Android declares foreground location and optional camera; microphone, background
 
 The validated first model remains **2000–2035**, airless apparent body centres, explicit assumed-0-m/reference-ellipsoid elevation and the existing polar-azimuth restriction. Layers do not change celestial positions. Above the geometric horizon does not establish naked-eye visibility. Marker sizes/glow are schematic; the renderer is a baseline pending physical/profile measurements.
 
-Equatorial-grid, Tonight/Calendar/glossary, complete observation/place editing parity and release readiness remain planned. Surface textures and apparent-size enlargement are illustrative; the photographic background is not astrometric point data. Native pointing accuracy, lens/crop calibration, physical iOS/secure-store behaviour, accessibility and device performance are not accepted by host/emulator checks.
+Equatorial-grid/glossary, complete observation/place editing parity and release readiness remain planned. Surface textures and apparent-size enlargement are illustrative; the photographic background is not astrometric point data. Native pointing accuracy, lens/crop calibration, physical iOS/secure-store behaviour, accessibility and device performance are not accepted by host/emulator checks.
 
 The public API origin defaults to `https://api.yorungez.com`; override via `--dart-define=API_BASE_URL=https://your-test-api.example.com`. Origins require HTTPS and no credentials/path/query. No secret or environment file is bundled. Offline calculation/rendering/content/audio do not depend on this connection. Native authentication uses the existing Bearer contract, serialized refresh rotation and platform-secure storage. New account exploration-preference schema/routes require deployment before connected music/layer saving is available.
 

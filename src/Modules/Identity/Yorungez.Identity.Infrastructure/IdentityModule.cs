@@ -68,6 +68,7 @@ public static class IdentityModule
         services.AddScoped<IExplorationPreferenceStore, ExplorationPreferenceStore>();
         services.AddSingleton<IEmailDelivery, SmtpEmailDelivery>();
         services.AddScoped<EmailOutboxDispatcher>();
+        services.AddScoped<IAccountReminderEmail, AccountReminderEmail>();
         if (configuration.GetValue("Email:RunOutboxWorker", true)
             && configuration["environment"] != "Testing") services.AddHostedService<EmailOutboxWorker>();
         return services;

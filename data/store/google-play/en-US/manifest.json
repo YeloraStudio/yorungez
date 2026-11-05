@@ -1,0 +1,93 @@
+{
+  "locale": "en-US",
+  "app": "Yorungez",
+  "art": "Built-in image_gen, decorative only",
+  "capture": "Android API 34 isolated emulator; actual Flutter widgets/native solver; public Istanbul example",
+  "files": {
+    "screenshots/01-jupiter.png": {
+      "width": 1080,
+      "height": 1920,
+      "channels": 3,
+      "bytes": 1284850,
+      "sha256": "ce0c13efb9838b7ce76cf3406256910ce17d5d42cdeabd0725118c20a16ff078",
+      "captureSha256": "1a41e41e5c45eaaeadaf172d30f6d5b6d52114e039c30bc42c0094f98df468be"
+    },
+    "screenshots/02-moon.png": {
+      "width": 1080,
+      "height": 1920,
+      "channels": 3,
+      "bytes": 1286127,
+      "sha256": "d96be7bd1bf92ff14b96d5507cfba7cd4aad4fc9065745f81537c2199ad8c834",
+      "captureSha256": "a305732bbacf2c14e427f8d7960013966adde4f76f271e615b1e1a07da7d6c58"
+    },
+    "screenshots/03-orion.png": {
+      "width": 1080,
+      "height": 1920,
+      "channels": 3,
+      "bytes": 1352116,
+      "sha256": "f80add4d43a3268b7e0f7f232330cb9b978f37f64d897927801bce4ea9cb2b2b",
+      "captureSha256": "4e06a1348ef6f697bf63ff8733653c1d85327c4d415592d909e58609dc4e0b19"
+    },
+    "screenshots/04-andromeda.png": {
+      "width": 1080,
+      "height": 1920,
+      "channels": 3,
+      "bytes": 1294135,
+      "sha256": "9a459d3ce14c59d098ba63b4ba013c5b1991bfe56176d6cc372d7e7dd081dcde",
+      "captureSha256": "287fc3044c7a143029b227b59ffa92d3003adc17db90a93cf05d41624ade9a09"
+    },
+    "screenshots/05-tonight.png": {
+      "width": 1080,
+      "height": 1920,
+      "channels": 3,
+      "bytes": 849087,
+      "sha256": "590165fd5c150a1c6f7b46f7b19bd173eebb74cbcc4dedb77361031dd4187e4a",
+      "captureSha256": "f354a21708dbe8d5d8c910ff4f2012423ef64357b78553fda100c2317a5bb9b4"
+    },
+    "screenshots/06-calendar.png": {
+      "width": 1080,
+      "height": 1920,
+      "channels": 3,
+      "bytes": 849261,
+      "sha256": "c4484a67935d98a19ac3250bb48558703f0b4ee583f6ed2c2dd095260d49952e",
+      "captureSha256": "1d0ff69023c7c53301632c9687a28f531db2d0a4e3ddb1e26e2503dc1dde1ce5"
+    },
+    "screenshots/07-catalogue.png": {
+      "width": 1080,
+      "height": 1920,
+      "channels": 3,
+      "bytes": 1319053,
+      "sha256": "fc399209c785bb71490645cbff6618697339f7f03879fa3fa5b92a2e23a8ba59",
+      "captureSha256": "90373aa351d8bc978f68412c20bec922f46257f828caf3bdc0301dbb50e70adb"
+    },
+    "screenshots/08-account.png": {
+      "width": 1080,
+      "height": 1920,
+      "channels": 3,
+      "bytes": 901217,
+      "sha256": "4a772c52292fe35df42e9700bcd88f9ec0bcc0bd9e4d1a840aa8850a1dc66317",
+      "captureSha256": "99051ed2f17c1d2a0f1dbfe5fec048e67eaea19fd3111c8343e3d72891ec1ae8"
+    },
+    "feature-graphic.png": {
+      "width": 1024,
+      "height": 500,
+      "channels": 3,
+      "bytes": 652883,
+      "sha256": "cbf1f1e344679d3be4179733d1c3e5f8b75c8bc2f524e1aef722642d86bf1df9"
+    },
+    "icon-512.png": {
+      "width": 512,
+      "height": 512,
+      "channels": 4,
+      "bytes": 333452,
+      "sha256": "4f6834ce9995d45d86477302715f9fd7756ff1b926102e8b8f49934ce2d265dd"
+    },
+    "overview.jpg": {
+      "width": 1928,
+      "height": 1760,
+      "channels": 3,
+      "bytes": 469471,
+      "sha256": "1d504608782c9f871bb57b1a2a19bdcff011c529a758b050c29e2218896983f8"
+    }
+  }
+}

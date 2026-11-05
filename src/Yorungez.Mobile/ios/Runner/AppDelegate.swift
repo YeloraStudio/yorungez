@@ -15,6 +15,11 @@ import CoreMotion
 
   func didInitializeImplicitFlutterEngine(_ engineBridge: FlutterImplicitEngineBridge) {
     GeneratedPluginRegistrant.register(with: engineBridge.pluginRegistry)
+    FlutterMethodChannel(name: "yorungez/time", binaryMessenger: engineBridge.applicationRegistrar.messenger())
+      .setMethodCallHandler { call, result in
+        if call.method == "zone" { result(TimeZone.current.identifier) }
+        else { result(FlutterMethodNotImplemented) }
+      }
     let stream = YorungezPose()
     pose = stream
     FlutterEventChannel(name: "yorungez/pose",

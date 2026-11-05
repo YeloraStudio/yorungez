@@ -2,6 +2,8 @@
 
 The [Flutter Android/iOS client](src/Yorungez.Mobile/README.md) now includes a full-screen phone-driven sky, one-second discovery, registered cosmic/constellation imagery, phased solar illustrations and calculated tracks, plus local SGP4 and a shared ISS data endpoint. [Current implementation evidence and physical/iOS/parity limits](docs/mobile-immersive-discovery-evidence.md) remain explicit.
 
+Native **Tonight**, **Calendar** and server email reminders now share the sourced Web catalogue and account API. Local date/time, IANA zone and UTC stay explicit; event selections open a labelled sky simulation with a return-to-live action. [Implementation and verification](docs/mobile-night-calendar-reminders.md) · [English Google Play showcase](data/store/google-play/en-US/README.md).
+
 Native accounts now share the API profile, language and server notebook; music/layer preferences, secure refresh, working source links and detail-to-sky focus are covered in the [account integration evidence](docs/mobile-account-integration.md).
 
 <picture>

@@ -2,6 +2,8 @@
 
 [Flutter Android/iOS istemcisi](src/Yorungez.Mobile/README.md) tam ekran telefonla takip, bir saniyelik keşif, koordinatlara bağlı kozmik gökyüzü/takımyıldız görselleri, evreli gezegen çizimi ve hesaplanan izleri içerir; yerel SGP4 ve ortak ISS veri endpoint’i de hazırdır. [Güncel uygulama kanıtları ve açık fiziksel/iOS/özellik eşliği işleri](docs/mobile-immersive-discovery-evidence.md) ayrı izlenir.
 
+Mobil **Bu gece**, **Takvim** ve sunucuda e-posta hatırlatıcıları ortak kaynaklı katalog ve hesap API’sine bağlandı. Yerel saat, IANA bölgesi ve UTC birlikte gösterilir; olaylar açıkça etiketli simülasyonda açılır ve canlıya dönüş sağlanır. [Uygulama ve doğrulama](docs/mobile-night-calendar-reminders.md) · [İngilizce Google Play görselleri](data/store/google-play/en-US/README.md).
+
 Mobil hesaplar aynı API profilini, dilini ve sunucu defterini kullanır; müzik/katman tercihleri, güvenli oturum yenileme, çalışan kaynak bağlantıları ve detaydan gökyüzüne odaklama için [uygulama kanıtları](docs/mobile-account-integration.md) kayıtlıdır.
 
 <picture>

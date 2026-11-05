@@ -12,9 +12,26 @@ namespace Yorungez.Notebook.Infrastructure;
 public sealed class NotebookDatabase(DbContextOptions<NotebookDatabase> options) : DbContext(options)
 {
     public DbSet<NotebookEntry> Entries => Set<NotebookEntry>();
+    public DbSet<EventReminder> Reminders => Set<EventReminder>();
     protected override void OnModelCreating(ModelBuilder model)
     {
         model.HasDefaultSchema("notebook");
+        model.Entity<EventReminder>(b =>
+        {
+            b.ToTable("Reminders"); b.HasKey(e => new { e.UserId, e.Id });
+            b.Property(e => e.Revision).IsConcurrencyToken();
+            b.Property(e => e.EventId).HasMaxLength(160);
+            b.Property(e => e.TargetId).HasMaxLength(128);
+            b.Property(e => e.Title).HasMaxLength(200);
+            b.Property(e => e.SourceUrl).HasMaxLength(300);
+            b.Property(e => e.EventKey).HasMaxLength(200);
+            b.Property(e => e.TimeZoneId).HasMaxLength(100);
+            b.Property(e => e.Channel).HasMaxLength(16);
+            b.Property(e => e.Status).HasMaxLength(16);
+            b.HasIndex(e => new { e.UserId, e.EventKey, e.LeadMinutes, e.Channel }).IsUnique()
+                .HasFilter("\"Status\" IN ('scheduled', 'sending')");
+            b.HasIndex(e => new { e.Status, e.NextAttemptAtUtc });
+        });
         model.Entity<NotebookEntry>(b =>
         {
             b.ToTable("Entries"); b.HasKey(e => new { e.UserId, e.Id });
@@ -70,6 +87,9 @@ public static class NotebookModule
         services.AddDbContext<NotebookDatabase>((provider, options) => options.UseNpgsql(
             provider.GetRequiredService<IConfiguration>().GetConnectionString("Identity"),
             o => o.MigrationsHistoryTable("__EFMigrationsHistory", "notebook")));
+        services.AddScoped<IReminderStore, ReminderStore>();
+        services.AddScoped<ReminderDispatcher>();
+        services.AddHostedService<ReminderWorker>();
         return services.AddScoped<INotebookStore, NotebookStore>();
     }
 }
