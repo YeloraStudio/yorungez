@@ -165,6 +165,10 @@ Future<void> main() async {
     expected: audioManifest['sha256'] as String,
   );
   final notices = <String, String>{
+    'flutter_secure_storage 11.2.0 — German Saprykin and contributors, BSD-3-Clause; https://pub.dev/packages/flutter_secure_storage':
+        'third-party/flutter-account-plugins/flutter_secure_storage.LICENSE',
+    'url_launcher 6.3.3 — The Flutter Authors, BSD-3-Clause; https://pub.dev/packages/url_launcher':
+        'third-party/flutter-account-plugins/url_launcher.LICENSE',
     'Yorungez original code — Apache-2.0; https://github.com/YeloraStudio/yorungez':
         'LICENSE',
     'Astronomy Engine 2.1.19 — Don Cross; https://github.com/cosinekitty/astronomy':

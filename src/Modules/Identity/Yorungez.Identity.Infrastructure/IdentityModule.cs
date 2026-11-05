@@ -65,6 +65,7 @@ public static class IdentityModule
         });
         services.AddSingleton<TokenIssuer>();
         services.AddScoped<IIdentityGateway, IdentityGateway>();
+        services.AddScoped<IExplorationPreferenceStore, ExplorationPreferenceStore>();
         services.AddSingleton<IEmailDelivery, SmtpEmailDelivery>();
         services.AddScoped<EmailOutboxDispatcher>();
         if (configuration.GetValue("Email:RunOutboxWorker", true)

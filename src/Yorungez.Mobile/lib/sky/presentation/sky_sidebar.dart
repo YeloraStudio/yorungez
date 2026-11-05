@@ -2,6 +2,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import '../../l10n/generated/app_localizations.dart';
 import 'sky_painter.dart';
+import '../../account/account_widgets.dart';
+import '../../core/presentation/external_link.dart';
 
 class SkySidebar extends StatelessWidget {
   const SkySidebar({
@@ -16,11 +18,12 @@ class SkySidebar extends StatelessWidget {
     required this.showSources,
     required this.showConnection,
     required this.toggleMusic,
-    required this.changeLanguage,
     required this.changeLayer,
     required this.showPrivacy,
+    this.savingPreferences = false,
   });
   final Set<SkyLayer> layers;
+  final bool savingPreferences;
   final bool muted;
   final String language, location, clock;
   final VoidCallback changeLocation,
@@ -29,7 +32,6 @@ class SkySidebar extends StatelessWidget {
       showConnection,
       showPrivacy;
   final Future<void> Function() toggleMusic;
-  final ValueChanged<String> changeLanguage;
   final void Function(SkyLayer, bool) changeLayer;
   @override
   Widget build(BuildContext context) {
@@ -54,7 +56,7 @@ class SkySidebar extends StatelessWidget {
                       'assets/generated/app-icon.png',
                       width: 44,
                       height: 44,
-                      semanticLabel: 'yorungez',
+                      semanticLabel: 'Yorungez',
                     ),
                   ),
                   const SizedBox(width: 12),
@@ -63,7 +65,7 @@ class SkySidebar extends StatelessWidget {
                       fit: BoxFit.scaleDown,
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        'yorungez.',
+                        'Yorungez.',
                         style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.w800,
@@ -84,6 +86,7 @@ class SkySidebar extends StatelessWidget {
               child: ListView(
                 padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
                 children: [
+                  AccountMenu(closeDrawer: () => Navigator.pop(context)),
                   ListTile(
                     contentPadding: EdgeInsets.zero,
                     leading: const Icon(Icons.location_on_outlined),
@@ -117,7 +120,9 @@ class SkySidebar extends StatelessWidget {
                       contentPadding: EdgeInsets.zero,
                       title: Text(entry.$2),
                       value: layers.contains(entry.$1),
-                      onChanged: (value) => changeLayer(entry.$1, value),
+                      onChanged: savingPreferences
+                          ? null
+                          : (value) => changeLayer(entry.$1, value),
                     ),
                   const Divider(height: 20),
                   Text(
@@ -144,6 +149,11 @@ class SkySidebar extends StatelessWidget {
                     onPressed: () => closeThen(showPrivacy),
                     child: Text(t.privacyTitle),
                   ),
+                  ExternalLink(
+                    url: 'https://yorungez.com/$language',
+                    label: 'yorungez.com',
+                    small: true,
+                  ),
                 ],
               ),
             ),
@@ -166,22 +176,12 @@ class SkySidebar extends StatelessWidget {
                       ),
                       title: Text(t.backgroundMusic),
                       value: !muted,
-                      onChanged: (_) => unawaited(toggleMusic()),
+                      onChanged: savingPreferences
+                          ? null
+                          : (_) => unawaited(toggleMusic()),
                     ),
                     const SizedBox(height: 8),
-                    DropdownButtonFormField<String>(
-                      key: ValueKey(language),
-                      isExpanded: true,
-                      initialValue: language,
-                      decoration: InputDecoration(labelText: t.language),
-                      items: const [
-                        DropdownMenuItem(value: 'en', child: Text('English')),
-                        DropdownMenuItem(value: 'tr', child: Text('Türkçe')),
-                      ],
-                      onChanged: (code) {
-                        if (code != null) changeLanguage(code);
-                      },
-                    ),
+                    const LanguagePicker(),
                     const SizedBox(height: 10),
                     Text(
                       t.musicCredit,

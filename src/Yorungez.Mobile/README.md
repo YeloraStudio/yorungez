@@ -1,4 +1,4 @@
-# yorungez mobile
+# Yorungez mobile
 
 Flutter Android/iOS sky-first client of the existing .NET backend. Free to use and advertising-free. English defaults; all delivered interfaces also support Turkish. Existing brand assets and grey/burgundy palette are retained.
 
@@ -14,9 +14,9 @@ Home is a full-screen, phone-first calculated sky with no mobile terrain or ordi
 - Closed sidebar with location/UTC/layers and music/language at the bottom. Licensed Cylinder Four looping ambience and immediate persistent mute.
 - Android/iOS native pose adapters, current WMM2025 magnetic-declination correction when applicable, sensor/reference/freshness gates and manual known-reference calibration. Physical accuracy is not yet accepted.
 - Optional audio-free rear-camera preview. Lens/crop/FOV alignment remains approximate until physically measured.
-- Same .NET backend, including a new public cached ISS OMM endpoint; local pinned SGP4, a finite-life public offline packet and an original station glyph. The new API route is not deployed by this local change.
+- Same .NET backend, including a new public cached ISS OMM endpoint; local pinned SGP4, a finite-life public offline packet and an original station glyph. The public ISS route was deployed with K-053.
 
-Only notice/mute UI preferences and the non-personal expiring ISS packet are persisted. Coordinates/pose/alignment remain in memory. Native secure authentication/account language/verified-account server inventory parity remains unimplemented; no personal local database or offline write queue is introduced.
+Shared API sign-in, registration/verification-email requests, profile and server notebook reads/note/favourite writes are implemented. Account language, music and sky layers follow the shared API; anonymous language/mute are non-personal UI preferences. Only a rotating refresh credential uses platform-secure storage; access tokens, personal records/drafts, coordinates, pose and alignment stay in memory. There is no personal local database or offline write queue. [Account integration, evidence and limits](../../docs/mobile-account-integration.md).
 
 ## Toolchain and run
 
@@ -45,7 +45,7 @@ flutter test --no-pub
 flutter build apk --debug --no-pub
 ```
 
-The host script writes only ignored `.local/mobile-science` output; tests use that library by default. `YORUNGEZ_SKY_LIBRARY` can identify an explicitly built host library. Debug APKs are local test artifacts, not store releases. iOS uses the same C wrapper/source in the Runner target and requires macOS/Xcode for `flutter build ios --no-codesign`; it remains unbuilt here. The optional manual macOS CI build is prepared but has not run.
+The host script writes only ignored `.local/mobile-science` output; tests use that library by default. `YORUNGEZ_SKY_LIBRARY` can identify an explicitly built host library. Debug APKs are local test artifacts, not store releases. iOS uses the same C wrapper/source in the Runner target and requires macOS/Xcode for `flutter build ios --no-codesign`; the unsigned iOS build passed on the macOS runner in [K-054 mobile CI](https://github.com/YeloraStudio/yorungez/actions/runs/41994181144). Physical iPhone/Keychain and release-signing acceptance remain open.
 
 Android declares foreground location and optional camera; microphone, background-location and external-storage permissions are absent. iOS permission explanations are paired EN/TR. Stop/restart/denial/device behaviour still needs physical acceptance.
 
@@ -53,9 +53,9 @@ Android declares foreground location and optional camera; microphone, background
 
 The validated first model remains **2000–2035**, airless apparent body centres, explicit assumed-0-m/reference-ellipsoid elevation and the existing polar-azimuth restriction. Layers do not change celestial positions. Above the geometric horizon does not establish naked-eye visibility. Marker sizes/glow are schematic; the renderer is a baseline pending physical/profile measurements.
 
-Equatorial-grid and Tonight/Calendar/glossary/account/notebook parity and release readiness remain planned. Surface textures and apparent-size enlargement are illustrative; the photographic background is not astrometric point data. Native pointing accuracy, lens/crop calibration, iOS builds, accessibility and device performance are not accepted by host/emulator checks.
+Equatorial-grid, Tonight/Calendar/glossary, complete observation/place editing parity and release readiness remain planned. Surface textures and apparent-size enlargement are illustrative; the photographic background is not astrometric point data. Native pointing accuracy, lens/crop calibration, physical iOS/secure-store behaviour, accessibility and device performance are not accepted by host/emulator checks.
 
-The public API origin defaults to `https://api.yorungez.com`; override via `--dart-define=API_BASE_URL=https://your-test-api.example.com`. Origins require HTTPS and no credentials/path/query. No secret or environment file is bundled. Offline calculation/rendering/content/audio do not depend on this connection. Future native authentication uses the existing Bearer contract with a platform-secure credential adapter.
+The public API origin defaults to `https://api.yorungez.com`; override via `--dart-define=API_BASE_URL=https://your-test-api.example.com`. Origins require HTTPS and no credentials/path/query. No secret or environment file is bundled. Offline calculation/rendering/content/audio do not depend on this connection. Native authentication uses the existing Bearer contract, serialized refresh rotation and platform-secure storage. New account exploration-preference schema/routes require deployment before connected music/layer saving is available.
 
 [End-to-end plan](../../docs/mobile-sky-first-plan.md) · [Current evidence and remaining gates](../../docs/mobile-immersive-discovery-evidence.md) · [Research catalogues](../../docs/research/mobile/README.md) · [Original foundation snapshot](../../docs/mobile-foundation.md) · [Third-party inventory](../../THIRD_PARTY_NOTICES.md).
 

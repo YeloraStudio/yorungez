@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../l10n/generated/app_localizations.dart';
 import 'catalogue_state.dart';
+import 'external_link.dart';
 
 class SourcesScreen extends StatelessWidget {
   const SourcesScreen({super.key});
@@ -20,7 +21,7 @@ class SourcesScreen extends StatelessWidget {
               OutlinedButton(
                 onPressed: () => showLicensePage(
                   context: context,
-                  applicationName: 'yorungez',
+                  applicationName: 'Yorungez',
                 ),
                 child: Text(text.softwareLicences),
               ),
@@ -34,8 +35,14 @@ class SourcesScreen extends StatelessWidget {
               SelectableText(catalogue.version),
               for (final image in catalogue.images.values) ...[
                 const Divider(height: 36),
-                SelectableText(
-                  '${image['credit']}\n${image['license']}\n${image['sourceUrl']}\n${image['licenseUrl']}',
+                SelectableText('${image['credit']}\n${image['license']}'),
+                ExternalLink(
+                  url: image['sourceUrl'] as String,
+                  label: text.imageSource,
+                ),
+                ExternalLink(
+                  url: image['licenseUrl'] as String,
+                  label: text.imageLicence,
                 ),
               ],
               const Divider(height: 36),

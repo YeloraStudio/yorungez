@@ -58,5 +58,6 @@
   "Notebook.AccountChanged": "Oturum hesabı değişti. Hesabını tekrar kontrol et.",
   "Notebook.FutureObservation": "Gerçek gözlem zamanı gelecekte olamaz.",
   "Identity.InvalidName": "Adını ve soyadını gir (her biri 1–100 karakter).",
-  "Identity.AccountChanged": "Giriş yapılan hesap değişti. Düzenlemeden önce hesabını yeniden yükle."
+  "Identity.AccountChanged": "Giriş yapılan hesap değişti. Düzenlemeden önce hesabını yeniden yükle.",
+  "Identity.PreferencesConflict": "Tercihler başka bir cihazda değişti. Yeniden kaydetmeden önce güncelle."
 }

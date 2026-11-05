@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../app/providers.dart';
+import '../../account/account_widgets.dart';
+import '../../core/presentation/external_link.dart';
 import '../../core/presentation/catalogue_state.dart';
 import '../../l10n/generated/app_localizations.dart';
 import '../data/catalogue_repository.dart';
@@ -84,7 +86,7 @@ class _CatalogueScreenState extends ConsumerState<CatalogueScreen> {
                         fit: BoxFit.scaleDown,
                         child: Text.rich(
                           TextSpan(
-                            text: 'yorungez',
+                            text: 'Yorungez',
                             children: [
                               TextSpan(
                                 text: '.',
@@ -277,7 +279,7 @@ class _Menu extends ConsumerWidget {
                   'assets/generated/app-icon.png',
                   width: 70,
                   height: 70,
-                  semanticLabel: 'yorungez',
+                  semanticLabel: 'Yorungez',
                 ),
               ),
             ),
@@ -287,6 +289,7 @@ class _Menu extends ConsumerWidget {
               style: Theme.of(context).textTheme.titleLarge,
             ),
             const SizedBox(height: 28),
+            AccountMenu(closeDrawer: () => Navigator.pop(context)),
             ListTile(
               leading: const Icon(Icons.auto_awesome_outlined),
               title: Text(text.catalogueTitle),
@@ -312,20 +315,13 @@ class _Menu extends ConsumerWidget {
               padding: EdgeInsets.symmetric(vertical: 20),
               child: Divider(),
             ),
-            DropdownButtonFormField<String>(
-              isExpanded: true,
-              initialValue: ref.watch(localeProvider).languageCode,
-              decoration: InputDecoration(labelText: text.language),
-              items: const [
-                DropdownMenuItem(value: 'en', child: Text('English')),
-                DropdownMenuItem(value: 'tr', child: Text('Türkçe')),
-              ],
-              onChanged: (value) {
-                if (value != null) {
-                  ref.read(localeProvider.notifier).select(value);
-                }
-              },
+            ExternalLink(
+              url:
+                  'https://yorungez.com/${ref.watch(localeProvider).languageCode}',
+              label: 'yorungez.com',
+              small: true,
             ),
+            const LanguagePicker(),
           ],
         ),
       ),

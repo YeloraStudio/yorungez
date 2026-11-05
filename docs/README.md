@@ -18,6 +18,8 @@ Detailed product/delivery records are currently mostly Turkish. Newer decisions 
 
 ## Current implementation
 
+- [Native accounts, shared preferences, notebook, device defaults and working object navigation](mobile-account-integration.md)
+
 - [Mobile open-source licensing and authorized source/API/Web publication](mobile-open-source-publication.md)
 
 - [Mobile screen-awake, one-second discovery and visual polish](mobile-screen-awake-and-polish.md)

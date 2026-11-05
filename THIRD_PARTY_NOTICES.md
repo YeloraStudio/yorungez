@@ -73,3 +73,9 @@ Numeric NASA/JPL Horizons observer ephemerides are retained as validation facts 
 - [Vallado SGP4 source/verification/use permission](third-party/sgp4/NOTICE.md): unmodified official C++ source, exact archive/file hashes; authors permit personal/commercial use with citation. No named upstream software licence is inferred and these files are not relabelled MIT/Apache-2.0.
 - [WMM2025 NOAA/NCEI public-domain source/coefficients/test values](third-party/wmm2025/NOTICE.md), with model validity and deterministic numeric transcription. Original Yorungez wrappers remain Apache-2.0.
 - [Original EN/TR mobile summaries and derived Latin names](data/catalog/mobile-object-info.json): NASA factual source links and the same SHA-pinned d3-celestial name source/notice. No competitor brief/art/music asset is copied.
+
+## Native account and external-browser plugins
+
+- flutter_secure_storage **11.2.0**, BSD-3-Clause, German Saprykin and contributors. [Exact package licence](third-party/flutter-account-plugins/flutter_secure_storage.LICENSE); [upstream package](https://pub.dev/packages/flutter_secure_storage). Only rotating refresh credentials use platform-secure storage; no personal inventory is stored by this plugin.
+- url_launcher **6.3.3**, BSD-3-Clause, The Flutter Authors. [Exact package licence](third-party/flutter-account-plugins/url_launcher.LICENSE); [upstream package](https://pub.dev/packages/url_launcher). User-initiated HTTPS links open in the external browser.
+- The resolved application lockfile pins platform implementations. Flutter's generated software licence page retains their bundled package notices; the two direct plugin licences are also copied into the offline public source-notice asset.

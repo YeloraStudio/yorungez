@@ -17,6 +17,7 @@ final class Catalogue {
     this.lines = const {},
     this.colours = const {},
     this.art = const {},
+    this.infoSources = const {},
   });
   final List<SkyObject> objects;
   final Map<String, Map<String, dynamic>> images;
@@ -26,6 +27,7 @@ final class Catalogue {
   final Map<String, List<List<String>>> lines;
   final Map<String, double> colours;
   final Map<String, dynamic> art;
+  final Map<String, List<Map<String, dynamic>>> infoSources;
   SkyObject? find(String id) {
     for (final object in objects) {
       if (object.id == id) return object;
@@ -189,6 +191,14 @@ Catalogue decodeCatalogue(Map<String, Object> input) {
       ],
     ]),
     art: (overlays['art'] as Map).cast<String, dynamic>(),
+    infoSources: {
+      for (final entry
+          in (info['descriptions'] as Map<String, dynamic>).entries)
+        entry.key: [
+          for (final source in entry.value['sources'] as List)
+            Map<String, dynamic>.from(source as Map),
+        ],
+    },
     dsoInput: List<double>.unmodifiable([
       for (final d in overlays['deepSky'] as List) ...[
         (d['raHoursJ2000'] as num).toDouble(),
