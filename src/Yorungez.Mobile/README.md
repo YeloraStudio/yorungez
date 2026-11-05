@@ -48,7 +48,7 @@ flutter test --no-pub
 flutter build apk --debug --no-pub
 ```
 
-The host script writes only ignored `.local/mobile-science` output; tests use that library by default. `YORUNGEZ_SKY_LIBRARY` can identify an explicitly built host library. Debug APKs are local test artifacts, not store releases. iOS uses the same C wrapper/source in the Runner target and requires macOS/Xcode for `flutter build ios --no-codesign`; the unsigned iOS build passed on the macOS runner in [K-054 mobile CI](https://github.com/YeloraStudio/yorungez/actions/runs/41994181144). Physical iPhone/Keychain and release-signing acceptance remain open.
+The host script writes only ignored `.local/mobile-science` output; tests use that library by default. `YORUNGEZ_SKY_LIBRARY` can identify an explicitly built host library. Debug APKs are local test artifacts, not store releases. iOS uses the same C wrapper/source in the Runner target and requires macOS/Xcode for `flutter build ios --no-codesign`; the current unsigned iOS build passed on the macOS runner in [K-055 mobile CI](https://github.com/YeloraStudio/yorungez/actions/runs/42122469454). Physical iPhone/Keychain and release-signing acceptance remain open.
 
 Android declares foreground location and optional camera; microphone, background-location and external-storage permissions are absent. iOS permission explanations are paired EN/TR. Stop/restart/denial/device behaviour still needs physical acceptance.
 
