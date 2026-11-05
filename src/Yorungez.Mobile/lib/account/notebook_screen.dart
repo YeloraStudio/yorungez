@@ -151,6 +151,7 @@ class NotebookScreen extends ConsumerWidget {
                 'createdAtUtc',
                 'updatedAtUtc',
                 'observedAtUtc',
+                'instantUtc',
               ])
                 if (entry.data[key] != null)
                   Padding(
@@ -159,6 +160,7 @@ class NotebookScreen extends ConsumerWidget {
                       '${switch (key) {
                         'createdAtUtc' => t.createdAt,
                         'updatedAtUtc' => t.updatedAt,
+                        'instantUtc' => t.eventTime,
                         _ => t.observedAt,
                       }}: ${DateFormat("yyyy-MM-dd HH:mm 'UTC'").format(DateTime.parse(entry.data[key] as String).toUtc())}',
                     ),
@@ -174,6 +176,13 @@ class NotebookScreen extends ConsumerWidget {
                 const SizedBox(height: 16),
                 FilledButton(
                   onPressed: () {
+                    if (entry.data['instantUtc'] is String) {
+                      ref
+                          .read(skyInstantProvider.notifier)
+                          .select(
+                            DateTime.parse(entry.data['instantUtc'] as String),
+                          );
+                    }
                     ref
                         .read(skyFocusProvider.notifier)
                         .request(entry.target!['id'] as String);
@@ -211,6 +220,7 @@ Future<void> showNoteEditor(
   WidgetRef ref, {
   NotebookEntry? entry,
   Map<String, dynamic>? target,
+  DateTime? instantUtc,
 }) async {
   final owner = ref.read(accountStateProvider).user?.id;
   if (owner == null) {
@@ -221,12 +231,23 @@ Future<void> showNoteEditor(
     context: context,
     useSafeArea: true,
     isScrollControlled: true,
-    builder: (_) => _NoteEditor(owner: owner, entry: entry, target: target),
+    builder: (_) => _NoteEditor(
+      owner: owner,
+      entry: entry,
+      target: target,
+      instantUtc: instantUtc,
+    ),
   );
 }
 
 class _NoteEditor extends ConsumerStatefulWidget {
-  const _NoteEditor({required this.owner, this.entry, this.target});
+  const _NoteEditor({
+    required this.owner,
+    this.entry,
+    this.target,
+    this.instantUtc,
+  });
+  final DateTime? instantUtc;
   final String owner;
   final NotebookEntry? entry;
   final Map<String, dynamic>? target;
@@ -275,6 +296,7 @@ class _NoteEditorState extends ConsumerState<_NoteEditor> {
               'kind': 'note',
               'expectedRevision': 0,
               'target': widget.target,
+              'instantUtc': widget.instantUtc?.toUtc().toIso8601String(),
             }
           : <String, dynamic>{
               ...entry.data,

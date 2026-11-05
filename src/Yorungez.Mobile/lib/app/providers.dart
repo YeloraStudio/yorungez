@@ -10,7 +10,10 @@ import '../account/credential_vault.dart';
 import '../catalogue/data/catalogue_repository.dart';
 import '../core/api/yorungez_api.dart';
 import '../sky/domain/sky_frame.dart';
+import '../sky/domain/sky_geometry.dart';
 import '../sky/data/device_location.dart';
+import '../sky/data/native_sky.dart';
+import '../planning/planning_time.dart';
 
 final class SkyFrameController extends Notifier<SkyFrame?> {
   @override
@@ -146,4 +149,62 @@ final skyFocusProvider = NotifierProvider<SkyFocusController, String?>(
 final skyRouteObserver = RouteObserver<PageRoute<dynamic>>();
 final deviceLocationProvider = Provider<DeviceLocationSource>(
   (ref) => ForegroundDeviceLocation(),
+);
+// Explicit dependency injection for public-example development/device scenarios.
+// Production remains null and follows the permission/manual-location flow.
+final initialSkyObserverProvider = Provider<SkyObserver?>((ref) => null);
+
+// A single serial native engine serves live frames, tracks and night planning.
+final skyWorkerProvider = FutureProvider<SkyWorker>((ref) async {
+  final worker = await SkyWorker.start(
+    await ref.watch(catalogueProvider.future),
+  );
+  if (!ref.mounted) {
+    worker.close();
+    throw StateError('Worker disposed');
+  }
+  ref.onDispose(worker.close);
+  return worker;
+});
+
+class PlanningZoneController extends Notifier<String> {
+  int _revision = 0;
+  bool _manual = false;
+  @override
+  String build() {
+    Future.microtask(_restore);
+    return 'UTC';
+  }
+
+  Future<void> refreshDevice() async {
+    if (!_manual) await _restore();
+  }
+
+  Future<void> _restore() async {
+    if (_manual) return;
+    final revision = _revision;
+    final value = await PlanningTime.deviceZone();
+    if (ref.mounted && !_manual && revision == _revision) state = value;
+  }
+
+  void select(String value) {
+    PlanningTime.zone(value);
+    _manual = true;
+    _revision++;
+    state = value;
+  }
+}
+
+final planningZoneProvider = NotifierProvider<PlanningZoneController, String>(
+  PlanningZoneController.new,
+);
+
+class SkyInstantController extends Notifier<DateTime?> {
+  @override
+  DateTime? build() => null;
+  void select(DateTime? value) => state = value?.toUtc();
+}
+
+final skyInstantProvider = NotifierProvider<SkyInstantController, DateTime?>(
+  SkyInstantController.new,
 );

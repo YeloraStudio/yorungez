@@ -66,6 +66,17 @@ Future<void> main() async {
     files[target] = digest;
   }
 
+  final eventManifest =
+      jsonDecode(
+            await File('${repo.path}/data/events/manifest.json').readAsString(),
+          )
+          as Map<String, dynamic>;
+  await copy(
+    'data/events/calendar.json',
+    'calendar.json',
+    expected: eventManifest['sha256'] as String,
+  );
+  await copy('data/events/manifest.json', 'calendar-manifest.json');
   final brightManifest =
       jsonDecode(
             await File(
@@ -182,6 +193,14 @@ Future<void> main() async {
   };
   // Keep exact upstream notices accessible offline, independent of UI summaries.
   final noticeText = StringBuffer();
+  noticeText.writeln(
+    'timezone 0.11.2 — Dart authors. BSD-3-Clause; bundled IANA tzdb 2025c. https://pub.dev/packages/timezone',
+  );
+  noticeText.writeln(
+    await File(
+      '${repo.path}/third-party/flutter-account-plugins/timezone-LICENSE',
+    ).readAsString(),
+  );
   noticeText.writeln(
     await File('${repo.path}/third-party/sgp4/NOTICE.md').readAsString(),
   );

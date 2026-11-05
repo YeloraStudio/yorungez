@@ -21,6 +21,11 @@ class MainActivity : FlutterActivity(), SensorEventListener, EventChannel.Stream
 
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
+        MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "yorungez/time")
+            .setMethodCallHandler { call, result ->
+                if (call.method == "zone") result.success(java.util.TimeZone.getDefault().id)
+                else result.notImplemented()
+            }
         sensors = getSystemService(SENSOR_SERVICE) as SensorManager
         EventChannel(flutterEngine.dartExecutor.binaryMessenger, "yorungez/pose")
             .setStreamHandler(this)

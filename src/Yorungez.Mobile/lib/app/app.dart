@@ -11,12 +11,19 @@ import 'providers.dart';
 import '../sky/presentation/sky_screen.dart';
 import '../account/account_screen.dart';
 import '../account/notebook_screen.dart';
+import '../planning/planning_screen.dart';
+import '../planning/planning_controls.dart';
+import '../planning/reminder_screen.dart';
 
 final routerProvider = Provider((ref) {
   final router = GoRouter(
     observers: [skyRouteObserver],
     routes: [
-      GoRoute(path: '/', builder: (_, _) => const SkyScreen()),
+      GoRoute(
+        path: '/',
+        builder: (_, _) =>
+            SkyScreen(initialObserver: ref.read(initialSkyObserverProvider)),
+      ),
       GoRoute(
         path: '/catalogue',
         builder: (_, state) => CatalogueScreen(
@@ -36,6 +43,13 @@ final routerProvider = Provider((ref) {
         ),
       ),
       GoRoute(path: '/notebook', builder: (_, _) => const NotebookScreen()),
+      GoRoute(path: '/tonight', builder: (_, _) => const TonightScreen()),
+      GoRoute(
+        path: '/calendar',
+        builder: (_, _) => const EventCalendarScreen(),
+      ),
+      GoRoute(path: '/reminders', builder: (_, _) => const ReminderScreen()),
+      GoRoute(path: '/time-zone', builder: (_, _) => const TimeZoneScreen()),
     ],
   );
   ref.onDispose(router.dispose);
@@ -65,6 +79,7 @@ class _YorungezAppState extends ConsumerState<YorungezApp>
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
       ref.read(accountSessionProvider).retry();
+      ref.read(planningZoneProvider.notifier).refreshDevice();
     }
   }
 

@@ -21,9 +21,20 @@ class SkySidebar extends StatelessWidget {
     required this.changeLayer,
     required this.showPrivacy,
     this.savingPreferences = false,
+    this.simulated = false,
+    required this.showTonight,
+    required this.showCalendar,
+    required this.showReminders,
+    required this.showTimeZone,
+    required this.returnToLive,
   });
   final Set<SkyLayer> layers;
-  final bool savingPreferences;
+  final bool savingPreferences, simulated;
+  final VoidCallback showTonight,
+      showCalendar,
+      showReminders,
+      showTimeZone,
+      returnToLive;
   final bool muted;
   final String language, location, clock;
   final VoidCallback changeLocation,
@@ -89,6 +100,24 @@ class SkySidebar extends StatelessWidget {
                   AccountMenu(closeDrawer: () => Navigator.pop(context)),
                   ListTile(
                     contentPadding: EdgeInsets.zero,
+                    leading: const Icon(Icons.nights_stay_outlined),
+                    title: Text(t.tonight),
+                    onTap: () => closeThen(showTonight),
+                  ),
+                  ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    leading: const Icon(Icons.calendar_month_outlined),
+                    title: Text(t.eventCalendar),
+                    onTap: () => closeThen(showCalendar),
+                  ),
+                  ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    leading: const Icon(Icons.notifications_active_outlined),
+                    title: Text(t.reminders),
+                    onTap: () => closeThen(showReminders),
+                  ),
+                  ListTile(
+                    contentPadding: EdgeInsets.zero,
                     leading: const Icon(Icons.location_on_outlined),
                     title: Text(t.locationUpdate),
                     subtitle: Text(location),
@@ -97,9 +126,15 @@ class SkySidebar extends StatelessWidget {
                   ListTile(
                     contentPadding: EdgeInsets.zero,
                     leading: const Icon(Icons.schedule_outlined),
-                    title: Text(t.liveUtc),
+                    title: Text(simulated ? t.simulation : t.localAndUtc),
                     subtitle: Text(clock),
+                    onTap: () => closeThen(showTimeZone),
                   ),
+                  if (simulated)
+                    TextButton(
+                      onPressed: () => closeThen(returnToLive),
+                      child: Text(t.returnLive),
+                    ),
                   const Divider(height: 24),
                   Text(
                     t.skyLayers,

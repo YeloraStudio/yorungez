@@ -59,5 +59,10 @@
   "Notebook.FutureObservation": "Gerçek gözlem zamanı gelecekte olamaz.",
   "Identity.InvalidName": "Adını ve soyadını gir (her biri 1–100 karakter).",
   "Identity.AccountChanged": "Giriş yapılan hesap değişti. Düzenlemeden önce hesabını yeniden yükle.",
-  "Identity.PreferencesConflict": "Tercihler başka bir cihazda değişti. Yeniden kaydetmeden önce güncelle."
+  "Identity.PreferencesConflict": "Tercihler başka bir cihazda değişti. Yeniden kaydetmeden önce güncelle.",
+  "Reminders.InvalidInput": "Desteklenen bir saat dilimi ve hatırlatma süresi seç.",
+  "Reminders.InvalidEvent": "Bu olay güncel doğrulanmış takvimde yok. Takvimi yenileyip tekrar dene.",
+  "Reminders.InvalidTime": "En az iki dakika sonrası ve gelecek bir yıl içinde bir zaman seç.",
+  "Reminders.Limit": "En fazla 100 etkin hatırlatıcın olabilir.",
+  "Reminders.Conflict": "Bu hatırlatıcı zaten var, değişti veya gönderiliyor. Yenileyip tekrar dene."
 }

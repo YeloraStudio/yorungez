@@ -62,6 +62,8 @@ builder.Services.AddStackExchangeRedisCache(o =>
 });
 builder.Services.AddIdentityModule(builder.Configuration);
 builder.Services.AddNotebookModule();
+builder.Services.AddSingleton<IReminderFacts, ReminderFacts>();
+builder.Services.AddScoped<IReminderChannel, EmailReminderChannel>();
 
 var protection = builder.Services.AddDataProtection().SetApplicationName("yorungez");
 if (builder.Environment.IsEnvironment("Testing")) protection.UseEphemeralDataProtectionProvider();

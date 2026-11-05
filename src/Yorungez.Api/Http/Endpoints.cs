@@ -158,6 +158,11 @@ public static class Endpoints
             { await LocalizedProblems.Write(context.HttpContext, 409, "Notebook.AccountChanged"); return Results.Empty; }
             return await next(context);
         });
+        notebook.MapGet("/reminders", async (ClaimsPrincipal user, ISender sender, CancellationToken ct) =>
+            Results.Ok(new { userId = UserId(user), reminders = await sender.Send(new ListRemindersQuery(UserId(user)), ct) }));
+        notebook.MapPost("/reminders", async (ReminderInput input, ClaimsPrincipal user, ISender sender, CancellationToken ct) =>
+            Results.Ok(await sender.Send(new SaveReminderCommand(UserId(user), input), ct)));
+        notebook.MapGet("/notification-capabilities", () => Results.Ok(new { email = true, push = false, channels = new[] { "email" } }));
         notebook.MapGet("/", async (ClaimsPrincipal user, ISender sender, CancellationToken ct) =>
             Results.Ok(new { userId = UserId(user), entries = await sender.Send(new ListNotebookQuery(UserId(user)), ct) }));
         notebook.MapPost("/", async (EntryInput input, ClaimsPrincipal user, ISender sender, CancellationToken ct) =>
