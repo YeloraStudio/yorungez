@@ -172,10 +172,12 @@ final class AccountState {
     this.restoring = false,
     this.failure,
     this.epoch = 0,
+    this.notebookRevision = 0,
   });
   final AccountUser? user;
   final ExplorationPreferences? preferences;
   final bool restoring;
   final AccountFailure? failure;
   final int epoch;
+  final int notebookRevision;
 }

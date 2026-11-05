@@ -123,7 +123,11 @@ final accountStateProvider =
       AccountStateController.new,
     );
 final notebookProvider = FutureProvider.autoDispose((ref) {
-  ref.watch(accountStateProvider.select((s) => (s.user?.id, s.epoch)));
+  ref.watch(
+    accountStateProvider.select(
+      (s) => (s.user?.id, s.epoch, s.notebookRevision),
+    ),
+  );
   return ref.read(accountSessionProvider).notebook();
 });
 

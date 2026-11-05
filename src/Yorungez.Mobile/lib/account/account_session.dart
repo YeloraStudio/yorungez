@@ -25,6 +25,7 @@ final class AccountSession extends ChangeNotifier {
   String? _refreshToken;
   DateTime? _refreshExpires;
   int _epoch = 0, _profileRevision = 0;
+  int _notebookRevision = 0;
   bool _disposed = false, _initialised = false;
   bool _mustClearCredentials = false;
   Future<void>? _initialiseFlight, _refreshFlight, _profileFlight;
@@ -49,6 +50,7 @@ final class AccountSession extends ChangeNotifier {
       restoring: restoring,
       failure: failure,
       epoch: _epoch,
+      notebookRevision: _notebookRevision,
     );
     notifyListeners();
   }
@@ -456,9 +458,12 @@ final class AccountSession extends ChangeNotifier {
     if (state.user == null) {
       throw const AccountFailure(AccountFailureKind.unauthorized);
     }
-    return NotebookEntry.decode(
+    final saved = NotebookEntry.decode(
       await authorized('notebook/', method: 'POST', body: entry),
     );
+    _notebookRevision++;
+    _publish(user: state.user, preferences: state.preferences);
+    return saved;
   }
 
   Future<bool> signOut() async {

@@ -81,7 +81,7 @@ class _AccountScreenState extends ConsumerState<AccountScreen> {
         if (mounted) setState(() => _emailSent = true);
       } else {
         await session.signIn(_email.text, _password.text);
-        _password.clear();
+        if (mounted) _password.clear();
       }
     } on AccountFailure catch (error) {
       if (mounted) setState(() => _error = error);

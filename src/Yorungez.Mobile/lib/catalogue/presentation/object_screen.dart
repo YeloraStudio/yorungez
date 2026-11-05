@@ -237,7 +237,6 @@ class _NotebookActionsState extends ConsumerState<_NotebookActions> {
                       'expectedRevision': 0,
                       'target': {'id': widget.id, 'name': widget.name},
                     });
-                    ref.invalidate(notebookProvider);
                     if (context.mounted) {
                       ScaffoldMessenger.of(
                         context,

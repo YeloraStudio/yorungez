@@ -217,110 +217,128 @@ Future<void> showNoteEditor(
     context.push('/account');
     return;
   }
-  final body = TextEditingController(text: entry?.body ?? ''),
-      id = entry?.id ?? newNoteId();
-  bool busy = false;
-  Object? failure;
   await showModalBottomSheet<void>(
     context: context,
     useSafeArea: true,
     isScrollControlled: true,
-    builder: (context) => Consumer(
-      builder: (context, ref, _) => StatefulBuilder(
-        builder: (context, update) {
-          final t = AppLocalizations.of(context);
-          if (ref.watch(accountStateProvider).user?.id != owner) {
-            return Padding(
-              padding: const EdgeInsets.all(24),
-              child: Text(t.accountChanged),
-            );
-          }
-          return SingleChildScrollView(
-            padding: EdgeInsets.fromLTRB(
-              24,
-              24,
-              24,
-              MediaQuery.viewInsetsOf(context).bottom + 32,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Text(
-                  entry == null ? t.newNote : t.editNote,
-                  style: Theme.of(context).textTheme.headlineSmall,
-                ),
-                const SizedBox(height: 16),
-                Text(t.serverNotebookHelp),
-                const SizedBox(height: 16),
-                TextField(
-                  controller: body,
-                  enabled: !busy,
-                  maxLength: 8000,
-                  minLines: 4,
-                  maxLines: 10,
-                  decoration: InputDecoration(labelText: t.noteBody),
-                ),
-                if (failure != null) Text(accountError(t, failure!)),
-                const SizedBox(height: 16),
-                FilledButton(
-                  onPressed: busy
-                      ? null
-                      : () async {
-                          if (body.text.trim().isEmpty) {
-                            update(
-                              () => failure = const AccountFailure(
-                                AccountFailureKind.validation,
-                              ),
-                            );
-                            return;
-                          }
-                          update(() {
-                            busy = true;
-                            failure = null;
-                          });
-                          try {
-                            if (ref.read(accountStateProvider).user?.id !=
-                                owner) {
-                              throw const AccountFailure(
-                                AccountFailureKind.changed,
-                              );
-                            }
-                            final payload = entry == null
-                                ? <String, dynamic>{
-                                    'id': id,
-                                    'kind': 'note',
-                                    'expectedRevision': 0,
-                                    'target': target,
-                                  }
-                                : <String, dynamic>{
-                                    ...entry.data,
-                                    'expectedRevision': entry.revision,
-                                  };
-                            payload['body'] = body.text;
-                            await ref
-                                .read(accountSessionProvider)
-                                .saveEntry(payload);
-                            ref.invalidate(notebookProvider);
-                            if (context.mounted) Navigator.pop(context);
-                          } on AccountFailure catch (error) {
-                            if (context.mounted) update(() => failure = error);
-                          } finally {
-                            if (context.mounted) update(() => busy = false);
-                          }
-                        },
-                  child: Text(t.saveNote),
-                ),
-                const SizedBox(height: 12),
-                TextButton(
-                  onPressed: busy ? null : () => Navigator.pop(context),
-                  child: Text(t.close),
-                ),
-              ],
-            ),
-          );
-        },
-      ),
-    ),
+    builder: (_) => _NoteEditor(owner: owner, entry: entry, target: target),
   );
-  body.dispose();
+}
+
+class _NoteEditor extends ConsumerStatefulWidget {
+  const _NoteEditor({required this.owner, this.entry, this.target});
+  final String owner;
+  final NotebookEntry? entry;
+  final Map<String, dynamic>? target;
+  @override
+  ConsumerState<_NoteEditor> createState() => _NoteEditorState();
+}
+
+class _NoteEditorState extends ConsumerState<_NoteEditor> {
+  late final TextEditingController _body;
+  late final String _id;
+  bool _busy = false;
+  Object? _failure;
+  @override
+  void initState() {
+    super.initState();
+    _body = TextEditingController(text: widget.entry?.body ?? '');
+    _id = widget.entry?.id ?? newNoteId();
+  }
+
+  @override
+  void dispose() {
+    _body.dispose();
+    super.dispose();
+  }
+
+  Future<void> _save() async {
+    if (_busy) return;
+    if (_body.text.trim().isEmpty) {
+      setState(
+        () => _failure = const AccountFailure(AccountFailureKind.validation),
+      );
+      return;
+    }
+    setState(() {
+      _busy = true;
+      _failure = null;
+    });
+    try {
+      if (ref.read(accountStateProvider).user?.id != widget.owner) {
+        throw const AccountFailure(AccountFailureKind.changed);
+      }
+      final entry = widget.entry;
+      final payload = entry == null
+          ? <String, dynamic>{
+              'id': _id,
+              'kind': 'note',
+              'expectedRevision': 0,
+              'target': widget.target,
+            }
+          : <String, dynamic>{
+              ...entry.data,
+              'expectedRevision': entry.revision,
+            };
+      payload['body'] = _body.text;
+      await ref.read(accountSessionProvider).saveEntry(payload);
+      if (mounted && ModalRoute.of(context)?.isCurrent == true) {
+        Navigator.pop(context);
+      }
+    } on AccountFailure catch (error) {
+      if (mounted) setState(() => _failure = error);
+    } finally {
+      if (mounted) setState(() => _busy = false);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final t = AppLocalizations.of(context);
+    if (ref.watch(accountStateProvider).user?.id != widget.owner) {
+      return Padding(
+        padding: const EdgeInsets.all(24),
+        child: Text(t.accountChanged),
+      );
+    }
+    return SingleChildScrollView(
+      padding: EdgeInsets.fromLTRB(
+        24,
+        24,
+        24,
+        MediaQuery.viewInsetsOf(context).bottom + 32,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text(
+            widget.entry == null ? t.newNote : t.editNote,
+            style: Theme.of(context).textTheme.headlineSmall,
+          ),
+          const SizedBox(height: 16),
+          Text(t.serverNotebookHelp),
+          const SizedBox(height: 16),
+          TextField(
+            controller: _body,
+            enabled: !_busy,
+            maxLength: 8000,
+            minLines: 4,
+            maxLines: 10,
+            decoration: InputDecoration(labelText: t.noteBody),
+          ),
+          if (_failure != null) Text(accountError(t, _failure!)),
+          const SizedBox(height: 16),
+          FilledButton(
+            onPressed: _busy ? null : _save,
+            child: Text(t.saveNote),
+          ),
+          const SizedBox(height: 12),
+          TextButton(
+            onPressed: _busy ? null : () => Navigator.pop(context),
+            child: Text(t.close),
+          ),
+        ],
+      ),
+    );
+  }
 }

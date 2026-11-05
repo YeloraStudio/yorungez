@@ -297,4 +297,103 @@ void main() {
       );
     },
   );
+  testWidgets(
+    'leaving sign-in while its profile is delayed cannot touch disposed form controllers',
+    (tester) async {
+      final api = FakeAccountApi(),
+          vault = MemoryVault(),
+          delayed = Completer<dynamic>();
+      api.heldProfile = delayed;
+      final container = ProviderContainer(
+        overrides: [
+          accountApiProvider.overrideWithValue(api),
+          credentialVaultProvider.overrideWithValue(vault),
+          catalogueProvider.overrideWith((ref) async => catalogue),
+        ],
+      );
+      container.read(routerProvider).go('/account');
+      await tester.pumpWidget(
+        UncontrolledProviderScope(
+          container: container,
+          child: const YorungezApp(),
+        ),
+      );
+      await tester.pumpAndSettle();
+      await tester.enterText(
+        find.byWidgetPredicate(
+          (w) => w is TextField && w.decoration?.labelText == 'Email address',
+        ),
+        'a@example.invalid',
+      );
+      await tester.enterText(
+        find.byWidgetPredicate(
+          (w) => w is TextField && w.decoration?.labelText == 'Password',
+        ),
+        'synthetic test passphrase',
+      );
+      final submit = find.widgetWithText(FilledButton, 'Sign in');
+      await tester.ensureVisible(submit);
+      await tester.tap(submit);
+      await tester.pump();
+      container.read(routerProvider).go('/catalogue');
+      await tester.pumpAndSettle();
+      delayed.complete(api.profile());
+      await tester.pumpAndSettle();
+      expect(tester.takeException(), isNull);
+      expect(container.read(accountStateProvider).user?.id, 'account-a');
+      await tester.pumpWidget(const SizedBox.shrink());
+      await tester.pumpAndSettle();
+      container.dispose();
+    },
+  );
+  testWidgets(
+    'a completed note write after its sheet is dismissed cannot use the disposed sheet ref',
+    (tester) async {
+      final api = FakeAccountApi()..language = 'en',
+          delayed = Completer<dynamic>();
+      Map<String, dynamic>? submitted;
+      api.intercept = (path, method, body, access) async {
+        if (method == 'POST') {
+          submitted = body;
+          return delayed.future;
+        }
+        return {'userId': 'account-a', 'entries': []};
+      };
+      final container = ProviderContainer(
+        overrides: [
+          accountApiProvider.overrideWithValue(api),
+          credentialVaultProvider.overrideWithValue(MemoryVault()),
+        ],
+      );
+      await container
+          .read(accountSessionProvider)
+          .signIn('a@example.invalid', 'synthetic');
+      container.read(routerProvider).go('/notebook');
+      await tester.pumpWidget(
+        UncontrolledProviderScope(
+          container: container,
+          child: const YorungezApp(),
+        ),
+      );
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('New note'));
+      await tester.pumpAndSettle();
+      final field = find.byType(TextField);
+      await tester.enterText(field, 'A synthetic unsaved draft');
+      await tester.pumpAndSettle();
+      final save = find.text('Save to my account');
+      await tester.ensureVisible(save);
+      await tester.tap(save);
+      await tester.pump();
+      Navigator.of(tester.element(field)).pop();
+      await tester.pumpAndSettle();
+      expect(submitted, isNotNull);
+      delayed.complete({...submitted!, 'revision': 1});
+      await tester.pumpAndSettle();
+      expect(tester.takeException(), isNull);
+      await tester.pumpWidget(const SizedBox.shrink());
+      await tester.pumpAndSettle();
+      container.dispose();
+    },
+  );
 }
