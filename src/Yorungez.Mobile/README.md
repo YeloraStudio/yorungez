@@ -45,7 +45,7 @@ flutter test --no-pub
 flutter build apk --debug --no-pub
 ```
 
-The host script writes only ignored `.local/mobile-science` output; tests use that library by default. `YORUNGEZ_SKY_LIBRARY` can identify an explicitly built host library. Debug APKs are local test artifacts, not store releases. iOS uses the same C wrapper/source in the Runner target and requires macOS/Xcode for `flutter build ios --no-codesign`; it remains unbuilt here. The optional manual macOS CI build is prepared but has not run.
+The host script writes only ignored `.local/mobile-science` output; tests use that library by default. `YORUNGEZ_SKY_LIBRARY` can identify an explicitly built host library. Debug APKs are local test artifacts, not store releases. iOS uses the same C wrapper/source in the Runner target and requires macOS/Xcode for `flutter build ios --no-codesign`; the unsigned iOS build passed on the macOS runner in [K-054 mobile CI](https://github.com/YeloraStudio/yorungez/actions/runs/41994181144). Physical iPhone/Keychain and release-signing acceptance remain open.
 
 Android declares foreground location and optional camera; microphone, background-location and external-storage permissions are absent. iOS permission explanations are paired EN/TR. Stop/restart/denial/device behaviour still needs physical acceptance.
 
@@ -53,7 +53,7 @@ Android declares foreground location and optional camera; microphone, background
 
 The validated first model remains **2000–2035**, airless apparent body centres, explicit assumed-0-m/reference-ellipsoid elevation and the existing polar-azimuth restriction. Layers do not change celestial positions. Above the geometric horizon does not establish naked-eye visibility. Marker sizes/glow are schematic; the renderer is a baseline pending physical/profile measurements.
 
-Equatorial-grid, Tonight/Calendar/glossary, complete observation/place editing parity and release readiness remain planned. Surface textures and apparent-size enlargement are illustrative; the photographic background is not astrometric point data. Native pointing accuracy, lens/crop calibration, iOS builds, accessibility and device performance are not accepted by host/emulator checks.
+Equatorial-grid, Tonight/Calendar/glossary, complete observation/place editing parity and release readiness remain planned. Surface textures and apparent-size enlargement are illustrative; the photographic background is not astrometric point data. Native pointing accuracy, lens/crop calibration, physical iOS/secure-store behaviour, accessibility and device performance are not accepted by host/emulator checks.
 
 The public API origin defaults to `https://api.yorungez.com`; override via `--dart-define=API_BASE_URL=https://your-test-api.example.com`. Origins require HTTPS and no credentials/path/query. No secret or environment file is bundled. Offline calculation/rendering/content/audio do not depend on this connection. Native authentication uses the existing Bearer contract, serialized refresh rotation and platform-secure storage. New account exploration-preference schema/routes require deployment before connected music/layer saving is available.
 
