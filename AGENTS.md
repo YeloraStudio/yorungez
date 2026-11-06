@@ -1,5 +1,7 @@
 # yorungez çalışma rehberi
 
+**K-057 delivery / 6 November 2026:** Eight sourced EN/TR astronomy guides, 28 static public pages, science/about/mobile-coming-soon/privacy, full metadata/sitemap/schema, consent-gated GA4 and PWA update polish are live via PR 33. Google Domain/Bing ownership, GA4/GTM and their requested setup are completed; Google processed 28 sitemap URLs, Bing is processing and IndexNow accepted 28 (202). Existing browser PWA was explicitly upgraded. [Provider and live evidence](docs/web-discovery-seo.md). Indexing/traffic/AI citations and physical/store acceptance are not completion claims.
+
 **K-057 / 6 November 2026 — Global Web discovery:** The owner requests comprehensive SEO/AI-search discovery, sourced public library growth, Google/Bing/GA4/GTM property setup, native-app coming-soon messaging, a clear non-intrusive PWA update flow and English-only search examples. Preserve free/ad-free/open-source scope, scientific provenance and privacy; optional measurement must exclude personal/location/sensor data. [Delivery contract and provider evidence](docs/web-discovery-seo.md).
 
 **K-056 / 6 November 2026 — Native icon correction:** Restore the earlier cosmic launcher artwork; the K-055 flat Android adaptive override is withdrawn. Use the same owner art for native startup with platform-appropriate masks/padding. In-app branding and store designs remain approved. [Scope and evidence](docs/mobile-launcher-splash-polish.md).
