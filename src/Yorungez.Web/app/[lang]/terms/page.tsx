@@ -4,11 +4,12 @@ import glossary from '../../../generated/glossary.json';
 import BrandLogo from '../../../components/BrandLogo';
 import GlossaryBrowser from '../../../components/GlossaryBrowser';
 import {glossaryText} from '../../../lib/glossary.ts';
+import {pageMetadata} from '../../../lib/seo';
 export const dynamic='force-static';
 export function generateStaticParams(){return [{lang:'en'},{lang:'tr'}]}
 export async function generateMetadata({params}:{params:Promise<{lang:string}>}):Promise<Metadata>{
  const {lang}=await params;if(lang!=='en'&&lang!=='tr')notFound();
- return {title:`yorungez — ${glossaryText[lang].title}`,description:glossaryText[lang].intro};
+ return pageMetadata(lang,'/terms',`${glossaryText[lang].title} | Yorungez`,glossaryText[lang].intro);
 }
 export default async function TermsPage({params}:{params:Promise<{lang:string}>}){
  const {lang}=await params;if(lang!=='en'&&lang!=='tr')notFound();const t=glossaryText[lang];

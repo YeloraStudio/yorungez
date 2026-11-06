@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import RendererLab from "../../../../components/RendererLab";
+export const metadata={robots:{index:false,follow:false}};
 export const dynamic = "force-dynamic";
 export default async function Page({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;

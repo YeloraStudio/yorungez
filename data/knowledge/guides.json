@@ -1,0 +1,446 @@
+{
+  "reviewed": "2026-11-06",
+  "editor": "Yorungez contributors",
+  "guides": [
+    {
+      "slug": "read-the-sky-map",
+      "target": "jupiter",
+      "category": "Observing",
+      "title": {
+        "en": "How to read a sky map: azimuth and altitude",
+        "tr": "Gökyüzü haritası nasıl okunur: azimut ve yükseklik"
+      },
+      "summary": {
+        "en": "Turn a direction and an angle into a practical starting point for exploring your sky.",
+        "tr": "Bir yön ve açıyı, bulunduğun yerden gökyüzünü keşfetmek için kullan."
+      },
+      "sections": [
+        {
+          "heading": {
+            "en": "Two angles, one direction",
+            "tr": "İki açı, bir yön"
+          },
+          "text": {
+            "en": "Azimuth tells you which way to face: 0° is north, 90° east, 180° south and 270° west in Yorungez. Altitude measures the angle above the mathematical horizon. A target at 30° altitude is a third of the angular journey from the horizon to the zenith, not a third of its distance from Earth.",
+            "tr": "Azimut hangi yöne döneceğini söyler: Yorungez'da 0° kuzey, 90° doğu, 180° güney ve 270° batıdır. Yükseklik, matematiksel ufkun üzerindeki açıdır. 30° yükseklikteki bir hedef, ufuktan tepe noktasına açısal yolun üçte birindedir; bu, Dünya'ya uzaklığının üçte biri anlamına gelmez."
+          }
+        },
+        {
+          "heading": {
+            "en": "Check your context first",
+            "tr": "Önce konumu ve zamanı kontrol et"
+          },
+          "text": {
+            "en": "The same object has different local directions at different places and times. Confirm the observer position, local time zone and UTC instant before following a marker. Simulation explores a chosen time; return to live mode before comparing the map with the sky outside. Phone heading can need calibration against a known direction.",
+            "tr": "Aynı gök cisminin yerel yönü konuma ve zamana göre değişir. İşareti takip etmeden gözlem konumunu, yerel saat dilimini ve UTC anını kontrol et. Simülasyon seçilen zamanı gösterir; haritayı dışarıdaki gökyüzüyle karşılaştırmadan canlı moda dön. Telefon yönünün bilinen bir doğrultuya göre hizalanması gerekebilir."
+          }
+        },
+        {
+          "heading": {
+            "en": "A marker is not a visibility guarantee",
+            "tr": "İşaret görünürlük garantisi değildir"
+          },
+          "text": {
+            "en": "A positive geometric altitude does not account for trees, buildings, clouds or a bright sky. Yorungez's object centres are calculated without atmospheric refraction. Traditional rise/set predictions use a different convention. Treat the map as a direction guide and check the real horizon and observing conditions separately.",
+            "tr": "Pozitif geometrik yükseklik; ağaçları, binaları, bulutları veya parlak gökyüzünü hesaba katmaz. Yorungez'daki cisim merkezleri atmosferik kırılma olmadan hesaplanır. Geleneksel doğuş/batış tahminleri farklı bir tanım kullanır. Haritayı yön rehberi olarak kullan; gerçek ufku ve gözlem koşullarını ayrıca kontrol et."
+          }
+        }
+      ],
+      "sources": [
+        {
+          "title": "Astronomy Engine: observer coordinates and horizon calculations",
+          "url": "https://github.com/cosinekitty/astronomy"
+        },
+        {
+          "title": "USNO: rise, set and twilight definitions",
+          "url": "https://aa.usno.navy.mil/faq/RST_defs"
+        }
+      ]
+    },
+    {
+      "slug": "moon-phases",
+      "target": "moon",
+      "category": "Moon",
+      "title": {
+        "en": "Moon phases: why the Moon changes shape",
+        "tr": "Ay'ın evreleri: Ay neden şekil değiştirir?"
+      },
+      "summary": {
+        "en": "Understand the illuminated Moon, the terminator and the difference between a phase and an eclipse.",
+        "tr": "Ay'ın aydınlık bölümünü, gece-gündüz sınırını ve evre ile tutulmanın farkını anla."
+      },
+      "sections": [
+        {
+          "heading": {
+            "en": "Sunlight and viewing geometry",
+            "tr": "Güneş ışığı ve bakış geometrisi"
+          },
+          "text": {
+            "en": "The Sun illuminates roughly half of the Moon. As the Moon orbits Earth, we see a changing fraction of that lit hemisphere. The usual sequence runs from new Moon through crescent and quarter phases to full Moon, then back again. A normal phase is not Earth's shadow falling on the Moon; that is a lunar eclipse.",
+            "tr": "Güneş, Ay'ın yaklaşık yarısını aydınlatır. Ay Dünya çevresinde dolanırken bu aydınlık yarım kürenin değişen bir bölümünü görürüz. Döngü yeni aydan hilal ve dördün evreleriyle dolunaya, ardından yeniden yeni aya ilerler. Olağan evre, Dünya'nın gölgesinin Ay'a düşmesi değildir; bu olay Ay tutulmasıdır."
+          }
+        },
+        {
+          "heading": {
+            "en": "Choosing an observing experience",
+            "tr": "Nasıl bir gözlem istediğini seç"
+          },
+          "text": {
+            "en": "The boundary between lunar day and night is called the terminator. Oblique sunlight near it can make surface relief easier to notice. A full Moon gives a bright, familiar disc but a different pattern of shadows. Binoculars can reveal more detail than unaided eyes, although image steadiness and conditions affect what you see.",
+            "tr": "Ay'daki gündüz ve geceyi ayıran sınıra terminatör denir. Bu sınıra yakın eğik Güneş ışığı, yüzey kabartılarını fark etmeyi kolaylaştırabilir. Dolunay parlak ve tanıdık bir disk sunar, ancak gölgeler farklı görünür. Dürbün çıplak gözden fazla ayrıntı gösterebilir; görüntünün sabitliği ve koşullar sonucu etkiler."
+          }
+        },
+        {
+          "heading": {
+            "en": "Use the phase and the local sky together",
+            "tr": "Evreyi ve yerel gökyüzünü birlikte kullan"
+          },
+          "text": {
+            "en": "A phase event has a shared UTC instant, but that instant may occur when the Moon is below your horizon. Use Calendar to understand the phase, then Tonight and the map to choose a local observing time. Yorungez's lunar image is an illustration with computed illumination, not a live camera photograph.",
+            "tr": "Bir evre olayının ortak bir UTC anı vardır; ancak o anda Ay senin ufkunun altında olabilir. Evreyi anlamak için Takvim'i, yerel gözlem zamanı seçmek için Bu gece'yi ve haritayı kullan. Yorungez'ın Ay görüntüsü hesaplanan aydınlanmayla gösterilen bir çizimdir; canlı kamera fotoğrafı değildir."
+          }
+        }
+      ],
+      "sources": [
+        {
+          "title": "NASA: Moon phases",
+          "url": "https://science.nasa.gov/moon/moon-phases/"
+        },
+        {
+          "title": "NASA: Daily Moon Guide",
+          "url": "https://science.nasa.gov/moon/daily-moon-guide/"
+        }
+      ]
+    },
+    {
+      "slug": "find-jupiter",
+      "target": "jupiter",
+      "category": "Planets",
+      "title": {
+        "en": "How to find Jupiter from your location",
+        "tr": "Bulunduğun yerden Jüpiter nasıl bulunur?"
+      },
+      "summary": {
+        "en": "Plan the direction and time before looking for the largest planet in our Solar System.",
+        "tr": "Güneş Sistemi'nin en büyük gezegenini aramadan önce yönü ve zamanı planla."
+      },
+      "sections": [
+        {
+          "heading": {
+            "en": "Start with place and time",
+            "tr": "Konum ve zamanla başla"
+          },
+          "text": {
+            "en": "Jupiter is the fifth planet from the Sun and the largest planet in our Solar System. Its direction in your sky changes as Earth rotates and both planets move. There is no permanent answer such as 'always look south'. Set your actual observing position and live time, search for Jupiter and read its azimuth and altitude.",
+            "tr": "Jüpiter, Güneş'ten beşinci ve Güneş Sistemi'nin en büyük gezegenidir. Dünya döndükçe ve iki gezegen hareket ettikçe gökyüzündeki yönü değişir. 'Her zaman güneye bak' gibi sabit bir yanıt yoktur. Gerçek gözlem konumunu ve canlı zamanı seç, Jüpiter'i ara; azimutunu ve yüksekliğini oku."
+          }
+        },
+        {
+          "heading": {
+            "en": "Choose a useful window",
+            "tr": "Uygun bir zaman aralığı seç"
+          },
+          "text": {
+            "en": "Tonight shows calculated above-horizon intervals. A target can still be difficult to detect near the horizon or in bright twilight. Inspect the real sky for clouds and obstructions. A time with a higher target and darker sky may be a better starting point, but Yorungez does not measure your seeing or transparency.",
+            "tr": "Bu gece, hesaplanan ufuk üstü aralıklarını gösterir. Ufka yakın veya parlak alacakaranlıktaki bir hedefi seçmek yine de zor olabilir. Gerçek gökyüzündeki bulutları ve engelleri kontrol et. Daha yüksek hedef ve daha karanlık gökyüzü iyi bir başlangıç olabilir; ancak Yorungez bulunduğun yerdeki görüş kalitesini veya saydamlığı ölçmez."
+          }
+        },
+        {
+          "heading": {
+            "en": "From map to binoculars",
+            "tr": "Haritadan dürbüne geç"
+          },
+          "text": {
+            "en": "Identify the direction with your eyes first, then use steady binoculars if available. What appears as a large textured planet in the app is illustrative enlargement, not the angular size you should expect through binoculars. Never point binoculars or a telescope at the Sun without appropriate specialist solar equipment and guidance.",
+            "tr": "Önce yönü gözlerinle belirle; varsa sabit tutulan bir dürbün kullan. Uygulamadaki büyük, dokulu gezegen temsili büyütmedir; dürbünden beklemen gereken açısal boyut değildir. Uygun uzmanlık gerektiren Güneş ekipmanı ve rehberliği olmadan dürbünü veya teleskobu Güneş'e yöneltme."
+          }
+        }
+      ],
+      "sources": [
+        {
+          "title": "NASA: Jupiter facts",
+          "url": "https://science.nasa.gov/jupiter/jupiter-facts/"
+        },
+        {
+          "title": "NASA: skywatching FAQ",
+          "url": "https://science.nasa.gov/skywatching/faq/"
+        }
+      ]
+    },
+    {
+      "slug": "stars-and-planets",
+      "target": "venus",
+      "category": "Basics",
+      "title": {
+        "en": "Stars and planets: what is the difference?",
+        "tr": "Yıldızlarla gezegenlerin farkı nedir?"
+      },
+      "summary": {
+        "en": "A bright point of light does not tell the whole story. Learn what you are identifying.",
+        "tr": "Parlak bir ışık noktası her şeyi anlatmaz. Hangi tür cismi tanımladığını öğren."
+      },
+      "sections": [
+        {
+          "heading": {
+            "en": "Different physical objects",
+            "tr": "Fiziksel olarak farklı cisimler"
+          },
+          "text": {
+            "en": "Stars produce energy through processes including nuclear fusion. Our Sun is a star. The eight planets of our Solar System orbit the Sun and are seen mainly by reflected sunlight. A bright planet can look like a star to unaided eyes; apparent brightness alone is not a reliable classification.",
+            "tr": "Yıldızlar, nükleer füzyonun da bulunduğu süreçlerle enerji üretir. Güneşimiz bir yıldızdır. Güneş Sistemi'ndeki sekiz gezegen Güneş çevresinde dolanır ve başlıca yansıttıkları Güneş ışığıyla görülür. Parlak bir gezegen çıplak gözle yıldız gibi görünebilir; yalnız parlaklık güvenilir bir sınıflandırma değildir."
+          }
+        },
+        {
+          "heading": {
+            "en": "Watch changes against the background",
+            "tr": "Arka plana göre değişimi izle"
+          },
+          "text": {
+            "en": "Planets change position against the background stars over time. The entire local sky also appears to move during a night because Earth rotates. These are different effects. Keep the same observer and compare selected dates in simulation to investigate a planet's changing position without confusing it with the daily turning of the sky.",
+            "tr": "Gezegenler zamanla arka plandaki yıldızlara göre yer değiştirir. Dünya döndüğü için yerel gökyüzünün tamamı da gece boyunca hareket ediyor görünür. Bunlar farklı etkilerdir. Bir gezegenin değişen konumunu gökyüzünün günlük dönüşüyle karıştırmadan incelemek için aynı gözlem konumunda farklı tarihleri simülasyonda karşılaştır."
+          }
+        },
+        {
+          "heading": {
+            "en": "Read the object type",
+            "tr": "Cismin türünü oku"
+          },
+          "text": {
+            "en": "Yorungez labels object types in search and detail panels. Names and catalogue identifiers help distinguish a physical object from a constellation pattern. The map uses calculated coordinates for the selected observer and time; catalogue epoch coordinates are a reference, not an instruction to point directly at those angles today.",
+            "tr": "Yorungez, arama ve ayrıntı panellerinde cisim türünü belirtir. Adlar ve katalog kimlikleri, fiziksel cismi bir takımyıldız deseninden ayırmaya yardım eder. Harita seçilen gözlemci ve zaman için hesaplanan koordinatları kullanır; katalog çağının koordinatları bir referanstır, bugün doğrudan o açılara bakma talimatı değildir."
+          }
+        }
+      ],
+      "sources": [
+        {
+          "title": "NASA: stars",
+          "url": "https://science.nasa.gov/universe/stars/"
+        },
+        {
+          "title": "NASA: Solar System facts",
+          "url": "https://science.nasa.gov/solar-system/solar-system-facts/"
+        }
+      ]
+    },
+    {
+      "slug": "constellations",
+      "target": "con-ori",
+      "category": "Constellations",
+      "title": {
+        "en": "Constellations, patterns and the 88 sky regions",
+        "tr": "Takımyıldızlar, desenler ve gökyüzünün 88 bölgesi"
+      },
+      "summary": {
+        "en": "A sky region, a line drawing and a mythological figure are related, but they are not the same thing.",
+        "tr": "Gökyüzü bölgesi, çizgi deseni ve mitolojik figür birbiriyle ilişkilidir; ancak aynı şey değildir."
+      },
+      "sections": [
+        {
+          "heading": {
+            "en": "Regions versus drawings",
+            "tr": "Bölgeler ve çizimler"
+          },
+          "text": {
+            "en": "The International Astronomical Union recognises 88 constellations covering the sky as bounded regions. Familiar stick figures are a way of finding patterns within those regions. Artistic figures add cultural context. Turning a drawing layer on or off does not move the stars or alter the astronomical definition of a region.",
+            "tr": "Uluslararası Astronomi Birliği, gökyüzünü sınırlı bölgeler halinde kaplayan 88 takımyıldızı tanır. Tanıdık çubuk çizimler bu bölgelerde desen bulmaya yarar. Sanatsal figürler kültürel bağlam ekler. Çizim katmanını açmak veya kapatmak yıldızları hareket ettirmez, bölgenin astronomik tanımını değiştirmez."
+          }
+        },
+        {
+          "heading": {
+            "en": "An apparent pattern",
+            "tr": "Görünürdeki bir desen"
+          },
+          "text": {
+            "en": "Stars that form a pattern from Earth can be at very different distances. They need not form a single physical group. Use a constellation as a signpost while keeping the distinction between an apparent arrangement and a gravitationally related star cluster. The glossary explains light-years and catalogue distance separately.",
+            "tr": "Dünya'dan bir desen oluşturan yıldızlar çok farklı uzaklıklarda olabilir; tek bir fiziksel grup oluşturmak zorunda değildir. Takımyıldızı yön bulmak için kullanırken görünürdeki dizilişle kütleçekimsel olarak ilişkili yıldız kümesini ayır. Sözlük, ışık yılını ve katalog uzaklığını ayrıca açıklar."
+          }
+        },
+        {
+          "heading": {
+            "en": "Explore with the layers",
+            "tr": "Katmanlarla keşfet"
+          },
+          "text": {
+            "en": "Search for Orion, then compare the stars with constellation lines and artwork. Yorungez's illustrated centre is schematic and is not a boundary measurement. What rises above your horizon depends on your position and the date. A named constellation is not interchangeable with a deep-sky object located in its direction.",
+            "tr": "Avcı'yı ara; yıldızları takımyıldız çizgileri ve figürleriyle karşılaştır. Yorungez'daki çizim merkezi şematiktir; bir sınır ölçümü değildir. Hangi bölümün ufkunun üzerine çıktığı konuma ve tarihe bağlıdır. Bir takımyıldız adı, o yönde bulunan derin uzay cismiyle aynı anlama gelmez."
+          }
+        }
+      ],
+      "sources": [
+        {
+          "title": "IAU: the constellations",
+          "url": "https://www.iau.org/IAU/Astronomy-FAQs/Constellations.aspx"
+        },
+        {
+          "title": "Astronomy Engine: coordinate calculations",
+          "url": "https://github.com/cosinekitty/astronomy"
+        }
+      ]
+    },
+    {
+      "slug": "milky-way-and-andromeda",
+      "target": "dso-ngc0224",
+      "category": "Galaxies",
+      "title": {
+        "en": "The Milky Way and Andromeda: two different views",
+        "tr": "Samanyolu ve Andromeda: iki farklı bakış"
+      },
+      "summary": {
+        "en": "We live inside one galaxy and look towards another. Understand why their sky views differ.",
+        "tr": "Bir galaksinin içinde yaşıyor, diğerine doğru bakıyoruz. Gökyüzündeki görünümlerinin neden farklı olduğunu anla."
+      },
+      "sections": [
+        {
+          "heading": {
+            "en": "Our view from inside",
+            "tr": "İçeriden bakışımız"
+          },
+          "text": {
+            "en": "The Milky Way is our home galaxy. Its familiar band is our view through parts of its stellar disc, with dust shaping the visible structure. It is not a small external object with a single useful point to centre like a planet. A dark, clear sky is important for noticing the band with unaided eyes.",
+            "tr": "Samanyolu, içinde yaşadığımız galaksidir. Tanıdık kuşağı, yıldız diskinin bazı bölümleri boyunca bakışımızdır; toz görünür yapıyı şekillendirir. Bir gezegen gibi tek bir yararlı noktaya ortalanan küçük, dışarıdaki bir cisim değildir. Kuşağı çıplak gözle fark etmek için karanlık ve açık gökyüzü önemlidir."
+          }
+        },
+        {
+          "heading": {
+            "en": "A neighbouring galaxy",
+            "tr": "Komşu bir galaksi"
+          },
+          "text": {
+            "en": "The Andromeda Galaxy is also identified as M31 or NGC 224. It is a different object from the constellation Andromeda. A long-exposure photograph reveals much more colour and structure than an unaided-eye view. Expect observing conditions and equipment to affect the impression, rather than treating an archive image as a promised visual view.",
+            "tr": "Andromeda Galaksisi, M31 veya NGC 224 olarak da tanımlanır. Andromeda takımyıldızından farklı bir cisimdir. Uzun pozlanmış bir fotoğraf, çıplak gözle görülen görüntüden çok daha fazla renk ve yapı gösterir. Bir arşiv fotoğrafını vaat edilen gözlem görüntüsü saymak yerine, koşulların ve ekipmanın sonucu etkilediğini unutma."
+          }
+        },
+        {
+          "heading": {
+            "en": "Images and coordinates have different jobs",
+            "tr": "Görsellerle koordinatların görevleri farklıdır"
+          },
+          "text": {
+            "en": "In Yorungez, a sourced photographic sky provides visual context while catalogue positions locate objects. Archive photos retain their credits and licences. Search for Andromeda or M31 and read the object type before focusing. The sky scene is a calculated educational view, not a live telescope feed.",
+            "tr": "Yorungez'da kaynaklı gökyüzü fotoğrafı görsel bağlam sağlar; cisimlerin yerini katalog konumları belirler. Arşiv fotoğraflarının atıfları ve lisansları korunur. Andromeda veya M31'i ara; odaklamadan önce cisim türünü oku. Gökyüzü sahnesi hesaplanan eğitsel bir görünümdür; canlı teleskop yayını değildir."
+          }
+        }
+      ],
+      "sources": [
+        {
+          "title": "NASA: galaxies",
+          "url": "https://science.nasa.gov/universe/galaxies/"
+        },
+        {
+          "title": "NASA: Andromeda Galaxy",
+          "url": "https://www.nasa.gov/universe/galaxies/andromeda-galaxy/"
+        }
+      ]
+    },
+    {
+      "slug": "plan-a-dark-sky-night",
+      "target": "saturn",
+      "category": "Observing",
+      "title": {
+        "en": "Plan a night under the stars",
+        "tr": "Yıldızların altında bir gece planla"
+      },
+      "summary": {
+        "en": "Combine darkness, a clear horizon and a realistic target instead of relying on a single score.",
+        "tr": "Tek bir puana güvenmek yerine karanlığı, açık ufku ve gerçekçi bir hedefi birlikte değerlendir."
+      },
+      "sections": [
+        {
+          "heading": {
+            "en": "Start with a question",
+            "tr": "Bir soruyla başla"
+          },
+          "text": {
+            "en": "Choose whether you want a bright planet, lunar details or a faint extended object. These are different observing tasks. A bright Moon can be an interesting subject while also making faint targets harder to distinguish. Give your eyes time to adjust and avoid unnecessary bright screens when exploring a dark sky.",
+            "tr": "Parlak bir gezegen mi, Ay ayrıntıları mı, yoksa sönük ve geniş bir cisim mi görmek istediğini seç. Bunlar farklı gözlem görevleridir. Parlak Ay ilginç bir hedef olurken sönük cisimleri ayırt etmeyi zorlaştırabilir. Gözlerine alışma süresi tanı; karanlık gökyüzünü incelerken gereksiz parlak ekranlardan kaçın."
+          }
+        },
+        {
+          "heading": {
+            "en": "Check conditions independently",
+            "tr": "Koşulları ayrıca kontrol et"
+          },
+          "text": {
+            "en": "Clouds, haze, light pollution and local obstructions are not the same as geometric visibility. Yorungez does not turn an above-horizon marker into a weather forecast. Look at the real horizon, check an appropriate local forecast and use a safe, permitted observing place. You can start with your eyes; owning a telescope is not a requirement.",
+            "tr": "Bulut, pus, ışık kirliliği ve yerel engeller geometrik görünürlükle aynı şey değildir. Yorungez ufuk üstündeki bir işareti hava tahminine dönüştürmez. Gerçek ufku incele, uygun yerel tahmini kontrol et; güvenli ve gözleme izin verilen bir yer kullan. Gözlerinle başlayabilirsin; teleskop sahibi olmak zorunlu değildir."
+          }
+        },
+        {
+          "heading": {
+            "en": "Make a small plan",
+            "tr": "Küçük bir plan yap"
+          },
+          "text": {
+            "en": "Use Tonight for a calculated observing window and Calendar for sourced events. Open the selected time on the map, then return to live when observing. Keep a note of what you actually saw. An event listed in a calendar and a personal observation are different records; neither the map nor a reminder proves an observation happened.",
+            "tr": "Hesaplanan gözlem aralığı için Bu gece'yi, kaynaklı olaylar için Takvim'i kullan. Seçilen zamanı haritada aç; gözlem sırasında canlıya dön. Gerçekte ne gördüğünü not et. Takvimdeki olayla kişisel gözlem farklı kayıtlardır; harita veya hatırlatıcı bir gözlemin yapıldığını kanıtlamaz."
+          }
+        }
+      ],
+      "sources": [
+        {
+          "title": "NASA: skywatching FAQ",
+          "url": "https://science.nasa.gov/skywatching/faq/"
+        },
+        {
+          "title": "British Astronomical Association: visual observing",
+          "url": "https://britastro.org/section_information_/hints-and-tips-for-visual-observing"
+        }
+      ]
+    },
+    {
+      "slug": "utc-local-time",
+      "target": "moon",
+      "category": "Time",
+      "title": {
+        "en": "UTC, local time and your observing calendar",
+        "tr": "UTC, yerel saat ve gözlem takvimin"
+      },
+      "summary": {
+        "en": "One event instant can appear on different local dates. Keep the time zone with your plan.",
+        "tr": "Tek bir olay anı farklı yerel tarihlerde görünebilir. Saat dilimini planınla birlikte tut."
+      },
+      "sections": [
+        {
+          "heading": {
+            "en": "One instant, several clock readings",
+            "tr": "Bir an, farklı saat gösterimleri"
+          },
+          "text": {
+            "en": "UTC is a worldwide civil-time reference. Local time adds the rules of a named time zone. For example, 22:00 UTC on 5 November 2026 is 01:00 on 6 November in Europe/Istanbul. Changing the display zone does not change the event itself. Keep the date as well as the time when sharing a plan.",
+            "tr": "UTC, dünya çapında kullanılan bir sivil zaman referansıdır. Yerel saat, adlandırılmış saat diliminin kurallarını ekler. Örneğin 5 Kasım 2026 saat 22.00 UTC, Europe/Istanbul'da 6 Kasım saat 01.00'dır. Gösterim bölgesini değiştirmek olayı değiştirmez. Plan paylaşırken saatin yanında tarihi de belirt."
+          }
+        },
+        {
+          "heading": {
+            "en": "Why a named zone matters",
+            "tr": "Adlandırılmış bölge neden önemlidir?"
+          },
+          "text": {
+            "en": "Some places change their clock offset seasonally, and civil-time rules can change. A fixed GMT offset is not always a substitute for a named IANA time zone. A daylight-saving transition can skip a local time or repeat it. Yorungez keeps an explicit UTC instant and shows the relevant local date and offset separately.",
+            "tr": "Bazı yerlerde saat farkı mevsimsel değişir; sivil zaman kuralları da değişebilir. Sabit GMT farkı, her zaman adlandırılmış IANA saat diliminin yerine geçmez. Yaz saati geçişinde bir yerel saat atlanabilir veya tekrarlanabilir. Yorungez açık bir UTC anını korur; ilgili yerel tarihi ve saat farkını ayrıca gösterir."
+          }
+        },
+        {
+          "heading": {
+            "en": "An event time is not an observing window",
+            "tr": "Olay anı gözlem aralığı değildir"
+          },
+          "text": {
+            "en": "A global phase or opposition can occur in your daytime or below your horizon. Use the event instant to understand the geometry, then check local altitude, darkness and conditions. An email reminder follows the stored instant and time-zone context; it cannot guarantee inbox timing or a visible sky.",
+            "tr": "Küresel bir evre veya karşı konum senin gündüzünde ya da ufkunun altında gerçekleşebilir. Olay anıyla geometriyi anla; ardından yerel yüksekliği, karanlığı ve koşulları kontrol et. E-posta hatırlatıcısı saklanan anı ve saat dilimi bağlamını izler; gelen kutusuna ulaşma zamanını veya açık gökyüzünü garanti etmez."
+          }
+        }
+      ],
+      "sources": [
+        {
+          "title": "USNO: Universal Time",
+          "url": "https://aa.usno.navy.mil/faq/UT"
+        },
+        {
+          "title": "USNO: daylight saving time",
+          "url": "https://aa.usno.navy.mil/faq/daylight_time"
+        }
+      ]
+    }
+  ]
+}
