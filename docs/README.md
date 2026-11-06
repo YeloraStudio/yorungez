@@ -18,6 +18,8 @@ Detailed product/delivery records are currently mostly Turkish. Newer decisions 
 
 ## Current implementation
 
+- [Mobile cosmic launcher restoration and native startup artwork](mobile-launcher-splash-polish.md)
+
 - [Native Tonight/Calendar, local time plus UTC, server email reminders and future push boundary](mobile-night-calendar-reminders.md)
 - [Existing-brand native icons and English Google Play showcase/capture provenance](../data/store/google-play/en-US/README.md)
 

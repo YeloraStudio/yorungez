@@ -1,5 +1,7 @@
 # Mobile night planning, calendar and reminders — K-055
 
+**K-056 supersedes the launcher choice:** The owner prefers the earlier cosmic launcher artwork; the flat adaptive override introduced in this delivery is withdrawn. [Current launcher/startup artwork](mobile-launcher-splash-polish.md). K-055 planning, reminders and store artwork remain delivered.
+
 Owner request: 5 November 2026. Implementation and local verification: 6 November 2026. Physical-device acceptance, store signing and submission remain separate gates.
 
 ## Required delivery

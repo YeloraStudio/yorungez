@@ -24,5 +24,26 @@ for(const [name,source] of [['adaptive-foreground.png',mark],['adaptive-monochro
  for(let y=0;y<info.height;y++)for(let x=0;x<info.width;x++)if(data[(y*info.width+x)*4+3]>0&&Math.hypot(x-511.5,y-511.5)>radius)throw new Error('Adaptive emblem leaves safe circle');
  await save(name,bytes);
 }
-await fs.writeFile(path.join(output,'manifest.json'),JSON.stringify(manifest,null,2)+'\n');
-console.log('Exported four existing-brand masters; adaptive/monochrome safe circles verified.');
+// Native launch artwork uses the same original cosmic image as the legacy
+// launcher, never the flat emblem. The circle is an OS launch-screen mask only.
+const circle=Buffer.from('<svg width="512" height="512"><circle cx="256" cy="256" r="256" fill="white"/></svg>');
+const launch=await sharp(artwork).resize(512,512).ensureAlpha().composite([{input:circle,blend:'dest-in'}]).png().toBuffer();
+await save('launch-icon-512.png',launch);
+// Android 12+: content fits the 192/288 central circle. Keep padding transparent
+// so Android does not crop the actual logo or show a separate grey icon tile.
+const splash=await sharp({create:{width:768,height:768,channels:4,background:'#00000000'}}).composite([{input:launch,left:128,top:128}]).png().toBuffer();
+await save('android-splash-768.png',splash);
+const android=path.join(app,'android/app/src/main/res/drawable-nodpi');
+await fs.mkdir(android,{recursive:true});
+// AdaptiveIconDrawable expands layers by 25% on every side. Mirror only the
+// off-mask overscan: its central 512px viewport is the unchanged cosmic image.
+// This prevents the OS from adding a white legacy-icon frame or zooming in.
+const adaptive=await sharp(artwork).resize(512,512).extend({top:128,bottom:128,left:128,right:128,extendWith:'mirror'}).png().toBuffer();
+await save('android-launcher-768.png',adaptive);
+await fs.writeFile(path.join(android,'yorungez_launcher.png'),adaptive);
+await fs.writeFile(path.join(android,'yorungez_launch_icon.png'),launch);
+await fs.writeFile(path.join(android,'yorungez_splash.png'),splash);
+const ios=path.join(app,'ios/Runner/Assets.xcassets/LaunchImage.imageset');
+for(const [scale,name] of [[1,'LaunchImage.png'],[2,'LaunchImage@2x.png'],[3,'LaunchImage@3x.png']])await fs.writeFile(path.join(ios,name),await sharp(launch).resize(168*scale,168*scale).png().toBuffer());
+await fs.writeFile(path.join(output,'manifest.json'),JSON.stringify({...manifest,nativeLauncher:'Original cosmic artwork in the central viewport; mirrored adaptive overscan; no flat emblem',nativeLaunch:'Source artwork with circle mask; Android 12 central 192/288 safe area'},null,2)+'\n');
+console.log('Exported existing-brand masters and Android/iOS cosmic launch assets.');
