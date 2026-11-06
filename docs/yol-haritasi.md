@@ -1,5 +1,7 @@
 # yorungez — Yol haritası ve başlangıç iş listesi
 
+**K-057 / 6 November 2026 — Global Web discovery:** The owner requests comprehensive SEO/AI-search discovery, sourced public library growth, Google/Bing/GA4/GTM property setup, native-app coming-soon messaging, a clear non-intrusive PWA update flow and English-only search examples. Preserve free/ad-free/open-source scope, scientific provenance and privacy; optional measurement must exclude personal/location/sensor data. [Delivery contract and provider evidence](web-discovery-seo.md).
+
 **K-055 / 5 November 2026 — Mobile planning and reminders:** The owner requires native Tonight/Calendar parity, explicit local time plus UTC, verified-account server email reminders and a future push channel foundation. Complete development before regenerating existing-brand app icons and English Google Play showcase assets from genuine emulator captures. [Delivery contract and acceptance plan](mobile-night-calendar-reminders.md). Prior science/privacy/account/publication rules remain.
 
 **K-055 delivery evidence / 6 November 2026:** Native Tonight/Calendar, explicit local/IANA/UTC time, verified-account durable email reminders and future push capability boundary are implemented. Existing-brand native icons and eight genuine-screen English store designs are prepared. 166 .NET / 77 Flutter tests, frozen science, emulator navigation and current unsigned macOS/iOS build passed. [Detailed evidence and publication record](mobile-night-calendar-reminders.md). Physical pointing/push/store release remain open.

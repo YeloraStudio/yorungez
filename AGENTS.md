@@ -1,5 +1,7 @@
 # yorungez çalışma rehberi
 
+**K-057 / 6 November 2026 — Global Web discovery:** The owner requests comprehensive SEO/AI-search discovery, sourced public library growth, Google/Bing/GA4/GTM property setup, native-app coming-soon messaging, a clear non-intrusive PWA update flow and English-only search examples. Preserve free/ad-free/open-source scope, scientific provenance and privacy; optional measurement must exclude personal/location/sensor data. [Delivery contract and provider evidence](docs/web-discovery-seo.md).
+
 **K-056 / 6 November 2026 — Native icon correction:** Restore the earlier cosmic launcher artwork; the K-055 flat Android adaptive override is withdrawn. Use the same owner art for native startup with platform-appropriate masks/padding. In-app branding and store designs remain approved. [Scope and evidence](docs/mobile-launcher-splash-polish.md).
 
 **K-055 / 5 November 2026 — Mobile planning and reminders:** The owner requires native Tonight/Calendar parity, explicit local time plus UTC, verified-account server email reminders and a future push channel foundation. Complete development before regenerating existing-brand app icons and English Google Play showcase assets from genuine emulator captures. [Delivery contract and acceptance plan](docs/mobile-night-calendar-reminders.md). Prior science/privacy/account/publication rules remain.

@@ -13,6 +13,10 @@ Native accounts now share the API profile, language and server notebook; music/l
 
 **Explore the sky. Understand what you see. Keep your observations.**
 
+[Live Web sky](https://yorungez.com/en) · [Astronomy library](https://yorungez.com/en/library) · [Project & science](https://yorungez.com/en/about) · [Android & iOS — coming soon](https://yorungez.com/en/mobile)
+
+Free, ad-free and developed as a not-for-profit open-source project. Native apps are in development and are **not yet published in app stores**. The public Web library starts with eight sourced guides in English and Turkish; [discovery, measurement and release checks](docs/web-discovery-seo.md) document the implementation and its limits.
+
 [![CI](https://github.com/YeloraStudio/yorungez/actions/workflows/ci.yml/badge.svg)](https://github.com/YeloraStudio/yorungez/actions/workflows/ci.yml)
 [![CodeQL](https://github.com/YeloraStudio/yorungez/actions/workflows/codeql.yml/badge.svg)](https://github.com/YeloraStudio/yorungez/actions/workflows/codeql.yml)
 [![Code licence: Apache-2.0](https://img.shields.io/badge/code-Apache--2.0-8B2333)](LICENSE)
