@@ -1,16 +1,25 @@
 "use client";
-import {useEffect,useState} from 'react';
+import {useEffect,useRef,useState} from 'react';
 import {usePathname} from 'next/navigation';
 import {measurement,publicMeasurementPage,readAnalyticsChoice,type AnalyticsChoice} from '../lib/measurement';
 declare global {interface Window {dataLayer?:unknown[];yorungezMeasurementStarted?:boolean}}
 export default function MeasurementConsent({language}:{language:'en'|'tr'}){
  const pathname=usePathname(),tr=language==='tr';
  const [choice,setChoice]=useState<AnalyticsChoice|null>(null),[ready,setReady]=useState(false),[open,setOpen]=useState(false);
+ const channel=useRef<BroadcastChannel|null>(null);
  const configured=/^G-[A-Z0-9]+$/.test(measurement.ga4);
- useEffect(()=>{setChoice(readAnalyticsChoice(document.cookie));setReady(true);const show=()=>setOpen(true);window.addEventListener('yorungez:measurement-settings',show);return()=>window.removeEventListener('yorungez:measurement-settings',show);},[]);
+ useEffect(()=>{
+  const sync=()=>{const next=readAnalyticsChoice(document.cookie);if(next!=='accepted')Object.assign(window,{[`ga-disable-${measurement.ga4}`]:true});setChoice(next);};
+  sync();setReady(true);const show=()=>setOpen(true),resumed=()=>{if(!document.hidden)sync();};
+  if('BroadcastChannel' in window){channel.current=new BroadcastChannel('yorungez-analytics-choice');channel.current.onmessage=sync;}
+  window.addEventListener('yorungez:measurement-settings',show);window.addEventListener('focus',sync);document.addEventListener('visibilitychange',resumed);
+  return()=>{channel.current?.close();channel.current=null;window.removeEventListener('yorungez:measurement-settings',show);window.removeEventListener('focus',sync);document.removeEventListener('visibilitychange',resumed);};
+ },[]);
  useEffect(()=>{
   const page=publicMeasurementPage(pathname);
-  if(!ready||choice!=='accepted'||!configured||!page||window.location.hostname!=='yorungez.com')return;
+  const allowed=ready&&choice==='accepted'&&configured&&!!page&&window.location.hostname==='yorungez.com';
+  Object.assign(window,{[`ga-disable-${measurement.ga4}`]:!allowed});
+  if(!allowed||!page)return;
   window.dataLayer??=[];
   function gtag(..._args:unknown[]){window.dataLayer!.push(arguments);}
   if(!window.yorungezMeasurementStarted){
@@ -26,10 +35,12 @@ export default function MeasurementConsent({language}:{language:'en'|'tr'}){
     const manager=document.createElement('script');manager.async=true;manager.id='yorungez-gtm';manager.src=`https://www.googletagmanager.com/gtm.js?id=${measurement.tagManager}`;document.head.append(manager);
    }
   }
+  gtag('consent','update',{analytics_storage:'granted',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});
   gtag('config',measurement.ga4,{...page,send_page_view:false});gtag('event','page_view',page);
  },[choice,configured,pathname,ready]);
- function choose(next:AnalyticsChoice){document.cookie=`yorungez-analytics=${next}; Path=/; Max-Age=15552000; SameSite=Lax${window.isSecureContext?'; Secure':''}`;setChoice(next);setOpen(false);
+ function choose(next:AnalyticsChoice){document.cookie=`yorungez-analytics=${next}; Path=/; Max-Age=15552000; SameSite=Lax${window.isSecureContext?'; Secure':''}`;channel.current?.postMessage('changed');setChoice(next);setOpen(false);
   if(next==='declined'){
+   Object.assign(window,{[`ga-disable-${measurement.ga4}`]:true});
    function revoke(..._args:unknown[]){window.dataLayer?.push(arguments);}
    revoke('consent','update',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});
    // Reload drops loaded third-party code. Clear first-party analytics cookies at both scopes.

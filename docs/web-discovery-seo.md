@@ -51,6 +51,8 @@ GA4 is installed **once**, directly through the consent-gated client. The indepe
 
 Future GTM tags must undergo the same review; do not add an automatic GA4 tag while the direct integration exists. Privacy settings offer a choice-change action; withdrawal clears first-party GA cookies and reloads to discard loaded measurement code. Existing server records and user language remain intact.
 
+Withdrawal also sets Google's documented per-measurement opt-out flag immediately. Open tabs synchronize the non-personal consent choice through BroadcastChannel, with focus/visibility fallback; other tabs stop measurement without automatically reloading an unsaved notebook draft. Private/non-production paths keep the measurement opt-out flag enabled. [Google privacy controls](https://developers.google.com/tag-platform/security/guides/privacy).
+
 ### Rollout protocol
 
 After merge through the existing approved CI: verify live canonicals/robots/sitemap/public pages and the Bing meta tag; verify the Bing property, submit `https://yorungez.com/sitemap.xml` in Google/Bing, then submit the bounded IndexNow URL set. Check the visible provider outcomes and production consent flow before the delivery report. New properties need time to populate; do not fabricate traffic, citations, ranking changes or indexing completion. Ongoing work is source-based library growth and real Search Console/Bing AI-performance/Core Web Vitals evidence after traffic accumulates.
