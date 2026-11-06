@@ -1,7 +1,7 @@
 name: yorungez
 description: "Yorungez: an advertising-free astronomy application for Android and iOS."
 publish_to: 'none'
-version: 0.1.0+5
+version: 0.1.0+6
 
 environment:
   sdk: ^3.11.4

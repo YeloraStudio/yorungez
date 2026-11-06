@@ -12,6 +12,7 @@ import '../core/api/yorungez_api.dart';
 import '../sky/domain/sky_frame.dart';
 import '../sky/domain/sky_geometry.dart';
 import '../sky/data/device_location.dart';
+import '../sky/data/native_pose_source.dart';
 import '../sky/data/native_sky.dart';
 import '../planning/planning_time.dart';
 
@@ -26,6 +27,8 @@ final class SkyFrameController extends Notifier<SkyFrame?> {
 final skyFrameProvider = NotifierProvider<SkyFrameController, SkyFrame?>(
   SkyFrameController.new,
 );
+final nativePoseSourceProvider = Provider((ref) => NativePoseSource());
+final trackingNoticeProvider = Provider((ref) => TrackingNotice());
 
 final class LocaleController extends Notifier<Locale> {
   int _revision = 0;

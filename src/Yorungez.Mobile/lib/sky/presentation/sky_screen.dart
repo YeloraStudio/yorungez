@@ -12,6 +12,7 @@ import '../../catalogue/data/catalogue_repository.dart';
 import '../../catalogue/domain/sky_object.dart';
 import '../../l10n/generated/app_localizations.dart';
 import '../data/mobile_services.dart';
+import '../data/native_pose_source.dart';
 import '../data/screen_awake.dart';
 import '../data/native_sky.dart';
 import '../data/sky_visuals.dart';
@@ -60,7 +61,10 @@ class _SkyScreenState extends ConsumerState<SkyScreen>
   bool _trackPending = false;
   SkyObserver? _observer;
   CameraController? _camera;
-  StreamSubscription<dynamic>? _sensor;
+  StreamSubscription<PoseSample>? _sensor;
+  Future<void> _sensorStopped = Future.value();
+  int _sensorGeneration = 0;
+  bool _trackingUnsupported = false, _trackingNoticePending = false;
   Timer? _timer, _dwellTimer;
   final _scaffold = GlobalKey<ScaffoldState>();
   final _dwell = DwellSelection();
@@ -568,8 +572,14 @@ class _SkyScreenState extends ConsumerState<SkyScreen>
   }
 
   void _stopTracking() {
+    _sensorGeneration++;
     _dwell.reset();
-    unawaited(_sensor?.cancel());
+    final previous = _sensor;
+    if (previous != null) {
+      _sensorStopped = _sensorStopped
+          .then((_) => previous.cancel())
+          .catchError((Object _) {});
+    }
     _sensor = null;
     _sample = null;
     _following = false;
@@ -577,6 +587,7 @@ class _SkyScreenState extends ConsumerState<SkyScreen>
   }
 
   void _startTracking() {
+    if (_trackingUnsupported) return;
     ref.read(skyInstantProvider.notifier).select(null);
     _stopTracking();
     _manualViewRequested = false;
@@ -585,44 +596,135 @@ class _SkyScreenState extends ConsumerState<SkyScreen>
       _following = true;
       _issue = null;
     });
-    _sensor = nativePoseChannel.receiveBroadcastStream().listen(
-      (event) {
-        try {
-          if (!mounted || !_following || !_active) return;
-          final sample = PoseSample.decode(event);
-          if (!sample.fresh(DateTime.now()) ||
-              (_sample != null && sample.timestampMs <= _sample!.timestampMs)) {
-            return;
-          }
-          if (_sample != null && sample.reference != _sample!.reference) {
-            _yawOffset = null;
-          }
-          setState(() {
-            _sample = sample;
-            if (sample.quality == 0) {
-              _yawOffset = null;
-              _dwell.reset();
-              _issue = 'stale';
-              return;
+    unawaited(_connectTracking(_sensorGeneration));
+  }
+
+  Future<void> _connectTracking(int generation) async {
+    await _sensorStopped;
+    if (!mounted ||
+        !_active ||
+        !_following ||
+        generation != _sensorGeneration) {
+      return;
+    }
+    _sensor = ref
+        .read(nativePoseSourceProvider)
+        .samples()
+        .listen(
+          (sample) {
+            try {
+              if (!mounted ||
+                  !_following ||
+                  !_active ||
+                  generation != _sensorGeneration) {
+                return;
+              }
+              if (!sample.fresh(DateTime.now()) ||
+                  (_sample != null &&
+                      sample.timestampMs <= _sample!.timestampMs)) {
+                return;
+              }
+              if (_sample != null && sample.reference != _sample!.reference) {
+                _yawOffset = null;
+              }
+              setState(() {
+                _sample = sample;
+                if (sample.quality == 0) {
+                  _yawOffset = null;
+                  _dwell.reset();
+                  _issue = 'stale';
+                  return;
+                }
+                if (sample.reference == 'true' || _poseCorrection != null) {
+                  _pose = ViewPose.device(
+                    sample.matrix,
+                    sample.rotation,
+                    _poseCorrection ?? 0,
+                  );
+                  if (_issue == 'stale') _issue = null;
+                }
+              });
+            } catch (_) {
+              if (mounted) setState(() => _issue = 'sensor');
             }
-            if (sample.reference == 'true' || _poseCorrection != null) {
-              _pose = ViewPose.device(
-                sample.matrix,
-                sample.rotation,
-                _poseCorrection ?? 0,
+          },
+          onError: (Object error) {
+            if (!mounted || generation != _sensorGeneration) return;
+            _trackingFailed(
+              error is PoseFailure ? error : PoseFailure.unavailable,
+            );
+          },
+        );
+  }
+
+  void _trackingFailed(PoseFailure failure) {
+    _stopTracking();
+    _followOnResume = false;
+    _manualViewRequested = true;
+    unawaited(_closeCamera().catchError((Object _) {}));
+    setState(() {
+      if (failure == PoseFailure.unsupported) {
+        _trackingUnsupported = true;
+        _trackingNoticePending = true;
+        _issue = null;
+      } else {
+        _issue = failure == PoseFailure.noData ? 'sensorNoData' : 'sensor';
+      }
+    });
+    _maybeShowTrackingNotice();
+  }
+
+  void _maybeShowTrackingNotice() {
+    if (!_trackingNoticePending ||
+        !mounted ||
+        !_active ||
+        _onboarding != null ||
+        _modalOpen ||
+        _drawerOpen) {
+      return;
+    }
+    _trackingNoticePending = false;
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      if (!mounted || !_active || _modalOpen || _drawerOpen) {
+        _trackingNoticePending = true;
+        return;
+      }
+      final handled = await ref
+          .read(trackingNoticeProvider)
+          .present(
+            canShow: () =>
+                mounted &&
+                _active &&
+                !_modalOpen &&
+                !_drawerOpen &&
+                _onboarding == null,
+            show: () {
+              final t = AppLocalizations.of(context);
+              _modalOpen = true;
+              unawaited(
+                showDialog<void>(
+                  context: context,
+                  builder: (dialogContext) => AlertDialog(
+                    scrollable: true,
+                    title: Text(t.trackingUnsupported),
+                    content: Text(t.trackingUnsupportedNotice),
+                    actions: [
+                      TextButton(
+                        onPressed: () => Navigator.of(dialogContext).pop(),
+                        child: Text(t.understood),
+                      ),
+                    ],
+                  ),
+                ).whenComplete(() {
+                  if (!mounted) return;
+                  _modalOpen = false;
+                  _maybeShowTrackingNotice();
+                }),
               );
-              if (_issue == 'stale') _issue = null;
-            }
-          });
-        } catch (_) {
-          if (mounted) setState(() => _issue = 'sensor');
-        }
-      },
-      onError: (Object error) {
-        _stopTracking();
-        if (mounted) setState(() => _issue = 'sensor');
-      },
-    );
+            },
+          );
+      if (!handled && mounted) _trackingNoticePending = true;
+    });
   }
 
   double? get _poseCorrection {
@@ -731,6 +833,7 @@ class _SkyScreenState extends ConsumerState<SkyScreen>
       );
     } finally {
       _modalOpen = false;
+      _maybeShowTrackingNotice();
     }
   }
 
@@ -742,6 +845,7 @@ class _SkyScreenState extends ConsumerState<SkyScreen>
     'visuals' => t.visualsUnavailable,
     'iss' => t.issUnavailable,
     'sensor' => t.sensorUnavailable,
+    'sensorNoData' => t.sensorNoData,
     'stale' => t.sensorStale,
     'alignment' => t.alignmentUnavailable,
     'calculation' => t.calculationError,
@@ -1071,6 +1175,7 @@ class _SkyScreenState extends ConsumerState<SkyScreen>
       }
       unawaited(_audio?.pause());
     } else {
+      _maybeShowTrackingNotice();
       if (_followOnResume && _onboarding == null && _observer != null) {
         _followOnResume = false;
         _startTracking();
@@ -1217,6 +1322,7 @@ class _SkyScreenState extends ConsumerState<SkyScreen>
       onDrawerChanged: (open) {
         _dwell.reset();
         setState(() => _drawerOpen = open);
+        if (!open) _maybeShowTrackingNotice();
       },
       drawer: _onboarding != null
           ? null
@@ -1342,8 +1448,12 @@ class _SkyScreenState extends ConsumerState<SkyScreen>
                           _camera == null
                               ? Icons.camera_alt_outlined
                               : Icons.auto_awesome,
-                          _camera == null ? t.cameraMode : t.virtualMode,
-                          _cameraBusy
+                          _trackingUnsupported
+                              ? t.cameraRequiresTracking
+                              : _camera == null
+                              ? t.cameraMode
+                              : t.virtualMode,
+                          _cameraBusy || _trackingUnsupported
                               ? null
                               : () {
                                   _dwell.reset();
@@ -1354,17 +1464,23 @@ class _SkyScreenState extends ConsumerState<SkyScreen>
                         const SizedBox(height: 8),
                         _button(
                           Icons.explore_outlined,
-                          _following ? t.stopTracking : t.startTracking,
-                          () {
-                            if (_following) {
-                              _manualViewRequested = true;
-                              _followOnResume = false;
-                              _stopTracking();
-                              setState(() {});
-                            } else {
-                              _startTracking();
-                            }
-                          },
+                          _trackingUnsupported
+                              ? t.trackingUnsupported
+                              : _following
+                              ? t.stopTracking
+                              : t.startTracking,
+                          _trackingUnsupported
+                              ? null
+                              : () {
+                                  if (_following) {
+                                    _manualViewRequested = true;
+                                    _followOnResume = false;
+                                    _stopTracking();
+                                    setState(() {});
+                                  } else {
+                                    _startTracking();
+                                  }
+                                },
                           active: _following,
                         ),
                       ],

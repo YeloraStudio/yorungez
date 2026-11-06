@@ -2,6 +2,8 @@
 
 Flutter Android/iOS sky-first client of the existing .NET backend. Free to use and advertising-free. English defaults; all delivered interfaces also support Turkish. Existing brand assets and grey/burgundy palette are retained.
 
+Native orientation now probes actual OS support, explains missing tracking once per installation, and bounds silent sensor streams while retaining touch exploration. See [K-058 compatibility and acceptance](../../docs/mobile-sensor-compatibility.md).
+
 Foreground sky/onboarding now prevents automatic display sleep and releases the override on inactivity/background/exit; see [K-052 physical-phone feedback](../../docs/mobile-screen-awake-and-polish.md).
 
 ## Current working slice

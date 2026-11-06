@@ -7,6 +7,18 @@ import '../domain/sky_geometry.dart';
 
 // Only non-personal UI choices. Never put coordinates, pose, tokens or notes here.
 final class MobilePreferences {
+  Future<bool> trackingNoticeSeen() async =>
+      (await SharedPreferences.getInstance()).getInt(
+        'sky.trackingNoticeVersion',
+      ) ==
+      1;
+  Future<void> markTrackingNoticeSeen() async {
+    await (await SharedPreferences.getInstance()).setInt(
+      'sky.trackingNoticeVersion',
+      1,
+    );
+  }
+
   Future<bool> onboardingComplete() async =>
       (await SharedPreferences.getInstance()).getInt(
         'sky.privacyNoticeVersion',
