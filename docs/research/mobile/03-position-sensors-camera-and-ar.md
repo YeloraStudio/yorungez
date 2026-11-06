@@ -1,5 +1,7 @@
 # 03 — Position, sensors, camera and AR catalogue
 
+**K-058 implementation update:** [Runtime capability, one-time notice and no-data deadlines](../../mobile-sensor-compatibility.md) now handle unsupported native devices without a model blacklist. Historical candidate statements below remain dated research; physical A04s/S23/iPhone acceptance remains separate.
+
 **Status:** primary-source findings and proposed native contract; no native device results. **Traceability:** FR-01/02/05, UJ-06, K-047/048.
 
 ## Candidate components

@@ -22,6 +22,11 @@ import CoreMotion
       }
     let stream = YorungezPose()
     pose = stream
+    FlutterMethodChannel(name: "yorungez/pose-capabilities", binaryMessenger: engineBridge.applicationRegistrar.messenger())
+      .setMethodCallHandler { call, result in
+        if call.method == "get" { result(["supported": stream.supportsNorthReference]) }
+        else { result(FlutterMethodNotImplemented) }
+      }
     FlutterEventChannel(name: "yorungez/pose",
       binaryMessenger: engineBridge.applicationRegistrar.messenger()).setStreamHandler(stream)
     screenAwake = YorungezScreenAwake(messenger: engineBridge.applicationRegistrar.messenger())
@@ -65,6 +70,11 @@ final class YorungezPose: NSObject, FlutterStreamHandler {
   private let motion = CMMotionManager()
   private var sink: FlutterEventSink?
   private var observer: NSObjectProtocol?
+  var supportsNorthReference: Bool {
+    let frames = CMMotionManager.availableAttitudeReferenceFrames()
+    return motion.isDeviceMotionAvailable &&
+      (frames.contains(.xTrueNorthZVertical) || frames.contains(.xMagneticNorthZVertical))
+  }
 
   override init() {
     super.init()
@@ -80,12 +90,12 @@ final class YorungezPose: NSObject, FlutterStreamHandler {
   func onListen(withArguments arguments: Any?, eventSink events: @escaping FlutterEventSink) -> FlutterError? {
     stop()
     guard motion.isDeviceMotionAvailable else {
-      return FlutterError(code: "pose_unavailable", message: "Device motion unavailable", details: nil)
+      return FlutterError(code: "pose_unsupported", message: "Device motion unavailable", details: nil)
     }
     let frames = CMMotionManager.availableAttitudeReferenceFrames()
     let trueNorth = frames.contains(.xTrueNorthZVertical)
     guard trueNorth || frames.contains(.xMagneticNorthZVertical) else {
-      return FlutterError(code: "pose_unavailable", message: "North reference unavailable", details: nil)
+      return FlutterError(code: "pose_unsupported", message: "North reference unavailable", details: nil)
     }
     sink = events
     motion.deviceMotionUpdateInterval = 1.0 / 50.0

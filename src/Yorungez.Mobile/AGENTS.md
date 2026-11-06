@@ -1,5 +1,7 @@
 # Yorungez mobile working contract
 
+**K-058 / 6 November 2026 — Native sensor compatibility:** Query actual north-referenced OS pose capability; unsupported devices receive one localized explanation per installation, then retain touch/search/location-based exploration. Bound probe/sample waits and preserve retryable transient failures, freshness/reference/alignment and physical acceptance limits. Persist only the non-personal notice acknowledgement. [Contract and verification](../../docs/mobile-sensor-compatibility.md).
+
 **K-056 / 6 November 2026 — Native icon correction:** Restore the earlier cosmic launcher artwork; the K-055 flat Android adaptive override is withdrawn. Use the same owner art for native startup with platform-appropriate masks/padding. In-app branding and store designs remain approved. [Scope and evidence](../../docs/mobile-launcher-splash-polish.md).
 
 **K-055 / 5 November 2026 — Mobile planning and reminders:** The owner requires native Tonight/Calendar parity, explicit local time plus UTC, verified-account server email reminders and a future push channel foundation. Complete development before regenerating existing-brand app icons and English Google Play showcase assets from genuine emulator captures. [Delivery contract and acceptance plan](../../docs/mobile-night-calendar-reminders.md). Prior science/privacy/account/publication rules remain.

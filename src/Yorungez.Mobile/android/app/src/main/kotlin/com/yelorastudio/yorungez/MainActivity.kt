@@ -27,6 +27,11 @@ class MainActivity : FlutterActivity(), SensorEventListener, EventChannel.Stream
                 else result.notImplemented()
             }
         sensors = getSystemService(SENSOR_SERVICE) as SensorManager
+        MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "yorungez/pose-capabilities")
+            .setMethodCallHandler { call, result ->
+                if (call.method == "get") result.success(mapOf("supported" to (orientationSensor() != null)))
+                else result.notImplemented()
+            }
         EventChannel(flutterEngine.dartExecutor.binaryMessenger, "yorungez/pose")
             .setStreamHandler(this)
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "yorungez/screen")
@@ -57,14 +62,21 @@ class MainActivity : FlutterActivity(), SensorEventListener, EventChannel.Stream
         applyScreenAwake()
     }
 
+    private fun orientationSensor(): Sensor? =
+        sensors.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR)
+            ?: sensors.getDefaultSensor(Sensor.TYPE_GEOMAGNETIC_ROTATION_VECTOR)
+
     override fun onListen(arguments: Any?, events: EventChannel.EventSink) {
         sensors.unregisterListener(this)
         sink = events
         lastTimestamp = 0L
         accuracy = SensorManager.SENSOR_STATUS_UNRELIABLE
-        val sensor = sensors.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR)
-            ?: sensors.getDefaultSensor(Sensor.TYPE_GEOMAGNETIC_ROTATION_VECTOR)
-        if (sensor == null || !sensors.registerListener(this, sensor, SensorManager.SENSOR_DELAY_GAME)) {
+        val sensor = orientationSensor()
+        if (sensor == null) {
+            sink = null
+            events.error("pose_unsupported", "North-referenced orientation unsupported", null)
+        } else if (!sensors.registerListener(this, sensor, SensorManager.SENSOR_DELAY_GAME)) {
+            sink = null
             events.error("pose_unavailable", "North-referenced orientation unavailable", null)
         }
     }
