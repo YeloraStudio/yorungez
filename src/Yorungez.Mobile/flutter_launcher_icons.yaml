@@ -2,10 +2,8 @@ flutter_launcher_icons:
   android: true
   ios: true
   image_path: ../../data/branding/mobile/app-icon-1024.png
-  adaptive_icon_background: '#3C3F43'
-  adaptive_icon_foreground: ../../data/branding/mobile/adaptive-foreground.png
-  adaptive_icon_monochrome: ../../data/branding/mobile/adaptive-monochrome.png
-  adaptive_icon_foreground_inset: 0
+  # The native adaptive XML uses the full cosmic artwork with overscan.
+  # Do not replace it with a generated flat-emblem foreground.
   remove_alpha_ios: true
   background_color_ios: '#3C3F43'
   min_sdk_android: 24

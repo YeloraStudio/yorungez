@@ -31,6 +31,29 @@
       "channels": 4,
       "bytes": 19443,
       "sha256": "02a69c33eed04407c5e3fd9a917b53895dc3fc450fa186c6953e225ef7e56ae8"
+    },
+    "launch-icon-512.png": {
+      "width": 512,
+      "height": 512,
+      "channels": 4,
+      "bytes": 280463,
+      "sha256": "0061b2cd9e70764b0caa42f3beb997b5ca1ce6bf6ad933dd8929d839f20c24a8"
+    },
+    "android-splash-768.png": {
+      "width": 768,
+      "height": 768,
+      "channels": 4,
+      "bytes": 294981,
+      "sha256": "70dcae52e8ab077373dd1d08b2b17fcfc8ccce3c7b0667ed0410c2be971c6822"
+    },
+    "android-launcher-768.png": {
+      "width": 768,
+      "height": 768,
+      "channels": 3,
+      "bytes": 692903,
+      "sha256": "f980ce4162a99f99b33c610b15f6d0ec36b634def46fb6231705903b728a7217"
     }
-  }
+  },
+  "nativeLauncher": "Original cosmic artwork in the central viewport; mirrored adaptive overscan; no flat emblem",
+  "nativeLaunch": "Source artwork with circle mask; Android 12 central 192/288 safe area"
 }
