@@ -90,12 +90,16 @@ final class YorungezPose: NSObject, FlutterStreamHandler {
   func onListen(withArguments arguments: Any?, eventSink events: @escaping FlutterEventSink) -> FlutterError? {
     stop()
     guard motion.isDeviceMotionAvailable else {
-      return FlutterError(code: "pose_unsupported", message: "Device motion unavailable", details: nil)
+      // Report unavailable hardware through the stream so Dart's onError can
+      // select manual mode. Returning an activation error bypasses that handler.
+      events(FlutterError(code: "pose_unsupported", message: "Device motion unavailable", details: nil))
+      return nil
     }
     let frames = CMMotionManager.availableAttitudeReferenceFrames()
     let trueNorth = frames.contains(.xTrueNorthZVertical)
     guard trueNorth || frames.contains(.xMagneticNorthZVertical) else {
-      return FlutterError(code: "pose_unsupported", message: "North reference unavailable", details: nil)
+      events(FlutterError(code: "pose_unsupported", message: "North reference unavailable", details: nil))
+      return nil
     }
     sink = events
     motion.deviceMotionUpdateInterval = 1.0 / 50.0

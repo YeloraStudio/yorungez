@@ -41,8 +41,8 @@ concurrency:
   group: mobile-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 env:
-  FLUTTER_VERSION: 3.41.6
-  FLUTTER_REVISION: db50e20168db8fee486b9abf32fc912de3bc5b6a
+  FLUTTER_VERSION: 3.47.9
+  FLUTTER_REVISION: c197ca5199e9ee5661e865596c9c07294dfab51c
 jobs:
   android:
     runs-on: ubuntu-24.04

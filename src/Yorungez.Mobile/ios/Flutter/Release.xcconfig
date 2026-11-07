@@ -1,1 +1,5 @@
 #include "Generated.xcconfig"
+
+// Fastlane overrides these only for the Runner release target.
+YORUNGEZ_SIGN_STYLE = Automatic
+YORUNGEZ_SIGNING_CERT = Apple Development

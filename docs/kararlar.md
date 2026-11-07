@@ -1,5 +1,7 @@
 # yorungez — Karar kaydı
 
+**K-059 / 7 November 2026 — Fastlane iOS delivery:** The owner requested configuring and releasing the existing iOS application with Fastlane. Preserve the current bundle ID and supplied branding. The release toolchain is aligned to Flutter 3.47.9/Dart 3.13.7 and locked Fastlane 2.241.2/Ruby 4.0.9. [Release runbook, implemented lanes, evidence and remaining Apple/account-deletion/privacy/device gates](mobile-ios-release.md). Native release preparation is authorized; no successful store upload or approval is implied.
+
 **K-058 / 6 November 2026 — Native sensor compatibility:** Query actual north-referenced OS pose capability; unsupported devices receive one localized explanation per installation, then retain touch/search/location-based exploration. Bound probe/sample waits and preserve retryable transient failures, freshness/reference/alignment and physical acceptance limits. Persist only the non-personal notice acknowledgement. [Contract and verification](mobile-sensor-compatibility.md).
 
 **K-057 / 6 November 2026 — Global Web discovery:** The owner requests comprehensive SEO/AI-search discovery, sourced public library growth, Google/Bing/GA4/GTM property setup, native-app coming-soon messaging, a clear non-intrusive PWA update flow and English-only search examples. Preserve free/ad-free/open-source scope, scientific provenance and privacy; optional measurement must exclude personal/location/sensor data. [Delivery contract and provider evidence](web-discovery-seo.md).

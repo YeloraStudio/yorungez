@@ -4,6 +4,7 @@ Run from any directory with Python and GCC on PATH. A host binary is produced
 under ignored .local/mobile-science; Android/iOS builds use the same C sources.
 This is numerical port evidence, not physical device or camera acceptance.
 """
+import sys
 import ctypes as c
 import hashlib
 import json
@@ -40,7 +41,7 @@ def main():
     output = ROOT / ".local/mobile-science"
     output.mkdir(parents=True, exist_ok=True)
     library = output / ("yorungez_sky.dll" if os.name == "nt" else "libyorungez_sky.so")
-    subprocess.run(["gcc", "-shared", "-O2", "-fPIC", "-static-libgcc",
+    subprocess.run(["gcc", "-shared", "-O2", "-fPIC", *(["-static-libgcc"] if sys.platform != "darwin" else []),
                     str(APP / "native/yorungez_sky.c"), str(upstream / "astronomy.c"),
                     "-o", str(library), "-lm"], check=True)
     lib = c.CDLL(str(library))

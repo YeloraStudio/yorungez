@@ -1,5 +1,7 @@
 # Yorungez mobile working contract
 
+**K-059 / 7 November 2026 — Fastlane iOS delivery:** The owner requested configuring and releasing the existing iOS application with Fastlane. Preserve the current bundle ID and supplied branding. The release toolchain is aligned to Flutter 3.47.9/Dart 3.13.7 and locked Fastlane 2.241.2/Ruby 4.0.9. [Release runbook, implemented lanes, evidence and remaining Apple/account-deletion/privacy/device gates](../../docs/mobile-ios-release.md). Native release preparation is authorized; no successful store upload or approval is implied.
+
 **K-058 / 6 November 2026 — Native sensor compatibility:** Query actual north-referenced OS pose capability; unsupported devices receive one localized explanation per installation, then retain touch/search/location-based exploration. Bound probe/sample waits and preserve retryable transient failures, freshness/reference/alignment and physical acceptance limits. Persist only the non-personal notice acknowledgement. [Contract and verification](../../docs/mobile-sensor-compatibility.md).
 
 **K-056 / 6 November 2026 — Native icon correction:** Restore the earlier cosmic launcher artwork; the K-055 flat Android adaptive override is withdrawn. Use the same owner art for native startup with platform-appropriate masks/padding. In-app branding and store designs remain approved. [Scope and evidence](../../docs/mobile-launcher-splash-polish.md).

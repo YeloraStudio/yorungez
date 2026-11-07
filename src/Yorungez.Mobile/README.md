@@ -24,7 +24,7 @@ Shared API sign-in, registration/verification-email requests, profile and server
 
 ## Toolchain and run
 
-Pinned Flutter **3.41.6** (`db50e20168db8fee486b9abf32fc912de3bc5b6a`), Dart **3.11.4**. See `.flutter-version` and `pubspec.lock`. Android minimum **24**; iOS minimum **15**. The installed global Flutter SDK was not upgraded. Development ID `com.yelorastudio.yorungez` is unregistered; release signing is unconfigured.
+Pinned Flutter **3.47.9** (`c197ca5199e9ee5661e865596c9c07294dfab51c`), Dart **3.13.7** (K-059 release-toolchain alignment). See `.flutter-version` and `pubspec.lock`. Android minimum **24**; iOS minimum **15**. The installed global Flutter SDK was not upgraded. Bundle ID `com.yelorastudio.yorungez` stays unchanged; Apple team ownership and the App Store Connect record are confirmed; release archives use the owner-selected renewed certificate. [Fastlane iOS release runbook](../../docs/mobile-ios-release.md).
 
 From this directory:
 
@@ -36,6 +36,12 @@ flutter run -d <device-id>
 ```
 
 The deterministic staging tool verifies canonical source/data/image/audio hashes and creates ignored `assets/generated/` copies without downloading scientific data. Do not hand-edit generated assets. Normal native builds compile the checked-in pinned C source. Regenerate branded icons with `dart run flutter_launcher_icons` only after a reviewed brand-master change.
+
+The iOS Runner build phase also runs staging before Flutter bundles assets, including when building directly from Xcode. Missing or changed canonical sources stop the build instead of shipping missing imagery. If an older installation reports `Unable to load asset` or `Some sky imagery could not load`, run the commands above and fully rebuild/relaunch the app; hot reload does not replace its installed asset bundle. `flutter test --no-pub test/asset_bundle_test.dart` checks every staged file through Flutter's asset bundle and verifies its hash (FR-03/FR-08, K-051 imagery).
+
+**7 November 2026 asset repair evidence:** this checkout had no generated asset directory. Local staging restored 106 verified assets. The asset-bundle and catalogue suites passed all seven tests; analysis passed. An unsigned debug iOS build passed, and all 106 files inside the resulting `Runner.app` matched the staged manifest hashes. These checks used the already-installed Flutter 3.47.9 / Dart 3.13.7, not the project pin; they do not establish pinned-toolchain or physical-iPhone acceptance. Existing local toolchain/Swift-package changes were preserved.
+
+**iOS unavailable-motion handling (FR-02/FR-09, K-050):** unavailable Core Motion hardware or a missing north reference now emits a pose stream error and acknowledges stream activation normally. Previously returning an activation error bypassed Dart's stream `onError` handler and produced a services-library exception. The existing handler stops tracking, clears sensor/alignment state and shows the EN/TR touch-exploration fallback. A channel regression test verifies stream-error delivery; analysis passes. Physical sensor accuracy remains unverified. Rebuild the native app after this Swift change; hot reload is insufficient.
 
 For the host reference/ABI tests, install GCC, Python and Node, then restore the existing pinned JS comparison package explicitly:
 
