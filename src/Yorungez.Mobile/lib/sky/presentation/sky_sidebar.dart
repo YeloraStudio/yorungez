@@ -20,6 +20,10 @@ class SkySidebar extends StatelessWidget {
     required this.toggleMusic,
     required this.changeLayer,
     required this.showPrivacy,
+    required this.dwellEnabled,
+    required this.zoomEnabled,
+    required this.changeDwell,
+    required this.changeZoom,
     this.savingPreferences = false,
     this.simulated = false,
     required this.showTonight,
@@ -36,6 +40,8 @@ class SkySidebar extends StatelessWidget {
       showTimeZone,
       returnToLive;
   final bool muted;
+  final bool dwellEnabled, zoomEnabled;
+  final ValueChanged<bool> changeDwell, changeZoom;
   final String language, location, clock;
   final VoidCallback changeLocation,
       calibrate,
@@ -135,6 +141,20 @@ class SkySidebar extends StatelessWidget {
                       onPressed: () => closeThen(returnToLive),
                       child: Text(t.returnLive),
                     ),
+                  const Divider(height: 24),
+                  SwitchListTile(
+                    contentPadding: EdgeInsets.zero,
+                    title: Text(t.dwellSetting),
+                    value: dwellEnabled,
+                    onChanged: changeDwell,
+                  ),
+                  SwitchListTile(
+                    contentPadding: EdgeInsets.zero,
+                    title: Text(t.zoomSetting),
+                    subtitle: Text(t.zoomSettingHelp),
+                    value: zoomEnabled,
+                    onChanged: changeZoom,
+                  ),
                   const Divider(height: 24),
                   Text(
                     t.skyLayers,

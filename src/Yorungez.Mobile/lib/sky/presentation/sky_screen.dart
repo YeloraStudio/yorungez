@@ -37,6 +37,7 @@ class SkyScreen extends ConsumerStatefulWidget {
 
 class _SkyScreenState extends ConsumerState<SkyScreen>
     with WidgetsBindingObserver, SingleTickerProviderStateMixin, RouteAware {
+  static const _defaultFov = 60.0, _minFov = 20.0, _maxFov = 100.0;
   final _preferences = MobilePreferences();
   final _screenAwake = ScreenAwake();
   final _layers = <SkyLayer>{
@@ -79,10 +80,12 @@ class _SkyScreenState extends ConsumerState<SkyScreen>
       _locating = false,
       _cameraBusy = false;
   bool _muted = false, _following = false, _cameraPrepared = false;
+  bool _dwellEnabled = true, _zoomEnabled = false;
   int? _onboarding = 0;
   int _generation = 0, _cameraGeneration = 0;
   double? _yawOffset;
-  double _fov = 60;
+  double _fov = _defaultFov;
+  double? _pinchStartFov;
   String? _selected, _issue;
   String? _pendingFocus, _focusedTarget;
   PageRoute<dynamic>? _route;
@@ -143,10 +146,12 @@ class _SkyScreenState extends ConsumerState<SkyScreen>
   }
 
   Future<void> _initialise() async {
-    var completed = false, music = true;
+    var completed = false, music = true, dwell = true, zoom = false;
     try {
       completed = await _preferences.onboardingComplete();
       music = await _preferences.musicEnabled();
+      dwell = await _preferences.dwellEnabled();
+      zoom = await _preferences.zoomEnabled();
     } catch (_) {
       /* Optional UI storage. */
     }
@@ -157,6 +162,8 @@ class _SkyScreenState extends ConsumerState<SkyScreen>
       _loading = false;
       _onboarding = completed ? null : 0;
       _muted = !music;
+      _dwellEnabled = dwell;
+      _zoomEnabled = zoom;
       if (accountPreferences != null) {
         _layers
           ..clear()
@@ -438,7 +445,6 @@ class _SkyScreenState extends ConsumerState<SkyScreen>
       if (permissionOnly) {
         await next.dispose();
       } else {
-        _fov = 60;
         _camera = next;
         if (!_following) _startTracking();
       }
@@ -455,7 +461,6 @@ class _SkyScreenState extends ConsumerState<SkyScreen>
     _cameraGeneration++;
     final camera = _camera;
     _camera = null;
-    _fov = 60;
     await camera?.dispose();
   }
 
@@ -967,8 +972,60 @@ class _SkyScreenState extends ConsumerState<SkyScreen>
     }
   }
 
+  void _changeDwell(bool enabled) {
+    _dwell.reset();
+    setState(() => _dwellEnabled = enabled);
+    unawaited(_preferences.setDwellEnabled(enabled).catchError((Object _) {}));
+  }
+
+  void _changeZoom(bool enabled) {
+    _pinchStartFov = null;
+    _dwell.reset();
+    setState(() {
+      _zoomEnabled = enabled;
+      if (!enabled) _fov = _defaultFov;
+    });
+    unawaited(_preferences.setZoomEnabled(enabled).catchError((Object _) {}));
+  }
+
+  void _zoomTo(double fov) {
+    final next = fov.clamp(_minFov, _maxFov);
+    if (next == _fov) return;
+    _dwell.reset();
+    setState(() => _fov = next);
+  }
+
+  void _updateMapGesture(ScaleUpdateDetails details, Size size) {
+    if (details.pointerCount > 1) {
+      if (!_zoomEnabled) return;
+      final start = _pinchStartFov ??= _fov;
+      final scale = details.scale;
+      if (scale.isFinite && scale > 0) {
+        // Scale focal length so the gesture matches the perspective projection.
+        _zoomTo(2 * math.atan(math.tan(start * radians / 2) / scale) / radians);
+      }
+      return;
+    }
+    if (_following || details.focalPointDelta == Offset.zero) return;
+    _dwell.reset();
+    _focusedTarget = null;
+    _manualViewRequested = true;
+    final delta = details.focalPointDelta;
+    setState(() {
+      _pose = ViewPose.horizon(
+        (_pose.forward.azimuth - delta.dx * _fov / size.width + 360) % 360,
+        (_pose.forward.altitude + delta.dy * _fov / size.height).clamp(
+          -90.0,
+          90.0,
+        ),
+      );
+    });
+  }
+
   void _updateDwell() {
-    if (!mounted ||
+    if (!_dwellEnabled ||
+        _pinchStartFov != null ||
+        !mounted ||
         !_active ||
         _onboarding != null ||
         _modalOpen ||
@@ -1036,7 +1093,7 @@ class _SkyScreenState extends ConsumerState<SkyScreen>
       frame: _frame!,
       catalogue: _catalogue!,
       pose: _pose,
-      fov: _fov,
+      fov: _camera == null ? _fov : _defaultFov,
       layers: Set.unmodifiable(_layers),
       language: language,
       cardinals: [t.northLabel, t.eastLabel, t.southLabel, t.westLabel],
@@ -1347,6 +1404,10 @@ class _SkyScreenState extends ConsumerState<SkyScreen>
               showSources: () => unawaited(_sourceSheet()),
               showConnection: () => context.push('/connection'),
               toggleMusic: _toggleMusic,
+              dwellEnabled: _dwellEnabled,
+              zoomEnabled: _zoomEnabled,
+              changeDwell: _changeDwell,
+              changeZoom: _changeZoom,
               changeLayer: (layer, enabled) {
                 if (_preferencesBusy) return;
                 _dwell.reset();
@@ -1387,25 +1448,10 @@ class _SkyScreenState extends ConsumerState<SkyScreen>
             Positioned.fill(
               child: GestureDetector(
                 behavior: HitTestBehavior.opaque,
-                // Fixed FOV. A manual pan is an explicit fallback only; no pinch zoom.
-                onPanUpdate: _following || _camera != null
+                onScaleEnd: (_) => _pinchStartFov = null,
+                onScaleUpdate: _camera != null || (_following && !_zoomEnabled)
                     ? null
-                    : (details) {
-                        _dwell.reset();
-                        _focusedTarget = null;
-                        _manualViewRequested = true;
-                        setState(
-                          () => _pose = ViewPose.horizon(
-                            (_pose.forward.azimuth -
-                                    details.delta.dx * _fov / bounds.maxWidth +
-                                    360) %
-                                360,
-                            (_pose.forward.altitude +
-                                    details.delta.dy * _fov / bounds.maxHeight)
-                                .clamp(-90.0, 90.0),
-                          ),
-                        );
-                      },
+                    : (details) => _updateMapGesture(details, bounds.biggest),
                 onTapUp: (event) {
                   final id = painter
                       ?.pick(event.localPosition, bounds.biggest)
@@ -1483,6 +1529,33 @@ class _SkyScreenState extends ConsumerState<SkyScreen>
                                 },
                           active: _following,
                         ),
+                        if (_zoomEnabled &&
+                            _camera == null &&
+                            frame != null) ...[
+                          const SizedBox(height: 8),
+                          Flex(
+                            direction: landscape
+                                ? Axis.horizontal
+                                : Axis.vertical,
+                            children: [
+                              _button(
+                                Icons.add,
+                                t.zoomIn,
+                                _fov <= _minFov
+                                    ? null
+                                    : () => _zoomTo(_fov / 1.25),
+                              ),
+                              const SizedBox(width: 8, height: 8),
+                              _button(
+                                Icons.remove,
+                                t.zoomOut,
+                                _fov >= _maxFov
+                                    ? null
+                                    : () => _zoomTo(_fov * 1.25),
+                              ),
+                            ],
+                          ),
+                        ],
                       ],
                     ),
                   ),
@@ -1645,7 +1718,7 @@ class _SkyScreenState extends ConsumerState<SkyScreen>
                                     ),
                                     child: Text(t.objectDetails),
                                   ),
-                                ] else
+                                ] else if (_dwellEnabled)
                                   Text(
                                     t.dwellHelp,
                                     style: const TextStyle(

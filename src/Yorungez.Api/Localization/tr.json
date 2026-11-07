@@ -41,6 +41,7 @@
   "Identity.EmailRequestAccepted": "Hesap uygunsa e-posta gönderilecek. Gelen kutunu kontrol et.",
   "Identity.EmailConfirmed": "E-posta adresin doğrulandı. Giriş yapabilirsin.",
   "Identity.LoggedOut": "Bu oturumdan çıkış yapıldı.",
+  "Identity.AccountDeleted": "Yorungez hesabın ve hesabına bağlı veriler silindi.",
   "Identity.PasswordReset": "Parolan yenilendi. Yeniden giriş yapabilirsin.",
   "Catalog.TermNotFound": "Bu terim bulunamadı.",
   "Category.coordinates": "Konum ve koordinatlar",

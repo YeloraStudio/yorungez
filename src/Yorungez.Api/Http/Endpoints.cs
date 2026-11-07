@@ -110,6 +110,8 @@ public static class Endpoints
             Receipt(await sender.Send(new ForgotPasswordCommand(input.Email, Language), ct), texts, 202));
         auth.MapPost("/reset-password", async (ResetInput input, ISender sender, ITextCatalog texts, CancellationToken ct) =>
             Receipt(await sender.Send(new ResetPasswordCommand(input.UserId, input.Token, input.Password), ct), texts));
+        auth.MapPost("/delete-account", async (Credentials input, ISender sender, ITextCatalog texts, CancellationToken ct) =>
+            Receipt(await sender.Send(new DeleteAccountCommand(input.Email, input.Password), ct), texts));
         auth.MapPost("/logout", async (ClaimsPrincipal user, HttpContext context, ISender sender, ITextCatalog texts, CancellationToken ct) =>
         {
             var result = await sender.Send(new LogoutCommand(UserId(user), Guid.Parse(user.FindFirstValue("sid")!)), ct);
