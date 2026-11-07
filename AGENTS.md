@@ -1,5 +1,7 @@
 # yorungez çalışma rehberi
 
+**K-059 / 7 November 2026 — Native sky controls:** Reticle selection keeps its one-second default and can be turned off. Optional virtual sky zoom defaults off, supports pinch and buttons, and resets to 60° when disabled. Both switches are local UI preferences. The optional zoom supersedes the earlier fixed-view requirement for virtual mode.
+
 **K-058 / 6 November 2026 — Native sensor compatibility:** Detect actual north-referenced orientation capability, rather than phone model. Unsupported devices receive one EN/TR explanation per installation and retain touch/search/location-based exploration. Silent streams must time out; transient failures remain retryable. Only a non-personal notice acknowledgement may persist; preserve pose freshness/reference/alignment and physical acceptance limits. [Contract and verification](docs/mobile-sensor-compatibility.md).
 
 **K-057 delivery / 6 November 2026:** Eight sourced EN/TR astronomy guides, 28 static public pages, science/about/mobile-coming-soon/privacy, full metadata/sitemap/schema, consent-gated GA4 and PWA update polish are live via PR 33. Google Domain/Bing ownership, GA4/GTM and their requested setup are completed; Google processed 28 sitemap URLs, Bing is processing and IndexNow accepted 28 (202). Existing browser PWA was explicitly upgraded. [Provider and live evidence](docs/web-discovery-seo.md). Indexing/traffic/AI citations and physical/store acceptance are not completion claims.

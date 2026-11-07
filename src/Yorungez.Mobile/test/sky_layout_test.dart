@@ -74,16 +74,84 @@ void main() {
           (tester.widget<CustomPaint>(scene).painter! as SkyPainter).frame;
       expect(frame.points.length, 5277);
       expect(frame.points['moon'], isNotNull);
+      SkyPainter currentPainter() =>
+          tester.widget<CustomPaint>(scene).painter! as SkyPainter;
+      expect(currentPainter().fov, 60);
+      expect(find.byTooltip('Zoom in'), findsNothing);
       expect(tester.takeException(), isNull);
       await tester.tap(find.byIcon(Icons.menu_rounded));
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 400));
       expect(find.text('Language'), findsOneWidget);
       expect(find.text('Cosmic ambience'), findsOneWidget);
+      final dwellTitle = find.text('Reticle auto-select (1 s)');
+      final zoomTitle = find.text('Sky map zoom');
+      final dwell = find.ancestor(
+        of: dwellTitle,
+        matching: find.byType(SwitchListTile),
+      );
+      final zoom = find.ancestor(
+        of: zoomTitle,
+        matching: find.byType(SwitchListTile),
+      );
+      final drawerList = find
+          .descendant(
+            of: find.byType(Drawer),
+            matching: find.byType(Scrollable),
+          )
+          .first;
+      await tester.scrollUntilVisible(dwellTitle, 100, scrollable: drawerList);
+      await tester.pump();
+      expect(tester.widget<SwitchListTile>(dwell).value, isTrue);
+      await tester.tap(dwellTitle);
+      await tester.pump();
+      await tester.scrollUntilVisible(zoomTitle, 100, scrollable: drawerList);
+      await tester.pump();
+      expect(tester.widget<SwitchListTile>(zoom).value, isFalse);
+      await tester.tap(zoomTitle);
+      await tester.pump();
       expect(tester.takeException(), isNull);
       await tester.tap(find.byIcon(Icons.close));
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 400));
+      expect(
+        find.text('Hold a target in the reticle for 1 second'),
+        findsNothing,
+      );
+      expect(
+        (await SharedPreferences.getInstance()).getBool('sky.dwellEnabled'),
+        isFalse,
+      );
+      expect(
+        (await SharedPreferences.getInstance()).getBool('sky.zoomEnabled'),
+        isTrue,
+      );
+      await tester.tap(find.byTooltip('Zoom in'));
+      await tester.pump();
+      expect(currentPainter().fov, 48);
+      await tester.tap(find.byTooltip('Zoom out'));
+      await tester.pump();
+      expect(currentPainter().fov, 60);
+      final first = await tester.startGesture(const Offset(125, 360));
+      final second = await tester.startGesture(const Offset(245, 360));
+      await first.moveBy(const Offset(-40, 0));
+      await second.moveBy(const Offset(40, 0));
+      await first.up();
+      await second.up();
+      await tester.pump();
+      expect(currentPainter().fov, lessThan(60));
+      await tester.tap(find.byIcon(Icons.menu_rounded));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 400));
+      await tester.scrollUntilVisible(zoomTitle, 100, scrollable: drawerList);
+      await tester.pump();
+      await tester.tap(zoomTitle);
+      await tester.pump();
+      await tester.tap(find.byIcon(Icons.close));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 400));
+      expect(currentPainter().fov, 60);
+      expect(find.byTooltip('Zoom in'), findsNothing);
       container.read(localeProvider.notifier).select('tr');
       await tester.pumpWidget(
         UncontrolledProviderScope(

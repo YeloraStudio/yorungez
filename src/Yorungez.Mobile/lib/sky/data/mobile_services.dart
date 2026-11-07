@@ -7,6 +7,26 @@ import '../domain/sky_geometry.dart';
 
 // Only non-personal UI choices. Never put coordinates, pose, tokens or notes here.
 final class MobilePreferences {
+  Future<bool> dwellEnabled() async =>
+      (await SharedPreferences.getInstance()).getBool('sky.dwellEnabled') ??
+      true;
+  Future<void> setDwellEnabled(bool enabled) async {
+    await (await SharedPreferences.getInstance()).setBool(
+      'sky.dwellEnabled',
+      enabled,
+    );
+  }
+
+  Future<bool> zoomEnabled() async =>
+      (await SharedPreferences.getInstance()).getBool('sky.zoomEnabled') ??
+      false;
+  Future<void> setZoomEnabled(bool enabled) async {
+    await (await SharedPreferences.getInstance()).setBool(
+      'sky.zoomEnabled',
+      enabled,
+    );
+  }
+
   Future<bool> trackingNoticeSeen() async =>
       (await SharedPreferences.getInstance()).getInt(
         'sky.trackingNoticeVersion',

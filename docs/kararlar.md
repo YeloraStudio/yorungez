@@ -1,5 +1,11 @@
 # yorungez — Karar kaydı
 
+**K-061 / 7 November 2026 — Play release readiness:** The owner chose audiences aged 13 and above and approved the IARC terms and reuse of existing Play Console test lists. Account settings and both privacy pages link to the bilingual password-confirmed deletion page. The identity delete invalidates all sessions and removes notebook records, reminders, preferences and queued emails. The PostgreSQL ownership constraints require Identity to migrate before Notebook on the shared database. Verify the live deletion page, backup retention and restore handling before submitting Data safety. [Play deletion requirements](https://support.google.com/googleplay/android-developer/answer/13327111?hl=en).
+
+**K-060 / 7 November 2026 — Google Play identity:** The owner chose `com.cnonestudio.yorungez` as the Android package. Play Console reported the name available during draft preparation. The package identity differs from the earlier development APK; Play registration, signing and submission have their own gates.
+
+**K-059 / 7 November 2026 — Native sky controls:** Reticle selection keeps its one-second default and can be turned off. Virtual sky zoom defaults off and supports pinch and buttons when enabled. Disabling zoom restores 60°. Both switches are local UI preferences. This supersedes the fixed-view requirement in K-051 for the virtual sky.
+
 **K-058 / 6 November 2026 — Native sensor compatibility:** Query actual north-referenced OS pose capability; unsupported devices receive one localized explanation per installation, then retain touch/search/location-based exploration. Bound probe/sample waits and preserve retryable transient failures, freshness/reference/alignment and physical acceptance limits. Persist only the non-personal notice acknowledgement. [Contract and verification](mobile-sensor-compatibility.md).
 
 **K-057 / 6 November 2026 — Global Web discovery:** The owner requests comprehensive SEO/AI-search discovery, sourced public library growth, Google/Bing/GA4/GTM property setup, native-app coming-soon messaging, a clear non-intrusive PWA update flow and English-only search examples. Preserve free/ad-free/open-source scope, scientific provenance and privacy; optional measurement must exclude personal/location/sensor data. [Delivery contract and provider evidence](web-discovery-seo.md).

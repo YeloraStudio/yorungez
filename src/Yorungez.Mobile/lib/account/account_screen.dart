@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../app/providers.dart';
+import '../core/presentation/external_link.dart';
 import '../l10n/generated/app_localizations.dart';
 import 'account_models.dart';
 import 'account_widgets.dart';
@@ -361,6 +362,12 @@ class _AccountScreenState extends ConsumerState<AccountScreen> {
                         ),
                       ],
                       const SizedBox(height: 16),
+                      ExternalLink(
+                        url:
+                            'https://yorungez.com/${t.localeName}/account/delete-account',
+                        label: t.deleteAccount,
+                      ),
+                      const SizedBox(height: 8),
                       TextButton(
                         onPressed: () => context.go('/'),
                         child: Text(t.backToSky),

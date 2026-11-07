@@ -41,6 +41,7 @@
   "Identity.EmailRequestAccepted": "If the account is eligible, an email will be sent. Check your inbox.",
   "Identity.EmailConfirmed": "Your email address has been verified. You can sign in.",
   "Identity.LoggedOut": "You have been signed out of this session.",
+  "Identity.AccountDeleted": "Your Yorungez account and its data were deleted.",
   "Identity.PasswordReset": "Your password has been reset. You can sign in again.",
   "Catalog.TermNotFound": "This term was not found.",
   "Category.coordinates": "Location and coordinates",

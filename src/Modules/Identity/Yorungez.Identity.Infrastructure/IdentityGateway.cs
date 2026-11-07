@@ -62,6 +62,14 @@ public sealed class IdentityGateway(IdentityStore store, UserManager<Account> us
 
     private async Task<Account> LoginAccount(string emailAddress, string password)
     {
+        var account = await CheckCredentials(emailAddress, password);
+        if (!account.EmailConfirmed) throw new AppFailure("Identity.EmailNotConfirmed", FailureKind.Forbidden);
+        await users.ResetAccessFailedCountAsync(account);
+        return account;
+    }
+
+    private async Task<Account> CheckCredentials(string emailAddress, string password)
+    {
         var account = await users.FindByEmailAsync(emailAddress.Trim());
         if (account is null)
         {
@@ -74,9 +82,16 @@ public sealed class IdentityGateway(IdentityStore store, UserManager<Account> us
             await users.AccessFailedAsync(account);
             throw InvalidCredentials();
         }
-        if (!account.EmailConfirmed) throw new AppFailure("Identity.EmailNotConfirmed", FailureKind.Forbidden);
-        await users.ResetAccessFailedCountAsync(account);
         return account;
+    }
+
+    public async Task DeleteAccountAsync(DeleteAccountCommand command, CancellationToken ct)
+    {
+        var account = await CheckCredentials(command.Email, command.Password);
+        ct.ThrowIfCancellationRequested();
+        // PostgreSQL cascades the delete atomically to every owned row, including notebook data.
+        if (!(await users.DeleteAsync(account)).Succeeded)
+            throw new AppFailure("Common.Conflict", FailureKind.Conflict);
     }
 
     public async Task<TokenPair> RefreshAsync(RefreshCommand command, CancellationToken ct)

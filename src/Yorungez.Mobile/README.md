@@ -10,11 +10,11 @@ Foreground sky/onboarding now prevents automatic display sleep and releases the 
 
 Native Tonight/Calendar now reuse canonical offline events and the shared solver, with explicit device/manual IANA local time plus UTC, standard visibility intervals and event-to-simulation/live navigation. Verified accounts can schedule/cancel server email reminders; future push remains disabled until APNs/FCM and consent are implemented. [Delivery, API and verification](../../docs/mobile-night-calendar-reminders.md). [Native icon exports](../../data/branding/mobile/manifest.json) and [English store showcase](../../data/store/google-play/en-US/README.md) preserve the owner logo.
 
-Home is a full-screen, phone-first calculated sky with no mobile terrain or ordinary zoom. First launch explains privacy and optional foreground GPS/rear camera, supports manual coordinates/an explicit Istanbul example, and gives calibration guidance. Search is secondary. [Binding requirements](../../docs/mobile-immersive-discovery-plan.md) and [implementation evidence / open gates](../../docs/mobile-immersive-discovery-evidence.md) are the current contract.
+Home is a full-screen, phone-first calculated sky. First launch explains privacy and optional foreground GPS/rear camera, supports manual coordinates/an explicit Istanbul example, and gives calibration guidance. Search is secondary. [Binding requirements](../../docs/mobile-immersive-discovery-plan.md) and [implementation evidence / open gates](../../docs/mobile-immersive-discovery-evidence.md) are the current contract.
 
 - Offline catalogue: 5,073 stars, 88 constellations, 107 deep-sky objects, nine solar bodies and ISS identity (5,278 total; a station direction requires fresh elements).
-- Pinned Astronomy Engine C/FFI, one bounded serial worker, one-second reticle dwell, bilingual name/brief/target AZ/EL and animated calculated apparent tracks.
-- Source-based stellar glow, nine illustrative solar photos with computed disc phase, selected enlargement, 85 spherical constellation figures/lines and a registered 360° ESO galactic background. Fixed 60° short-axis view; explicit manual fallback, no pinch zoom.
+- Pinned Astronomy Engine C/FFI, one bounded serial worker, optional one-second reticle dwell, bilingual name/brief/target AZ/EL and animated calculated apparent tracks. Dwell defaults on and can be switched off in Settings.
+- Source-based stellar glow, nine illustrative solar photos with computed disc phase, selected enlargement, 85 spherical constellation figures/lines and a registered 360° ESO galactic background. Settings offers virtual sky pinch and button zoom, off by default at 60°. Both controls are device-local.
 - Closed sidebar with location/UTC/layers and music/language at the bottom. Licensed Cylinder Four looping ambience and immediate persistent mute.
 - Android/iOS native pose adapters, current WMM2025 magnetic-declination correction when applicable, sensor/reference/freshness gates and manual known-reference calibration. Physical accuracy is not yet accepted.
 - Optional audio-free rear-camera preview. Lens/crop/FOV alignment remains approximate until physically measured.
@@ -24,7 +24,7 @@ Shared API sign-in, registration/verification-email requests, profile and server
 
 ## Toolchain and run
 
-Pinned Flutter **3.41.6** (`db50e20168db8fee486b9abf32fc912de3bc5b6a`), Dart **3.11.4**. See `.flutter-version` and `pubspec.lock`. Android minimum **24**; iOS minimum **15**. The installed global Flutter SDK was not upgraded. Development ID `com.yelorastudio.yorungez` is unregistered; release signing is unconfigured.
+Pinned Flutter **3.41.6** (`db50e20168db8fee486b9abf32fc912de3bc5b6a`), Dart **3.11.4**. See `.flutter-version` and `pubspec.lock`. Android minimum **24**; iOS minimum **15**. Android application ID is `com.cnonestudio.yorungez`; earlier owner APKs use `com.yelorastudio.yorungez` and are installed separately. Android release signing is unconfigured.
 
 From this directory:
 
