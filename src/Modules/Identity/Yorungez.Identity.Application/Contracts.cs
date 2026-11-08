@@ -13,6 +13,7 @@ public sealed record ConfirmEmailCommand(Guid UserId, string Token) : ICommand<A
 public sealed record LoginCommand(string Email, string Password) : ICommand<TokenPair>;
 public sealed record RefreshCommand(string RefreshToken) : ICommand<TokenPair>;
 public sealed record LogoutCommand(Guid UserId, Guid FamilyId) : ICommand<ActionReceipt>;
+public sealed record DeleteAccountCommand(string Email, string Password) : ICommand<ActionReceipt>;
 public sealed record ResendConfirmationCommand(string Email, string Language) : ICommand<ActionReceipt>;
 public sealed record ForgotPasswordCommand(string Email, string Language) : ICommand<ActionReceipt>;
 public sealed record ResetPasswordCommand(Guid UserId, string Token, string Password) : ICommand<ActionReceipt>;
@@ -28,6 +29,7 @@ public interface IIdentityGateway
     Task<BrowserSession> LoginBrowserAsync(BrowserLoginCommand command, CancellationToken ct);
     Task<TokenPair> RefreshAsync(RefreshCommand command, CancellationToken ct);
     Task LogoutAsync(LogoutCommand command, CancellationToken ct);
+    Task DeleteAccountAsync(DeleteAccountCommand command, CancellationToken ct);
     Task ResendConfirmationAsync(ResendConfirmationCommand command, CancellationToken ct);
     Task ForgotPasswordAsync(ForgotPasswordCommand command, CancellationToken ct);
     Task ResetPasswordAsync(ResetPasswordCommand command, CancellationToken ct);
@@ -69,6 +71,16 @@ public sealed class LogoutHandler(IIdentityGateway gateway) : IRequestHandler<Lo
 {
     public async Task<ActionReceipt> Handle(LogoutCommand request, CancellationToken ct)
     { await gateway.LogoutAsync(request, ct); return new("Identity.LoggedOut"); }
+}
+public sealed class DeleteAccountHandler(IIdentityGateway gateway) : IRequestHandler<DeleteAccountCommand, ActionReceipt>
+{
+    public async Task<ActionReceipt> Handle(DeleteAccountCommand request, CancellationToken ct)
+    {
+        Input.Email(request.Email);
+        Input.PasswordSize(request.Password);
+        await gateway.DeleteAccountAsync(request, ct);
+        return new("Identity.AccountDeleted");
+    }
 }
 public sealed class ResendHandler(IIdentityGateway gateway) : IRequestHandler<ResendConfirmationCommand, ActionReceipt>
 {

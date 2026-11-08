@@ -47,6 +47,50 @@ void main() {
   );
 
   testWidgets(
+    'Milky Way details open a glossary that follows the current app language',
+    (tester) async {
+      final container = ProviderContainer(
+        overrides: [catalogueProvider.overrideWith((ref) async => catalogue)],
+      );
+      addTearDown(container.dispose);
+      container.read(localeProvider.notifier).select('tr');
+      container.read(routerProvider).go('/catalogue?pick=true');
+      await tester.pumpWidget(
+        UncontrolledProviderScope(
+          container: container,
+          child: const YorungezApp(),
+        ),
+      );
+      await tester.pumpAndSettle();
+      await tester.tap(find.widgetWithText(FilterChip, 'Gökadalar'));
+      await tester.pumpAndSettle();
+      await tester.enterText(find.byType(TextField), 'milkyway');
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Samanyolu'));
+      await tester.pumpAndSettle();
+      expect(find.textContaining('ESO/S. Brunier'), findsOneWidget);
+      expect(find.text('Merkez bölgesini keşfet'), findsOneWidget);
+      expect(find.text('Azimut'), findsNothing);
+      await tester.tap(find.byTooltip('Astronomi sözlüğü'));
+      await tester.pumpAndSettle();
+      await tester.enterText(find.byType(TextField), 'horizontal direction');
+      await tester.pumpAndSettle();
+      expect(find.text('Azimut'), findsOneWidget);
+      expect(find.text('Azimuth'), findsNothing);
+      expect(find.textContaining('90° azimut doğuya'), findsOneWidget);
+      expect(find.textContaining('90° means look east'), findsNothing);
+
+      container.read(localeProvider.notifier).select('en');
+      await tester.pumpAndSettle();
+      expect(find.text('Astronomy glossary'), findsOneWidget);
+      expect(find.text('Azimut'), findsNothing);
+      expect(find.text('Azimuth'), findsOneWidget);
+      expect(find.textContaining('90° azimut doğuya'), findsNothing);
+      expect(find.textContaining('90° means look east'), findsOneWidget);
+    },
+  );
+
+  testWidgets(
     'Turkish UI at narrow large-text size keeps menu and language selection usable',
     (tester) async {
       tester.view.physicalSize = const Size(320, 640);
@@ -83,6 +127,8 @@ void main() {
             .first,
       );
       expect(find.text('Dil'), findsOneWidget);
+      await tester.ensureVisible(find.byType(DropdownButtonFormField<String>));
+      await tester.pumpAndSettle();
       await tester.tap(find.byType(DropdownButtonFormField<String>));
       await tester.pumpAndSettle();
       await tester.tap(find.text('English').last);

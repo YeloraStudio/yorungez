@@ -7,11 +7,15 @@ import '../../app/providers.dart';
 import '../../core/presentation/catalogue_state.dart';
 import '../../l10n/generated/app_localizations.dart';
 import 'catalogue_screen.dart';
+import 'finder_chart.dart';
+import 'survey_visual.dart';
 import '../../core/presentation/external_link.dart';
 import '../../account/account_models.dart';
 import '../../account/account_widgets.dart';
 import '../../account/notebook_screen.dart';
 import '../../planning/planning_time.dart';
+import '../../planning/observing_guide.dart';
+import '../domain/sky_object.dart';
 
 class ObjectScreen extends ConsumerWidget {
   const ObjectScreen({super.key, required this.id});
@@ -20,7 +24,15 @@ class ObjectScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final text = AppLocalizations.of(context);
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        actions: [
+          IconButton(
+            tooltip: text.glossaryTitle,
+            icon: const Icon(Icons.menu_book_outlined),
+            onPressed: () => context.push('/glossary'),
+          ),
+        ],
+      ),
       body: SafeArea(
         child: CatalogueState(
           builder: (catalogue) {
@@ -44,7 +56,7 @@ class ObjectScreen extends ConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    kindLabel(text, object.kind),
+                    objectKindLabel(text, object),
                     style: const TextStyle(color: Color(0xFFC9B6A6)),
                   ),
                   const SizedBox(height: 10),
@@ -55,20 +67,64 @@ class ObjectScreen extends ConsumerWidget {
                     ),
                   ),
                   const SizedBox(height: 8),
-                  SelectableText(object.designation),
+                  if (object.designation.isNotEmpty)
+                    SelectableText(object.designation),
                   const SizedBox(height: 16),
                   if (object.summaries[language] case final String brief)
                     Text(brief),
+                  const SizedBox(height: 16),
+                  if (image != null)
+                    _ArchiveVisual(
+                      image: image,
+                      object: object,
+                      language: language,
+                    )
+                  else if (object.raHours != null ||
+                      object.kind == ObjectKind.constellation)
+                    FinderChart(catalogue: catalogue, object: object)
+                  else
+                    Text(text.imageUnavailable),
+                  if (image == null && object.raHours != null)
+                    SurveyVisual(key: ValueKey(object.id), object: object),
+                  const SizedBox(height: 20),
+                  if (object.regionNotes[language] case final String regionNote)
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 12),
+                      child: Text(regionNote),
+                    ),
                   FilledButton.icon(
                     onPressed: () {
-                      ref.read(skyFocusProvider.notifier).request(object.id);
+                      ref
+                          .read(skyFocusProvider.notifier)
+                          .request(object.regionId ?? object.id);
                       context.go('/');
                     },
                     icon: const Icon(Icons.center_focus_strong),
-                    label: Text(text.focusTarget),
+                    label: Text(
+                      object.regionId == null
+                          ? text.focusTarget
+                          : text.exploreRegion,
+                    ),
                   ),
-                  const SizedBox(height: 12),
-                  _NotebookActions(id: object.id, name: object.name(language)),
+                  if (guideTargets.contains(id))
+                    TextButton.icon(
+                      onPressed: () => context.push('/observe?target=$id'),
+                      icon: const Icon(Icons.explore_outlined),
+                      label: Text(text.guideTitle),
+                    ),
+                  if (id == issObject.id)
+                    TextButton.icon(
+                      onPressed: () => context.push('/iss-passes'),
+                      icon: const Icon(Icons.satellite_alt_outlined),
+                      label: Text(text.issPassesTitle),
+                    ),
+                  if (object.regionId == null) ...[
+                    const SizedBox(height: 12),
+                    _NotebookActions(
+                      id: object.id,
+                      name: object.name(language),
+                    ),
+                  ],
                   const SizedBox(height: 12),
                   ExternalLink(
                     url: Uri.https('$language.wikipedia.org', '/w/index.php', {
@@ -84,42 +140,6 @@ class ObjectScreen extends ConsumerWidget {
                       label: source['label'] as String?,
                     ),
                   const SizedBox(height: 24),
-                  if (image != null) ...[
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(18),
-                      child: Image.asset(
-                        'assets/generated/images/$id.jpg',
-                        width: double.infinity,
-                        height: 220,
-                        fit: BoxFit.contain,
-                        semanticLabel:
-                            '${text.archiveImage}: ${object.name(language)}',
-                      ),
-                    ),
-                    const SizedBox(height: 12),
-                    Text(
-                      '${text.archiveImage} · ${image['credit']} · ${image['license']}',
-                      style: const TextStyle(
-                        color: Color(0xFFC9B6A6),
-                        fontSize: 12,
-                      ),
-                    ),
-                    ExternalLink(
-                      url: image['sourceUrl'] as String,
-                      label: text.imageSource,
-                      small: true,
-                    ),
-                    ExternalLink(
-                      url: image['licenseUrl'] as String,
-                      label: text.imageLicence,
-                      small: true,
-                    ),
-                  ] else
-                    Text(
-                      text.imageUnavailable,
-                      style: const TextStyle(color: Color(0xFFC9B6A6)),
-                    ),
-                  const SizedBox(height: 28),
                   if (current != null) ...[
                     Text(
                       ref.watch(skyInstantProvider) == null
@@ -133,10 +153,12 @@ class ObjectScreen extends ConsumerWidget {
                     _Field(
                       text.azimuthLabel,
                       '${decimal.format(current.azimuth)}°',
+                      termId: 'azimuth',
                     ),
                     _Field(
                       text.altitudeLabel,
                       '${decimal.format(current.altitude)}°',
+                      termId: 'altitude',
                     ),
                     Text(
                       current.altitude >= 0
@@ -147,6 +169,7 @@ class ObjectScreen extends ConsumerWidget {
                       _Field(
                         text.distanceAu,
                         decimal.format(current.distanceAu),
+                        termId: 'astronomical-unit',
                       ),
                     if (current.raOfDate != null) ...[
                       const SizedBox(height: 16),
@@ -154,21 +177,28 @@ class ObjectScreen extends ConsumerWidget {
                       _Field(
                         text.rightAscension,
                         coordinate.format(current.raOfDate),
+                        termId: 'right-ascension',
                       ),
                       _Field(
                         text.declination,
                         coordinate.format(current.decOfDate),
+                        termId: 'declination',
                       ),
                     ],
                     Text(text.observabilityHelp),
                     const Divider(height: 32),
                   ],
                   if (object.magnitude != null)
-                    _Field(text.magnitude, decimal.format(object.magnitude!)),
+                    _Field(
+                      text.magnitude,
+                      decimal.format(object.magnitude!),
+                      termId: 'magnitude',
+                    ),
                   if (object.distanceParsecs != null)
                     _Field(
                       text.distance,
                       decimal.format(object.distanceParsecs!),
+                      termId: 'parsec',
                     ),
                   if (object.raHours != null) ...[
                     const SizedBox(height: 24),
@@ -182,10 +212,12 @@ class ObjectScreen extends ConsumerWidget {
                     _Field(
                       text.rightAscension,
                       coordinate.format(object.raHours!),
+                      termId: 'right-ascension',
                     ),
                     _Field(
                       text.declination,
                       coordinate.format(object.decDegrees!),
+                      termId: 'declination',
                     ),
                   ],
                   const SizedBox(height: 20),
@@ -201,6 +233,65 @@ class ObjectScreen extends ConsumerWidget {
           },
         ),
       ),
+    );
+  }
+}
+
+class _ArchiveVisual extends StatelessWidget {
+  const _ArchiveVisual({
+    required this.image,
+    required this.object,
+    required this.language,
+  });
+
+  final Map<String, dynamic> image;
+  final SkyObject object;
+  final String language;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = AppLocalizations.of(context);
+    final caption = (image['captions'] as Map?)?[language] as String?;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        ClipRRect(
+          borderRadius: BorderRadius.circular(18),
+          child: ColoredBox(
+            color: const Color(0xFF101118),
+            child: Image.asset(
+              'assets/generated/images/${object.id}.jpg',
+              width: double.infinity,
+              height: 220,
+              fit: BoxFit.contain,
+              semanticLabel:
+                  '${t.archiveImage} · ${caption ?? object.name(language)}',
+              errorBuilder: (_, _, _) =>
+                  Center(child: Text(t.imageUnavailable)),
+            ),
+          ),
+        ),
+        const SizedBox(height: 8),
+        Text(
+          '${t.archiveImage} · ${image['credit']} · ${image['license']}',
+          style: Theme.of(context).textTheme.bodySmall,
+        ),
+        if (caption != null) Text(caption),
+        Wrap(
+          children: [
+            ExternalLink(
+              url: image['sourceUrl'] as String,
+              label: t.imageSource,
+              small: true,
+            ),
+            ExternalLink(
+              url: image['licenseUrl'] as String,
+              label: t.imageLicence,
+              small: true,
+            ),
+          ],
+        ),
+      ],
     );
   }
 }
@@ -274,16 +365,25 @@ class _NotebookActionsState extends ConsumerState<_NotebookActions> {
 }
 
 class _Field extends StatelessWidget {
-  const _Field(this.label, this.value);
+  const _Field(this.label, this.value, {this.termId});
   final String label, value;
+  final String? termId;
   @override
   Widget build(BuildContext context) => Padding(
     padding: const EdgeInsets.symmetric(vertical: 10),
     child: Wrap(
+      crossAxisAlignment: WrapCrossAlignment.center,
       spacing: 16,
       runSpacing: 6,
       children: [
-        Text(label, style: const TextStyle(color: Color(0xFFC9B6A6))),
+        if (termId == null)
+          Text(label, style: const TextStyle(color: Color(0xFFC9B6A6)))
+        else
+          TextButton.icon(
+            icon: const Icon(Icons.info_outline, size: 16),
+            label: Text(label),
+            onPressed: () => context.push('/glossary?term=$termId'),
+          ),
         SelectableText(
           value,
           style: const TextStyle(fontWeight: FontWeight.w600),

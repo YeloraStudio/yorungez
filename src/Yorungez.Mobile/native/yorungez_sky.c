@@ -13,6 +13,62 @@
 
 YG_EXPORT int yg_abi_version(void) { return 2; }
 
+static double unix_seconds(astro_time_t time)
+{
+    return time.ut * 86400.0 + 946728000.0;
+}
+
+/* [count, (kind, start, peak, end, central start, central end) * 8].
+ * Solar kinds are offset by ten. A missing central phase has zero contacts. */
+YG_EXPORT int yg_eclipses(double start, double end, double lat, double lon,
+    double elevation, double *out, int length)
+{
+    if (!out || length != 49 || !isfinite(start) || !isfinite(end) ||
+        start < 946684800 || end > 2082758400 || end <= start ||
+        end - start > 32 * 86400 || !isfinite(lat) || fabs(lat) >= 89 ||
+        !isfinite(lon) || fabs(lon) > 180 || !isfinite(elevation) ||
+        elevation < -500 || elevation > 100000) return 1;
+    astro_time_t from = Astronomy_TimeFromDays((start - 946728000.0) / 86400.0 - 1);
+    astro_observer_t observer = Astronomy_MakeObserver(lat, lon, elevation);
+    int count = 0;
+    astro_lunar_eclipse_t lunar = Astronomy_SearchLunarEclipse(from);
+    for (int n = 0; n < 4; ++n) {
+        if (lunar.status != ASTRO_SUCCESS) return 2;
+        const double peak = unix_seconds(lunar.peak);
+        const double half = 60 * (lunar.kind == ECLIPSE_PENUMBRAL ? lunar.sd_penum : lunar.sd_partial);
+        if (peak - half >= end) break;
+        if (peak + half > start) {
+            double *row = out + 1 + 6 * count++;
+            row[0] = lunar.kind;
+            row[1] = peak - half;
+            row[2] = peak;
+            row[3] = peak + half;
+            row[4] = lunar.kind == ECLIPSE_TOTAL ? peak - 60 * lunar.sd_total : 0;
+            row[5] = lunar.kind == ECLIPSE_TOTAL ? peak + 60 * lunar.sd_total : 0;
+        }
+        lunar = Astronomy_NextLunarEclipse(lunar.peak);
+    }
+    astro_local_solar_eclipse_t solar = Astronomy_SearchLocalSolarEclipse(from, observer);
+    for (int n = 0; n < 4; ++n) {
+        if (solar.status != ASTRO_SUCCESS) return 2;
+        const double begin = unix_seconds(solar.partial_begin.time);
+        const double finish = unix_seconds(solar.partial_end.time);
+        if (begin >= end) break;
+        if (finish > start) {
+            double *row = out + 1 + 6 * count++;
+            row[0] = 10 + solar.kind;
+            row[1] = begin;
+            row[2] = unix_seconds(solar.peak.time);
+            row[3] = finish;
+            row[4] = solar.kind == ECLIPSE_PARTIAL ? 0 : unix_seconds(solar.total_begin.time);
+            row[5] = solar.kind == ECLIPSE_PARTIAL ? 0 : unix_seconds(solar.total_end.time);
+        }
+        solar = Astronomy_NextLocalSolarEclipse(solar.peak.time, observer);
+    }
+    out[0] = count;
+    return 0;
+}
+
 /* Planning ABI: [count, initiallyAbove, (unixSeconds, rises)*8]. Standard
  * sea-level rise/set, 34 arcmin refraction and Sun/Moon upper limb, exactly as
  * the Web planner. Invoked only on the same serial worker as yg_sky. */

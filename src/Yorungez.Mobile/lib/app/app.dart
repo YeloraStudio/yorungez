@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../catalogue/presentation/catalogue_screen.dart';
 import '../catalogue/presentation/object_screen.dart';
+import '../catalogue/presentation/glossary_screen.dart';
 import '../core/presentation/service_screen.dart';
 import '../core/presentation/sources_screen.dart';
 import '../l10n/generated/app_localizations.dart';
@@ -12,6 +13,8 @@ import '../sky/presentation/sky_screen.dart';
 import '../account/account_screen.dart';
 import '../account/notebook_screen.dart';
 import '../planning/planning_screen.dart';
+import '../planning/observing_guide_screen.dart';
+import '../planning/iss_pass_screen.dart';
 import '../planning/planning_controls.dart';
 import '../planning/reminder_screen.dart';
 
@@ -34,6 +37,11 @@ final routerProvider = Provider((ref) {
         path: '/objects/:id',
         builder: (_, state) => ObjectScreen(id: state.pathParameters['id']!),
       ),
+      GoRoute(
+        path: '/glossary',
+        builder: (_, state) =>
+            GlossaryScreen(termId: state.uri.queryParameters['term']),
+      ),
       GoRoute(path: '/connection', builder: (_, _) => const ServiceScreen()),
       GoRoute(path: '/sources', builder: (_, _) => const SourcesScreen()),
       GoRoute(
@@ -45,9 +53,15 @@ final routerProvider = Provider((ref) {
       GoRoute(path: '/notebook', builder: (_, _) => const NotebookScreen()),
       GoRoute(path: '/tonight', builder: (_, _) => const TonightScreen()),
       GoRoute(
+        path: '/observe',
+        builder: (_, state) =>
+            ObservationGuideScreen(target: state.uri.queryParameters['target']),
+      ),
+      GoRoute(
         path: '/calendar',
         builder: (_, _) => const EventCalendarScreen(),
       ),
+      GoRoute(path: '/iss-passes', builder: (_, _) => const IssPassScreen()),
       GoRoute(path: '/reminders', builder: (_, _) => const ReminderScreen()),
       GoRoute(path: '/time-zone', builder: (_, _) => const TimeZoneScreen()),
     ],

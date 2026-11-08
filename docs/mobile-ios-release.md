@@ -1,4 +1,4 @@
-# iOS release with Fastlane — K-059
+# iOS release with Fastlane — K-064
 
 **7 November 2026.** The owner requested configuring the existing mobile application for an iOS release using Fastlane. This extends K-053/K-054 to native release preparation and delivery. Existing scientific, privacy and physical-device acceptance requirements remain. Scope: FR-01/02/03/08/09/10/11, UJ-01 and the existing mobile account/sky contracts; no new requirement IDs.
 
@@ -6,7 +6,7 @@
 
 The existing Runner project is retained, with display name **Yorungez**, bundle identifier `com.yelorastudio.yorungez`, iOS 15 minimum, EN/TR permission explanations and the original supplied icons. No replacement app was generated. On 7 November the owner authorized reuse of their existing app's App Store Connect API key and specifically required the renewed distribution certificate. Team ownership was verified through Apple; the owner created [the Yorungez App Store Connect record](https://appstoreconnect.apple.com/apps/6831956323/testflight/ios).
 
-An App Store provisioning profile was created for this exact bundle and the renewed distribution certificate expiring **5 November 2027**. The local private configuration points to the existing `.p8` file without copying it into this repository. Fastlane pins the selected certificate by SHA-1 for both archive and export and verifies the exported IPA's actual signer, profile, bundle and version before upload. Signing settings use Runner-specific variables so Swift package resource targets are not assigned an application provisioning profile.
+An App Store provisioning profile was created for this exact bundle and the renewed distribution certificate expiring **5 November 2027**. The local private configuration points to the existing `.p8` file outside this repository. Fastlane passes the selected certificate's SHA-1 identity selector to Xcode and obtains its SHA-256 fingerprint from the same Keychain. The IPA verifier checks the actual signer and provisioning profile against the SHA-256 fingerprint and verifies the bundle and version before upload. Signing settings use Runner-specific variables so Swift package resource targets are not assigned an application provisioning profile.
 
 Fastlane **2.241.2**, Ruby **4.0.9** and the resolved Gemfile lock are checked in. The owner's existing Flutter 3.47.9 / Dart 3.13.7 workspace and lockfile are now matched by `.flutter-version` and mobile CI (revision `c197ca5199e9ee5661e865596c9c07294dfab51c`). The SDK installed on the machine was not upgraded. Host science check scripts omit GCC-only static-runtime flags on macOS so Apple's Clang can compile the same pinned native sources; reference inputs and tolerances are unchanged.
 
@@ -53,7 +53,7 @@ Copy `fastlane/.env.example` to ignored `fastlane/.env`, then fill local values:
 |---|---|
 | `IOS_TEAM_ID` | The owning Apple Developer team, not the App Store issuer ID. |
 | `IOS_PROFILE_NAME` | Name of the installed App Store distribution provisioning profile for this team and exact bundle ID. Its certificate/private key must be available in the local keychain. |
-| `IOS_SIGNING_CERT_SHA1` | Exact uppercase 40-character SHA-1 fingerprint of the selected renewed distribution identity. Both archive and export use it; an unavailable private key stops the lane. |
+| `IOS_SIGNING_CERT_SHA1` | Exact uppercase 40-character Xcode identity selector for the selected renewed distribution certificate. An unavailable private key or a missing or ambiguous corresponding SHA-256 fingerprint stops the lane. |
 | `IOS_VERSION` | Explicit `major.minor.patch` store version; example file starts at `0.1.0`. |
 | `IOS_BUILD_NUMBER` | Positive, previously unused build number for this upload. Example `4` is a candidate, not a reservation in Apple. |
 | `ASC_KEY_ID`, `ASC_ISSUER_ID` | Team App Store Connect API-key identifiers. |
@@ -72,7 +72,7 @@ Every upload needs a new build number. Archive settings override version/signing
 
 ## Required work before public App Store submission
 
-1. **Account deletion:** application account creation exists, but inspection found no complete in-app account-deletion initiation/backend lifecycle. Implement authenticated deletion with server-owned notebook cleanup and session/token revocation, EN/TR explanation and confirmation, and ownership/lifecycle tests. A support email alone is not the account-deletion flow Apple requires. Do not remove registration merely to hide this gap.
+1. **Account deletion:** PR #37 added the bilingual, password-confirmed deletion flow with session revocation and server-owned record cleanup. Verify the account settings link and end-to-end deletion against the shared backend from the new iOS build.
 2. **Privacy and support:** validate the K-057 public privacy pages and the support destination for store use; complete Apple's privacy answers from actual account/notebook/network behavior and dependencies. Audit required-reason APIs and the final archive's privacy manifests. Do not claim “no data collected” because sensor processing is local: the account backend holds personal data.
 3. **Store record:** confirmed developer/team, bundle record, app name/SKU, free price, territories, category, updated age-rating questionnaire, content rights, export-compliance answers and agreements. These are not inferred from source code. Encryption compliance must be assessed before setting `ITSAppUsesNonExemptEncryption`; no guessed declaration was added.
 4. **EN/TR metadata and real screenshots:** use actual iPhone/iPad application captures at Apple's required sizes, appropriate descriptions of calculated versus illustrative imagery, working links and source/licence attributions. Current Runner supports iPad; either test that declared support or make a deliberate supported-device decision before upload.
@@ -88,7 +88,7 @@ The first practical delivery target is an internal TestFlight build; team, signi
 - `bundle exec fastlane ios verify` passed end to end: locked dependency resolution, asset staging, localization generation, analysis, science/application tests and an unsigned Release `Runner.app` with Xcode 27.2. All 106 assets in that release bundle matched their manifest hashes.
 - Full Flutter suite: **67 tests passed** on the aligned toolchain. Native reference checks passed: **1,166 solar + 144 stellar + 72 deep-sky** comparisons, **1,166 JS parity** samples, **63 SGP4** comparisons and **12 WMM2025** comparisons. Both documented polar exclusions remain. Upstream Clang warnings remain in pinned vendor code; vendor bytes were not edited. Android build and physical iPhone checks were not rerun in this release-preparation session.
 - Missing signing-team input is rejected before archive/upload. Documentation links and `git diff --check` passed.
-- Before the upload retry, six upstream commits through `6d044ac` were integrated without discarding local work. K-055–058 planning, icon, Web discovery and sensor-capability changes remain intact; this release record is K-059. Conflicts were resolved by retaining the new capability protocol and delivering unsupported errors through the event stream. The combined lockfile passes enforced resolution with Flutter 3.47.9. All **97 Flutter tests**, host scientific/planning checks and Dart formatting passed on the combined source. A named Git stash preserves the pre-integration local work.
+- Before the upload retry, six upstream commits through `6d044ac` were integrated. The combined lockfile passed enforced resolution with Flutter 3.47.9. All **97 Flutter tests**, host scientific/planning checks and Dart formatting passed on that source. The capability protocol was retained and unsupported errors were delivered through the event stream.
 - **7 November upload:** `bundle exec fastlane ios beta` completed successfully for **0.1.0 (4)** after integrating upstream `6d044ac`. Signed archive/export and exported-IPA verification passed using the owner-selected renewed distribution certificate. Apple's upload service accepted the package for app **6831956323**. The first API check had not yet listed the build; processing, tester availability, App Review and public release are separate from successful upload. No external invitations or App Review submission were made.
 
 ## Official references

@@ -11,23 +11,16 @@ import '../core/presentation/external_link.dart';
 import '../l10n/generated/app_localizations.dart';
 import '../sky/domain/sky_geometry.dart';
 import 'event_catalogue.dart';
+import 'local_events_panel.dart';
 import 'night_plan.dart';
+import 'observing_guide.dart';
+import 'observing_guide_screen.dart';
 import 'planning_controls.dart';
 import 'planning_time.dart';
 import 'reminder_screen.dart';
 
 String targetName(String id, String language) =>
     solarObjects.firstWhere((o) => o.id == id).name(language);
-void openPlannedSky(
-  BuildContext context,
-  WidgetRef ref,
-  String target,
-  DateTime instant,
-) {
-  ref.read(skyInstantProvider.notifier).select(instant);
-  ref.read(skyFocusProvider.notifier).request(target);
-  context.go('/');
-}
 
 class EventActions extends ConsumerStatefulWidget {
   const EventActions({
@@ -230,6 +223,11 @@ class _EventCalendarScreenState extends ConsumerState<EventCalendarScreen> {
                   const SizedBox(height: 16),
                   Text(zone, style: Theme.of(context).textTheme.titleSmall),
                   Text(t.calendarGlobal),
+                  ExpansionTile(
+                    title: Text(t.localEventsTitle),
+                    tilePadding: EdgeInsets.zero,
+                    children: [LocalEventsPanel(month: month)],
+                  ),
                   const SizedBox(height: 16),
                   if (events.isEmpty) Text(t.calendarEmpty),
                   for (final event in events)
@@ -317,6 +315,7 @@ class TonightScreen extends ConsumerStatefulWidget {
 
 class _TonightScreenState extends ConsumerState<TonightScreen> {
   DateTime? _date;
+  ObservingEquipment? _equipment;
   Future<NightPlan>? _future;
   (SkyObserver, String, DateTime)? _context;
   @override
@@ -327,6 +326,7 @@ class _TonightScreenState extends ConsumerState<TonightScreen> {
     final observer = ref.watch(skyFrameProvider)?.observer;
     final date = _date ?? PlanningTime.nightDate(DateTime.now().toUtc(), zone);
     if (observer != null &&
+        _equipment == null &&
         (_context?.$1 != observer ||
             _context?.$2 != zone ||
             _context?.$3 != date)) {
@@ -389,100 +389,123 @@ class _TonightScreenState extends ConsumerState<TonightScreen> {
                 const SizedBox(height: 16),
                 Text(t.tonightIntro),
                 const SizedBox(height: 16),
-                FutureBuilder<NightPlan>(
-                  future: _future,
-                  builder: (context, snapshot) {
-                    if (snapshot.hasError) {
-                      return PlanningError(
-                        onRetry: () => setState(() => _context = null),
-                      );
-                    }
-                    if (!snapshot.hasData) {
-                      return const Padding(
-                        padding: EdgeInsets.all(32),
-                        child: Center(child: CircularProgressIndicator()),
-                      );
-                    }
-                    final plan = snapshot.data!;
-                    String hour(DateTime? d) => d == null
-                        ? '—'
-                        : DateFormat.Hm(
-                            language,
-                          ).format(PlanningTime.local(d, zone));
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Card(
-                          child: Padding(
-                            padding: const EdgeInsets.all(20),
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  child: Column(
-                                    children: [
-                                      Text(t.sunset),
-                                      const SizedBox(height: 8),
-                                      Text(
-                                        hour(plan.sunset),
-                                        style: Theme.of(
-                                          context,
-                                        ).textTheme.headlineMedium,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Column(
-                                    children: [
-                                      Text(t.sunrise),
-                                      const SizedBox(height: 8),
-                                      Text(
-                                        hour(plan.sunrise),
-                                        style: Theme.of(
-                                          context,
-                                        ).textTheme.headlineMedium,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 16),
-                        if (plan.state != 0)
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 16),
-                            child: Text(switch (plan.state) {
-                              1 => t.noNight,
-                              2 => t.polarNight,
-                              _ => t.partialNight,
-                            }),
-                          ),
-                        for (final row in plan.rows)
-                          _NightRowCard(row: row, plan: plan, zone: zone),
-                        const SizedBox(height: 16),
-                        Text(t.visibilityCaution),
-                        const SizedBox(height: 12),
-                        ExpansionTile(
-                          title: Text(t.calculationDetails),
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(16),
-                              child: Text(t.nightDefinition),
-                            ),
-                          ],
-                        ),
-                        const ExternalLink(
-                          url:
-                              'https://github.com/cosinekitty/astronomy/tree/v2.1.19',
-                          label: 'Astronomy Engine 2.1.19',
-                          small: true,
-                        ),
-                      ],
-                    );
-                  },
+                Wrap(
+                  spacing: 8,
+                  children: [
+                    for (final (gear, label) in [
+                      (ObservingEquipment.nakedEye, t.guideNakedEye),
+                      (ObservingEquipment.binoculars, t.guideBinoculars),
+                    ])
+                      FilterChip(
+                        label: Text(label),
+                        selected: _equipment == gear,
+                        onSelected: (enabled) =>
+                            setState(() => _equipment = enabled ? gear : null),
+                      ),
+                  ],
                 ),
+                const SizedBox(height: 12),
+                if (_equipment != null)
+                  ObservationGuidePanel(
+                    observer: observer,
+                    date: date,
+                    equipment: _equipment,
+                  )
+                else
+                  FutureBuilder<NightPlan>(
+                    future: _future,
+                    builder: (context, snapshot) {
+                      if (snapshot.hasError) {
+                        return PlanningError(
+                          onRetry: () => setState(() => _context = null),
+                        );
+                      }
+                      if (!snapshot.hasData) {
+                        return const Padding(
+                          padding: EdgeInsets.all(32),
+                          child: Center(child: CircularProgressIndicator()),
+                        );
+                      }
+                      final plan = snapshot.data!;
+                      String hour(DateTime? d) => d == null
+                          ? '—'
+                          : DateFormat.Hm(
+                              language,
+                            ).format(PlanningTime.local(d, zone));
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Card(
+                            child: Padding(
+                              padding: const EdgeInsets.all(20),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: Column(
+                                      children: [
+                                        Text(t.sunset),
+                                        const SizedBox(height: 8),
+                                        Text(
+                                          hour(plan.sunset),
+                                          style: Theme.of(
+                                            context,
+                                          ).textTheme.headlineMedium,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Column(
+                                      children: [
+                                        Text(t.sunrise),
+                                        const SizedBox(height: 8),
+                                        Text(
+                                          hour(plan.sunrise),
+                                          style: Theme.of(
+                                            context,
+                                          ).textTheme.headlineMedium,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 16),
+                          if (plan.state != 0)
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 16),
+                              child: Text(switch (plan.state) {
+                                1 => t.noNight,
+                                2 => t.polarNight,
+                                _ => t.partialNight,
+                              }),
+                            ),
+                          for (final row in plan.rows)
+                            _NightRowCard(row: row, plan: plan, zone: zone),
+                          const SizedBox(height: 16),
+                          Text(t.visibilityCaution),
+                          const SizedBox(height: 12),
+                          ExpansionTile(
+                            title: Text(t.calculationDetails),
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(16),
+                                child: Text(t.nightDefinition),
+                              ),
+                            ],
+                          ),
+                          const ExternalLink(
+                            url:
+                                'https://github.com/cosinekitty/astronomy/tree/v2.1.19',
+                            label: 'Astronomy Engine 2.1.19',
+                            small: true,
+                          ),
+                        ],
+                      );
+                    },
+                  ),
               ],
             ),
     );
@@ -607,25 +630,6 @@ class _NightRowCard extends ConsumerWidget {
             ],
           ],
         ),
-      ),
-    );
-  }
-}
-
-class PlanningError extends StatelessWidget {
-  const PlanningError({super.key, required this.onRetry});
-  final VoidCallback onRetry;
-  @override
-  Widget build(BuildContext context) {
-    final t = AppLocalizations.of(context);
-    return Padding(
-      padding: const EdgeInsets.all(24),
-      child: Column(
-        children: [
-          Text(t.planningError),
-          const SizedBox(height: 16),
-          FilledButton(onPressed: onRetry, child: Text(t.retry)),
-        ],
       ),
     );
   }

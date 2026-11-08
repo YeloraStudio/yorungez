@@ -10,11 +10,12 @@ Foreground sky/onboarding now prevents automatic display sleep and releases the 
 
 Native Tonight/Calendar now reuse canonical offline events and the shared solver, with explicit device/manual IANA local time plus UTC, standard visibility intervals and event-to-simulation/live navigation. Verified accounts can schedule/cancel server email reminders; future push remains disabled until APNs/FCM and consent are implemented. [Delivery, API and verification](../../docs/mobile-night-calendar-reminders.md). [Native icon exports](../../data/branding/mobile/manifest.json) and [English store showcase](../../data/store/google-play/en-US/README.md) preserve the owner logo.
 
-Home is a full-screen, phone-first calculated sky with no mobile terrain or ordinary zoom. First launch explains privacy and optional foreground GPS/rear camera, supports manual coordinates/an explicit Istanbul example, and gives calibration guidance. Search is secondary. [Binding requirements](../../docs/mobile-immersive-discovery-plan.md) and [implementation evidence / open gates](../../docs/mobile-immersive-discovery-evidence.md) are the current contract.
+Home is a full-screen, phone-first calculated sky. First launch explains privacy and optional foreground GPS/rear camera, supports manual coordinates/an explicit Istanbul example, and gives calibration guidance. Search is secondary. [Binding requirements](../../docs/mobile-immersive-discovery-plan.md) and [implementation evidence / open gates](../../docs/mobile-immersive-discovery-evidence.md) are the current contract.
 
-- Offline catalogue: 5,073 stars, 88 constellations, 107 deep-sky objects, nine solar bodies and ISS identity (5,278 total; a station direction requires fresh elements).
-- Pinned Astronomy Engine C/FFI, one bounded serial worker, one-second reticle dwell, bilingual name/brief/target AZ/EL and animated calculated apparent tracks.
-- Source-based stellar glow, nine illustrative solar photos with computed disc phase, selected enlargement, 85 spherical constellation figures/lines and a registered 360° ESO galactic background. Fixed 60° short-axis view; explicit manual fallback, no pinch zoom.
+- Offline catalogue: 5,073 stars, 88 constellations, 170 deep-sky objects, nine solar bodies, ISS and the extended Milky Way (5,342 entries). The detail screen includes archive images or a catalogue finder chart, plus an optional infrared survey preview for fixed targets. The shared 60-term English/Turkish glossary opens offline from the sidebar and coordinate fields. [Sources and coverage](../../docs/mobile-catalogue-discovery.md).
+- [Observing guide](../../docs/mobile-observing-guide.md) shows where and when to look, with naked-eye and binocular filters in Tonight, local eclipse and selected meteor windows in the calendar, and sunlit ISS pass predictions.
+- Pinned Astronomy Engine C/FFI, one bounded serial worker, optional one-second reticle dwell, bilingual name/brief/target AZ/EL and animated calculated apparent tracks. Dwell defaults on and can be switched off in Settings.
+- Source-based stellar glow, nine illustrative solar photos with computed disc phase, selected enlargement, 85 spherical constellation figures/lines and a registered 360° ESO galactic background. Settings offers virtual sky pinch and button zoom, off by default at 60°. Both controls are device-local.
 - Closed sidebar with location/UTC/layers and music/language at the bottom. Licensed Cylinder Four looping ambience and immediate persistent mute.
 - Android/iOS native pose adapters, current WMM2025 magnetic-declination correction when applicable, sensor/reference/freshness gates and manual known-reference calibration. Physical accuracy is not yet accepted.
 - Optional audio-free rear-camera preview. Lens/crop/FOV alignment remains approximate until physically measured.
@@ -24,7 +25,7 @@ Shared API sign-in, registration/verification-email requests, profile and server
 
 ## Toolchain and run
 
-Pinned Flutter **3.47.9** (`c197ca5199e9ee5661e865596c9c07294dfab51c`), Dart **3.13.7** (K-059 release-toolchain alignment). See `.flutter-version` and `pubspec.lock`. Android minimum **24**; iOS minimum **15**. The installed global Flutter SDK was not upgraded. Bundle ID `com.yelorastudio.yorungez` stays unchanged; Apple team ownership and the App Store Connect record are confirmed; release archives use the owner-selected renewed certificate. [Fastlane iOS release runbook](../../docs/mobile-ios-release.md).
+Pinned Flutter **3.47.9** (`c197ca5199e9ee5661e865596c9c07294dfab51c`), Dart **3.13.7**. See `.flutter-version` and `pubspec.lock`. Android minimum **24** and iOS minimum **15**. Android uses `com.cnonestudio.yorungez` and the iOS App Store record uses `com.yelorastudio.yorungez`. Earlier Android development APKs use the iOS-style identifier and install separately. [Fastlane iOS release runbook](../../docs/mobile-ios-release.md).
 
 From this directory:
 
@@ -64,7 +65,7 @@ Android declares foreground location and optional camera; microphone, background
 
 The validated first model remains **2000–2035**, airless apparent body centres, explicit assumed-0-m/reference-ellipsoid elevation and the existing polar-azimuth restriction. Layers do not change celestial positions. Above the geometric horizon does not establish naked-eye visibility. Marker sizes/glow are schematic; the renderer is a baseline pending physical/profile measurements.
 
-Equatorial-grid/glossary, complete observation/place editing parity and release readiness remain planned. Surface textures and apparent-size enlargement are illustrative; the photographic background is not astrometric point data. Native pointing accuracy, lens/crop calibration, physical iOS/secure-store behaviour, accessibility and device performance are not accepted by host/emulator checks.
+Equatorial-grid, complete observation/place editing parity and release readiness remain planned. Surface textures and apparent-size enlargement are illustrative; the photographic background is not astrometric point data. Native pointing accuracy, lens/crop calibration, physical iOS/secure-store behaviour, accessibility and device performance are not accepted by host/emulator checks.
 
 The public API origin defaults to `https://api.yorungez.com`; override via `--dart-define=API_BASE_URL=https://your-test-api.example.com`. Origins require HTTPS and no credentials/path/query. No secret or environment file is bundled. Offline calculation/rendering/content/audio do not depend on this connection. Native authentication uses the existing Bearer contract, serialized refresh rotation and platform-secure storage. New account exploration-preference schema/routes require deployment before connected music/layer saving is available.
 

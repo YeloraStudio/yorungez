@@ -16,7 +16,11 @@ String kindLabel(AppLocalizations text, ObjectKind kind) => switch (kind) {
   ObjectKind.constellation => text.constellation,
   ObjectKind.solarSystem => text.solarSystemObject,
   ObjectKind.satellite => text.stationObject,
+  ObjectKind.extended => text.galaxyObject,
 };
+
+String objectKindLabel(AppLocalizations text, SkyObject object) =>
+    object.isGalaxy ? text.galaxyObject : kindLabel(text, object.kind);
 
 class CatalogueScreen extends ConsumerStatefulWidget {
   const CatalogueScreen({super.key, this.pickTarget = false});
@@ -27,6 +31,7 @@ class CatalogueScreen extends ConsumerStatefulWidget {
 
 class _CatalogueScreenState extends ConsumerState<CatalogueScreen> {
   final _search = TextEditingController();
+  bool _galaxiesOnly = false;
   @override
   void dispose() {
     _search.dispose();
@@ -53,16 +58,26 @@ class _CatalogueScreenState extends ConsumerState<CatalogueScreen> {
   ) {
     final language = ref.watch(localeProvider).languageCode;
     final query = _search.text;
-    final matches = searchObjects(catalogue.objects, query);
-    final featured = ['dso-ngc0224', 'hyg-32263', 'dso-ngc1976', 'con-ori'];
-    final visible = query.isEmpty
+    final objects = _galaxiesOnly
+        ? catalogue.objects.where((object) => object.isGalaxy).toList()
+        : catalogue.objects;
+    final matches = searchObjects(objects, query);
+    final featured = [
+      'milky-way',
+      'dso-ngc0224',
+      'hyg-32263',
+      'dso-ngc1976',
+      'con-ori',
+    ];
+    final browsing = query.isEmpty && !_galaxiesOnly;
+    final visible = browsing
         ? [
             ...featured.map(catalogue.find).whereType<SkyObject>(),
             ...catalogue.objects
                 .where((item) => !featured.contains(item.id))
                 .take(16),
           ]
-        : matches.take(60).toList();
+        : matches;
     return CustomScrollView(
       slivers: [
         SliverToBoxAdapter(
@@ -136,15 +151,21 @@ class _CatalogueScreenState extends ConsumerState<CatalogueScreen> {
                           ),
                   ),
                 ),
+                const SizedBox(height: 10),
+                FilterChip(
+                  label: Text(text.galaxiesFilter),
+                  selected: _galaxiesOnly,
+                  onSelected: (value) => setState(() => _galaxiesOnly = value),
+                ),
                 const SizedBox(height: 18),
                 Text(
-                  query.isEmpty
+                  browsing
                       ? text.objectsOffline(catalogue.objects.length)
                       : text.searchCount(matches.length),
                   style: const TextStyle(color: Color(0xFFC9B6A6)),
                 ),
                 const SizedBox(height: 18),
-                if (query.isEmpty) _ArchiveBanner(text: text),
+                if (browsing) _ArchiveBanner(text: text),
                 if (visible.isEmpty)
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 40),
@@ -182,10 +203,18 @@ class _CatalogueScreenState extends ConsumerState<CatalogueScreen> {
                   style: const TextStyle(fontWeight: FontWeight.w600),
                 ),
                 subtitle: Text(
-                  '${kindLabel(text, object.kind)} · ${object.designation.isEmpty ? object.id : object.designation}',
+                  object.designation.isEmpty
+                      ? objectKindLabel(text, object)
+                      : '${objectKindLabel(text, object)} · ${object.designation}',
                 ),
-                trailing: const Icon(Icons.arrow_forward_rounded, size: 20),
-                onTap: () => widget.pickTarget
+                trailing: widget.pickTarget && object.regionId == null
+                    ? IconButton(
+                        tooltip: text.objectDetails,
+                        icon: const Icon(Icons.info_outline),
+                        onPressed: () => context.push('/objects/${object.id}'),
+                      )
+                    : const Icon(Icons.arrow_forward_rounded, size: 20),
+                onTap: () => widget.pickTarget && object.regionId == null
                     ? context.pop(object.id)
                     : context.push('/objects/${object.id}'),
               );
@@ -301,6 +330,14 @@ class _Menu extends ConsumerWidget {
               onTap: () {
                 Navigator.pop(context);
                 context.push('/connection');
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.menu_book_outlined),
+              title: Text(text.glossaryTitle),
+              onTap: () {
+                Navigator.pop(context);
+                context.push('/glossary');
               },
             ),
             ListTile(

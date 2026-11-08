@@ -20,8 +20,7 @@ android {
     }
 
     defaultConfig {
-        // Development identifier; store registration/signing is a separate release task.
-        applicationId = "com.yelorastudio.yorungez"
+        applicationId = "com.cnonestudio.yorungez"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = 24

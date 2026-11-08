@@ -405,7 +405,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.yelorastudio.yorungez;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
-                OTHER_LDFLAGS = ("$(inherited)", "-Wl,-u,_yg_sky", "-Wl,-u,_yg_satellite", "-Wl,-u,_yg_satellite_abi", "-lc++", "-Wl,-u,_yg_magnetic", "-Wl,-u,_yg_magnetic_abi", "-Wl,-u,_yg_abi_version");
+                OTHER_LDFLAGS = ("$(inherited)", "-Wl,-u,_yg_sky", "-Wl,-u,_yg_crossings", "-Wl,-u,_yg_eclipses", "-Wl,-u,_yg_satellite", "-Wl,-u,_yg_satellite_abi", "-lc++", "-Wl,-u,_yg_magnetic", "-Wl,-u,_yg_magnetic_abi", "-Wl,-u,_yg_abi_version");
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -586,7 +586,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.yelorastudio.yorungez;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
-                OTHER_LDFLAGS = ("$(inherited)", "-Wl,-u,_yg_sky", "-Wl,-u,_yg_satellite", "-Wl,-u,_yg_satellite_abi", "-lc++", "-Wl,-u,_yg_magnetic", "-Wl,-u,_yg_magnetic_abi", "-Wl,-u,_yg_abi_version");
+                OTHER_LDFLAGS = ("$(inherited)", "-Wl,-u,_yg_sky", "-Wl,-u,_yg_crossings", "-Wl,-u,_yg_eclipses", "-Wl,-u,_yg_satellite", "-Wl,-u,_yg_satellite_abi", "-lc++", "-Wl,-u,_yg_magnetic", "-Wl,-u,_yg_magnetic_abi", "-Wl,-u,_yg_abi_version");
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -614,7 +614,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.yelorastudio.yorungez;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
-                OTHER_LDFLAGS = ("$(inherited)", "-Wl,-u,_yg_sky", "-Wl,-u,_yg_satellite", "-Wl,-u,_yg_satellite_abi", "-lc++", "-Wl,-u,_yg_magnetic", "-Wl,-u,_yg_magnetic_abi", "-Wl,-u,_yg_abi_version");
+                OTHER_LDFLAGS = ("$(inherited)", "-Wl,-u,_yg_sky", "-Wl,-u,_yg_crossings", "-Wl,-u,_yg_eclipses", "-Wl,-u,_yg_satellite", "-Wl,-u,_yg_satellite_abi", "-lc++", "-Wl,-u,_yg_magnetic", "-Wl,-u,_yg_magnetic_abi", "-Wl,-u,_yg_abi_version");
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

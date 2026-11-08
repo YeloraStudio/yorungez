@@ -1,0 +1,847 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "url": "https://raw.githubusercontent.com/mattiaverga/OpenNGC/be3cd6c5498806a2fbb2f7e0452ef802dbb02be0/database_files/NGC.csv",
+    "sha256": "54abea0b57b0a103831bfc7a8e3a99a23acfbf4bb581fcf3d8af539cbb826c84"
+  },
+  "addendum": {
+    "url": "https://raw.githubusercontent.com/mattiaverga/OpenNGC/be3cd6c5498806a2fbb2f7e0452ef802dbb02be0/database_files/addendum.csv",
+    "sha256": "c93f983dda6780b76b7b2e9271a856a892627710148a982ee98101a54c642fdd"
+  },
+  "deepSky": [
+    {
+      "id": "dso-ic0010",
+      "name": "IC0 10",
+      "designation": "IC0 10",
+      "aliases": [
+        "IC0010"
+      ],
+      "type": "G",
+      "raHoursJ2000": 0.33815,
+      "decDegreesJ2000": 59.303777777777775,
+      "magnitude": 10.35,
+      "majorArcminutes": 6.76
+    },
+    {
+      "id": "dso-ic0342",
+      "name": "IC0 342",
+      "designation": "IC0 342",
+      "aliases": [
+        "IC0342"
+      ],
+      "type": "G",
+      "raHoursJ2000": 3.7801388888888887,
+      "decDegreesJ2000": 68.09636111111111,
+      "magnitude": null,
+      "majorArcminutes": 19.77
+    },
+    {
+      "id": "dso-ic1101",
+      "name": "IC1 101",
+      "designation": "IC1 101",
+      "aliases": [
+        "IC1101"
+      ],
+      "type": "G",
+      "raHoursJ2000": 15.18225,
+      "decDegreesJ2000": 5.744777777777778,
+      "magnitude": null,
+      "majorArcminutes": 1.2
+    },
+    {
+      "id": "dso-ic4651",
+      "name": "IC4 651",
+      "designation": "IC4 651",
+      "aliases": [
+        "IC4651"
+      ],
+      "type": "OCl",
+      "raHoursJ2000": 17.413649999999997,
+      "decDegreesJ2000": -49.93825,
+      "magnitude": 6.9,
+      "majorArcminutes": 9.6
+    },
+    {
+      "id": "dso-ngc0055",
+      "name": "NGC 55",
+      "designation": "NGC 55",
+      "aliases": [
+        "NGC0055"
+      ],
+      "type": "G",
+      "raHoursJ2000": 0.24822222222222223,
+      "decDegreesJ2000": -39.196638888888884,
+      "magnitude": 8.54,
+      "majorArcminutes": 29.85
+    },
+    {
+      "id": "dso-ngc0253",
+      "name": "NGC 253",
+      "designation": "NGC 253",
+      "aliases": [
+        "NGC0253",
+        "Sculptor Filament",
+        "Silver Coin"
+      ],
+      "type": "G",
+      "raHoursJ2000": 0.7925333333333333,
+      "decDegreesJ2000": -25.288222222222224,
+      "magnitude": 11.11,
+      "majorArcminutes": 26.79
+    },
+    {
+      "id": "dso-ngc0300",
+      "name": "NGC 300",
+      "designation": "NGC 300",
+      "aliases": [
+        "NGC0300"
+      ],
+      "type": "G",
+      "raHoursJ2000": 0.9148555555555555,
+      "decDegreesJ2000": -37.68438888888888,
+      "magnitude": 8.66,
+      "majorArcminutes": 19.41
+    },
+    {
+      "id": "dso-ngc0404",
+      "name": "NGC 404",
+      "designation": "NGC 404",
+      "aliases": [
+        "NGC0404"
+      ],
+      "type": "G",
+      "raHoursJ2000": 1.1575055555555556,
+      "decDegreesJ2000": 35.71813888888889,
+      "magnitude": 10.55,
+      "majorArcminutes": 3.4
+    },
+    {
+      "id": "dso-ngc0891",
+      "name": "NGC 891",
+      "designation": "NGC 891",
+      "aliases": [
+        "NGC0891"
+      ],
+      "type": "G",
+      "raHoursJ2000": 2.3759472222222224,
+      "decDegreesJ2000": 42.34913888888889,
+      "magnitude": 10.01,
+      "majorArcminutes": 13.03
+    },
+    {
+      "id": "dso-ngc1023",
+      "name": "NGC 1023",
+      "designation": "NGC 1023",
+      "aliases": [
+        "NGC1023"
+      ],
+      "type": "G",
+      "raHoursJ2000": 2.673336111111111,
+      "decDegreesJ2000": 39.06327777777778,
+      "magnitude": 9.47,
+      "majorArcminutes": 7.4
+    },
+    {
+      "id": "dso-ngc1097",
+      "name": "NGC 1097",
+      "designation": "NGC 1097",
+      "aliases": [
+        "NGC1097"
+      ],
+      "type": "G",
+      "raHoursJ2000": 2.771958333333333,
+      "decDegreesJ2000": -30.27488888888889,
+      "magnitude": 9.76,
+      "majorArcminutes": 10.57
+    },
+    {
+      "id": "dso-ngc1232",
+      "name": "NGC 1232",
+      "designation": "NGC 1232",
+      "aliases": [
+        "NGC1232"
+      ],
+      "type": "G",
+      "raHoursJ2000": 3.1626416666666666,
+      "decDegreesJ2000": -20.579305555555557,
+      "magnitude": 10.11,
+      "majorArcminutes": 6.79
+    },
+    {
+      "id": "dso-ngc1300",
+      "name": "NGC 1300",
+      "designation": "NGC 1300",
+      "aliases": [
+        "NGC1300"
+      ],
+      "type": "G",
+      "raHoursJ2000": 3.3280777777777777,
+      "decDegreesJ2000": -19.41136111111111,
+      "magnitude": 10.52,
+      "majorArcminutes": 5.96
+    },
+    {
+      "id": "dso-ngc1316",
+      "name": "NGC 1316",
+      "designation": "NGC 1316",
+      "aliases": [
+        "NGC1316",
+        "Fornax A"
+      ],
+      "type": "G",
+      "raHoursJ2000": 3.3782555555555556,
+      "decDegreesJ2000": -37.208222222222226,
+      "magnitude": 8.48,
+      "majorArcminutes": 13.46
+    },
+    {
+      "id": "dso-ngc1365",
+      "name": "NGC 1365",
+      "designation": "NGC 1365",
+      "aliases": [
+        "NGC1365"
+      ],
+      "type": "G",
+      "raHoursJ2000": 3.5601027777777774,
+      "decDegreesJ2000": -36.140388888888886,
+      "magnitude": 10.1,
+      "majorArcminutes": 12.02
+    },
+    {
+      "id": "dso-ngc1399",
+      "name": "NGC 1399",
+      "designation": "NGC 1399",
+      "aliases": [
+        "NGC1399"
+      ],
+      "type": "G",
+      "raHoursJ2000": 3.6413972222222224,
+      "decDegreesJ2000": -35.45066666666667,
+      "magnitude": 9.4,
+      "majorArcminutes": 8.51
+    },
+    {
+      "id": "dso-ngc1404",
+      "name": "NGC 1404",
+      "designation": "NGC 1404",
+      "aliases": [
+        "NGC1404"
+      ],
+      "type": "G",
+      "raHoursJ2000": 3.6477555555555554,
+      "decDegreesJ2000": -35.59438888888889,
+      "magnitude": 9.93,
+      "majorArcminutes": 5.01
+    },
+    {
+      "id": "dso-ngc1512",
+      "name": "NGC 1512",
+      "designation": "NGC 1512",
+      "aliases": [
+        "NGC1512"
+      ],
+      "type": "G",
+      "raHoursJ2000": 4.065077777777778,
+      "decDegreesJ2000": -43.34886111111111,
+      "magnitude": 10.37,
+      "majorArcminutes": 8.43
+    },
+    {
+      "id": "dso-ngc1566",
+      "name": "NGC 1566",
+      "designation": "NGC 1566",
+      "aliases": [
+        "NGC1566"
+      ],
+      "type": "G",
+      "raHoursJ2000": 4.33345,
+      "decDegreesJ2000": -54.93780555555555,
+      "magnitude": 9.73,
+      "majorArcminutes": 7.23
+    },
+    {
+      "id": "dso-ngc1672",
+      "name": "NGC 1672",
+      "designation": "NGC 1672",
+      "aliases": [
+        "NGC1672"
+      ],
+      "type": "G",
+      "raHoursJ2000": 4.761805555555555,
+      "decDegreesJ2000": -59.247194444444446,
+      "magnitude": 10.16,
+      "majorArcminutes": 6.14
+    },
+    {
+      "id": "dso-ngc1705",
+      "name": "NGC 1705",
+      "designation": "NGC 1705",
+      "aliases": [
+        "NGC1705"
+      ],
+      "type": "G",
+      "raHoursJ2000": 4.9037500000000005,
+      "decDegreesJ2000": -53.36105555555556,
+      "magnitude": 12.46,
+      "majorArcminutes": 1.87
+    },
+    {
+      "id": "dso-ngc2442",
+      "name": "NGC 2442",
+      "designation": "NGC 2442",
+      "aliases": [
+        "NGC2442"
+      ],
+      "type": "G",
+      "raHoursJ2000": 7.606622222222222,
+      "decDegreesJ2000": -69.53083333333333,
+      "magnitude": 10.63,
+      "majorArcminutes": 4.68
+    },
+    {
+      "id": "dso-ngc2683",
+      "name": "NGC 2683",
+      "designation": "NGC 2683",
+      "aliases": [
+        "NGC2683"
+      ],
+      "type": "G",
+      "raHoursJ2000": 8.878147222222223,
+      "decDegreesJ2000": 33.421749999999996,
+      "magnitude": 9.69,
+      "majorArcminutes": 9.48
+    },
+    {
+      "id": "dso-ngc2841",
+      "name": "NGC 2841",
+      "designation": "NGC 2841",
+      "aliases": [
+        "NGC2841"
+      ],
+      "type": "G",
+      "raHoursJ2000": 9.367397222222223,
+      "decDegreesJ2000": 50.97652777777778,
+      "magnitude": 10.18,
+      "majorArcminutes": 6.9
+    },
+    {
+      "id": "dso-ngc2903",
+      "name": "NGC 2903",
+      "designation": "NGC 2903",
+      "aliases": [
+        "NGC2903"
+      ],
+      "type": "G",
+      "raHoursJ2000": 9.536141666666667,
+      "decDegreesJ2000": 21.500833333333333,
+      "magnitude": 8.91,
+      "majorArcminutes": 11.94
+    },
+    {
+      "id": "dso-ngc2997",
+      "name": "NGC 2997",
+      "designation": "NGC 2997",
+      "aliases": [
+        "NGC2997"
+      ],
+      "type": "G",
+      "raHoursJ2000": 9.760775,
+      "decDegreesJ2000": -31.191083333333335,
+      "magnitude": 9.41,
+      "majorArcminutes": 10.26
+    },
+    {
+      "id": "dso-ngc3079",
+      "name": "NGC 3079",
+      "designation": "NGC 3079",
+      "aliases": [
+        "NGC3079"
+      ],
+      "type": "G",
+      "raHoursJ2000": 10.032722222222223,
+      "decDegreesJ2000": 55.67977777777777,
+      "magnitude": 10.71,
+      "majorArcminutes": 8.18
+    },
+    {
+      "id": "dso-ngc3115",
+      "name": "NGC 3115",
+      "designation": "NGC 3115",
+      "aliases": [
+        "NGC3115",
+        "Spindle Galaxy"
+      ],
+      "type": "G",
+      "raHoursJ2000": 10.087216666666666,
+      "decDegreesJ2000": -7.718583333333333,
+      "magnitude": 9.09,
+      "majorArcminutes": 7.1
+    },
+    {
+      "id": "dso-ngc3169",
+      "name": "NGC 3169",
+      "designation": "NGC 3169",
+      "aliases": [
+        "NGC3169"
+      ],
+      "type": "G",
+      "raHoursJ2000": 10.237513888888888,
+      "decDegreesJ2000": 3.4660833333333336,
+      "magnitude": 10.89,
+      "majorArcminutes": 4.34
+    },
+    {
+      "id": "dso-ngc3227",
+      "name": "NGC 3227",
+      "designation": "NGC 3227",
+      "aliases": [
+        "NGC3227"
+      ],
+      "type": "G",
+      "raHoursJ2000": 10.391827777777777,
+      "decDegreesJ2000": 19.865055555555557,
+      "magnitude": 11.72,
+      "majorArcminutes": 3.98
+    },
+    {
+      "id": "dso-ngc3310",
+      "name": "NGC 3310",
+      "designation": "NGC 3310",
+      "aliases": [
+        "NGC3310"
+      ],
+      "type": "G",
+      "raHoursJ2000": 10.646072222222221,
+      "decDegreesJ2000": 53.50338888888889,
+      "magnitude": 11.61,
+      "majorArcminutes": 1.8
+    },
+    {
+      "id": "dso-ngc3344",
+      "name": "NGC 3344",
+      "designation": "NGC 3344",
+      "aliases": [
+        "NGC3344"
+      ],
+      "type": "G",
+      "raHoursJ2000": 10.725319444444445,
+      "decDegreesJ2000": 24.922222222222224,
+      "magnitude": 9.98,
+      "majorArcminutes": 6.7
+    },
+    {
+      "id": "dso-ngc3521",
+      "name": "NGC 3521",
+      "designation": "NGC 3521",
+      "aliases": [
+        "NGC3521"
+      ],
+      "type": "G",
+      "raHoursJ2000": 11.096827777777778,
+      "decDegreesJ2000": -0.03586111111111111,
+      "magnitude": 9.11,
+      "majorArcminutes": 8.32
+    },
+    {
+      "id": "dso-ngc3628",
+      "name": "NGC 3628",
+      "designation": "NGC 3628",
+      "aliases": [
+        "NGC3628"
+      ],
+      "type": "G",
+      "raHoursJ2000": 11.338047222222222,
+      "decDegreesJ2000": 13.589694444444445,
+      "magnitude": 9.45,
+      "majorArcminutes": 11.04
+    },
+    {
+      "id": "dso-ngc4038",
+      "name": "NGC 4038",
+      "designation": "NGC 4038",
+      "aliases": [
+        "NGC4038",
+        "Antennae Galaxies"
+      ],
+      "type": "G",
+      "raHoursJ2000": 12.031391666666668,
+      "decDegreesJ2000": -18.867611111111113,
+      "magnitude": 10.2,
+      "majorArcminutes": 5.42
+    },
+    {
+      "id": "dso-ngc4039",
+      "name": "NGC 4039",
+      "designation": "NGC 4039",
+      "aliases": [
+        "NGC4039",
+        "Antennae Galaxies"
+      ],
+      "type": "G",
+      "raHoursJ2000": 12.031530555555557,
+      "decDegreesJ2000": -18.886194444444445,
+      "magnitude": null,
+      "majorArcminutes": 5.36
+    },
+    {
+      "id": "dso-ngc4214",
+      "name": "NGC 4214",
+      "designation": "NGC 4214",
+      "aliases": [
+        "NGC4214"
+      ],
+      "type": "G",
+      "raHoursJ2000": 12.260880555555556,
+      "decDegreesJ2000": 36.326888888888895,
+      "magnitude": 9.77,
+      "majorArcminutes": 6.79
+    },
+    {
+      "id": "dso-ngc4244",
+      "name": "NGC 4244",
+      "designation": "NGC 4244",
+      "aliases": [
+        "NGC4244"
+      ],
+      "type": "G",
+      "raHoursJ2000": 12.291572222222221,
+      "decDegreesJ2000": 37.807111111111105,
+      "magnitude": 10.18,
+      "majorArcminutes": 16.22
+    },
+    {
+      "id": "dso-ngc4449",
+      "name": "NGC 4449",
+      "designation": "NGC 4449",
+      "aliases": [
+        "NGC4449"
+      ],
+      "type": "G",
+      "raHoursJ2000": 12.46975,
+      "decDegreesJ2000": 44.09363888888889,
+      "magnitude": 9.64,
+      "majorArcminutes": 4.66
+    },
+    {
+      "id": "dso-ngc4565",
+      "name": "NGC 4565",
+      "designation": "NGC 4565",
+      "aliases": [
+        "NGC4565",
+        "Needle Galaxy"
+      ],
+      "type": "G",
+      "raHoursJ2000": 12.605772222222221,
+      "decDegreesJ2000": 25.98766666666667,
+      "magnitude": 10.86,
+      "majorArcminutes": 16.75
+    },
+    {
+      "id": "dso-ngc4631",
+      "name": "NGC 4631",
+      "designation": "NGC 4631",
+      "aliases": [
+        "NGC4631",
+        "Whale Galaxy"
+      ],
+      "type": "G",
+      "raHoursJ2000": 12.702224999999999,
+      "decDegreesJ2000": 32.5415,
+      "magnitude": 9.24,
+      "majorArcminutes": 14.45
+    },
+    {
+      "id": "dso-ngc4656",
+      "name": "NGC 4656",
+      "designation": "NGC 4656",
+      "aliases": [
+        "NGC4656"
+      ],
+      "type": "GPair",
+      "raHoursJ2000": 12.732702777777778,
+      "decDegreesJ2000": 32.16813888888888,
+      "magnitude": null,
+      "majorArcminutes": 8.0
+    },
+    {
+      "id": "dso-ngc4697",
+      "name": "NGC 4697",
+      "designation": "NGC 4697",
+      "aliases": [
+        "NGC4697"
+      ],
+      "type": "G",
+      "raHoursJ2000": 12.809966666666668,
+      "decDegreesJ2000": -5.80075,
+      "magnitude": 9.37,
+      "majorArcminutes": 7.14
+    },
+    {
+      "id": "dso-ngc4725",
+      "name": "NGC 4725",
+      "designation": "NGC 4725",
+      "aliases": [
+        "NGC4725"
+      ],
+      "type": "G",
+      "raHoursJ2000": 12.840716666666667,
+      "decDegreesJ2000": 25.500805555555555,
+      "magnitude": 9.38,
+      "majorArcminutes": 9.71
+    },
+    {
+      "id": "dso-ngc4945",
+      "name": "NGC 4945",
+      "designation": "NGC 4945",
+      "aliases": [
+        "NGC4945"
+      ],
+      "type": "G",
+      "raHoursJ2000": 13.090966666666667,
+      "decDegreesJ2000": -49.468222222222224,
+      "magnitude": 11.86,
+      "majorArcminutes": 23.33
+    },
+    {
+      "id": "dso-ngc5005",
+      "name": "NGC 5005",
+      "designation": "NGC 5005",
+      "aliases": [
+        "NGC5005"
+      ],
+      "type": "G",
+      "raHoursJ2000": 13.182286111111111,
+      "decDegreesJ2000": 37.059194444444444,
+      "magnitude": 10.71,
+      "majorArcminutes": 4.82
+    },
+    {
+      "id": "dso-ngc5033",
+      "name": "NGC 5033",
+      "designation": "NGC 5033",
+      "aliases": [
+        "NGC5033"
+      ],
+      "type": "G",
+      "raHoursJ2000": 13.224297222222223,
+      "decDegreesJ2000": 36.593944444444446,
+      "magnitude": 10.68,
+      "majorArcminutes": 9.84
+    },
+    {
+      "id": "dso-ngc5102",
+      "name": "NGC 5102",
+      "designation": "NGC 5102",
+      "aliases": [
+        "NGC5102"
+      ],
+      "type": "G",
+      "raHoursJ2000": 13.366002777777778,
+      "decDegreesJ2000": -36.630250000000004,
+      "magnitude": 9.88,
+      "majorArcminutes": 9.71
+    },
+    {
+      "id": "dso-ngc5128",
+      "name": "NGC 5128",
+      "designation": "NGC 5128",
+      "aliases": [
+        "NGC5128",
+        "Centaurus A"
+      ],
+      "type": "G",
+      "raHoursJ2000": 13.424338888888888,
+      "decDegreesJ2000": -43.01911111111111,
+      "magnitude": 7.22,
+      "majorArcminutes": 25.88
+    },
+    {
+      "id": "dso-ngc5189",
+      "name": "NGC 5189",
+      "designation": "NGC 5189",
+      "aliases": [
+        "NGC5189"
+      ],
+      "type": "PN",
+      "raHoursJ2000": 13.559141666666667,
+      "decDegreesJ2000": -65.97405555555555,
+      "magnitude": 14.5,
+      "majorArcminutes": 2.33
+    },
+    {
+      "id": "dso-ngc5248",
+      "name": "NGC 5248",
+      "designation": "NGC 5248",
+      "aliases": [
+        "NGC5248"
+      ],
+      "type": "G",
+      "raHoursJ2000": 13.62556111111111,
+      "decDegreesJ2000": 8.885166666666667,
+      "magnitude": 9.97,
+      "majorArcminutes": 4.07
+    },
+    {
+      "id": "dso-ngc5253",
+      "name": "NGC 5253",
+      "designation": "NGC 5253",
+      "aliases": [
+        "NGC5253"
+      ],
+      "type": "G",
+      "raHoursJ2000": 13.665544444444444,
+      "decDegreesJ2000": -31.64011111111111,
+      "magnitude": 10.28,
+      "majorArcminutes": 5.01
+    },
+    {
+      "id": "dso-ngc5746",
+      "name": "NGC 5746",
+      "designation": "NGC 5746",
+      "aliases": [
+        "NGC5746"
+      ],
+      "type": "G",
+      "raHoursJ2000": 14.748866666666666,
+      "decDegreesJ2000": 1.9549999999999998,
+      "magnitude": 10.55,
+      "majorArcminutes": 7.24
+    },
+    {
+      "id": "dso-ngc5907",
+      "name": "NGC 5907",
+      "designation": "NGC 5907",
+      "aliases": [
+        "NGC5907"
+      ],
+      "type": "G",
+      "raHoursJ2000": 15.264936111111112,
+      "decDegreesJ2000": 56.32877777777778,
+      "magnitude": 10.37,
+      "majorArcminutes": 11.3
+    },
+    {
+      "id": "dso-ngc6744",
+      "name": "NGC 6744",
+      "designation": "NGC 6744",
+      "aliases": [
+        "NGC6744"
+      ],
+      "type": "G",
+      "raHoursJ2000": 19.162805555555554,
+      "decDegreesJ2000": -63.857527777777776,
+      "magnitude": 9.25,
+      "majorArcminutes": 15.67
+    },
+    {
+      "id": "dso-ngc6822",
+      "name": "NGC 6822",
+      "designation": "NGC 6822",
+      "aliases": [
+        "NGC6822",
+        "Barnard's Galaxy"
+      ],
+      "type": "G",
+      "raHoursJ2000": 19.749372222222224,
+      "decDegreesJ2000": -14.803444444444445,
+      "magnitude": 10.05,
+      "majorArcminutes": 17.38
+    },
+    {
+      "id": "dso-ngc6946",
+      "name": "NGC 6946",
+      "designation": "NGC 6946",
+      "aliases": [
+        "NGC6946",
+        "Fireworks Galaxy"
+      ],
+      "type": "G",
+      "raHoursJ2000": 20.5812,
+      "decDegreesJ2000": 60.15391666666667,
+      "magnitude": 9.05,
+      "majorArcminutes": 11.4
+    },
+    {
+      "id": "dso-ngc7318a",
+      "name": "NGC 7318A",
+      "designation": "NGC 7318A",
+      "aliases": [
+        "NGC7318A"
+      ],
+      "type": "G",
+      "raHoursJ2000": 22.59909722222222,
+      "decDegreesJ2000": 33.965472222222225,
+      "magnitude": 13.39,
+      "majorArcminutes": 1.47
+    },
+    {
+      "id": "dso-ngc7318b",
+      "name": "NGC 7318B",
+      "designation": "NGC 7318B",
+      "aliases": [
+        "NGC7318B"
+      ],
+      "type": "G",
+      "raHoursJ2000": 22.59955833333333,
+      "decDegreesJ2000": 33.96591666666667,
+      "magnitude": null,
+      "majorArcminutes": 2.37
+    },
+    {
+      "id": "dso-ngc7331",
+      "name": "NGC 7331",
+      "designation": "NGC 7331",
+      "aliases": [
+        "NGC7331"
+      ],
+      "type": "G",
+      "raHoursJ2000": 22.617780555555555,
+      "decDegreesJ2000": 34.415527777777775,
+      "magnitude": 9.41,
+      "majorArcminutes": 9.27
+    },
+    {
+      "id": "dso-ngc7479",
+      "name": "NGC 7479",
+      "designation": "NGC 7479",
+      "aliases": [
+        "NGC7479"
+      ],
+      "type": "G",
+      "raHoursJ2000": 23.082402777777776,
+      "decDegreesJ2000": 12.322888888888889,
+      "magnitude": 11.09,
+      "majorArcminutes": 3.65
+    },
+    {
+      "id": "dso-ngc7814",
+      "name": "NGC 7814",
+      "designation": "NGC 7814",
+      "aliases": [
+        "NGC7814"
+      ],
+      "type": "G",
+      "raHoursJ2000": 0.054136111111111114,
+      "decDegreesJ2000": 16.145416666666666,
+      "magnitude": 10.6,
+      "majorArcminutes": 4.37
+    },
+    {
+      "id": "dso-mel022",
+      "name": "M45",
+      "designation": "Melotte 22",
+      "aliases": [
+        "M 45",
+        "Messier 45",
+        "Mel022",
+        "Pleiades"
+      ],
+      "type": "OCl",
+      "raHoursJ2000": 3.7912777777777777,
+      "decDegreesJ2000": 24.10527777777778,
+      "magnitude": 1.2,
+      "majorArcminutes": 150.0,
+      "sourceUrl": "https://raw.githubusercontent.com/mattiaverga/OpenNGC/be3cd6c5498806a2fbb2f7e0452ef802dbb02be0/database_files/addendum.csv"
+    }
+  ]
+}

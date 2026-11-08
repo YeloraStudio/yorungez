@@ -5,6 +5,7 @@ import 'dart:typed_data';
 import 'package:crypto/crypto.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:yorungez/catalogue/data/catalogue_repository.dart';
+import 'package:yorungez/catalogue/data/survey_image.dart';
 import 'package:yorungez/catalogue/domain/sky_object.dart';
 
 void main() {
@@ -26,7 +27,7 @@ void main() {
     },
   );
   test('bundled canonical catalogue opens offline with stable identities', () {
-    expect(catalogue.objects.length, 5278);
+    expect(catalogue.objects.length, 5342);
     expect(
       catalogue.objects.where((o) => o.kind == ObjectKind.star).length,
       5073,
@@ -37,9 +38,9 @@ void main() {
     );
     expect(
       catalogue.objects.where((o) => o.kind == ObjectKind.deepSky).length,
-      107,
+      170,
     );
-    expect(catalogue.images.length, 12);
+    expect(catalogue.images.length, 30);
     expect(catalogue.notices, contains('Mattia Verga'));
     expect(catalogue.find('hyg-32263')!.raHours, 6.752481);
     expect(catalogue.find('missing'), isNull);
@@ -56,12 +57,12 @@ void main() {
     'Turkish names, ASCII aliases and spaced identifiers are searchable',
     () {
       expect(
-        searchObjects(catalogue.objects, 'GÖKADASI').first.id,
-        'dso-ngc0224',
+        searchObjects(catalogue.objects, 'GÖKADASI').map((o) => o.id),
+        contains('dso-ngc0224'),
       );
       expect(
-        searchObjects(catalogue.objects, 'gokadasi').first.id,
-        'dso-ngc0224',
+        searchObjects(catalogue.objects, 'gokadasi').map((o) => o.id),
+        contains('dso-ngc0224'),
       );
       expect(searchObjects(catalogue.objects, 'M 31').first.id, 'dso-ngc0224');
       expect(
@@ -71,6 +72,101 @@ void main() {
       expect(searchObjects(catalogue.objects, 'not-a-real-object'), isEmpty);
     },
   );
+
+  test(
+    'regional and galaxy searches work offline without fake point targets',
+    () {
+      for (final query in ['milkyway', 'Saman yolu', 'Samanyolu Galaksisi']) {
+        final galaxy = searchObjects(catalogue.objects, query).single;
+        expect(galaxy.id, 'milky-way');
+        expect(galaxy.raHours, isNull);
+        expect(galaxy.regionId, 'con-sgr');
+        expect(surveyImageUri(galaxy), isNull);
+      }
+      expect(
+        searchObjects(catalogue.objects, 'galaksiler').length,
+        greaterThan(75),
+      );
+      expect(
+        searchObjects(catalogue.objects, 'İğne Galaksisi').first.id,
+        'dso-ngc4565',
+      );
+      expect(
+        searchObjects(catalogue.objects, 'NGC 5128').first.id,
+        'dso-ngc5128',
+      );
+      expect(
+        searchObjects(catalogue.objects, 'Sunak Takımyıldızı').first.id,
+        'con-ara',
+      );
+      expect(
+        searchObjects(catalogue.objects, 'Altar').map((o) => o.id),
+        containsAll(['con-ara', 'hyg-97338']),
+      );
+    },
+  );
+
+  test(
+    'image coverage includes the requested references and valid chart data',
+    () {
+      expect(
+        catalogue.images.keys,
+        containsAll([
+          'sat-25544',
+          'hyg-90979',
+          'hyg-97338',
+          'hyg-32263',
+          'con-ara',
+          'dso-ngc0224',
+          'milky-way',
+        ]),
+      );
+      final chartIds = catalogue.lines.entries
+          .where((entry) => entry.value.any((line) => line.length >= 2))
+          .map((entry) => entry.key)
+          .toSet();
+      expect(
+        catalogue.objects.every(
+          (object) =>
+              catalogue.images.containsKey(object.id) ||
+              surveyImageUri(object) != null ||
+              chartIds.contains(object.id),
+        ),
+        isTrue,
+      );
+      expect(
+        catalogue.objects
+                .where(
+                  (object) =>
+                      catalogue.images.containsKey(object.id) ||
+                      surveyImageUri(object) != null,
+                )
+                .length /
+            catalogue.objects.length,
+        greaterThan(.98),
+      );
+      final uri = surveyImageUri(catalogue.find('dso-ngc0253')!)!;
+      expect(uri.scheme, 'https');
+      expect(uri.host, 'skyview.gsfc.nasa.gov');
+      expect(
+        uri.queryParameters['Position'],
+        matches(RegExp(r'^\d+\.\d+,-\d+\.\d+$')),
+      );
+      expect(uri.queryParameters['Survey'], '2MASS-K');
+      expect(surveyImageUri(issObject), isNull);
+    },
+  );
+
+  test('glossary includes the shared 60 sourced terms in both languages', () {
+    expect(catalogue.glossary, hasLength(60));
+    final azimuth = catalogue.glossary.singleWhere(
+      (term) => term.id == 'azimuth',
+    );
+    expect(azimuth.matches(normalizeSearch('AZ')), isTrue);
+    expect(azimuth.definition('tr'), contains('90° azimut doğuya'));
+    expect(azimuth.definition('en'), contains('90° means look east'));
+    expect(azimuth.sources.single, startsWith('https://'));
+  });
 
   Map<String, Object> input() {
     final manifest =

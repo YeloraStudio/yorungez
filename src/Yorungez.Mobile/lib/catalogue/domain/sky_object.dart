@@ -1,4 +1,11 @@
-enum ObjectKind { star, deepSky, constellation, solarSystem, satellite }
+enum ObjectKind {
+  star,
+  deepSky,
+  constellation,
+  solarSystem,
+  satellite,
+  extended,
+}
 
 const issObject = SkyObject(
   id: 'sat-25544',
@@ -77,6 +84,8 @@ final class SkyObject {
     this.constellation = '',
     this.subtype = '',
     this.summaries = const {},
+    this.regionId,
+    this.regionNotes = const {},
   });
 
   final String id;
@@ -90,6 +99,10 @@ final class SkyObject {
   final double? distanceParsecs;
   final String constellation, subtype;
   final Map<String, String> summaries;
+  final String? regionId;
+  final Map<String, String> regionNotes;
+  bool get isGalaxy =>
+      kind == ObjectKind.extended || subtype == 'G' || subtype == 'GPair';
 
   String name(String language) => names[language] ?? names['en'] ?? id;
 
@@ -98,6 +111,14 @@ final class SkyObject {
     designation,
     ...names.values,
     ...aliases,
+    if (isGalaxy) ...[
+      'galaxy',
+      'galaxies',
+      'galaksi',
+      'galaksiler',
+      'gökada',
+      'gökadalar',
+    ],
   ];
 }
 
@@ -120,7 +141,7 @@ String normalizeSearch(String value) {
 List<SkyObject> searchObjects(List<SkyObject> objects, String query) {
   final term = normalizeSearch(query);
   if (term.isEmpty) return objects;
-  final matches = <(SkyObject, int)>[];
+  final matches = <(SkyObject, int, int)>[];
   for (final object in objects) {
     var best = 3;
     for (final alias in object.searchTerms) {
@@ -134,11 +155,18 @@ List<SkyObject> searchObjects(List<SkyObject> objects, String query) {
           : 3;
       if (score < best) best = score;
     }
-    if (best < 3) matches.add((object, best));
+    if (best < 3) {
+      final hasName = object.names.values.any(
+        (name) => normalizeSearch(name) == term,
+      );
+      matches.add((object, best, hasName ? 0 : 1));
+    }
   }
   matches.sort((a, b) {
     final rank = a.$2.compareTo(b.$2);
-    return rank != 0 ? rank : a.$1.id.compareTo(b.$1.id);
+    if (rank != 0) return rank;
+    final nameRank = a.$3.compareTo(b.$3);
+    return nameRank != 0 ? nameRank : a.$1.id.compareTo(b.$1.id);
   });
   return matches.map((entry) => entry.$1).toList(growable: false);
 }

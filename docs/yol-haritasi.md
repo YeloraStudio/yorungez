@@ -1,6 +1,6 @@
 # yorungez — Yol haritası ve başlangıç iş listesi
 
-**K-059 / 7 November 2026 — Fastlane iOS delivery:** The owner requested configuring and releasing the existing iOS application with Fastlane. Preserve the current bundle ID and supplied branding. The release toolchain is aligned to Flutter 3.47.9/Dart 3.13.7 and locked Fastlane 2.241.2/Ruby 4.0.9. [Release runbook, implemented lanes, evidence and remaining Apple/account-deletion/privacy/device gates](mobile-ios-release.md). Native release preparation is authorized; no successful store upload or approval is implied.
+**K-064 / 8 November 2026 — Fastlane iOS delivery:** The owner requested configuring and releasing the existing iOS application with Fastlane. Preserve the current bundle ID and supplied branding. The release toolchain is aligned to Flutter 3.47.9/Dart 3.13.7 and locked Fastlane 2.241.2/Ruby 4.0.9. [Release runbook, implemented lanes, evidence and remaining Apple, privacy and device checks](mobile-ios-release.md). The runbook records the initial internal TestFlight upload and the remaining review steps.
 
 **K-058 / 6 November 2026 — Native sensor compatibility:** Detect actual OS orientation capability. Unsupported devices receive one EN/TR explanation per installation; touch/search/location-based astronomy remains usable. Bound silent streams, preserve retryable transient failures and store only a non-personal notice acknowledgement. [Contract and verification](mobile-sensor-compatibility.md).
 

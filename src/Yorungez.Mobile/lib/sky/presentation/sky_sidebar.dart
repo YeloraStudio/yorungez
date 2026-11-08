@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../../l10n/generated/app_localizations.dart';
 import 'sky_painter.dart';
 import '../../account/account_widgets.dart';
@@ -20,6 +21,10 @@ class SkySidebar extends StatelessWidget {
     required this.toggleMusic,
     required this.changeLayer,
     required this.showPrivacy,
+    required this.dwellEnabled,
+    required this.zoomEnabled,
+    required this.changeDwell,
+    required this.changeZoom,
     this.savingPreferences = false,
     this.simulated = false,
     required this.showTonight,
@@ -36,6 +41,8 @@ class SkySidebar extends StatelessWidget {
       showTimeZone,
       returnToLive;
   final bool muted;
+  final bool dwellEnabled, zoomEnabled;
+  final ValueChanged<bool> changeDwell, changeZoom;
   final String language, location, clock;
   final VoidCallback changeLocation,
       calibrate,
@@ -112,9 +119,27 @@ class SkySidebar extends StatelessWidget {
                   ),
                   ListTile(
                     contentPadding: EdgeInsets.zero,
+                    leading: const Icon(Icons.explore_outlined),
+                    title: Text(t.guideTitle),
+                    onTap: () => closeThen(() => context.push('/observe')),
+                  ),
+                  ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    leading: const Icon(Icons.satellite_alt_outlined),
+                    title: Text(t.issPassesTitle),
+                    onTap: () => closeThen(() => context.push('/iss-passes')),
+                  ),
+                  ListTile(
+                    contentPadding: EdgeInsets.zero,
                     leading: const Icon(Icons.notifications_active_outlined),
                     title: Text(t.reminders),
                     onTap: () => closeThen(showReminders),
+                  ),
+                  ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    leading: const Icon(Icons.menu_book_outlined),
+                    title: Text(t.glossaryTitle),
+                    onTap: () => closeThen(() => context.push('/glossary')),
                   ),
                   ListTile(
                     contentPadding: EdgeInsets.zero,
@@ -135,6 +160,20 @@ class SkySidebar extends StatelessWidget {
                       onPressed: () => closeThen(returnToLive),
                       child: Text(t.returnLive),
                     ),
+                  const Divider(height: 24),
+                  SwitchListTile(
+                    contentPadding: EdgeInsets.zero,
+                    title: Text(t.dwellSetting),
+                    value: dwellEnabled,
+                    onChanged: changeDwell,
+                  ),
+                  SwitchListTile(
+                    contentPadding: EdgeInsets.zero,
+                    title: Text(t.zoomSetting),
+                    subtitle: Text(t.zoomSettingHelp),
+                    value: zoomEnabled,
+                    onChanged: changeZoom,
+                  ),
                   const Divider(height: 24),
                   Text(
                     t.skyLayers,

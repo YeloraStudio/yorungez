@@ -1,5 +1,7 @@
 # yorungez — Gereksinim ve teslimat izlenebilirliği
 
+**K-063 / 8 November 2026 — Native observing tools:** The mobile guide, equipment filters, local eclipse and selected meteor windows, and near-term sunlit ISS passes extend FR-03/04/05/06/09/10/11. [Scope and scientific boundaries](mobile-observing-guide.md).
+
 **K-055 / 6 November 2026 — Native planning delivery:** Tonight/Calendar share canonical event data and pinned science, explicit local/IANA/UTC time and simulation/live navigation. Verified-account reminders use a durable server email scheduler and future push channel boundary. Native existing-brand icons and eight English genuine-screen store designs are included. FR-04/05/06/07/08/11; UJ-02/03/04/06/07; AC-03/05/06/07/08/09/10/12/13. [Evidence and open gates](mobile-night-calendar-reminders.md). Physical devices, push provider acceptance and store release remain open.
 
 **K-054 / 5 November 2026 — Native account integration:** The owner requires shared API sign-in/registration, server-owned personal inventory, account language/preferences, permission-granted real device location/compass first, working object/source links and detail-to-live-sky focus. Mobile display branding is now **Yorungez**; technical IDs and supplied logo masters stay unchanged. Include a small sidebar website link; Web-to-store promotion waits for a published app. [Delivery contract and evidence](mobile-account-integration.md).

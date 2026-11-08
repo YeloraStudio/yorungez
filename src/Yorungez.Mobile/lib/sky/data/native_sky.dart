@@ -9,6 +9,10 @@ import '../../catalogue/data/catalogue_repository.dart';
 import '../domain/sky_geometry.dart';
 import 'native_satellite.dart';
 import '../../planning/night_plan.dart';
+import '../../planning/local_observing_events.dart';
+import '../../planning/iss_passes.dart';
+import '../../planning/observing_guide.dart';
+import '../../planning/observing_intervals.dart';
 import 'native_magnetic.dart';
 import '../../catalogue/domain/sky_object.dart';
 
@@ -62,6 +66,18 @@ typedef _CrossNative =
     );
 typedef _CrossDart =
     int Function(double, double, double, double, int, Pointer<Double>, int);
+typedef _EclipseNative =
+    Int32 Function(
+      Double,
+      Double,
+      Double,
+      Double,
+      Double,
+      Pointer<Double>,
+      Int32,
+    );
+typedef _EclipseDart =
+    int Function(double, double, double, double, double, Pointer<Double>, int);
 
 final class NativeSky {
   NativeSky() {
@@ -81,9 +97,59 @@ final class NativeSky {
     }
     _calculate = lib.lookupFunction<_CalculateNative, _Calculate>('yg_sky');
     _crossings = lib.lookupFunction<_CrossNative, _CrossDart>('yg_crossings');
+    _eclipses = lib.lookupFunction<_EclipseNative, _EclipseDart>('yg_eclipses');
   }
   late final _Calculate _calculate;
   late final _CrossDart _crossings;
+  late final _EclipseDart _eclipses;
+
+  List<EclipseContacts> eclipses(
+    SkyObserver observer,
+    DateTime start,
+    DateTime end,
+  ) {
+    final out = calloc<Double>(49);
+    try {
+      final status = _eclipses(
+        start.millisecondsSinceEpoch / 1000,
+        end.millisecondsSinceEpoch / 1000,
+        observer.latitude,
+        observer.longitude,
+        observer.elevation,
+        out,
+        49,
+      );
+      if (status != 0 || out[0] < 0 || out[0] > 8) {
+        throw const FormatException('Eclipse calculation failed');
+      }
+      DateTime at(int index) => DateTime.fromMillisecondsSinceEpoch(
+        (out[index] * 1000).round(),
+        isUtc: true,
+      );
+      return [
+        for (var i = 1; i <= 6 * out[0]; i += 6)
+          (
+            kind: switch (out[i].toInt()) {
+              1 => LocalEventKind.penumbralLunar,
+              2 => LocalEventKind.partialLunar,
+              4 => LocalEventKind.totalLunar,
+              12 => LocalEventKind.partialSolar,
+              13 => LocalEventKind.annularSolar,
+              14 => LocalEventKind.totalSolar,
+              _ => throw const FormatException('Unknown eclipse kind'),
+            },
+            start: at(i + 1),
+            peak: at(i + 2),
+            end: at(i + 3),
+            centralStart: out[i + 4] == 0 ? null : at(i + 4),
+            centralEnd: out[i + 5] == 0 ? null : at(i + 5),
+          ),
+      ];
+    } finally {
+      calloc.free(out);
+    }
+  }
+
   Crossings crossings(
     SkyObserver observer,
     DateTime start,
@@ -237,7 +303,12 @@ final class SkyWorker {
     if (_closed) throw StateError('Calculation worker closed');
     final result = Completer<Float64List>();
     if (message is (String, SkyObserver, DateTime, String, List<double>) &&
-        message.$1 == 'plan') {
+        const {
+          'plan',
+          'guide',
+          'local-events',
+          'iss-passes',
+        }.contains(message.$1)) {
       // Rapid date changes retain only the newest queued plan; never flood the native worker.
       for (final old
           in _queue
@@ -252,7 +323,7 @@ final class SkyWorker {
                               List<double>,
                             ))
                         .$1 ==
-                    'plan',
+                    message.$1,
               )
               .toList()) {
         _queue.remove(old);
@@ -316,6 +387,42 @@ final class SkyWorker {
     return NightPlan.decode(raw);
   }
 
+  Future<Map<String, ObservationSlot>> observingGuide(
+    SkyObserver observer,
+    DateTime start,
+    DateTime end,
+  ) async => decodeObservations(
+    await _enqueue((
+      'guide',
+      observer,
+      start,
+      '',
+      <double>[end.millisecondsSinceEpoch.toDouble()],
+    )),
+  );
+
+  Future<List<LocalObservingEvent>> localEvents(
+    SkyObserver observer,
+    DateTime start,
+    DateTime end,
+  ) async => decodeLocalEvents(
+    await _enqueue((
+      'local-events',
+      observer,
+      start,
+      '',
+      <double>[end.millisecondsSinceEpoch.toDouble()],
+    )),
+  );
+
+  Future<List<IssPass>> issPasses(
+    SkyObserver observer,
+    DateTime start,
+    List<double> elements,
+  ) async => decodePasses(
+    await _enqueue(('iss-passes', observer, start, '', elements)),
+  );
+
   void close() {
     if (_closed) return;
     _closed = true;
@@ -346,7 +453,93 @@ void _runWorker(
       final request =
           message as (String, SkyObserver, DateTime, String, List<double>);
       engine ??= NativeSky();
-      if (request.$1 == 'plan') {
+      if (request.$1 == 'iss-passes') {
+        final observer = request.$2;
+        final start = request.$3;
+        final elements = request.$5;
+        if (elements.length != 10) {
+          throw const FormatException('Invalid ISS data');
+        }
+        final epoch = DateTime.fromMillisecondsSinceEpoch(
+          (elements[0] * 1000).round(),
+          isUtc: true,
+        );
+        final end = earlier(
+          epoch
+              .add(const Duration(hours: 72))
+              .subtract(const Duration(milliseconds: 1)),
+          DateTime.utc(2035, 12, 31, 23, 59, 59),
+        );
+        if (!start.isBefore(end) ||
+            start.isBefore(epoch.subtract(const Duration(minutes: 30)))) {
+          throw const FormatException('Expired ISS data');
+        }
+        satellite ??= NativeSatellite();
+        input.$1.send(
+          encodePasses(
+            estimateIssPasses(
+              observer,
+              start,
+              end,
+              (instant) => satellite!.calculate(elements, observer, instant),
+              (instant) =>
+                  engine!.calculate(observer, instant, const [], const []),
+            ),
+          ),
+        );
+      } else if (request.$1 == 'local-events') {
+        final observer = request.$2;
+        final start = later(request.$3, DateTime.utc(2000));
+        final end = earlier(
+          DateTime.fromMillisecondsSinceEpoch(
+            request.$5.single.round(),
+            isUtc: true,
+          ),
+          DateTime.utc(2035, 12, 31, 23, 59, 59),
+        );
+        input.$1.send(
+          encodeLocalEvents(
+            localObservingEvents(
+              start,
+              end,
+              engine!.eclipses(observer, start, end),
+              (instant, dsos) =>
+                  engine!.calculate(observer, instant, const [], dsos),
+            ),
+          ),
+        );
+      } else if (request.$1 == 'guide') {
+        final observer = request.$2;
+        final end = DateTime.fromMillisecondsSinceEpoch(
+          request.$5.single.round(),
+          isUtc: true,
+        );
+        final dsos = <double>[], offsets = <int>[];
+        for (final id in guideTargets) {
+          final index = input.$4[id]!;
+          if (index < solarIds.length) {
+            offsets.add(8 * index);
+          } else {
+            offsets.add(72 + dsos.length);
+            final offset = 2 * (index - solarIds.length - input.$5);
+            dsos.addAll(input.$3.getRange(offset, offset + 2));
+          }
+        }
+        input.$1.send(
+          encodeObservations(
+            recommendObservations(request.$3, end, (instant) {
+              final raw = engine!.calculate(observer, instant, const [], dsos);
+              return (
+                solarAltitude: raw[1],
+                targets: [
+                  for (final i in offsets)
+                    (azimuth: raw[i], altitude: raw[i + 1]),
+                ],
+              );
+            }),
+          ),
+        );
+      } else if (request.$1 == 'plan') {
         final observer = request.$2, start = request.$3;
         final end = DateTime.fromMillisecondsSinceEpoch(
           request.$5.single.round(),

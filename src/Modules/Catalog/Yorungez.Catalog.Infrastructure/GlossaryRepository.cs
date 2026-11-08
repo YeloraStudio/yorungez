@@ -8,7 +8,7 @@ namespace Yorungez.Catalog.Infrastructure;
 
 public sealed class GlossaryRepository(IDistributedCache cache, ILogger<GlossaryRepository> logger) : IGlossaryRepository
 {
-    public const string DataVersion = "2026-10-31.7";
+    public const string DataVersion = "2026-11-08.1";
     private static readonly JsonSerializerOptions Json = new(JsonSerializerDefaults.Web);
     private static readonly Lazy<GlossaryTerm[]> Seed = new(Load);
 

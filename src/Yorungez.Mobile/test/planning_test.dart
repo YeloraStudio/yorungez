@@ -179,6 +179,47 @@ void main() {
     },
   );
   testWidgets(
+    'The Turkish guide opens the selected target without a sensor and shows local time',
+    (tester) async {
+      final site = SkyObserver(41.0082, 28.9784);
+      final instant = DateTime.utc(2026, 11, 8, 18);
+      final container = ProviderContainer(
+        overrides: [
+          catalogueProvider.overrideWith((ref) async => catalogue),
+          accountApiProvider.overrideWithValue(FakeAccountApi()),
+          credentialVaultProvider.overrideWithValue(MemoryVault()),
+        ],
+      );
+      container.read(localeProvider.notifier).select('tr');
+      container.read(planningZoneProvider.notifier).select('Europe/Istanbul');
+      container.read(skyInstantProvider.notifier).select(instant);
+      container
+          .read(skyFrameProvider.notifier)
+          .publish(SkyFrame(instant, site, {}, []));
+      container.read(routerProvider).go('/observe?target=dso-mel022');
+      await tester.pumpWidget(
+        UncontrolledProviderScope(
+          container: container,
+          child: const YorungezApp(),
+        ),
+      );
+      for (var i = 0; i < 30 && find.text('Ülker').evaluate().isEmpty; i++) {
+        await tester.runAsync(
+          () => Future<void>.delayed(const Duration(milliseconds: 50)),
+        );
+        await tester.pump();
+      }
+      expect(find.text('Nereye bakmalıyım?'), findsOneWidget);
+      expect(find.text('Ülker'), findsOneWidget);
+      expect(find.textContaining('GMT+03:00'), findsWidgets);
+      expect(find.textContaining('ufuktan yaklaşık'), findsOneWidget);
+      expect(find.textContaining('UTC'), findsOneWidget);
+      expect(tester.takeException(), isNull);
+      await tester.pumpWidget(const SizedBox());
+      container.dispose();
+    },
+  );
+  testWidgets(
     'Object details label simulated coordinates and show local time plus UTC',
     (tester) async {
       final instant = DateTime.utc(2026, 11, 5, 23),

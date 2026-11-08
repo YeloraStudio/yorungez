@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Yorungez.Identity.Application;
+using Yorungez.Identity.Infrastructure.Persistence;
 using Yorungez.Notebook.Application;
 using Yorungez.Notebook.Infrastructure;
 
@@ -37,6 +38,43 @@ public sealed class NotebookAccountTests(AppFactory app) : IClassFixture<AppFact
     }
     private static EntryInput Note(string? id = null, long revision = 0, string body = "Public test note") =>
         new(id ?? Guid.NewGuid().ToString(), "note", revision, body, null, null, null);
+
+    [Fact]
+    public async Task Account_deletion_requires_the_password_and_cascades_only_to_the_owner()
+    {
+        using var client = app.Client();
+        var (email, owner) = await SignIn(client);
+        using var otherClient = app.Client();
+        var (_, other) = await SignIn(otherClient);
+        Assert.Equal(HttpStatusCode.OK, (await client.PostAsJsonAsync("/api/v1/notebook/", Place())).StatusCode);
+        Assert.Equal(HttpStatusCode.OK, (await otherClient.PostAsJsonAsync("/api/v1/notebook/", Note())).StatusCode);
+        var reminder = new ReminderInput(Guid.NewGuid(), 0, null, "jupiter", DateTimeOffset.UtcNow.AddDays(1), "Europe/Istanbul", 30);
+        Assert.Equal(HttpStatusCode.OK, (await client.PostAsJsonAsync("/api/v1/notebook/reminders", reminder)).StatusCode);
+        var login = await client.PostAsJsonAsync("/api/v1/auth/login", new { email, password = Password });
+        Assert.Equal(HttpStatusCode.OK, login.StatusCode);
+        var tokens = (await login.Content.ReadFromJsonAsync<TokenPair>())!;
+
+        using var deletion = app.Client();
+        var path = "/api/v1/auth/delete-account";
+        Assert.Equal(HttpStatusCode.Unauthorized, (await deletion.PostAsJsonAsync(path, new { email, password = "incorrect" })).StatusCode);
+        Assert.Equal(HttpStatusCode.OK, (await client.GetAsync("/api/v1/auth/me")).StatusCode);
+        var result = await deletion.PostAsJsonAsync(path, new { email, password = Password });
+        Assert.Equal(HttpStatusCode.OK, result.StatusCode);
+        Assert.True(result.Headers.CacheControl?.NoStore);
+        Assert.Equal(HttpStatusCode.Unauthorized, (await client.GetAsync("/api/v1/auth/me")).StatusCode);
+        Assert.Equal(HttpStatusCode.Unauthorized, (await deletion.PostAsJsonAsync("/api/v1/auth/refresh", new { tokens.RefreshToken })).StatusCode);
+        Assert.Equal(HttpStatusCode.OK, (await otherClient.GetAsync("/api/v1/auth/me")).StatusCode);
+
+        await using var scope = app.Services.CreateAsyncScope();
+        var identity = scope.ServiceProvider.GetRequiredService<IdentityStore>();
+        Assert.False(await identity.Users.AnyAsync(a => a.Id == owner.Id));
+        Assert.False(await identity.RefreshSessions.AnyAsync(s => s.UserId == owner.Id));
+        Assert.False(await identity.PendingEmails.AnyAsync(m => m.UserId == owner.Id));
+        var notebook = scope.ServiceProvider.GetRequiredService<NotebookDatabase>();
+        Assert.False(await notebook.Entries.AnyAsync(e => e.UserId == owner.Id));
+        Assert.False(await notebook.Reminders.AnyAsync(e => e.UserId == owner.Id));
+        Assert.True(await notebook.Entries.AnyAsync(e => e.UserId == other.Id));
+    }
 
     [Fact]
     public async Task Anonymous_records_are_rejected_and_never_inserted()
