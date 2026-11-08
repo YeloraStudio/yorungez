@@ -6,17 +6,19 @@
     "translations": {
       "tr": {
         "name": "Azimut",
-        "definition": "Bir gök cisminin ufuk düzlemindeki yönünü belirten açıdır. Haritada kullanılan başlangıç yönü ve açı birimiyle birlikte açıklanır.",
+        "definition": "Ufuk boyunca hangi yöne bakacağını gösteren açıdır. Yorungez’de gerçek kuzey 0°, doğu 90°, güney 180° ve batı 270°’dir. Örneğin 90° azimut doğuya bak demektir.",
         "aliases": [
           "yatay yön",
-          "azimut"
+          "azimut",
+          "AZ"
         ]
       },
       "en": {
         "name": "Azimuth",
-        "definition": "The angle describing an object's direction along the horizon. It is interpreted using the map's stated reference direction and angular unit.",
+        "definition": "The angle that tells you which way to look along the horizon. In Yorungez, true north is 0°, east 90°, south 180°, and west 270°. An azimuth of 90° means look east.",
         "aliases": [
-          "horizontal direction"
+          "horizontal direction",
+          "AZ"
         ]
       }
     },
@@ -31,18 +33,20 @@
     "translations": {
       "tr": {
         "name": "Ufuk yüksekliği",
-        "definition": "Bir gök cisminin ufka göre yukarıda veya aşağıda bulunduğunu belirten açıdır. Gözlem yerinin deniz seviyesinden yüksekliğiyle farklı bir büyüklüktür.",
+        "definition": "Gök cisminin ufkun kaç derece üstünde veya altında olduğunu gösterir. 0° ufuk, +90° tam tepe, negatif değerler ufkun altıdır. Örneğin +30° için bakışını ufuktan 30° yukarı kaldır.",
         "aliases": [
           "yükseklik",
           "irtifa açısı",
-          "yukseklik"
+          "yukseklik",
+          "EL"
         ]
       },
       "en": {
         "name": "Altitude",
-        "definition": "The angle of an object above or below the horizon. It is a different quantity from the observing site's height above sea level.",
+        "definition": "The angle of an object above or below the horizon. The horizon is 0°, directly overhead is +90°, and negative values are below the horizon. At +30°, look 30° up from the horizon.",
         "aliases": [
-          "elevation angle"
+          "elevation angle",
+          "EL"
         ]
       }
     },
@@ -1228,5 +1232,85 @@
     "sources": [
       "https://geodesy.noaa.gov/GEOID/GPSonBM96/gpsbms.html"
     ]
+  },
+  {
+    "id": "galaxy",
+    "abbreviation": null,
+    "category": "data",
+    "translations": {
+      "tr": {"name":"Gökada","definition":"Kütleçekimiyle bir arada tutulan yıldızlar, gaz, toz ve çoğu zaman karanlık maddeden oluşan büyük sistem. Samanyolu içinde bulunduğumuz gökadadır.","aliases":["galaksi","Samanyolu"]},
+      "en": {"name":"Galaxy","definition":"A large system of stars, gas, dust and usually dark matter held together by gravity. The Milky Way is the galaxy we live in.","aliases":["galaxies","Milky Way"]}
+    },
+    "sources": ["https://science.nasa.gov/universe/galaxies/"]
+  },
+  {
+    "id": "nebula",
+    "abbreviation": null,
+    "category": "data",
+    "translations": {
+      "tr": {"name":"Bulutsu","definition":"Uzayda bulunan gaz ve toz bulutu. Bazı bulutsularda yıldız oluşur. Bazıları yıldızların yaşamlarının sonunda uzaya bıraktığı maddeden oluşur.","aliases":["nebula"]},
+      "en": {"name":"Nebula","definition":"A cloud of gas and dust in space. Some nebulae are places where stars form. Others contain material released near the end of a star’s life.","aliases":["nebulae"]}
+    },
+    "sources": ["https://science.nasa.gov/universe/nebulae/"]
+  },
+  {
+    "id": "star-cluster",
+    "abbreviation": null,
+    "category": "data",
+    "translations": {
+      "tr": {"name":"Yıldız kümesi","definition":"Kütleçekimiyle bir arada duran yıldız grubu. Açık kümeler daha gevşek, küresel kümeler genellikle daha yoğun ve yuvarlaktır.","aliases":["açık küme","küresel küme"]},
+      "en": {"name":"Star cluster","definition":"A group of stars held together by gravity. Open clusters are looser, while globular clusters are generally denser and rounder.","aliases":["open cluster","globular cluster"]}
+    },
+    "sources": ["https://science.nasa.gov/universe/stars/star-clusters-inside-the-universes-stellar-collections/"]
+  },
+  {
+    "id": "parsec",
+    "abbreviation": "pc",
+    "category": "coordinates",
+    "translations": {
+      "tr": {"name":"Parsek","definition":"Yıldızlara olan uzaklığı ifade etmek için kullanılan uzunluk birimi. Bir parsek yaklaşık 3,26 ışık yılıdır.","aliases":["parsec"]},
+      "en": {"name":"Parsec","definition":"A unit of length used for distances to stars. One parsec is about 3.26 light-years.","aliases":["parseks"]}
+    },
+    "sources": ["https://imagine.gsfc.nasa.gov/features/cosmic/nearest_star_info.html"]
+  },
+  {
+    "id": "iss",
+    "abbreviation": "ISS",
+    "category": "data",
+    "translations": {
+      "tr": {"name":"Uluslararası Uzay İstasyonu","definition":"Dünya’nın alçak yörüngesinde dolaşan, astronotların yaşadığı ve mikro yerçekiminde deneyler yaptığı araştırma istasyonu.","aliases":["uzay istasyonu","UUİ"]},
+      "en": {"name":"International Space Station","definition":"A research station in low Earth orbit where astronauts live and conduct experiments in microgravity.","aliases":["space station","NORAD 25544"]}
+    },
+    "sources": ["https://www.nasa.gov/international-space-station/"]
+  },
+  {
+    "id": "norad-catalog-number",
+    "abbreviation": "NORAD ID",
+    "category": "data",
+    "translations": {
+      "tr": {"name":"NORAD katalog numarası","definition":"Takip edilen bir uzay cismine verilen katalog kimliği. Örneğin 25544, Uluslararası Uzay İstasyonu’nun kimliğidir.","aliases":["uydu kimliği"]},
+      "en": {"name":"NORAD catalogue number","definition":"The catalogue identifier of a tracked space object. For example, 25544 identifies the International Space Station.","aliases":["satellite catalogue number","SATCAT"]}
+    },
+    "sources": ["https://celestrak.org/satcat/satcat-format.php"]
+  },
+  {
+    "id": "sgp4",
+    "abbreviation": "SGP4",
+    "category": "data",
+    "translations": {
+      "tr": {"name":"SGP4 yörünge modeli","definition":"Bir Dünya uydusunun yörünge elemanlarından başka bir andaki konum ve hızını tahmin eden model. Yörünge elemanları eskidikçe tahminin hatası artabilir.","aliases":["uydu tahmini"]},
+      "en": {"name":"SGP4 orbit model","definition":"A model that predicts an Earth satellite’s position and velocity at another time from its orbital elements. Errors can grow as the elements age.","aliases":["satellite propagation"]}
+    },
+    "sources": ["https://celestrak.org/publications/AIAA/2006-6753/"]
+  },
+  {
+    "id": "infrared",
+    "abbreviation": "IR",
+    "category": "data",
+    "translations": {
+      "tr": {"name":"Kızılötesi","definition":"Görünür kırmızı ışıktan daha uzun dalga boylarına sahip ışınım. Örneğin 2MASS, gökyüzünü gözün göremediği yakın kızılötesinde taradı.","aliases":["yakın kızılötesi","2MASS"]},
+      "en": {"name":"Infrared","definition":"Radiation with wavelengths longer than visible red light. For example, 2MASS surveyed the sky in near-infrared light that our eyes cannot see.","aliases":["near infrared","2MASS"]}
+    },
+    "sources": ["https://irsa.ipac.caltech.edu/data/2MASS/docs/releases/allsky/"]
   }
 ]

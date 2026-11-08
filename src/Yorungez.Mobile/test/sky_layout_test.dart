@@ -72,7 +72,7 @@ void main() {
       expect(scene, findsOneWidget);
       final frame =
           (tester.widget<CustomPaint>(scene).painter! as SkyPainter).frame;
-      expect(frame.points.length, 5277);
+      expect(frame.points.length, catalogue.objects.length - 2);
       expect(frame.points['moon'], isNotNull);
       SkyPainter currentPainter() =>
           tester.widget<CustomPaint>(scene).painter! as SkyPainter;

@@ -1,5 +1,7 @@
 # yorungez — Karar kaydı
 
+**K-062 / 8 November 2026 — Mobile catalogue discovery:** Ship a bilingual searchable galaxy catalogue, extended Milky Way record, credited imagery and offline finder charts. Offer archive survey previews on request and explain coordinate labels in a shared offline glossary. [Scope, data and coverage](mobile-catalogue-discovery.md).
+
 **K-061 / 7 November 2026 — Play release readiness:** The owner chose audiences aged 13 and above and approved the IARC terms and reuse of existing Play Console test lists. Account settings and both privacy pages link to the bilingual password-confirmed deletion page. The identity delete invalidates all sessions and removes notebook records, reminders, preferences and queued emails. The PostgreSQL ownership constraints require Identity to migrate before Notebook on the shared database. Verify the live deletion page, backup retention and restore handling before submitting Data safety. [Play deletion requirements](https://support.google.com/googleplay/android-developer/answer/13327111?hl=en).
 
 **K-060 / 7 November 2026 — Google Play identity:** The owner chose `com.cnonestudio.yorungez` as the Android package. Play Console reported the name available during draft preparation. The package identity differs from the earlier development APK; Play registration, signing and submission have their own gates.

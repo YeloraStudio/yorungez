@@ -1,0 +1,200 @@
+{
+  "dso-ngc0224": {
+    "names": {
+      "en": "Andromeda Galaxy",
+      "tr": "Andromeda Gökadası"
+    },
+    "aliases": [
+      "Andromeda Galaksisi"
+    ]
+  },
+  "dso-ngc1976": {
+    "names": {
+      "en": "Orion Nebula",
+      "tr": "Orion Bulutsusu"
+    },
+    "aliases": [
+      "Avcı Bulutsusu"
+    ]
+  },
+  "dso-ngc0598": {
+    "names": {
+      "en": "Triangulum Galaxy",
+      "tr": "Üçgen Gökadası"
+    },
+    "aliases": [
+      "Triangulum",
+      "Üçgen Galaksisi"
+    ]
+  },
+  "dso-ngc3031": {
+    "names": {
+      "en": "Bode's Galaxy",
+      "tr": "Bode Gökadası"
+    },
+    "aliases": [
+      "Bode Galaksisi"
+    ]
+  },
+  "dso-ngc3034": {
+    "names": {
+      "en": "Cigar Galaxy",
+      "tr": "Puro Gökadası"
+    },
+    "aliases": [
+      "Puro Galaksisi"
+    ]
+  },
+  "dso-ngc5194": {
+    "names": {
+      "en": "Whirlpool Galaxy",
+      "tr": "Girdap Gökadası"
+    },
+    "aliases": [
+      "Girdap Galaksisi",
+      "Whirlpool"
+    ]
+  },
+  "dso-ngc5457": {
+    "names": {
+      "en": "Pinwheel Galaxy",
+      "tr": "Fırıldak Gökadası"
+    },
+    "aliases": [
+      "Fırıldak Galaksisi"
+    ]
+  },
+  "dso-ngc4594": {
+    "names": {
+      "en": "Sombrero Galaxy",
+      "tr": "Sombrero Gökadası"
+    },
+    "aliases": [
+      "Sombrero Galaksisi"
+    ]
+  },
+  "dso-ngc0253": {
+    "names": {
+      "en": "Sculptor Galaxy",
+      "tr": "Heykeltıraş Gökadası"
+    },
+    "aliases": [
+      "Sculptor",
+      "Silver Coin Galaxy",
+      "Heykeltıraş Galaksisi"
+    ]
+  },
+  "dso-ngc5128": {
+    "names": {
+      "en": "Centaurus A",
+      "tr": "Centaurus A"
+    },
+    "aliases": [
+      "Centaurus A Galaxy",
+      "Erboğa A Gökadası"
+    ]
+  },
+  "dso-ngc4038": {
+    "names": {
+      "en": "Antennae Galaxies · NGC 4038",
+      "tr": "Anten Gökadaları · NGC 4038"
+    },
+    "aliases": [
+      "Anten Galaksileri",
+      "Antennae Galaxies"
+    ]
+  },
+  "dso-ngc4039": {
+    "names": {
+      "en": "Antennae Galaxies · NGC 4039",
+      "tr": "Anten Gökadaları · NGC 4039"
+    },
+    "aliases": [
+      "Anten Galaksileri",
+      "Antennae Galaxies"
+    ]
+  },
+  "dso-ngc4565": {
+    "names": {
+      "en": "Needle Galaxy",
+      "tr": "İğne Gökadası"
+    },
+    "aliases": [
+      "İğne Galaksisi"
+    ]
+  },
+  "dso-ngc4631": {
+    "names": {
+      "en": "Whale Galaxy",
+      "tr": "Balina Gökadası"
+    },
+    "aliases": [
+      "Balina Galaksisi"
+    ]
+  },
+  "dso-ngc6822": {
+    "names": {
+      "en": "Barnard's Galaxy",
+      "tr": "Barnard Gökadası"
+    },
+    "aliases": [
+      "Barnard Galaksisi"
+    ]
+  },
+  "dso-ngc6946": {
+    "names": {
+      "en": "Fireworks Galaxy",
+      "tr": "Havai Fişek Gökadası"
+    },
+    "aliases": [
+      "Havai Fişek Galaksisi"
+    ]
+  },
+  "dso-ic0342": {
+    "names": {
+      "en": "Hidden Galaxy",
+      "tr": "Gizli Gökada"
+    },
+    "aliases": [
+      "Gizli Galaksi"
+    ]
+  },
+  "dso-ic4651": {
+    "aliases": [
+      "Ara Star Cluster",
+      "Sunak Yıldız Kümesi"
+    ]
+  },
+  "con-ara": {
+    "names": {
+      "en": "Ara",
+      "tr": "Sunak"
+    },
+    "aliases": [
+      "Altar",
+      "The Altar",
+      "Sunak Takımyıldızı",
+      "Ara Constellation"
+    ]
+  },
+  "hyg-97338": {
+    "aliases": [
+      "Altar",
+      "Alpha Aquilae",
+      "Alfa Aquilae"
+    ]
+  },
+  "hyg-90979": {
+    "aliases": [
+      "Alpha Lyrae",
+      "Alfa Lyrae"
+    ]
+  },
+  "hyg-32263": {
+    "aliases": [
+      "Akyıldız",
+      "Dog Star",
+      "Alpha Canis Majoris"
+    ]
+  }
+}

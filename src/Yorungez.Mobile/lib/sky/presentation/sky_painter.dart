@@ -56,6 +56,7 @@ class SkyPainter extends CustomPainter {
     ObjectKind.solarSystem => layers.contains(SkyLayer.solar),
     ObjectKind.satellite => layers.contains(SkyLayer.solar),
     ObjectKind.constellation => layers.contains(SkyLayer.constellations),
+    ObjectKind.extended => false,
   };
   SkyPoint? pick(Offset point, Size size) {
     final projection = SkyProjection(

@@ -319,5 +319,15 @@
   "eventInferiorConjunction": "Inferior conjunction",
   "eventSuperiorConjunction": "Superior conjunction",
   "eventTime": "Event / preview time",
-  "backToLive": "Back to live"
+  "backToLive": "Back to live",
+  "glossaryTitle": "Astronomy glossary",
+  "galaxiesFilter": "Galaxies",
+  "glossarySearch": "Find a term or abbreviation",
+  "exploreRegion": "Explore the central region",
+  "finderChart": "Catalogue finder chart",
+  "finderChartNote": "J2000 reference. Celestial north is up and east is left. The ring marks the target when shown. The star field is limited to the bundled catalogue.",
+  "surveyImage": "Load infrared sky image",
+  "surveyImageNote": "Online archive from NASA SkyView. Only public catalogue coordinates are used. The object may appear faint or unresolved in infrared.",
+  "surveyUnavailable": "The archive image is unavailable. You can still use the finder chart above.",
+  "surveyCredit": "NASA SkyView · 2MASS (University of Massachusetts and IPAC/Caltech, funded by NASA and NSF). Near-infrared K band."
 }
