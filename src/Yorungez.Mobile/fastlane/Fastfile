@@ -1,0 +1,157 @@
+require 'json'
+require 'shellwords'
+require 'open3'
+
+default_platform(:ios)
+
+APP_ROOT = File.expand_path('..', __dir__)
+BUNDLE_ID = 'com.yelorastudio.yorungez'
+
+def required_value(name, pattern = nil)
+  value = ENV[name].to_s.strip
+  UI.user_error!("Set #{name}; see docs/mobile-ios-release.md") if value.empty?
+  UI.user_error!("Invalid #{name}") if pattern && !pattern.match?(value)
+  value
+end
+
+def app_command(*args)
+  Dir.chdir(APP_ROOT) { sh(*args) }
+end
+
+def flutter_binary
+  ENV.fetch('FLUTTER_BIN', 'flutter')
+end
+
+def dart_binary
+  executable = if flutter_binary.include?(File::SEPARATOR)
+                 File.expand_path(flutter_binary)
+               else
+                 ENV.fetch('PATH').split(File::PATH_SEPARATOR)
+                    .map { |directory| File.join(directory, flutter_binary) }
+                    .find { |path| File.file?(path) && File.executable?(path) }
+               end
+  UI.user_error!('Flutter executable not found') unless executable
+  File.join(File.dirname(File.realpath(executable)), 'dart')
+end
+
+def release_version
+  required_value('IOS_VERSION', /\A\d+\.\d+\.\d+\z/)
+end
+
+def release_build
+  required_value('IOS_BUILD_NUMBER', /\A[1-9]\d*\z/)
+end
+
+platform :ios do
+  private_lane :prepare do
+    sdk = JSON.parse(app_command(flutter_binary, '--version', '--machine'))
+    pinned = File.read(File.join(APP_ROOT, '.flutter-version')).strip
+    UI.user_error!("Flutter #{pinned} required; select it with FLUTTER_BIN") unless sdk['frameworkVersion'] == pinned
+    app_command(flutter_binary, 'pub', 'get', '--enforce-lockfile')
+    app_command(dart_binary, 'run', 'tool/stage_assets.dart')
+    app_command(flutter_binary, 'gen-l10n')
+  end
+
+  private_lane :quality_checks do
+    app_command(flutter_binary, 'analyze', '--no-pub')
+    app_command('npm', 'ci', '--prefix', '../../tools/science-js',
+                '--ignore-scripts', '--no-audit', '--no-fund')
+    %w[science planning satellite magnetic].each do |check|
+      app_command('python3', "tool/check_#{check}.py")
+    end
+    app_command(flutter_binary, 'test', '--no-pub')
+  end
+
+  desc 'Analyze, check bundled assets and build an unsigned release (no Apple credentials)'
+  lane :verify do
+    prepare
+    quality_checks
+    app_command(flutter_binary, 'build', 'ios', '--release', '--no-codesign', '--no-pub')
+  end
+
+  desc 'Create a signed App Store IPA using an installed distribution identity and profile'
+  lane :archive do
+    team = required_value('IOS_TEAM_ID', /\A[A-Z0-9]{10}\z/)
+    profile = required_value('IOS_PROFILE_NAME')
+    certificate = required_value('IOS_SIGNING_CERT_SHA1', /\A[A-F0-9]{40}\z/)
+    identities, status = Open3.capture2('security', 'find-identity', '-v', '-p', 'codesigning')
+    unless status.success? && identities.lines.any? { |line| line.include?(certificate) && line.include?("(#{team})") }
+      UI.user_error!('The selected distribution certificate/private key is not available for this team')
+    end
+    # Xcode selects the identity by SHA-1. Verify the exported certificate with
+    # the corresponding SHA-256 fingerprint reported by the keychain.
+    fingerprints, status = Open3.capture2('security', 'find-certificate', '-a', '-Z')
+    matches = fingerprints.scan(/^SHA-256 hash: ([A-F0-9]{64})\nSHA-1 hash: #{certificate}$/).flatten.uniq
+    unless status.success? && matches.one?
+      UI.user_error!('Cannot resolve the selected distribution certificate to one SHA-256 fingerprint')
+    end
+    version = release_version
+    number = release_build
+    prepare
+    quality_checks
+    app_command(flutter_binary, 'build', 'ios', '--release', '--config-only',
+                '--no-codesign', '--no-pub', '--build-name', version, '--build-number', number)
+    # Overrides are scoped to this archive, preserving local Xcode signing settings.
+    settings = {
+      'YORUNGEZ_TEAM_ID' => team,
+      'YORUNGEZ_SIGN_STYLE' => 'Manual',
+      'YORUNGEZ_SIGNING_CERT' => certificate,
+      'YORUNGEZ_PROFILE_NAME' => profile
+    }.map { |key, value| "#{key}=#{Shellwords.escape(value)}" }.join(' ')
+    build_app(
+      workspace: File.join(APP_ROOT, 'ios/Runner.xcworkspace'),
+      scheme: 'Runner', configuration: 'Release', clean: true,
+      output_directory: File.join(APP_ROOT, 'build/ios/distribution'),
+      output_name: "Yorungez-#{version}-#{number}.ipa",
+      archive_path: File.join(APP_ROOT, "build/ios/distribution/Yorungez-#{version}-#{number}.xcarchive"),
+      buildlog_path: File.join(APP_ROOT, 'build/ios/distribution/logs'),
+      export_method: 'app-store', export_team_id: team,
+      skip_profile_detection: true, xcargs: settings,
+      export_options: {
+        signingStyle: 'manual', signingCertificate: certificate,
+        manageAppVersionAndBuildNumber: false,
+        provisioningProfiles: { BUNDLE_ID => profile }
+      }
+    )
+    app_command('python3', 'tool/verify_ios_ipa.py',
+                '--ipa', lane_context[SharedValues::IPA_OUTPUT_PATH],
+                '--bundle-id', BUNDLE_ID, '--team-id', team,
+                '--certificate-sha256', matches.first, '--version', version,
+                '--build-number', number)
+  end
+
+  private_lane :connect_key do
+    path = File.expand_path(required_value('ASC_KEY_PATH'))
+    UI.user_error!('ASC_KEY_PATH must point to an existing private .p8 file') unless File.file?(path)
+    app_store_connect_api_key(
+      key_id: required_value('ASC_KEY_ID'),
+      issuer_id: required_value('ASC_ISSUER_ID'),
+      key_filepath: path, in_house: false
+    )
+  end
+
+  desc 'Build and upload to TestFlight; no external tester invitations or App Review submission'
+  lane :beta do
+    key = connect_key
+    archive
+    upload_to_testflight(
+      api_key: key, app_identifier: BUNDLE_ID,
+      ipa: lane_context[SharedValues::IPA_OUTPUT_PATH],
+      skip_waiting_for_build_processing: true,
+      skip_submission: true, distribute_external: false
+    )
+  end
+
+  desc 'Submit the specified processed build for App Review; release stays manual'
+  lane :submit do
+    version = release_version
+    number = release_build
+    upload_to_app_store(
+      api_key: connect_key, app_identifier: BUNDLE_ID,
+      app_version: version, build_number: number,
+      skip_binary_upload: true, skip_metadata: true, skip_screenshots: true,
+      submit_for_review: true, automatic_release: false,
+      precheck_include_in_app_purchases: false
+    )
+  end
+end

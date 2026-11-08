@@ -1,5 +1,7 @@
 # yorungez — Karar kaydı
 
+**K-064 / 8 November 2026 — Fastlane iOS delivery:** The owner requested configuring and releasing the existing iOS application with Fastlane. Preserve the current bundle ID and supplied branding. The release toolchain is aligned to Flutter 3.47.9/Dart 3.13.7 and locked Fastlane 2.241.2/Ruby 4.0.9. [Release runbook, implemented lanes, evidence and remaining Apple, privacy and device checks](mobile-ios-release.md). The runbook records the initial internal TestFlight upload and the remaining review steps.
+
 **K-063 / 8 November 2026 — Mobile observing tools:** The owner approved a sensor-independent pointing guide, local eclipse and meteor windows, visible ISS passes with email reminders, and naked-eye/binocular recommendations. [Implementation scope, sources and limits](mobile-observing-guide.md).
 
 **K-062 / 8 November 2026 — Mobile catalogue discovery:** Ship a bilingual searchable galaxy catalogue, extended Milky Way record, credited imagery and offline finder charts. Offer archive survey previews on request and explain coordinate labels in a shared offline glossary. [Scope, data and coverage](mobile-catalogue-discovery.md).

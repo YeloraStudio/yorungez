@@ -1,4 +1,5 @@
 """Verify WMM2025 against the official frozen NCEI test table; no network."""
+import sys
 import ctypes as c
 import hashlib
 import json
@@ -17,7 +18,7 @@ def main():
     out = ROOT / '.local/mobile-science'
     out.mkdir(parents=True, exist_ok=True)
     library = out / ('yorungez_magnetic.dll' if os.name == 'nt' else 'libyorungez_magnetic.so')
-    subprocess.run(['gcc','-shared','-O2','-fPIC','-static-libgcc',str(ROOT/'src/Yorungez.Mobile/native/yorungez_magnetic.c'),
+    subprocess.run(['gcc','-shared','-O2','-fPIC',*(['-static-libgcc'] if sys.platform != 'darwin' else []),str(ROOT/'src/Yorungez.Mobile/native/yorungez_magnetic.c'),
                     str(source/'GeomagnetismLibrary.c'),'-o',str(library),'-lm'],check=True)
     lib = c.CDLL(str(library))
     assert lib.yg_magnetic_abi() == 1

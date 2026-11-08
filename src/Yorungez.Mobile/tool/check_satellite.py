@@ -4,6 +4,7 @@ No production elements are bundled. Builds the same wrapper used by mobile.
 Optional --astropy adds an independent TEME/observer comparison with matched
 UT1=UTC and polar motion=0, using the separately prepared science environment.
 """
+import sys
 import ctypes as c
 from datetime import datetime, timedelta, timezone
 import hashlib
@@ -29,7 +30,7 @@ def main():
         assert hashlib.sha256((UP / name).read_bytes()).hexdigest() == entry['sha256']
     OUT.mkdir(parents=True, exist_ok=True)
     library = OUT / ('yorungez_satellite.dll' if os.name == 'nt' else 'libyorungez_satellite.so')
-    subprocess.run(['g++', '-shared', '-O2', '-fPIC', '-static-libgcc', '-static-libstdc++',
+    subprocess.run(['g++', '-shared', '-O2', '-fPIC', *(['-static-libgcc', '-static-libstdc++'] if sys.platform != 'darwin' else []),
                     str(ROOT / 'src/Yorungez.Mobile/native/yorungez_satellite.cpp'),
                     str(UP / 'SGP4.cpp'), '-o', str(library)], check=True)
     lib = c.CDLL(str(library))

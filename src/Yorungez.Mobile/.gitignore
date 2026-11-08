@@ -32,6 +32,12 @@ migrate_working_dir/
 .pub/
 /build/
 /coverage/
+/.bundle/
+/vendor/bundle/
+/fastlane/report.xml
+/fastlane/README.md
+/fastlane/Preview.html
+/fastlane/screenshots/
 /assets/generated/
 /lib/l10n/generated/
 /android/key.properties

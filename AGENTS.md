@@ -1,5 +1,7 @@
 # yorungez çalışma rehberi
 
+**K-064 / 8 November 2026 — Fastlane iOS delivery:** The owner requested configuring and releasing the existing iOS application with Fastlane. Preserve the current bundle ID and supplied branding. The release toolchain is aligned to Flutter 3.47.9/Dart 3.13.7 and locked Fastlane 2.241.2/Ruby 4.0.9. [Release runbook, implemented lanes, evidence and remaining Apple, privacy and device checks](docs/mobile-ios-release.md). The runbook records the initial internal TestFlight upload and the remaining review steps.
+
 **K-059 / 7 November 2026 — Native sky controls:** Reticle selection keeps its one-second default and can be turned off. Optional virtual sky zoom defaults off, supports pinch and buttons, and resets to 60° when disabled. Both switches are local UI preferences. The optional zoom supersedes the earlier fixed-view requirement for virtual mode.
 
 **K-058 / 6 November 2026 — Native sensor compatibility:** Detect actual north-referenced orientation capability, rather than phone model. Unsupported devices receive one EN/TR explanation per installation and retain touch/search/location-based exploration. Silent streams must time out; transient failures remain retryable. Only a non-personal notice acknowledgement may persist; preserve pose freshness/reference/alignment and physical acceptance limits. [Contract and verification](docs/mobile-sensor-compatibility.md).
