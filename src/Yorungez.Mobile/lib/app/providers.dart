@@ -12,6 +12,7 @@ import '../core/api/yorungez_api.dart';
 import '../sky/domain/sky_frame.dart';
 import '../sky/domain/sky_geometry.dart';
 import '../sky/data/device_location.dart';
+import '../sky/data/iss_elements.dart';
 import '../sky/data/native_pose_source.dart';
 import '../sky/data/native_sky.dart';
 import '../planning/planning_time.dart';
@@ -88,6 +89,9 @@ final apiProvider = Provider((ref) {
   ref.onDispose(api.close);
   return api;
 });
+final issRepositoryProvider = Provider(
+  (ref) => IssRepository(ref.watch(apiProvider)),
+);
 
 final accountApiProvider = Provider<AccountApi>((ref) {
   final api = HttpAccountApi(ref.watch(apiOriginProvider));

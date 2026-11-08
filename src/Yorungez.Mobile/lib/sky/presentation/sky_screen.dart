@@ -927,7 +927,7 @@ class _SkyScreenState extends ConsumerState<SkyScreen>
     _issAttempt = now;
     _issBusy = true;
     try {
-      final value = await IssRepository(ref.read(apiProvider)).load(now);
+      final value = await ref.read(issRepositoryProvider).load(now);
       if (mounted) setState(() => _iss = value);
     } finally {
       _issBusy = false;

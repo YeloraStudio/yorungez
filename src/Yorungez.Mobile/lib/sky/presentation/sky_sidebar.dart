@@ -119,6 +119,18 @@ class SkySidebar extends StatelessWidget {
                   ),
                   ListTile(
                     contentPadding: EdgeInsets.zero,
+                    leading: const Icon(Icons.explore_outlined),
+                    title: Text(t.guideTitle),
+                    onTap: () => closeThen(() => context.push('/observe')),
+                  ),
+                  ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    leading: const Icon(Icons.satellite_alt_outlined),
+                    title: Text(t.issPassesTitle),
+                    onTap: () => closeThen(() => context.push('/iss-passes')),
+                  ),
+                  ListTile(
+                    contentPadding: EdgeInsets.zero,
                     leading: const Icon(Icons.notifications_active_outlined),
                     title: Text(t.reminders),
                     onTap: () => closeThen(showReminders),

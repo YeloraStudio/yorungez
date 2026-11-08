@@ -329,5 +329,74 @@
   "surveyImage": "Load infrared sky image",
   "surveyImageNote": "Online archive from NASA SkyView. Only public catalogue coordinates are used. The object may appear faint or unresolved in infrared.",
   "surveyUnavailable": "The archive image is unavailable. You can still use the finder chart above.",
-  "surveyCredit": "NASA SkyView · 2MASS (University of Massachusetts and IPAC/Caltech, funded by NASA and NSF). Near-infrared K band."
+  "surveyCredit": "NASA SkyView · 2MASS (University of Massachusetts and IPAC/Caltech, funded by NASA and NSF). Near-infrared K band.",
+  "guideTitle": "Where should I look?",
+  "guideIntro": "Find a direction, an angle above the horizon, and a suggested time for your selected location. This guide also works without phone tracking.",
+  "guideExampleSite": "Using the example location (Istanbul). Choose your own location for local predictions.",
+  "guideConditions": "These windows depend on darkness and the target’s height. Clouds, light pollution and obstacles can still affect what you see.",
+  "guideNoWindow": "No suitable window was found for this night.",
+  "guideWindow": "Suggested observing window",
+  "guideNakedEye": "Naked eye",
+  "guideBinoculars": "Binoculars",
+  "guidePointing": "Face {direction} and look about {degrees}° above the horizon.",
+  "guideOverhead": "Look almost straight up.",
+  "guideNorth": "north",
+  "guideNorthEast": "northeast",
+  "guideEast": "east",
+  "guideSouthEast": "southeast",
+  "guideSouth": "south",
+  "guideSouthWest": "southwest",
+  "guideWest": "west",
+  "guideNorthWest": "northwest",
+  "guideMoon": "With binoculars, look along the boundary between light and shadow for crater relief.",
+  "guideMoonUnaided": "Look for the Moon’s bright edge and darker plains.",
+  "guideJupiter": "Steady the binoculars to look for Jupiter’s bright moons. How many you see depends on their positions and observing conditions.",
+  "guideSaturn": "Look for a steady point of light. Ordinary binoculars generally do not resolve Saturn’s rings.",
+  "guidePlanetUnaided": "Start by finding the bright point in the suggested direction. Use nearby stars to orient yourself.",
+  "guidePleiades": "Try a wide binocular field to keep the cluster together in view. The brightest members are also visible with the naked eye under suitable skies.",
+  "guideOrion": "Under a dark sky, look for a faint glow in Orion’s Sword below the Belt.",
+  "localEventsTitle": "Visible from this location",
+  "localEventsIntro": "Local windows for solar and lunar eclipses and selected meteor showers. Meteor entries use the reviewed 2026–2027 IMO calendars.",
+  "localEventsEmpty": "No supported event meets the local observing criteria this month.",
+  "eclipsePenumbral": "Penumbral lunar eclipse",
+  "eclipsePartialLunar": "Partial lunar eclipse",
+  "eclipseTotalLunar": "Total lunar eclipse",
+  "eclipsePartialSolar": "Partial solar eclipse",
+  "eclipseAnnularSolar": "Annular solar eclipse",
+  "eclipseTotalSolar": "Total solar eclipse",
+  "eclipseSafety": "Use proper solar viewing protection. Never look at the Sun through unfiltered binoculars, telescopes or cameras.",
+  "eclipseSafetyLink": "NASA solar viewing safety",
+  "eclipseSubtle": "Penumbral dimming can be difficult to see.",
+  "meteorGeminids": "Geminid meteor shower",
+  "meteorQuadrantids": "Quadrantid meteor shower",
+  "meteorPerseids": "Perseid meteor shower",
+  "meteorMoonlight": "The bright Moon is above the horizon at the suggested time and may hide fainter meteors.",
+  "meteorWindow": "Watch a broad, dark part of the sky. Meteor activity varies.",
+  "issPassesTitle": "Visible ISS passes",
+  "issPassesIntro": "Predicted intervals when the station is at least 10° above the horizon, the Sun is at least 6° below it, and the station is in full sunlight. Clouds and obstacles can affect visibility.",
+  "issFreshnessNeeded": "Fresh public orbital data is needed. Connect to the internet and try again.",
+  "issElementsEpoch": "Orbital data epoch",
+  "issPredictionUntil": "Prediction valid until",
+  "issNoPasses": "No pass meets the visibility criteria before the orbital data expires.",
+  "issAppears": "Appears",
+  "issHighest": "Highest point",
+  "issDisappears": "Disappears",
+  "issDuration": "Approximate duration: {seconds} seconds.",
+  "@guidePointing": {
+    "placeholders": {
+      "direction": {
+        "type": "String"
+      },
+      "degrees": {
+        "type": "String"
+      }
+    }
+  },
+  "@issDuration": {
+    "placeholders": {
+      "seconds": {
+        "type": "String"
+      }
+    }
+  }
 }

@@ -33,6 +33,11 @@ public sealed class ReminderFacts(IPlanningCatalog catalog) : IReminderFacts
             var source = month.Provenance.Sources.Single(s => s.Id == fact.SourceId).Url;
             return new(fact.Id, fact.TargetId, title, fact.InstantUtc, source);
         }
+        // A local ISS prediction supplies the user's chosen time only. The API
+        // does not receive an observer location or assert local visibility.
+        if (targetId == "sat-25544" && instantUtc is not null)
+            return new(null, targetId, "International Space Station · Observing time",
+                instantUtc.Value.ToUniversalTime(), "https://spotthestation.nasa.gov/", TimeSpan.FromHours(72));
         if (targetId is null || targetId == "sun" || !Targets.TryGetValue(targetId, out var target) || instantUtc is null
             || instantUtc.Value.Year is < 2000 or > 2035) throw Invalid();
         return new(null, targetId, target + " · Observing time", instantUtc.Value.ToUniversalTime(), "https://github.com/cosinekitty/astronomy");

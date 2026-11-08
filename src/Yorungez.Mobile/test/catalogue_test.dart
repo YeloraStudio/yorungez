@@ -27,7 +27,7 @@ void main() {
     },
   );
   test('bundled canonical catalogue opens offline with stable identities', () {
-    expect(catalogue.objects.length, 5341);
+    expect(catalogue.objects.length, 5342);
     expect(
       catalogue.objects.where((o) => o.kind == ObjectKind.star).length,
       5073,
@@ -38,7 +38,7 @@ void main() {
     );
     expect(
       catalogue.objects.where((o) => o.kind == ObjectKind.deepSky).length,
-      169,
+      170,
     );
     expect(catalogue.images.length, 30);
     expect(catalogue.notices, contains('Mattia Verga'));

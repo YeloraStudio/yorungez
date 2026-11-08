@@ -97,7 +97,14 @@ final class IssElements {
 final class IssRepository {
   IssRepository(this.api);
   final YorungezApi api;
-  Future<IssElements?> load(DateTime now) async {
+  Future<IssElements?>? _loading;
+
+  Future<IssElements?> load(DateTime now) =>
+      _loading ??= _load(now).whenComplete(() {
+        _loading = null;
+      });
+
+  Future<IssElements?> _load(DateTime now) async {
     File? file;
     IssElements? cached;
     try {

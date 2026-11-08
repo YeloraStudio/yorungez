@@ -1,4 +1,8 @@
 {
+  "dso-mel022": {
+    "names": {"en": "Pleiades", "tr": "Ülker"},
+    "aliases": ["Pleiades Cluster", "Seven Sisters", "Ülker Kümesi", "Yedi Kız Kardeş"]
+  },
   "dso-ngc0224": {
     "names": {
       "en": "Andromeda Galaxy",

@@ -77,6 +77,18 @@ public sealed class ReminderTests(AppFactory app) : IClassFixture<AppFactory>, I
         Assert.True(capabilities.GetProperty("email").GetBoolean()); Assert.False(capabilities.GetProperty("push").GetBoolean());
     }
     [Fact]
+    public async Task Local_station_reminder_accepts_a_selected_time_only_within_three_days()
+    {
+        using var client = app.Client(); await Login(client);
+        var input = Observing() with { TargetId = "sat-25544" };
+        var saved = await Save(client, input);
+        Assert.Equal("sat-25544", saved.TargetId);
+        Assert.Equal(input.InstantUtc, saved.InstantUtc);
+        Assert.Null(saved.EventId);
+        var beyond = input with { Id = Guid.NewGuid(), InstantUtc = DateTimeOffset.UtcNow.AddHours(73) };
+        Assert.Equal(HttpStatusCode.BadRequest, (await client.PostAsJsonAsync(Route, beyond)).StatusCode);
+    }
+    [Fact]
     public async Task Another_account_cannot_read_cancel_or_overwrite_a_reminder()
     {
         using var a = app.Client(); var owner = await Login(a); var input = Observing(); var saved = await Save(a, input);

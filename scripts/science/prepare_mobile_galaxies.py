@@ -9,6 +9,10 @@ from prepare_overlays import coords
 
 ROOT = Path(__file__).resolve().parents[2]
 CATALOGUE = ROOT / "data/catalog"
+ADDENDUM = {
+    "url": "https://raw.githubusercontent.com/mattiaverga/OpenNGC/be3cd6c5498806a2fbb2f7e0452ef802dbb02be0/database_files/addendum.csv",
+    "sha256": "c93f983dda6780b76b7b2e9271a856a892627710148a982ee98101a54c642fdd",
+}
 SELECTED = """
 IC0010 IC0342 IC1101 IC4651 NGC0055 NGC0253 NGC0300 NGC0404 NGC0891
 NGC1023 NGC1097 NGC1232 NGC1300 NGC1316 NGC1365 NGC1399 NGC1404 NGC1512
@@ -46,7 +50,26 @@ def main():
             "magnitude": float(row["V-Mag"]) if row["V-Mag"] else None,
             "majorArcminutes": float(row["MajAx"]) if row["MajAx"] else None,
         })
-    payload = {"schemaVersion": 1, "source": source, "deepSky": objects}
+    addendum = ROOT / ".local/expansion/addendum.csv"
+    if hashlib.sha256(addendum.read_bytes()).hexdigest() != ADDENDUM["sha256"]:
+        raise ValueError("OpenNGC addendum does not match the pinned source")
+    with addendum.open(encoding="utf-8-sig", newline="") as stream:
+        row = next(row for row in csv.DictReader(stream, delimiter=";") if row["Name"] == "Mel022")
+    if int(row["M"]) != 45 or row["Type"] != "OCl":
+        raise ValueError("Expected the Pleiades cluster")
+    objects.append({
+        "id": "dso-mel022",
+        "name": "M45",
+        "designation": "Melotte 22",
+        "aliases": ["M 45", "Messier 45", "Mel022", "Pleiades"],
+        "type": row["Type"],
+        "raHoursJ2000": coords(row["RA"]),
+        "decDegreesJ2000": coords(row["Dec"]),
+        "magnitude": float(row["V-Mag"]),
+        "majorArcminutes": float(row["MajAx"]),
+        "sourceUrl": ADDENDUM["url"],
+    })
+    payload = {"schemaVersion": 1, "source": source, "addendum": ADDENDUM, "deepSky": objects}
     output = CATALOGUE / "mobile-deep-sky.json"
     output.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
                       encoding="utf-8", newline="\n")
