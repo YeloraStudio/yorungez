@@ -1,10 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:timezone/timezone.dart' as tz;
 import '../app/providers.dart';
 import '../l10n/generated/app_localizations.dart';
 import 'planning_time.dart';
+
+void openPlannedSky(
+  BuildContext context,
+  WidgetRef ref,
+  String target,
+  DateTime instant,
+) {
+  ref.read(skyInstantProvider.notifier).select(instant);
+  ref.read(skyFocusProvider.notifier).request(target);
+  context.go('/');
+}
+
+class PlanningError extends StatelessWidget {
+  const PlanningError({super.key, required this.onRetry});
+  final VoidCallback onRetry;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = AppLocalizations.of(context);
+    return Padding(
+      padding: const EdgeInsets.all(24),
+      child: Column(
+        children: [
+          Text(t.planningError),
+          const SizedBox(height: 16),
+          FilledButton(onPressed: onRetry, child: Text(t.retry)),
+        ],
+      ),
+    );
+  }
+}
 
 class ChoiceField<T> extends StatelessWidget {
   const ChoiceField({

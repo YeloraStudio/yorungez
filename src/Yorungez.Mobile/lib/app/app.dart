@@ -13,6 +13,8 @@ import '../sky/presentation/sky_screen.dart';
 import '../account/account_screen.dart';
 import '../account/notebook_screen.dart';
 import '../planning/planning_screen.dart';
+import '../planning/observing_guide_screen.dart';
+import '../planning/iss_pass_screen.dart';
 import '../planning/planning_controls.dart';
 import '../planning/reminder_screen.dart';
 
@@ -51,9 +53,15 @@ final routerProvider = Provider((ref) {
       GoRoute(path: '/notebook', builder: (_, _) => const NotebookScreen()),
       GoRoute(path: '/tonight', builder: (_, _) => const TonightScreen()),
       GoRoute(
+        path: '/observe',
+        builder: (_, state) =>
+            ObservationGuideScreen(target: state.uri.queryParameters['target']),
+      ),
+      GoRoute(
         path: '/calendar',
         builder: (_, _) => const EventCalendarScreen(),
       ),
+      GoRoute(path: '/iss-passes', builder: (_, _) => const IssPassScreen()),
       GoRoute(path: '/reminders', builder: (_, _) => const ReminderScreen()),
       GoRoute(path: '/time-zone', builder: (_, _) => const TimeZoneScreen()),
     ],
