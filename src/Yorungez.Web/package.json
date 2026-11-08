@@ -16,7 +16,7 @@
   "dependencies": {
     "@js-temporal/polyfill": "0.5.1",
     "astronomy-engine": "2.1.19",
-    "geo-tz": "8.1.10",
+    "geo-tz": "8.1.11",
     "leaflet": "1.9.4",
     "next": "16.4.3",
     "react": "19.3.1",
