@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../../l10n/generated/app_localizations.dart';
 import 'sky_painter.dart';
 import '../../account/account_widgets.dart';
@@ -121,6 +122,12 @@ class SkySidebar extends StatelessWidget {
                     leading: const Icon(Icons.notifications_active_outlined),
                     title: Text(t.reminders),
                     onTap: () => closeThen(showReminders),
+                  ),
+                  ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    leading: const Icon(Icons.menu_book_outlined),
+                    title: Text(t.glossaryTitle),
+                    onTap: () => closeThen(() => context.push('/glossary')),
                   ),
                   ListTile(
                     contentPadding: EdgeInsets.zero,

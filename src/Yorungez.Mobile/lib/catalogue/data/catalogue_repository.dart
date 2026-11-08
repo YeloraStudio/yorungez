@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
 import '../domain/sky_object.dart';
+import '../domain/glossary_term.dart';
 
 final class Catalogue {
   const Catalogue(
@@ -18,6 +19,7 @@ final class Catalogue {
     this.colours = const {},
     this.art = const {},
     this.infoSources = const {},
+    this.glossary = const [],
   });
   final List<SkyObject> objects;
   final Map<String, Map<String, dynamic>> images;
@@ -28,6 +30,7 @@ final class Catalogue {
   final Map<String, double> colours;
   final Map<String, dynamic> art;
   final Map<String, List<Map<String, dynamic>>> infoSources;
+  final List<GlossaryTerm> glossary;
   SkyObject? find(String id) {
     for (final object in objects) {
       if (object.id == id) return object;
@@ -81,20 +84,39 @@ Catalogue decodeCatalogue(Map<String, Object> input) {
   final bright = decode('bright-sky.json');
   final overlays = decode('overlays.json');
   final info = decode('mobile-object-info.json');
+  final features = decode('sky-features.json');
+  final milkyWay = features['milkyWay'] as Map<String, dynamic>;
+  final milkyWayRegion = milkyWay['region'] as Map<String, dynamic>;
+  final discovery = decode('mobile-discovery-names.json');
+  Map<String, String> names(String id, Map<String, String> defaults) => {
+    ...defaults,
+    ...?(discovery[id]?['names'] as Map?)?.cast<String, String>(),
+  };
+  List<String> aliases(String id) =>
+      (discovery[id]?['aliases'] as List?)?.cast<String>() ?? const [];
   if (bright['schemaVersion'] != 1 ||
       overlays['schemaVersion'] != 1 ||
+      features['schemaVersion'] != 1 ||
       bright['epoch'] != 'J2000.0' ||
       bright['version'] != manifest['catalogueVersion']) {
     throw const FormatException('Unsupported public catalogue');
   }
   double? number(dynamic value) =>
       value is num && value.isFinite ? value.toDouble() : null;
-  const dsoNames = {
-    'dso-ngc0224': {'en': 'Andromeda Galaxy', 'tr': 'Andromeda Gökadası'},
-    'dso-ngc1976': {'en': 'Orion Nebula', 'tr': 'Orion Bulutsusu'},
-  };
   final objects = <SkyObject>[
     issObject,
+    SkyObject(
+      id: milkyWay['id'] as String,
+      names: (milkyWay['names'] as Map).cast<String, String>(),
+      aliases: (milkyWay['aliases'] as List).cast<String>(),
+      kind: ObjectKind.extended,
+      summaries: (milkyWay['description'] as Map).cast<String, String>(),
+      regionId: milkyWayRegion['id'] as String,
+      regionNotes: {
+        for (final language in ['en', 'tr'])
+          language: milkyWayRegion[language] as String,
+      },
+    ),
     for (final object in solarObjects)
       SkyObject(
         id: object.id,
@@ -106,14 +128,17 @@ Catalogue decodeCatalogue(Map<String, Object> input) {
     for (final star in bright['stars'] as List)
       SkyObject(
         id: star['id'] as String,
-        names: {
+        names: names(star['id'] as String, {
           'en': (star['name'] as String?)?.isNotEmpty == true
               ? star['name'] as String
               : star['designation'] as String,
-        },
+        }),
         kind: ObjectKind.star,
         designation: star['designation'] as String,
-        aliases: [if (star['hip'] != null) 'HIP ${star['hip']}'],
+        aliases: [
+          if (star['hip'] != null) 'HIP ${star['hip']}',
+          ...aliases(star['id'] as String),
+        ],
         raHours: number(star['raHoursJ2000']),
         decDegrees: number(star['decDegreesJ2000']),
         magnitude: number(star['magnitude']),
@@ -123,12 +148,17 @@ Catalogue decodeCatalogue(Map<String, Object> input) {
     for (final dso in overlays['deepSky'] as List)
       SkyObject(
         id: dso['id'] as String,
-        names: dsoNames[dso['id']] ?? {'en': dso['name'] as String},
+        names: names(dso['id'] as String, {'en': dso['name'] as String}),
         kind: ObjectKind.deepSky,
         designation: dso['name'] as String,
         aliases: [
           dso['designation'] as String,
-          ...(dso['aliases'] as List).cast<String>(),
+          for (final alias in (dso['aliases'] as List).cast<String>())
+            ...alias
+                .split(',')
+                .map((name) => name.trim())
+                .where((name) => name.isNotEmpty),
+          ...aliases(dso['id'] as String),
         ],
         raHours: number(dso['raHoursJ2000']),
         decDegrees: number(dso['decDegreesJ2000']),
@@ -138,13 +168,16 @@ Catalogue decodeCatalogue(Map<String, Object> input) {
     for (final constellation in bright['constellations'] as List)
       SkyObject(
         id: constellation['id'] as String,
-        names: {
+        names: names(constellation['id'] as String, {
           ...(constellation['names'] as Map).cast<String, String>(),
           'en':
               (info['constellationLatinNames'] as Map)[constellation['id']]
                   as String,
-        },
-        aliases: [(constellation['names'] as Map)['en'] as String],
+        }),
+        aliases: [
+          (constellation['names'] as Map)['en'] as String,
+          ...aliases(constellation['id'] as String),
+        ],
         kind: ObjectKind.constellation,
         designation: constellation['iau'] as String,
       ),
@@ -158,7 +191,8 @@ Catalogue decodeCatalogue(Map<String, Object> input) {
   for (final object in objects) {
     if (object.kind == ObjectKind.constellation ||
         object.kind == ObjectKind.solarSystem ||
-        object.kind == ObjectKind.satellite) {
+        object.kind == ObjectKind.satellite ||
+        object.kind == ObjectKind.extended) {
       continue;
     }
     if (object.raHours == null ||
@@ -198,7 +232,16 @@ Catalogue decodeCatalogue(Map<String, Object> input) {
           for (final source in entry.value['sources'] as List)
             Map<String, dynamic>.from(source as Map),
         ],
+      milkyWay['id'] as String: [
+        for (final source in milkyWay['sources'] as List)
+          Map<String, dynamic>.from(source as Map),
+      ],
     },
+    glossary: List.unmodifiable([
+      for (final term
+          in jsonDecode(utf8.decode(payloads['glossary.json']!)) as List)
+        GlossaryTerm.fromJson((term as Map).cast<String, dynamic>()),
+    ]),
     dsoInput: List<double>.unmodifiable([
       for (final d in overlays['deepSky'] as List) ...[
         (d['raHoursJ2000'] as num).toDouble(),

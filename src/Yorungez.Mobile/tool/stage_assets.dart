@@ -105,10 +105,26 @@ Future<void> main() async {
   // Independently licensed figures retain canonical celestial anchors and hashes.
   final overlays =
       jsonDecode(utf8.decode(overlayBytes)) as Map<String, dynamic>;
+  await copy('data/catalog/mobile-deep-sky.json', 'mobile-deep-sky.json');
+  final extension =
+      jsonDecode(
+            await File('${output.path}/mobile-deep-sky.json').readAsString(),
+          )
+          as Map<String, dynamic>;
+  final pinnedOpenNgc = (overlayManifest['sources'] as List).first;
+  if (extension['schemaVersion'] != 1 ||
+      extension['source']['sha256'] != pinnedOpenNgc['sha256'] ||
+      extension['source']['url'] != pinnedOpenNgc['url']) {
+    throw StateError('Unsupported OpenNGC supplement');
+  }
+  final deepSky = [
+    ...overlays['deepSky'] as List,
+    ...extension['deepSky'] as List,
+  ];
   final dsoBytes = utf8.encode(
     jsonEncode({
       'schemaVersion': overlays['schemaVersion'],
-      'deepSky': overlays['deepSky'],
+      'deepSky': deepSky,
       'art': overlays['art'],
     }),
   );
@@ -125,6 +141,15 @@ Future<void> main() async {
   }
   await copy('data/branding/source/app-icon-fullbleed.png', 'app-icon.png');
   await copy('data/catalog/mobile-object-info.json', 'mobile-object-info.json');
+  await copy(
+    'data/catalog/mobile-discovery-names.json',
+    'mobile-discovery-names.json',
+  );
+  await copy('data/catalog/sky-features.json', 'sky-features.json');
+  await copy(
+    'src/Modules/Catalog/Yorungez.Catalog.Infrastructure/Data/glossary.json',
+    'glossary.json',
+  );
   final sky =
       jsonDecode(
             await File('${repo.path}/data/sky/manifest.json').readAsString(),
@@ -153,6 +178,24 @@ Future<void> main() async {
           as Map<String, dynamic>;
   (media['images'] as Map<String, dynamic>)['sun'] =
       (sun['en'] as Map<String, dynamic>)['image'];
+  final features =
+      jsonDecode(await File('${output.path}/sky-features.json').readAsString())
+          as Map<String, dynamic>;
+  final milkyWay = features['milkyWay'] as Map<String, dynamic>;
+  media['images'][milkyWay['id']] = milkyWay['image'];
+  final nativeMedia =
+      jsonDecode(
+            await File(
+              '${repo.path}/data/catalog/mobile-object-media.json',
+            ).readAsString(),
+          )
+          as Map<String, dynamic>;
+  if (nativeMedia['schemaVersion'] != 1) {
+    throw StateError('Unsupported mobile media manifest');
+  }
+  (media['images'] as Map<String, dynamic>).addAll(
+    nativeMedia['images'] as Map<String, dynamic>,
+  );
   final mediaBytes = utf8.encode(jsonEncode(media));
   await File('${output.path}/object-media.json').writeAsBytes(mediaBytes);
   files['object-media.json'] = sha256.convert(mediaBytes).toString();
@@ -160,7 +203,7 @@ Future<void> main() async {
     final entry =
         (media['images'] as Map<String, dynamic>)[id] as Map<String, dynamic>;
     await copy(
-      'src/Yorungez.Web/public${entry['url']}',
+      (entry['file'] as String?) ?? 'src/Yorungez.Web/public${entry['url']}',
       'images/$id.jpg',
       expected: entry['sha256'] as String,
     );
@@ -232,6 +275,11 @@ Future<void> main() async {
       await File('${repo.path}/${entry.value}').readAsString(),
     );
   }
+  for (final entry in (media['images'] as Map<String, dynamic>).values) {
+    noticeText.writeln(
+      "${entry['credit']} — ${entry['license']} · ${entry['sourceUrl']} · ${entry['licenseUrl']}",
+    );
+  }
   final noticeBytes = utf8.encode(noticeText.toString());
   await File('${output.path}/notices.txt').writeAsBytes(noticeBytes);
   files['notices.txt'] = sha256.convert(noticeBytes).toString();
@@ -242,7 +290,7 @@ Future<void> main() async {
       'epoch': 'J2000.0',
       'stars': brightManifest['starCount'],
       'constellations': brightManifest['constellationCount'],
-      'deepSky': overlayManifest['deepSkyCount'],
+      'deepSky': deepSky.length,
       'sourceDigests': {'bright-sky.json': brightManifest['derivedSha256'], 'overlays.json': overlayManifest['sha256']},
       'files': files,
     })}\n',

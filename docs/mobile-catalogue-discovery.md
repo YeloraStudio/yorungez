@@ -1,0 +1,17 @@
+# Mobile catalogue discovery
+
+The Flutter catalogue now ships 5,341 entries. The supplementary [OpenNGC selection](../data/catalog/mobile-deep-sky.json) adds 62 objects with fixed J2000 coordinates, including 59 galaxies, one galaxy pair, one open cluster and one planetary nebula. It uses the same [pinned input](../data/catalog/overlays-manifest.json) and CC BY-SA 4.0 attribution as the Messier set. The mobile renderer uses its existing fixed-coordinate path. The supplement does not replace the web overlay catalogue.
+
+English and Turkish discovery names cover common galaxies, Ara/Sunak, and stars including Vega, Altair and Sirius. Search accepts common names, catalogue identifiers and both languages' galaxy category terms. The Galaxies filter narrows the same catalogue, even with a blank query. “Andromeda” can match the constellation and the galaxy; M31 selects the galaxy. The Milky Way reuses the [shared extended-feature record](../data/catalog/sky-features.json) and ESO panorama. Its regional action centres the Sagittarius constellation schematic, not a fabricated Milky Way point.
+
+| Detail visual | Coverage | Meaning |
+|---|---:|---|
+| Bundled archives | 30 objects | Historical photographs or image composites, with visible credit, source and licence. For example, the Altair and Vega cards identify the stars in the Summer Triangle field. Ara's photo shows IC 4651 inside the constellation. |
+| Archive or offline finder chart | 5,341 of 5,341 | Charts project catalogue stars and constellation lines in a J2000 tangent plane. They are explicitly labelled and show neither horizon nor naked-eye visibility. |
+| Bundled archive or optional survey image | 5,254 of 5,341 (98.4%) | On request, fixed stars and deep-sky objects can show a 300-pixel near-infrared 2MASS cutout. This counts supported catalogue records, not individual confirmed detections or service uptime. |
+
+The [native image manifest](../data/catalog/mobile-object-media.json) records checksums, original download links and rights separately from the code licence. Local staging checks hashes. [NASA SkyView](https://skyview.gsfc.nasa.gov/current/cgi/titlepage.pl) receives only the selected object's public equatorial coordinates when the user taps to load a preview. The app does not send observer coordinates, orientation, account credentials or live-frame values to the survey. The request times out after 15 seconds, rejects redirects, bounds the JPEG size and leaves the offline chart available on failure. [2MASS data and attribution](https://irsa.ipac.caltech.edu/data/2MASS/docs/releases/allsky/).
+
+The [shared glossary](../src/Modules/Catalog/Yorungez.Catalog.Infrastructure/Data/glossary.json) provides 60 sourced terms in English and Turkish. Each mobile row shows the term and its definition in the active app language. Definitions are visible immediately, and expanding a row reveals its sources. Search accepts aliases in both languages and common abbreviations. Detail fields deep-link to their terms. Azimuth is clockwise from true north, while altitude measures the angle above or below the horizon. [US Naval Observatory coordinate convention](https://aa.usno.navy.mil/faq/alt_az).
+
+To reproduce the supplementary catalogue from the pinned OpenNGC CSV already staged under `.local/expansion/`, run `python scripts/science/prepare_mobile_galaxies.py`. Archive image downloads require the explicit `python scripts/science/prepare_mobile_media.py --refresh` command. Normal builds and tests do not fetch astronomy media.

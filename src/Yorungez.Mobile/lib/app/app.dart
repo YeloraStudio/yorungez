@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../catalogue/presentation/catalogue_screen.dart';
 import '../catalogue/presentation/object_screen.dart';
+import '../catalogue/presentation/glossary_screen.dart';
 import '../core/presentation/service_screen.dart';
 import '../core/presentation/sources_screen.dart';
 import '../l10n/generated/app_localizations.dart';
@@ -33,6 +34,11 @@ final routerProvider = Provider((ref) {
       GoRoute(
         path: '/objects/:id',
         builder: (_, state) => ObjectScreen(id: state.pathParameters['id']!),
+      ),
+      GoRoute(
+        path: '/glossary',
+        builder: (_, state) =>
+            GlossaryScreen(termId: state.uri.queryParameters['term']),
       ),
       GoRoute(path: '/connection', builder: (_, _) => const ServiceScreen()),
       GoRoute(path: '/sources', builder: (_, _) => const SourcesScreen()),

@@ -35,7 +35,9 @@ void main() {
         catalogue.dsoInput,
       );
       final frame = SkyFrame.decode(catalogue, observer, instant, raw);
-      expect(frame.points.length, 5277);
+      expect(frame.points.length, catalogue.objects.length - 2);
+      expect(frame.points['dso-ngc5128']!.altitude.isFinite, isTrue);
+      expect(frame.points.containsKey('milky-way'), isFalse);
       final p = frame.points[row['starId']]!;
       expect(
         p.altitude,

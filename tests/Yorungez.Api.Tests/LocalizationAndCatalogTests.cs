@@ -45,7 +45,7 @@ public sealed class LocalizationAndCatalogTests(AppFactory app) : IClassFixture<
         using var tr = app.Client("tr"); using var en = app.Client("en");
         var turkish = (await tr.GetFromJsonAsync<TermView[]>("/api/v1/terms/"))!;
         var english = (await en.GetFromJsonAsync<TermView[]>("/api/v1/terms/"))!;
-        Assert.Equal(52, turkish.Length);
+        Assert.Equal(60, turkish.Length);
         Assert.Equal(turkish.Select(t => t.Id).Order(), english.Select(t => t.Id).Order());
         foreach (var term in turkish.Concat(english))
         {

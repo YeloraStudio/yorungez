@@ -1069,6 +1069,7 @@ class _SkyScreenState extends ConsumerState<SkyScreen>
     return switch (object.kind) {
       ObjectKind.solarSystem => t.solarSystemObject,
       ObjectKind.satellite => t.stationObject,
+      ObjectKind.extended => t.galaxyObject,
       ObjectKind.star => t.starInConstellation(
         _catalogue
                 ?.find('con-${object.constellation.toLowerCase()}')
@@ -1078,7 +1079,7 @@ class _SkyScreenState extends ConsumerState<SkyScreen>
       ObjectKind.constellation =>
         point.altitude >= 0 ? t.constellationAbove : t.constellationBelow,
       ObjectKind.deepSky =>
-        object.subtype == 'G'
+        object.isGalaxy
             ? t.galaxyObject
             : object.subtype.contains('Cl')
             ? t.clusterObject

@@ -1,0 +1,211 @@
+{
+  "schemaVersion": 1,
+  "images": {
+    "sat-25544": {
+      "file": "data/catalog/mobile-images/iss.jpg",
+      "sourceUrl": "https://images.nasa.gov/details/iss073e0008524",
+      "originalUrl": "https://images-assets.nasa.gov/image/iss073e0008524/iss073e0008524~small.jpg",
+      "credit": "NASA/Nichole Ayers",
+      "license": "NASA media usage guidelines",
+      "licenseUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "captions": {
+        "en": "Forward section of the ISS, photographed on 1 May 2025.",
+        "tr": "1 Mayıs 2025’te fotoğraflanan ISS’nin ön bölümü."
+      },
+      "sha256": "dc59dfa26b898405a853566f3c536267399c35f77420466affc102febf9d3b3e",
+      "bytes": 57389
+    },
+    "hyg-90979": {
+      "file": "data/catalog/mobile-images/summer-triangle.jpg",
+      "sourceUrl": "https://esahubble.org/images/heic0720c/",
+      "originalUrl": "https://cdn.esahubble.org/archives/images/screen/heic0720c.jpg",
+      "credit": "A. Fujii",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "captions": {
+        "en": "Summer Triangle star field. Vega is at the upper left.",
+        "tr": "Yaz Üçgeni yıldız alanı. Vega sol üstte."
+      },
+      "sha256": "31df7cf507efdca3d0bf6a53470bdd356f77ec22fbfadbd3492bb5f26713a9af",
+      "bytes": 366312
+    },
+    "hyg-97338": {
+      "file": "data/catalog/mobile-images/summer-triangle.jpg",
+      "sourceUrl": "https://esahubble.org/images/heic0720c/",
+      "originalUrl": "https://cdn.esahubble.org/archives/images/screen/heic0720c.jpg",
+      "credit": "A. Fujii",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "captions": {
+        "en": "Summer Triangle star field. Altair is near the lower middle.",
+        "tr": "Yaz Üçgeni yıldız alanı. Altair alt orta bölgede."
+      },
+      "sha256": "31df7cf507efdca3d0bf6a53470bdd356f77ec22fbfadbd3492bb5f26713a9af",
+      "bytes": 366312
+    },
+    "hyg-101767": {
+      "file": "data/catalog/mobile-images/summer-triangle.jpg",
+      "sourceUrl": "https://esahubble.org/images/heic0720c/",
+      "originalUrl": "https://cdn.esahubble.org/archives/images/screen/heic0720c.jpg",
+      "credit": "A. Fujii",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "captions": {
+        "en": "Summer Triangle star field. Deneb is at the far left.",
+        "tr": "Yaz Üçgeni yıldız alanı. Deneb en solda."
+      },
+      "sha256": "31df7cf507efdca3d0bf6a53470bdd356f77ec22fbfadbd3492bb5f26713a9af",
+      "bytes": 366312
+    },
+    "con-ara": {
+      "file": "data/catalog/mobile-images/ic4651.jpg",
+      "sourceUrl": "https://www.eso.org/public/images/eso1534a/",
+      "originalUrl": "https://cdn.eso.org/images/screen/eso1534a.jpg",
+      "credit": "ESO",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "captions": {
+        "en": "IC 4651, a star cluster within Ara.",
+        "tr": "Sunak takımyıldızı içindeki IC 4651 yıldız kümesi."
+      },
+      "sha256": "9c83d2230db91d54e609dff511a565013d29178add4d358e7c25406320bb9ca0",
+      "bytes": 875428
+    },
+    "dso-ic4651": {
+      "file": "data/catalog/mobile-images/ic4651.jpg",
+      "sourceUrl": "https://www.eso.org/public/images/eso1534a/",
+      "originalUrl": "https://cdn.eso.org/images/screen/eso1534a.jpg",
+      "credit": "ESO",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "sha256": "9c83d2230db91d54e609dff511a565013d29178add4d358e7c25406320bb9ca0",
+      "bytes": 875428
+    },
+    "dso-ngc0253": {
+      "file": "data/catalog/mobile-images/sculptor.jpg",
+      "sourceUrl": "https://www.eso.org/public/images/eso1025a/",
+      "originalUrl": "https://cdn.eso.org/images/screen/eso1025a.jpg",
+      "credit": "ESO/J. Emerson/VISTA. Acknowledgment: Cambridge Astronomical Survey Unit",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "captions": {
+        "en": "Infrared image from VISTA.",
+        "tr": "VISTA kızılötesi görüntüsü."
+      },
+      "sha256": "2752336fc7c5e6089f64601214d16f4df0c19f64969d53379b91843eac6d0b9c",
+      "bytes": 146489
+    },
+    "dso-ngc0300": {
+      "file": "data/catalog/mobile-images/ngc0300.jpg",
+      "sourceUrl": "https://www.eso.org/public/images/eso1037a/",
+      "originalUrl": "https://cdn.eso.org/images/screen/eso1037a.jpg",
+      "credit": "ESO",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "sha256": "3bfa143c8c65b371334a0312e2b4cb029d6db32efb2bd165826dea2b1e4273ae",
+      "bytes": 310626
+    },
+    "dso-ngc1097": {
+      "file": "data/catalog/mobile-images/ngc1097.jpg",
+      "sourceUrl": "https://www.eso.org/public/images/eso0128a/",
+      "originalUrl": "https://cdn.eso.org/images/screen/eso0128a.jpg",
+      "credit": "ESO",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "sha256": "67c1634624a6f7320714890a9b22dfcc8aa865a69167ef94cc8c609a18f3eddc",
+      "bytes": 146549
+    },
+    "dso-ngc1232": {
+      "file": "data/catalog/mobile-images/ngc1232.jpg",
+      "sourceUrl": "https://www.eso.org/public/images/eso1042g/",
+      "originalUrl": "https://cdn.eso.org/images/screen/eso1042g.jpg",
+      "credit": "ESO/P. Grosbøl",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "sha256": "5cbf15843dd0f0f2b0d832f11afe9a3efe842f13f7cb62df065dbfe7e76f33e2",
+      "bytes": 248583
+    },
+    "dso-ngc1300": {
+      "file": "data/catalog/mobile-images/ngc1300.jpg",
+      "sourceUrl": "https://www.eso.org/public/images/eso2110f/",
+      "originalUrl": "https://cdn.eso.org/images/screen/eso2110f.jpg",
+      "credit": "ESO/PHANGS",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "sha256": "afad198c012d9a994236d302c07ccb60270d923ca6a7446b64240cad42bf227e",
+      "bytes": 168062
+    },
+    "dso-ngc1365": {
+      "file": "data/catalog/mobile-images/ngc1365.jpg",
+      "sourceUrl": "https://www.eso.org/public/images/eso9920f/",
+      "originalUrl": "https://cdn.eso.org/images/screen/eso9920f.jpg",
+      "credit": "ESO",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "sha256": "18ac607d7afb8f4c46e0ded57af793ea9a999b65f8985fcb1cd8c38e7b642c00",
+      "bytes": 156808
+    },
+    "dso-ngc4038": {
+      "file": "data/catalog/mobile-images/antennae.jpg",
+      "sourceUrl": "https://esahubble.org/images/heic0615a/",
+      "originalUrl": "https://cdn.esahubble.org/archives/images/screen/heic0615a.jpg",
+      "credit": "NASA, ESA, and the Hubble Heritage Team (STScI/AURA)-ESA/Hubble Collaboration. Acknowledgement: B. Whitmore (Space Telescope Science Institute) and James Long (ESA/Hubble).",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "captions": {
+        "en": "Both interacting galaxies, NGC 4038 and NGC 4039.",
+        "tr": "Etkileşen iki gökada birlikte, NGC 4038 ve NGC 4039."
+      },
+      "sha256": "dc26ef0a72bbfa48562bcf5ba6c619a7bfb8a4c93a759ca26b8f8f4dab9647e5",
+      "bytes": 275476
+    },
+    "dso-ngc4039": {
+      "file": "data/catalog/mobile-images/antennae.jpg",
+      "sourceUrl": "https://esahubble.org/images/heic0615a/",
+      "originalUrl": "https://cdn.esahubble.org/archives/images/screen/heic0615a.jpg",
+      "credit": "NASA, ESA, and the Hubble Heritage Team (STScI/AURA)-ESA/Hubble Collaboration. Acknowledgement: B. Whitmore (Space Telescope Science Institute) and James Long (ESA/Hubble).",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "captions": {
+        "en": "Both interacting galaxies, NGC 4038 and NGC 4039.",
+        "tr": "Etkileşen iki gökada birlikte, NGC 4038 ve NGC 4039."
+      },
+      "sha256": "dc26ef0a72bbfa48562bcf5ba6c619a7bfb8a4c93a759ca26b8f8f4dab9647e5",
+      "bytes": 275476
+    },
+    "dso-ngc4594": {
+      "file": "data/catalog/mobile-images/sombrero.jpg",
+      "sourceUrl": "https://www.eso.org/public/images/eso0007a/",
+      "originalUrl": "https://cdn.eso.org/images/screen/eso0007a.jpg",
+      "credit": "ESO/P. Barthel",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "captions": {
+        "en": "Acknowledgments: Mark Neeser (Kapteyn Institute, Groningen) and Richard Hook (ST/ECF, Garching, Germany).",
+        "tr": "Katkıda bulunanlar: Mark Neeser (Kapteyn Institute, Groningen) ve Richard Hook (ST/ECF, Garching, Germany)."
+      },
+      "sha256": "27a7cf9ebcfb88cb3346a4bb6d83b826890d7a4cf560d57d59835f3ce980fa8e",
+      "bytes": 179764
+    },
+    "dso-ngc5128": {
+      "file": "data/catalog/mobile-images/centaurus-a.jpg",
+      "sourceUrl": "https://www.eso.org/public/images/eso1221a/",
+      "originalUrl": "https://cdn.eso.org/images/screen/eso1221a.jpg",
+      "credit": "ESO",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "sha256": "ef07d9af10b39483b846c9a1d99b15728e59250ece6e6cb31d1c5c197583e77f",
+      "bytes": 343027
+    },
+    "dso-ngc5194": {
+      "file": "data/catalog/mobile-images/whirlpool.jpg",
+      "sourceUrl": "https://esahubble.org/images/heic0506a/",
+      "originalUrl": "https://cdn.esahubble.org/archives/images/screen/heic0506a.jpg",
+      "credit": "NASA, ESA, S. Beckwith (STScI), and The Hubble Heritage Team (STScI/AURA)",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "sha256": "626f7d6ba30d186a87b834c089b449e3b77c8defce4fe85ab7edf2078e3633e2",
+      "bytes": 221167
+    }
+  }
+}

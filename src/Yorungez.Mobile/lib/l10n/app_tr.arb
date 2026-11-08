@@ -305,5 +305,15 @@
   "eventInferiorConjunction": "Alt kavuşum",
   "eventSuperiorConjunction": "Üst kavuşum",
   "eventTime": "Olay / önizleme saati",
-  "backToLive": "Canlıya dön"
+  "backToLive": "Canlıya dön",
+  "glossaryTitle": "Astronomi sözlüğü",
+  "galaxiesFilter": "Gökadalar",
+  "glossarySearch": "Terim veya kısaltma ara",
+  "exploreRegion": "Merkez bölgesini keşfet",
+  "finderChart": "Katalog bulucu haritası",
+  "finderChartNote": "J2000 referansı. Göksel kuzey yukarıda, doğu soldadır. Halka çizilmişse hedefi gösterir. Yıldız alanı uygulamadaki katalogla sınırlıdır.",
+  "surveyImage": "Kızılötesi gökyüzü görüntüsünü yükle",
+  "surveyImageNote": "NASA SkyView çevrimiçi arşivi. Yalnızca herkese açık katalog koordinatları kullanılır. Cisim kızılötesinde sönük veya nokta olarak görünebilir.",
+  "surveyUnavailable": "Arşiv görüntüsü yüklenemedi. Yukarıdaki bulucu haritayı kullanabilirsin.",
+  "surveyCredit": "NASA SkyView · 2MASS (Massachusetts Üniversitesi ve IPAC/Caltech, NASA ve NSF desteğiyle). Yakın kızılötesi K bandı."
 }
