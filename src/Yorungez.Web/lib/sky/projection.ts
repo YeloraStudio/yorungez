@@ -9,13 +9,14 @@ export function projector(camera: Camera, width: number, height: number) {
   const cx = Math.cos(alt) * Math.sin(az), cy = Math.cos(alt) * Math.cos(az), cz = Math.sin(alt);
   const rx = Math.cos(az), ry = -Math.sin(az);
   const ux = -Math.sin(alt) * Math.sin(az), uy = -Math.sin(alt) * Math.cos(az), uz = Math.cos(alt);
-  const scale = projectionScale(camera, width, height);
+  const scale = projectionScale(camera, width, height), perspective = camera.projection === 'perspective';
+  const roll = (camera.roll ?? 0) * RAD, cosRoll = Math.cos(roll), sinRoll = Math.sin(roll);
   return (x: number, y: number, z: number): [number, number] | null => {
     const depth = x * cx + y * cy + z * cz;
-    if (depth <= (camera.projection==='perspective'?0:-0.999999)) return null;
-    const k = camera.projection==='perspective'?scale/depth:2 * scale / (1 + depth),roll=(camera.roll??0)*RAD;
+    if (depth <= (perspective?0:-0.999999)) return null;
+    const k = perspective?scale/depth:2 * scale / (1 + depth);
     const r=x*rx+y*ry,u=x*ux+y*uy+z*uz;
-    return [width/2+k*(r*Math.cos(roll)-u*Math.sin(roll)),height/2-k*(u*Math.cos(roll)+r*Math.sin(roll))];
+    return [width/2+k*(r*cosRoll-u*sinRoll),height/2-k*(u*cosRoll+r*sinRoll)];
   };
 }
 export function horizontalVector(azimuth: number, altitude: number): [number, number, number] {

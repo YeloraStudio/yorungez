@@ -1,11 +1,12 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import fs from 'node:fs';import crypto from 'node:crypto';
-import {screenRay,landscapeUv,uploadPanorama} from '../lib/sky/natural-scene.ts';
+import {groundSampler,screenRay,landscapeUv,uploadPanorama} from '../lib/sky/natural-scene.ts';
 import {horizontalVector,projector} from '../lib/sky/projection.ts';
 import {daylight,starAppearance} from '../lib/sky/appearance.ts';
 import {readHeading,HeadingSession} from '../lib/location/compass.ts';
 import type {CompassState,OrientationSample} from '../lib/location/compass.ts';
+import type {Camera} from '../lib/sky/types.ts';
 test('natural scene uses the same sky directions, including zenith, nadir and 360 seam',()=>{
  for(const camera of [{azimuth:0,altitude:0,fieldOfView:105},{azimuth:359,altitude:28,fieldOfView:75},{azimuth:45,altitude:90,fieldOfView:40},{azimuth:12,altitude:-90,fieldOfView:100}]){
   const ray=screenRay(camera,1280,720,640,360),centre=horizontalVector(camera.azimuth,camera.altitude);for(let i=0;i<3;i++)assert.ok(Math.abs(ray[i]-centre[i])<1e-12);
@@ -16,6 +17,20 @@ test('natural scene uses the same sky directions, including zenith, nadir and 36
 test('visual exposure preserves dark nights and magnitude ordering without changing science',()=>{
  assert.equal(daylight(-18),0);assert.equal(daylight(20),1);assert.ok(daylight(-6)>daylight(-12));
  assert.ok(starAppearance(-1).radius>starAppearance(1).radius);assert.ok(starAppearance(1).radius>starAppearance(6).radius);
+});
+test('fast fallback terrain agrees with the full inverse projection',()=>{
+ const views:Camera[]=[
+  {azimuth:350,altitude:14,fieldOfView:105},
+  {azimuth:5,altitude:-90,fieldOfView:330},
+  {azimuth:45,altitude:90,fieldOfView:330},
+  {azimuth:180,altitude:-7,roll:120,fieldOfView:60,projection:'perspective'},
+ ];
+ for(const camera of views){
+  const below=groundSampler(camera,1280,720);
+  for(let y=4;y<720;y+=16)for(let x=4;x<1280;x+=16){
+   assert.equal(below(x,y),screenRay(camera,1280,720,x,y)[2]<0);
+  }
+ }
 });
 test('panorama is an unchanged, attributed photograph verified without downloads',()=>{
  const m=JSON.parse(fs.readFileSync(new URL('../../../data/catalog/landscape-manifest.json',import.meta.url),'utf8'));
