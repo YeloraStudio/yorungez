@@ -1,6 +1,8 @@
 import type {Camera} from './types.ts';
 import {projectionScale} from './projection.ts';
 import {daylight} from './appearance.ts';
+import type {ArtMesh} from './art.ts';
+import {createWebGlArt} from './webgl-art.ts';
 const RAD=Math.PI/180;
 // Inverse of the shared stereographic projector: ENU, azimuth clockwise from north.
 export function screenRay(camera:Camera,width:number,height:number,x:number,y:number):[number,number,number]{
@@ -61,6 +63,7 @@ export function createNaturalScene(onLoad:()=>void){
  sky.className='natural-sky';ground.className='photographic-ground';
  sky.setAttribute('aria-hidden','true');ground.setAttribute('aria-hidden','true');
  let alive=true,loaded=false,started=false,usable=true,groundVisible=true,alphaMask:Uint8Array|null=null,maskWidth=0,maskHeight=0;
+ let art:ReturnType<typeof createWebGlArt>|undefined;
  const image=new Image();image.decoding='async';
  const layers=[sky,ground].map((canvas,index)=>{
   const gl=canvas.getContext('webgl',{alpha:true,antialias:false,premultipliedAlpha:false});
@@ -124,5 +127,13 @@ export function createNaturalScene(onLoad:()=>void){
    gl.uniform1f(u.perspective,+(camera.projection==='perspective'));gl.uniform1f(u.atmosphere,+atmosphere);gl.uniform1f(u.hasTexture,+loaded);gl.uniform1f(u.foreground,index);gl.uniform1f(u.groundOpacity,groundOpacity);gl.uniform3f(u.sun,...sun);gl.uniform1i(u.pano,0);gl.bindTexture(gl.TEXTURE_2D,layer.texture);gl.drawArrays(gl.TRIANGLES,0,6);
   }
  }
- return {sky,ground,draw,occludes,get gpu(){return usable},dispose(){alive=false;for(const canvas of [sky,ground])canvas.removeEventListener("webglcontextlost",lost);image.onload=null;image.onerror=null;for(const l of layers)if(l){l.gl.deleteTexture(l.texture);l.gl.deleteBuffer(l.buffer);l.gl.deleteProgram(l.program);l.gl.deleteShader(l.vs);l.gl.deleteShader(l.fs);l.gl.getExtension('WEBGL_lose_context')?.loseContext();}sky.remove();ground.remove();}};
+ function drawArt(meshes:ArtMesh[],width:number,height:number){
+  const layer=layers[0];
+  if(!usable||!layer||layer.gl.isContextLost())return false;
+  if(art===undefined)art=createWebGlArt(layer.gl);
+  if(!art)return false;
+  try{art.draw(meshes,width,height);return true;}
+  catch{art.dispose();art=null;return false;}
+ }
+ return {sky,ground,draw,drawArt,occludes,get gpu(){return usable},dispose(){alive=false;art?.dispose();for(const canvas of [sky,ground])canvas.removeEventListener("webglcontextlost",lost);image.onload=null;image.onerror=null;for(const l of layers)if(l){l.gl.deleteTexture(l.texture);l.gl.deleteBuffer(l.buffer);l.gl.deleteProgram(l.program);l.gl.deleteShader(l.vs);l.gl.deleteShader(l.fs);l.gl.getExtension('WEBGL_lose_context')?.loseContext();}sky.remove();ground.remove();}};
 }

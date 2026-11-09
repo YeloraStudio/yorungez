@@ -3,6 +3,29 @@ import { horizontalVector, projectionScale } from "./projection.ts";
 type Point = [number,number];
 type Vector = [number,number,number];
 const dot = (a:Vector,b:Vector) => a[0]*b[0]+a[1]*b[1]+a[2]*b[2];
+const fadeMs=180,artOpacity=.34;
+type Affine=[number,number,number,number,number,number];
+export type ArtMesh={image:HTMLImageElement;vertices:number[];opacity:number;affine?:Affine};
+
+function motionAffine(outline:Point[]):Affine|undefined{
+  const [a,b,c,d]=outline;
+  const dx=d[0]-b[0]-c[0]+a[0],dy=d[1]-b[1]-c[1]+a[1];
+  // Use a single draw when its four corners deviate by at most three pixels.
+  if(Math.hypot(dx,dy)>12)return;
+  return [b[0]-a[0]+dx/2,b[1]-a[1]+dy/2,c[0]-a[0]+dx/2,c[1]-a[1]+dy/2,a[0]-dx/4,a[1]-dy/4];
+}
+
+function visibleFraction(outline:Point[],width:number,height:number){
+  if(outline.length<4)return 1;
+  const xs=outline.map(point=>point[0]),ys=outline.map(point=>point[1]);
+  const left=Math.min(...xs),right=Math.max(...xs),top=Math.min(...ys),bottom=Math.max(...ys);
+  const overlapX=Math.min(width,right)-Math.max(0,left);
+  const overlapY=Math.min(height,bottom)-Math.max(0,top);
+  // Reach full opacity once a small part of the figure is inside the view.
+  const edgeX=Math.max(1,Math.min(56,(right-left)*.4));
+  const edgeY=Math.max(1,Math.min(56,(bottom-top)*.4));
+  return Math.max(0,Math.min(1,overlapX/edgeX,overlapY/edgeY));
+}
 
 export function triangleInViewport(a:Point,b:Point,c:Point,width:number,height:number) {
   if(Math.max(a[0],b[0],c[0])<=0 || Math.min(a[0],b[0],c[0])>=width ||
@@ -17,10 +40,15 @@ export function triangleInViewport(a:Point,b:Point,c:Point,width:number,height:n
 
 // Three catalogue star anchors define a linear texture-to-sphere basis. A mesh
 // then projects normalized 3D directions, avoiding a flat screen-space sticker.
-export function drawConstellationArt(ctx: CanvasRenderingContext2D, catalog: SkyCatalog, vectors: Float64Array,
-  project: (x:number,y:number,z:number)=>Point|null, camera:Camera,width:number,height:number,
-  images: Map<string,HTMLImageElement>, schedule:()=>void,moving=false) {
-  const art=catalog.art;if(!art) return;
+export function projectConstellationArt(catalog:SkyCatalog,vectors:Float64Array,
+  project:(...ray:Vector)=>Point|null,camera:Camera,
+  view:{width:number;height:number;now:number;moving:boolean;reduced:boolean},
+  images:Map<string,HTMLImageElement>,entered:Map<string,number>,schedule:()=>void) {
+  const {width,height,now,moving,reduced}=view;
+  const meshes:ArtMesh[]=[];
+  let animating=false;
+  const art=catalog.art;if(!art)return {meshes,animating};
+  const leaving=new Set(entered.keys());
   const forward=horizontalVector(camera.azimuth,camera.altitude);
   const radius=Math.hypot(width,height)/2,scale=projectionScale(camera,width,height);
   const viewRadius=camera.projection==='perspective'?Math.atan(radius/scale):2*Math.atan(radius/(2*scale));
@@ -60,21 +88,7 @@ export function drawConstellationArt(ctx: CanvasRenderingContext2D, catalog: Sky
       :Math.max(2,Math.min(8,Math.ceil(extent/110)));
     const stride=steps+1,dx=w/steps,dy=h/steps;
     const projected=Array.from({length:stride*stride},(_,i)=>project(...direction((i%stride)*dx,Math.floor(i/stride)*dy)));
-    function triangle(s0:Point,s1:Point,s2:Point,p0:Point,p1:Point,p2:Point,texture:HTMLImageElement,x:number,y:number) {
-      const den=(s1[0]-s0[0])*(s2[1]-s0[1])-(s2[0]-s0[0])*(s1[1]-s0[1]);
-      const aa=((p1[0]-p0[0])*(s2[1]-s0[1])-(p2[0]-p0[0])*(s1[1]-s0[1]))/den;
-      const bb=((p1[1]-p0[1])*(s2[1]-s0[1])-(p2[1]-p0[1])*(s1[1]-s0[1]))/den;
-      const cc=((s1[0]-s0[0])*(p2[0]-p0[0])-(s2[0]-s0[0])*(p1[0]-p0[0]))/den;
-      const dd=((s1[0]-s0[0])*(p2[1]-p0[1])-(s2[0]-s0[0])*(p1[1]-p0[1]))/den;
-      ctx.save();ctx.beginPath();ctx.moveTo(...p0);ctx.lineTo(...p1);ctx.lineTo(...p2);ctx.closePath();ctx.clip();
-      ctx.transform(aa,bb,cc,dd,p0[0]-aa*s0[0]-cc*s0[1],p0[1]-bb*s0[0]-dd*s0[1]);
-      // Limit each clipped draw to its source tile. Drawing the whole texture
-      // repeatedly creates large intermediate surfaces on software canvases.
-      const sx=texture.naturalWidth/w,sy=texture.naturalHeight/h;
-      ctx.drawImage(texture,x*sx,y*sy,dx*sx,dy*sy,x,y,dx,dy);
-      ctx.restore();
-    }
-    ctx.save();ctx.globalAlpha=.34;
+    const vertices:number[]=[];
     mesh: for(let y=0;y<steps;y++)for(let x=0;x<steps;x++){
       const i=y*stride+x,p0=projected[i],p1=projected[i+1],p2=projected[i+stride+1],p3=projected[i+stride];
       if(!p0||!p2)continue;
@@ -85,10 +99,47 @@ export function drawConstellationArt(ctx: CanvasRenderingContext2D, catalog: Sky
         images.set(figure.src,image);image.src=figure.src;
         break mesh;
       }
-      const x0=x*dx,y0=y*dy,x1=x0+dx,y1=y0+dy;
-      if(first&&p1)triangle([x0,y0],[x1,y0],[x1,y1],p0,p1,p2,image,x0,y0);
-      if(second&&p3)triangle([x0,y0],[x1,y1],[x0,y1],p0,p2,p3,image,x0,y0);
+      const u0=x/steps,v0=y/steps,u1=(x+1)/steps,v1=(y+1)/steps;
+      if(first&&p1)vertices.push(...p0,u0,v0,...p1,u1,v0,...p2,u1,v1);
+      if(second&&p3)vertices.push(...p0,u0,v0,...p2,u1,v1,...p3,u0,v1);
     }
-    ctx.restore();
+    if(!image||!vertices.length)continue;
+    const start=entered.get(figure.id)??now;
+    entered.set(figure.id,start);
+    leaving.delete(figure.id);
+    const elapsed=reduced?1:Math.min(1,(now-start)/fadeMs);
+    animating ||= elapsed<1;
+    const edge=visibleFraction(projected.filter((point):point is Point=>point!==null),width,height);
+    const opacity=artOpacity*(reduced?1:edge*(1-(1-elapsed)**2));
+    if(opacity>0)meshes.push({image,vertices,opacity,
+      affine:moving&&outline.length===4&&extent<=420?motionAffine(outline):undefined});
   }
+  for(const id of leaving)entered.delete(id);
+  return {meshes,animating};
+}
+
+// Preserve the mesh on devices where the WebGL art pass is unavailable.
+export function drawCanvasArt(ctx:CanvasRenderingContext2D,meshes:ArtMesh[]){
+  ctx.save();
+  for(const {image,vertices:v,opacity,affine} of meshes){
+    ctx.globalAlpha=opacity;
+    if(affine){
+      ctx.save();ctx.transform(...affine);ctx.drawImage(image,0,0,1,1);ctx.restore();
+      continue;
+    }
+    for(let i=0;i<v.length;i+=12){
+      const x=v[i],y=v[i+1],u=v[i+2],t=v[i+3];
+      const bx=v[i+4]-x,by=v[i+5]-y,bu=v[i+6]-u,bt=v[i+7]-t;
+      const cx=v[i+8]-x,cy=v[i+9]-y,cu=v[i+10]-u,ct=v[i+11]-t;
+      const det=bu*ct-cu*bt;
+      const a=(bx*ct-cx*bt)/det,b=(by*ct-cy*bt)/det;
+      const c=(bu*cx-cu*bx)/det,d=(bu*cy-cu*by)/det;
+      ctx.save();ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(v[i+4],v[i+5]);ctx.lineTo(v[i+8],v[i+9]);ctx.closePath();ctx.clip();
+      ctx.transform(a,b,c,d,x-a*u-c*t,y-b*u-d*t);
+      const du=Math.max(bu,cu),dt=Math.max(bt,ct);
+      ctx.drawImage(image,u*image.naturalWidth,t*image.naturalHeight,du*image.naturalWidth,dt*image.naturalHeight,u,t,du,dt);
+      ctx.restore();
+    }
+  }
+  ctx.restore();
 }

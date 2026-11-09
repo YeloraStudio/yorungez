@@ -9,7 +9,7 @@ import { planningText } from "../lib/planning-text.ts";
 import { terrainOpacity } from "../lib/sky/terrain.ts";
 import { createNaturalScene, groundSampler } from "../lib/sky/natural-scene.ts";
 import { starAppearance, daylight } from "../lib/sky/appearance.ts";
-import { drawConstellationArt } from "../lib/sky/art.ts";
+import { drawCanvasArt, projectConstellationArt } from "../lib/sky/art.ts";
 import { constellationArcs, drawConstellationLines } from "../lib/sky/constellation-lines.ts";
 import type { RendererKind } from "../lib/sky/renderers.ts";
 import type { Layers } from "../lib/sky/layers.ts";
@@ -38,7 +38,7 @@ export default function SkyMap(props:Props){
     const ctx=canvas.getContext("2d")!,bg=base.getContext("2d")!,catalog=props.catalog;
     const ids=[...catalog.stars.map(s=>s.id),...SOLAR_IDS,...catalog.constellations.map(c=>c.id),...(catalog.deepSky??[]).map(o=>o.id)];
     const indices=new Map(catalog.stars.map((s,i)=>[s.id,i])),images=new Map<string,HTMLImageElement>();
-    const lineStarts=new Map<string,number>(),motionPreference=matchMedia("(prefers-reduced-motion: reduce)");
+    const lineStarts=new Map<string,number>(),artStarts=new Map<string,number>(),motionPreference=matchMedia("(prefers-reduced-motion: reduce)");
     let lineFrame:SkyFrame|null=null,lineArcs:ReturnType<typeof constellationArcs>=[];
     let fallbackExposure:number|null=null,artVisible=false;
     const natural=createNaturalScene(schedule);viewport.prepend(natural.sky);viewport.append(natural.ground);
@@ -49,7 +49,7 @@ export default function SkyMap(props:Props){
     function draw(now:number){
       scheduled=0;if(fallback.current===natural.gpu){fallback.current=!natural.gpu;setSimplified(!natural.gpu)}const p=latest.current,frame=p.frame,{width,height}=size.current,dpr=Math.min(devicePixelRatio||1,2);
       if(width<=0||height<=0)return;
-      const artDpr=Math.min(dpr,1.25);
+      const artDpr=Math.min(dpr,1);
       for(const [c,ratio] of [[canvas,dpr],[base,artDpr]] as const){const w=Math.round(width*ratio),h=Math.round(height*ratio);if(c.width!==w||c.height!==h){c.width=w;c.height=h;}}
       ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,width,height);bg.setTransform(artDpr,0,0,artDpr,0,0);
       const previous=view.current,target=p.camera,reduced=motionPreference.matches;
@@ -66,8 +66,8 @@ export default function SkyMap(props:Props){
         viewport.style.backgroundImage=exposure===null?"":`linear-gradient(${mix([7,8,11],[43,81,111],day)},${mix([15,15,19],[110,142,158],day)} 70%,${mix([28,25,29],[203,192,171],day)})`;
       }
       const showArt=!!(p.layers.art&&!p.cameraOverlay&&frame?.canPublishAzimuth);
-      if(artVisible||showArt)bg.clearRect(0,0,width,height);
-      artVisible=showArt;
+      if(artVisible)bg.clearRect(0,0,width,height);
+      artVisible=false;
       if(!frame)return;
       const selectedIndex=p.selected?ids.indexOf(p.selected):-1,selectedHidden=selectedIndex>=0&&natural.occludes(frame.angles[selectedIndex*2],frame.angles[selectedIndex*2+1]);
       const groundOpacity=terrainOpacity(camera.altitude,selectedHidden);const reveal=p.layers.landscape&&groundOpacity<.5;if(exploration.current!==reveal){exploration.current=reveal;setExploring(reveal)}viewport.dataset.groundOpacity=groundOpacity.toFixed(3);viewport.dataset.fieldOfView=camera.fieldOfView.toFixed(1);viewport.dataset.cameraAltitude=camera.altitude.toFixed(1);viewport.dataset.cameraRoll=(camera.roll??0).toFixed(1);viewport.dataset.cameraAzimuth=camera.azimuth.toFixed(1);
@@ -84,8 +84,11 @@ export default function SkyMap(props:Props){
         if(i<opacities.length)opacities[i]=frame.angles[i*2+1]<0?1:1-day*.999;
         projected.current[i*2]=point[0];projected.current[i*2+1]=point[1];
       }
-      renderer.element.style.opacity="1";
-      if(showArt)drawConstellationArt(bg,catalog,frame.artVectors,project,camera,width,height,images,schedule,moving);
+      if(showArt){
+        const {meshes,animating}=projectConstellationArt(catalog,frame.artVectors,project,camera,{width,height,now,moving,reduced},images,artStarts,schedule);
+        if(meshes.length&&!natural.drawArt(meshes,width,height)){drawCanvasArt(bg,meshes);artVisible=true;}
+        if(animating)schedule();
+      }else artStarts.clear();
       renderer.draw({points:projected.current,radii,colors,opacities,count:radii.length,width,height,dpr});
       function curve(points:[number,number,number][],color:string,lineWidth=1){ctx.beginPath();let active=false,prior:[number,number]|null=null;
         for(const vector of points){const point=p.cameraOverlay&&vector[2]<0?null:project(...vector);if(!point||(prior&&Math.hypot(point[0]-prior[0],point[1]-prior[1])>Math.max(width,height)/2)){active=false;prior=point;continue;}if(active)ctx.lineTo(...point);else ctx.moveTo(...point);active=true;prior=point;}
