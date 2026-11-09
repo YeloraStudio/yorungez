@@ -1,15 +1,16 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import {drawConstellationArt,triangleInViewport} from '../lib/sky/art.ts';
+import {projectConstellationArt,triangleInViewport} from '../lib/sky/art.ts';
 import {constellationArcs,drawConstellationLines} from '../lib/sky/constellation-lines.ts';
 import {horizontalVector,projector} from '../lib/sky/projection.ts';
 import type {SkyCatalog} from '../lib/sky/types.ts';
 
-test('artwork requests follow the visible mesh in CSS pixels and are reused',t=>{
+test('artwork loads on demand, fades at the edge, and fades in again without a repeat request',t=>{
  const requested:string[]=[];
  const previous=Object.getOwnPropertyDescriptor(globalThis,'Image');
  Object.defineProperty(globalThis,'Image',{configurable:true,value:class {
-  complete=false;
+  complete=true;
+  naturalWidth=100;
   set src(value:string){requested.push(value);}
  }});
  t.after(()=>{
@@ -25,15 +26,27 @@ test('artwork requests follow the visible mesh in CSS pixels and are reused',t=>
  const vectors=new Float64Array([180,0].flatMap(az=>[
   horizontalVector(az-6,6),horizontalVector(az+6,6),horizontalVector(az-6,-6)
  ].flat()));
- const ctx={canvas:{width:2000,height:1600},save(){},restore(){}} as unknown as CanvasRenderingContext2D;
  const images=new Map<string,HTMLImageElement>();
- function draw(azimuth:number){
+ const entered=new Map<string,number>();
+ function draw(azimuth:number,now:number,reduced=false){
   const camera={azimuth,altitude:0,fieldOfView:30};
-  drawConstellationArt(ctx,catalog,vectors,projector(camera,1000,800),camera,1000,800,images,()=>{});
+  const view={width:1000,height:800,now,moving:false,reduced};
+  return projectConstellationArt(catalog,vectors,projector(camera,view.width,view.height),camera,view,images,entered,()=>{});
  }
- draw(180);draw(180);
+ draw(180,0);
+ assert.deepEqual(draw(180,16),{meshes:[],animating:true});
  assert.deepEqual(requested,['/sky-art/south.webp']);
- draw(0);
+ const entering=draw(180,80);
+ const full=draw(180,220);
+ assert.ok(entering.meshes[0].opacity>0&&entering.meshes[0].opacity<full.meshes[0].opacity);
+ assert.equal(full.animating,false);
+ const atEdge=draw(200.7,250);
+ assert.ok(atEdge.meshes[0].opacity>0&&atEdge.meshes[0].opacity<full.meshes[0].opacity);
+ assert.deepEqual(draw(215,270),{meshes:[],animating:false});
+ assert.equal(entered.has('south'),false);
+ assert.deepEqual(draw(180,300),{meshes:[],animating:true});
+ assert.equal(draw(180,300,true).meshes[0].opacity,full.meshes[0].opacity);
+ draw(0,320);
  assert.deepEqual(requested,['/sky-art/south.webp','/sky-art/north.webp']);
 });
 
@@ -47,11 +60,12 @@ test('visible constellation lines reveal from the first star and respect reduced
  const vector=new Float64Array([...horizontalVector(0,0),...horizontalVector(12,0)]);
  const arcs=constellationArcs([{id:'con-test',iau:'Test',names:{en:'Test',tr:'Test'},lines:[['start','end']]}],new Map([['start',0],['end',1]]),vector);
  const project=projector({azimuth:6,altitude:0,fieldOfView:45},200,100);
- const segments:number[]=[];
- const ctx={save(){},restore(){},beginPath(){segments.length=0;},moveTo(){},lineTo(x:number){segments.push(x);},stroke(){}} as unknown as CanvasRenderingContext2D;
+ const segments:number[]=[],nodes:number[]=[];
+ const ctx={save(){},restore(){},beginPath(){},moveTo(){},lineTo(x:number){segments.push(x);},arc(x:number){nodes.push(x);},stroke(){},fill(){}} as unknown as CanvasRenderingContext2D;
  const starts=new Map<string,number>();
  assert.equal(drawConstellationLines(ctx,arcs,project,200,100,false,null,starts,100,false),true);
  assert.deepEqual(segments,[]);
+ assert.deepEqual(nodes,[project(...horizontalVector(0,0))![0],project(...horizontalVector(12,0))![0]]);
  assert.equal(drawConstellationLines(ctx,arcs,project,200,100,false,null,starts,260,false),true);
  const partial=segments.at(-1)!;
  assert.equal(drawConstellationLines(ctx,arcs,project,200,100,false,null,starts,100,true),false);
