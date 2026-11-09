@@ -19,15 +19,15 @@ Tarayıcı hesap/defter için Web'in aynı kökenli `/api/...` BFF rotalarını 
 | `Application and science` | Backend entegrasyon testleri, Web testleri/tip/derleme, donmuş bilimsel referanslar |
 | `Production containers` | İki production imajını runner'da kurar, `compose.production.yaml` ile başlatır, health uçlarını çağırır |
 | `Build api/web image` | Yalnız `main`: `yorungez-api` ve `yorungez-web` imajlarını ECR'a `:<sha>` ve `:latest` olarak gönderir |
-| `Deploy to production` | `compose.production.yaml` dosyasını sunucuya eşitler, `api web` servislerini çeker ve başlatır, ardından API, ana adres ve `www` için genel yoldan 200 bekler. `migrate` her dağıtımda API'den önce koşar; PostgreSQL ve Redis yeniden başlatılmaz |
+| `Deploy to production` | `api web` servislerini çeker ve başlatır (sunucudaki `compose.production.yaml` ana kopyadır, CI ona yazmaz), ardından API, ana adres ve `www` için genel yoldan 200 bekler. `migrate` her dağıtımda API'den önce koşar; PostgreSQL ve Redis yeniden başlatılmaz |
 
 **Secret'lar.** Depo public. `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `SSH_HOST`, `SSH_USER`, `SSH_KEY`, `SSH_KNOWN_HOSTS` yalnız `production` environment'ında durur ve bu environment'a yalnız korumalı dallar erişir; pull request'ler (fork dahil) ulaşamaz. Secret kullanan adımlarda üçüncü taraf action yoktur. AWS hesap numarası ve ECR jetonu günlükte maskelenir; jeton sunucuya stdin ile gider. Sunucu adresi secret olduğu için günlükte görünmez, Cloudflare arkasındaki origin açığa çıkmaz.
 
-Sunucu: `yelora-dev`, klasör `/home/yelora-dev/compose-projects/cnonestudio.com/yorungez`.
+Sunucu: `yelora-dev`, klasör `/home/yelora-dev/compose-projects/yorungez`.
 
 ```text
 yorungez/
-  compose.production.yaml   CI her dağıtımda üzerine yazar
+  compose.production.yaml   ana kopya sunucuda; repodaki aynı dosyanın kopyası, CI dokunmaz
   .env                      yalnız sunucuda, 600; CI dokunmaz
   private/                  initialize-production.py çıktısı: keys/ ve keyring.pfx
 ```

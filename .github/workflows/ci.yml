@@ -152,7 +152,7 @@ jobs:
       cancel-in-progress: false
     env:
       AWS_REGION: us-east-2
-      DEPLOY_PATH: /home/yelora-dev/compose-projects/cnonestudio.com/yorungez
+      DEPLOY_PATH: /home/yelora-dev/compose-projects/yorungez
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -181,13 +181,8 @@ jobs:
             BatchMode yes
             ConnectTimeout 15
           CONFIG
-      # This repository owns the compose file. The server's .env and private/
-      # are never sent or touched.
-      - name: Sync compose file
-        run: |
-          set -euo pipefail
-          scp -q deploy/compose.production.yaml "production:$DEPLOY_PATH/compose.production.yaml.new"
-          ssh production "mv '$DEPLOY_PATH/compose.production.yaml.new' '$DEPLOY_PATH/compose.production.yaml'"
+      # The server keeps the master compose file (deploy/compose.production.yaml is its copy);
+      # this job does not write it, nor the server's .env and private/.
       - name: Pull and restart api and web
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}

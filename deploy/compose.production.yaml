@@ -1,37 +1,49 @@
+# Production stack on yelora-dev, at /home/yelora-dev/compose-projects/yorungez. The master copy
+# of this file lives on the server; deploy/compose.production.yaml in the repository keeps the
+# same file and CI does not write it. Every value is read from the .env next to it.
+# Limits come from 30 days of measurements on this host (about a week for this stack).
 name: yorungez-production
+x-logging: &logging
+  driver: json-file
+  options:
+    max-size: '10m'
+    max-file: '5'
+x-fleet: &fleet
+  fleet.project: yorungez
+  fleet.group: yelora
+  fleet.repo: github.com/YeloraStudio/yorungez
+  fleet.env: prod
+  fleet.criticality: normal
+  fleet.owner: kemal
 x-api-environment: &api-environment
-  ASPNETCORE_ENVIRONMENT: Production
+  ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT:?required}
   ASPNETCORE_HTTP_PORTS: '8080'
   ASPNETCORE_HTTPS_PORT: '443'
-  Serilog__MinimumLevel__Default: ${API_LOG_LEVEL:-Warning}
-  AllowedHosts: 'api.yorungez.com;yorungez-api-internal;api;localhost;127.0.0.1'
-  ConnectionStrings__Identity: 'Host=postgres;Database=yorungez;Username=yorungez;Password=${POSTGRES_PASSWORD:?required}'
+  Serilog__MinimumLevel__Default: ${API_LOG_LEVEL:?required}
+  AllowedHosts: ${ALLOWED_HOSTS:?required}
+  ConnectionStrings__Identity: 'Host=postgres;Database=${POSTGRES_DB:?required};Username=${POSTGRES_USER:?required};Password=${POSTGRES_PASSWORD:?required}'
   ConnectionStrings__Redis: 'redis:6379,password=${REDIS_PASSWORD:?required},abortConnect=false'
-  Jwt__Issuer: https://api.yorungez.com
-  Jwt__Audience: yorungez-api
+  Jwt__Issuer: ${JWT_ISSUER:?required}
+  Jwt__Audience: ${JWT_AUDIENCE:?required}
   Jwt__SigningKey: ${JWT_SIGNING_KEY:?required}
-  Email__FrontendBaseUrl: https://yorungez.com
-  Email__Host: ${SMTP_HOST:-smtp.gmail.com}
-  Email__Port: ${SMTP_PORT:-587}
+  Email__FrontendBaseUrl: ${FRONTEND_BASE_URL:?required}
+  Email__Host: ${SMTP_HOST:?required}
+  Email__Port: ${SMTP_PORT:?required}
   Email__Sender: ${SMTP_SENDER:?required}
   Email__UserName: ${SMTP_USERNAME:?required}
   Email__Password: ${SMTP_PASSWORD:?required}
-  Email__RequireTls: 'true'
-  Email__RunOutboxWorker: 'true'
+  Email__RequireTls: ${SMTP_REQUIRE_TLS:?required}
+  Email__RunOutboxWorker: ${EMAIL_RUN_OUTBOX_WORKER:?required}
   DataProtection__KeyRingPath: /var/lib/yorungez/keys
   DataProtection__CertificatePath: /run/yorungez/keyring.pfx
   DataProtection__CertificatePassword: ${KEYRING_CERT_PASSWORD:?required}
   ReverseProxy__KnownProxies__0: ${TRAEFIK_IP:?set exact Traefik container IP}
-  ReverseProxy__KnownProxies__1: ${WEB_INTERNAL_IP:-10.89.0.3}
+  ReverseProxy__KnownProxies__1: ${WEB_INTERNAL_IP:?required}
   # Cloudflare proxies the public hostnames; see Http/CloudflareClientAddress.cs.
-  ReverseProxy__TrustCloudflare: 'true'
+  ReverseProxy__TrustCloudflare: ${TRUST_CLOUDFLARE:?required}
 x-api: &api
   image: ${API_IMAGE:?build and tag the API image first}
-  logging:
-    driver: json-file
-    options:
-      max-size: '10m'
-      max-file: '5'
+  logging: *logging
   environment: *api-environment
   volumes:
     - ${KEYRING_PATH:?absolute Ubuntu directory}:/var/lib/yorungez/keys
@@ -41,20 +53,30 @@ x-api: &api
 services:
   postgres:
     image: postgres:18.6-alpine@sha256:10a5c69a83035ab5239f5620d708520e8b28f5aa1f2b20143e6024532edadfb5
+    container_name: yorungez-postgres
     restart: unless-stopped
     environment:
-      POSTGRES_DB: yorungez
-      POSTGRES_USER: yorungez
+      POSTGRES_DB: ${POSTGRES_DB:?required}
+      POSTGRES_USER: ${POSTGRES_USER:?required}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?required}
     volumes: [postgres-data:/var/lib/postgresql]
     networks: [database]
     healthcheck:
-      test: [CMD-SHELL, 'pg_isready -U yorungez -d yorungez']
+      test: [CMD-SHELL, 'pg_isready -U "$$POSTGRES_USER" -d "$$POSTGRES_DB"']
       interval: 5s
       timeout: 3s
       retries: 30
+    # p99 42 MB, max 68 MB. Not below 256 MB: shared_buffers alone is 128 MB.
+    mem_limit: 256m
+    cpus: 1.0
+    logging: *logging
+    labels:
+      <<: *fleet
+      fleet.exposure: internal
+      fleet.backup: postgres
   redis:
     image: redis:8.10.3-alpine@sha256:21090af93f8324db2f0f0f4f38a7c60369d47d917e000c3423d89d2ae2883537
+    container_name: yorungez-redis
     restart: unless-stopped
     environment:
       REDIS_PASSWORD: ${REDIS_PASSWORD:?required}
@@ -66,6 +88,15 @@ services:
       interval: 5s
       timeout: 3s
       retries: 30
+    # p99 9 MB, max 14 MB.
+    mem_limit: 64m
+    cpus: 0.5
+    logging: *logging
+    labels:
+      <<: *fleet
+      fleet.exposure: internal
+      fleet.backup: none
+      fleet.backup.none_reason: cache, the mail outbox is kept in postgres
   migrate:
     <<: *api
     command: [--migrate]
@@ -76,45 +107,67 @@ services:
     depends_on:
       postgres: {condition: service_healthy}
       redis: {condition: service_healthy}
+    labels:
+      <<: *fleet
+      fleet.exposure: internal
+      fleet.backup: none
+      fleet.backup.none_reason: one-off migration run before api
   api:
     <<: *api
+    # On the service, not in x-api, so migrate does not take the same name.
+    container_name: yorungez-api
     restart: unless-stopped
     networks:
       database: {}
       application:
-        ipv4_address: ${API_INTERNAL_IP:-10.89.0.2}
+        ipv4_address: ${API_INTERNAL_IP:?required}
         aliases: [yorungez-api-internal]
       edge: {}
     depends_on:
       migrate: {condition: service_completed_successfully}
+    # The image brings its healthcheck. p99 210 MB, max 214 MB, CPU p95 31%, hourly peak 87%.
+    mem_limit: 320m
+    cpus: 1.0
     labels:
+      <<: *fleet
       traefik.enable: 'true'
       traefik.docker.network: ${TRAEFIK_NETWORK:?existing Traefik network}
       traefik.http.routers.yorungez-api.rule: Host(`api.yorungez.com`)
-      traefik.http.routers.yorungez-api.entrypoints: ${TRAEFIK_ENTRYPOINT:-websecure}
+      traefik.http.routers.yorungez-api.entrypoints: ${TRAEFIK_ENTRYPOINT:?required}
       traefik.http.routers.yorungez-api.tls: 'true'
       traefik.http.routers.yorungez-api.tls.certresolver: ${TRAEFIK_CERTRESOLVER:?existing resolver name}
       traefik.http.services.yorungez-api.loadbalancer.server.port: '8080'
+      fleet.exposure: public
+      # The data protection key ring in private/ (KEYRING_PATH); losing it signs every user out
+      # and makes protected data unreadable.
+      fleet.backup: path
+      fleet.backup.paths: ./private
   web:
     image: ${WEB_IMAGE:?build and tag the Web image first}
+    container_name: yorungez-web
     restart: unless-stopped
     environment:
-      NODE_ENV: production
+      NODE_ENV: ${NODE_ENV:?required}
       YORUNGEZ_API_ORIGIN: http://yorungez-api-internal:8080
-      YORUNGEZ_WEB_ORIGIN: https://yorungez.com
-      YORUNGEZ_ENABLE_LAB: '0'
+      YORUNGEZ_WEB_ORIGIN: ${YORUNGEZ_WEB_ORIGIN:?required}
+      YORUNGEZ_ENABLE_LAB: ${YORUNGEZ_ENABLE_LAB:?required}
     security_opt: [no-new-privileges:true]
     networks:
       application:
-        ipv4_address: ${WEB_INTERNAL_IP:-10.89.0.3}
+        ipv4_address: ${WEB_INTERNAL_IP:?required}
       edge: {}
     depends_on:
       api: {condition: service_healthy}
+    # The image brings its healthcheck. p99 390 MB, max 400 MB, CPU p95 45%, hourly peak 74%.
+    mem_limit: 640m
+    cpus: 1.0
+    logging: *logging
     labels:
+      <<: *fleet
       traefik.enable: 'true'
       traefik.docker.network: ${TRAEFIK_NETWORK:?required}
       traefik.http.routers.yorungez-web.rule: Host(`yorungez.com`)
-      traefik.http.routers.yorungez-web.entrypoints: ${TRAEFIK_ENTRYPOINT:-websecure}
+      traefik.http.routers.yorungez-web.entrypoints: ${TRAEFIK_ENTRYPOINT:?required}
       traefik.http.routers.yorungez-web.tls: 'true'
       traefik.http.routers.yorungez-web.tls.certresolver: ${TRAEFIK_CERTRESOLVER:?required}
       traefik.http.services.yorungez-web.loadbalancer.server.port: '3000'
@@ -122,7 +175,7 @@ services:
       # request never reaches the Web container. `$$` keeps the regex group
       # away from compose interpolation.
       traefik.http.routers.yorungez-www.rule: Host(`www.yorungez.com`)
-      traefik.http.routers.yorungez-www.entrypoints: ${TRAEFIK_ENTRYPOINT:-websecure}
+      traefik.http.routers.yorungez-www.entrypoints: ${TRAEFIK_ENTRYPOINT:?required}
       traefik.http.routers.yorungez-www.tls: 'true'
       traefik.http.routers.yorungez-www.tls.certresolver: ${TRAEFIK_CERTRESOLVER:?required}
       traefik.http.routers.yorungez-www.middlewares: yorungez-www-redirect
@@ -130,6 +183,9 @@ services:
       traefik.http.middlewares.yorungez-www-redirect.redirectregex.regex: ^https?://www\.yorungez\.com/(.*)
       traefik.http.middlewares.yorungez-www-redirect.redirectregex.replacement: https://yorungez.com/$${1}
       traefik.http.middlewares.yorungez-www-redirect.redirectregex.permanent: 'true'
+      fleet.exposure: public
+      fleet.backup: none
+      fleet.backup.none_reason: stateless, data is behind the api
 volumes:
   postgres-data:
   redis-data:
@@ -140,7 +196,7 @@ networks:
     internal: true
     ipam:
       config:
-        - subnet: ${APP_SUBNET:-10.89.0.0/24}
+        - subnet: ${APP_SUBNET:?required}
   edge:
     external: true
     name: ${TRAEFIK_NETWORK:?required}

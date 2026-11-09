@@ -11,6 +11,14 @@ export POSTGRES_PASSWORD="$(openssl rand -hex 32)" REDIS_PASSWORD="$(openssl ran
 export JWT_SIGNING_KEY="$(openssl rand -hex 64)" KEYRING_CERT_PASSWORD="$(openssl rand -hex 32)"
 export KEYRING_PATH="$private_dir/keys" KEYRING_CERT_PATH="$private_dir/keyring.pfx"
 export SMTP_SENDER=smoke@example.invalid SMTP_USERNAME=smoke SMTP_PASSWORD=smoke-only-not-used
+# Non-secret settings, the same values as deploy/.env.example.
+export ASPNETCORE_ENVIRONMENT=Production API_LOG_LEVEL=Warning TRAEFIK_ENTRYPOINT=websecure
+export ALLOWED_HOSTS='api.yorungez.com;yorungez-api-internal;api;localhost;127.0.0.1'
+export POSTGRES_DB=yorungez POSTGRES_USER=yorungez JWT_ISSUER=https://api.yorungez.com JWT_AUDIENCE=yorungez-api
+export FRONTEND_BASE_URL=https://yorungez.com SMTP_HOST=smtp.gmail.com SMTP_PORT=587 SMTP_REQUIRE_TLS=true
+export EMAIL_RUN_OUTBOX_WORKER=true TRUST_CLOUDFLARE=true NODE_ENV=production
+export YORUNGEZ_WEB_ORIGIN=https://yorungez.com YORUNGEZ_ENABLE_LAB=0
+export APP_SUBNET=10.89.0.0/24 API_INTERNAL_IP=10.89.0.2 WEB_INTERNAL_IP=10.89.0.3
 compose=(docker compose -p "$fixture" -f deploy/compose.production.yaml -f deploy/compose.smoke.yaml)
 cleanup() {
   "${compose[@]}" down --volumes --remove-orphans >/dev/null 2>&1 || true
