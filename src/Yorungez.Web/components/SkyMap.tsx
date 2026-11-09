@@ -7,9 +7,10 @@ import { equatorialVector, horizontalVector, normalizedCamera, pickObject, proje
 import { createRenderer } from "../lib/sky/renderers.ts";
 import { planningText } from "../lib/planning-text.ts";
 import { terrainOpacity } from "../lib/sky/terrain.ts";
-import { createNaturalScene, screenRay } from "../lib/sky/natural-scene.ts";
+import { createNaturalScene, groundSampler } from "../lib/sky/natural-scene.ts";
 import { starAppearance, daylight } from "../lib/sky/appearance.ts";
 import { drawConstellationArt } from "../lib/sky/art.ts";
+import { constellationArcs, drawConstellationLines } from "../lib/sky/constellation-lines.ts";
 import type { RendererKind } from "../lib/sky/renderers.ts";
 import type { Layers } from "../lib/sky/layers.ts";
 import type { Texts } from "../lib/i18n.ts";
@@ -37,16 +38,21 @@ export default function SkyMap(props:Props){
     const ctx=canvas.getContext("2d")!,bg=base.getContext("2d")!,catalog=props.catalog;
     const ids=[...catalog.stars.map(s=>s.id),...SOLAR_IDS,...catalog.constellations.map(c=>c.id),...(catalog.deepSky??[]).map(o=>o.id)];
     const indices=new Map(catalog.stars.map((s,i)=>[s.id,i])),images=new Map<string,HTMLImageElement>();
+    const lineStarts=new Map<string,number>(),motionPreference=matchMedia("(prefers-reduced-motion: reduce)");
+    let lineFrame:SkyFrame|null=null,lineArcs:ReturnType<typeof constellationArcs>=[];
+    let fallbackExposure:number|null=null,artVisible=false;
     const natural=createNaturalScene(schedule);viewport.prepend(natural.sky);viewport.append(natural.ground);
     const radii=new Float32Array(catalog.stars.length+9),opacities=new Float32Array(catalog.stars.length+9);
     const colors:string[]=catalog.stars.map((s,i)=>{radii[i]=starAppearance(s.magnitude).radius;return starColor(s.colorIndex)});
     solarColors.forEach((c,i)=>{colors.push(c);radii[catalog.stars.length+i]=i<2?0:3.2});
     let scheduled=0;
-    function draw(){
+    function draw(now:number){
       scheduled=0;if(fallback.current===natural.gpu){fallback.current=!natural.gpu;setSimplified(!natural.gpu)}const p=latest.current,frame=p.frame,{width,height}=size.current,dpr=Math.min(devicePixelRatio||1,2);
-      for(const c of [canvas,base]){const w=Math.round(width*dpr),h=Math.round(height*dpr);if(c.width!==w||c.height!==h){c.width=w;c.height=h;}}
-      ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,width,height);bg.setTransform(dpr,0,0,dpr,0,0);
-      const previous=view.current,target=p.camera,reduced=matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if(width<=0||height<=0)return;
+      const artDpr=Math.min(dpr,1.25);
+      for(const [c,ratio] of [[canvas,dpr],[base,artDpr]] as const){const w=Math.round(width*ratio),h=Math.round(height*ratio);if(c.width!==w||c.height!==h){c.width=w;c.height=h;}}
+      ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,width,height);bg.setTransform(artDpr,0,0,artDpr,0,0);
+      const previous=view.current,target=p.camera,reduced=motionPreference.matches;
       const da=((target.azimuth-previous.azimuth+540)%360)-180;
       const dr=(((target.roll??0)-(previous.roll??0)+540)%360)-180;
       const moving=Math.abs(da)+Math.abs(dr)+Math.abs(target.altitude-previous.altitude)+Math.abs(target.fieldOfView-previous.fieldOfView)>.015;
@@ -54,9 +60,14 @@ export default function SkyMap(props:Props){
       if(moving&&!reduced&&!p.tracking)schedule();
       const camera=view.current,project=projector(camera,width,height),sunIndex=catalog.stars.length;
       const sunAlt=frame?.angles[sunIndex*2+1]??-30,day=p.layers.atmosphere?daylight(sunAlt):0;
-      const sky=bg.createLinearGradient(0,0,0,height);
-      sky.addColorStop(0,mix([7,8,11],[43,81,111],day));sky.addColorStop(.7,mix([15,15,19],[110,142,158],day));sky.addColorStop(1,mix([28,25,29],[203,192,171],day));
-      if(!natural.gpu){bg.fillStyle=sky;bg.fillRect(0,0,width,height)}else bg.clearRect(0,0,width,height);
+      const exposure=natural.gpu||p.cameraOverlay?null:day;
+      if(fallbackExposure!==exposure){
+        fallbackExposure=exposure;
+        viewport.style.backgroundImage=exposure===null?"":`linear-gradient(${mix([7,8,11],[43,81,111],day)},${mix([15,15,19],[110,142,158],day)} 70%,${mix([28,25,29],[203,192,171],day)})`;
+      }
+      const showArt=!!(p.layers.art&&!p.cameraOverlay&&frame?.canPublishAzimuth);
+      if(artVisible||showArt)bg.clearRect(0,0,width,height);
+      artVisible=showArt;
       if(!frame)return;
       const selectedIndex=p.selected?ids.indexOf(p.selected):-1,selectedHidden=selectedIndex>=0&&natural.occludes(frame.angles[selectedIndex*2],frame.angles[selectedIndex*2+1]);
       const groundOpacity=terrainOpacity(camera.altitude,selectedHidden);const reveal=p.layers.landscape&&groundOpacity<.5;if(exploration.current!==reveal){exploration.current=reveal;setExploring(reveal)}viewport.dataset.groundOpacity=groundOpacity.toFixed(3);viewport.dataset.fieldOfView=camera.fieldOfView.toFixed(1);viewport.dataset.cameraAltitude=camera.altitude.toFixed(1);viewport.dataset.cameraRoll=(camera.roll??0).toFixed(1);viewport.dataset.cameraAzimuth=camera.azimuth.toFixed(1);
@@ -66,14 +77,15 @@ export default function SkyMap(props:Props){
       if(frame.canPublishAzimuth)for(let i=0;i<ids.length;i++){
         if(p.cameraOverlay&&frame.angles[i*2+1]<0)continue;
         if((i>=catalog.stars.length+9&&i<catalog.stars.length+9+catalog.constellations.length&&!p.layers.constellations)||(i>=catalog.stars.length+9+catalog.constellations.length&&!p.layers.deepSky))continue;
-        if(i<opacities.length)opacities[i]=frame.angles[i*2+1]<0?1:1-day*.999;
-        if(p.layers.landscape&&groundOpacity>.95&&ids[i]!==p.selected&&natural.occludes(frame.angles[i*2],frame.angles[i*2+1]))continue;
         if(i>=catalog.stars.length+9+catalog.constellations.length&&day>.35&&frame.angles[i*2+1]>=0&&ids[i]!==p.selected)continue;
         const point=project(frame.vectors[i*3],frame.vectors[i*3+1],frame.vectors[i*3+2]);
-        if(point){projected.current[i*2]=point[0];projected.current[i*2+1]=point[1];}
+        if(!point||point[0]<-18||point[0]>width+18||point[1]<-18||point[1]>height+18)continue;
+        if(p.layers.landscape&&groundOpacity>.95&&ids[i]!==p.selected&&natural.occludes(frame.angles[i*2],frame.angles[i*2+1]))continue;
+        if(i<opacities.length)opacities[i]=frame.angles[i*2+1]<0?1:1-day*.999;
+        projected.current[i*2]=point[0];projected.current[i*2+1]=point[1];
       }
       renderer.element.style.opacity="1";
-      if(p.layers.art&&!p.cameraOverlay&&frame.canPublishAzimuth)drawConstellationArt(bg,catalog,frame.artVectors,project,images,schedule);
+      if(showArt)drawConstellationArt(bg,catalog,frame.artVectors,project,camera,width,height,images,schedule,moving);
       renderer.draw({points:projected.current,radii,colors,opacities,count:radii.length,width,height,dpr});
       function curve(points:[number,number,number][],color:string,lineWidth=1){ctx.beginPath();let active=false,prior:[number,number]|null=null;
         for(const vector of points){const point=p.cameraOverlay&&vector[2]<0?null:project(...vector);if(!point||(prior&&Math.hypot(point[0]-prior[0],point[1]-prior[1])>Math.max(width,height)/2)){active=false;prior=point;continue;}if(active)ctx.lineTo(...point);else ctx.moveTo(...point);active=true;prior=point;}
@@ -86,13 +98,10 @@ export default function SkyMap(props:Props){
         for(const dec of [-60,-30,0,30,60])curve(Array.from({length:181},(_,i)=>equatorialVector(frame.equatorialToEnu,i*24/180,dec)),"rgba(195,142,155,.4)");
         for(let ra=0;ra<24;ra+=2)curve(Array.from({length:91},(_,i)=>equatorialVector(frame.equatorialToEnu,ra,-90+i*2)),"rgba(195,142,155,.32)");
       }
-      if(p.layers.constellations&&frame.canPublishAzimuth)for(const pattern of catalog.constellations)for(const line of pattern.lines)for(let j=1;j<line.length;j++){
-        const a=indices.get(line[j-1])!,b=indices.get(line[j])!,v=frame.vectors;
-        const va=[v[a*3],v[a*3+1],v[a*3+2]],vb=[v[b*3],v[b*3+1],v[b*3+2]];
-        const angle=Math.acos(Math.max(-1,Math.min(1,va.reduce((s,n,k)=>s+n*vb[k],0))));if(angle<1e-8||angle>Math.PI-.01)continue;
-        const steps=Math.max(1,Math.ceil(angle*180/Math.PI/3));
-        curve(Array.from({length:steps+1},(_,i)=>{const t=i/steps;return va.map((n,k)=>(n*Math.sin((1-t)*angle)+vb[k]*Math.sin(t*angle))/Math.sin(angle)) as [number,number,number]}),pattern.id===p.selected?"rgba(226,175,184,.9)":"rgba(211,194,196,.34)");
-      }
+      if(p.layers.constellations&&frame.canPublishAzimuth){
+        if(lineFrame!==frame){lineFrame=frame;lineArcs=constellationArcs(catalog.constellations,indices,frame.vectors);}
+        if(drawConstellationLines(ctx,lineArcs,project,width,height,!!p.cameraOverlay,p.selected,lineStarts,now,reduced))schedule();
+      }else lineStarts.clear();
       // Sun and Moon markers stay independent of the day-star extinction preview.
       for(let i=0;i<2;i++){
         const k=sunIndex+i,x=projected.current[k*2],y=projected.current[k*2+1];if(!Number.isFinite(x))continue;
@@ -113,9 +122,9 @@ export default function SkyMap(props:Props){
       // CPU fallback uses the same inverse projection at every tilt, including zenith/nadir.
       if(p.layers.landscape&&!natural.gpu){
         ctx.save();ctx.globalAlpha=groundOpacity;ctx.fillStyle=mix([9,10,9],[64,67,48],day);
-        const step=8;
+        const step=8,belowGround=groundSampler(camera,width,height);
         for(let y=0;y<height;y+=step){let start=-1;for(let x=0;x<=width+step;x+=step){
-          const below=x<width&&screenRay(camera,width,height,x+step/2,y+step/2)[2]<0;
+          const below=x<width&&belowGround(x+step/2,y+step/2);
           if(below&&start<0)start=x;
           if(!below&&start>=0){ctx.fillRect(start,y,x-start,step);start=-1;}
         }}
@@ -129,7 +138,7 @@ export default function SkyMap(props:Props){
     const resize=new ResizeObserver(entries=>{size.current={width:entries[0].contentRect.width,height:entries[0].contentRect.height};schedule()});resize.observe(viewport);
     const wheel=(event:WheelEvent)=>{event.preventDefault();const p=latest.current;const delta=event.deltaY*(event.deltaMode===1?16:event.deltaMode===2?size.current.height:1);p.onCamera(normalizedCamera({...p.camera,fieldOfView:p.camera.fieldOfView*Math.exp(Math.max(-160,Math.min(160,delta))*.002)}))};
     viewport.addEventListener("wheel",wheel,{passive:false});schedule();
-    return()=>{resize.disconnect();viewport.removeEventListener("wheel",wheel);cancelAnimationFrame(scheduled);renderer.dispose();natural.dispose();for(const image of images.values())image.onload=null;};
+    return()=>{resize.disconnect();viewport.removeEventListener("wheel",wheel);viewport.style.backgroundImage="";cancelAnimationFrame(scheduled);renderer.dispose();natural.dispose();for(const image of images.values())image.onload=null;};
   },[props.catalog,props.renderer]);
   useEffect(()=>{requestDraw.current()},[props.frame,props.camera,props.language,props.selected,props.layers,props.tracking,props.cameraOverlay]);
   return <div ref={host} className={`sky-viewport${props.cameraOverlay?' camera-overlay':''}${props.cameraPreview?' camera-preview':''}`} role="region" tabIndex={0} aria-label={props.text.mapLabel} aria-describedby="map-help"
