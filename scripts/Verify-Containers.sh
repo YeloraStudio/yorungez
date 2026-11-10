@@ -19,7 +19,7 @@ export FRONTEND_BASE_URL=https://yorungez.com SMTP_HOST=smtp.gmail.com SMTP_PORT
 export EMAIL_RUN_OUTBOX_WORKER=true TRUST_CLOUDFLARE=true NODE_ENV=production
 export YORUNGEZ_WEB_ORIGIN=https://yorungez.com YORUNGEZ_ENABLE_LAB=0
 export APP_SUBNET=10.89.0.0/24 API_INTERNAL_IP=10.89.0.2 WEB_INTERNAL_IP=10.89.0.3
-compose=(docker compose -p "$fixture" -f deploy/compose.production.yaml -f deploy/compose.smoke.yaml)
+compose=(docker compose -p "$fixture" -f deploy/compose.yml -f deploy/compose.smoke.yml)
 cleanup() {
   "${compose[@]}" down --volumes --remove-orphans >/dev/null 2>&1 || true
   docker network rm "$TRAEFIK_NETWORK" >/dev/null 2>&1 || true

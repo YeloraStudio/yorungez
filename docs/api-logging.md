@@ -27,7 +27,7 @@ In Portainer select the **api** container and open **Logs** with timestamps/foll
 From the production Compose directory (operator's shell):
 
 ```sh
-docker compose --env-file .env -f compose.production.yaml logs --tail 100 -f api
+docker compose --env-file .env logs --tail 100 -f api
 ```
 
 **K-044: production is quiet by default.** `API_LOG_LEVEL` defaults to `Warning`; set `Debug` temporarily in the private server environment to include all request starts/completions and healthy probes. Information additionally exposes routine 401/403/404 responses. Existing explicit overrides remain respected; use Warning for the quiet production policy. Microsoft/System diagnostics stay at Warning. Changing environment/log-driver settings requires container recreation. Compose limits each API/migration container's Docker `json-file` logs to five files of 10 MB. This is bounded local retention, not durable cross-deployment history; container removal deletes its logs. Existing server logging policy and any external collector need operator verification.

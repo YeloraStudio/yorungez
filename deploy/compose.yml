@@ -1,5 +1,5 @@
 # Production stack on yelora-dev, at /home/yelora-dev/compose-projects/yorungez. The master copy
-# of this file lives on the server; deploy/compose.production.yaml in the repository keeps the
+# of this file lives on the server; deploy/compose.yml in the repository keeps the
 # same file and CI does not write it. Every value is read from the .env next to it.
 # Limits come from 30 days of measurements on this host (about a week for this stack).
 name: yorungez-production

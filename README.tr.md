@@ -119,7 +119,7 @@ Offline bilimsel kontrol bağımlılıkların kurulu olmasını bekler. Normal t
 | `https://yorungez.com` | Next.js Web / PWA / aynı kökenli BFF |
 | `https://api.yorungez.com` | ASP.NET Core API / ileride mobil istemciler |
 
-[Kurulum rehberi](deploy/README.md), [üretim stack’i](deploy/compose.production.yaml) ve [örnek ortam şablonu](deploy/.env.example) birlikte kullanılır. Root olmayan ayrı image’lar, tek seferlik migration, izole veritabanı ağı, kalıcı PostgreSQL/Redis/keyring ve belirli güvenilen proxy adresleri hazırdır. Sunucu hazırlık aracı şifreli PFX ve yalnız placeholder içeren özel şablon üretir; gerçek sırları operatör yerelde girer.
+[Kurulum rehberi](deploy/README.md), [üretim stack’i](deploy/compose.yml) ve [örnek ortam şablonu](deploy/.env.example) birlikte kullanılır. Root olmayan ayrı image’lar, tek seferlik migration, izole veritabanı ağı, kalıcı PostgreSQL/Redis/keyring ve belirli güvenilen proxy adresleri hazırdır. Sunucu hazırlık aracı şifreli PFX ve yalnız placeholder içeren özel şablon üretir; gerçek sırları operatör yerelde girer.
 
 Image’ları ilgili Docker host’unda build edin, gerçek Traefik network/IP/entrypoint/resolver ve özel ortam değerlerini doldurun, ardından Portainer’dan deploy edin. Public DNS/TLS, gerçek e-posta teslimi ve üretim kabulü sizde kalır. CI kendi geçici container’larını sınar; sunucunuza bağlanmaz ve otomatik yayın yapmaz.
 
@@ -127,7 +127,7 @@ Image’ları ilgili Docker host’unda build edin, gerçek Traefik network/IP/e
 
 Kişisel kayıtlar doğrulanmış hesapla sunucuda kalır; anonim kalıcı defter veya çevrimdışı kişisel yazma kuyruğu yoktur. PWA yalnız genel varlıkları saklar; kişisel API yanıtları ve koordinatlar bu pakete alınmaz. Konum izni isteğe bağlıdır.
 
-`.env`, yerel ayarlar, anahtar halkaları, veri dökümleri, üretim override'ları ve Portainer ayarları Git dışında kalır. Yalnız placeholder örnekler ve genel geliştirme/üretim tarifleri yayımlanır; gerçek sunucu yapılandırması özel kalır. Üretim sırları sunucunun özel ortamında/secret store'da yönetilmelidir. Kökteki `compose.yaml` geliştirme içindir; üretim için ayrı `deploy/compose.production.yaml` ve kurulum rehberi vardır.
+`.env`, yerel ayarlar, anahtar halkaları, veri dökümleri, üretim override'ları ve Portainer ayarları Git dışında kalır. Yalnız placeholder örnekler ve genel geliştirme/üretim tarifleri yayımlanır; gerçek sunucu yapılandırması özel kalır. Üretim sırları sunucunun özel ortamında/secret store'da yönetilmelidir. Kökteki `compose.yaml` geliştirme içindir; üretim için ayrı `deploy/compose.yml` ve kurulum rehberi vardır.
 
 [Güvenlik](SECURITY.md), [yayın incelemesi](docs/open-source-publication.md), [katkı rehberi](CONTRIBUTING.md), [gereksinimler](docs/urun-gereksinimleri.md), [yol haritası](docs/yol-haritasi.md) ve [izlenebilirlik](docs/teslimat-izlenebilirligi.md) kapsamı açıklar. Yayınlama önceki planı değiştirmez veya eksik kabul işlerini kapatmaz.
 

@@ -181,7 +181,7 @@ jobs:
             BatchMode yes
             ConnectTimeout 15
           CONFIG
-      # The server keeps the master compose file (deploy/compose.production.yaml is its copy);
+      # The server keeps the master compose file (deploy/compose.yml is its copy);
       # this job does not write it, nor the server's .env and private/.
       - name: Pull and restart api and web
         env:
@@ -204,7 +204,7 @@ jobs:
           set -euo pipefail
           cd "$DEPLOY_PATH"
           trap 'docker logout "$REGISTRY" >/dev/null 2>&1 || true' EXIT
-          dc() { docker compose -f compose.production.yaml "$@"; }
+          dc() { docker compose "$@"; }
           for attempt in 1 2 3; do
             dc pull api web && break
             [ "$attempt" = 3 ] && { echo "pull failed 3 times"; exit 1; }
