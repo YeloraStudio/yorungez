@@ -17,9 +17,9 @@ Tarayıcı hesap/defter için Web'in aynı kökenli `/api/...` BFF rotalarını 
 |---|---|
 | `Publication safety` | Yayın denetimi, belge bağlantıları, gitleaks ile bütün geçmiş |
 | `Application and science` | Backend entegrasyon testleri, Web testleri/tip/derleme, donmuş bilimsel referanslar |
-| `Production containers` | İki production imajını runner'da kurar, `compose.production.yaml` ile başlatır, health uçlarını çağırır |
+| `Production containers` | İki production imajını runner'da kurar, `deploy/compose.yml` ile başlatır, health uçlarını çağırır |
 | `Build api/web image` | Yalnız `main`: `yorungez-api` ve `yorungez-web` imajlarını ECR'a `:<sha>` ve `:latest` olarak gönderir |
-| `Deploy to production` | `api web` servislerini çeker ve başlatır (sunucudaki `compose.production.yaml` ana kopyadır, CI ona yazmaz), ardından API, ana adres ve `www` için genel yoldan 200 bekler. `migrate` her dağıtımda API'den önce koşar; PostgreSQL ve Redis yeniden başlatılmaz |
+| `Deploy to production` | `api web` servislerini çeker ve başlatır (sunucudaki `compose.yml` ana kopyadır, CI ona yazmaz), ardından API, ana adres ve `www` için genel yoldan 200 bekler. `migrate` her dağıtımda API'den önce koşar; PostgreSQL ve Redis yeniden başlatılmaz |
 
 **Secret'lar.** Depo public. `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `SSH_HOST`, `SSH_USER`, `SSH_KEY`, `SSH_KNOWN_HOSTS` yalnız `production` environment'ında durur ve bu environment'a yalnız korumalı dallar erişir; pull request'ler (fork dahil) ulaşamaz. Secret kullanan adımlarda üçüncü taraf action yoktur. AWS hesap numarası ve ECR jetonu günlükte maskelenir; jeton sunucuya stdin ile gider. Sunucu adresi secret olduğu için günlükte görünmez, Cloudflare arkasındaki origin açığa çıkmaz.
 
@@ -27,7 +27,7 @@ Sunucu: `yelora-dev`, klasör `/home/yelora-dev/compose-projects/yorungez`.
 
 ```text
 yorungez/
-  compose.production.yaml   ana kopya sunucuda; repodaki aynı dosyanın kopyası, CI dokunmaz
+  compose.yml               ana kopya sunucuda; repodaki aynı dosyanın kopyası, CI dokunmaz
   .env                      yalnız sunucuda, 600; CI dokunmaz
   private/                  initialize-production.py çıktısı: keys/ ve keyring.pfx
 ```
@@ -38,7 +38,7 @@ E-posta: mailcow (`mail.yelorastudio.com:587`, STARTTLS), gönderen `info@yorung
 
 DNS: `yorungez.com`, `www.yorungez.com` ve `api.yorungez.com` Cloudflare'de proxied. Sertifika alındıktan sonra SSL modu Full (strict) olmalıdır.
 
-Geri alma: sunucuda `.env` içindeki `:latest` etiketini bir önceki commit sha'sına çevirip `docker compose -f compose.production.yaml up -d api web`. Geri alınamaz bir şema değişikliği varsa bu yeterli değildir, aşağıdaki migration notuna bakın.
+Geri alma: sunucuda `.env` içindeki `:latest` etiketini bir önceki commit sha'sına çevirip `docker compose up -d api web`. Geri alınamaz bir şema değişikliği varsa bu yeterli değildir, aşağıdaki migration notuna bakın.
 
 ## 1. Mevcut sunucuda kontrol edilecekler
 
@@ -83,13 +83,13 @@ Sunucuda sırları ekrana dökmeyen yapı kontrolü:
 
 ```bash
 sudo docker compose --env-file /opt/yorungez/private/.env \
-  -f deploy/compose.production.yaml config --quiet
+  -f deploy/compose.yml config --quiet
 ```
 
 Portainer → ilgili **Docker Standalone environment** → Stacks → Add stack:
 
 1. Ad: `yorungez-production` (kalıcı volume adlarının sabit kalması için sonradan rastgele değiştirmeyin).
-2. Web editor/upload ile [compose.production.yaml](compose.production.yaml) içeriğini kullanın veya Git repository yöntemiyle bu dosyayı seçin.
+2. Web editor/upload ile [compose.yml](compose.yml) içeriğini kullanın veya Git repository yöntemiyle bu dosyayı seçin.
 3. Özel `.env` değerlerini Portainer environment alanlarına **yerel olarak** aktarın. Repo içine `.env` eklemeyin. Ubuntu'daki bind-mount yolları Docker daemon host'undaki gerçek mutlak yollar olmalı.
 4. API/Web local image'ları için gereksiz registry re-pull seçmeyin. Build işlemi Portainer editor içinden otomatik yapılmaz; image'lar önceki adımda hazırlanmış olmalı.
 5. Son adım **Deploy the stack** işlemini siz yapacaksınız.
@@ -115,7 +115,7 @@ API forwarded headers yalnız **tam adresi tanımlı Traefik ve Web** hop'ların
 - Sentetik bir hesapla kayıt → **gerçek e-posta teslimi** → doğrulama → giriş → kayıt → çıkış/ikinci oturum. Parola/reset linki, cookie Secure/HttpOnly ve doğru Web origin kontrolü.
 - Mobil GPS/pusula/PWA fiziksel kabulü, üretim yükü ve işletim/kurtarma kabulleri önceki planda açık kalır. Image build/smoke testi bunların yerine geçmez.
 
-[CI container smoke testi](../scripts/Verify-Containers.sh) yalnız disposable Linux runner'da kendine ait fixture/volume/network kullanır; gerçek Portainer'a bağlanmaz. [Smoke override](compose.smoke.yaml) host test portları açar ve outbox worker'ı kapatır: **üretime uygulanmaz**.
+[CI container smoke testi](../scripts/Verify-Containers.sh) yalnız disposable Linux runner'da kendine ait fixture/volume/network kullanır; gerçek Portainer'a bağlanmaz. [Smoke override](compose.smoke.yml) host test portları açar ve outbox worker'ı kapatır: **üretime uygulanmaz**.
 
 Kaynaklar: [Portainer stack kurulumu](https://docs.portainer.io/user/docker/stacks/add), [ASP.NET Core güvenilen proxy başlıkları](https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/proxy-load-balancer?view=aspnetcore-10.0). Mevcut .NET/CQRS/mimari, lisans, bilimsellik ve aynı backend ile mobil hedefi korunur.
 

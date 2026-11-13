@@ -180,7 +180,7 @@ The **Ubuntu + Docker Standalone + Portainer + Traefik** package is ready for op
 | `https://yorungez.com` | Next.js Web / PWA / same-origin BFF |
 | `https://api.yorungez.com` | ASP.NET Core API / future mobile clients |
 
-Use the [deployment runbook](deploy/README.md), [production stack](deploy/compose.production.yaml) and [placeholder environment template](deploy/.env.example). Separate non-root images, one-shot migrations, isolated database networking, durable PostgreSQL/Redis/keyring storage and explicitly trusted proxy hops are included. The host initializer prepares an encrypted PFX and a placeholder-only private template; operators supply real secrets locally.
+Use the [deployment runbook](deploy/README.md), [production stack](deploy/compose.yml) and [placeholder environment template](deploy/.env.example). Separate non-root images, one-shot migrations, isolated database networking, durable PostgreSQL/Redis/keyring storage and explicitly trusted proxy hops are included. The host initializer prepares an encrypted PFX and a placeholder-only private template; operators supply real secrets locally.
 
 Build both images on the selected Docker host, enter the actual Traefik network/IP/entrypoint/resolver and private configuration, then deploy through Portainer. Public DNS/TLS, real SMTP delivery and production acceptance are operator tasks. CI builds and smoke-tests disposable containers; it does not connect to your server or publish images automatically.
 
@@ -190,7 +190,7 @@ Build both images on the selected Docker host, enter the actual Traefik network/
 - Personal notebooks have no browser-persisted/offline write queue. PWA caches contain public general assets; account/API responses and personal coordinates are excluded.
 - Location permission is optional. Manual input works without it; external map tiles load only after the relevant user action.
 - `.env`, local settings, key rings, database dumps, production overrides and Portainer configuration stay outside Git. Only placeholder templates and generic development/production recipes are published; actual server settings remain private.
-- Keep production secrets in a private server environment or secret store. Root `compose.yaml` is the local development setup; `deploy/compose.production.yaml` is the separate operator-run production recipe. CI has no live deployment access.
+- Keep production secrets in a private server environment or secret store. Root `compose.yaml` is the local development setup; `deploy/compose.yml` is the separate operator-run production recipe. CI has no live deployment access.
 
 See [SECURITY.md](SECURITY.md) and the [publication review](docs/open-source-publication.md). Report vulnerabilities privately through the repository's Security tab.
 
