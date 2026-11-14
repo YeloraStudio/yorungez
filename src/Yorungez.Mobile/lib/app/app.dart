@@ -14,6 +14,7 @@ import '../account/account_screen.dart';
 import '../account/notebook_screen.dart';
 import '../planning/planning_screen.dart';
 import '../planning/observing_guide_screen.dart';
+import '../planning/monthly_observing_screen.dart';
 import '../planning/iss_pass_screen.dart';
 import '../planning/planning_controls.dart';
 import '../planning/reminder_screen.dart';
@@ -54,12 +55,23 @@ final routerProvider = Provider((ref) {
       GoRoute(path: '/tonight', builder: (_, _) => const TonightScreen()),
       GoRoute(
         path: '/observe',
-        builder: (_, state) =>
-            ObservationGuideScreen(target: state.uri.queryParameters['target']),
+        builder: (_, state) {
+          final params = state.uri.queryParameters;
+          return ObservationGuideScreen(
+            target: params['target'],
+            start: DateTime.tryParse(params['from'] ?? ''),
+            end: DateTime.tryParse(params['to'] ?? ''),
+            nightOnly: params['night'] == '1',
+          );
+        },
       ),
       GoRoute(
         path: '/calendar',
         builder: (_, _) => const EventCalendarScreen(),
+      ),
+      GoRoute(
+        path: '/observing-plan',
+        builder: (_, _) => const MonthlyObservingScreen(),
       ),
       GoRoute(path: '/iss-passes', builder: (_, _) => const IssPassScreen()),
       GoRoute(path: '/reminders', builder: (_, _) => const ReminderScreen()),

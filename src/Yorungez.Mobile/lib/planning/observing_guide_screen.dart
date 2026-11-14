@@ -11,6 +11,9 @@ import '../sky/domain/sky_geometry.dart';
 import 'observing_guide.dart';
 import 'planning_controls.dart';
 import 'planning_time.dart';
+import 'planning_surface.dart';
+import 'weather_opportunities.dart';
+import 'weather_opportunity.dart';
 
 String directionName(AppLocalizations t, double azimuth) => [
   t.guideNorth,
@@ -24,9 +27,17 @@ String directionName(AppLocalizations t, double azimuth) => [
 ][compassSector(azimuth)];
 
 class ObservationGuideScreen extends ConsumerWidget {
-  const ObservationGuideScreen({super.key, this.target});
+  const ObservationGuideScreen({
+    super.key,
+    this.target,
+    this.start,
+    this.end,
+    this.nightOnly = false,
+  });
 
   final String? target;
+  final DateTime? start, end;
+  final bool nightOnly;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -35,7 +46,7 @@ class ObservationGuideScreen extends ConsumerWidget {
       skyFrameProvider.select((frame) => frame?.observer),
     );
     final zone = ref.watch(planningZoneProvider);
-    final instant = ref.watch(skyInstantProvider) ?? DateTime.now().toUtc();
+    final instant = start ?? DateTime.now().toUtc();
     final date = PlanningTime.nightDate(instant, zone);
     return Scaffold(
       appBar: AppBar(title: Text(t.guideTitle)),
@@ -43,16 +54,35 @@ class ObservationGuideScreen extends ConsumerWidget {
         child: ListView(
           padding: const EdgeInsets.all(20),
           children: [
-            Text(t.guideIntro),
+            PlanningSurface(highlighted: true, child: Text(t.guideIntro)),
             const SizedBox(height: 12),
             if (observer == null)
               Text(t.planningLocationNeeded)
-            else
-              ObservationGuidePanel(
-                observer: observer,
-                date: date,
-                target: guideTargets.contains(target) ? target : null,
+            else ...[
+              Text(
+                start == null ? t.forecastNext48 : t.forecastTitle,
+                style: Theme.of(context).textTheme.titleLarge,
               ),
+              const SizedBox(height: 12),
+              if (target == null ||
+                  !guideTargets.contains(target) ||
+                  weatherBodies.contains(target))
+                WeatherOpportunities(
+                  observer: observer,
+                  zone: zone,
+                  target: target,
+                  start: start,
+                  end: end,
+                  nightOnly: nightOnly,
+                ),
+              if (target == null ||
+                  (start == null && guideTargets.contains(target)))
+                ObservationGuidePanel(
+                  observer: observer,
+                  date: date,
+                  target: target,
+                ),
+            ],
           ],
         ),
       ),
@@ -167,37 +197,34 @@ class _GuideCard extends ConsumerWidget {
     };
     String local(DateTime value) => PlanningTime.label(value, zone, language);
     final observation = slot;
-    return Card(
+    return PlanningSurface(
       margin: const EdgeInsets.symmetric(vertical: 6),
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(name, style: Theme.of(context).textTheme.titleLarge),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(name, style: Theme.of(context).textTheme.titleLarge),
+          const SizedBox(height: 8),
+          if (observation == null) Text(t.guideNoWindow),
+          if (observation != null) ...[
+            Text(
+              '${t.guideWindow}\n${local(observation.start)} – ${local(observation.end)}',
+            ),
             const SizedBox(height: 8),
-            if (observation == null) Text(t.guideNoWindow),
-            if (observation != null) ...[
-              Text(
-                '${t.guideWindow}\n${local(observation.start)} – ${local(observation.end)}',
-              ),
-              const SizedBox(height: 8),
-              Text('${t.suggestedTime} · ${local(observation.best)}'),
-              Text(PlanningTime.utc(observation.best, language)),
-              const SizedBox(height: 12),
-              ObservationDirection(direction: observation.direction),
-              const SizedBox(height: 8),
-              FilledButton.icon(
-                onPressed: () =>
-                    openPlannedSky(context, ref, id, observation.best),
-                icon: const Icon(Icons.north_east),
-                label: Text(t.focusTarget),
-              ),
-            ],
+            Text('${t.suggestedTime} · ${local(observation.best)}'),
+            Text(PlanningTime.utc(observation.best, language)),
+            const SizedBox(height: 12),
+            ObservationDirection(direction: observation.direction),
             const SizedBox(height: 8),
-            Text(tip),
+            FilledButton.icon(
+              onPressed: () =>
+                  openPlannedSky(context, ref, id, observation.best),
+              icon: const Icon(Icons.north_east),
+              label: Text(t.focusTarget),
+            ),
           ],
-        ),
+          const SizedBox(height: 8),
+          Text(tip),
+        ],
       ),
     );
   }

@@ -8,8 +8,10 @@ import '../app/providers.dart';
 import '../l10n/generated/app_localizations.dart';
 import 'planning_controls.dart';
 import 'planning_time.dart';
+import 'planning_surface.dart';
 import 'reminder_model.dart';
 import 'event_catalogue.dart';
+import 'weather_opportunity.dart';
 import '../catalogue/domain/sky_object.dart';
 
 final remindersProvider = FutureProvider.autoDispose<List<EventReminder>>((
@@ -34,6 +36,7 @@ String reminderError(AppLocalizations t, Object error) {
   if (error is AccountFailure) {
     return switch (error.code) {
       'Reminders.InvalidTime' => t.reminderInvalidTime,
+      'Reminders.WeatherDateOutsidePlan' => t.weatherReminderOutsidePlan,
       'Reminders.InvalidEvent' => t.reminderInvalidEvent,
       'Reminders.Conflict' => t.reminderConflict,
       'Reminders.Limit' => t.reminderLimit,
@@ -50,6 +53,7 @@ String reminderTitle(AppLocalizations t, EventReminder r, String language) {
           .firstOrNull
           ?.name(language) ??
       r.targetId;
+  if (r.weatherDependent) return weatherTargetName(t, r.targetId, language);
   if (r.eventId == null) return '$target · ${t.observingTime}';
   const kinds = [
     'new-moon',
@@ -88,6 +92,7 @@ Future<void> showReminderEditor(
   required String targetId,
   required DateTime instant,
   String? eventId,
+  Map<String, Object?>? weatherSite,
 }) async {
   final owner = ref.read(accountStateProvider).user?.id;
   if (owner == null) {
@@ -104,6 +109,7 @@ Future<void> showReminderEditor(
       targetId: targetId,
       instant: instant,
       eventId: eventId,
+      weatherSite: weatherSite,
       zone: ref.read(planningZoneProvider),
     ),
   );
@@ -117,9 +123,11 @@ class _ReminderEditor extends ConsumerStatefulWidget {
     required this.instant,
     required this.zone,
     this.eventId,
+    this.weatherSite,
   });
   final String owner, title, targetId, zone;
   final String? eventId;
+  final Map<String, Object?>? weatherSite;
   final DateTime instant;
   @override
   ConsumerState<_ReminderEditor> createState() => _ReminderEditorState();
@@ -153,6 +161,7 @@ class _ReminderEditorState extends ConsumerState<_ReminderEditor> {
             'instantUtc': widget.instant.toUtc().toIso8601String(),
             'timeZoneId': widget.zone,
             'leadMinutes': _lead,
+            if (widget.weatherSite != null) 'weatherSite': widget.weatherSite,
           },
         ),
       );
@@ -174,12 +183,14 @@ class _ReminderEditorState extends ConsumerState<_ReminderEditor> {
     final t = AppLocalizations.of(context),
         language = ref.watch(localeProvider).languageCode;
     final choices = <(int, String)>[
-      (0, t.atEventTime),
+      if (widget.weatherSite == null) (0, t.atEventTime),
       (10, t.tenMinutesBefore),
       (30, t.thirtyMinutesBefore),
-      (60, t.oneHourBefore),
-      (180, t.threeHoursBefore),
-      (1440, t.oneDayBefore),
+      if (widget.weatherSite == null) ...[
+        (60, t.oneHourBefore),
+        (180, t.threeHoursBefore),
+        (1440, t.oneDayBefore),
+      ],
     ];
     final valid = widget.instant
         .subtract(Duration(minutes: _lead))
@@ -207,6 +218,10 @@ class _ReminderEditorState extends ConsumerState<_ReminderEditor> {
             Text(widget.zone),
             Text(PlanningTime.utc(widget.instant, language)),
             const SizedBox(height: 20),
+            if (widget.weatherSite != null) ...[
+              Text(t.forecastReminderConsent),
+              const SizedBox(height: 12),
+            ],
             ChoiceField<int>(
               label: t.remindMe,
               valueLabel: choices.firstWhere((c) => c.$1 == _lead).$2,
@@ -347,67 +362,63 @@ class _ReminderScreenState extends ConsumerState<ReminderScreen> {
                       const SizedBox(height: 20),
                       if (rows.isEmpty) Text(t.remindersEmpty),
                       for (final r in rows)
-                        Card(
-                          child: Padding(
-                            padding: const EdgeInsets.all(18),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                              children: [
-                                Text(
-                                  reminderTitle(t, r, language),
-                                  style: Theme.of(
-                                    context,
-                                  ).textTheme.titleMedium,
+                        PlanningSurface(
+                          margin: const EdgeInsets.only(bottom: 12),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              PlanningEventHeading(
+                                instant: r.instant,
+                                zone: r.zone,
+                                title: reminderTitle(t, r, language),
+                              ),
+                              const SizedBox(height: 8),
+                              Text(
+                                PlanningTime.label(r.instant, r.zone, language),
+                              ),
+                              Text(r.zone),
+                              Text(PlanningTime.utc(r.instant, language)),
+                              const SizedBox(height: 10),
+                              Text(
+                                '${t.emailReminder} · ${reminderStatus(t, r.status)}',
+                                style: TextStyle(
+                                  color: Theme.of(context).colorScheme.primary,
                                 ),
-                                const SizedBox(height: 8),
-                                Text(
-                                  PlanningTime.label(
-                                    r.instant,
-                                    r.zone,
-                                    language,
+                              ),
+                              Text(
+                                '${t.reminderSendTime}: ${PlanningTime.label(r.due, r.zone, language)}',
+                              ),
+                              const SizedBox(height: 12),
+                              Wrap(
+                                spacing: 12,
+                                runSpacing: 12,
+                                children: [
+                                  OutlinedButton(
+                                    onPressed: () {
+                                      ref
+                                          .read(skyInstantProvider.notifier)
+                                          .select(r.instant);
+                                      ref
+                                          .read(skyFocusProvider.notifier)
+                                          .request(r.targetId);
+                                      context.go('/');
+                                    },
+                                    child: Text(t.focusTarget),
                                   ),
-                                ),
-                                Text(r.zone),
-                                Text(PlanningTime.utc(r.instant, language)),
-                                const SizedBox(height: 10),
-                                Text(
-                                  '${t.emailReminder} · ${reminderStatus(t, r.status)}',
-                                ),
-                                Text(
-                                  '${t.reminderSendTime}: ${PlanningTime.label(r.due, r.zone, language)}',
-                                ),
-                                const SizedBox(height: 12),
-                                Wrap(
-                                  spacing: 12,
-                                  runSpacing: 12,
-                                  children: [
-                                    OutlinedButton(
-                                      onPressed: () {
-                                        ref
-                                            .read(skyInstantProvider.notifier)
-                                            .select(r.instant);
-                                        ref
-                                            .read(skyFocusProvider.notifier)
-                                            .request(r.targetId);
-                                        context.go('/');
-                                      },
-                                      child: Text(t.focusTarget),
-                                    ),
-                                    if (r.status == 'scheduled')
-                                      TextButton(
-                                        onPressed: _busy != null
-                                            ? null
-                                            : () => _cancel(r),
-                                        child: Text(
-                                          _busy == r.id
-                                              ? t.loading
-                                              : t.cancelReminder,
-                                        ),
+                                  if (r.status == 'scheduled')
+                                    TextButton(
+                                      onPressed: _busy != null
+                                          ? null
+                                          : () => _cancel(r),
+                                      child: Text(
+                                        _busy == r.id
+                                            ? t.loading
+                                            : t.cancelReminder,
                                       ),
-                                  ],
-                                ),
-                              ],
-                            ),
+                                    ),
+                                ],
+                              ),
+                            ],
                           ),
                         ),
                     ],

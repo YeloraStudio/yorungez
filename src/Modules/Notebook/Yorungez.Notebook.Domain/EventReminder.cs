@@ -1,6 +1,6 @@
 namespace Yorungez.Notebook.Domain;
 
-// Private, server-owned planning record; no coordinates or arbitrary recipient/payload.
+// Private, server-owned planning record. Only weather-dependent reminders keep a site until dispatch.
 public sealed class EventReminder
 {
     public Guid UserId { get; set; }
@@ -24,4 +24,8 @@ public sealed class EventReminder
     public DateTimeOffset? LeaseUntilUtc { get; set; }
     public Guid? LeaseId { get; set; }
     public int Attempts { get; set; }
+    public bool WeatherDependent { get; set; }
+    public double? ForecastLatitude { get; set; }
+    public double? ForecastLongitude { get; set; }
+    public double? ForecastElevationMeters { get; set; }
 }

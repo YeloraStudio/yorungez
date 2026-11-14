@@ -10,6 +10,8 @@ WORKDIR /app
 COPY --from=build /publish .
 COPY --from=build /source/LICENSE /source/NOTICE /source/THIRD_PARTY_NOTICES.md /licenses/
 COPY --from=build /source/third-party /licenses/third-party
+ARG YORUNGEZ_MET_NO_USER_AGENT
+ENV ObservingForecast__ImageMetNoUserAgent=${YORUNGEZ_MET_NO_USER_AGENT}
 ENV ASPNETCORE_HTTP_PORTS=8080 ASPNETCORE_ENVIRONMENT=Production
 USER $APP_UID
 EXPOSE 8080

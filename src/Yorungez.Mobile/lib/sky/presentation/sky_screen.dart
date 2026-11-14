@@ -811,8 +811,26 @@ class _SkyScreenState extends ConsumerState<SkyScreen>
   }
 
   void _consumeFocus() {
+    if (!_active || _frame == null || _onboarding != null) return;
+    final direction = ref.read(plannedSkyDirectionProvider);
+    if (direction != null) {
+      ref.read(plannedSkyDirectionProvider.notifier).request(null);
+      _stopTracking();
+      _followOnResume = false;
+      _manualViewRequested = true;
+      _focusedTarget = null;
+      if (_pendingFocus case final previous?) {
+        _pendingFocus = null;
+        ref.read(skyFocusProvider.notifier).consumed(previous);
+      }
+      setState(() {
+        _selected = null;
+        _track = null;
+        _pose = direction;
+      });
+    }
     final id = _pendingFocus;
-    if (id == null || !_active || _frame == null || _onboarding != null) return;
+    if (id == null) return;
     _pendingFocus = null;
     _focus(id);
     ref.read(skyFocusProvider.notifier).consumed(id);

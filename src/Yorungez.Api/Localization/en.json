@@ -11,6 +11,7 @@
   "Body.Neptune": "Neptune",
   "Sky.InvalidCoordinates": "Enter a latitude between -90 and 90 and a longitude between -180 and 180.",
   "Sky.RequestTooLarge": "The sky calculation request exceeds the allowed size.",
+  "Sky.InvalidObservationWindow": "Choose a supported target and a time range of up to 48 hours.",
   "Sky.InvalidInstant": "Enter an ISO 8601 date and time with an explicit Z or UTC offset.",
   "Sky.UnsupportedDate": "This initial calculation supports 2000–2035. The entire search window must fit within this range.",
   "Sky.InvalidElevation": "Enter an elevation between -500 and 10000 metres, or leave it unknown.",
@@ -64,6 +65,7 @@
   "Reminders.InvalidInput": "Choose a supported time zone and reminder lead time.",
   "Reminders.InvalidEvent": "This event is not in the current verified calendar. Refresh the calendar and retry.",
   "Reminders.InvalidTime": "Schedule at least two minutes ahead and within the next year.",
+  "Reminders.WeatherDateOutsidePlan": "Choose a date from the 30-day observing plan.",
   "Reminders.Limit": "You can have up to 100 active reminders.",
   "Reminders.Conflict": "This reminder already exists, changed, or is being sent. Refresh before trying again."
 }

@@ -13,6 +13,7 @@ import 'observing_guide.dart';
 import 'observing_guide_screen.dart';
 import 'planning_controls.dart';
 import 'planning_time.dart';
+import 'planning_surface.dart';
 import 'reminder_screen.dart';
 
 class IssPassScreen extends ConsumerStatefulWidget {
@@ -53,7 +54,7 @@ class _IssPassScreenState extends ConsumerState<IssPassScreen> {
         child: ListView(
           padding: const EdgeInsets.all(20),
           children: [
-            Text(t.issPassesIntro),
+            PlanningSurface(highlighted: true, child: Text(t.issPassesIntro)),
             const SizedBox(height: 12),
             if (observer == null)
               Text(t.planningLocationNeeded)
@@ -131,57 +132,55 @@ class _PassCard extends ConsumerWidget {
         PlanningTime.label(instant, zone, language, seconds: true);
     String direction(GuideDirection value) =>
         '${directionName(t, value.azimuth)} · ${number.format(value.altitude)}°';
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              local(pass.start),
-              style: Theme.of(context).textTheme.titleMedium,
+    return PlanningSurface(
+      margin: const EdgeInsets.only(bottom: 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            local(pass.start),
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
+          Text(PlanningTime.utc(pass.start, language)),
+          const SizedBox(height: 8),
+          Text('${t.issAppears} · ${direction(pass.appears)}'),
+          Text(
+            '${t.issHighest} · ${local(pass.peak)} · ${direction(pass.highest)}',
+          ),
+          Text(
+            '${t.issDisappears} · ${local(pass.end)} · ${direction(pass.disappears)}',
+          ),
+          Text(
+            t.issDuration(
+              number.format(pass.end.difference(pass.start).inSeconds),
             ),
-            Text(PlanningTime.utc(pass.start, language)),
-            const SizedBox(height: 8),
-            Text('${t.issAppears} · ${direction(pass.appears)}'),
-            Text(
-              '${t.issHighest} · ${local(pass.peak)} · ${direction(pass.highest)}',
-            ),
-            Text(
-              '${t.issDisappears} · ${local(pass.end)} · ${direction(pass.disappears)}',
-            ),
-            Text(
-              t.issDuration(
-                number.format(pass.end.difference(pass.start).inSeconds),
+          ),
+          const SizedBox(height: 8),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              FilledButton.icon(
+                onPressed: () =>
+                    openPlannedSky(context, ref, issObject.id, pass.peak),
+                icon: const Icon(Icons.north_east),
+                label: Text(t.focusTarget),
               ),
-            ),
-            const SizedBox(height: 8),
-            Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              children: [
-                FilledButton.icon(
-                  onPressed: () =>
-                      openPlannedSky(context, ref, issObject.id, pass.peak),
-                  icon: const Icon(Icons.north_east),
-                  label: Text(t.focusTarget),
-                ),
-                if (pass.start.isAfter(now.add(const Duration(minutes: 2))))
-                  OutlinedButton.icon(
-                    onPressed: () => showReminderEditor(
-                      context,
-                      ref,
-                      title: issObject.name(language),
-                      targetId: issObject.id,
-                      instant: pass.start,
-                    ),
-                    icon: const Icon(Icons.notifications_active_outlined),
-                    label: Text(t.remindMe),
+              if (pass.start.isAfter(now.add(const Duration(minutes: 2))))
+                OutlinedButton.icon(
+                  onPressed: () => showReminderEditor(
+                    context,
+                    ref,
+                    title: issObject.name(language),
+                    targetId: issObject.id,
+                    instant: pass.start,
                   ),
-              ],
-            ),
-          ],
-        ),
+                  icon: const Icon(Icons.notifications_active_outlined),
+                  label: Text(t.remindMe),
+                ),
+            ],
+          ),
+        ],
       ),
     );
   }

@@ -1,18 +1,27 @@
 "use client";
 import DateField from './ui/DateField';
+import {nightBounds} from '../lib/sky/planning.ts';
+import type {ObservingSelection} from '../lib/observing-opportunities.ts';
 import {useEffect,useState} from 'react';import {Temporal} from '@js-temporal/polyfill';
 import {planningText} from '../lib/planning-text.ts';import {messages} from '../lib/i18n.ts';
 import type {ObservingPlan} from '../lib/sky/planning.ts';import {intervalInstant} from '../lib/sky/planning-navigation.ts';import type {Language,ObserverContext} from '../lib/sky/types.ts';
-export default function TonightPanel({language,context,zone,locationLabel,onNavigate,onCompass,onTerm}:{language:Language;context:ObserverContext;zone:string;locationLabel:string;onNavigate:(id:string,instant:string)=>void;onCompass:()=>void;onTerm:(id:string)=>void}){
+export default function TonightPanel({language,context,zone,locationLabel,onNavigate,onCompass,onTerm,onObserve}:{language:Language;context:ObserverContext;zone:string;locationLabel:string;onNavigate:(id:string,instant:string)=>void;onCompass:()=>void;onTerm:(id:string)=>void;onObserve:(selection:ObservingSelection)=>void}){
  const t=planningText[language],[date,setDate]=useState(()=>Temporal.Instant.from(context.instantUtc).toZonedDateTimeISO(zone).toPlainDate().toString()),[plan,setPlan]=useState<ObservingPlan|null>(null),[error,setError]=useState(false),[attempt,setAttempt]=useState(0);
  useEffect(()=>{let alive=true;setPlan(null);setError(false);let worker:Worker;try{worker=new Worker(new URL('../lib/sky/planning.worker.ts',import.meta.url),{type:'module'})}catch{setError(true);return}const timer=setTimeout(()=>{worker.terminate();if(alive)setError(true)},12000);
   worker.onmessage=e=>{clearTimeout(timer);if(alive){if(e.data.type==='plan')setPlan(e.data.plan);else setError(true)}worker.terminate()};worker.onerror=()=>{clearTimeout(timer);worker.terminate();if(alive)setError(true)};worker.postMessage({context:{latitude:context.latitude,longitude:context.longitude,elevationMeters:context.elevationMeters},zone,date});return()=>{alive=false;clearTimeout(timer);worker.terminate()};
  },[context.latitude,context.longitude,context.elevationMeters,zone,date,attempt]);
  const time=(v:string|null)=>v?new Intl.DateTimeFormat(language,{timeZone:zone,hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).format(new Date(v)):t.missing;
  const move=(n:number)=>setDate(d=>Temporal.PlainDate.from(d).add({days:n}).toString());
- return <section className="observing-panel">
-  <div className="plan-date"><button type="button" aria-label={t.previous} disabled={date<="2000-01-02"} onClick={()=>move(-1)}>‹</button><DateField label={t.date} value={date} onChange={setDate} language={language} min="2000-01-02" max="2035-12-30"/><button type="button" aria-label={t.next} disabled={date>="2035-12-30"} onClick={()=>move(1)}>›</button></div>
-  <p className="muted compact">{locationLabel}<br/>{zone}</p><p className="muted">{t.help}</p>
+ return <section className="observing-panel planning-styled">
+  <div className="planning-intro">
+   <strong>{locationLabel}</strong>
+   <p>{zone}</p>
+   <button type="button" className="primary-button" onClick={()=>onObserve({...nightBounds(zone,date),nightOnly:true})}>
+    {language==="tr"?"Gözlem fırsatlarını gör":"See observing opportunities"}
+   </button>
+  </div>
+  <div className="plan-date planning-picker"><button type="button" aria-label={t.previous} disabled={date<="2000-01-02"} onClick={()=>move(-1)}>‹</button><DateField label={t.date} value={date} onChange={setDate} language={language} min="2000-01-02" max="2035-12-30"/><button type="button" aria-label={t.next} disabled={date>="2035-12-30"} onClick={()=>move(1)}>›</button></div>
+  <p className="muted">{t.help}</p>
   {!plan&&!error&&<p role="status">{t.loading}</p>}{error&&<p role="alert">{t.error} <button className="inline-term" onClick={()=>setAttempt(a=>a+1)}>{t.retry}</button></p>}
   {plan&&<>{plan.nightState!=="ordinary"&&<p className="conditions-note" role="status">{plan.nightState==="no-night"?t.noNight:plan.nightState==="polar-night"?t.polarNight:t.partialNight}</p>}<p className="plan-range">{new Intl.DateTimeFormat(language,{timeZone:zone,dateStyle:"medium"}).format(new Date(plan.startUtc))} – {new Intl.DateTimeFormat(language,{timeZone:zone,dateStyle:"medium"}).format(new Date(plan.endUtc))}</p><div className="sun-times"><div><small>{t.sunset}</small><strong>{time(plan.sunsetUtc)}</strong></div><div><small>{t.sunrise}</small><strong>{time(plan.sunriseUtc)}</strong></div></div><h3>{t.solar}</h3>
    <div className="timeline-axis"><span/>{Array.from({length:5},(_,i)=><span key={i}>{time(new Date(Date.parse(plan.startUtc)+(Date.parse(plan.endUtc)-Date.parse(plan.startUtc))*i/4).toISOString())}</span>)}</div>

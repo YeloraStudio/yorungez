@@ -153,6 +153,15 @@ class SkyFocusController extends Notifier<String?> {
 final skyFocusProvider = NotifierProvider<SkyFocusController, String?>(
   SkyFocusController.new,
 );
+
+class PlannedSkyDirection extends Notifier<ViewPose?> {
+  @override
+  ViewPose? build() => null;
+  void request(ViewPose? pose) => state = pose;
+}
+
+final plannedSkyDirectionProvider =
+    NotifierProvider<PlannedSkyDirection, ViewPose?>(PlannedSkyDirection.new);
 final skyRouteObserver = RouteObserver<PageRoute<dynamic>>();
 final deviceLocationProvider = Provider<DeviceLocationSource>(
   (ref) => ForegroundDeviceLocation(),

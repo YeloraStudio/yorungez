@@ -27,7 +27,19 @@ public static class ReminderEmailTemplate
         var utc = content.InstantUtc.ToUniversalTime().ToString("dd MMM yyyy, HH:mm 'UTC'", CultureInfo.InvariantCulture);
         var url = frontend.TrimEnd('/') + "/en";
         static string H(string value) => WebUtility.HtmlEncode(value);
-        var plain = $"Your sky reminder\n\n{content.Title}\n{localLabel}\n{utc}\n\nYou requested this reminder in Yorungez. This event or observing time does not guarantee local visibility; check the horizon, weather and equipment.\n\nSource: {content.SourceUrl}\nManage your reminders in the Yorungez app sidebar.\nExplore the sky: {url}";
+        var conditions = content.WeatherDependent
+            ? "The latest regional cloud forecast looked favorable when this email was sent. Local clouds and obstructions can still hide the view."
+            : "This event or observing time does not guarantee local visibility; check the horizon, weather and equipment.";
+        var weatherCredit = content.WeatherDependent
+            ? "\nVisibility estimate based on MET Norway cloud data (CC BY 4.0): https://creativecommons.org/licenses/by/4.0/\n"
+            : "";
+        var direction = content.AltitudeDegrees is { } altitude
+            ? FormattableString.Invariant($"{(content.Radiant ? "Shower radiant" : "Target")}: {altitude:F0}° above the horizon")
+            : "";
+        if (content.AzimuthDegrees is { } azimuth)
+            direction += FormattableString.Invariant($", azimuth {azimuth:F0}° clockwise from true north.");
+        if (content.Radiant) direction += " Meteors can appear across the sky.";
+        var plain = $"Your sky reminder\n\n{content.Title}\n{localLabel}\n{utc}\n{direction}\n\nYou requested this reminder in Yorungez. {conditions}\n{weatherCredit}\nSource: {content.SourceUrl}\nManage your reminders in the Yorungez app sidebar.\nExplore the sky: {url}";
         var html = $$"""
             <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
             <body style="margin:0;background:#F7F1E6;color:#3C3F43;font-family:Arial,Helvetica,sans-serif">
@@ -38,7 +50,9 @@ public static class ReminderEmailTemplate
             <tr><td style="background:#FFFFFF;padding:28px;border-radius:0 0 16px 16px">
             <p style="font-size:18px;line-height:1.7;margin:0 0 8px">{{H(localLabel)}}</p><p style="color:#66696D;line-height:1.6;margin:0 0 24px">{{H(utc)}}</p>
             <a href="{{H(url)}}" style="display:inline-block;background:#8B2333;color:#F7F1E6;text-decoration:none;padding:16px 24px;border-radius:8px;font-weight:bold">Explore the sky &rarr;</a>
-            <p style="font-size:14px;line-height:1.7;margin-top:24px">You requested this reminder in Yorungez. This event or observing time does not guarantee local visibility; check the horizon, weather and equipment.</p>
+            <p style="font-size:14px;line-height:1.7;margin-top:24px">{{H(direction)}}</p>
+            <p style="font-size:14px;line-height:1.7;margin-top:24px">You requested this reminder in Yorungez. {{H(conditions)}}</p>
+            {{(content.WeatherDependent ? "<p style=\"font-size:13px;color:#66696D\">Visibility estimate based on MET Norway cloud data. <a href=\"https://creativecommons.org/licenses/by/4.0/\">CC BY 4.0</a></p>" : "")}}
             <p style="font-size:13px;line-height:1.7;color:#66696D">Manage or cancel future reminders in the Yorungez app sidebar.</p>
             <a href="{{H(content.SourceUrl)}}" style="font-size:13px;color:#8B2333">Event / calculation source</a>
             </td></tr><tr><td style="padding:24px 0;color:#66696D;font-size:12px">Yorungez · A little curiosity. An entire universe.</td></tr></table>

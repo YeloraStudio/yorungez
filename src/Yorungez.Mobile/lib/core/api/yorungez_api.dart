@@ -90,4 +90,17 @@ final class YorungezApi {
   }
 
   void close() => _client.close(force: true);
+
+  Future<Map<String, dynamic>> observingOpportunities(
+    Map<String, Object?> input,
+    CancelToken cancelToken,
+  ) async {
+    final response = await _client.post<Map<String, dynamic>>(
+      '/api/v1/sky/observing-opportunities',
+      data: input,
+      cancelToken: cancelToken,
+    );
+    return response.data ??
+        (throw const ServiceFailure(ServiceFailureKind.protocol));
+  }
 }

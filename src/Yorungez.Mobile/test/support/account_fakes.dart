@@ -23,7 +23,7 @@ class MemoryVault implements CredentialVault {
 }
 
 class FakeAccountApi implements AccountApi {
-  DateTime now = DateTime.utc(2026, 11, 5);
+  DateTime now = DateTime.now().toUtc();
   int refreshes = 0, logouts = 0, saves = 0;
   String owner = 'account-a', language = 'tr';
   bool failLanguage = false, offlineLogout = false;

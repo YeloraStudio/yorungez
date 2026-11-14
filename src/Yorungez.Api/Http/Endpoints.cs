@@ -89,6 +89,10 @@ public static class Endpoints
             Results.Ok(await sender.Send(new CalculateSkyQuery(input, Language), ct)));
         sky.MapPost("/horizon-crossings", async (CrossingsInput input, ISender sender, CancellationToken ct) =>
             Results.Ok(await sender.Send(new CalculateCrossingsQuery(input, Language), ct)));
+        sky.MapPost("/observing-opportunities", async (ObservingInput input, ISender sender, CancellationToken ct) =>
+            Results.Ok(await sender.Send(new ObservingForecastQuery(input), ct)));
+        sky.MapGet("/observing-events/{year:int}/{month:int}", (int year, int month, ObservingPlanner planner) =>
+            Results.Ok(planner.Calendar(year, month)));
 
         var auth = app.MapGroup("/api/v1/auth").RequireRateLimiting("identity");
         auth.AddEndpointFilter(async (context, next) =>

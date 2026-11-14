@@ -106,8 +106,11 @@ class PlanningDateButton extends StatelessWidget {
     super.key,
     required this.value,
     required this.onSelected,
+    this.firstDate,
+    this.lastDate,
   });
   final DateTime value;
+  final DateTime? firstDate, lastDate;
   final ValueChanged<DateTime> onSelected;
   @override
   Widget build(BuildContext context) => OutlinedButton.icon(
@@ -131,8 +134,8 @@ class PlanningDateButton extends StatelessWidget {
                 height: 330,
                 child: CalendarDatePicker(
                   initialDate: selected,
-                  firstDate: DateTime(2000),
-                  lastDate: DateTime(2035, 12, 30),
+                  firstDate: firstDate ?? DateTime(2000),
+                  lastDate: lastDate ?? DateTime(2035, 12, 30),
                   onDateChanged: (d) => setState(() => selected = d),
                 ),
               ),

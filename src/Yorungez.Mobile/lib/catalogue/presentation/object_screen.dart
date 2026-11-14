@@ -15,6 +15,7 @@ import '../../account/account_widgets.dart';
 import '../../account/notebook_screen.dart';
 import '../../planning/planning_time.dart';
 import '../../planning/observing_guide.dart';
+import '../../planning/weather_opportunity.dart';
 import '../domain/sky_object.dart';
 
 class ObjectScreen extends ConsumerWidget {
@@ -106,11 +107,16 @@ class ObjectScreen extends ConsumerWidget {
                           : text.exploreRegion,
                     ),
                   ),
-                  if (guideTargets.contains(id))
+                  if (guideTargets.contains(id) || weatherBodies.contains(id))
                     TextButton.icon(
-                      onPressed: () => context.push('/observe?target=$id'),
+                      onPressed: () =>
+                          context.push(observingGuidePath(target: id)),
                       icon: const Icon(Icons.explore_outlined),
-                      label: Text(text.guideTitle),
+                      label: Text(
+                        weatherBodies.contains(id)
+                            ? text.forecastObject
+                            : text.guideTitle,
+                      ),
                     ),
                   if (id == issObject.id)
                     TextButton.icon(

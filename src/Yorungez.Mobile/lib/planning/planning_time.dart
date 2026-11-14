@@ -69,4 +69,20 @@ final class PlanningTime {
     final d = local(instant, name);
     return DateTime.utc(d.year, d.month, d.day - (d.hour < 12 ? 1 : 0));
   }
+
+  static DateTime calendarDate(DateTime instant, String name) {
+    final date = local(instant, name);
+    return DateTime.utc(date.year, date.month, date.day);
+  }
+
+  static ({DateTime start, DateTime end}) calendarDay(
+    DateTime date,
+    String name,
+  ) {
+    final z = zone(name);
+    return (
+      start: tz.TZDateTime(z, date.year, date.month, date.day).toUtc(),
+      end: tz.TZDateTime(z, date.year, date.month, date.day + 1).toUtc(),
+    );
+  }
 }

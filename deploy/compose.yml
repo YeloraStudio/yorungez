@@ -34,6 +34,7 @@ x-api-environment: &api-environment
   Email__Password: ${SMTP_PASSWORD:?required}
   Email__RequireTls: ${SMTP_REQUIRE_TLS:?required}
   Email__RunOutboxWorker: ${EMAIL_RUN_OUTBOX_WORKER:?required}
+  ObservingForecast__MetNoUserAgent: ${MET_NO_USER_AGENT:-}
   DataProtection__KeyRingPath: /var/lib/yorungez/keys
   DataProtection__CertificatePath: /run/yorungez/keyring.pfx
   DataProtection__CertificatePassword: ${KEYRING_CERT_PASSWORD:?required}

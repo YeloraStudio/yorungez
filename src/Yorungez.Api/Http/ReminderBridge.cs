@@ -1,4 +1,5 @@
 using Yorungez.Application;
+using Yorungez.Astronomy.Application;
 using Yorungez.Catalog.Application;
 using Yorungez.Identity.Application;
 using Yorungez.Notebook.Application;
@@ -42,11 +43,44 @@ public sealed class ReminderFacts(IPlanningCatalog catalog) : IReminderFacts
             || instantUtc.Value.Year is < 2000 or > 2035) throw Invalid();
         return new(null, targetId, target + " · Observing time", instantUtc.Value.ToUniversalTime(), "https://github.com/cosinekitty/astronomy");
     }
+    public ReminderFact ResolveWeather(ReminderInput input)
+    {
+        if (input.EventId is not null || input.InstantUtc is not { } instant || input.WeatherSite is not { } site ||
+            !ObservingPlanner.Supported(input.TargetId) || input.LeadMinutes is not (10 or 30)) throw Invalid();
+        SkyValidation.Context(site.Latitude, site.Longitude, instant.ToString("O"), site.ElevationMeters);
+        var id = input.TargetId!;
+        var name = Targets.GetValueOrDefault(id) ?? id switch
+        {
+            "penumbral-lunar" => "Penumbral lunar eclipse",
+            "partial-lunar" => "Partial phase of the lunar eclipse",
+            "total-lunar" => "Total phase of the lunar eclipse",
+            "geminids" => "Geminids meteor shower",
+            "quadrantids" => "Quadrantids meteor shower",
+            "perseids" => "Perseids meteor shower",
+            _ => throw Invalid()
+        };
+        // Thirty local dates including today can span more than thirty UTC days at a zone transition.
+        return new(null, id, name, instant, ObservingPlanner.Source(id), TimeSpan.FromDays(31));
+    }
+
     private static AppFailure Invalid() => new("Reminders.InvalidEvent", FailureKind.Validation);
 }
-public sealed class EmailReminderChannel(IAccountReminderEmail email) : IReminderChannel
+public sealed class EmailReminderChannel(IAccountReminderEmail email, ObservingPlanner planner) : IReminderChannel
 {
     public string Channel => "email";
-    public Task<bool> DeliverAsync(Guid userId, ReminderDeliveryContent content, CancellationToken ct) =>
-        email.SendAsync(userId, new(content.Title, content.InstantUtc, content.TimeZoneId, content.SourceUrl), ct);
+    public async Task<bool> DeliverAsync(Guid userId, ReminderDeliveryContent content, CancellationToken ct)
+    {
+        var message = new ReminderEmailContent(content.Title, content.InstantUtc, content.TimeZoneId, content.SourceUrl);
+        if (content.WeatherSite is { } site)
+        {
+            var instant = content.InstantUtc;
+            var plan = await planner.PlanAsync(new(site.Latitude, site.Longitude, site.ElevationMeters,
+                instant.ToString("O"), instant.AddMinutes(5).ToString("O"), content.TargetId), ct);
+            var window = plan.Windows.SingleOrDefault(w => w.Conditions == "good" && w.StartUtc == instant);
+            if (window is null) return false;
+            message = message with { WeatherDependent = true, AzimuthDegrees = window.AzimuthDegrees,
+                AltitudeDegrees = window.AltitudeDegrees, Radiant = window.Target == "radiant" };
+        }
+        return await email.SendAsync(userId, message, ct);
+    }
 }

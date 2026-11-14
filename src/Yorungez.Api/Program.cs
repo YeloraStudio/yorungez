@@ -54,7 +54,16 @@ builder.Services.AddSingleton(TimeProvider.System);
 builder.Services.AddSingleton<IIssElementsRepository, IssElementsRepository>();
 builder.Services.AddHttpClient("CelesTrak", client => { client.Timeout = TimeSpan.FromSeconds(10); client.DefaultRequestHeaders.UserAgent.ParseAdd("Yorungez/0.1 (+https://github.com/YeloraStudio/yorungez)"); });
 builder.Services.AddSingleton<IPlanningCatalog, PlanningCatalogRepository>();
-builder.Services.AddSingleton<ISkyCalculator, AstronomyEngineCalculator>();
+builder.Services.AddSingleton<AstronomyEngineCalculator>();
+builder.Services.AddSingleton<ISkyCalculator>(p => p.GetRequiredService<AstronomyEngineCalculator>());
+builder.Services.AddSingleton<IObservationAstronomy>(p => p.GetRequiredService<AstronomyEngineCalculator>());
+builder.Services.AddSingleton<ObservingPlanner>();
+builder.Services.AddSingleton<ICloudForecast, MetNoForecast>();
+builder.Services.AddHttpClient("MetNo", client =>
+{
+    client.BaseAddress = new Uri("https://api.met.no/");
+    client.Timeout = TimeSpan.FromSeconds(3);
+}).RemoveAllLoggers(); // The upstream URL includes a shared weather cell.
 builder.Services.AddStackExchangeRedisCache(o =>
 {
     o.Configuration = builder.Configuration.GetConnectionString("Redis");

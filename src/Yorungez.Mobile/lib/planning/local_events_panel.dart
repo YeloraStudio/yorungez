@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:timezone/timezone.dart' as tz;
 
 import '../app/providers.dart';
@@ -9,6 +10,8 @@ import '../sky/domain/sky_geometry.dart';
 import 'local_observing_events.dart';
 import 'planning_controls.dart';
 import 'planning_time.dart';
+import 'planning_surface.dart';
+import 'weather_opportunity.dart';
 
 class LocalEventsPanel extends ConsumerStatefulWidget {
   const LocalEventsPanel({super.key, required this.month});
@@ -114,51 +117,70 @@ class _LocalEventCard extends ConsumerWidget {
     final source = event.meteor
         ? 'https://www.imo.net/calendar/'
         : 'https://eclipse.gsfc.nasa.gov/';
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Text(title, style: Theme.of(context).textTheme.titleMedium),
-            const SizedBox(height: 8),
-            Text('${local(event.start)} – ${local(event.end)}'),
-            const SizedBox(height: 8),
-            Text('${t.suggestedTime} · ${local(event.suggested)}'),
-            Text(PlanningTime.utc(event.suggested, language)),
-            if (event.solar) ...[
-              const SizedBox(height: 10),
-              Text(t.eclipseSafety),
-              ExternalLink(
-                url: 'https://science.nasa.gov/eclipses/safety/',
-                label: t.eclipseSafetyLink,
-                small: true,
-              ),
-            ],
-            if (event.kind == LocalEventKind.penumbralLunar)
-              Text(t.eclipseSubtle),
-            if (event.meteor)
-              Text(event.moonlight ? t.meteorMoonlight : t.meteorWindow),
-            if (!event.meteor)
-              TextButton.icon(
-                onPressed: () => openPlannedSky(
-                  context,
-                  ref,
-                  event.solar ? 'sun' : 'moon',
-                  event.suggested,
-                ),
-                icon: const Icon(Icons.north_east),
-                label: Text(t.focusTarget),
-              ),
+    return PlanningSurface(
+      margin: const EdgeInsets.only(bottom: 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          PlanningEventHeading(
+            instant: event.suggested,
+            zone: zone,
+            title: title,
+          ),
+          const SizedBox(height: 8),
+          Text('${local(event.start)} – ${local(event.end)}'),
+          const SizedBox(height: 8),
+          Text('${t.suggestedTime} · ${local(event.suggested)}'),
+          Text(PlanningTime.utc(event.suggested, language)),
+          if (event.solar) ...[
+            const SizedBox(height: 10),
+            Text(t.eclipseSafety),
             ExternalLink(
-              url: source,
-              label: event.meteor
-                  ? 'International Meteor Organization'
-                  : 'NASA Eclipse Catalog',
+              url: 'https://science.nasa.gov/eclipses/safety/',
+              label: t.eclipseSafetyLink,
               small: true,
             ),
           ],
-        ),
+          if (event.kind == LocalEventKind.penumbralLunar)
+            Text(t.eclipseSubtle),
+          if (event.meteor)
+            Text(event.moonlight ? t.meteorMoonlight : t.meteorWindow),
+          if (!event.solar)
+            TextButton.icon(
+              icon: const Icon(Icons.cloud_outlined),
+              onPressed: () => context.push(
+                observingGuidePath(
+                  target: switch (event.kind) {
+                    LocalEventKind.penumbralLunar ||
+                    LocalEventKind.partialLunar ||
+                    LocalEventKind.totalLunar => 'lunar-eclipse',
+                    _ => event.kind.name,
+                  },
+                  from: event.start,
+                  to: event.end,
+                ),
+              ),
+              label: Text(t.forecastEvent),
+            ),
+          if (!event.meteor)
+            TextButton.icon(
+              onPressed: () => openPlannedSky(
+                context,
+                ref,
+                event.solar ? 'sun' : 'moon',
+                event.suggested,
+              ),
+              icon: const Icon(Icons.north_east),
+              label: Text(t.focusTarget),
+            ),
+          ExternalLink(
+            url: source,
+            label: event.meteor
+                ? 'International Meteor Organization'
+                : 'NASA Eclipse Catalog',
+            small: true,
+          ),
+        ],
       ),
     );
   }

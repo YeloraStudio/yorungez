@@ -8,6 +8,26 @@ namespace Yorungez.Api.Tests;
 // test database and an unavailable cache. Public calculations must still work.
 public sealed class AstronomyEndpointTests
 {
+    [Fact]
+    public async Task Observing_windows_remain_public_without_forecast_and_never_echo_the_site()
+    {
+        await using var app = new AppFactory { CacheUnavailable = true };
+        using var client = app.Client("tr");
+        var response = await client.PostAsJsonAsync("/api/v1/sky/observing-opportunities", new
+        {
+            latitude = 39.65, longitude = 27.88, target = "moon",
+            startUtc = "2026-11-27T00:00:00Z", endUtc = "2026-11-29T00:00:00Z"
+        });
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        Assert.True(response.Headers.CacheControl!.NoStore);
+        var body = await response.Content.ReadAsStringAsync();
+        Assert.DoesNotContain("latitude", body, StringComparison.OrdinalIgnoreCase);
+        var plan = JsonDocument.Parse(body).RootElement;
+        Assert.True(plan.GetProperty("windows").GetArrayLength() > 0);
+        Assert.All(plan.GetProperty("windows").EnumerateArray(), window =>
+            Assert.Equal("unknown", window.GetProperty("conditions").GetString()));
+    }
+
     [Theory]
     [InlineData("tr", "Güneş")]
     [InlineData("en", "Sun")]
