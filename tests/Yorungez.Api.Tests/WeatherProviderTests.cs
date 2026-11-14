@@ -12,13 +12,18 @@ namespace Yorungez.Api.Tests;
 
 public sealed class WeatherProviderTests
 {
-    [Fact]
-    public async Task Neighbors_share_the_cache_and_only_the_rounded_cell_reaches_the_provider()
+    [Theory]
+    [InlineData(true)]
+    [InlineData(false)]
+    public async Task Neighbors_share_the_cache_and_only_the_rounded_cell_reaches_the_provider(bool useOperatorIdentity)
     {
         using var upstream = new ForecastResponse();
         var config = new ConfigurationBuilder().AddInMemoryCollection(new Dictionary<string, string?>
         {
-            ["ObservingForecast:MetNoUserAgent"] = "Yorungez-Test/1.0 (+https://example.invalid/)"
+            ["ObservingForecast:MetNoUserAgent"] = useOperatorIdentity ? "Yorungez-Test/1.0 (+https://example.invalid/)" : "",
+            ["ObservingForecast:ImageMetNoUserAgent"] = useOperatorIdentity
+                ? "Ignored-Image-Identity/1.0"
+                : "Yorungez-Test/1.0 (+https://example.invalid/)"
         }).Build();
         var cache = new MemoryDistributedCache(Options.Create(new MemoryDistributedCacheOptions()));
         var source = new MetNoForecast(new ClientFactory(upstream), cache, config, TimeProvider.System);

@@ -18,6 +18,7 @@ public sealed class MetNoForecast(IHttpClientFactory clients, IDistributedCache 
     public async Task<CloudForecast?> GetAsync(ObserverSite site, CancellationToken ct)
     {
         var userAgent = configuration["ObservingForecast:MetNoUserAgent"];
+        if (string.IsNullOrWhiteSpace(userAgent)) userAgent = configuration["ObservingForecast:ImageMetNoUserAgent"];
         if (string.IsNullOrWhiteSpace(userAgent)) return null;
 
         // Only a shared cell center reaches MET Norway. Exact input is used in memory for geometry.
