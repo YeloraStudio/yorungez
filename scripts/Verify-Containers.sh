@@ -73,6 +73,12 @@ status="$(curl --silent -o /dev/null -w '%{http_code}' -X POST http://127.0.0.1:
   -H 'Origin: https://yorungez.com' -H 'X-Yorungez-Request: 1' -H 'Content-Type: application/json' \
   --data '{"email":"absent@example.invalid","password":"a-long-synthetic-password"}')"
 test "$status" = 401
+# Observing requests use the same trusted HTTPS hop, including anonymous POST calls.
+curl --fail --silent 'http://127.0.0.1:13000/api/observing-opportunities?year=2026&month=12' >/dev/null
+curl --fail --silent 'http://127.0.0.1:13000/api/observing-opportunities' \
+  -H 'Content-Type: application/json' \
+  --data '{"latitude":41,"longitude":29,"startUtc":"2026-11-15T00:00:00Z","endUtc":"2026-11-16T00:00:00Z","target":"moon","includeMoonPhase":true}' \
+  | python3 -c 'import json, sys; assert json.load(sys.stdin)["moonPhase"]["phase"]'
 # An arbitrary client cannot make direct HTTP look trusted using a spoofed header.
 status="$(curl --silent -o /dev/null -w '%{http_code}' http://127.0.0.1:18080/api/v1/status \
   -H 'Host: api.yorungez.com' -H 'X-Forwarded-Proto: https')"
