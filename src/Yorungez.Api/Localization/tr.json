@@ -11,6 +11,7 @@
   "Body.Neptune": "Neptün",
   "Sky.InvalidCoordinates": "Enlemi -90 ile 90, boylamı -180 ile 180 arasında gir.",
   "Sky.RequestTooLarge": "Gökyüzü hesaplama isteği izin verilen boyutu aşıyor.",
+  "Sky.InvalidObservationWindow": "Desteklenen bir hedef ve en fazla 48 saatlik bir aralık seç.",
   "Sky.InvalidInstant": "Z veya UTC ofsetini açıkça içeren bir ISO 8601 tarih ve saat gir.",
   "Sky.UnsupportedDate": "Bu ilk hesaplama 2000–2035 aralığını destekliyor. Arama penceresinin tamamı bu aralıkta olmalı.",
   "Sky.InvalidElevation": "Yüksekliği -500 ile 10000 metre arasında gir veya bilinmiyor bırak.",
@@ -64,6 +65,7 @@
   "Reminders.InvalidInput": "Desteklenen bir saat dilimi ve hatırlatma süresi seç.",
   "Reminders.InvalidEvent": "Bu olay güncel doğrulanmış takvimde yok. Takvimi yenileyip tekrar dene.",
   "Reminders.InvalidTime": "En az iki dakika sonrası ve gelecek bir yıl içinde bir zaman seç.",
+  "Reminders.WeatherDateOutsidePlan": "30 günlük gözlem planından bir tarih seç.",
   "Reminders.Limit": "En fazla 100 etkin hatırlatıcın olabilir.",
   "Reminders.Conflict": "Bu hatırlatıcı zaten var, değişti veya gönderiliyor. Yenileyip tekrar dene."
 }

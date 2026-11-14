@@ -43,3 +43,14 @@ public interface ISkyCalculator
     CenterHorizonCrossings Crossings(SkyContext context, SolarSystemBody body);
     double TerrestrialJulianDay(DateTimeOffset instantUtc);
 }
+
+public sealed record BodyIllumination(double Fraction, double Magnitude);
+public sealed record LunarEclipsePhase(string Kind, DateTimeOffset StartUtc, DateTimeOffset PeakUtc, DateTimeOffset EndUtc);
+
+public interface IObservationAstronomy
+{
+    BodyIllumination Illumination(SkyContext context, SolarSystemBody body);
+    double LunarPhaseAngle(DateTimeOffset instant);
+    (double Azimuth, double Altitude) FixedPosition(SkyContext context, double j2000RaDegrees, double j2000DecDegrees);
+    IReadOnlyList<LunarEclipsePhase> LunarEclipses(DateTimeOffset start, DateTimeOffset end);
+}

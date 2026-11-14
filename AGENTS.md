@@ -1,5 +1,9 @@
 # yorungez çalışma rehberi
 
+**K-066 / 14 November 2026 — 30-day observing plan:** The Calendar opens 30 local dates for the Moon, supported planets and celestial events. Load the chosen date on demand. Use astronomical geometry for the whole plan and regional cloud forecasts in the final 48 hours. Verified users can opt into a one-time weather-dependent reminder in advance. [Behavior and verification](docs/local-observing-opportunities.md).
+
+**K-065 / 14 November 2026 — Local observing opportunities:** The owner approved free, location-based Moon, planet and celestial-event guidance. Web primary navigation is Sky, Tonight, Calendar and My Notebook, with the guide below. Native navigation begins with Tonight, Calendar and the guide. [Shared forecast, reminders and acceptance](docs/local-observing-opportunities.md). See FR-05 and FR-08.
+
 **K-064 / 8 November 2026 — Fastlane iOS delivery:** The owner requested configuring and releasing the existing iOS application with Fastlane. Preserve the current bundle ID and supplied branding. The release toolchain is aligned to Flutter 3.47.9/Dart 3.13.7 and locked Fastlane 2.241.2/Ruby 4.0.9. [Release runbook, implemented lanes, evidence and remaining Apple, privacy and device checks](docs/mobile-ios-release.md). The runbook records the initial internal TestFlight upload and the remaining review steps.
 
 **K-059 / 7 November 2026 — Native sky controls:** Reticle selection keeps its one-second default and can be turned off. Optional virtual sky zoom defaults off, supports pinch and buttons, and resets to 60° when disabled. Both switches are local UI preferences. The optional zoom supersedes the earlier fixed-view requirement for virtual mode.

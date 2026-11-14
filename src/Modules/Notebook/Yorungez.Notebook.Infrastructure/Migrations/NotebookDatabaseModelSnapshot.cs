@@ -57,6 +57,15 @@ namespace Yorungez.Notebook.Infrastructure.Migrations
                     b.Property<DateTimeOffset>("ExpiresAtUtc")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<double?>("ForecastElevationMeters")
+                        .HasColumnType("double precision");
+
+                    b.Property<double?>("ForecastLatitude")
+                        .HasColumnType("double precision");
+
+                    b.Property<double?>("ForecastLongitude")
+                        .HasColumnType("double precision");
+
                     b.Property<DateTimeOffset>("InstantUtc")
                         .HasColumnType("timestamp with time zone");
 
@@ -103,6 +112,9 @@ namespace Yorungez.Notebook.Infrastructure.Migrations
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("character varying(200)");
+
+                    b.Property<bool>("WeatherDependent")
+                        .HasColumnType("boolean");
 
                     b.HasKey("UserId", "Id");
 

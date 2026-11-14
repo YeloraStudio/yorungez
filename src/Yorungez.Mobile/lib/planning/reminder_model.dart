@@ -11,12 +11,14 @@ final class EventReminder {
     this.zone,
     this.lead,
     this.status,
-    this.due,
-  );
+    this.due, [
+    this.weatherDependent = false,
+  ]);
   final String id, targetId, title, zone, status;
   final String? eventId;
   final int revision, lead;
   final DateTime instant, due;
+  final bool weatherDependent;
   static EventReminder decode(dynamic value) {
     final m = objectMap(value);
     if (m['id'] is! String ||
@@ -49,6 +51,7 @@ final class EventReminder {
         m['leadMinutes'],
         m['status'],
         DateTime.parse(m['dueAtUtc']).toUtc(),
+        m['weatherDependent'] == true,
       );
     } catch (_) {
       throw const AccountFailure(AccountFailureKind.protocol);

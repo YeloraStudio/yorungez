@@ -292,9 +292,27 @@ void main() {
           find.text(language == 'en' ? 'Event calendar' : 'Etkinlik takvimi'),
           findsOneWidget,
         );
+        expect(
+          find.text(
+            language == 'en'
+                ? '30-day observing plan'
+                : '30 günlük gözlem planı',
+          ),
+          findsOneWidget,
+        );
+        await tester.scrollUntilVisible(
+          find.textContaining('GMT+03:00'),
+          120,
+          scrollable: find.byType(Scrollable).first,
+        );
         expect(find.textContaining('GMT+03:00'), findsWidgets);
         expect(find.textContaining('UTC'), findsWidgets);
         expect(tester.takeException(), isNull);
+        await tester.scrollUntilVisible(
+          find.text('2026'),
+          -120,
+          scrollable: find.byType(Scrollable).first,
+        );
         await tester.tap(find.text('2026').first);
         await tester.pumpAndSettle();
         await tester.scrollUntilVisible(

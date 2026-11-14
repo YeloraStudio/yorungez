@@ -17,7 +17,9 @@ import 'observing_guide.dart';
 import 'observing_guide_screen.dart';
 import 'planning_controls.dart';
 import 'planning_time.dart';
+import 'planning_surface.dart';
 import 'reminder_screen.dart';
+import 'weather_opportunity.dart';
 
 String targetName(String id, String language) =>
     solarObjects.firstWhere((o) => o.id == id).name(language);
@@ -171,7 +173,47 @@ class _EventCalendarScreenState extends ConsumerState<EventCalendarScreen> {
               return ListView(
                 padding: const EdgeInsets.all(20),
                 children: [
-                  Text(t.calendarIntro),
+                  PlanningSurface(
+                    highlighted: true,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(child: Text(t.calendarIntro)),
+                            const SizedBox(width: 10),
+                            ExcludeSemantics(
+                              child: ClipOval(
+                                child: Image.asset(
+                                  'assets/generated/images/moon.jpg',
+                                  width: 54,
+                                  height: 54,
+                                  cacheWidth: 160,
+                                  fit: BoxFit.cover,
+                                  errorBuilder: (_, _, _) =>
+                                      const SizedBox.shrink(),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 10),
+                        FilledButton.icon(
+                          onPressed: () => context.push('/observing-plan'),
+                          icon: const Icon(Icons.calendar_view_month_outlined),
+                          label: Text(t.observingMonthTitle),
+                        ),
+                        ExternalLink(
+                          url:
+                              'https://commons.wikimedia.org/wiki/File:FullMoon2010.jpg',
+                          label:
+                              '${t.archiveImage} · Gregory H. Revera · CC BY-SA 3.0',
+                          small: true,
+                        ),
+                      ],
+                    ),
+                  ),
                   const SizedBox(height: 16),
                   LayoutBuilder(
                     builder: (context, box) {
@@ -231,67 +273,57 @@ class _EventCalendarScreenState extends ConsumerState<EventCalendarScreen> {
                   const SizedBox(height: 16),
                   if (events.isEmpty) Text(t.calendarEmpty),
                   for (final event in events)
-                    Card(
-                      margin: const EdgeInsets.only(bottom: 16),
-                      child: Padding(
-                        padding: const EdgeInsets.all(18),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Icon(
-                                  Icons.auto_awesome_outlined,
-                                  color: Color(0xFFC9B6A6),
-                                ),
-                                const SizedBox(width: 12),
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        event.title(t),
-                                        style: Theme.of(
-                                          context,
-                                        ).textTheme.titleLarge,
-                                      ),
-                                      Text(
-                                        targetName(event.targetId, language),
-                                        style: Theme.of(
-                                          context,
-                                        ).textTheme.bodyMedium,
-                                      ),
-                                    ],
+                    PlanningSurface(
+                      margin: const EdgeInsets.only(bottom: 12),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          PlanningEventHeading(
+                            instant: event.instant,
+                            zone: zone,
+                            title: event.title(t),
+                            subtitle: targetName(event.targetId, language),
+                          ),
+                          const SizedBox(height: 12),
+                          Text(
+                            PlanningTime.label(event.instant, zone, language),
+                            style: Theme.of(context).textTheme.titleMedium,
+                          ),
+                          Text(PlanningTime.utc(event.instant, language)),
+                          const SizedBox(height: 12),
+                          EventActions(
+                            key: ValueKey(event.id),
+                            targetId: event.targetId,
+                            instant: event.instant,
+                            title: event.title(t),
+                            eventId: event.id,
+                          ),
+                          if (weatherBodies.contains(event.targetId) &&
+                              event.kind != 'new-moon' &&
+                              !event.kind.endsWith('conjunction'))
+                            TextButton(
+                              onPressed: () => context.push(
+                                observingGuidePath(
+                                  target: event.targetId,
+                                  from: event.instant.subtract(
+                                    const Duration(hours: 12),
+                                  ),
+                                  to: event.instant.add(
+                                    const Duration(hours: 12),
                                   ),
                                 ),
-                              ],
+                              ),
+                              child: Text(t.forecastEvent),
                             ),
-                            const SizedBox(height: 12),
-                            Text(
-                              PlanningTime.label(event.instant, zone, language),
-                              style: Theme.of(context).textTheme.titleMedium,
-                            ),
-                            Text(PlanningTime.utc(event.instant, language)),
-                            const SizedBox(height: 12),
-                            EventActions(
-                              key: ValueKey(event.id),
-                              targetId: event.targetId,
-                              instant: event.instant,
-                              title: event.title(t),
-                              eventId: event.id,
-                            ),
-                            const SizedBox(height: 8),
-                            ExternalLink(
-                              url: event.sourceUrl,
-                              label: event.sourceId == 'usno'
-                                  ? t.usnoCompared
-                                  : t.calculatedEvent,
-                              small: true,
-                            ),
-                          ],
-                        ),
+                          const SizedBox(height: 8),
+                          ExternalLink(
+                            url: event.sourceUrl,
+                            label: event.sourceId == 'usno'
+                                ? t.usnoCompared
+                                : t.calculatedEvent,
+                            small: true,
+                          ),
+                        ],
                       ),
                     ),
                   Text(t.calendarProvenance),
@@ -389,6 +421,21 @@ class _TonightScreenState extends ConsumerState<TonightScreen> {
                 const SizedBox(height: 16),
                 Text(t.tonightIntro),
                 const SizedBox(height: 16),
+                FilledButton.icon(
+                  onPressed: () {
+                    final window = PlanningTime.window(date, zone);
+                    context.push(
+                      observingGuidePath(
+                        from: window.start,
+                        to: window.end,
+                        nightOnly: true,
+                      ),
+                    );
+                  },
+                  icon: const Icon(Icons.explore_outlined),
+                  label: Text(t.forecastTonight),
+                ),
+                const SizedBox(height: 12),
                 Wrap(
                   spacing: 8,
                   children: [
@@ -435,41 +482,40 @@ class _TonightScreenState extends ConsumerState<TonightScreen> {
                       return Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
-                          Card(
-                            child: Padding(
-                              padding: const EdgeInsets.all(20),
-                              child: Row(
-                                children: [
-                                  Expanded(
-                                    child: Column(
-                                      children: [
-                                        Text(t.sunset),
-                                        const SizedBox(height: 8),
-                                        Text(
-                                          hour(plan.sunset),
-                                          style: Theme.of(
-                                            context,
-                                          ).textTheme.headlineMedium,
-                                        ),
-                                      ],
-                                    ),
+                          PlanningSurface(
+                            margin: const EdgeInsets.only(bottom: 12),
+                            highlighted: true,
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: Column(
+                                    children: [
+                                      Text(t.sunset),
+                                      const SizedBox(height: 8),
+                                      Text(
+                                        hour(plan.sunset),
+                                        style: Theme.of(
+                                          context,
+                                        ).textTheme.headlineMedium,
+                                      ),
+                                    ],
                                   ),
-                                  Expanded(
-                                    child: Column(
-                                      children: [
-                                        Text(t.sunrise),
-                                        const SizedBox(height: 8),
-                                        Text(
-                                          hour(plan.sunrise),
-                                          style: Theme.of(
-                                            context,
-                                          ).textTheme.headlineMedium,
-                                        ),
-                                      ],
-                                    ),
+                                ),
+                                Expanded(
+                                  child: Column(
+                                    children: [
+                                      Text(t.sunrise),
+                                      const SizedBox(height: 8),
+                                      Text(
+                                        hour(plan.sunrise),
+                                        style: Theme.of(
+                                          context,
+                                        ).textTheme.headlineMedium,
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                           ),
                           const SizedBox(height: 16),
@@ -531,105 +577,102 @@ class _NightRowCard extends ConsumerWidget {
       'dd MMM HH:mm',
       language,
     ).format(PlanningTime.local(d, zone));
-    return Card(
-      margin: const EdgeInsets.only(bottom: 16),
-      child: Padding(
-        padding: const EdgeInsets.all(18),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Text(name, style: Theme.of(context).textTheme.titleLarge),
-            const SizedBox(height: 14),
-            LayoutBuilder(
-              builder: (context, box) => Semantics(
-                label: '$name · ${t.tonight}',
-                button: row.best != null,
-                onTap: row.best == null
-                    ? null
-                    : () => openPlannedSky(context, ref, row.id, row.best!),
-                child: GestureDetector(
-                  behavior: HitTestBehavior.opaque,
-                  onTapUp: (details) {
-                    final instant = plan.start.add(
-                      Duration(
-                        milliseconds:
-                            (details.localPosition.dx / box.maxWidth * total)
-                                .round(),
+    return PlanningSurface(
+      margin: const EdgeInsets.only(bottom: 12),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text(name, style: Theme.of(context).textTheme.titleLarge),
+          const SizedBox(height: 14),
+          LayoutBuilder(
+            builder: (context, box) => Semantics(
+              label: '$name · ${t.tonight}',
+              button: row.best != null,
+              onTap: row.best == null
+                  ? null
+                  : () => openPlannedSky(context, ref, row.id, row.best!),
+              child: GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                onTapUp: (details) {
+                  final instant = plan.start.add(
+                    Duration(
+                      milliseconds:
+                          (details.localPosition.dx / box.maxWidth * total)
+                              .round(),
+                    ),
+                  );
+                  if (row.intervals.any(
+                    (i) =>
+                        !instant.isBefore(i.start) && instant.isBefore(i.end),
+                  )) {
+                    openPlannedSky(context, ref, row.id, instant);
+                  }
+                },
+                child: SizedBox(
+                  height: 44,
+                  child: Stack(
+                    children: [
+                      Positioned(
+                        left: 0,
+                        right: 0,
+                        top: 15,
+                        bottom: 15,
+                        child: DecoratedBox(
+                          decoration: BoxDecoration(
+                            color: const Color(0xFF25272B),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        ),
                       ),
-                    );
-                    if (row.intervals.any(
-                      (i) =>
-                          !instant.isBefore(i.start) && instant.isBefore(i.end),
-                    )) {
-                      openPlannedSky(context, ref, row.id, instant);
-                    }
-                  },
-                  child: SizedBox(
-                    height: 44,
-                    child: Stack(
-                      children: [
+                      for (final i in row.intervals)
                         Positioned(
-                          left: 0,
-                          right: 0,
-                          top: 15,
-                          bottom: 15,
+                          left:
+                              (i.start.difference(plan.start).inMilliseconds /
+                                      total *
+                                      box.maxWidth)
+                                  .clamp(0, box.maxWidth),
+                          width:
+                              (i.end.difference(i.start).inMilliseconds /
+                                      total *
+                                      box.maxWidth)
+                                  .clamp(0, box.maxWidth),
+                          top: 17,
+                          bottom: 17,
                           child: DecoratedBox(
                             decoration: BoxDecoration(
-                              color: const Color(0xFF25272B),
-                              borderRadius: BorderRadius.circular(8),
+                              color: const Color(0xFFC9B6A6),
+                              borderRadius: BorderRadius.circular(5),
                             ),
                           ),
                         ),
-                        for (final i in row.intervals)
-                          Positioned(
-                            left:
-                                (i.start.difference(plan.start).inMilliseconds /
-                                        total *
-                                        box.maxWidth)
-                                    .clamp(0, box.maxWidth),
-                            width:
-                                (i.end.difference(i.start).inMilliseconds /
-                                        total *
-                                        box.maxWidth)
-                                    .clamp(0, box.maxWidth),
-                            top: 17,
-                            bottom: 17,
-                            child: DecoratedBox(
-                              decoration: BoxDecoration(
-                                color: const Color(0xFFC9B6A6),
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                            ),
-                          ),
-                      ],
-                    ),
+                    ],
                   ),
                 ),
               ),
             ),
-            const SizedBox(height: 10),
-            for (final interval in row.intervals)
-              Text('${time(interval.start)} – ${time(interval.end)}'),
-            if (row.best == null)
-              Text(t.notAboveTonight)
-            else ...[
-              const SizedBox(height: 8),
-              Text(
-                '${t.suggestedTime}: ${time(row.best!)} · ${row.altitude!.toStringAsFixed(0)}°',
-              ),
-              Text(
-                PlanningTime.utc(row.best!, language),
-                style: Theme.of(context).textTheme.bodySmall,
-              ),
-              const SizedBox(height: 12),
-              EventActions(
-                targetId: row.id,
-                instant: row.best!,
-                title: '$name · ${t.observingTime}',
-              ),
-            ],
+          ),
+          const SizedBox(height: 10),
+          for (final interval in row.intervals)
+            Text('${time(interval.start)} – ${time(interval.end)}'),
+          if (row.best == null)
+            Text(t.notAboveTonight)
+          else ...[
+            const SizedBox(height: 8),
+            Text(
+              '${t.suggestedTime}: ${time(row.best!)} · ${row.altitude!.toStringAsFixed(0)}°',
+            ),
+            Text(
+              PlanningTime.utc(row.best!, language),
+              style: Theme.of(context).textTheme.bodySmall,
+            ),
+            const SizedBox(height: 12),
+            EventActions(
+              targetId: row.id,
+              instant: row.best!,
+              title: '$name · ${t.observingTime}',
+            ),
           ],
-        ),
+        ],
       ),
     );
   }

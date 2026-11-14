@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging.Abstractions;
+using Yorungez.Astronomy.Application;
+using Yorungez.Astronomy.Domain;
 using Yorungez.Catalog.Application;
 using Yorungez.Identity.Application;
 using Yorungez.Notebook.Application;
@@ -21,6 +23,7 @@ public sealed class ReminderTests(AppFactory app) : IClassFixture<AppFactory>, I
         await using var scope = app.Services.CreateAsyncScope();
         await scope.ServiceProvider.GetRequiredService<NotebookDatabase>().Reminders.ExecuteDeleteAsync();
         app.Email.FailNext = false;
+        app.WeatherForecast = null;
     }
     public Task DisposeAsync() => Task.CompletedTask;
     private const string Route = "/api/v1/notebook/reminders";
@@ -76,6 +79,76 @@ public sealed class ReminderTests(AppFactory app) : IClassFixture<AppFactory>, I
         var capabilities = await client.GetFromJsonAsync<JsonElement>("/api/v1/notebook/notification-capabilities");
         Assert.True(capabilities.GetProperty("email").GetBoolean()); Assert.False(capabilities.GetProperty("push").GetBoolean());
     }
+    [Fact]
+    public async Task Weather_reminder_deduplicates_omits_private_site_and_suppresses_without_forecast()
+    {
+        using var client = app.Client();
+        var owner = await Login(client);
+        var input = Observing() with
+        {
+            InstantUtc = DateTimeOffset.UtcNow.AddHours(2),
+            WeatherSite = new(39.648765, 27.885123, 113)
+        };
+        var reminder = await Save(client, input);
+        Assert.True(reminder.WeatherDependent);
+        var payload = await client.GetStringAsync(Route);
+        Assert.DoesNotContain("latitude", payload, StringComparison.OrdinalIgnoreCase);
+        var duplicate = input with { Id = Guid.NewGuid(), InstantUtc = input.InstantUtc!.Value.AddMinutes(5) };
+        Assert.Equal(HttpStatusCode.Conflict, (await client.PostAsJsonAsync(Route, duplicate)).StatusCode);
+        Assert.Equal(0, await Dispatch(reminder.DueAtUtc.AddSeconds(2)));
+        Assert.Single(app.Email.Messages, message => message.Recipient == owner.Email); // account confirmation only
+        await using var scope = app.Services.CreateAsyncScope();
+        var row = await scope.ServiceProvider.GetRequiredService<NotebookDatabase>().Reminders.SingleAsync(r => r.Id == reminder.Id);
+        Assert.Equal("suppressed", row.Status);
+        Assert.Null(row.ForecastLatitude);
+        Assert.Null(row.ForecastLongitude);
+        Assert.Null(row.ForecastElevationMeters);
+    }
+
+    [Fact]
+    public async Task Weather_reminder_sends_one_directional_email_when_the_updated_forecast_is_favorable()
+    {
+        app.WeatherForecast = new ClearWeather();
+        using var client = app.Client();
+        var owner = await Login(client);
+        var planner = app.Services.GetRequiredService<ObservingPlanner>();
+        var now = DateTimeOffset.UtcNow;
+        // The equator makes a bright target cross above the high-altitude cutoff during the 48h interval.
+        var site = new WeatherReminderSite(0, 0, null);
+        var plan = await planner.PlanAsync(new(site.Latitude, site.Longitude, null, null, null, null), default);
+        var window = plan.Windows.First(w => w.Conditions == "good" && w.Target != "radiant" &&
+            w.BestUtc > now.AddMinutes(15) && w.BestUtc < now.AddHours(46));
+        var input = new ReminderInput(Guid.NewGuid(), 0, null, window.Id, window.BestUtc, "UTC", 10, WeatherSite: site);
+        var saved = await Save(client, input);
+        Assert.Equal(1, await Dispatch(saved.DueAtUtc.AddSeconds(2)));
+        Assert.Equal(0, await Dispatch(saved.DueAtUtc.AddSeconds(3)));
+        var sent = Assert.Single(app.Email.Messages, message => message.Recipient == owner.Email &&
+            message.Subject.StartsWith("Yorungez sky reminder", StringComparison.Ordinal));
+        Assert.Contains("above the horizon", sent.Body);
+        Assert.Contains("forecast looked favorable", sent.Body);
+    }
+
+    [Fact]
+    public async Task Weather_reminder_can_be_set_for_the_last_local_plan_date_and_not_the_next_day()
+    {
+        using var client = app.Client();
+        await Login(client);
+        var today = DateTimeOffset.UtcNow.Date;
+        var time = new DateTimeOffset(today.AddDays(29).AddHours(18), TimeSpan.Zero);
+        var input = new ReminderInput(Guid.NewGuid(), 0, null, "moon", time, "UTC", 10,
+            WeatherSite: new(39.65, 27.88, null));
+        var saved = await Save(client, input);
+        Assert.True(saved.WeatherDependent);
+        Assert.Equal("scheduled", saved.Status);
+        Assert.Equal(0, await Dispatch(DateTimeOffset.UtcNow.AddHours(48)));
+
+        var beyond = input with { Id = Guid.NewGuid(), InstantUtc = time.AddDays(1) };
+        var response = await client.PostAsJsonAsync(Route, beyond);
+        Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+        Assert.Equal("Reminders.WeatherDateOutsidePlan", (await response.Content.ReadFromJsonAsync<JsonElement>())
+            .GetProperty("code").GetString());
+    }
+
     [Fact]
     public async Task Local_station_reminder_accepts_a_selected_time_only_within_three_days()
     {
@@ -170,6 +243,16 @@ public sealed class ReminderTests(AppFactory app) : IClassFixture<AppFactory>, I
         Assert.Single(app.Email.Messages, m => m.Recipient == user.Email && m.Subject.StartsWith("Yorungez sky reminder:"));
     }
     private sealed class FixedClock(DateTimeOffset value) : TimeProvider { public override DateTimeOffset GetUtcNow() => value; }
+    private sealed class ClearWeather : ICloudForecast
+    {
+        public Task<CloudForecast?> GetAsync(ObserverSite site, CancellationToken ct)
+        {
+            var now = DateTimeOffset.UtcNow;
+            var hour = new DateTimeOffset(now.Year, now.Month, now.Day, now.Hour, 0, 0, TimeSpan.Zero);
+            return Task.FromResult<CloudForecast?>(new(now,
+                Enumerable.Range(0, 50).Select(i => new ForecastHour(hour.AddHours(i), 10, 0)).ToArray()));
+        }
+    }
 
     [Fact]
     public async Task Active_limit_is_bounded_and_cancellation_releases_capacity()

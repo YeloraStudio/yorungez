@@ -208,6 +208,8 @@ Kaynaklı gerçek fotoğraf ve kısa Wikipedia açıklaması saydam kartta sunul
 
 ### FR-05 — Görünürlük ve gözlem koşulları
 
+**K-065:** Ücretsiz, konuma göre 48 saatlik gözlem aralıkları ve koşula bağlı isteğe bağlı e-posta. Web ana menü sırası Gökyüzü, Bu Gece, Takvim ve Defterim. Mobil menü Bu Gece, Takvim ve Nereye bakmalıyım? ile başlar. [Kaynaklar, kapsam ve kabul](local-observing-opportunities.md).
+
 **“Görünür” tek bir evet/hayır değeri değildir.** Sistem üç katmanı ayrı sunar:
 
 1. **Geometrik görünürlük:** Nesne, seçili yer ve zamanda yerel ufkun üzerinde mi?

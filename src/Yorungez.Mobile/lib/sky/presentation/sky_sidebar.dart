@@ -104,7 +104,6 @@ class SkySidebar extends StatelessWidget {
               child: ListView(
                 padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
                 children: [
-                  AccountMenu(closeDrawer: () => Navigator.pop(context)),
                   ListTile(
                     contentPadding: EdgeInsets.zero,
                     leading: const Icon(Icons.nights_stay_outlined),
@@ -123,6 +122,7 @@ class SkySidebar extends StatelessWidget {
                     title: Text(t.guideTitle),
                     onTap: () => closeThen(() => context.push('/observe')),
                   ),
+                  AccountMenu(closeDrawer: () => Navigator.pop(context)),
                   ListTile(
                     contentPadding: EdgeInsets.zero,
                     leading: const Icon(Icons.satellite_alt_outlined),

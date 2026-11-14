@@ -4,19 +4,22 @@ using Yorungez.Application;
 namespace Yorungez.Notebook.Application;
 
 public sealed record ReminderInput(Guid Id, long ExpectedRevision, string? EventId, string? TargetId,
-    DateTimeOffset? InstantUtc, string TimeZoneId, int LeadMinutes, bool Cancelled = false);
+    DateTimeOffset? InstantUtc, string TimeZoneId, int LeadMinutes, bool Cancelled = false,
+    WeatherReminderSite? WeatherSite = null);
+public sealed record WeatherReminderSite(double Latitude, double Longitude, double? ElevationMeters);
 public sealed record ReminderView(Guid Id, long Revision, string? EventId, string TargetId, string Title,
     DateTimeOffset InstantUtc, string TimeZoneId, int LeadMinutes, string Channel, string Status,
-    DateTimeOffset DueAtUtc, DateTimeOffset? SentAtUtc);
+    DateTimeOffset DueAtUtc, DateTimeOffset? SentAtUtc, bool WeatherDependent = false);
 public sealed record ReminderFact(string? EventId, string TargetId, string Title, DateTimeOffset InstantUtc,
     string SourceUrl, TimeSpan? MaxSchedulingHorizon = null);
 public sealed record ReminderDeliveryContent(Guid ReminderId, string Title, string TargetId,
-    DateTimeOffset InstantUtc, string TimeZoneId, string SourceUrl);
+    DateTimeOffset InstantUtc, string TimeZoneId, string SourceUrl, WeatherReminderSite? WeatherSite = null);
 public sealed record ListRemindersQuery(Guid UserId) : IQuery<IReadOnlyList<ReminderView>>;
 public sealed record SaveReminderCommand(Guid UserId, ReminderInput Input) : ICommand<ReminderView>;
 public interface IReminderFacts
 {
     ReminderFact Resolve(string? eventId, string? targetId, DateTimeOffset? instantUtc);
+    ReminderFact ResolveWeather(ReminderInput input);
 }
 public interface IReminderStore
 {
@@ -48,11 +51,19 @@ public sealed class SaveReminderHandler(IReminderStore store, IReminderFacts fac
             i.LeadMinutes is not (0 or 10 or 30 or 60 or 180 or 1440) ||
             i.EventId?.Length > 160 || i.TargetId?.Length > 128)
             throw new AppFailure("Reminders.InvalidInput", FailureKind.Validation);
-        var fact = facts.Resolve(i.EventId, i.TargetId, i.InstantUtc);
+        var fact = i.WeatherSite is null ? facts.Resolve(i.EventId, i.TargetId, i.InstantUtc) : facts.ResolveWeather(i);
         var now = clock.GetUtcNow();
         if (fact.InstantUtc.AddMinutes(-i.LeadMinutes) < now.AddMinutes(2)
             || fact.InstantUtc > now.Add(fact.MaxSchedulingHorizon ?? TimeSpan.FromDays(366)))
             throw new AppFailure("Reminders.InvalidTime", FailureKind.Validation);
+        if (i.WeatherSite is not null)
+        {
+            var zone = TimeZoneInfo.FindSystemTimeZoneById(i.TimeZoneId);
+            var date = TimeZoneInfo.ConvertTime(fact.InstantUtc, zone).Date;
+            var today = TimeZoneInfo.ConvertTime(now, zone).Date;
+            if (date >= today.AddDays(30))
+                throw new AppFailure("Reminders.WeatherDateOutsidePlan", FailureKind.Validation);
+        }
         return store.SaveAsync(q.UserId, i, fact, ct);
     }
 }

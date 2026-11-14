@@ -11,6 +11,7 @@ using System.Collections.Concurrent;
 using System.Security.Cryptography;
 using System.Text.Json;
 using Yorungez.Identity.Application;
+using Yorungez.Astronomy.Application;
 using Yorungez.Identity.Infrastructure;
 using Yorungez.Identity.Infrastructure.Persistence;
 using Yorungez.Notebook.Infrastructure;
@@ -37,6 +38,7 @@ public sealed class AppFactory : WebApplicationFactory<Program>, IAsyncLifetime
     private bool _created;
     public CapturedEmailDelivery Email { get; } = new();
     public bool CacheUnavailable { get; init; }
+    public ICloudForecast? WeatherForecast { get; set; }
     public int RateLimit { get; init; } = 1000;
     public string SigningKey => _settings["Jwt:SigningKey"]!;
 
@@ -75,6 +77,10 @@ public sealed class AppFactory : WebApplicationFactory<Program>, IAsyncLifetime
         {
             services.RemoveAll<IEmailDelivery>();
             services.AddSingleton<IEmailDelivery>(Email);
+            var fallback = services.Single(d => d.ServiceType == typeof(ICloudForecast));
+            services.Remove(fallback);
+            services.AddSingleton<Yorungez.Api.Http.MetNoForecast>();
+            services.AddSingleton<ICloudForecast>(provider => new OptionalForecast(this, provider.GetRequiredService<Yorungez.Api.Http.MetNoForecast>()));
             foreach (var descriptor in services.Where(d => d.ServiceType == typeof(IHostedService)
                 && d.ImplementationType == typeof(EmailOutboxWorker)).ToArray()) services.Remove(descriptor);
             if (CacheUnavailable)
@@ -120,6 +126,12 @@ public sealed class AppFactory : WebApplicationFactory<Program>, IAsyncLifetime
         await admin.OpenAsync();
         await using var drop = new NpgsqlCommand($"DROP DATABASE \"{_database}\" WITH (FORCE)", admin);
         await drop.ExecuteNonQueryAsync();
+    }
+
+    private sealed class OptionalForecast(AppFactory app, ICloudForecast fallback) : ICloudForecast
+    {
+        public Task<CloudForecast?> GetAsync(Yorungez.Astronomy.Domain.ObserverSite site, CancellationToken ct) =>
+            (app.WeatherForecast ?? fallback).GetAsync(site, ct);
     }
 }
 
