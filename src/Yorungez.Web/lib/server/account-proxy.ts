@@ -1,4 +1,5 @@
 import {readJson} from '../http/read-json.ts';
+import {apiProxyHeaders} from './api-proxy-headers.ts';
 const privateHeaders={'Cache-Control':'no-store, private','Vary':'Cookie','Content-Type':'application/json'};
 export function validMutation(request:Request){
  const url=new URL(request.url);
@@ -18,15 +19,7 @@ export async function accountProxy(request:Request,path:string){
   if(cookie)headers.Cookie=cookie;
   const owner=request.headers.get('X-Yorungez-Account');if(owner)headers['X-Yorungez-Account']=owner;
   headers.Origin=request.headers.get('Origin')??new URL(request.url).origin;
-  // This server is an explicitly trusted API proxy; never forward the client's supplied proto.
-  if(process.env.YORUNGEZ_WEB_ORIGIN?.startsWith('https://'))headers['X-Forwarded-Proto']='https';
-  // Only the last X-Forwarded-For entry is passed on: the address the reverse proxy itself saw.
-  // The API trusts CF-Connecting-IP only when that address is a Cloudflare edge, so neither
-  // value lets a caller pick its own rate-limit partition.
-  const seen=request.headers.get('X-Forwarded-For')?.split(',').at(-1)?.trim();
-  if(seen)headers['X-Forwarded-For']=seen;
-  const visitor=request.headers.get('CF-Connecting-IP')?.trim();
-  if(visitor)headers['CF-Connecting-IP']=visitor;
+  Object.assign(headers,apiProxyHeaders(request));
   let body:string|undefined;
   if(request.method!=='GET'){headers['Content-Type']='application/json';try{body=JSON.stringify(await readJson(request,65536))}catch{return Response.json({code:'Common.InvalidInput'},{status:400,headers:privateHeaders})}}
   const upstream=await fetch(new URL(path,process.env.YORUNGEZ_API_ORIGIN??'http://127.0.0.1:5187'),{method:request.method,headers,body,cache:'no-store',redirect:'error',signal:AbortSignal.timeout(15000)});

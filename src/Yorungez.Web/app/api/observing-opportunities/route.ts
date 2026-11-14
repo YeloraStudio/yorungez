@@ -1,4 +1,5 @@
 import { readJson } from '../../../lib/http/read-json.ts';
+import { apiProxyHeaders } from '../../../lib/server/api-proxy-headers.ts';
 
 export const runtime = 'nodejs';
 
@@ -29,11 +30,7 @@ export async function POST(request: Request) {
 
 async function proxy(request: Request, path: string, body?: string) {
   const headers = { 'Cache-Control': 'no-store', 'Content-Type': 'application/json' };
-  const upstreamHeaders: Record<string, string> = { 'Content-Type': 'application/json' };
-  const seen = request.headers.get('X-Forwarded-For')?.split(',').at(-1)?.trim();
-  if (seen) upstreamHeaders['X-Forwarded-For'] = seen;
-  const visitor = request.headers.get('CF-Connecting-IP')?.trim();
-  if (visitor) upstreamHeaders['CF-Connecting-IP'] = visitor;
+  const upstreamHeaders = { ...apiProxyHeaders(request), 'Content-Type': 'application/json' };
   try {
     const url = new URL(path, process.env.YORUNGEZ_API_ORIGIN ?? 'http://127.0.0.1:5187');
     const result = await fetch(url, {
