@@ -67,6 +67,7 @@ platform :ios do
     prepare
     quality_checks
     app_command(flutter_binary, 'build', 'ios', '--release', '--no-codesign', '--no-pub')
+    app_command('python3', 'tool/verify_ios_ffi.py', 'build/ios/iphoneos/Runner.app')
   end
 
   desc 'Create a signed App Store IPA using an installed distribution identity and profile'

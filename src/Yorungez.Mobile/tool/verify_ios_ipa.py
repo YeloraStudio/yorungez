@@ -6,6 +6,8 @@ import subprocess
 import tempfile
 from pathlib import Path
 
+from verify_ios_ffi import verify_native_exports
+
 
 def main():
     parser = argparse.ArgumentParser()
@@ -45,6 +47,7 @@ def main():
                         for value in profile['DeveloperCertificates']}
         if args.certificate_sha256 not in certificates:
             raise ValueError('Profile does not contain the selected certificate')
+        verify_native_exports(app)
         print('IPA signature, selected certificate, App Store profile, bundle and version verified.')
 
 

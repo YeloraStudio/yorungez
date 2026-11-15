@@ -32,7 +32,7 @@ on:
   workflow_dispatch:
     inputs:
       build_ios:
-        description: Also build the unsigned iOS application on macOS
+        description: Also archive and verify the unsigned iOS application on macOS
         type: boolean
         default: false
 permissions:
@@ -106,11 +106,16 @@ jobs:
           test "$(git -C "$sdk" rev-parse HEAD)" = "$FLUTTER_REVISION"
           test "$(git -C "$sdk" rev-parse "refs/tags/$FLUTTER_VERSION^{commit}")" = "$FLUTTER_REVISION"
           echo "$sdk/bin" >> "$GITHUB_PATH"
-      - name: Build unsigned iOS application
+      - name: Verify unsigned iOS Release archive
         working-directory: src/Yorungez.Mobile
         run: |
           flutter config --no-analytics
           flutter pub get --enforce-lockfile
           dart run tool/stage_assets.dart
           flutter gen-l10n
-          flutter build ios --no-codesign --no-pub
+          flutter build ios --release --config-only --no-codesign --no-pub
+          archive="$RUNNER_TEMP/Yorungez.xcarchive"
+          xcodebuild archive -workspace ios/Runner.xcworkspace -scheme Runner \
+            -configuration Release -destination 'generic/platform=iOS' \
+            -archivePath "$archive" CODE_SIGNING_ALLOWED=NO -quiet
+          python3 tool/verify_ios_ffi.py "$archive/Products/Applications/Runner.app"
