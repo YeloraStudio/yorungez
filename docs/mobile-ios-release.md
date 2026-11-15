@@ -70,6 +70,12 @@ bundle exec fastlane ios submit  # uses IOS_VERSION and IOS_BUILD_NUMBER exactly
 
 Every upload needs a new build number. Archive settings override version/signing for that build without rewriting the checked-in Xcode signing settings or `pubspec.yaml`. Keep the IPA/archive/dSYM together for diagnostics. Do not mistake an unsigned `Runner.app` for a distributable IPA. A Swift or asset-packaging change requires a full rebuild, not hot reload.
 
+### Native sky startup (SKY-01 and SKY-08)
+
+Dart resolves eight native astronomy entry points in the Runner process. The release configuration preserves these global symbols. The [previous settings](https://github.com/YeloraStudio/yorungez/actions/runs/43749096493/job/132918836091) produced an iPhone archive with all eight missing from the dyld exports. The [corrected settings](https://github.com/YeloraStudio/yorungez/actions/runs/43748936021/job/132918356312) preserved all eight in the unsigned device archive. Fastlane checks the actual exported IPA before uploading it.
+
+On the new TestFlight build, open the sky using an example or manual location with the network disabled. Confirm that the sky and Moon load. Then enable location and verify live pointing on a physical iPhone.
+
 ## Required work before public App Store submission
 
 1. **Account deletion:** PR #37 added the bilingual, password-confirmed deletion flow with session revocation and server-owned record cleanup. Verify the account settings link and end-to-end deletion against the shared backend from the new iOS build.
