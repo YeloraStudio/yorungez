@@ -14,7 +14,7 @@ public sealed class IdentityReadiness(IdentityStore store) : IHealthCheck
             if (!await store.Database.CanConnectAsync(ct)
                 || (await store.Database.GetPendingMigrationsAsync(ct)).Any()) return HealthCheckResult.Unhealthy();
             // A listening server alone does not prove the application's schema is usable.
-            _ = await store.Users.AsNoTracking().Select(u => u.Id).Take(1).ToArrayAsync(ct);
+            _ = await store.Users.AsNoTracking().OrderBy(u => u.Id).Select(u => u.Id).Take(1).ToArrayAsync(ct);
             return HealthCheckResult.Healthy();
         }
         catch (Exception ex) when (ex is not OperationCanceledException) { return HealthCheckResult.Unhealthy(); }

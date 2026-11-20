@@ -158,6 +158,40 @@ public sealed class ApiLoggingTests
     }
 
     [Fact]
+    public void Email_failure_keeps_safe_diagnosis_without_smtp_response_or_recipient()
+    {
+        var capture = new Capture();
+        using var logger = new LoggerConfiguration().WriteTo.Sink(capture).CreateLogger();
+        using var factory = Microsoft.Extensions.Logging.LoggerFactory.Create(b => b.AddSerilog(logger));
+        var source = factory.CreateLogger<Yorungez.Identity.Infrastructure.EmailOutboxDispatcher>();
+        var error = new MailKit.Net.Smtp.SmtpCommandException(MailKit.Net.Smtp.SmtpErrorCode.RecipientNotAccepted,
+            MailKit.Net.Smtp.SmtpStatusCode.MailboxUnavailable, "PRIVATE_RECIPIENT PRIVATE_RESPONSE");
+        Yorungez.Identity.Infrastructure.EmailOutboxDiagnostics.Failed(source, error, 2);
+        var line = Assert.Single(capture.Lines());
+        Assert.DoesNotContain("PRIVATE_", line);
+        using var record = JsonDocument.Parse(line);
+        Assert.Equal("EmailDeliveryFailed", record.RootElement.GetProperty("Event").GetString());
+        Assert.Equal("SmtpRejected", record.RootElement.GetProperty("FailureCategory").GetString());
+        Assert.Equal(550, record.RootElement.GetProperty("SmtpStatusCode").GetInt32());
+        Assert.Equal(2, record.RootElement.GetProperty("Attempt").GetInt32());
+        Assert.Equal(typeof(MailKit.Net.Smtp.SmtpCommandException).FullName, record.RootElement.GetProperty("ExceptionType").GetString());
+    }
+
+    [Fact]
+    public void Queue_decryption_failure_is_distinguished_from_smtp_failure()
+    {
+        var capture = new Capture();
+        using var logger = new LoggerConfiguration().WriteTo.Sink(capture).CreateLogger();
+        using var factory = Microsoft.Extensions.Logging.LoggerFactory.Create(b => b.AddSerilog(logger));
+        var source = factory.CreateLogger<Yorungez.Identity.Infrastructure.EmailOutboxDispatcher>();
+        Yorungez.Identity.Infrastructure.EmailOutboxDiagnostics.Failed(source,
+            new System.Security.Cryptography.CryptographicException("PRIVATE_PAYLOAD"), 1);
+        var line = Assert.Single(capture.Lines());
+        Assert.Contains("PayloadDecryption", line);
+        Assert.DoesNotContain("PRIVATE_", line);
+    }
+
+    [Fact]
     public void Runtime_formatter_omits_framework_messages_properties_and_exception_data()
     {
         var capture = new Capture();
